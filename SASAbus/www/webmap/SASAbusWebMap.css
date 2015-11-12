@@ -1,0 +1,40 @@
+#map
+{
+	position:absolute;
+	left:0px;
+	right:0px;
+	top:0px;
+	bottom: 0px;
+}
+
+img.leaflet-tile {
+    /* work-around from here: https://github.com/CloudMade/Leaflet/issues/161 */
+    outline: 1px solid transparent;
+}
+
+.map-custom-controls
+{
+	position: absolute;
+	z-index: 9999;
+	right:0px;
+	top:0px;
+	width:10em;
+}
+
+span {
+    color: #737373;
+}
+
+button {
+    background: #e57300;
+    color: #ffffff;
+    padding: 6px;
+    margin: 6px;
+    border-radius: 8px;
+    border: none;
+}
+
+button.map-custom-controls {
+    background: #737373;
+    width: auto;
+}

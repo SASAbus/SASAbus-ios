@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BackgroundView" customModule="SASAbus" customModuleProvider="target">
+            <connections>
+                <outlet property="backgroundImageView" destination="Iu3-V2-loC" id="uxb-NJ-yrP"/>
+                <outlet property="progressIndicatorView" destination="31r-Sd-HDk" id="HYy-da-Qx3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_SASA_2014_nur_rund.png" translatesAutoresizingMaskIntoConstraints="NO" id="Iu3-V2-loC">
+                    <rect key="frame" x="180" y="180" width="240" height="240"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Iu3-V2-loC" secondAttribute="height" multiplier="1:1" id="F8I-Dl-how"/>
+                        <constraint firstAttribute="width" constant="240" id="HVD-3Z-WKU"/>
+                        <constraint firstAttribute="height" constant="240" id="ntb-b9-ell"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="31r-Sd-HDk" customClass="KDCircularProgress" customModule="KDCircularProgress">
+                    <rect key="frame" x="151" y="167" width="298" height="266"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="266" id="35a-al-siV"/>
+                        <constraint firstAttribute="width" secondItem="31r-Sd-HDk" secondAttribute="height" multiplier="149:133" id="YEM-yi-dDi"/>
+                        <constraint firstAttribute="width" constant="298" id="c8u-rP-DDC"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="angle">
+                            <integer key="value" value="90"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
+                            <integer key="value" value="-90"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Iu3-V2-loC" secondAttribute="trailing" constant="180" id="1Oo-7y-jXq"/>
+                <constraint firstAttribute="bottom" secondItem="Iu3-V2-loC" secondAttribute="bottom" constant="180" id="LHh-qZ-ZqS"/>
+                <constraint firstItem="Iu3-V2-loC" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="M8B-QV-t1T"/>
+                <constraint firstItem="Iu3-V2-loC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="180" id="abI-QF-A32"/>
+                <constraint firstItem="31r-Sd-HDk" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bp5-o3-L7L"/>
+                <constraint firstItem="31r-Sd-HDk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fCu-qN-Cpz"/>
+                <constraint firstItem="Iu3-V2-loC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="180" id="hCl-Pi-uS4"/>
+                <constraint firstItem="Iu3-V2-loC" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hSm-Z7-k6I"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="1Oo-7y-jXq"/>
+                    <exclude reference="LHh-qZ-ZqS"/>
+                    <exclude reference="abI-QF-A32"/>
+                    <exclude reference="hCl-Pi-uS4"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+    <resources>
+        <image name="logo_SASA_2014_nur_rund.png" width="862" height="861"/>
+    </resources>
+</document>
