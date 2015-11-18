@@ -95,7 +95,7 @@ class BusTripCalculator {
                 }
             }
         }
-        stopTimes.sortInPlace({$0.getSeconds() < $1.getSeconds()})
+        stopTimes = stopTimes.sort({$0.getSeconds() < $1.getSeconds()})
         return stopTimes
     }
 }
