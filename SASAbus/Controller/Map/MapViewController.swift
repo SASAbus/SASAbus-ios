@@ -31,6 +31,7 @@ class MapViewController: MasterViewController, UIWebViewDelegate, CLLocationMana
 
     @IBOutlet weak var mapWebView: UIWebView!
 
+
     init(title: String?) {
         super.init(nibName: "MapViewController", title: nil);
         self.title = title;
@@ -75,6 +76,13 @@ class MapViewController: MasterViewController, UIWebViewDelegate, CLLocationMana
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+
+        Analytics.track("Map")
+    }
+
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue: CLLocationCoordinate2D = manager.location!.coordinate
         self.mapJavascriptBridge?.setRequestLocation(locValue.latitude, longitued: locValue.longitude, accurancy: 5.0)
@@ -94,11 +102,5 @@ class MapViewController: MasterViewController, UIWebViewDelegate, CLLocationMana
             self.mapJavascriptBridge?.loadJavascript()
             initializedJavascript = true;
         }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated);
-
-        self.track("Map")
     }
 }

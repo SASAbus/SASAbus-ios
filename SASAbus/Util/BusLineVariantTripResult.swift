@@ -24,25 +24,16 @@ import Foundation
 
 class BusLineVariantTripResult {
 
-    fileprivate var lineVariantIdentifiers: [String]! = []
-    fileprivate var busLineVariantTrips: [BusLineVariantTrip]! = []
-
-    func getLineVariantIdentifiers() -> [String] {
-        return self.lineVariantIdentifiers
-    }
-
-    func getBusLineVariantTrips() -> [BusLineVariantTrip] {
-        return self.busLineVariantTrips
-    }
+    var lineVariantIdentifiers: [String]! = []
+    var busLineVariantTrips: [BusLineVariantTrip]! = []
 
     func addBusLineVariantTrip(_ busLineVariantTrip: BusLineVariantTrip) {
-
         let lineVariantIdentifier = String(busLineVariantTrip.busLine.id) + ":" + String(busLineVariantTrip.variant.variant)
+        
         if !self.lineVariantIdentifiers.contains(lineVariantIdentifier) {
             self.lineVariantIdentifiers.append(lineVariantIdentifier)
         }
 
         self.busLineVariantTrips.append(busLineVariantTrip)
     }
-
 }

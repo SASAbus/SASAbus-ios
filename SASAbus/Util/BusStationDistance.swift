@@ -24,8 +24,9 @@ import Foundation
 import CoreLocation
 
 class BusStationDistance {
-    fileprivate let distance: CLLocationDistance!
-    fileprivate let busStation: BusStationItem!
+
+    let distance: CLLocationDistance!
+    let busStation: BusStationItem!
 
     init(busStationItem: BusStationItem, distance: CLLocationDistance) {
         self.busStation = busStationItem

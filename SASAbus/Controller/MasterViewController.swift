@@ -24,7 +24,7 @@
 import UIKit
 import DrawerController
 
-class MasterViewController: UIViewController, GoogleAnalyticsProtocol {
+class MasterViewController: UIViewController {
 
     init(nibName: String?, title: String?) {
         super.init(nibName: nibName, bundle: nil);
@@ -52,17 +52,8 @@ class MasterViewController: UIViewController, GoogleAnalyticsProtocol {
     }
 
     // MARK: - Button Handlers
+
     func leftDrawerButtonPress(_ sender: AnyObject?) {
         self.evo_drawerController?.toggleDrawerSide(.left, animated: true, completion: nil)
-    }
-
-    func track(_ screen: String) {
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker?.set(kGAIScreenName, value: screen)
-
-        // TODO: Fix tracker
-
-        // let builder = GAIDictionaryBuilder.createScreenView()
-        // tracker?.send(builder?.build() as [AnyHashable: Any])
     }
 }

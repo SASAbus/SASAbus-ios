@@ -91,17 +91,19 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
 
-        self.track("BusSchedules")
+        Analytics.track("BusSchedules")
     }
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
+
         if (self.autoCompleteTableView != nil && tableView.isEqual(self.autoCompleteTableView)) {
             count = self.foundBusLines.count
         } else {
             count = super.tableView(tableView, numberOfRowsInSection: section)
         }
+
         return count;
     }
 
@@ -112,6 +114,7 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
 
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.busLineLabel.text = busLine.name
+
             return cell;
         } else {
             return super.tableView(tableView, cellForRowAt: indexPath)
@@ -130,13 +133,16 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
     override internal func disableSearching() {
         self.working = true
         (self.searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.colorGrey
+
         self.dateTimeTextField.isUserInteractionEnabled = false
         self.searchBar.alpha = 0.7
         self.dateTimeTextField.alpha = 0.7
+
         let items = self.tabBar.items
         for item in items! {
             item.isEnabled = false
         }
+
         self.tabBar.setItems(items, animated: false)
     }
 
@@ -147,10 +153,12 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
             self.dateTimeTextField.isUserInteractionEnabled = true
             self.searchBar.alpha = 1.0
             self.dateTimeTextField.alpha = 1.0
+
             let items = self.tabBar.items
             for item in items! {
                 item.isEnabled = true
             }
+
             self.tabBar.setItems(items, animated: false)
         }
     }

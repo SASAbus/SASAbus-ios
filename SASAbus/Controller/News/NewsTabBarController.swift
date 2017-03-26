@@ -29,6 +29,7 @@ class NewsTabBarController: MasterTabBarController {
 
     var newsItems: [NewsItem] = []
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,9 +48,17 @@ class NewsTabBarController: MasterTabBarController {
         self.getNews()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+
+        Analytics.track("News")
+    }
+
+
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         self.getNews()
     }
+
 
     func getNews() {
         Log.info("Loading news")
@@ -63,11 +72,5 @@ class NewsTabBarController: MasterTabBarController {
                     print(error)
                     (self.selectedViewController as! NewsTableViewController).refreshView([])
                 })
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated);
-
-        self.track("News")
     }
 }

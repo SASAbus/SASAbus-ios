@@ -35,6 +35,7 @@ class InfoViewController: MasterViewController, UIToolbarDelegate {
     @IBOutlet weak var helpView: UITextView!
     @IBOutlet weak var titleLabel: UILabel!
 
+
     init(title: String?) {
         super.init(nibName: "InfoViewController", title: title)
     }
@@ -75,7 +76,7 @@ class InfoViewController: MasterViewController, UIToolbarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
 
-        self.track("About")
+        Analytics.track("About")
     }
 
 
@@ -91,13 +92,13 @@ class InfoViewController: MasterViewController, UIToolbarDelegate {
     }
 
 
-    fileprivate func getAboutText() -> String {
+    func getAboutText() -> String {
         let thirdPartyTitle = NSLocalizedString("The following sets forth attribution notices for third party software that may be contained in portions of the product. We thank the open source community for all their contributions.", comment: "")
         let thirdPartyText = NSLocalizedString("• DrawerController (MIT)\r\n• AlamoFire (MIT)\r\n• zipzap (BSD)\r\n• KDCircularProgress (MIT)\r\n• SwiftValidator (MIT)", comment: "")
         return thirdPartyTitle + "\r\n\r\n" + thirdPartyText
     }
 
-    fileprivate func getPrivacyText() -> NSAttributedString {
+    func getPrivacyText() -> NSAttributedString {
         var returnValue = NSAttributedString(string: "")
 
         do {

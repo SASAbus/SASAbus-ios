@@ -27,6 +27,7 @@ class NewsTableViewController: MasterTableViewController {
     var location: String!
     var newsItems: [NewsItem] = []
 
+
     init(nibName nibNameOrNil: String?, title: String?, location: String) {
         self.location = location
         super.init(nibName: nibNameOrNil, title: title)
@@ -35,6 +36,7 @@ class NewsTableViewController: MasterTableViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +48,13 @@ class NewsTableViewController: MasterTableViewController {
 
         self.initRefreshControl()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+
+        Analytics.track("CityNews")
+    }
+
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsItems.count;
@@ -66,13 +75,6 @@ class NewsTableViewController: MasterTableViewController {
 
     }
 
-    fileprivate func initRefreshControl() {
-        let refreshControl = UIRefreshControl()
-        refreshControl.tintColor = Theme.colorLightOrange
-        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""), attributes: [NSForegroundColorAttributeName: Theme.colorDarkGrey])
-        refreshControl.addTarget(self.tabBarController, action: "getNews", for: UIControlEvents.valueChanged)
-        self.refreshControl = refreshControl
-    }
 
     func refreshView(_ newsItems: [NewsItem]) {
         var newsItems = newsItems
@@ -93,9 +95,11 @@ class NewsTableViewController: MasterTableViewController {
         self.refreshControl!.endRefreshing()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated);
-
-        self.track("CityNews")
+    func initRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = Theme.colorLightOrange
+        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""), attributes: [NSForegroundColorAttributeName: Theme.colorDarkGrey])
+        refreshControl.addTarget(self.tabBarController, action: "getNews", for: UIControlEvents.valueChanged)
+        self.refreshControl = refreshControl
     }
 }

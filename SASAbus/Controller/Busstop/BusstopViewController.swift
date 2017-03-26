@@ -109,7 +109,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
 
-        self.track("NextBus")
+        Analytics.track("NextBus")
     }
 
 

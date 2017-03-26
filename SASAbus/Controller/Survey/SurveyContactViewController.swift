@@ -29,15 +29,20 @@ class SurveyContactViewController: MasterViewController, ValidationDelegate, UIT
     @IBOutlet weak var surveyTitleView: UIView!
     @IBOutlet weak var surveyTitle: UILabel!
     @IBOutlet weak var surveyContactDescription: UILabel!
+
     @IBOutlet weak var emailContact: UITextField!
     @IBOutlet weak var phoneContact: UITextField!
+
     @IBOutlet weak var noButton: UIButton!
     @IBOutlet weak var yesButton: UIButton!
+
     @IBOutlet weak var errorLabelEmail: UILabel!
     @IBOutlet weak var errorLabelPhone: UILabel!
+
     var surveyData = [String: AnyObject]()
 
     let validator = Validator()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,30 +77,17 @@ class SurveyContactViewController: MasterViewController, ValidationDelegate, UIT
         self.yesButton.setTitle(NSLocalizedString("send", comment: ""), for: UIControlState())
     }
 
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true;
-    }
-
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.emailContact.resignFirstResponder()
         self.phoneContact.resignFirstResponder()
     }
 
-    fileprivate func resetForm() {
-        self.emailContact.textColor = Theme.colorDarkGrey
-        self.phoneContact.textColor = Theme.colorDarkGrey
-        self.emailContact.layer.borderColor = Theme.colorDarkGrey.cgColor
-        self.phoneContact.layer.borderColor = Theme.colorDarkGrey.cgColor
-        self.errorLabelEmail.isHidden = true
-        self.errorLabelPhone.isHidden = true
-        self.validator.registerField(self.emailContact, errorLabel: errorLabelEmail, rules: [RequiredRule(), EmailRule(message: NSLocalizedString("Invalid email", comment: ""))])
-        self.validator.registerField(self.phoneContact, errorLabel: errorLabelPhone, rules: [RequiredRule(), PhoneNumberRule(message: NSLocalizedString("Not a valid phone number", comment: ""))])
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+
+        Analytics.track("SurveyContact")
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 
     @IBAction func finishSurvey(_ sender: UIButton) {
         if sender.tag == 1 {
@@ -104,6 +96,12 @@ class SurveyContactViewController: MasterViewController, ValidationDelegate, UIT
         } else {
             self.insertSurvey()
         }
+    }
+
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true;
     }
 
     func validationSuccessful() {
@@ -138,6 +136,18 @@ class SurveyContactViewController: MasterViewController, ValidationDelegate, UIT
         }
     }
 
+
+    fileprivate func resetForm() {
+        self.emailContact.textColor = Theme.colorDarkGrey
+        self.phoneContact.textColor = Theme.colorDarkGrey
+        self.emailContact.layer.borderColor = Theme.colorDarkGrey.cgColor
+        self.phoneContact.layer.borderColor = Theme.colorDarkGrey.cgColor
+        self.errorLabelEmail.isHidden = true
+        self.errorLabelPhone.isHidden = true
+        self.validator.registerField(self.emailContact, errorLabel: errorLabelEmail, rules: [RequiredRule(), EmailRule(message: NSLocalizedString("Invalid email", comment: ""))])
+        self.validator.registerField(self.phoneContact, errorLabel: errorLabelPhone, rules: [RequiredRule(), PhoneNumberRule(message: NSLocalizedString("Not a valid phone number", comment: ""))])
+    }
+
     fileprivate func preValidate() {
         let email = self.emailContact.text
         let phone = self.phoneContact.text
@@ -151,11 +161,5 @@ class SurveyContactViewController: MasterViewController, ValidationDelegate, UIT
                 validator.unregisterField(self.phoneContact)
             }
         }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated);
-
-        self.track("SurveyContact")
     }
 }

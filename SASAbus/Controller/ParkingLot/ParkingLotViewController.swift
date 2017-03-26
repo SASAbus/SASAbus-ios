@@ -42,6 +42,11 @@ class ParkingLotViewController: MasterTableViewController {
         }
     }
 
+
+    var parkingIds = [Int]()
+    var parkingItems = [Int: ParkingItem]()
+
+
     init(title: String?) {
         super.init(nibName: "ParkingLotViewController", title: nil);
         self.title = title;
@@ -51,9 +56,6 @@ class ParkingLotViewController: MasterTableViewController {
         super.init(coder: aDecoder)
     }
 
-
-    var parkingIds = [Int]()
-    var parkingItems = [Int: ParkingItem]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +68,13 @@ class ParkingLotViewController: MasterTableViewController {
         self.initRefreshControl()
         self.getParkingSlotData()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+
+        Analytics.track("Parkings")
+    }
+
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.parkingIds.count
@@ -103,6 +112,7 @@ class ParkingLotViewController: MasterTableViewController {
         let parkingLotDetailViewController = ParkingLotDetailViewController(nibName: "ParkingLotDetailViewController", bundle: nil, parkingStationItem: self.parkingItems[self.parkingIds[indexPath.row]]!.details);
         self.navigationController!.pushViewController(parkingLotDetailViewController, animated: true)
     }
+
 
     func getParkingSlotData() {
         Alamofire.request(ParkingApiRouter.getParkingIds()).responseJSON { response in
@@ -145,18 +155,11 @@ class ParkingLotViewController: MasterTableViewController {
         }
     }
 
-    fileprivate func initRefreshControl() {
+    func initRefreshControl() {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = Theme.colorLightOrange
         refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""), attributes: [NSForegroundColorAttributeName: Theme.colorDarkGrey])
         refreshControl.addTarget(self, action: #selector(ParkingLotViewController.getParkingSlotData), for: UIControlEvents.valueChanged)
         self.refreshControl = refreshControl
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated);
-
-        self.track("Parkings")
-    }
-
 }

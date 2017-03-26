@@ -23,6 +23,7 @@
 import Foundation
 
 protocol GoogleAnalyticsProtocol {
+
     func viewWillAppear(_ animated: Bool)
 
     func track(_ screen: String)

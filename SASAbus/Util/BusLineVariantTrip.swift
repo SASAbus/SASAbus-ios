@@ -25,8 +25,8 @@ import Foundation
 class BusLineVariantTrip {
 
     let busLine: Line!
-    let variant: BusTripVariantItem!
     let trip: BusTripItem!
+    let variant: BusTripVariantItem!
 
     init(busLine: Line, variant: BusTripVariantItem, trip: BusTripItem) {
         self.busLine = busLine
