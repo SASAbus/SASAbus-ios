@@ -1,11 +1,11 @@
 import Foundation
 import MapKit
 
-class Config {
+public class Config {
     
     static let mapLatitude: Double = 46.58
     static let mapLongitude: Double = 11.25
-    static let mapDelta: Double = 0.8
+    static let mapDelta: Double = 0.3
     
     static let mapRegion: MKCoordinateRegion = {
         var region = MKCoordinateRegion()
@@ -21,8 +21,6 @@ class Config {
     
     static let BUS_STOP_DETAILS_NO_DELAY: Int = 1 << 12
     static let BUS_STOP_DETAILS_OPERATION_RUNNING: Int = 1 << 11
-
-
 
     static let PLANNED_DATA_FOLDER = "data/"
     static let PLANNED_DATA_URL: String = "http://opensasa.info/SASAplandata/"
@@ -47,7 +45,7 @@ class Config {
     static let mapOnlineTiles = ""
     static let mapStandardLatitude = 46.58
     static let mapStandardLongitude = 11.25
-    static let mapStandardZoom = 10
+    static let mapStandardZoom = 12
     static let mapHowOftenShouldIAskForMapDownload = 0
 
     // Parking
@@ -57,18 +55,12 @@ class Config {
     static let newsApiUrl = ""
 
     // Bus beacon
-    static let BUS_BEACON_UUID = "e923b236-f2b7-4a83-bb74-cfb7fa44cab8"
-    static let BUS_BEACON_IDENTIFIER = "BUS"
-
     static let beaconSecondsInBus = 120
     static let beaconMinTripDistance = 100
     static let beaconLastSeenTreshold = 20
 
 
     // Bus stop beacon
-    static let BUS_STOP_BEACON_UUID = "8f771fca-e25a-4a7f-af4e-1745a7be89ef"
-    static let BUS_STOP_BEACON_IDENTIFIER = "BUS_STOP"
-
     static let busStopValiditySeconds = 10
 
     // Survey

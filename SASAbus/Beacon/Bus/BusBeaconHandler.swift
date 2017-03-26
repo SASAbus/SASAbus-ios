@@ -52,19 +52,19 @@ fileprivate func ><T:Comparable>(lhs: T?, rhs: T?) -> Bool {
 }
 
 
-class SurveyBeaconHandler: BeaconHandlerProtocol {
+class BusBeaconHandler: BeaconHandlerProtocol {
 
     var beaconLocationHandlerStart: SurveyLocationHandler?
     var beaconLocationHandlerStop: SurveyLocationHandler?
     var beaconsToObserve = [String: SurveyBeaconInfo]()
     let surveyAction: SurveyActionProtocol
-    let uuid: String
-    let identifier: String
 
-    init(surveyAction: SurveyActionProtocol, uuid: String, identifier: String) {
+    let uuid = "e923b236-f2b7-4a83-bb74-cfb7fa44cab8"
+    let identifier = "BUS"
+
+
+    init(surveyAction: SurveyActionProtocol) {
         self.surveyAction = surveyAction
-        self.uuid = uuid
-        self.identifier = identifier
     }
 
     func beaconsInRange(_ beacons: [CLBeacon]) {
@@ -135,22 +135,22 @@ class SurveyBeaconHandler: BeaconHandlerProtocol {
         if (Int(beaconInfo.lastSeen.timeIntervalSince1970) + Config.beaconLastSeenTreshold) > Int(now.timeIntervalSince1970) {
 
             _ = RealtimeApi.vehicle(vehicle: beaconInfo.major)
-            .subscribeOn(MainScheduler.asyncInstance)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { bus in
-                if (bus != nil) {
-                    beaconInfo.stopPositionItem = bus
-                    self.checkTrip(beaconInfo, location: bus.getCoordinates())
-                } else {
-                    self.beaconLocationHandlerStop = SurveyLocationHandler(locationFoundProtocol: StopLocationFound(beaconInfo: beaconInfo, master: self))
-                    self.beaconLocationHandlerStop!.getLocationAsync()
-                }
-            }, onError: { error in
-                print(error)
+                    .subscribeOn(MainScheduler.asyncInstance)
+                    .observeOn(MainScheduler.instance)
+                    .subscribe(onNext: { bus in
+                        if (bus != nil) {
+                            beaconInfo.stopPositionItem = bus
+                            self.checkTrip(beaconInfo, location: bus.getCoordinates())
+                        } else {
+                            self.beaconLocationHandlerStop = SurveyLocationHandler(locationFoundProtocol: StopLocationFound(beaconInfo: beaconInfo, master: self))
+                            self.beaconLocationHandlerStop!.getLocationAsync()
+                        }
+                    }, onError: { error in
+                        print(error)
 
-                self.beaconLocationHandlerStop = SurveyLocationHandler(locationFoundProtocol: StopLocationFound(beaconInfo: beaconInfo, master: self))
-                self.beaconLocationHandlerStop!.getLocationAsync()
-            })
+                        self.beaconLocationHandlerStop = SurveyLocationHandler(locationFoundProtocol: StopLocationFound(beaconInfo: beaconInfo, master: self))
+                        self.beaconLocationHandlerStop!.getLocationAsync()
+                    })
         }
     }
 
@@ -210,9 +210,9 @@ class SurveyBeaconHandler: BeaconHandlerProtocol {
     fileprivate class StopLocationFound: LocationFoundProtocol {
 
         var beaconInfo: SurveyBeaconInfo!
-        var master: SurveyBeaconHandler!
+        var master: BusBeaconHandler!
 
-        init(beaconInfo: SurveyBeaconInfo, master: SurveyBeaconHandler) {
+        init(beaconInfo: SurveyBeaconInfo, master: BusBeaconHandler) {
             self.beaconInfo = beaconInfo
             self.master = master
         }
@@ -220,6 +220,5 @@ class SurveyBeaconHandler: BeaconHandlerProtocol {
         func found(_ location: CLLocation) {
             self.master.checkTrip(self.beaconInfo, location: location)
         }
-
     }
 }

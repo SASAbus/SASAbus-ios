@@ -24,7 +24,7 @@ import CoreLocation
 import Alamofire
 import UIKit
 
-class SurveyBeaconObserver: NSObject, CLLocationManagerDelegate {
+class BusBeaconObserver: NSObject, CLLocationManagerDelegate {
 
     fileprivate let locationManager = CLLocationManager()
     fileprivate var region: CLBeaconRegion!
@@ -34,7 +34,7 @@ class SurveyBeaconObserver: NSObject, CLLocationManagerDelegate {
     fileprivate var didExitRegionDate: Date? = nil
 
 
-    init(beaconHandler: BeaconHandlerProtocol) {
+    init(_ beaconHandler: BeaconHandlerProtocol) {
         super.init()
         self.locationManager.delegate = self
         self.beaconHandler = beaconHandler
@@ -95,11 +95,14 @@ class SurveyBeaconObserver: NSObject, CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         let beaconRegion = region as! CLBeaconRegion
+
         if (beaconRegion.major != nil) {
             let now = Date()
+
             if didExitRegionDate == nil || (now.timeIntervalSince1970 - (didExitRegionDate?.timeIntervalSince1970)!) > 2 {
                 didExitRegionDate = now
                 print("didExitRegion \(beaconHandler.getUuid()) \(beaconRegion.major)")
+
                 let key: String = "\(beaconHandler.getUuid())_\(beaconRegion.major!)"
                 let newRegion = self.regions.removeValue(forKey: key)
                 if newRegion != nil {
@@ -111,7 +114,6 @@ class SurveyBeaconObserver: NSObject, CLLocationManagerDelegate {
                     self.beaconHandler.inspectBeacons();
                     locationManager.stopRangingBeacons(in: self.region)
                 }
-
             }
         }
     }

@@ -24,14 +24,13 @@ import Foundation
 import Alamofire
 import CoreLocation
 
-class StationDetectionBeaconHandler: BeaconHandlerProtocol {
+class BusStopBeaconHandler: BeaconHandlerProtocol {
 
-    let uuid: String
-    let identifier: String
+    let uuid = "8f771fca-e25a-4a7f-af4e-1745a7be89ef"
+    let identifier = "BUS_STOP"
 
-    init(uuid: String, identifier: String) {
-        self.uuid = uuid
-        self.identifier = identifier
+    init() {
+
     }
 
     func getUuid() -> String {

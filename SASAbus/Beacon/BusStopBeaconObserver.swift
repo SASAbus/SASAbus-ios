@@ -34,7 +34,7 @@ class BusStopBeaconObserver: NSObject, CLLocationManagerDelegate {
     fileprivate var didExitRegionDate: Date? = nil
 
 
-    init(beaconHandler: BeaconHandlerProtocol) {
+    init(_ beaconHandler: BeaconHandlerProtocol) {
         super.init()
         self.locationManager.delegate = self
         self.beaconHandler = beaconHandler

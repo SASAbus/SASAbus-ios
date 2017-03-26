@@ -120,7 +120,7 @@
 		1F2E381C1DE24A81C1B1EB22 /* BG_sidemenu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3767F3CAB9529ADDAA8C /* BG_sidemenu@3x.png */; };
 		1F2E3836711DD38C0C3AF3EB /* BusStopItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E350249678B1340FA91D4 /* BusStopItem.swift */; };
 		1F2E383A6D1D2F305E12446B /* UserRealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A4A10A23D582CA365C5 /* UserRealmHelper.swift */; };
-		1F2E384B683DF7B77BB7186E /* SurveyBeaconHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E371F68487BE4D1330513 /* SurveyBeaconHandler.swift */; };
+		1F2E384B683DF7B77BB7186E /* BusBeaconHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E371F68487BE4D1330513 /* BusBeaconHandler.swift */; };
 		1F2E386F53DA658123F43D82 /* RealtimeMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3ED7C15B067B1936234A /* RealtimeMapViewController.xib */; };
 		1F2E38849BF19E9D8BBB46EA /* bus_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E322121987E3FE692246F /* bus_icon@2x.png */; };
 		1F2E388BFF558309D65A2F8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E34673F66A58761B74D1C /* Assets.xcassets */; };
@@ -141,7 +141,7 @@
 		1F2E398E1C8C5768B47E9429 /* BusPathItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E334B8A712CA45D279882 /* BusPathItem.swift */; };
 		1F2E39A3613383709C3AEDDF /* alle_icon_filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3A9B22896D35BA22E731 /* alle_icon_filled.png */; };
 		1F2E39A6BEB8E2FCD59D4695 /* LocationFoundProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E346AF16F9DD70A69DCCE /* LocationFoundProtocol.swift */; };
-		1F2E39B1537DD1A5F4C53A96 /* SurveyBeaconObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D3AEB58423590CAFEF6 /* SurveyBeaconObserver.swift */; };
+		1F2E39B1537DD1A5F4C53A96 /* BusBeaconObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D3AEB58423590CAFEF6 /* BusBeaconObserver.swift */; };
 		1F2E39B2CA8DA7F2AE925D36 /* alle_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E35367E8F87478B340CCB /* alle_icon.png */; };
 		1F2E39C3012AE96F5953EBE4 /* BuslineAutocompleteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E34A82211A17FA893CBBF /* BuslineAutocompleteTableViewCell.xib */; };
 		1F2E39D3A76E90022131B13E /* wappen_bz@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E329E0011816B8CA2BA23 /* wappen_bz@2x.png */; };
@@ -202,7 +202,7 @@
 		1F2E3CDC60AC36749B44C572 /* ParkingApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E38B3345BD30DB4596856 /* ParkingApiRouter.swift */; };
 		1F2E3D0A5B788F5536E844C4 /* DepartureBuslineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E38F135189CC6C160A83C /* DepartureBuslineTableViewCell.xib */; };
 		1F2E3D15DE19313DA383638C /* BusstopGpsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E384EBDA4706A134EE1DC /* BusstopGpsViewController.xib */; };
-		1F2E3D2B2D8BFB9F90062265 /* StationDetectionBeaconHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E61B37703E12BF4CDA2 /* StationDetectionBeaconHandler.swift */; };
+		1F2E3D2B2D8BFB9F90062265 /* BusStopBeaconHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E61B37703E12BF4CDA2 /* BusStopBeaconHandler.swift */; };
 		1F2E3D47222A5DB45BA2EC90 /* logo_SASA_2014_nur_rund.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E329A3D47A95D9F38C1BC /* logo_SASA_2014_nur_rund.png */; };
 		1F2E3D53E9A49B3632F4D349 /* DownloadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3D852F9C1AEC90C56922 /* DownloadViewController.xib */; };
 		1F2E3D63A312E998EA778B77 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3DC9A025F6F92E7B5089 /* InfoViewController.xib */; };
@@ -353,7 +353,7 @@
 		1F2E36AE3D53FC131C8B0DF0 /* ParkingStationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingStationItem.swift; sourceTree = "<group>"; };
 		1F2E36BD359ABF56B7BA4637 /* DefaultSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = DefaultSettings.plist; sourceTree = "<group>"; };
 		1F2E370B0B1219FB74797821 /* BusstopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusstopViewController.xib; sourceTree = "<group>"; };
-		1F2E371F68487BE4D1330513 /* SurveyBeaconHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyBeaconHandler.swift; sourceTree = "<group>"; };
+		1F2E371F68487BE4D1330513 /* BusBeaconHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusBeaconHandler.swift; sourceTree = "<group>"; };
 		1F2E374B6A6AA41322835195 /* map_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_icon@3x.png"; sourceTree = "<group>"; };
 		1F2E3767F3CAB9529ADDAA8C /* BG_sidemenu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BG_sidemenu@3x.png"; sourceTree = "<group>"; };
 		1F2E376AABC148165730D015 /* AppDelegate-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -450,7 +450,7 @@
 		1F2E3CD088D426AAB3FAC196 /* BusstopGpsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusstopGpsTableViewCell.xib; sourceTree = "<group>"; };
 		1F2E3CD791307CED24B1AC4D /* menu_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_icon@2x.png"; sourceTree = "<group>"; };
 		1F2E3CFAAB98E73A0824F6B7 /* BG_sidemenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BG_sidemenu@2x.png"; sourceTree = "<group>"; };
-		1F2E3D3AEB58423590CAFEF6 /* SurveyBeaconObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyBeaconObserver.swift; sourceTree = "<group>"; };
+		1F2E3D3AEB58423590CAFEF6 /* BusBeaconObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusBeaconObserver.swift; sourceTree = "<group>"; };
 		1F2E3D511B8C7201406D8581 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		1F2E3D62D6A45005C662B813 /* BusTripCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusTripCalculator.swift; sourceTree = "<group>"; };
 		1F2E3D64289AFC9A46AE8449 /* location_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_icon.png; sourceTree = "<group>"; };
@@ -471,7 +471,7 @@
 		1F2E3E3F17DBCE06032E581F /* map_icon_filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_icon_filled.png; sourceTree = "<group>"; };
 		1F2E3E52DD45713902484579 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		1F2E3E55BBB782AE8F0DB3A0 /* BusstopGpsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusstopGpsTableViewCell.swift; sourceTree = "<group>"; };
-		1F2E3E61B37703E12BF4CDA2 /* StationDetectionBeaconHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationDetectionBeaconHandler.swift; sourceTree = "<group>"; };
+		1F2E3E61B37703E12BF4CDA2 /* BusStopBeaconHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopBeaconHandler.swift; sourceTree = "<group>"; };
 		1F2E3E6B54D5A057CA4FC5D9 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		1F2E3E91094AAD40074C377C /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		1F2E3ED0441BD4A002EB87F0 /* ic_navigation_news@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_navigation_news@3x.png"; sourceTree = "<group>"; };
@@ -947,18 +947,18 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		1F2E3C3B9610474988C6656E /* Survey */ = {
+		1F2E3C3B9610474988C6656E /* Bus */ = {
 			isa = PBXGroup;
 			children = (
 				1F2E38D96DAEE52679AE39A2 /* Action */,
 				1F2E346AF16F9DD70A69DCCE /* LocationFoundProtocol.swift */,
 				1F2E39F88749EFD9B9B26268 /* SurveyActionProtocol.swift */,
-				1F2E371F68487BE4D1330513 /* SurveyBeaconHandler.swift */,
+				1F2E371F68487BE4D1330513 /* BusBeaconHandler.swift */,
 				1F2E3A25D819B3E6BDDC80A7 /* SurveyBeaconInfo.swift */,
 				1F2E388390807EB72DF914C0 /* SurveyLocationHandler.swift */,
 				1F2E3AE4F5F890807E7478DB /* SurveyNotificationHandler.swift */,
 			);
-			path = Survey;
+			path = Bus;
 			sourceTree = "<group>";
 		};
 		1F2E3C6DC7E78EE40B3C3CDB /* GoogleAnalytics */ = {
@@ -992,11 +992,11 @@
 		1F2E3CBE208149030DA99BCE /* Beacon */ = {
 			isa = PBXGroup;
 			children = (
-				1F2E3DF981F3ADAD4E253D7C /* StationDetection */,
-				1F2E3C3B9610474988C6656E /* Survey */,
+				1F2E3DF981F3ADAD4E253D7C /* BusStop */,
+				1F2E3C3B9610474988C6656E /* Bus */,
 				1F2E34946082E0067129B3C0 /* BeaconHandlerProtocol.swift */,
 				1F2E3398ABCC98A1A12AB1F5 /* BusStopBeaconObserver.swift */,
-				1F2E3D3AEB58423590CAFEF6 /* SurveyBeaconObserver.swift */,
+				1F2E3D3AEB58423590CAFEF6 /* BusBeaconObserver.swift */,
 			);
 			path = Beacon;
 			sourceTree = "<group>";
@@ -1020,12 +1020,12 @@
 			path = Download;
 			sourceTree = "<group>";
 		};
-		1F2E3DF981F3ADAD4E253D7C /* StationDetection */ = {
+		1F2E3DF981F3ADAD4E253D7C /* BusStop */ = {
 			isa = PBXGroup;
 			children = (
-				1F2E3E61B37703E12BF4CDA2 /* StationDetectionBeaconHandler.swift */,
+				1F2E3E61B37703E12BF4CDA2 /* BusStopBeaconHandler.swift */,
 			);
-			path = StationDetection;
+			path = BusStop;
 			sourceTree = "<group>";
 		};
 		1F2E3F4C5A2064154E9A336A /* Util */ = {
@@ -1382,15 +1382,15 @@
 			files = (
 				1F2E3EF2EDCB236186C7DD22 /* GoogleAnalyticsProtocol.swift in Sources */,
 				1F2E34B53E5B7DCB5A2D86A7 /* NotificationProtocol.swift in Sources */,
-				1F2E3D2B2D8BFB9F90062265 /* StationDetectionBeaconHandler.swift in Sources */,
+				1F2E3D2B2D8BFB9F90062265 /* BusStopBeaconHandler.swift in Sources */,
 				1F2E3C1AE67A665396A4AE7A /* NotificationAction.swift in Sources */,
-				1F2E384B683DF7B77BB7186E /* SurveyBeaconHandler.swift in Sources */,
+				1F2E384B683DF7B77BB7186E /* BusBeaconHandler.swift in Sources */,
 				1F2E3ED75D4F44C9D435B067 /* SurveyActionProtocol.swift in Sources */,
 				1F2E3EBDEBE34DC336B541F9 /* SurveyBeaconInfo.swift in Sources */,
 				1F2E3ADA9E569DF398689581 /* SurveyLocationHandler.swift in Sources */,
 				1F2E39A6BEB8E2FCD59D4695 /* LocationFoundProtocol.swift in Sources */,
 				1F2E3EA2AF192FFB7C19A485 /* SurveyNotificationHandler.swift in Sources */,
-				1F2E39B1537DD1A5F4C53A96 /* SurveyBeaconObserver.swift in Sources */,
+				1F2E39B1537DD1A5F4C53A96 /* BusBeaconObserver.swift in Sources */,
 				1F2E32509D20814A9E9323FF /* BeaconHandlerProtocol.swift in Sources */,
 				1F2E3B5A885028AB78DADE1C /* BusStopBeaconObserver.swift in Sources */,
 				1F2E3A4AB8E43A406324344B /* UserDefaultHelper.swift in Sources */,

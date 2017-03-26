@@ -33,8 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow?
     var drawerController: DrawerController!
 
-    var beaconObserver: SurveyBeaconObserver! = SurveyBeaconObserver(beaconHandler: SurveyBeaconHandler(surveyAction: NotificationAction(), uuid: Config.BUS_BEACON_UUID, identifier: Config.BUS_BEACON_IDENTIFIER))
-    var beaconObserverStation: BusStopBeaconObserver! = BusStopBeaconObserver(beaconHandler: StationDetectionBeaconHandler(uuid: Config.BUS_STOP_BEACON_UUID, identifier: Config.BUS_STOP_BEACON_IDENTIFIER))
+    var beaconObserver: BusBeaconObserver! = BusBeaconObserver(BusBeaconHandler(surveyAction: NotificationAction()))
+    var beaconObserverStation: BusStopBeaconObserver! = BusStopBeaconObserver(BusStopBeaconHandler())
 
     var notificationHandlers: [String: NotificationProtocol] = [String: NotificationProtocol]()
 
@@ -49,11 +49,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         self.window!.backgroundColor = UIColor.white
         self.window!.makeKeyAndVisible()
 
-        let navigationBarAppearace = UINavigationBar.appearance()
-        navigationBarAppearace.isTranslucent = false
-        navigationBarAppearace.tintColor = Theme.colorWhite  // Back buttons and such
-        navigationBarAppearace.barTintColor = Theme.colorOrange  // Bar's background color
-        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName: Theme.colorWhite]  // Title's text color
+        let navigationBarAppearance = UINavigationBar.appearance()
+        navigationBarAppearance.isTranslucent = false
+        navigationBarAppearance.tintColor = Theme.colorWhite  // Back buttons and such
+        navigationBarAppearance.barTintColor = Theme.colorOrange  // Bar's background color
+        navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: Theme.colorWhite]  // Title's text color
         self.startDownloadSplashScreen()
 
         // Configure tracker from GoogleService-Info.plist.
@@ -253,7 +253,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         self.drawerController!.centerViewController = self.getNavigationController(viewController)
         let menuViewController = self.drawerController!.leftDrawerViewController as! MenuViewController
 
-        let row = Menu.items.index(where: { object_getClassName($0.viewController!) == object_getClassName(viewController)})
+        let row = Menu.items.index(where: { object_getClassName($0.viewController!) == object_getClassName(viewController) })
 
         if row != nil {
             menuViewController.tableView.selectRow(at: IndexPath(row: row!, section: 0), animated: false, scrollPosition: UITableViewScrollPosition.none)
@@ -285,7 +285,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         weak var appDelegate: AppDelegate! = nil
 
         func finished() {
-            //getting privacy
+            // Getting privacy
             Alamofire.request(PrivacyApiRouter.getPrivacyHtml("ios")).responseString { response in
                 if response.result.isSuccess {
                     let privacyHtml = response.result.value!
@@ -313,7 +313,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
     }
 }
-
 
 protocol DownloadFinishedProtocol {
     func finished()
