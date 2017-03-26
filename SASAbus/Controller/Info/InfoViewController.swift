@@ -25,10 +25,13 @@ import UIKit
 class InfoViewController: MasterViewController, UIToolbarDelegate {
 
     @IBOutlet weak var toolBar: UIToolbar!
+
     @IBOutlet weak var aboutButton: UIBarButtonItem!
     @IBOutlet weak var privacyButton: UIBarButtonItem!
+
     @IBOutlet weak var infoView: UITextView!
     @IBOutlet weak var infoTextView: UITextView!
+
     @IBOutlet weak var helpView: UITextView!
     @IBOutlet weak var titleLabel: UILabel!
 
@@ -48,19 +51,25 @@ class InfoViewController: MasterViewController, UIToolbarDelegate {
         let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject?
         let version = nsObject as! String
 
-        self.titleLabel.text = NSLocalizedString("SASAbus by Raiffeisen OnLine - \(version)", comment: "")
-        self.titleLabel.textColor = Theme.colorWhite
-        self.infoTextView.text = NSLocalizedString("© 2015 - 2016 Markus Windegger, Raiffeisen OnLine Gmbh (Norman Marmsoler, Jürgen Sprenger, Aaron Falk)", comment: "")
-        self.infoTextView.textColor = Theme.colorGrey
-        self.infoView.text = self.getAboutText()
-        self.toolBar.tintColor = Theme.colorOrange
-        self.infoView.textColor = Theme.colorDarkGrey
-        self.helpView.text = NSLocalizedString("For suggestions or help please mail to ios@sasabz.it", comment: "")
-        self.helpView.textColor = Theme.colorDarkGrey
-        self.aboutButton.target = self
-        self.aboutButton.action = #selector(InfoViewController.toggleInfo(_:))
-        self.privacyButton.target = self
-        self.privacyButton.action = #selector(InfoViewController.toggleInfo(_:))
+        titleLabel.text = NSLocalizedString("SASAbus by Raiffeisen OnLine - \(version)", comment: "")
+        titleLabel.textColor = Theme.colorWhite
+        
+        infoTextView.text = NSLocalizedString("© 2015 - 2016 Markus Windegger, Raiffeisen OnLine Gmbh (Norman Marmsoler, Jürgen Sprenger, Aaron Falk)", comment: "")
+        infoTextView.textColor = Theme.colorGrey
+
+        infoView.text = getAboutText()
+        infoView.textColor = Theme.colorDarkGrey
+        infoView.isEditable = false
+
+        toolBar.tintColor = Theme.colorOrange
+        helpView.text = NSLocalizedString("For suggestions or help please mail to ios@sasabz.it", comment: "")
+        helpView.textColor = Theme.colorDarkGrey
+        
+        aboutButton.target = self
+        aboutButton.action = #selector(InfoViewController.toggleInfo(_:))
+        
+        privacyButton.target = self
+        privacyButton.action = #selector(InfoViewController.toggleInfo(_:))
     }
 
     override func viewWillAppear(_ animated: Bool) {
