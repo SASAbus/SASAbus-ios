@@ -32,12 +32,4 @@ class BusStationDistance {
         self.busStation = busStationItem
         self.distance = distance
     }
-
-    func getBusStation() -> BusStationItem {
-        return self.busStation
-    }
-
-    func getDistance() -> CLLocationDistance {
-        return self.distance
-    }
 }

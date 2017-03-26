@@ -24,11 +24,9 @@ import Foundation
 
 class BusTripCalculator {
 
-
     static var standardTimeCache: [String: BusStandardTimeBetweenStopItem]?
 
     static func calculateBusStopTimes(_ busLineVariantTrip: BusLineVariantTrip) -> [BusTripBusStopTime] {
-
         var stopTimes: [BusTripBusStopTime] = []
         let standardTimes: [BusStandardTimeBetweenStopItem] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.SEL_FZT_FELD) as [BusStandardTimeBetweenStopItem]
         var standardTimesDictionary = [String: BusStandardTimeBetweenStopItem]()
