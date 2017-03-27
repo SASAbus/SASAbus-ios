@@ -67,7 +67,7 @@ class RestClient {
     }
 
     static func request(_ url: URLConvertible, method: HTTPMethod, parameters: Parameters? = nil, headers: [String: String]) -> Alamofire.DataRequest {
-        Log.info("\(method.rawValue.capitalized) \(url)")
+        Log.info("\(method.rawValue.uppercased()): \(url)")
 
         return Alamofire.request(url, method: method, parameters: parameters, headers: headers)
     }

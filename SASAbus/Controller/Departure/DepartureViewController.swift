@@ -30,17 +30,18 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
 
     @IBOutlet weak var tableView: MasterTableView!
 
-    internal var filterImage = UIImage(named: "filter_icon.png")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-    internal var filterImageFilled = UIImage(named: "filter_icon_filled.png")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-    internal var departures: [DepartureItem] = []
-    internal var filteredDepartures: [DepartureItem] = []
-    internal var searchDate: Date!
-    internal var secondsFromMidnight: Int!
-    internal var filteredBusLines: [BusLineFilter] = []
-    internal var filter = false
-    internal var refreshControl: UIRefreshControl!
-    fileprivate var cellNibName: String!
-    internal var working: Bool! = false
+    var filterImage = UIImage(named: "filter_icon.png")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+    var filterImageFilled = UIImage(named: "filter_icon_filled.png")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+    var departures: [DepartureItem] = []
+    var filteredDepartures: [DepartureItem] = []
+    var searchDate: Date!
+    var secondsFromMidnight: Int!
+    var filteredBusLines: [BusLineFilter] = []
+    var filter = false
+    var refreshControl: UIRefreshControl!
+
+    var cellNibName: String!
+    var working: Bool! = false
 
     init(cellNibName: String, nibName nibNameOrNil: String?, title: String?) {
         super.init(nibName: nibNameOrNil, title: title)
@@ -51,6 +52,7 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
         super.init(coder: aDecoder)
     }
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -59,16 +61,19 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        self.initRefreshControl()
+
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.tintColor = Theme.lightOrange
+        self.refreshControl.addTarget(self, action: #selector(DepartureViewController.getDepartures), for: UIControlEvents.valueChanged)
+
+        self.refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""),
+                attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
+
+        self.tableView.addSubview(self.refreshControl)
+
         self.setupSearchDate()
     }
 
-    internal func setupSearchDate() {
-        self.searchDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
-        self.secondsFromMidnight = self.getSecondsFromMidnight(self.searchDate)
-    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.filteredDepartures.count
@@ -126,6 +131,14 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
         self.navigationController!.pushViewController(busstopTripViewController, animated: true)
     }
 
+
+    func setupSearchDate() {
+        self.searchDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
+        self.secondsFromMidnight = self.getSecondsFromMidnight(self.searchDate)
+    }
+
     func getDepartures() {
         print("Loading departures")
 
@@ -142,6 +155,11 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
 
         let busStations = SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_ORT) as [BusStationItem]
         var busStationDictionary = [Int: BusStationItem]()
+
+        if lineVariantIdentifiers.isEmpty {
+            Log.warning("No lines to load")
+            return
+        }
 
         RealtimeApi.lines(lines: lineVariantIdentifiers)
                 .subscribeOn(MainScheduler.asyncInstance)
@@ -190,7 +208,7 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
 
                         for index in 0 ... stopTimesCount - 1 {
                             let stopTime = stopTimes[index]
-                            if (self.checkIfBusStopIsSuitable(stopTime, index: index, delayStopFoundIndex: delayStopFoundIndex, delaySecondsRoundedToMin: delaySecondsRoundedToMin, secondsFromMidnight: self.secondsFromMidnight, positionItem: positionItem)) {
+                            if (self.checkIfBusStopIsSuitable(stopTime, index: index, delayStopFoundIndex: delayStopFoundIndex, delay: delaySecondsRoundedToMin, secondsFromMidnight: self.secondsFromMidnight, realtimeBus: positionItem)) {
                                 departures.append(DepartureItem(busTripStopTime: stopTime, destinationBusStation: destinationBusStation, busLine: busLineVariantTrip.busLine, busStopNumber: stopTime.busStop, text: "", stopTimes: stopTimes, index: index, departureIndex: departureIndex, delaySecondsRounded: delaySecondsRoundedToMin, delayStopFoundIndex: delayStopFoundIndex, realTime: realTime, positionItem: positionItem))
                                 if !filteredBusLines.contains(where: { $0.busLine.id == busLineVariantTrip.busLine.id }) {
                                     filteredBusLines.append(BusLineFilter(busLine: busLineVariantTrip.busLine))
@@ -214,7 +232,8 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
                 })
     }
 
-    internal func setFilteredBusLines(_ filteredBusLines: [BusLineFilter]) {
+
+    func setFilteredBusLines(_ filteredBusLines: [BusLineFilter]) {
         self.filteredBusLines = filteredBusLines
         var filteredDepartures = self.departures
 
@@ -240,33 +259,24 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
         self.enableSearching()
     }
 
-    internal func disableSearching() {
+    func disableSearching() {
         fatalError("blockSearching has not been implemented")
     }
 
-    internal func enableSearching() {
+    func enableSearching() {
         fatalError("blockSearching has not been implemented")
     }
 
-    internal func getBusLineVariantTripsAndIdentifiers(_ secondsFromMidnight: Int) -> BusLineVariantTripResult {
+    func getBusLineVariantTripsAndIdentifiers(_ secondsFromMidnight: Int) -> BusLineVariantTripResult {
         fatalError("getBusLineVariantTripsAndIdentifiers(secondsFromMidnight:) has not been implemented")
     }
 
-    internal func getSecondsFromMidnight(_ date: Date) -> Int {
+    func getSecondsFromMidnight(_ date: Date) -> Int {
         let components = (Calendar.current as NSCalendar).components([NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second], from: date)
         return (components.hour! * 60 + components.minute!) * 60
     }
 
-    internal func checkIfBusStopIsSuitable(_ busTripStopTime: BusTripBusStopTime, index: Int, delayStopFoundIndex: Int, delaySecondsRoundedToMin: Int, secondsFromMidnight: Int, positionItem: RealtimeBus?) -> Bool {
+    func checkIfBusStopIsSuitable(_ stopTime: BusTripBusStopTime, index: Int, delayStopFoundIndex: Int, delay: Int, secondsFromMidnight: Int, realtimeBus: RealtimeBus?) -> Bool {
         fatalError("checkIfBusStopIsSuitable(secondsFromMidnight:index:delayStopFoundIndex:delaySecondsRoundedToMin:secodsFromMidnight:positionItem:) has not been implemented")
     }
-
-    fileprivate func initRefreshControl() {
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl.tintColor = Theme.lightOrange
-        self.refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""), attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
-        self.refreshControl.addTarget(self, action: #selector(DepartureViewController.getDepartures), for: UIControlEvents.valueChanged)
-        self.tableView.addSubview(self.refreshControl)
-    }
-
 }

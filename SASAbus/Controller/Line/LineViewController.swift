@@ -30,16 +30,16 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
     @IBOutlet weak var dateTimeTextField: UITextField!
     @IBOutlet weak var autoCompleteTableView: UITableView!
 
-    fileprivate var dateTimePicker: UIDatePicker!
-    fileprivate var selectedBusLine: Line?
+    var dateTimePicker: UIDatePicker!
+    var selectedBusLine: Line?
 
-    fileprivate var busLines: [Line] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_LID) as [Line]
-    fileprivate var foundBusLines: [Line]! = []
+    var busLines: [Line] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_LID) as [Line]
+    var foundBusLines: [Line]! = []
 
-    fileprivate var selectedTab: String = "ALL"
-    fileprivate var tabId: Int = 0
+    var selectedTab: String = "ALL"
+    var tabId: Int = 0
 
-    fileprivate var linePickerDataSource: [Line] = []
+    var linePickerDataSource: [Line] = []
 
     let dateFormatter: DateFormatter = DateFormatter()
 
@@ -84,6 +84,7 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
         self.setUpDateTime()
         self.autoCompleteTableView.isHidden = true
     }
@@ -164,20 +165,20 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
     }
 
 
-    fileprivate func setupAutoCompleteTableView() {
+    func setupAutoCompleteTableView() {
         self.autoCompleteTableView!.isHidden = true
         self.updateFoundBusLines("")
         self.view.addSubview(self.autoCompleteTableView!)
         self.autoCompleteTableView!.register(UINib(nibName: "BuslineAutocompleteTableViewCell", bundle: nil), forCellReuseIdentifier: "BuslineAutocompleteTableViewCell");
     }
 
-    fileprivate func resetLinePickerDataSource() {
+    func resetLinePickerDataSource() {
         self.linePickerDataSource = []
         let defaultItem = Line(shortName: NSLocalizedString("Select ...", comment: ""), name: NSLocalizedString("Select ...", comment: ""), variants: [0], number: 0)
         self.linePickerDataSource.append(defaultItem)
     }
 
-    fileprivate func setUpDateTime() {
+    func setUpDateTime() {
         self.dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
         self.dateTimePicker = UIDatePicker(frame: CGRect.zero)
         self.dateTimePicker.datePickerMode = UIDatePickerMode.dateAndTime
@@ -191,6 +192,7 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
         self.dateTimeTextField.text = self.dateFormatter.string(from: self.searchDate as Date)
         self.dateTimeTextField.inputView = self.dateTimePicker
     }
+
 
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if self.tabId != item.tag {
@@ -265,15 +267,18 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
                 }
             }
         }
+
         return busLineVariantTripResult
     }
 
-    override internal func checkIfBusStopIsSuitable(_ busTripStopTime: BusTripBusStopTime, index: Int, delayStopFoundIndex: Int,
-                                                    delaySecondsRoundedToMin: Int, secondsFromMidnight: Int, positionItem: RealtimeBus?) -> Bool {
+    override internal func checkIfBusStopIsSuitable(_ stopTime: BusTripBusStopTime, index: Int, delayStopFoundIndex: Int,
+                                                    delay: Int, secondsFromMidnight: Int, realtimeBus: RealtimeBus?) -> Bool {
         var suitable = false
-        if (positionItem != nil && positionItem!.locationNumber == busTripStopTime.busStop) || (positionItem == nil && busTripStopTime.seconds >= self.secondsFromMidnight) {
+
+        if (realtimeBus != nil && realtimeBus!.locationNumber == stopTime.busStop) || (realtimeBus == nil && stopTime.seconds >= self.secondsFromMidnight) {
             suitable = true
         }
+
         return suitable
     }
 
@@ -284,7 +289,7 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
     }
 
 
-    fileprivate func updateFoundBusLines(_ searchText: String) {
+    func updateFoundBusLines(_ searchText: String) {
         self.foundBusLines = self.busLines
         if searchText != "" {
             self.foundBusLines = busLines.filter({ $0.name.lowercased().contains(searchText.lowercased()) })
@@ -292,7 +297,9 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
         self.autoCompleteTableView.reloadData()
     }
 
-    fileprivate func loadBusLines() {
+    func loadBusLines() {
+        Log.info("Loading bus lines for zone \(selectedTab)")
+
         var busLines = SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_LID) as [Line]
 
         if selectedTab != "ALL" {
@@ -300,6 +307,7 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
         }
 
         self.busLines = busLines.sorted(by: { $0.name < $1.name })
+        self.tableView.reloadData()
         self.updateFoundBusLines("")
     }
 
