@@ -124,7 +124,6 @@
 		1F2E3B5A885028AB78DADE1C /* BusStopBeaconObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3398ABCC98A1A12AB1F5 /* BusStopBeaconObserver.swift */; };
 		1F2E3B6F47624A982A4F79D9 /* PhoneNumberRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3838CEC914D5BE2C7FD9 /* PhoneNumberRule.swift */; };
 		1F2E3B7432577003DB4D89C4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3BD3786A4DBF01ECEAF2 /* GoogleService-Info.plist */; };
-		1F2E3B8926AE05C4E0DE48FA /* www in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3CB0CA8919FEED454C75 /* www */; };
 		1F2E3B8D3DDA5B44DA30E8D2 /* SurveyApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E367E8396866AC8669D88 /* SurveyApiRouter.swift */; };
 		1F2E3B9F149C97801A1E9BE1 /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3541103CD7A91DCF19AB /* NewsTableViewCell.xib */; };
 		1F2E3BBC0417D0D1190AB621 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E364D99DCE7DBA649EC5F /* Analytics.swift */; };
@@ -313,7 +312,6 @@
 		1F2E3C98D12DD5C379E6EE77 /* Buses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buses.swift; sourceTree = "<group>"; };
 		1F2E3CA243DECF779A3AD2F8 /* NetUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetUtils.swift; sourceTree = "<group>"; };
 		1F2E3CA8CFDB1891990F7A67 /* BusstopFilterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusstopFilterCollectionViewCell.xib; sourceTree = "<group>"; };
-		1F2E3CB0CA8919FEED454C75 /* www */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		1F2E3CC52EB744D0064E58C5 /* BusstopAutocompleteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusstopAutocompleteTableViewCell.xib; sourceTree = "<group>"; };
 		1F2E3CD088D426AAB3FAC196 /* BusstopGpsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusstopGpsTableViewCell.xib; sourceTree = "<group>"; };
 		1F2E3D3AEB58423590CAFEF6 /* BusBeaconObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusBeaconObserver.swift; sourceTree = "<group>"; };
@@ -581,7 +579,6 @@
 				1F2E36D3C7C3F00F68089659 /* SASAbus.xcdatamodeld */,
 				1F2E30D8F50F0E971CD1A73D /* Settings.bundle */,
 				1F2E37B8B57904A668B9C338 /* Theme.swift */,
-				1F2E3CB0CA8919FEED454C75 /* www */,
 			);
 			path = SASAbus;
 			sourceTree = "<group>";
@@ -996,7 +993,6 @@
 				1F2E386F53DA658123F43D82 /* RealtimeMapViewController.xib in Resources */,
 				1F2E3EED28DB9A12F36D00D6 /* BottomSheetViewController.xib in Resources */,
 				1F2E3E6BFCB4F055F98C6309 /* SurveyContactViewController.xib in Resources */,
-				1F2E3B8926AE05C4E0DE48FA /* www in Resources */,
 				1F2E388BFF558309D65A2F8F /* Assets.xcassets in Resources */,
 				1F2E3B7432577003DB4D89C4 /* GoogleService-Info.plist in Resources */,
 				1F2E3EFD19875C873ACBC396 /* Settings.bundle in Resources */,
