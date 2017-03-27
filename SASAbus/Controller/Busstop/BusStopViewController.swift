@@ -53,13 +53,13 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.filter = true
-        self.observerAdded = false
-        self.view.backgroundColor = Theme.darkGrey
-        self.searchBar.barTintColor = Theme.darkGrey
-        self.searchBar.tintColor = Theme.white
-        self.searchBar.backgroundImage = UIImage()
-        self.searchBar.setImage(UIImage(named: "ic_navigation_bus.png"), for: UISearchBarIcon.search, state: UIControlState())
+        filter = true
+        observerAdded = false
+        view.backgroundColor = Theme.darkGrey
+        searchBar.barTintColor = Theme.darkGrey
+        searchBar.tintColor = Theme.white
+        searchBar.backgroundImage = UIImage()
+        searchBar.setImage(UIImage(named: "ic_navigation_bus.png"), for: UISearchBarIcon.search, state: UIControlState())
 
         (self.searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.darkGrey
         (self.searchBar.value(forKey: "searchField") as! UITextField).clearButtonMode = UITextFieldViewMode.never
@@ -67,21 +67,24 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
         self.tabBar.tintColor = Theme.orange
         self.tabBar.isTranslucent = false
         self.tabBar.barTintColor = Theme.white
+
         self.tabBar.items![0].title = NSLocalizedString("GPS", comment: "")
         self.tabBar.items![1].title = NSLocalizedString("Map", comment: "")
         self.tabBar.items![2].title = NSLocalizedString("Favorites", comment: "")
+
         self.datePicker = UIDatePicker(frame: CGRect.zero)
         self.datePicker.datePickerMode = UIDatePickerMode.dateAndTime
         self.datePicker.backgroundColor = Theme.darkGrey
         self.datePicker.tintColor = Theme.white
         self.datePicker.setValue(Theme.white, forKey: "textColor")
+
         self.timeField.textColor = Theme.white
         self.timeField.tintColor = Theme.transparent
         self.timeField.inputView = self.datePicker
         self.setupAutoCompleteTableView()
 
         if self.selectedBusStation != nil {
-            self.setupBusstopSearchDate()
+            self.setupBusStopSearchDate()
             self.setBusStation(self.selectedBusStation!)
         }
     }
@@ -89,7 +92,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        self.setupBusstopSearchDate()
+        self.setupBusStopSearchDate()
         self.autoCompleteTableView.isHidden = true
         self.tabBar.selectedItem = nil
 
@@ -109,6 +112,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
 
         Analytics.track("NextBus")
     }
+
 
     override func leftDrawerButtonPress(_ sender: AnyObject?) {
         self.searchBar.endEditing(true)
@@ -152,6 +156,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
         self.tabBar.setItems(items, animated: false)
     }
 
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
 
@@ -167,7 +172,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (self.autoCompleteTableView != nil && tableView.isEqual(self.autoCompleteTableView)) {
             let busStation = self.foundBusStations[indexPath.row]
-            let cell = tableView.dequeueReusableCell(withIdentifier: "BusstopAutocompleteTableViewCell", for: indexPath) as! BusstopAutocompleteTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BusstopAutocompleteTableViewCell", for: indexPath) as! BusStopAutocompleteTableViewCell
 
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.busStationLabel.text = busStation.getDescription()
@@ -186,7 +191,9 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
         }
     }
 
-    override internal func checkIfBusStopIsSuitable(_ busTrip: BusTripBusStopTime, index: Int, delayStopFoundIndex: Int, delay: Int, secondsFromMidnight: Int, realtimeBus: RealtimeBus?) -> Bool {
+
+    override internal func checkIfBusStopIsSuitable(_ busTrip: BusTripBusStopTime, index: Int, delayStopFoundIndex: Int,
+                                                    delay: Int, secondsFromMidnight: Int, realtimeBus: RealtimeBus?) -> Bool {
         var suitable = false
         var delay1 = 0
 
@@ -231,6 +238,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
         return busLineVariantTripResult
     }
 
+
     fileprivate func setupAutoCompleteTableView() {
         self.autoCompleteTableView!.isHidden = true
         self.updateFoundBusStations("")
@@ -248,6 +256,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
         self.foundBusStations = foundBusStations.sorted(by: { $0.getDescription() < $1.getDescription() })
         self.autoCompleteTableView.reloadData()
     }
+
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if (self.selectedBusStation != nil) {
@@ -287,6 +296,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
         self.autoCompleteTableView.isHidden = true
     }
 
+
     func searchBarCancel() {
         self.searchBar.endEditing(true)
         self.searchBar.resignFirstResponder()
@@ -298,6 +308,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
 
         self.navigationItem.rightBarButtonItem = datePickerDoneButton
     }
+
 
     func textField(_ textField: UITextField, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         return false
@@ -312,6 +323,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
         textField.resignFirstResponder()
     }
 
+
     func setBusStationFromCurrentLocation() {
         if UserDefaultHelper.instance.isBeaconStationDetectionEnabled() {
             let currentBusStop = UserDefaultHelper.instance.getCurrentBusStop()
@@ -323,7 +335,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
 
                 if busStation != nil {
                     self.setBusStation(busStation!)
-                    self.setupBusstopSearchDate()
+                    self.setupBusStopSearchDate()
                     self.autoCompleteTableView.isHidden = true
                     self.tabBar.selectedItem = nil
                 }
@@ -331,8 +343,9 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
         }
     }
 
-    func setupBusstopSearchDate() {
+    func setupBusStopSearchDate() {
         super.setupSearchDate()
+
         self.datePicker.date = self.searchDate as Date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
@@ -372,8 +385,10 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
 
     func setSearchDate() {
         self.navigationItem.rightBarButtonItem = nil
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.YYYY HH:mm"
+
         self.searchDate = self.datePicker.date
         self.secondsFromMidnight = self.getSecondsFromMidnight(self.searchDate)
         self.timeField.text = dateFormatter.string(from: self.searchDate as Date)

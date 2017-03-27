@@ -27,6 +27,9 @@ class BusTripCalculator {
     static var standardTimeCache: [String : BusStandardTimeBetweenStopItem]?
 
     static func calculateBusStopTimes(_ busLineVariantTrip: BusLineVariantTrip) -> [BusTripBusStopTime] {
+        Log.warning("Calculating departures for line \(busLineVariantTrip.busLine.id), " +
+                "variant \(busLineVariantTrip.variant.variant)")
+
         var stopTimes: [BusTripBusStopTime] = []
         let standardTimes: [BusStandardTimeBetweenStopItem] = SasaDataHelper.getData(SasaDataHelper.SEL_FZT_FELD)
         as [BusStandardTimeBetweenStopItem]

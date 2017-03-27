@@ -34,6 +34,10 @@ class BusStop: Object {
         return (locale == "de" ? nameDe : nameIt)!
     }
 
+    func munic(locale: String) -> String {
+        return (locale == "de" ? municDe : municIt)!
+    }
+
     override func isEqual(_ object: Any?) -> Bool {
         return (object as! BusStop).family == self.family
     }

@@ -18,13 +18,12 @@ class BusStopRealmHelper {
         CONFIG.fileURL = url
         CONFIG.objectTypes = [BusStop.self]
         CONFIG.readOnly = true
-        //CONFIG.deleteRealmIfMigrationNeeded = true
         CONFIG.schemaVersion = 1
 
         do {
             _ = try Realm(configuration: CONFIG)
-        } catch let error {
-            print("Could not open bus stop realm: \(error)")
+        } catch {
+            fatalError("Could not open bus stop realm: \(error)")
         }
     }
 
@@ -99,6 +98,13 @@ class BusStopRealmHelper {
     static func getBusStopsFromGroup(group: Int) -> [BusStop] {
         let realm = try! Realm(configuration: CONFIG)
         let results = realm.objects(BusStop.self).filter("family = \(group)")
+
+        return Array(results)
+    }
+
+    static func all() -> [BusStop] {
+        let realm = try! Realm(configuration: CONFIG)
+        let results = realm.objects(BusStop.self)
 
         return Array(results)
     }

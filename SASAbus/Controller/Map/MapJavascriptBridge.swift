@@ -84,10 +84,10 @@ class MapJavascriptBridge {
         return javascript
     }
 
-    func setRequestLocation(_ latidute: Double, longitued: Double, accurancy: Double) {
+    func setRequestLocation(_ latidute: Double, longitude: Double, accuracy: Double) {
         let newrequestLocationStatus = latidute.description + "," +
-                longitued.description + "," +
-                accurancy.description;
+                longitude.description + "," +
+                accuracy.description;
 
         self.changeRequestLocation(newrequestLocationStatus)
     }
@@ -175,7 +175,8 @@ class MapJavascriptBridge {
         let stationName = String(nameParts[0]).trimmingCharacters(in: NSCharacterSet.whitespaces).lowercased()
         let communityName = String(nameParts[1]).replacingOccurrences(of: ")", with: "").lowercased()
         let busStation = (SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem])
-                .filter({ $0.community.lowercased().contains(communityName) }).find({ $0.name.lowercased().contains(stationName) })
+                .filter({ $0.community.lowercased().contains(communityName) })
+                .find({ $0.name.lowercased().contains(stationName) })
 
         if busStation != nil {
             self.openBusStation(busStation!)

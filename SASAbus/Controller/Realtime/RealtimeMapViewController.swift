@@ -259,5 +259,4 @@ class RealtimeMapViewController: UIViewController, MKMapViewDelegate, PulleyPrim
             return parent.allMapOverlaysEnabled || parent.selectedBus != nil
         }
     }
-
 }

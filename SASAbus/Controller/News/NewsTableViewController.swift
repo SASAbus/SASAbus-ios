@@ -83,7 +83,7 @@ class NewsTableViewController: MasterTableViewController {
         for index in stride(from: (newsItems.count - 1), through: 0, by: -1) {
             let newsItem = newsItems[index]
 
-            Log.info(self.location)
+            Log.info("Zone: \(location)")
 
             if self.location != newsItem.zone {
                 newsItems.remove(at: index)

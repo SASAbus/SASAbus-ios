@@ -37,19 +37,19 @@ class DepartureItem {
     let realTime: Bool
     let positionItem: RealtimeBus?
 
-    init(busTripStopTime: BusTripBusStopTime, destinationBusStation: BusStationItem?, busLine: Line,
+    init(stopTime: BusTripBusStopTime, destination: BusStationItem?, line: Line,
          busStopNumber: Int, text: String, stopTimes: [BusTripBusStopTime], index: Int, departureIndex: Int,
-         delaySecondsRounded: Int, delayStopFoundIndex: Int, realTime: Bool, positionItem: RealtimeBus?) {
+         delay: Int, delayStopFoundIndex: Int, realTime: Bool, positionItem: RealtimeBus?) {
 
-        self.busTripStopTime = busTripStopTime
-        self.destinationBusStation = destinationBusStation
+        self.busTripStopTime = stopTime
+        self.destinationBusStation = destination
         self.busStopNumber = busStopNumber
-        self.busLine = busLine
+        self.busLine = line
         self.text = text
         self.stopTimes = stopTimes
         self.index = index
         self.departureIndex = departureIndex
-        self.delaySecondsRounded = delaySecondsRounded
+        self.delaySecondsRounded = delay
         self.delayStopFoundIndex = delayStopFoundIndex
         self.realTime = realTime
         self.positionItem = positionItem

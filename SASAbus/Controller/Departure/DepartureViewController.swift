@@ -32,6 +32,7 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
 
     var filterImage = UIImage(named: "filter_icon.png")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
     var filterImageFilled = UIImage(named: "filter_icon_filled.png")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+
     var departures: [DepartureItem] = []
     var filteredDepartures: [DepartureItem] = []
     var searchDate: Date!
@@ -52,11 +53,10 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
         super.init(coder: aDecoder)
     }
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(UINib(nibName: self.cellNibName, bundle: nil), forCellReuseIdentifier: "DepartureTableViewCell");
+        tableView.register(UINib(nibName: self.cellNibName, bundle: nil), forCellReuseIdentifier: "DepartureTableViewCell")
 
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
@@ -64,7 +64,7 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
 
         self.refreshControl = UIRefreshControl()
         self.refreshControl.tintColor = Theme.lightOrange
-        self.refreshControl.addTarget(self, action: #selector(DepartureViewController.getDepartures), for: UIControlEvents.valueChanged)
+        self.refreshControl.addTarget(self, action: #selector(getDepartures), for: UIControlEvents.valueChanged)
 
         self.refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""),
                 attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
@@ -82,6 +82,7 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let departure = self.filteredDepartures[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "DepartureTableViewCell", for: indexPath) as! DepartureTableViewCell
+
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         cell.timeLabel.text = departure.busTripStopTime.getTime()
@@ -113,7 +114,10 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
             } else {
                 currentStopNumber = departure.busStopNumber
             }
-            let currentBusStation = (SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem]).find({ $0.busStops.find({ $0.number == currentStopNumber }) != nil })
+
+            let currentBusStation = (SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem])
+                    .find({ $0.busStops.find({ $0.number == currentStopNumber }) != nil })
+
             if currentBusStation != nil {
                 cell.infoLabel.text = currentBusStation!.getDescription()
             } else {
@@ -123,11 +127,13 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
             cell.infoLabel.text = departure.busLine.name
         }
         cell.directionLabel.text = departure.destinationBusStation?.descriptionIt
-        return cell;
+        return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let busstopTripViewController = BusstopTripViewController(nibName: "BusstopTripViewController", bundle: nil, departure: self.filteredDepartures[indexPath.row]);
+        let busstopTripViewController = BusstopTripViewController(nibName: "BusstopTripViewController",
+                bundle: nil, departure: self.filteredDepartures[indexPath.row])
+
         self.navigationController!.pushViewController(busstopTripViewController, animated: true)
     }
 
@@ -208,8 +214,16 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
 
                         for index in 0 ... stopTimesCount - 1 {
                             let stopTime = stopTimes[index]
-                            if (self.checkIfBusStopIsSuitable(stopTime, index: index, delayStopFoundIndex: delayStopFoundIndex, delay: delaySecondsRoundedToMin, secondsFromMidnight: self.secondsFromMidnight, realtimeBus: positionItem)) {
-                                departures.append(DepartureItem(busTripStopTime: stopTime, destinationBusStation: destinationBusStation, busLine: busLineVariantTrip.busLine, busStopNumber: stopTime.busStop, text: "", stopTimes: stopTimes, index: index, departureIndex: departureIndex, delaySecondsRounded: delaySecondsRoundedToMin, delayStopFoundIndex: delayStopFoundIndex, realTime: realTime, positionItem: positionItem))
+
+                            if (self.checkIfBusStopIsSuitable(stopTime, index: index, delayStopFoundIndex: delayStopFoundIndex,
+                                    delay: delaySecondsRoundedToMin, secondsFromMidnight: self.secondsFromMidnight, realtimeBus: positionItem)) {
+
+                                departures.append(DepartureItem(stopTime: stopTime, destination: destinationBusStation,
+                                        line: busLineVariantTrip.busLine, busStopNumber: stopTime.busStop, text: "",
+                                        stopTimes: stopTimes, index: index, departureIndex: departureIndex,
+                                        delay: delaySecondsRoundedToMin, delayStopFoundIndex: delayStopFoundIndex,
+                                        realTime: realTime, positionItem: positionItem))
+
                                 if !filteredBusLines.contains(where: { $0.busLine.id == busLineVariantTrip.busLine.id }) {
                                     filteredBusLines.append(BusLineFilter(busLine: busLineVariantTrip.busLine))
                                 }
@@ -231,7 +245,6 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
                     Log.error(error)
                 })
     }
-
 
     func setFilteredBusLines(_ filteredBusLines: [BusLineFilter]) {
         self.filteredBusLines = filteredBusLines
@@ -272,11 +285,15 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
     }
 
     func getSecondsFromMidnight(_ date: Date) -> Int {
-        let components = (Calendar.current as NSCalendar).components([NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second], from: date)
+        let components = Calendar.current.dateComponents(
+                [Calendar.Component.hour, Calendar.Component.minute, Calendar.Component.second], from: date)
+
         return (components.hour! * 60 + components.minute!) * 60
     }
 
-    func checkIfBusStopIsSuitable(_ stopTime: BusTripBusStopTime, index: Int, delayStopFoundIndex: Int, delay: Int, secondsFromMidnight: Int, realtimeBus: RealtimeBus?) -> Bool {
-        fatalError("checkIfBusStopIsSuitable(secondsFromMidnight:index:delayStopFoundIndex:delaySecondsRoundedToMin:secodsFromMidnight:positionItem:) has not been implemented")
+    func checkIfBusStopIsSuitable(_ stopTime: BusTripBusStopTime, index: Int, delayStopFoundIndex: Int,
+                                  delay: Int, secondsFromMidnight: Int, realtimeBus: RealtimeBus?) -> Bool {
+
+        fatalError("checkIfBusStopIsSuitable() not implemented")
     }
 }

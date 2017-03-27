@@ -26,7 +26,6 @@
 		1F2E31E65F7999C88C17F10A /* LineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3028344E4E802423214B /* LineViewController.xib */; };
 		1F2E31E95B18D55FBAE2EBEA /* BusstopFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3FCB85FA15E717DFA57F /* BusstopFilterViewController.swift */; };
 		1F2E31F18AD68FE67C35FDD6 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3C399DD6BBFD96E9947F /* Endpoint.swift */; };
-		1F2E321CCFF15E0A748E6B62 /* busstops.realm in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E39A7174FDC9983C98452 /* busstops.realm */; };
 		1F2E324262D701F66F322989 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E36E1C0CD0B4ECCF5213B /* Line.swift */; };
 		1F2E32509D20814A9E9323FF /* BeaconHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E34946082E0067129B3C0 /* BeaconHandlerProtocol.swift */; };
 		1F2E327243F3791097D5A656 /* NewsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3BDA042747AD83ACAA24 /* NewsApi.swift */; };
@@ -96,7 +95,7 @@
 		1F2E390631531B005348B96F /* NewsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E382F555119AD8AE7C89F /* NewsTabBarController.swift */; };
 		1F2E390FC1B0757DF64A78B3 /* BusstopGpsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E55BBB782AE8F0DB3A0 /* BusstopGpsTableViewCell.swift */; };
 		1F2E396971B063F1AC2BC041 /* RealtimeBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E395F61B7BE3C96603958 /* RealtimeBus.swift */; };
-		1F2E397565C1A3001165B7B2 /* BusstopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E30405FA6F806615EECF3 /* BusstopViewController.swift */; };
+		1F2E397565C1A3001165B7B2 /* BusStopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E30405FA6F806615EECF3 /* BusStopViewController.swift */; };
 		1F2E3986AB4420AE9731A89A /* BusstopFilterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3CA8CFDB1891990F7A67 /* BusstopFilterCollectionViewCell.xib */; };
 		1F2E398B1EF69CE13865FF3B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3FB2FBEEC4D8C581ED7A /* Launch Screen.storyboard */; };
 		1F2E398E1C8C5768B47E9429 /* BusPathItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E334B8A712CA45D279882 /* BusPathItem.swift */; };
@@ -141,6 +140,7 @@
 		1F2E3C75B69C158BD8B50F2D /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F4E3C1AE35D68BFDED9 /* BackgroundView.swift */; };
 		1F2E3C9EB27A33A3540223AA /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3B5703B6A6A1524BF439 /* NewsTableViewController.swift */; };
 		1F2E3CAA4D61944E453EB5DE /* ParkingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E37F6F553C5F0E20790A0 /* ParkingTableViewCell.xib */; };
+		1F2E3CC8FCC2D3C86F043605 /* busstops.realm in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E30D125FFE5D539DE5DF6 /* busstops.realm */; };
 		1F2E3CDC60AC36749B44C572 /* ParkingApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E38B3345BD30DB4596856 /* ParkingApiRouter.swift */; };
 		1F2E3D0A5B788F5536E844C4 /* DepartureBuslineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E38F135189CC6C160A83C /* DepartureBuslineTableViewCell.xib */; };
 		1F2E3D15DE19313DA383638C /* BusstopGpsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E384EBDA4706A134EE1DC /* BusstopGpsViewController.xib */; };
@@ -173,7 +173,7 @@
 		1F2E3FAEB0D3063F958E1488 /* DownloaderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3C7FABCB4698D1F85A16 /* DownloaderProtocol.swift */; };
 		1F2E3FC6CB24DB02E0B91821 /* BusstopMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E362C52BE00B8B95B8D51 /* BusstopMapViewController.xib */; };
 		1F2E3FD87F1CC826D8632AE7 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3567754558C8A44EC6CD /* Config.swift */; };
-		1F2E3FF198C43598C3DDFEBE /* BusstopAutocompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E32DC201383849AEEAD17 /* BusstopAutocompleteTableViewCell.swift */; };
+		1F2E3FF198C43598C3DDFEBE /* BusStopAutocompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E32DC201383849AEEAD17 /* BusStopAutocompleteTableViewCell.swift */; };
 		1F2E3FFC8A57C0695CC9BDFA /* BusPathVariantItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E34ED967F2958949CDEE0 /* BusPathVariantItem.swift */; };
 		C0B47346C75AAFE57DA45528 /* Pods_SASAbus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D691B23DAE0CB65656C8EAF5 /* Pods_SASAbus.framework */; };
 		CD34D06B1BC5594D00912806 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD34D06D1BC5594D00912806 /* Localizable.strings */; };
@@ -184,9 +184,10 @@
 /* Begin PBXFileReference section */
 		1F2E3000222B09F01D2960E4 /* PulleyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PulleyViewController.swift; sourceTree = "<group>"; };
 		1F2E3028344E4E802423214B /* LineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineViewController.xib; sourceTree = "<group>"; };
-		1F2E30405FA6F806615EECF3 /* BusstopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusstopViewController.swift; sourceTree = "<group>"; };
+		1F2E30405FA6F806615EECF3 /* BusStopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopViewController.swift; sourceTree = "<group>"; };
 		1F2E304C289F0A84BA31ED03 /* ParkingDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingDetailViewController.swift; sourceTree = "<group>"; };
 		1F2E30ACCA7288348A159518 /* MasterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterTableView.swift; sourceTree = "<group>"; };
+		1F2E30D125FFE5D539DE5DF6 /* busstops.realm */ = {isa = PBXFileReference; lastKnownFileType = file.realm; path = busstops.realm; sourceTree = "<group>"; };
 		1F2E30D8F50F0E971CD1A73D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		1F2E30F3FE4F7FFA628ECFB4 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		1F2E30F647CCC0D8B88C3225 /* BuslineAutocompleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuslineAutocompleteTableViewCell.swift; sourceTree = "<group>"; };
@@ -205,7 +206,7 @@
 		1F2E325FADA66170017761E8 /* BusStationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStationItem.swift; sourceTree = "<group>"; };
 		1F2E328173928A704889C86A /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		1F2E32CF9CA1919786A38CC6 /* BusstopFilterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusstopFilterCollectionViewCell.swift; sourceTree = "<group>"; };
-		1F2E32DC201383849AEEAD17 /* BusstopAutocompleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusstopAutocompleteTableViewCell.swift; sourceTree = "<group>"; };
+		1F2E32DC201383849AEEAD17 /* BusStopAutocompleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopAutocompleteTableViewCell.swift; sourceTree = "<group>"; };
 		1F2E32FDAF6F4B6E9500D9A8 /* DepartureTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartureTableViewCell.swift; sourceTree = "<group>"; };
 		1F2E33453106E5ACA9B49F3C /* SurveyContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyContactViewController.swift; sourceTree = "<group>"; };
 		1F2E334B8A712CA45D279882 /* BusPathItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusPathItem.swift; sourceTree = "<group>"; };
@@ -281,7 +282,6 @@
 		1F2E395F61B7BE3C96603958 /* RealtimeBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealtimeBus.swift; sourceTree = "<group>"; };
 		1F2E3968CAA9921A0EB42FC1 /* DownloadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadViewController.swift; sourceTree = "<group>"; };
 		1F2E396A19007B65D0362616 /* PrivacyApiRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyApiRouter.swift; sourceTree = "<group>"; };
-		1F2E39A7174FDC9983C98452 /* busstops.realm */ = {isa = PBXFileReference; lastKnownFileType = file.realm; path = busstops.realm; sourceTree = "<group>"; };
 		1F2E39C626E8D8564487FB5A /* BusStopRealmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopRealmHelper.swift; sourceTree = "<group>"; };
 		1F2E39F78C779A060ECF5C2F /* SASAbus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SASAbus.xcdatamodel; sourceTree = "<group>"; };
 		1F2E39F88749EFD9B9B26268 /* SurveyActionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyActionProtocol.swift; sourceTree = "<group>"; };
@@ -463,7 +463,7 @@
 				1F2E3F703152FCA952419A62 /* user */,
 				1F2E39C626E8D8564487FB5A /* BusStopRealmHelper.swift */,
 				1F2E3A4A10A23D582CA365C5 /* UserRealmHelper.swift */,
-				1F2E39A7174FDC9983C98452 /* busstops.realm */,
+				1F2E30D125FFE5D539DE5DF6 /* busstops.realm */,
 			);
 			path = realm;
 			sourceTree = "<group>";
@@ -654,9 +654,9 @@
 				1F2E31E9538B2DF763E70772 /* Gps */,
 				1F2E30E0DECE817F6CD5EA10 /* Map */,
 				1F2E3502CC9B0567846FC290 /* Trip */,
-				1F2E32DC201383849AEEAD17 /* BusstopAutocompleteTableViewCell.swift */,
+				1F2E32DC201383849AEEAD17 /* BusStopAutocompleteTableViewCell.swift */,
 				1F2E3CC52EB744D0064E58C5 /* BusstopAutocompleteTableViewCell.xib */,
-				1F2E30405FA6F806615EECF3 /* BusstopViewController.swift */,
+				1F2E30405FA6F806615EECF3 /* BusStopViewController.swift */,
 				1F2E370B0B1219FB74797821 /* BusstopViewController.xib */,
 			);
 			path = Busstop;
@@ -1002,7 +1002,7 @@
 				1F2E3EFD19875C873ACBC396 /* Settings.bundle in Resources */,
 				FABD85CE1E87F8A1007A5EF6 /* BusImages.xcassets in Resources */,
 				1F2E3AC4E286968726BF4CEB /* DefaultSettings.plist in Resources */,
-				1F2E321CCFF15E0A748E6B62 /* busstops.realm in Resources */,
+				1F2E3CC8FCC2D3C86F043605 /* busstops.realm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1128,8 +1128,8 @@
 				1F2E363D52A8FB957E02CD84 /* BusstopTripTableViewCell.swift in Sources */,
 				1F2E32C6034D4B75599C1ACD /* BusstopFavoritesViewController.swift in Sources */,
 				1F2E3C5C3211ACC34C963C37 /* BusstopFavoritesTableViewCell.swift in Sources */,
-				1F2E397565C1A3001165B7B2 /* BusstopViewController.swift in Sources */,
-				1F2E3FF198C43598C3DDFEBE /* BusstopAutocompleteTableViewCell.swift in Sources */,
+				1F2E397565C1A3001165B7B2 /* BusStopViewController.swift in Sources */,
+				1F2E3FF198C43598C3DDFEBE /* BusStopAutocompleteTableViewCell.swift in Sources */,
 				1F2E3AF1A59F2F3A5467A7EE /* DepartureViewController.swift in Sources */,
 				1F2E38B930CD612F3F71B4F0 /* DepartureTableViewCell.swift in Sources */,
 				1F2E33C46353677089B3FC61 /* DownloadViewController.swift in Sources */,

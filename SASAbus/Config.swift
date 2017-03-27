@@ -5,7 +5,7 @@ public class Config {
 
     static let mapLatitude: Double = 46.58
     static let mapLongitude: Double = 11.25
-    static let mapDelta: Double = 0.3
+    static let mapDelta: Double = 0.5
 
     static let mapRegion: MKCoordinateRegion = {
         var region = MKCoordinateRegion()
