@@ -34,7 +34,8 @@ class SasaBusDownloader: DownloaderProtocol {
             "REC_FRT_FZT",
             "REC_FRT_HZT",
             "ORT_HZT",
-            "REC_LIVAR_HZT"]
+            "REC_LIVAR_HZT"
+    ]
 
     var downloadCount: Int = 0
     var description: String = NSLocalizedString("Initializing Data", comment: "")

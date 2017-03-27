@@ -31,6 +31,11 @@ struct Menu {
                     viewController: BusStopViewController(busStation: nil, title: NSLocalizedString("Busstop", comment: ""))),
 
             MenuItem(
+                    title: NSLocalizedString("Realtime Map", comment: ""),
+                    image: "ic_navigation_map",
+                    viewController: MainMapViewController.getViewController()),
+
+            MenuItem(
                     title: NSLocalizedString("Line", comment: ""),
                     image: "ic_navigation_bus",
                     viewController: LineViewController(title: NSLocalizedString("Line", comment: ""))),
@@ -54,17 +59,13 @@ struct Menu {
                     title: NSLocalizedString("Info", comment: ""),
                     image: "",
                     viewController: InfoViewController(title: NSLocalizedString("Info", comment: ""))),
-
-            MenuItem(
-                    title: NSLocalizedString("Realtime Map", comment: ""),
-                    image: "",
-                    viewController: MainMapViewController.getViewController())
     ]
 }
 
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!;
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,9 +74,6 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.backgroundColor = Theme.colorTransparent
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Menu.items.count;

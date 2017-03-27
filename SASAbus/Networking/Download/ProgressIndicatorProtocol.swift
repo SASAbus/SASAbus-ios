@@ -23,6 +23,7 @@
 import Foundation
 
 protocol ProgressIndicatorProtocol {
+
     func started(_ title: String?)
 
     func progress(_ percent: Int, description: String?)

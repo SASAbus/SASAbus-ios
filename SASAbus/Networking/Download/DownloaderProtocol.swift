@@ -23,6 +23,7 @@
 import Foundation
 
 protocol DownloaderProtocol {
+
     var description: String { get }
     func startDownload(_ circularProgress: ProgressIndicatorProtocol!)
 
