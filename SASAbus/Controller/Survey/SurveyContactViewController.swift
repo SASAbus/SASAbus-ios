@@ -47,15 +47,15 @@ class SurveyContactViewController: MasterViewController, ValidationDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.surveyTitleView.backgroundColor = Theme.colorDarkGrey
-        self.surveyTitle.textColor = Theme.colorWhite
-        self.surveyContactDescription.textColor = Theme.colorDarkGrey
-        self.noButton.tintColor = Theme.colorDarkGrey
-        self.noButton.layer.borderColor = Theme.colorOrange.cgColor
+        self.surveyTitleView.backgroundColor = Theme.darkGrey
+        self.surveyTitle.textColor = Theme.white
+        self.surveyContactDescription.textColor = Theme.darkGrey
+        self.noButton.tintColor = Theme.darkGrey
+        self.noButton.layer.borderColor = Theme.orange.cgColor
         self.noButton.layer.borderWidth = 1
         self.noButton.tag = 0
-        self.yesButton.tintColor = Theme.colorDarkGrey
-        self.yesButton.layer.borderColor = Theme.colorOrange.cgColor
+        self.yesButton.tintColor = Theme.darkGrey
+        self.yesButton.layer.borderColor = Theme.orange.cgColor
         self.yesButton.layer.borderWidth = 1
         self.yesButton.tag = 1
         self.emailContact.delegate = self
@@ -66,9 +66,9 @@ class SurveyContactViewController: MasterViewController, ValidationDelegate, UIT
         self.surveyData["email"] = "" as AnyObject?
         self.surveyData["phone"] = "" as AnyObject?
 
-        let emailPlaceholder = NSAttributedString(string: NSLocalizedString("E-Mail Address", comment: ""), attributes: [NSForegroundColorAttributeName: Theme.colorLightGrey])
+        let emailPlaceholder = NSAttributedString(string: NSLocalizedString("E-Mail Address", comment: ""), attributes: [NSForegroundColorAttributeName: Theme.lightGrey])
         self.emailContact.attributedPlaceholder = emailPlaceholder;
-        let phonePlaceholder = NSAttributedString(string: NSLocalizedString("Phone Number", comment: ""), attributes: [NSForegroundColorAttributeName: Theme.colorLightGrey])
+        let phonePlaceholder = NSAttributedString(string: NSLocalizedString("Phone Number", comment: ""), attributes: [NSForegroundColorAttributeName: Theme.lightGrey])
         self.phoneContact.attributedPlaceholder = phonePlaceholder;
 
         self.surveyContactDescription.text = String(describing: self.surveyData["secondQuestion"])
@@ -132,16 +132,16 @@ class SurveyContactViewController: MasterViewController, ValidationDelegate, UIT
 
             error.errorLabel?.text = error.errorMessage
             error.errorLabel?.isHidden = false
-            error.errorLabel?.textColor = Theme.colorDarkGrey
+            error.errorLabel?.textColor = Theme.darkGrey
         }
     }
 
 
     fileprivate func resetForm() {
-        self.emailContact.textColor = Theme.colorDarkGrey
-        self.phoneContact.textColor = Theme.colorDarkGrey
-        self.emailContact.layer.borderColor = Theme.colorDarkGrey.cgColor
-        self.phoneContact.layer.borderColor = Theme.colorDarkGrey.cgColor
+        self.emailContact.textColor = Theme.darkGrey
+        self.phoneContact.textColor = Theme.darkGrey
+        self.emailContact.layer.borderColor = Theme.darkGrey.cgColor
+        self.phoneContact.layer.borderColor = Theme.darkGrey.cgColor
         self.errorLabelEmail.isHidden = true
         self.errorLabelPhone.isHidden = true
         self.validator.registerField(self.emailContact, errorLabel: errorLabelEmail, rules: [RequiredRule(), EmailRule(message: NSLocalizedString("Invalid email", comment: ""))])

@@ -49,10 +49,7 @@ public class Config {
     static let mapHowOftenShouldIAskForMapDownload = 0
 
     // Parking
-    static let parkingLotBaseUrl = ""
-
-    // News
-    static let newsApiUrl = ""
+    static let parkingLotBaseUrl = "http://ipchannels.integreen-life.bz.it/parkingFrontEnd/rest"
 
     // Bus beacon
     static let beaconSecondsInBus = 120

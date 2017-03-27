@@ -40,8 +40,8 @@ class BusstopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.locationManager = CLLocationManager()
         self.title = NSLocalizedString("Bus stops near you", comment: "")
-        self.view.backgroundColor = Theme.colorDarkGrey
-        self.busStationLabel.textColor = Theme.colorWhite
+        self.view.backgroundColor = Theme.darkGrey
+        self.busStationLabel.textColor = Theme.white
         if (self.busStation != nil) {
             self.busStationLabel.text = self.busStation.getDescription()
         } else {

@@ -53,7 +53,7 @@ struct Menu {
             MenuItem(
                     title: NSLocalizedString("Parking lot", comment: ""),
                     image: "ic_navigation_parking",
-                    viewController: ParkingLotTabBarController(nibName: nil, title: NSLocalizedString("Parking lot", comment: ""))),
+                    viewController: ParkingViewController(title: NSLocalizedString("Parking lot", comment: ""))),
 
             MenuItem(
                     title: NSLocalizedString("Info", comment: ""),
@@ -71,7 +71,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
 
         tableView.register(UINib(nibName: "MenuTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuTableViewCell");
-        tableView.backgroundColor = Theme.colorTransparent
+        tableView.backgroundColor = Theme.transparent
     }
 
 
@@ -84,8 +84,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuTableViewCell", for: indexPath) as! MenuTableViewCell
 
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        cell.backgroundColor = Theme.colorTransparent
-        cell.titleLabel.textColor = Theme.colorWhite
+        cell.backgroundColor = Theme.transparent
+        cell.titleLabel.textColor = Theme.white
         cell.titleLabel.text = menuItem.title
 
         if !menuItem.image.isEmpty {
@@ -93,7 +93,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
 
         cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-        cell.iconImageView.tintColor = Theme.colorWhite
+        cell.iconImageView.tintColor = Theme.white
 
         return cell;
     }

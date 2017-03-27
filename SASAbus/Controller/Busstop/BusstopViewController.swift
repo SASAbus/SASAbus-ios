@@ -57,28 +57,28 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
 
         self.filter = true
         self.observerAdded = false
-        self.view.backgroundColor = Theme.colorDarkGrey
-        self.searchBar.barTintColor = Theme.colorDarkGrey
-        self.searchBar.tintColor = Theme.colorWhite
+        self.view.backgroundColor = Theme.darkGrey
+        self.searchBar.barTintColor = Theme.darkGrey
+        self.searchBar.tintColor = Theme.white
         self.searchBar.backgroundImage = UIImage()
         self.searchBar.setImage(UIImage(named: "ic_navigation_bus.png"), for: UISearchBarIcon.search, state: UIControlState())
 
-        (self.searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.colorDarkGrey
+        (self.searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.darkGrey
         (self.searchBar.value(forKey: "searchField") as! UITextField).clearButtonMode = UITextFieldViewMode.never
 
-        self.tabBar.tintColor = Theme.colorOrange
+        self.tabBar.tintColor = Theme.orange
         self.tabBar.isTranslucent = false
-        self.tabBar.barTintColor = Theme.colorWhite
+        self.tabBar.barTintColor = Theme.white
         self.tabBar.items![0].title = NSLocalizedString("GPS", comment: "")
         self.tabBar.items![1].title = NSLocalizedString("Map", comment: "")
         self.tabBar.items![2].title = NSLocalizedString("Favorites", comment: "")
         self.datePicker = UIDatePicker(frame: CGRect.zero)
         self.datePicker.datePickerMode = UIDatePickerMode.dateAndTime
-        self.datePicker.backgroundColor = Theme.colorDarkGrey
-        self.datePicker.tintColor = Theme.colorWhite
-        self.datePicker.setValue(Theme.colorWhite, forKey: "textColor")
-        self.timeField.textColor = Theme.colorWhite
-        self.timeField.tintColor = Theme.colorTransparent
+        self.datePicker.backgroundColor = Theme.darkGrey
+        self.datePicker.tintColor = Theme.white
+        self.datePicker.setValue(Theme.white, forKey: "textColor")
+        self.timeField.textColor = Theme.white
+        self.timeField.tintColor = Theme.transparent
         self.timeField.inputView = self.datePicker
         self.setupAutoCompleteTableView()
 
@@ -122,7 +122,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
     override internal func disableSearching() {
         self.working = true
 
-        (self.searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.colorGrey
+        (self.searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.grey
 
         self.timeField.isUserInteractionEnabled = false
         self.searchBar.alpha = 0.7
@@ -140,7 +140,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
     override internal func enableSearching() {
         self.working = false
 
-        (self.searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.colorDarkGrey
+        (self.searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.darkGrey
 
         self.timeField.isUserInteractionEnabled = true
         self.searchBar.alpha = 1.0

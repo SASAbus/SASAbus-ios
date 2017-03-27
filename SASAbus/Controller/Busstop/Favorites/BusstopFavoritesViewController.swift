@@ -49,14 +49,14 @@ class BusstopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
         tableView.allowsMultipleSelectionDuringEditing = false;
 
         self.title = NSLocalizedString("Bus stop favorites", comment: "")
-        self.view.backgroundColor = Theme.colorDarkGrey
-        self.busStationLabel.textColor = Theme.colorWhite
+        self.view.backgroundColor = Theme.darkGrey
+        self.busStationLabel.textColor = Theme.white
         self.loadFavoriteBusStations()
 
         if (self.busStation != nil && self.favoriteBusStations.find({ $0.name == self.busStation!.name }) == nil) {
             self.busStationLabel.text = self.busStation.getDescription()
             let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(BusstopFavoritesViewController.saveFavoriteBusStation(_:)))
-            addButton.tintColor = Theme.colorWhite
+            addButton.tintColor = Theme.white
             self.navigationItem.rightBarButtonItem = addButton
         } else {
             self.busStationLabel.text = NSLocalizedString("Select a bus station from your favorites", comment: "")
@@ -101,7 +101,7 @@ class BusstopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
                 if busStation.name == self.busStation.name {
                     self.busStationLabel.text = self.busStation.getDescription()
                     let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(BusstopFavoritesViewController.saveFavoriteBusStation(_:)))
-                    addButton.tintColor = Theme.colorWhite
+                    addButton.tintColor = Theme.white
                     self.navigationItem.rightBarButtonItem = addButton
                 }
             }

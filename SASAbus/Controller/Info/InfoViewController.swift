@@ -47,24 +47,24 @@ class InfoViewController: MasterViewController, UIToolbarDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = Theme.colorDarkGrey
+        self.view.backgroundColor = Theme.darkGrey
 
         let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject?
         let version = nsObject as! String
 
         titleLabel.text = NSLocalizedString("SASAbus by Raiffeisen OnLine - \(version)", comment: "")
-        titleLabel.textColor = Theme.colorWhite
+        titleLabel.textColor = Theme.white
         
         infoTextView.text = NSLocalizedString("© 2015 - 2016 Markus Windegger, Raiffeisen OnLine Gmbh (Norman Marmsoler, Jürgen Sprenger, Aaron Falk)", comment: "")
-        infoTextView.textColor = Theme.colorGrey
+        infoTextView.textColor = Theme.grey
 
         infoView.text = getAboutText()
-        infoView.textColor = Theme.colorDarkGrey
+        infoView.textColor = Theme.darkGrey
         infoView.isEditable = false
 
-        toolBar.tintColor = Theme.colorOrange
+        toolBar.tintColor = Theme.orange
         helpView.text = NSLocalizedString("For suggestions or help please mail to ios@sasabz.it", comment: "")
-        helpView.textColor = Theme.colorDarkGrey
+        helpView.textColor = Theme.darkGrey
         
         aboutButton.target = self
         aboutButton.action = #selector(InfoViewController.toggleInfo(_:))
@@ -103,7 +103,7 @@ class InfoViewController: MasterViewController, UIToolbarDelegate {
 
         do {
             let font = UIFont.systemFont(ofSize: 14)
-            let privacyHtml: String = "<span style=\"font-family:Helvetica; font-size: " + String(describing: font.pointSize) + "; color: " + ColorHelper.getHexColor(Theme.colorDarkGrey) + "\">" + UserDefaultHelper.instance.getPrivacyHtml() + "</span>"
+            let privacyHtml: String = "<span style=\"font-family:Helvetica; font-size: " + String(describing: font.pointSize) + "; color: " + ColorHelper.getHexColor(Theme.darkGrey) + "\">" + UserDefaultHelper.instance.getPrivacyHtml() + "</span>"
             let privacyData = privacyHtml.data(using: String.Encoding.utf8, allowLossyConversion: false)
             returnValue = try NSAttributedString(data: privacyData!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
         } catch {

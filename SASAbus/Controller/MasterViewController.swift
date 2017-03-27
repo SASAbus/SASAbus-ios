@@ -46,7 +46,7 @@ class MasterViewController: UIViewController {
 
     func setupLeftMenuButton() {
         let leftDrawerButton = UIBarButtonItem(image: UIImage(named: "menu_icon.png")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate), style: UIBarButtonItemStyle.plain, target: self, action: #selector(MasterViewController.leftDrawerButtonPress(_:)))
-        leftDrawerButton.tintColor = Theme.colorWhite
+        leftDrawerButton.tintColor = Theme.white
         leftDrawerButton.accessibilityLabel = NSLocalizedString("Menu", comment: "")
         self.navigationItem.setLeftBarButton(leftDrawerButton, animated: true)
     }

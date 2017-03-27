@@ -84,22 +84,22 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
         if departure.realTime {
             if departure.delaySecondsRounded == 0 {
                 cell.delayLabel.text = NSLocalizedString("Punctual", comment: "")
-                cell.setDelayColor(Theme.colorGreen)
+                cell.setDelayColor(Theme.green)
             } else if departure.delaySecondsRounded < 0 {
                 cell.delayLabel.text = abs(departure.delaySecondsRounded).description + "' " + NSLocalizedString("premature", comment: "")
-                cell.setDelayColor(Theme.colorBlue)
+                cell.setDelayColor(Theme.blue)
             } else {
                 cell.delayLabel.text = departure.delaySecondsRounded.description + "' " + NSLocalizedString("delayed", comment: "")
 
                 if departure.delaySecondsRounded <= 5 {
-                    cell.setDelayColor(Theme.colorOrange)
+                    cell.setDelayColor(Theme.orange)
                 } else {
-                    cell.setDelayColor(Theme.colorRed)
+                    cell.setDelayColor(Theme.red)
                 }
             }
         } else {
             cell.delayLabel.text = NSLocalizedString("no data", comment: "")
-            cell.setDelayColor(Theme.colorDarkGrey)
+            cell.setDelayColor(Theme.darkGrey)
         }
         if self.cellNibName == "DepartureBuslineTableViewCell" {
             let currentStopNumber: Int!
@@ -263,8 +263,8 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
 
     fileprivate func initRefreshControl() {
         self.refreshControl = UIRefreshControl()
-        self.refreshControl.tintColor = Theme.colorLightOrange
-        self.refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""), attributes: [NSForegroundColorAttributeName: Theme.colorDarkGrey])
+        self.refreshControl.tintColor = Theme.lightOrange
+        self.refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""), attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
         self.refreshControl.addTarget(self, action: #selector(DepartureViewController.getDepartures), for: UIControlEvents.valueChanged)
         self.tableView.addSubview(self.refreshControl)
     }

@@ -66,10 +66,10 @@ class BusstopTripViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.register(UINib(nibName: "BusstopTripTableViewCell", bundle: nil), forCellReuseIdentifier: "BusstopTripTableViewCell");
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
-        tableView.separatorColor = Theme.colorTransparent
+        tableView.separatorColor = Theme.transparent
 
-        self.view.backgroundColor = Theme.colorDarkGrey
-        self.lineLabel.textColor = Theme.colorWhite
+        self.view.backgroundColor = Theme.darkGrey
+        self.lineLabel.textColor = Theme.white
         self.lineLabel.text = self.departure.busLine.name + " - "
 
         if self.departure.realTime {

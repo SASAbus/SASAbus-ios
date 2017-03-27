@@ -62,8 +62,8 @@ class BackgroundView: UIView {
         self.progressIndicatorView.gradientRotateSpeed = 100
         self.progressIndicatorView.roundedCorners = true
         self.progressIndicatorView.glowMode = .noGlow
-        self.progressIndicatorView.trackColor = Theme.colorWhite
-        self.progressIndicatorView.set(colors: Theme.colorOrange, Theme.colorOrange, Theme.colorOrange)
+        self.progressIndicatorView.trackColor = Theme.white
+        self.progressIndicatorView.set(colors: Theme.orange, Theme.orange, Theme.orange)
         self.progressIndicatorView.isHidden = false
     }
 }

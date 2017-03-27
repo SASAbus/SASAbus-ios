@@ -55,18 +55,18 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = Theme.colorDarkGrey
-        self.searchBar.barTintColor = Theme.colorDarkGrey
-        self.searchBar.tintColor = Theme.colorWhite
+        self.view.backgroundColor = Theme.darkGrey
+        self.searchBar.barTintColor = Theme.darkGrey
+        self.searchBar.tintColor = Theme.white
 
-        (self.searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.colorDarkGrey
+        (self.searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.darkGrey
         (self.searchBar.value(forKey: "searchField") as! UITextField).clearButtonMode = UITextFieldViewMode.never
 
         self.searchBar.backgroundImage = UIImage()
         self.searchBar.setImage(UIImage(named: "ic_navigation_bus.png"), for: UISearchBarIcon.search, state: UIControlState())
-        self.tabBar.tintColor = Theme.colorOrange
+        self.tabBar.tintColor = Theme.orange
         self.tabBar.isTranslucent = false
-        self.tabBar.backgroundColor = Theme.colorWhite
+        self.tabBar.backgroundColor = Theme.white
         self.tabBar.selectedItem = self.tabBar.items![0]
 
         var tabBarItems = tabBar.items!
@@ -132,7 +132,7 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
 
     override internal func disableSearching() {
         self.working = true
-        (self.searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.colorGrey
+        (self.searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.grey
 
         self.dateTimeTextField.isUserInteractionEnabled = false
         self.searchBar.alpha = 0.7
@@ -149,7 +149,7 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
     override internal func enableSearching() {
         if self.working == true {
             self.working = false
-            (self.searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.colorDarkGrey
+            (self.searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.darkGrey
             self.dateTimeTextField.isUserInteractionEnabled = true
             self.searchBar.alpha = 1.0
             self.dateTimeTextField.alpha = 1.0
@@ -181,13 +181,13 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
         self.dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
         self.dateTimePicker = UIDatePicker(frame: CGRect.zero)
         self.dateTimePicker.datePickerMode = UIDatePickerMode.dateAndTime
-        self.dateTimePicker.backgroundColor = Theme.colorDarkGrey
-        self.dateTimePicker.tintColor = Theme.colorWhite
-        self.dateTimePicker.setValue(Theme.colorWhite, forKey: "textColor")
+        self.dateTimePicker.backgroundColor = Theme.darkGrey
+        self.dateTimePicker.tintColor = Theme.white
+        self.dateTimePicker.setValue(Theme.white, forKey: "textColor")
         self.dateTimeTextField.delegate = self
         self.dateTimeTextField.tag = 2
-        self.dateTimeTextField.textColor = Theme.colorWhite
-        self.dateTimeTextField.tintColor = Theme.colorTransparent
+        self.dateTimeTextField.textColor = Theme.white
+        self.dateTimeTextField.tintColor = Theme.transparent
         self.dateTimeTextField.text = self.dateFormatter.string(from: self.searchDate as Date)
         self.dateTimeTextField.inputView = self.dateTimePicker
     }

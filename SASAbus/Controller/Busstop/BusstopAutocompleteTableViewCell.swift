@@ -28,11 +28,11 @@ class BusstopAutocompleteTableViewCell: UITableViewCell {
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if (highlighted) {
-            self.busStationLabel.textColor = Theme.colorWhite
-            self.backgroundColor = Theme.colorOrange
+            self.busStationLabel.textColor = Theme.white
+            self.backgroundColor = Theme.orange
         } else {
-            self.busStationLabel.textColor = Theme.colorDarkGrey
-            self.backgroundColor = Theme.colorTransparent
+            self.busStationLabel.textColor = Theme.darkGrey
+            self.backgroundColor = Theme.transparent
         }
     }
 }

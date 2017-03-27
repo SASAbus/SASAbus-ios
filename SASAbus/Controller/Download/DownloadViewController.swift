@@ -56,7 +56,7 @@ class DownloadViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.progressLabel.text = ""
-        self.view.backgroundColor = Theme.colorDarkGrey
+        self.view.backgroundColor = Theme.darkGrey
         self.downloadProgress.angle = 0
         self.downloadProgress.progressThickness = 0.04
         self.downloadProgress.trackThickness = 0.05
@@ -65,8 +65,8 @@ class DownloadViewController: UIViewController {
         self.downloadProgress.gradientRotateSpeed = 100
         self.downloadProgress.roundedCorners = true
         self.downloadProgress.glowMode = .noGlow
-        self.downloadProgress.trackColor = Theme.colorWhite
-        self.downloadProgress.set(colors: Theme.colorOrange, Theme.colorOrange, Theme.colorOrange)
+        self.downloadProgress.trackColor = Theme.white
+        self.downloadProgress.set(colors: Theme.orange, Theme.orange, Theme.orange)
         self.downloadProgress.isHidden = true
         self.titleLabel.isHidden = true
         self.progressLabel.isHidden = true

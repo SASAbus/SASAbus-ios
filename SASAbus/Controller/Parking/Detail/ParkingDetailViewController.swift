@@ -29,18 +29,21 @@ class ParkingLotDetailViewController: UIViewController, UITableViewDataSource, U
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
-    fileprivate var stations: [String] = []
-    fileprivate var parkingStationItem: ParkingStationItem!
-    fileprivate var nearestBusStations: [BusStationDistance] = []
+    var stations: [String] = []
+    var parking: Parking!
+    var nearestBusStations: [BusStationDistance] = []
 
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, parkingStationItem: ParkingStationItem!) {
+
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, item: Parking!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.parkingStationItem = parkingStationItem
+
+        self.parking = item
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,12 +53,13 @@ class ParkingLotDetailViewController: UIViewController, UITableViewDataSource, U
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
 
-        self.titleLabel.text = self.parkingStationItem.name
-        self.titleLabel.textColor = Theme.colorWhite
-        self.view.backgroundColor = Theme.colorDarkGrey
+        self.titleLabel.text = parking.name
+        self.titleLabel.textColor = Theme.white
+        self.view.backgroundColor = Theme.darkGrey
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.nearestBusStations = self.getNearestBusStations()
     }
+
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.nearestBusStations.count
@@ -79,7 +83,8 @@ class ParkingLotDetailViewController: UIViewController, UITableViewDataSource, U
         (UIApplication.shared.delegate as! AppDelegate).navigateTo(busstopViewController)
     }
 
-    fileprivate func getNearestBusStations() -> [BusStationDistance] {
+
+    func getNearestBusStations() -> [BusStationDistance] {
         let busStations: [BusStationItem] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_ORT) as [BusStationItem]
         var nearestBusStations: [BusStationDistance] = []
 
@@ -88,7 +93,7 @@ class ParkingLotDetailViewController: UIViewController, UITableViewDataSource, U
             var distance: CLLocationDistance = 0.0
 
             for busStop in busStation.busStops {
-                distance = busStop.location.distance(from: self.parkingStationItem.location)
+                distance = busStop.location.distance(from: self.parking.location)
 
                 if (busStationDistance == nil || distance < busStationDistance!.distance) {
                     busStationDistance = BusStationDistance(busStationItem: busStation, distance: distance)

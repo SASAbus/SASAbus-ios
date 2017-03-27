@@ -43,7 +43,7 @@ class NewsTabBarController: MasterTabBarController {
                 image: UIImage(named: "wappen_me.png"), selectedImage: nil)
 
         self.viewControllers = [newsBozenViewController, newsMeranViewController]
-        self.tabBar.tintColor = Theme.colorOrange
+        self.tabBar.tintColor = Theme.orange
         self.tabBar.isTranslucent = false;
 
         self.getNews()

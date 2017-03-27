@@ -23,6 +23,7 @@
 import UIKit
 
 class ParkingTableViewCell: UITableViewCell {
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
@@ -32,21 +33,21 @@ class ParkingTableViewCell: UITableViewCell {
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if (highlighted) {
-            self.titleLabel.textColor = Theme.colorWhite
-            self.messageLabel.textColor = Theme.colorWhite
-            self.addressLabel.textColor = Theme.colorWhite
-            self.phoneLabel.tintColor = Theme.colorWhite
-            self.progressView.progressTintColor = Theme.colorWhite
-            self.iconImageView.tintColor = Theme.colorWhite
-            self.backgroundColor = Theme.colorDarkGrey
+            self.titleLabel.textColor = Theme.white
+            self.messageLabel.textColor = Theme.white
+            self.addressLabel.textColor = Theme.white
+            self.phoneLabel.tintColor = Theme.white
+            self.progressView.progressTintColor = Theme.white
+            self.iconImageView.tintColor = Theme.white
+            self.backgroundColor = Theme.darkGrey
         } else {
-            self.titleLabel.textColor = Theme.colorDarkGrey
-            self.messageLabel.textColor = Theme.colorDarkGrey
-            self.addressLabel.textColor = Theme.colorDarkGrey
+            self.titleLabel.textColor = Theme.darkGrey
+            self.messageLabel.textColor = Theme.darkGrey
+            self.addressLabel.textColor = Theme.darkGrey
             self.phoneLabel.tintColor = nil
-            self.progressView.progressTintColor = Theme.colorOrange
-            self.iconImageView.tintColor = Theme.colorOrange
-            self.backgroundColor = Theme.colorTransparent
+            self.progressView.progressTintColor = Theme.orange
+            self.iconImageView.tintColor = Theme.orange
+            self.backgroundColor = Theme.transparent
         }
     }
 }

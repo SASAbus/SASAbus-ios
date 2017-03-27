@@ -92,15 +92,15 @@ class NewsTableViewController: MasterTableViewController {
 
         self.newsItems = newsItems
         self.tableView.reloadData()
-        self.tableView.separatorColor = Theme.colorGrey
+        self.tableView.separatorColor = Theme.grey
         self.refreshControl!.endRefreshing()
     }
 
     func initRefreshControl() {
         let refreshControl = UIRefreshControl()
 
-        refreshControl.tintColor = Theme.colorLightOrange
-        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""), attributes: [NSForegroundColorAttributeName: Theme.colorDarkGrey])
+        refreshControl.tintColor = Theme.lightOrange
+        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""), attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
         refreshControl.addTarget(self.tabBarController, action: "getNews", for: UIControlEvents.valueChanged)
 
         self.refreshControl = refreshControl

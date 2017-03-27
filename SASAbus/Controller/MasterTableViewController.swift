@@ -37,6 +37,7 @@ class MasterTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.edgesForExtendedLayout = UIRectEdge()
         self.extendedLayoutIncludesOpaqueBars = false;
         self.automaticallyAdjustsScrollViewInsets = false;
@@ -45,7 +46,7 @@ class MasterTableViewController: UITableViewController {
 
     func setupLeftMenuButton() {
         let leftDrawerButton = UIBarButtonItem(image: UIImage(named: "menu_icon.png")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate), style: UIBarButtonItemStyle.plain, target: self, action: #selector(MasterTableViewController.leftDrawerButtonPress(_:)))
-        leftDrawerButton.tintColor = Theme.colorWhite
+        leftDrawerButton.tintColor = Theme.white
         leftDrawerButton.accessibilityLabel = NSLocalizedString("Menu", comment: "")
         self.navigationItem.setLeftBarButton(leftDrawerButton, animated: true)
     }

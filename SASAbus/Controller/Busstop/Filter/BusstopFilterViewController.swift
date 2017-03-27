@@ -48,11 +48,11 @@ class BusstopFilterViewController: UIViewController, UICollectionViewDelegate, U
 
         self.enableAllButton.action = #selector(BusstopFilterViewController.enableAllLines)
         self.enableAllButton.title = NSLocalizedString("Enable all", comment: "")
-        self.enableAllButton.tintColor = Theme.colorOrange
+        self.enableAllButton.tintColor = Theme.orange
 
         self.disableAllButton.action = #selector(BusstopFilterViewController.disableAllLines)
         self.disableAllButton.title = NSLocalizedString("Disable all", comment: "")
-        self.disableAllButton.tintColor = Theme.colorOrange
+        self.disableAllButton.tintColor = Theme.orange
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -74,8 +74,8 @@ class BusstopFilterViewController: UIViewController, UICollectionViewDelegate, U
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BusstopFilterCollectionViewCell", for: indexPath) as! BusstopFilterCollectionViewCell
 
-        cell.busLineLabel.textColor = Theme.colorDarkGrey
-        cell.filterSwitch.onTintColor = Theme.colorOrange
+        cell.busLineLabel.textColor = Theme.darkGrey
+        cell.filterSwitch.onTintColor = Theme.orange
         cell.filterSwitch.tag = indexPath.row
         cell.filterSwitch.setOn(busLineFilter.active, animated: false)
         cell.filterSwitch.addTarget(self, action: #selector(BusstopFilterViewController.setFilterActive(_:)), for: UIControlEvents.valueChanged)

@@ -29,13 +29,13 @@ class NewsTableViewCell: UITableViewCell {
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if (highlighted) {
-            self.linesLabel.textColor = Theme.colorWhite
-            self.titleLabel.textColor = Theme.colorWhite
-            self.backgroundColor = Theme.colorDarkGrey
+            self.linesLabel.textColor = Theme.white
+            self.titleLabel.textColor = Theme.white
+            self.backgroundColor = Theme.darkGrey
         } else {
-            self.linesLabel.textColor = Theme.colorDarkGrey
-            self.titleLabel.textColor = Theme.colorDarkGrey
-            self.backgroundColor = Theme.colorTransparent
+            self.linesLabel.textColor = Theme.darkGrey
+            self.titleLabel.textColor = Theme.darkGrey
+            self.backgroundColor = Theme.transparent
         }
     }
 }

@@ -50,9 +50,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
         let navigationBarAppearance = UINavigationBar.appearance()
         navigationBarAppearance.isTranslucent = false
-        navigationBarAppearance.tintColor = Theme.colorWhite  // Back buttons and such
-        navigationBarAppearance.barTintColor = Theme.colorOrange  // Bar's background color
-        navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: Theme.colorWhite]  // Title's text color
+        navigationBarAppearance.tintColor = Theme.white  // Back buttons and such
+        navigationBarAppearance.barTintColor = Theme.orange  // Bar's background color
+        navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: Theme.white]  // Title's text color
         self.startDownloadSplashScreen()
 
         // Configure tracker from GoogleService-Info.plist.

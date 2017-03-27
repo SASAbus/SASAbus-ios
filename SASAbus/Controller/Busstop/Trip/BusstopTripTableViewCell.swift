@@ -34,15 +34,15 @@ class BusstopTripTableViewCell: UITableViewCell {
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if (highlighted) {
-            self.timeLabel.textColor = Theme.colorWhite
-            self.busStationLabel.textColor = Theme.colorWhite
-            self.iconImageView.tintColor = Theme.colorWhite
-            self.backgroundColor = Theme.colorOrange
+            self.timeLabel.textColor = Theme.white
+            self.busStationLabel.textColor = Theme.white
+            self.iconImageView.tintColor = Theme.white
+            self.backgroundColor = Theme.orange
         } else {
-            self.timeLabel.textColor = Theme.colorDarkGrey
-            self.busStationLabel.textColor = Theme.colorDarkGrey
-            self.iconImageView.tintColor = Theme.colorOrange
-            self.backgroundColor = Theme.colorTransparent
+            self.timeLabel.textColor = Theme.darkGrey
+            self.busStationLabel.textColor = Theme.darkGrey
+            self.iconImageView.tintColor = Theme.orange
+            self.backgroundColor = Theme.transparent
         }
     }
 
