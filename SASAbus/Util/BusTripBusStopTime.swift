@@ -17,38 +17,31 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with SASAbus.  If not, see <http://www.gnu.org/licenses/>.
+// along with SASAbus. If not, see <http://www.gnu.org/licenses/>.
 //
 
 import Foundation
 
-
 class BusTripBusStopTime {
-    
-    private let busStop: Int!
-    private let seconds: Int!
-    
+
+    let busStop: Int!
+    let seconds: Int!
+
     init(busStop: Int, seconds: Int) {
         self.busStop = busStop
         self.seconds = seconds
     }
-    
-    func getBusStop() -> Int {
-        return self.busStop
-    }
-    
-    func getSeconds() -> Int {
-        return self.seconds
-    }
-    
+
     func getTime() -> String {
-        let hours = Int(floor(Double(self.getSeconds()) / 60 / 60))
+        let hours = Int(floor(Double(self.seconds) / 60 / 60))
         let hoursString = String(hours)
-        let minutes = Int(floor(Double(self.getSeconds() / 60) - Double(hours * 60)))
+        let minutes = Int(floor(Double(self.seconds / 60) - Double(hours * 60)))
         var minutesString = String(minutes)
-        if (minutes < 10) {
+
+        if minutes < 10 {
             minutesString = "0" + minutesString
         }
+
         return String(hoursString) + ":" + String(minutesString)
     }
 }

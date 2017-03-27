@@ -23,79 +23,35 @@
 import Foundation
 
 class DepartureItem {
-    private let busTripStopTime: BusTripBusStopTime
-    private let destinationBusStation: BusStationItem?
-    private let busLine: BusLineItem!
-    private let busStopNumber: Int!
-    private let text: String!
-    private let stopTimes: [BusTripBusStopTime]!
-    private let index: Int!
-    private let departureIndex: Int!
-    private let delaySecondsRounded: Int!
-    private let delayStopFoundIndex: Int!
-    private let realTime: Bool!
-    private let positionItem: PositionItem?
-    
-    init(busTripStopTime: BusTripBusStopTime, destinationBusStation: BusStationItem?, busLine: BusLineItem, busStopNumber: Int, text: String, stopTimes: [BusTripBusStopTime], index: Int, departureIndex: Int, delaySecondsRounded: Int, delayStopFoundIndex: Int, realTime: Bool, positionItem: PositionItem?) {
-        self.busTripStopTime = busTripStopTime
-        self.destinationBusStation = destinationBusStation
+
+    let busTripStopTime: BusTripBusStopTime
+    let destinationBusStation: BusStationItem?
+    let busLine: Line!
+    let busStopNumber: Int!
+    let text: String!
+    let stopTimes: [BusTripBusStopTime]!
+    let index: Int!
+    let departureIndex: Int!
+    let delaySecondsRounded: Int!
+    let delayStopFoundIndex: Int!
+    let realTime: Bool
+    let positionItem: RealtimeBus?
+
+    init(stopTime: BusTripBusStopTime, destination: BusStationItem?, line: Line,
+         busStopNumber: Int, text: String, stopTimes: [BusTripBusStopTime], index: Int, departureIndex: Int,
+         delay: Int, delayStopFoundIndex: Int, realTime: Bool, positionItem: RealtimeBus?) {
+
+        self.busTripStopTime = stopTime
+        self.destinationBusStation = destination
         self.busStopNumber = busStopNumber
-        self.busLine = busLine
+        self.busLine = line
         self.text = text
         self.stopTimes = stopTimes
         self.index = index
         self.departureIndex = departureIndex
-        self.delaySecondsRounded = delaySecondsRounded
+        self.delaySecondsRounded = delay
         self.delayStopFoundIndex = delayStopFoundIndex
         self.realTime = realTime
         self.positionItem = positionItem
-    }
-    
-    func getBusTripStopTime() -> BusTripBusStopTime {
-        return self.busTripStopTime
-    }
-    
-    func getDestinationBusStation() -> BusStationItem? {
-        return self.destinationBusStation
-    }
-    
-    func getBusLine() -> BusLineItem {
-        return self.busLine
-    }
-    
-    func getBusStopNumber() -> Int {
-        return self.busStopNumber
-    }
-    
-    func getText() -> String {
-        return self.text
-    }
-    
-    func getStopTimes() -> [BusTripBusStopTime] {
-        return self.stopTimes
-    }
-    
-    func getIndex() -> Int {
-        return self.index
-    }
-    
-    func getDepartureIndex() -> Int {
-        return self.departureIndex
-    }
-    
-    func getDelaySecondsRounded() -> Int {
-        return self.delaySecondsRounded
-    }
-    
-    func getDelayStopFoundIndex() -> Int {
-        return self.delayStopFoundIndex
-    }
-    
-    func isRealTime() -> Bool {
-        return self.realTime
-    }
-    
-    func getPositionItem() -> PositionItem? {
-        return self.positionItem
     }
 }

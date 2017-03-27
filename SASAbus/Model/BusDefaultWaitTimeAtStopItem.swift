@@ -21,43 +21,27 @@
 //
 
 import Foundation
+import SwiftyJSON
 
-final class BusDefaultWaitTimeAtStopItem: ResponseObjectSerializable, ResponseCollectionSerializable {
-    
-    private let groupNumber: Int!
-    private let locationNumber: Int!
-    private let waitTime: Int!
-    
-    init?( representation: AnyObject) {
-        self.groupNumber = Int(representation.valueForKeyPath("FGR_NR") as! String)!
-        self.locationNumber = Int(representation.valueForKeyPath("ORT_NR") as! String)!
-        self.waitTime = Int(representation.valueForKeyPath("HP_HZT") as! String)!
+final class BusDefaultWaitTimeAtStopItem: JSONable, JSONCollection {
+
+    let groupNumber: Int!
+    let locationNumber: Int!
+    let waitTime: Int!
+
+    required init(parameter: JSON) {
+        self.groupNumber = parameter["FGR_NR"].intValue
+        self.locationNumber = parameter["ORT_NR"].intValue
+        self.waitTime = parameter["HP_HZT"].intValue
     }
-    
-    
-    static func collection(representation: AnyObject) -> [BusDefaultWaitTimeAtStopItem] {
-        var busDefaultWaitTimeAtStopItems: [BusDefaultWaitTimeAtStopItem] = []
-        
-        if let representation = representation as? [[String: AnyObject]] {
-            for busDefaultWaitTimeAtStopRepresentation in representation {
-                if let busDefaultWaitTimeAtStopItem = BusDefaultWaitTimeAtStopItem(representation: busDefaultWaitTimeAtStopRepresentation) {
-                    busDefaultWaitTimeAtStopItems.append(busDefaultWaitTimeAtStopItem)
-                }
-            }
+
+    static func collection(parameter: JSON) -> [BusDefaultWaitTimeAtStopItem] {
+        var items: [BusDefaultWaitTimeAtStopItem] = []
+
+        for waitTime in parameter.arrayValue {
+            items.append(BusDefaultWaitTimeAtStopItem(parameter: waitTime))
         }
-        
-        return busDefaultWaitTimeAtStopItems
-    }
-    
-    func getGroupNumber() -> Int {
-        return self.groupNumber
-    }
-    
-    func getLocationNumber() -> Int {
-        return self.locationNumber
-    }
-    
-    func getWaitTime() -> Int {
-        return self.waitTime
+
+        return items
     }
 }

@@ -23,14 +23,14 @@
 import UIKit
 
 class BusstopFavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+
     @IBOutlet weak var busStationLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    
-    private var busStation: BusStationItem!
-    private var favoriteBusStations: [BusStationItem]!
-    
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, busStation: BusStationItem?) {
+
+    fileprivate var busStation: BusStationItem!
+    fileprivate var favoriteBusStations: [BusStationItem]!
+
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, busStation: BusStationItem?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         self.busStation = busStation
     }
@@ -38,22 +38,25 @@ class BusstopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("Bus station favorites", comment: "")
-        tableView.registerNib(UINib(nibName: "BusstopFavoritesTableViewCell", bundle: nil), forCellReuseIdentifier: "BusstopFavoritesTableViewCell");
+
+        tableView.register(UINib(nibName: "BusstopFavoritesTableViewCell", bundle: nil), forCellReuseIdentifier: "BusstopFavoritesTableViewCell");
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.allowsMultipleSelectionDuringEditing = false;
+
         self.title = NSLocalizedString("Bus stop favorites", comment: "")
-        self.view.backgroundColor = Theme.colorDarkGrey
-        self.busStationLabel.textColor = Theme.colorWhite
+        self.view.backgroundColor = Theme.darkGrey
+        self.busStationLabel.textColor = Theme.white
         self.loadFavoriteBusStations()
-        if (self.busStation != nil && self.favoriteBusStations.find({$0.getName() == self.busStation!.getName()}) == nil) {
+
+        if (self.busStation != nil && self.favoriteBusStations.find({ $0.name == self.busStation!.name }) == nil) {
             self.busStationLabel.text = self.busStation.getDescription()
-            let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "saveFavoriteBusStation:")
-            addButton.tintColor = Theme.colorWhite
+            let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(BusstopFavoritesViewController.saveFavoriteBusStation(_:)))
+            addButton.tintColor = Theme.white
             self.navigationItem.rightBarButtonItem = addButton
         } else {
             self.busStationLabel.text = NSLocalizedString("Select a bus station from your favorites", comment: "")
@@ -63,55 +66,54 @@ class BusstopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.favoriteBusStations.count
     }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-    {
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let busStation = self.favoriteBusStations[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("BusstopFavoritesTableViewCell", forIndexPath: indexPath) as! BusstopFavoritesTableViewCell
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BusstopFavoritesTableViewCell", for: indexPath) as! BusstopFavoritesTableViewCell
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.busStationLabel.text = busStation.getDescription()
         return cell;
     }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
-    {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let busStation = self.favoriteBusStations[indexPath.row]
-        let busstopViewController = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.indexOf(self))! - 1] as! BusstopViewController
+        let busstopViewController = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.index(of: self))! - 1] as! BusStopViewController
         busstopViewController.setBusStation(busStation)
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
-    
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
             let busStation = self.favoriteBusStations[indexPath.row]
+
             if UserDefaultHelper.instance.removeFavoriteBusStation(busStation) {
-                self.favoriteBusStations.removeAtIndex(indexPath.row)
-                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-                if busStation.getName() == self.busStation.getName() {
+                self.favoriteBusStations.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+
+                if busStation.name == self.busStation.name {
                     self.busStationLabel.text = self.busStation.getDescription()
-                    let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "saveFavoriteBusStation:")
-                    addButton.tintColor = Theme.colorWhite
+                    let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(BusstopFavoritesViewController.saveFavoriteBusStation(_:)))
+                    addButton.tintColor = Theme.white
                     self.navigationItem.rightBarButtonItem = addButton
                 }
             }
         }
     }
-    
-    private func loadFavoriteBusStations() {
+
+    fileprivate func loadFavoriteBusStations() {
         self.favoriteBusStations = UserDefaultHelper.instance.getFavoriteBusStations()
         self.tableView.reloadData()
     }
-    
-    func saveFavoriteBusStation(sender: UIBarButtonItem) {
+
+    func saveFavoriteBusStation(_ sender: UIBarButtonItem) {
         if UserDefaultHelper.instance.addFavoriteBusStation(self.busStation) {
             self.loadFavoriteBusStations()
             self.busStationLabel.text = NSLocalizedString("Select a bus station from your favorites", comment: "")

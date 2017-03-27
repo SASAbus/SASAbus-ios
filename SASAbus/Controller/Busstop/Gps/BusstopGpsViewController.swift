@@ -27,21 +27,21 @@ class BusstopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBOutlet weak var busStationLabel: UILabel!
     @IBOutlet weak var tableView: MasterTableView!
-    
-    private var busStation: BusStationItem!
-    private var nearbyBusStations: [BusStationDistance]! = []
-    var locationManager:CLLocationManager?
-    
+
+    fileprivate var busStation: BusStationItem!
+    fileprivate var nearbyBusStations: [BusStationDistance]! = []
+    var locationManager: CLLocationManager?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.registerNib(UINib(nibName: "BusstopGpsTableViewCell", bundle: nil), forCellReuseIdentifier: "BusstopGpsTableViewCell");
+        tableView.register(UINib(nibName: "BusstopGpsTableViewCell", bundle: nil), forCellReuseIdentifier: "BusstopGpsTableViewCell");
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.locationManager = CLLocationManager()
         self.title = NSLocalizedString("Bus stops near you", comment: "")
-        self.view.backgroundColor = Theme.colorDarkGrey
-        self.busStationLabel.textColor = Theme.colorWhite
+        self.view.backgroundColor = Theme.darkGrey
+        self.busStationLabel.textColor = Theme.white
         if (self.busStation != nil) {
             self.busStationLabel.text = self.busStation.getDescription()
         } else {
@@ -49,64 +49,63 @@ class BusstopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+
         self.locationManager!.stopUpdatingLocation()
     }
-    
-    override func viewDidAppear(animated: Bool) {
+
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
         self.locationManager!.requestAlwaysAuthorization()
         self.locationManager!.requestWhenInUseAuthorization()
-        
+
         if CLLocationManager.locationServicesEnabled() {
             locationManager!.delegate = self
             locationManager!.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager!.startUpdatingLocation()
         }
     }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.nearbyBusStations.count
     }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-    {
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let busStationDistance = self.nearbyBusStations[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("BusstopGpsTableViewCell", forIndexPath: indexPath) as! BusstopGpsTableViewCell
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
-        cell.iconImageView.image = cell.iconImageView.image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        cell.stationLabel.text = busStationDistance.getBusStation().getDescription()
-        cell.distanceLabel.text = Int(round(busStationDistance.getDistance())).description + "m"
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BusstopGpsTableViewCell", for: indexPath) as! BusstopGpsTableViewCell
+
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        cell.stationLabel.text = busStationDistance.busStation.getDescription()
+        cell.distanceLabel.text = Int(round(busStationDistance.distance)).description + "m"
+
         return cell;
     }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
-    {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let busStationDistance = self.nearbyBusStations[indexPath.row]
-        let busstopViewController = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.indexOf(self))! - 1] as! BusstopViewController
-        busstopViewController.setBusStation(busStationDistance.getBusStation())
-        self.navigationController?.popViewControllerAnimated(true)
+        let busstopViewController = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.index(of: self))! - 1] as! BusStopViewController
+
+        busstopViewController.setBusStation(busStationDistance.busStation)
+        self.navigationController?.popViewController(animated: true)
     }
 
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locationArray = locations as NSArray
         let location = locationArray.lastObject as? CLLocation
+
         if location != nil {
-            let busStations = (SasaDataHelper.instance.getDataForRepresentation(SasaDataHelper.BusStations) as [BusStationItem]).filter({$0.getBusStops().filter({$0.getLocation().distanceFromLocation(location!) < Configuration.busStopDistanceTreshold}).count > 0})
+            let busStations = (SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem]).filter({ $0.busStops.filter({ $0.location.distance(from: location!) < Config.busStopDistanceThreshold }).count > 0 })
             var nearbyBusStations: [BusStationDistance] = []
+
             for busStation in busStations {
                 var busStationDistance: BusStationDistance?
                 var distance: CLLocationDistance = 0.0
-                for busStop in busStation.getBusStops() {
-                    distance = busStop.getLocation().distanceFromLocation(location!)
-                    if (busStationDistance == nil || distance < busStationDistance!.getDistance()) {
+                for busStop in busStation.busStops {
+                    distance = busStop.location.distance(from: location!)
+                    if (busStationDistance == nil || distance < busStationDistance!.distance) {
                         busStationDistance = BusStationDistance(busStationItem: busStation, distance: distance)
                     }
                 }
@@ -114,10 +113,10 @@ class BusstopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
                     nearbyBusStations.append(busStationDistance!)
                 }
             }
-            self.nearbyBusStations = nearbyBusStations.sort({$0.getDistance() < $1.getDistance()})
+
+            self.nearbyBusStations = nearbyBusStations.sorted(by: { $0.distance < $1.distance })
             self.tableView.reloadData()
             self.locationManager?.stopUpdatingLocation()
         }
     }
-
 }

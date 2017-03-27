@@ -23,25 +23,26 @@
 import UIKit
 
 class MenuTableViewCell: UITableViewCell {
+
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var indicatorView: UIView!
-    
-    override func setHighlighted(highlighted: Bool, animated: Bool) {
+
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if (highlighted) {
-            self.titleLabel.textColor = Theme.colorWhite
-            self.iconImageView.tintColor = Theme.colorWhite
+            self.titleLabel.textColor = Theme.white
+            self.iconImageView.tintColor = Theme.white
         } else {
-            self.titleLabel.textColor = Theme.colorLightGrey
-            self.iconImageView.tintColor = Theme.colorLightGrey
-            self.indicatorView.backgroundColor = Theme.colorTransparent
+            self.titleLabel.textColor = Theme.lightGrey
+            self.iconImageView.tintColor = Theme.lightGrey
+            self.indicatorView.backgroundColor = Theme.transparent
         }
     }
-    
-    override func setSelected(selected: Bool, animated: Bool) {
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
         if (selected) {
             self.setHighlighted(true, animated: animated)
-            self.indicatorView.backgroundColor = Theme.colorOrange
+            self.indicatorView.backgroundColor = Theme.orange
         } else {
             self.setHighlighted(false, animated: animated)
         }

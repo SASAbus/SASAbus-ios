@@ -17,32 +17,23 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with SASAbus.  If not, see <http://www.gnu.org/licenses/>.
+// along with SASAbus. If not, see <http://www.gnu.org/licenses/>.
 //
 
 import Foundation
 
 class BusLineVariantTripResult {
-    
-    private var lineVariantIdentifiers: [String]! = []
-    private var busLineVariantTrips: [BusLineVariantTrip]! = []
-    
-    func getLineVariantIdentifiers() -> [String]{
-        return self.lineVariantIdentifiers
-    }
-    
-    func getBusLineVariantTrips() -> [BusLineVariantTrip] {
-        return self.busLineVariantTrips
-    }
-    
-    func addBusLineVariantTrip(busLineVariantTrip: BusLineVariantTrip) {
-        
-        let lineVariantIdentifier = String(busLineVariantTrip.getBusLine().getNumber()) + ":" + String(busLineVariantTrip.getVariant().getVariant())
+
+    var lineVariantIdentifiers: [String]! = []
+    var busLineVariantTrips: [BusLineVariantTrip]! = []
+
+    func addBusLineVariantTrip(_ busLineVariantTrip: BusLineVariantTrip) {
+        let lineVariantIdentifier = "\(busLineVariantTrip.busLine.id):\(busLineVariantTrip.variant.variant)"
+
         if !self.lineVariantIdentifiers.contains(lineVariantIdentifier) {
             self.lineVariantIdentifiers.append(lineVariantIdentifier)
         }
-        
+
         self.busLineVariantTrips.append(busLineVariantTrip)
     }
-    
 }

@@ -21,56 +21,49 @@
 //
 
 import CoreLocation
+import SwiftyJSON
 
-final class BusStopItem: NSObject, NSCoding, ResponseObjectSerializable, ResponseCollectionSerializable {
-    private var number: Int!
-    private var location: CLLocation!
-    
+final class BusStopItem: NSObject, NSCoding, JSONable, JSONCollection {
+
+    var number: Int!
+    var location: CLLocation!
+
     required init?(coder aDecoder: NSCoder) {
-        self.number = aDecoder.decodeObjectForKey("number") as! Int
-        self.location = aDecoder.decodeObjectForKey("location") as! CLLocation
+        self.number = aDecoder.decodeObject(forKey: "number") as! Int
+        self.location = aDecoder.decodeObject(forKey: "location") as! CLLocation
     }
-    
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.number, forKey: "number")
-        aCoder.encodeObject(self.location, forKey: "location")
+
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.number, forKey: "number")
+        aCoder.encode(self.location, forKey: "location")
     }
-    
-    init?( representation: AnyObject) {
+
+    required init(parameter: JSON) {
         super.init()
-        self.number = representation.valueForKeyPath("ORT_NR") as! Int
-        let latitude: CLLocationDegrees = representation.valueForKeyPath("ORT_POS_BREITE") as! Double
-        let longitude: CLLocationDegrees = representation.valueForKeyPath("ORT_POS_LAENGE") as! Double
+
+        self.number = parameter["ORT_NR"].intValue
+
+        let latitude: CLLocationDegrees = parameter["ORT_POS_BREITE"].doubleValue
+        let longitude: CLLocationDegrees = parameter["ORT_POS_LAENGE"].doubleValue
+
         self.location = CLLocation(latitude: latitude, longitude: longitude)
     }
-    
-    static func collection(representation: AnyObject) -> [BusStopItem] {
-        var busStopItems: [BusStopItem] = []
-        
-        if let representation = representation as? [[String: AnyObject]] {
-            for busStopRepresentation in representation {
-                if let busStopItem = BusStopItem(representation: busStopRepresentation) {
-                    busStopItems.append(busStopItem)
-                }
-            }
+
+    static func collection(parameter: JSON) -> [BusStopItem] {
+        var items: [BusStopItem] = []
+
+        for busStop in parameter.arrayValue {
+            items.append(BusStopItem(parameter: busStop))
         }
-        
-        return busStopItems
+
+        return items
     }
-    
-    func getNumber() -> Int {
-        return self.number
-    }
-    
-    func getLocation() -> CLLocation {
-        return self.location
-    }
-    
+
     func getDictionary() -> Dictionary<String, AnyObject> {
         var jsonDictinary = [String: AnyObject]()
-        jsonDictinary["ORT_NR"] = self.number
-        jsonDictinary["ORT_POS_BREITE"] = self.location.coordinate.latitude
-        jsonDictinary["ORT_POS_LAENGE"] = self.location.coordinate.longitude
+        jsonDictinary["ORT_NR"] = self.number as AnyObject?
+        jsonDictinary["ORT_POS_BREITE"] = self.location.coordinate.latitude as AnyObject?
+        jsonDictinary["ORT_POS_LAENGE"] = self.location.coordinate.longitude as AnyObject?
         return jsonDictinary
     }
 }

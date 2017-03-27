@@ -23,117 +23,159 @@
 import Alamofire
 import zipzap
 
-class SasaBusDownloader:DownloaderProtocol{
-    
-    var params:[String] = [
-        "REC_LID",
-        "LID_VERLAUF",
-        "REC_ORT",
-        "FIRMENKALENDER",
-        "SEL_FZT_FELD",
-        "REC_FRT_FZT",
-        "REC_FRT_HZT",
-        "ORT_HZT",
-        "REC_LIVAR_HZT"]
-    
+class SasaBusDownloader: DownloaderProtocol {
+
+    var params: [String] = [
+            "REC_LID",
+            "LID_VERLAUF",
+            "REC_ORT",
+            "FIRMENKALENDER",
+            "SEL_FZT_FELD",
+            "REC_FRT_FZT",
+            "REC_FRT_HZT",
+            "ORT_HZT",
+            "REC_LIVAR_HZT"
+    ]
+
     var downloadCount: Int = 0
     var description: String = NSLocalizedString("Initializing Data", comment: "")
     var request: Alamofire.Request?
-    var errorOccured:Bool?
-    var errorDescription:String?
-    var alamoFireManager:Manager?
-    
-    func startDownload(progressIndicator:ProgressIndicatorProtocol!) {
-        
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuration.timeoutIntervalForResource = Configuration.downloadTimeoutIntervalForResource // seconds
-        configuration.timeoutIntervalForRequest = Configuration.downloadTimeoutIntervalForRequest
-        self.alamoFireManager = Alamofire.Manager(configuration: configuration)
-        
-        let fileManager = NSFileManager.defaultManager()
-        let directoryURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-        let destinationURL = directoryURL.URLByAppendingPathComponent(Configuration.dataFolder)
-        
+    var errorOccured: Bool?
+    var errorDescription: String?
+    var alamoFireManager: SessionManager?
+
+    func startDownload(_ progressIndicator: ProgressIndicatorProtocol!) {
+        let configuration = URLSessionConfiguration.default
+
+        configuration.timeoutIntervalForResource = Config.downloadTimeoutIntervalForResource // seconds
+        configuration.timeoutIntervalForRequest = Config.downloadTimeoutIntervalForRequest
+
+        self.alamoFireManager = SessionManager(configuration: configuration)
+
+        let fileManager = FileManager.default
+        let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let destinationURL = directoryURL.appendingPathComponent(Config.PLANNED_DATA_FOLDER)
+
         self.createFolderIfNotExistent(destinationURL.description)
 
-        //download all files -- Atention it is recursive
-        let dispatchGroupBaseFiles: dispatch_group_t = dispatch_group_create()
-        
         self.downloadCount = 0
         self.errorOccured = false
         self.errorDescription = nil
+
         progressIndicator.started(self.description)
+
+        let asyncGroup = DispatchGroup()
+
         for param in params {
-            dispatch_group_enter(dispatchGroupBaseFiles)
-            self.downloadFile(param, to: destinationURL, progressIndicator: progressIndicator, group:dispatchGroupBaseFiles)
+            asyncGroup.enter()
+            self.downloadFile(param, to: destinationURL, progressIndicator: progressIndicator, group: asyncGroup)
         }
-        
-        dispatch_group_notify(dispatchGroupBaseFiles, dispatch_get_main_queue(), {
-            
+
+        asyncGroup.notify(queue: .main) {
             if self.errorOccured == true {
-                progressIndicator.error(self.errorDescription,fatal:true)
+                progressIndicator.error(self.errorDescription, fatal: true)
             } else {
-                //prepare data for download step 2
+                // Prepare data for download step 2
                 self.downloadCount = 0
-                let busDayTypeList: [BusDayTypeItem] = SasaDataHelper.instance.getDataForRepresentation(SasaDataHelper.BusDayTypeList) as [BusDayTypeItem]
-                
+
+                let calendar = SasaDataHelper.getData(SasaDataHelper.FIRMENKALENDER) as [BusDayTypeItem]
+
                 var uniqueDayTypes = [Int]()
-                for busDayType in busDayTypeList {
-                    if !uniqueDayTypes.contains(busDayType.getDayTypeNumber()) {
-                        uniqueDayTypes.append(busDayType.getDayTypeNumber())
+
+                for busDayType in calendar {
+                    if !uniqueDayTypes.contains(busDayType.dayTypeNumber) {
+                        uniqueDayTypes.append(busDayType.dayTypeNumber)
                     }
                 }
-                uniqueDayTypes.sortInPlace()
-                
-                let busLineList: [BusLineItem] = SasaDataHelper.instance.getDataForRepresentation(SasaDataHelper.BusLines) as [BusLineItem]
-                
+
+                uniqueDayTypes.sort()
+
+                let busLineList: [Line] = SasaDataHelper.getData(SasaDataHelper.REC_LID) as [Line]
+
                 var uniqueBusLines = [Int]()
                 for busLine in busLineList {
-                    if !uniqueBusLines.contains(busLine.getNumber()) {
-                        uniqueBusLines.append(busLine.getNumber())
+                    if !uniqueBusLines.contains(busLine.id) {
+                        uniqueBusLines.append(busLine.id)
                     }
                 }
-                uniqueBusLines.sortInPlace()
-                let dispatchGroupDayType: dispatch_group_t = dispatch_group_create()
-                
+
+                uniqueBusLines.sort()
+
                 self.params.removeAll()
+
                 for uniqueBusLine in uniqueBusLines {
                     for uniqueDayType in uniqueDayTypes {
-                        
                         self.params.append("REC_FRT&LI_NR=\(uniqueBusLine)&TAGESART_NR=\(uniqueDayType)")
                     }
                 }
+
                 self.params.append("BASIS_VER_GUELTIGKEIT")
-                
+
                 for param in self.params {
-                    dispatch_group_enter(dispatchGroupDayType)
-                    self.downloadFile(param, to: destinationURL, progressIndicator: progressIndicator, group: dispatchGroupDayType)
+                    asyncGroup.enter()
+                    self.downloadFile(param, to: destinationURL, progressIndicator: progressIndicator, group: asyncGroup)
                 }
-                
-                dispatch_group_notify(dispatchGroupDayType, dispatch_get_main_queue(), {
+
+                asyncGroup.notify(queue: .main) {
                     if self.errorOccured == true {
-                        progressIndicator.error(self.errorDescription, fatal:true)
+                        progressIndicator.error(self.errorDescription, fatal: true)
                     } else {
                         UserDefaultHelper.instance.setDataDownloadStatus(true)
                         progressIndicator.finished()
                     }
-                })
+                }
             }
-            
-        })
+        }
     }
-    
-    private func precalculateBusLinesOfBusStation() -> String {
-        let busStationList: [BusStationItem] = SasaDataHelper.instance.getDataForRepresentation(SasaDataHelper.BusStations) as [BusStationItem]
-        let busPathList: [BusPathItem] = SasaDataHelper.instance.getDataForRepresentation(SasaDataHelper.BusPathList) as [BusPathItem]
-        
+
+    func stopDownload() {
+        if self.request != nil {
+            self.request?.cancel()
+        }
+    }
+
+    func downloadFile(_ param: String, to: URL, progressIndicator: ProgressIndicatorProtocol, group: DispatchGroup) {
+        var file = param.replacingOccurrences(of: "&", with: "_")
+
+        file = file.replacingOccurrences(of: "=", with: "_")
+
+        let downloadUrl = Config.PLANNED_DATA_URL + "?type=" + param
+        let destinationUrl = to.appendingPathComponent(file)
+
+        Log.debug("Downloading file \(param) from \(downloadUrl) to \(destinationUrl)")
+
+        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+            return (destinationUrl, [.removePreviousFile, .createIntermediateDirectories])
+        }
+
+        alamoFireManager!.download(downloadUrl, to: destination).responseData { response in
+            if response.result.isSuccess {
+                Log.info("Downloaded \(response.request!.url!.absoluteString)")
+
+                self.enrichData(file, destinationUrl: destinationUrl)
+                self.incrementProgress(progressIndicator)
+            } else {
+                print(response.error!)
+
+                self.errorOccured = true
+                self.errorDescription = response.error?.localizedDescription
+            }
+
+            group.leave()
+        }
+    }
+
+    func calculateBusLinesOfBusStation() -> String {
+        let busStationList: [BusStationItem] = SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem]
+        let busPathList: [BusPathItem] = SasaDataHelper.getData(SasaDataHelper.LID_VERLAUF) as [BusPathItem]
+
         for busPathItem in busPathList {
-            for busPathVariant in busPathItem.getVariants() {
-                 for busStopId in busPathVariant.getBusStops() {
-                busStationLoop:    for busStation in busStationList {
-                        for busStationStop in busStation.getBusStops() {
-                            if busStationStop.getNumber() == busStopId {
-                                busStation.addBusLineId(busPathItem.getLineNumber())
+            for busPathVariant in busPathItem.variants {
+                for busStopId in busPathVariant.busStops {
+                    busStationLoop: for busStation in busStationList {
+                        for busStationStop in busStation.busStops {
+                            if busStationStop.number == busStopId {
+                                busStation.addBusLineId(busPathItem.lineNumber)
                                 break busStationLoop
                             }
                         }
@@ -141,84 +183,61 @@ class SasaBusDownloader:DownloaderProtocol{
                 }
             }
         }
-        
+
         var busStationDictionaries = [Dictionary<String, AnyObject>]()
         for busStation in busStationList {
             busStationDictionaries.append(busStation.getDictionary())
         }
-        
+
         var json = ""
         do {
-            let theJSONData = try NSJSONSerialization.dataWithJSONObject(
-                busStationDictionaries ,
-                options: NSJSONWritingOptions(rawValue: 0))
-            json = String(data: theJSONData, encoding: NSUTF8StringEncoding)!
-        } catch {}
+            let theJSONData = try JSONSerialization.data(
+                    withJSONObject: busStationDictionaries,
+                    options: JSONSerialization.WritingOptions(rawValue: 0))
+            json = String(data: theJSONData, encoding: String.Encoding.utf8)!
+        } catch {
+            Log.error(error)
+        }
+
         return json
     }
-    
-    func stopDownload() {
-        if self.request != nil {
-            self.request?.cancel()
-        }
-    }
-    
-    func downloadFile(param:String, to:NSURL, progressIndicator:ProgressIndicatorProtocol, group: dispatch_group_t) {
-        
-        var file = param.stringByReplacingOccurrencesOfString("&", withString: "_")
-        file = file.stringByReplacingOccurrencesOfString("=", withString: "_")
-        let downloadUrl = Configuration.dataUrl + "?type=" + param
-        let destinationUrl = to.URLByAppendingPathComponent(file)
-        
-        do {
-            try NSFileManager.defaultManager().removeItemAtURL(destinationUrl)
-        } catch {}
-        
-        alamoFireManager!.download(.GET, downloadUrl) { temporaryURL, response in
-            return destinationUrl
-        }
-        .response { request, response, data, error  in
-            if error != nil {
-                self.errorOccured = true
-                self.errorDescription = error?.localizedDescription
-            } else {
-                self.enrichData(file, destinationUrl: destinationUrl)
-                self.someProgress(progressIndicator)
-            }
-            dispatch_group_leave(group)
-        }
-    }
-    
-    func someProgress(progressIndicator:ProgressIndicatorProtocol) {
-        self.downloadCount++
-        var base:Int = 100
+
+    func incrementProgress(_ progressIndicator: ProgressIndicatorProtocol) {
+        self.downloadCount += 1
+        var base: Int = 100
+
         if self.downloadCount <= 9 {
             base = 9
         }
-        let progress = Int((base *  self.downloadCount) / self.params.count )
-        progressIndicator.progress(progress, description:nil)
+
+        let progress = Int((base * self.downloadCount) / self.params.count)
+        progressIndicator.progress(progress, description: nil)
     }
-    
-    func enrichData(file:String, destinationUrl:NSURL) {
-        if file == SasaDataHelper.BusStations {
-            let newJson = self.precalculateBusLinesOfBusStation()
+
+    func enrichData(_ file: String, destinationUrl: URL) {
+        if file == SasaDataHelper.REC_ORT {
+            let newJson = self.calculateBusLinesOfBusStation()
             do {
-                try newJson.writeToURL(destinationUrl, atomically: true, encoding: NSUTF8StringEncoding)
-            } catch {}
+                try newJson.write(to: destinationUrl, atomically: true, encoding: String.Encoding.utf8)
+            } catch {
+                Log.error(error)
+            }
         }
     }
-    
-    func createFolderIfNotExistent(path:String) {
+
+    func createFolderIfNotExistent(_ path: String) {
         do {
-            let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-            let documentsDirectory: AnyObject = paths[0]
-            let dataPath = documentsDirectory.stringByAppendingPathComponent(Configuration.dataFolder)
-            
-            if (!NSFileManager.defaultManager().fileExistsAtPath(dataPath)) {
-                try NSFileManager.defaultManager() .createDirectoryAtPath(dataPath, withIntermediateDirectories: false, attributes: nil)
+            let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory,
+                    FileManager.SearchPathDomainMask.userDomainMask, true)
+
+            var documentsDirectory: String = paths[0]
+            documentsDirectory.append(Config.PLANNED_DATA_FOLDER)
+
+            if !FileManager.default.fileExists(atPath: documentsDirectory) {
+                try FileManager.default.createDirectory(atPath: documentsDirectory, withIntermediateDirectories: false)
             }
-        } catch let error as NSError{
-            NSLog(error.localizedDescription)
+        } catch {
+            print(error)
         }
     }
 }

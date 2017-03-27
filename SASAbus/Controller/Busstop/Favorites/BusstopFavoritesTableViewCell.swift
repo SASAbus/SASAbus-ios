@@ -19,19 +19,20 @@
 // You should have received a copy of the GNU General Public License
 // along with SASAbus.  If not, see <http://www.gnu.org/licenses/>.
 //
+
 import UIKit
 
 class BusstopFavoritesTableViewCell: UITableViewCell {
-    
+
     @IBOutlet weak var busStationLabel: UILabel!
-    
-    override func setHighlighted(highlighted: Bool, animated: Bool) {
+
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if (highlighted) {
-            self.busStationLabel.textColor = Theme.colorWhite
-            self.backgroundColor = Theme.colorOrange
+            self.busStationLabel.textColor = Theme.white
+            self.backgroundColor = Theme.orange
         } else {
-            self.busStationLabel.textColor = Theme.colorDarkGrey
-            self.backgroundColor = Theme.colorTransparent
+            self.busStationLabel.textColor = Theme.darkGrey
+            self.backgroundColor = Theme.transparent
         }
     }
 }

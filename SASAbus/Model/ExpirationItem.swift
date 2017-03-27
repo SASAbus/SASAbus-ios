@@ -21,18 +21,16 @@
 //
 
 import Foundation
+import SwiftyJSON
 
-final class ExpirationItem:ResponseObjectSerializable {
-    
-    private let expirationDate: NSDate!
-    
-    init?( representation: AnyObject) {
-        let dateFormatter = NSDateFormatter()
+final class ExpirationItem: JSONable {
+
+    let expirationDate: Date!
+
+    required init(parameter: JSON) {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMdd"
-        self.expirationDate = dateFormatter.dateFromString(representation[0].valueForKeyPath("VER_GUELTIGKEIT") as! String)
-    }
-    
-    func getExpirationDate() -> NSDate {
-        return self.expirationDate
+
+        self.expirationDate = dateFormatter.date(from: parameter["VER_GUELTIGKEIT"].stringValue)
     }
 }

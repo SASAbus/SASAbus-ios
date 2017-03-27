@@ -23,60 +23,61 @@
 import UIKit
 import CoreLocation
 
-class BusstopMapViewController: UIViewController, UIWebViewDelegate, CLLocationManagerDelegate{
-    
-    var initializedJavascript:DarwinBoolean = false;
-    var mapJavascriptBridge:MapJavascriptBridge?
-    var locationManager:CLLocationManager?
-    
+class BusstopMapViewController: UIViewController, UIWebViewDelegate, CLLocationManagerDelegate {
+
+    var initializedJavascript: DarwinBoolean = false;
+    var mapJavascriptBridge: MapJavascriptBridge?
+    var locationManager: CLLocationManager?
+
     @IBOutlet weak var mapWebView: UIWebView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.title = NSLocalizedString("Bus stations map", comment: "")
         self.locationManager = CLLocationManager()
-        let path = NSBundle.mainBundle().pathForResource("SASAbusWebMap", ofType: "html", inDirectory: "www/webmap")
-        let requestURL = NSURL(string:path!);
-        let request = NSURLRequest(URL:requestURL!);
-        self.mapJavascriptBridge = MapJavascriptBridge(viewController: self, webView: mapWebView, initialLat: Configuration.mapStandardLatitude, initialLon: Configuration.mapStandardLongitude, initialZoom: Configuration.mapStandardZoom, selectButtonText: NSLocalizedString("Show departures", comment:""))
+        let path = Bundle.main.path(forResource: "SASAbusWebMap", ofType: "html", inDirectory: "www/webmap")
+        let requestURL = URL(string: path!);
+        let request = URLRequest(url: requestURL!);
+        self.mapJavascriptBridge = MapJavascriptBridge(viewController: self, webView: mapWebView, initialLat: Config.mapStandardLatitude,
+                initialLon: Config.mapStandardLongitude, initialZoom: Config.mapStandardZoom, selectButtonText: NSLocalizedString("Show departures", comment: ""))
+
         mapWebView.loadRequest(request)
         mapWebView.delegate = self;
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
+
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.locationManager!.stopUpdatingLocation()
     }
-    
-    override func viewDidAppear(animated: Bool) {
+
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.locationManager!.requestAlwaysAuthorization()
         self.locationManager!.requestWhenInUseAuthorization()
+
         if CLLocationManager.locationServicesEnabled() {
             locationManager!.delegate = self
             locationManager!.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager!.startUpdatingLocation()
         }
     }
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        self.mapJavascriptBridge?.setRequestLocation(locValue.latitude, longitued: locValue.longitude, accurancy: 5.0)
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue: CLLocationCoordinate2D = manager.location!.coordinate
+        self.mapJavascriptBridge?.setRequestLocation(locValue.latitude, longitude: locValue.longitude, accuracy: 5.0)
     }
-    
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        let url = request.URL;
+
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        let url = request.url;
         if url?.scheme == "ios" {
             self.mapJavascriptBridge?.handleCallsFromJavascript(url!);
             return false;
         }
         return true;
     }
-    
-    func webViewDidFinishLoad(webView: UIWebView) {
+
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         if (initializedJavascript == false) {
             self.mapJavascriptBridge?.loadJavascript()
             initializedJavascript = true;

@@ -24,9 +24,9 @@ import Foundation
 import UIKit
 
 class MasterTableView: UITableView, ProgressIndicatorProtocol {
-    
+
     var backgroundImageView: BackgroundView!
-    
+
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
         self.backgroundImageView = BackgroundView(frame: self.frame)
@@ -42,10 +42,12 @@ class MasterTableView: UITableView, ProgressIndicatorProtocol {
     override func reloadData() {
         super.reloadData()
         var rows = 0
-        for section in 0...self.numberOfSections - 1 {
-            rows = rows + self.numberOfRowsInSection(section)
+
+        for section in 0 ... self.numberOfSections - 1 {
+            rows += self.numberOfRows(inSection: section)
         }
-        if (rows == 0) {
+
+        if rows == 0 {
             self.backgroundImageView.alpha = 0.3
             self.backgroundView = self.backgroundImageView
         } else {
@@ -53,41 +55,44 @@ class MasterTableView: UITableView, ProgressIndicatorProtocol {
             self.backgroundView = self.backgroundImageView
         }
     }
-    
-    func started(title:String? = nil) {
-        dispatch_async(dispatch_get_main_queue()) {
+
+    func started(_ title: String? = nil) {
+        DispatchQueue.main.async {
             self.backgroundImageView!.alpha = 1.0
             self.backgroundView = self.backgroundImageView
         }
     }
-    
-    func progress(percent:Int, description:String?=nil) {
-        dispatch_async(dispatch_get_main_queue()) {
-            if (self.backgroundImageView.progressIndicatorView.layer.presentationLayer() != nil) {
-                let newAngleValue = Int((360 * percent) / 100 )
-                if (self.backgroundImageView.progressIndicatorView.angle != newAngleValue) {
-                    self.backgroundImageView.progressIndicatorView.animateToAngle(newAngleValue, duration: 0.02, completion: nil)
+
+    func progress(_ percent: Int, description: String? = nil) {
+        DispatchQueue.main.async {
+            if self.backgroundImageView.progressIndicatorView.layer.presentation() != nil {
+                let newAngleValue = Double((360 * percent) / 100)
+
+                if self.backgroundImageView.progressIndicatorView.angle != newAngleValue {
+                    self.backgroundImageView.progressIndicatorView.animate(toAngle: newAngleValue,
+                            duration: 0.02, completion: nil)
                 }
             }
         }
     }
-    
-    func error(message:String?, fatal:Bool) {
-        dispatch_async(dispatch_get_main_queue()) {
+
+    func error(_ message: String?, fatal: Bool) {
+        DispatchQueue.main.async {
         }
     }
-    
+
     func finished() {
-        dispatch_async(dispatch_get_main_queue()) {
-            if (self.backgroundImageView.progressIndicatorView.layer.presentationLayer() != nil) {
-                self.backgroundImageView.progressIndicatorView.animateToAngle(0, duration: 0, completion: nil)
+        DispatchQueue.main.async {
+            if self.backgroundImageView.progressIndicatorView.layer.presentation() != nil {
+                self.backgroundImageView.progressIndicatorView.animate(toAngle: 0, duration: 0, completion: nil)
             }
+
             self.backgroundImageView.alpha = 0.0
             self.backgroundView = self.backgroundImageView
         }
     }
-    
-    func reset(newTitle:String? = nil) {
-        
+
+    func reset(_ newTitle: String? = nil) {
+
     }
 }

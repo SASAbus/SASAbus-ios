@@ -21,125 +21,132 @@
 //
 
 import UIKit
+import SwiftyJSON
 
-final class BusStationItem: NSObject, NSCoding, ResponseObjectSerializable, ResponseCollectionSerializable {
-    private var community: String!
-    private var name: String!
-    private var busStops: [BusStopItem]!
-    private var descriptionDe: String!
-    private var descriptionIt: String!
-    private var busLineIds: [Int]!
-    
-    
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.community, forKey: "community")
-        aCoder.encodeObject(self.name, forKey: "name")
-        aCoder.encodeObject(self.busStops, forKey: "busStops")
-        aCoder.encodeObject(self.descriptionDe, forKey: "descriptionDe")
-        aCoder.encodeObject(self.descriptionIt, forKey: "descriptionIt")
-        aCoder.encodeObject(self.busLineIds, forKey: "busLineIds")
+final class BusStationItem: NSCoding, JSONable, JSONCollection {
+
+    var community: String!
+    var name: String!
+    var busStops: [BusStopItem]!
+    var descriptionDe: String!
+    var descriptionIt: String!
+    var busLineIds: [Int]!
+
+
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.community, forKey: "community")
+        aCoder.encode(self.name, forKey: "name")
+        aCoder.encode(self.busStops, forKey: "busStops")
+        aCoder.encode(self.descriptionDe, forKey: "descriptionDe")
+        aCoder.encode(self.descriptionIt, forKey: "descriptionIt")
+        aCoder.encode(self.busLineIds, forKey: "busLineIds")
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
-        self.community = aDecoder.decodeObjectForKey("community") as! String
-        self.name = aDecoder.decodeObjectForKey("name") as! String
-        self.busStops = aDecoder.decodeObjectForKey("busStops") as! [BusStopItem]
-        self.descriptionDe = aDecoder.decodeObjectForKey("descriptionDe") as! String
-        self.descriptionIt = aDecoder.decodeObjectForKey("descriptionIt") as! String
-        self.busLineIds = aDecoder.decodeObjectForKey("busLineIds") as! [Int]
+        self.community = aDecoder.decodeObject(forKey: "community") as! String
+        self.name = aDecoder.decodeObject(forKey: "name") as! String
+        self.busStops = aDecoder.decodeObject(forKey: "busStops") as! [BusStopItem]
+        self.descriptionDe = aDecoder.decodeObject(forKey: "descriptionDe") as! String
+        self.descriptionIt = aDecoder.decodeObject(forKey: "descriptionIt") as! String
+        self.busLineIds = aDecoder.decodeObject(forKey: "busLineIds") as! [Int]
     }
-    
-    init?( representation: AnyObject) {
-        super.init()
-        self.community = representation.valueForKeyPath("ORT_GEMEINDE") as! String
-        self.name = representation.valueForKeyPath("ORT_NAME") as! String
-        self.busStops = BusStopItem.collection(representation.valueForKeyPath("busstops")!)
-        self.busLineIds = representation.valueForKeyPath("busLineIds") as! [Int]!
+
+    required init(parameter: JSON) {
+        self.community = parameter["ORT_GEMEINDE"].stringValue
+        self.name = parameter["ORT_NAME"].stringValue
+
+        self.busStops = BusStopItem.collection(parameter: parameter["busstops"])
+
+        self.busLineIds = parameter["busLineIds"].arrayValue.map {
+            $0.intValue
+        }
+
         if self.busLineIds == nil {
             self.busLineIds = []
         }
+
         self.generateDescription()
     }
-    
-    static func collection(representation: AnyObject) -> [BusStationItem] {
-        var busStationItems: [BusStationItem] = []
-        
-        if let representation = representation as? [[String: AnyObject]] {
-            for busStationRepresentation in representation {
-                if let busStationItem = BusStationItem(representation: busStationRepresentation) {
-                    busStationItems.append(busStationItem)
-                }
-            }
+
+    static func collection(parameter: JSON) -> [BusStationItem] {
+        var items: [BusStationItem] = []
+
+        for busStop in parameter.arrayValue {
+            items.append(BusStationItem(parameter: busStop))
         }
-        return busStationItems
+
+        return items
     }
-    
-    func getCommunity() -> String {
-        return self.community
+
+    func containsBusStop(_ busStopId: Int) -> Bool {
+        return (self.busStops.find({ $0.number == busStopId }) != nil)
     }
-    
-    func getName() -> String {
-        return self.name
-    }
-    
-    func getBusStops() -> [BusStopItem] {
-        return self.busStops
-    }
-    
-    func containsBusStop(busStopId: Int) -> Bool {
-        return (self.busStops.find({$0.getNumber() == busStopId}) != nil)
-    }
-    
+
     func getDescription() -> String {
         var description = self.descriptionDe
-        if NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String == "it" {
+        if (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode) as! String == "it" {
             description = self.descriptionIt
         }
-        return description
+        return description!
     }
-    
-    func addBusLineId(number: Int) {
+
+    func addBusLineId(_ number: Int) {
         if !self.busLineIds.contains(number) {
             self.busLineIds.append(number)
         }
     }
-    
-    func getBusLines() -> [BusLineItem] {
-        let busLines: [BusLineItem] = SasaDataHelper.instance.getDataForRepresentation(SasaDataHelper.BusLines) as [BusLineItem]
-        var stationBusLines: [BusLineItem] = []
+
+    func getBusLines() -> [Line] {
+        let busLines: [Line] = SasaDataHelper.getData(SasaDataHelper.REC_LID)
+        var stationBusLines: [Line] = []
+
         for busLineId in self.busLineIds {
-            let busLine: BusLineItem? = busLines.find({$0.getNumber() == busLineId})
+            let busLine: Line? = busLines.find {
+                $0.id == busLineId
+            }
+
             if (busLine != nil) {
                 stationBusLines.append(busLine!)
             }
         }
+
         return stationBusLines
     }
-    
-    private func generateDescription() {
+
+    fileprivate func generateDescription() {
         self.descriptionIt = self.name
         self.descriptionDe = self.name
-        let locationNames = self.name.characters.split {$0 == "-"}
-        if (locationNames.count > 1) {
-            self.descriptionIt = String(locationNames[0]).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-            self.descriptionDe = String(locationNames[1]).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+
+        let locationNames = self.name.characters.split {
+            $0 == "-"
         }
-        let communityNames = self.community.characters.split {$0 == "-"}
-        self.descriptionIt = self.descriptionIt + " (" + String(communityNames[0]).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ")"
-        self.descriptionDe = self.descriptionDe + " (" + String(communityNames[1]).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + ")"
+
+        if (locationNames.count > 1) {
+            self.descriptionIt = String(locationNames[0]).trimmingCharacters(in: CharacterSet.whitespaces)
+            self.descriptionDe = String(locationNames[1]).trimmingCharacters(in: CharacterSet.whitespaces)
+        }
+
+        let communityNames = self.community.characters.split {
+            $0 == "-"
+        }
+
+        self.descriptionIt = self.descriptionIt + " (" + String(communityNames[0]).trimmingCharacters(in: CharacterSet.whitespaces) + ")"
+        self.descriptionDe = self.descriptionDe + " (" + String(communityNames[1]).trimmingCharacters(in: CharacterSet.whitespaces) + ")"
     }
-    
+
     func getDictionary() -> Dictionary<String, AnyObject> {
         var jsonDictinary = [String: AnyObject]()
-        jsonDictinary["ORT_GEMEINDE"] = self.community
-        jsonDictinary["ORT_NAME"] = self.name
-        jsonDictinary["busLineIds"] = self.busLineIds
+
+        jsonDictinary["ORT_GEMEINDE"] = self.community as AnyObject?
+        jsonDictinary["ORT_NAME"] = self.name as AnyObject?
+        jsonDictinary["busLineIds"] = self.busLineIds as AnyObject?
 
         var busStops = [Dictionary<String, AnyObject>]()
         for busStop in self.busStops {
             busStops.append(busStop.getDictionary())
         }
-        jsonDictinary["busstops"] = busStops
+
+        jsonDictinary["busstops"] = busStops as AnyObject?
         return jsonDictinary
     }
 }

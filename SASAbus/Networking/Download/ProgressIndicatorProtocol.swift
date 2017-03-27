@@ -23,9 +23,14 @@
 import Foundation
 
 protocol ProgressIndicatorProtocol {
-    func started(title:String?)
-    func progress(percent:Int, description:String?)
-    func error(message:String?, fatal:Bool)
+
+    func started(_ title: String?)
+
+    func progress(_ percent: Int, description: String?)
+
+    func error(_ message: String?, fatal: Bool)
+
     func finished()
-    func reset(newTitle:String?)
+
+    func reset(_ newTitle: String?)
 }

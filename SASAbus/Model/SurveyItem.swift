@@ -21,138 +21,89 @@
 //
 
 import Foundation
+import SwiftyJSON
 
-final class SurveyItem: ResponseObjectSerializable, ResponseCollectionSerializable {
+final class SurveyItem: JSONable, JSONCollection {
 
-    private var id: Int!
-    private var enabled: Bool!
-    private var firstQuestionGerman: String!
-    private var firstQuestionEnglish: String!
-    private var firstQuestionItalian: String!
-    private var firstQuestionPlaceholderGerman: String!
-    private var firstQuestionPlaceholderEnglish: String!
-    private var firstQuestionPlaceholderItalian: String!
-    private var secondQuestionGerman: String!
-    private var secondQuestionEnglish: String!
-    private var secondQuestionItalian: String!
-    private var status:String!
-    
-    init?( representation: AnyObject) {
-        self.status = representation.valueForKeyPath("status") as! String
+    var id: Int!
+    var enabled: Bool!
+    var firstQuestionGerman: String!
+    var firstQuestionEnglish: String!
+    var firstQuestionItalian: String!
+    var firstQuestionPlaceholderGerman: String!
+    var firstQuestionPlaceholderEnglish: String!
+    var firstQuestionPlaceholderItalian: String!
+    var secondQuestionGerman: String!
+    var secondQuestionEnglish: String!
+    var secondQuestionItalian: String!
+    var status: String!
+
+    required init(parameter: JSON) {
+        self.status = parameter["status"].stringValue
+
         if (self.status == "success") {
-        
-            let dataArray = representation.valueForKey("data") as! [AnyObject]
-            let data = dataArray[0] as AnyObject!
-            
-            self.id = Int(data.valueForKeyPath("id") as! String)
-            self.enabled = (data.valueForKeyPath("enabled") as! String) == "y"
-            
-            self.firstQuestionGerman = data.valueForKeyPath("first_question_de") as! String
-            self.firstQuestionGerman = data.valueForKeyPath("first_question_de") as! String
-            self.firstQuestionEnglish = data.valueForKeyPath("first_question_en") as! String
-            self.firstQuestionItalian = data.valueForKeyPath("first_question_it") as! String
-            
-            self.firstQuestionPlaceholderGerman = data.valueForKeyPath("first_question_placeholder_de") as! String
-            self.firstQuestionPlaceholderEnglish = data.valueForKeyPath("first_question_placeholder_en") as! String
-            self.firstQuestionPlaceholderItalian = data.valueForKeyPath("first_question_placeholder_it") as! String
-            
-            self.secondQuestionGerman = data.valueForKeyPath("second_question_de") as! String
-            self.secondQuestionEnglish = data.valueForKeyPath("second_question_en") as! String
-            self.secondQuestionItalian = data.valueForKeyPath("second_question_it") as! String
+            let dataArray = parameter["data"].arrayValue
+            let data = dataArray[0]
+
+            self.id = data["id"].intValue
+            self.enabled = data["enabled"].stringValue == "y"
+
+            self.firstQuestionGerman = data["first_question_de"].stringValue
+            self.firstQuestionGerman = data["first_question_de"].stringValue
+            self.firstQuestionEnglish = data["first_question_en"].stringValue
+            self.firstQuestionItalian = data["first_question_it"].stringValue
+
+            self.firstQuestionPlaceholderGerman = data["first_question_placeholder_de"].stringValue
+            self.firstQuestionPlaceholderEnglish = data["first_question_placeholder_en"].stringValue
+            self.firstQuestionPlaceholderItalian = data["first_question_placeholder_it"].stringValue
+
+            self.secondQuestionGerman = data["second_question_de"].stringValue
+            self.secondQuestionEnglish = data["second_question_en"].stringValue
+            self.secondQuestionItalian = data["second_question_it"].stringValue
         }
     }
-    
-    static func collection(representation: AnyObject) -> [SurveyItem] {
+
+    static func collection(parameter: JSON) -> [SurveyItem] {
         var items: [SurveyItem] = []
-        
-        if let representation = representation as? [[String: AnyObject]] {
-            for itemRepresentation in representation {
-                if let item = SurveyItem(representation: itemRepresentation) {
-                    items.append(item)
-                }
-            }
+
+        for itemRepresentation in parameter.arrayValue {
+            items.append(SurveyItem(parameter: itemRepresentation))
         }
+
         return items
     }
-    
-    func getStatus() -> String {
-        return self.status
-    }
-    
-    func getId() -> Int {
-        return self.id
-    }
-    
-    func isEnabled() -> Bool {
-        return self.enabled
-    }
-    
-    func getFirstQuestionGerman() -> String {
-        return self.firstQuestionGerman
-    }
-    
-    func getFirstQuestionEnglish() -> String {
-        return self.firstQuestionEnglish
-    }
-    
-    func getFirstQuestionItalian() -> String {
-        return self.firstQuestionItalian
-    }
-    
-    func getFirstQuestionPlaceholderGerman() -> String {
-        return self.firstQuestionPlaceholderGerman
-    }
-    
-    func getFirstQuestionPlaceholderEnglish() -> String {
-        return self.firstQuestionPlaceholderEnglish
-    }
-    
-    func getFirstQuestionPlaceholderItalian() -> String {
-        return self.firstQuestionPlaceholderItalian
-    }
-    
-    func getSecondQuestionGerman() -> String {
-        return self.secondQuestionGerman
-    }
-    
-    func getSecondQuestionEnglish() -> String {
-        return self.secondQuestionEnglish
-    }
-    
-    func getSecondQuestionItalian() -> String {
-        return self.secondQuestionItalian
-    }
-    
+
+
     func getFirstQuestionLocalized() -> String {
-        let language = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode)!
+        let language = (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode)!
         if language as! String == "it" {
-            return self.getFirstQuestionItalian()
+            return self.firstQuestionItalian
         } else if language as! String == "en" {
-            return self.getFirstQuestionEnglish()
-        }else {
-            return self.getFirstQuestionGerman()
+            return self.firstQuestionEnglish
+        } else {
+            return self.firstQuestionGerman
         }
     }
-    
+
     func getSecondQuestionLocalized() -> String {
-        let language = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode)!
+        let language = (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode)!
         if language as! String == "it" {
-            return self.getSecondQuestionItalian()
-        } else if  language as! String == "en" {
-            return self.getSecondQuestionEnglish()
+            return self.secondQuestionItalian
+        } else if language as! String == "en" {
+            return self.secondQuestionEnglish
         } else {
-            return self.getSecondQuestionGerman()
+            return self.secondQuestionGerman
         }
     }
-    
+
     func getFirstQuestionPlaceholderLocalized() -> String {
-        let language = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode)!
+        let language = (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode)!
         if language as! String == "it" {
-            return self.getFirstQuestionPlaceholderItalian()
-        } else if  language as! String == "en" {
-            return self.getFirstQuestionPlaceholderEnglish()
+            return self.firstQuestionPlaceholderItalian
+        } else if language as! String == "en" {
+            return self.firstQuestionPlaceholderEnglish
         } else {
-            return self.getFirstQuestionPlaceholderGerman()
+            return self.firstQuestionPlaceholderGerman
         }
     }
 }

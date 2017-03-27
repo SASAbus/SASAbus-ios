@@ -23,6 +23,7 @@
 import UIKit
 import KDCircularProgress
 import Alamofire
+import SwiftyJSON
 
 class DownloadViewController: UIViewController {
 
@@ -32,27 +33,30 @@ class DownloadViewController: UIViewController {
     @IBOutlet var cancelButton: UIButton!
     let downloader: DownloaderProtocol!
     let downloadFinishedDelegate: DownloadFinishedProtocol!
-    var canBeCanceled:Bool!
-    var showFinishedDialog:Bool!
-    var askForDownload:Bool!
-    
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?, downloader: DownloaderProtocol, downloadFinishedDelegate:DownloadFinishedProtocol!, canBeCanceled:Bool, showFinishedDialog:Bool? = true, askForDownload:Bool? = false) {
+    var canBeCanceled: Bool!
+    var showFinishedDialog: Bool!
+    var askForDownload: Bool!
+
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, downloader: DownloaderProtocol,
+         downloadFinishedDelegate: DownloadFinishedProtocol!, canBeCanceled: Bool, showFinishedDialog: Bool? = true, askForDownload: Bool? = false) {
+
         self.downloader = downloader
         self.canBeCanceled = canBeCanceled
         self.showFinishedDialog = showFinishedDialog
         self.downloadFinishedDelegate = downloadFinishedDelegate
         self.askForDownload = askForDownload
+
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.progressLabel.text = ""
-        self.view.backgroundColor = Theme.colorDarkGrey
+        self.view.backgroundColor = Theme.darkGrey
         self.downloadProgress.angle = 0
         self.downloadProgress.progressThickness = 0.04
         self.downloadProgress.trackThickness = 0.05
@@ -60,42 +64,51 @@ class DownloadViewController: UIViewController {
         self.downloadProgress.center = view.center
         self.downloadProgress.gradientRotateSpeed = 100
         self.downloadProgress.roundedCorners = true
-        self.downloadProgress.glowMode = .NoGlow
-        self.downloadProgress.trackColor = Theme.colorWhite
-        self.downloadProgress.setColors(Theme.colorOrange ,Theme.colorOrange, Theme.colorOrange)
-        self.downloadProgress.hidden = true
-        self.titleLabel.hidden = true
-        self.progressLabel.hidden = true
-        self.cancelButton.hidden = true
+        self.downloadProgress.glowMode = .noGlow
+        self.downloadProgress.trackColor = Theme.white
+        self.downloadProgress.set(colors: Theme.orange, Theme.orange, Theme.orange)
+        self.downloadProgress.isHidden = true
+        self.titleLabel.isHidden = true
+        self.progressLabel.isHidden = true
+        self.cancelButton.isHidden = true
     }
-    
-    override func viewDidAppear(animated: Bool) {
+
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if  (self.downloader is SasaBusDownloader) {
-                
+        if self.downloader is SasaBusDownloader {
+            Log.info("Downloading plan data")
+
             if UserDefaultHelper.instance.getDataDownloadStatus() == false {
+                Log.info("Plan data does not exist")
+
                 self.startDownload()
             } else {
-                    
-                Alamofire.request(SasaOpenDataApiRouter.GetExpirationDate()).responseObject { (response: Response<ExpirationItem, NSError>) in
-                    if (response.result.isSuccess) {
-                        do {
-                            let expirationItemServer = response.result.value
-                            let expirationItemLocal: ExpirationItem =  try SasaDataHelper.instance.getSingleElementForRepresentation(SasaDataHelper.ExpirationDate)! as ExpirationItem
-                                
-                            if NSCalendar.currentCalendar().compareDate((expirationItemServer?.getExpirationDate())!, toDate: expirationItemLocal.getExpirationDate(), toUnitGranularity: NSCalendarUnit.Day) != NSComparisonResult.OrderedSame {
-                                self.startDownload()
+                Log.info("Plan data does exist, checking expiration")
+
+                Alamofire.request(SasaOpenDataApiRouter.getExpirationDate())
+                        .responseJSON(completionHandler: { result in
+                            if (result.result.isSuccess) {
+                                do {
+                                    let expirationItemServer = ExpirationItem(parameter: JSON(result.data))
+                                    let expirationItemLocal = try SasaDataHelper
+                                            .getData(SasaDataHelper.BASIS_VER_GUELTIGKEIT)! as ExpirationItem
+
+                                    if Calendar.current.compare((expirationItemServer.expirationDate)!,
+                                            to: expirationItemLocal.expirationDate, toGranularity: Calendar.Component.day)
+                                               != ComparisonResult.orderedSame {
+
+                                        self.startDownload()
+                                    } else {
+                                        self.cancelButtonDown(self)
+                                    }
+                                } catch {
+                                    self.startDownload()
+                                }
                             } else {
-                                self.cancelButtonDown([])
+                                self.cancelButtonDown(self)
                             }
-                        } catch {
-                            self.startDownload()
-                        }
-                    } else {
-                        self.cancelButtonDown([])
-                    }
-                }
+                        })
             }
         } else {
             if self.askForDownload == true {
@@ -105,94 +118,108 @@ class DownloadViewController: UIViewController {
             }
         }
     }
-    
+
+
     func startDownload() {
-        self.downloadProgress.hidden = false
-        self.titleLabel.hidden = false
-        self.progressLabel.hidden = false
-        self.cancelButton.hidden = !self.canBeCanceled
+        self.downloadProgress.isHidden = false
+        self.titleLabel.isHidden = false
+        self.progressLabel.isHidden = false
+        self.cancelButton.isHidden = !self.canBeCanceled
+
         self.downloader.startDownload(DownloadViewProgressIndicator(downloadViewController: self))
     }
-    
-    //Refactor message hardcoded for mapdownload
+
+    // Refactor message hardcoded for map download
     func askForDownloadDialog() {
-        let toDownloadAlert = UIAlertController(title: NSLocalizedString("Download", comment: ""), message: NSLocalizedString("Do you want to download the mapdata now?", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
-        
-        toDownloadAlert.addAction(UIAlertAction(title: NSLocalizedString("No later", comment: ""), style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
+        let toDownloadAlert = UIAlertController(title: NSLocalizedString("Download", comment: ""),
+                message: NSLocalizedString("Do you want to download the mapdata now?", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+
+        toDownloadAlert.addAction(UIAlertAction(title: NSLocalizedString("No later", comment: ""),
+                style: UIAlertActionStyle.default, handler: { (_: UIAlertAction!) in
+
             UserDefaultHelper.instance.incrementAskedForDownloadsNoCount()
-            self.cancelButtonDown([])
+            self.cancelButtonDown(self)
         }))
-        
-        toDownloadAlert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
+
+        toDownloadAlert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""),
+                style: UIAlertActionStyle.default, handler: { (_: UIAlertAction!) in
             self.startDownload()
         }))
-        
-        if (UserDefaultHelper.instance.getAskedForDownloadsNoCount() >= Configuration.mapHowOftenShouldIAskForMapDownload) {
-            toDownloadAlert.addAction(UIAlertAction(title: NSLocalizedString("Do not ask me again", comment: ""), style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
-                
-                let mapDowloadReminderAlert = UIAlertController(title: NSLocalizedString("Info", comment: ""), message: NSLocalizedString("You can re enable map download in app settings", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
-                
-                mapDowloadReminderAlert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
-                    
+
+        if (UserDefaultHelper.instance.getAskedForDownloadsNoCount() >= Config.mapHowOftenShouldIAskForMapDownload) {
+            toDownloadAlert.addAction(UIAlertAction(title: NSLocalizedString("Do not ask me again", comment: ""),
+                    style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+
+                let mapDownloadReminderAlert = UIAlertController(title: NSLocalizedString("Info", comment: ""),
+                        message: NSLocalizedString("You can re enable map download in app settings", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+
+                mapDownloadReminderAlert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""),
+                        style: UIAlertActionStyle.default, handler: { (_: UIAlertAction!) in
+
                     UserDefaultHelper.instance.setAskForMapDownload(false)
-                    self.cancelButtonDown([])
+                    self.cancelButtonDown(self)
                 }))
-                
-                self.presentViewController(mapDowloadReminderAlert, animated: true, completion: nil)
+
+                self.present(mapDownloadReminderAlert, animated: true, completion: nil)
             }))
         }
-        
-        self.presentViewController(toDownloadAlert, animated: true, completion: nil)
+
+        self.present(toDownloadAlert, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    @IBAction func cancelButtonDown(sender: AnyObject) {
+
+    @IBAction func cancelButtonDown(_ sender: AnyObject) {
         self.downloader.stopDownload()
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
         if self.downloadFinishedDelegate != nil {
             self.downloadFinishedDelegate.finished()
         }
     }
-    
+
     func downloadFinished() {
         if self.showFinishedDialog == true {
-            let downloadFinishedAlert = UIAlertController(title: NSLocalizedString("Download", comment: ""), message: NSLocalizedString("Download finished successfully", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
-            
-            downloadFinishedAlert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .Default, handler: { (action: UIAlertAction!) in
+            let downloadFinishedAlert = UIAlertController(title: NSLocalizedString("Download", comment: ""),
+                    message: NSLocalizedString("Download finished successfully", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+
+            downloadFinishedAlert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""),
+                    style: .default, handler: { (_: UIAlertAction!) in
                 self.propagateDelegate()
-        
+
             }))
-            self.presentViewController(downloadFinishedAlert, animated: true, completion: nil)
-        }
-        else {
+            self.present(downloadFinishedAlert, animated: true, completion: nil)
+        } else {
             self.propagateDelegate()
         }
     }
-    
-    func downloadFinishedWithError(errorMessage:String, killApp:Bool) {
-        
+
+    func downloadFinishedWithError(_ errorMessage: String, killApp: Bool) {
         var message = errorMessage
         if killApp == true {
-            message = message + " " + NSLocalizedString("App is closing now", comment: "")
+            message += " " + NSLocalizedString("App is closing now", comment: "")
         }
-        let downloadFinishedErrorAlert = UIAlertController(title: NSLocalizedString("Download", comment: ""), message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        downloadFinishedErrorAlert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .Default, handler: { (action: UIAlertAction!) in
+
+        let downloadFinishedErrorAlert = UIAlertController(title: NSLocalizedString("Download", comment: ""),
+                message: message, preferredStyle: UIAlertControllerStyle.alert)
+
+        downloadFinishedErrorAlert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""),
+                style: .default, handler: { (_: UIAlertAction!) in
             if killApp {
                 exit(0)
             } else {
                 self.propagateDelegate()
             }
-            
+
         }))
-        self.presentViewController(downloadFinishedErrorAlert, animated: true, completion: nil)
+
+        self.present(downloadFinishedErrorAlert, animated: true, completion: nil)
     }
-    
-    func propagateDelegate () {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
+
+    func propagateDelegate() {
+        self.dismiss(animated: true, completion: nil)
+
         if self.downloadFinishedDelegate != nil {
             self.downloadFinishedDelegate.finished()
         }

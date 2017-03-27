@@ -21,42 +21,27 @@
 //
 
 import Foundation
+import SwiftyJSON
 
-final class BusWaitTimeAtStopItem: ResponseObjectSerializable, ResponseCollectionSerializable {
-    
-    private let tripId: Int!
-    private let locationNumber: Int!
-    private let waitTime: Int!
-    
-    init?( representation: AnyObject) {
-        self.tripId = Int(representation.valueForKeyPath("FRT_FID") as! String)!
-        self.locationNumber = Int(representation.valueForKeyPath("ORT_NR") as! String)!
-        self.waitTime = Int(representation.valueForKeyPath("FRT_HZT_ZEIT") as! String)!
+final class BusWaitTimeAtStopItem: JSONable, JSONCollection {
+
+    let tripId: Int!
+    let locationNumber: Int!
+    let waitTime: Int!
+
+    required init(parameter: JSON) {
+        self.tripId = parameter["FRT_FID"].intValue
+        self.locationNumber = parameter["ORT_NR"].intValue
+        self.waitTime = parameter["FRT_HZT_ZEIT"].intValue
     }
-    
-    static func collection(representation: AnyObject) -> [BusWaitTimeAtStopItem] {
+
+    static func collection(parameter: JSON) -> [BusWaitTimeAtStopItem] {
         var items: [BusWaitTimeAtStopItem] = []
-        
-        if let representation = representation as? [[String: AnyObject]] {
-            for itemRepresentation in representation {
-                if let item = BusWaitTimeAtStopItem(representation: itemRepresentation) {
-                    items.append(item)
-                }
-            }
+
+        for itemRepresentation in parameter.arrayValue {
+            items.append(BusWaitTimeAtStopItem(parameter: itemRepresentation))
         }
-        
+
         return items
-    }
-    
-    func getTripId() -> Int {
-        return self.tripId
-    }
-    
-    func getLocationNumber() -> Int {
-        return self.locationNumber
-    }
-    
-    func getWaitTime() -> Int {
-        return self.waitTime
     }
 }

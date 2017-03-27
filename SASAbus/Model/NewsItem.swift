@@ -21,79 +21,44 @@
 //
 
 import UIKit
+import SwiftyJSON
 
-final class NewsItem: ResponseObjectSerializable, ResponseCollectionSerializable {
-    private let id: Int
-    private let titleDe: String
-    private let titleIt: String
-    private let messageDe: String
-    private let messageIt: String
-    private let area: Int
-    private let lines: [String]
-    private let lastModified: Int
-    
-    init?( representation: AnyObject) {
-        self.id = Int(representation.valueForKeyPath("id") as! String)!
-        self.titleDe = representation.valueForKeyPath("titel_de") as! String
-        self.titleIt = representation.valueForKeyPath("titel_it") as! String
-        self.messageDe = representation.valueForKeyPath("nachricht_de") as! String
-        self.messageIt = representation.valueForKeyPath("nachricht_it") as! String
-        self.area = representation.valueForKeyPath("gebiet") as! Int
-        self.lines = representation.valueForKeyPath("linienliste") as! [String]
-        self.lastModified = Int(representation.valueForKeyPath("lastmod") as! String)!
-    }
-    
-    static func collection(representation: AnyObject) -> [NewsItem] {
-        var newsItems: [NewsItem] = []
-        
-        if let representation = representation as? [[String: AnyObject]] {
-            for newsRepresentation in representation {
-                if let newsItem = NewsItem(representation: newsRepresentation) {
-                    newsItems.append(newsItem)
-                }
-            }
+final class NewsItem: JSONable {
+
+    let id: Int
+
+    let title: String
+    let message: String
+
+    let lines: [Int]
+
+    let zone: String
+
+    let lastModified: Int
+
+    required init(parameter: JSON) {
+        id = parameter["id"].intValue
+
+        title = parameter["title"].stringValue
+        message = parameter["message"].stringValue
+
+        lines = parameter["lines"].arrayValue.map {
+            $0.intValue
         }
-        
-        return newsItems
+
+        zone = parameter["zone"].stringValue
+        lastModified = parameter["modified"].intValue
     }
-    
-    func getId() -> Int {
-        return self.id
-    }
-    
-    func getTitle() -> String {
-        var title = self.titleDe
-        if NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String == "it" {
-            title = self.titleIt
-        }
-        return title
-    }
-    
-    func getMessage() -> String{
-        var message = self.messageDe
-        if NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode) as! String == "it" {
-            message = self.messageIt
-        }
-        return message
-    }
-    
-    func getArea() -> Int {
-        return self.area
-    }
-    
-    func getLines() -> [String] {
-        return self.lines
-    }
-    
+
     func getLinesString() -> String {
         var linesString = ""
+
         if (self.lines.count > 0) {
-            linesString = NSLocalizedString("Lines: ", comment: "") + self.lines.joinWithSeparator(", ")
+            let stringArray: [String] = lines.flatMap { String($0) }
+
+            linesString = NSLocalizedString("Lines: ", comment: "") + stringArray.joined(separator: ", ")
         }
+
         return linesString
-    }
-    
-    func getLastModified() -> Int {
-        return self.lastModified
     }
 }

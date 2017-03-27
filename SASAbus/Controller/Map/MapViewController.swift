@@ -1,5 +1,5 @@
 //
-// MapViewController.swift
+// RealtimeMapViewController.swift
 // SASAbus
 //
 // Copyright (C) 2011-2015 Raiffeisen Online GmbH (Norman Marmsoler, Jürgen Sprenger, Aaron Falk) <info@raiffeisen.it>
@@ -22,72 +22,195 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
-class MapViewController: MasterViewController, UIWebViewDelegate, CLLocationManagerDelegate{
+class MapViewController: MasterViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
-    var initializedJavascript:DarwinBoolean = false;
-    var mapJavascriptBridge:MapJavascriptBridge?
-    var locationManager:CLLocationManager?
-    
-    @IBOutlet weak var mapWebView: UIWebView!
+    var initializedJavascript: DarwinBoolean = false
+    var mapJavascriptBridge: MapJavascriptBridge?
+    var locationManager: CLLocationManager?
+
+    @IBOutlet weak var mapView: MKMapView!
+
+
+    init(title: String?) {
+        super.init(nibName: "MapViewController", title: nil)
+        self.title = title
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.locationManager = CLLocationManager()
-        let path = NSBundle.mainBundle().pathForResource("SASAbusWebMap", ofType: "html", inDirectory: "www/webmap")
-        let requestURL = NSURL(string:path!);
-        let request = NSURLRequest(URL:requestURL!);
-        self.mapJavascriptBridge = MapJavascriptBridge(viewController: self, webView: mapWebView, initialLat: Configuration.mapStandardLatitude, initialLon: Configuration.mapStandardLongitude, initialZoom: Configuration.mapStandardZoom, selectButtonText: NSLocalizedString("Show departures", comment:""))
-        mapWebView.loadRequest(request)
-        mapWebView.delegate = self;
+
+        mapView.delegate = self
+        mapView.mapType = Settings.getMapType()!
+
+        mapView.setRegion(Config.mapRegion, animated: false)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+
         self.locationManager!.stopUpdatingLocation()
     }
-    
-    override func viewDidAppear(animated: Bool) {
+
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
         self.locationManager!.requestAlwaysAuthorization()
         self.locationManager!.requestWhenInUseAuthorization()
-        
+
         if CLLocationManager.locationServicesEnabled() {
             locationManager!.delegate = self
             locationManager!.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager!.startUpdatingLocation()
         }
+
+        parseData()
     }
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        self.mapJavascriptBridge?.setRequestLocation(locValue.latitude, longitued: locValue.longitude, accurancy: 5.0)
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        Analytics.track("Map")
     }
-    
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        let url = request.URL;
-        if url?.scheme == "ios" {
-            self.mapJavascriptBridge?.handleCallsFromJavascript(url!);
-            return false;
+
+
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        /*let annotation = view.annotation as! MapAnnotation
+        annotation.selected = true
+
+        if tileOverlay != nil {
+            mapView.add(tileOverlay!, level: .aboveLabels)
         }
-        return true;
+
+        if tileOverlayRenderer != nil {
+            tileOverlayRenderer?.reloadData()
+        }
+
+        selectedBus = annotation.busData
+
+        let bottomSheet = parentVC?.childViewControllers[1] as! BottomSheetViewController
+        bottomSheet.updateBottomSheet(bus: selectedBus!)
+
+        parentVC.setDrawerPosition(position: .PartiallyRevealed, animated: true)*/
     }
-    
-    func webViewDidFinishLoad(webView: UIWebView) {
-        if (initializedJavascript == false) {
-            self.mapJavascriptBridge?.loadJavascript()
-            initializedJavascript = true;
+
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        /*let annotation = view.annotation as! MapAnnotation
+        annotation.selected = false
+
+        let bottomSheet = parentVC?.childViewControllers[1] as! BottomSheetViewController
+        bottomSheet.selectedBus = nil
+
+        self.parentVC.setDrawerPosition(position: .Collapsed, animated: true)
+
+        if tileOverlay != nil {
+            mapView.remove(tileOverlay!)
+        }
+
+        if tileOverlayRenderer != nil {
+            tileOverlayRenderer?.reloadData()
+        }*/
+    }
+
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin") as? MKPinAnnotationView
+
+        if pinView == nil {
+            let calloutButton = UIButton(type: .detailDisclosure)
+
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+            pinView!.canShowCallout = true
+            pinView!.rightCalloutAccessoryView = calloutButton
+            pinView!.sizeToFit()
+        } else {
+            pinView!.annotation = annotation
+        }
+
+
+        return pinView
+    }
+
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        let annotation = view.annotation as! MapAnnotation
+        let id = annotation.id
+
+        if control == view.rightCalloutAccessoryView {
+            Log.warning("Clicked on \(id)")
+
+            var busStopViewController: BusStopViewController!
+
+            let busStation = (SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem])
+                    .find({ $0.busStops.filter({ $0.number == id }).count > 0 })
+
+            if (self.navigationController?.viewControllers.count)! > 1 {
+                busStopViewController = self.navigationController?
+                        .viewControllers[(self.navigationController?
+                        .viewControllers.index(of: self))! - 1] as? BusStopViewController
+
+                busStopViewController!.setBusStation(busStation!)
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                busStopViewController = BusStopViewController(busStation: busStation, title: NSLocalizedString("Busstop", comment: ""))
+                (UIApplication.shared.delegate as! AppDelegate).navigateTo(busStopViewController!)
+            }
         }
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated);
-        
-        self.track("Map")
+
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue: CLLocationCoordinate2D = manager.location!.coordinate
+        self.mapJavascriptBridge?.setRequestLocation(locValue.latitude, longitude: locValue.longitude, accuracy: 5.0)
+    }
+
+
+    func parseData() {
+        let busStops = BusStopRealmHelper.all()
+
+        for busStop in busStops {
+            let annotation: MapAnnotation = MapAnnotation(
+                    title: busStop.name(locale: Utils.locale()),
+                    subtitle: busStop.munic(locale: Utils.locale()),
+                    coordinate: CLLocationCoordinate2D(latitude: Double(busStop.lat), longitude: Double(busStop.lng)),
+                    id: busStop.id
+            )
+
+            mapView.addAnnotation(annotation)
+        }
+    }
+
+
+    class MapAnnotation: NSObject, MKAnnotation {
+
+        var title: String?
+        var subtitle: String?
+        var pinColor: UIColor
+
+        var id: Int
+
+        dynamic var coordinate: CLLocationCoordinate2D
+
+        init(title: String, subtitle: String, coordinate: CLLocationCoordinate2D, id: Int) {
+            self.title = title
+            self.subtitle = subtitle
+            self.coordinate = coordinate
+            self.pinColor = Color.red
+
+            self.id = id
+
+            super.init()
+        }
     }
 
 }

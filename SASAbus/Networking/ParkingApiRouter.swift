@@ -19,45 +19,48 @@
 // You should have received a copy of the GNU General Public License
 // along with SASAbus.  If not, see <http://www.gnu.org/licenses/>.
 //
+
 import Alamofire
 
 enum ParkingApiRouter: URLRequestConvertible {
-    static let baseURLString = Configuration.parkingLotBaseUrl
-    
+
+    static let baseURLString = Config.parkingLotBaseUrl
+
     // APIs exposed
-    case GetParkingIds()
-    case GetParkingStation(Int)
-    case GetNumberOfFreeSlots(Int)
-    
-    var method: Alamofire.Method {
+    case getParkingIds()
+    case getParkingStation(Int)
+    case getNumberOfFreeSlots(Int)
+
+    var method: HTTPMethod {
         switch self {
-        case .GetParkingIds:
-            return .GET
-        case .GetParkingStation:
-            return .GET
-        case .GetNumberOfFreeSlots:
-            return .GET
+        case .getParkingIds:
+            return .get
+        case .getParkingStation:
+            return .get
+        case .getNumberOfFreeSlots:
+            return .get
         }
     }
-    
+
     var path: String {
         switch self {
-        case .GetParkingIds:
+        case .getParkingIds:
             return "/getParkingIds"
-        case .GetParkingStation(let identifier):
-            return "/getParkingStation?identifier=\(identifier)" ;
-        case .GetNumberOfFreeSlots(let identifier):
+        case .getParkingStation(let identifier):
+            return "/getParkingStation?identifier=\(identifier)"
+        case .getNumberOfFreeSlots(let identifier):
             return "/getNumberOfFreeSlots?identifier=\(identifier)"
         }
     }
-    
+
     // MARK: URLRequestConvertible
-    
-    var URLRequest: NSMutableURLRequest {
-        let URL = NSURL(string: ParkingApiRouter.baseURLString + path)!
-        let mutableURLRequest = NSMutableURLRequest(URL: URL)
-        mutableURLRequest.HTTPMethod = method.rawValue
-        mutableURLRequest.timeoutInterval = Configuration.timeoutInterval
-        return mutableURLRequest
+
+    func asURLRequest() throws -> URLRequest {
+        let url = URL(string: ParkingApiRouter.baseURLString + path)!
+        let mutableURLRequest = NSMutableURLRequest(url: url)
+
+        mutableURLRequest.httpMethod = method.rawValue
+        mutableURLRequest.timeoutInterval = Config.timeoutInterval
+        return mutableURLRequest as URLRequest
     }
 }

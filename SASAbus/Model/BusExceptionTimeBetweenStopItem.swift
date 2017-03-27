@@ -21,43 +21,28 @@
 //
 
 import Foundation
+import SwiftyJSON
 
-final class BusExceptionTimeBetweenStopItem: ResponseObjectSerializable, ResponseCollectionSerializable {
-    
-    private let tripId: Int!
-    private let locationNumber: Int!
-    private let exceptionTime: Int!
-    
-    init?( representation: AnyObject) {
-        self.tripId = Int(representation.valueForKeyPath("FRT_FID") as! String)!
-        self.locationNumber = Int(representation.valueForKeyPath("ORT_NR") as! String)!
-        self.exceptionTime = Int(representation.valueForKeyPath("FRT_FZT_ZEIT") as! String)!
+final class BusExceptionTimeBetweenStopItem: JSONable, JSONCollection {
+
+    let tripId: Int!
+    let locationNumber: Int!
+    let exceptionTime: Int!
+
+    required init(parameter: JSON) {
+        self.tripId = parameter["FRT_FID"].intValue
+        self.locationNumber = parameter["ORT_NR"].intValue
+
+        self.exceptionTime = parameter["FRT_FZT_ZEIT"].intValue
     }
-    
-    
-    static func collection(representation: AnyObject) -> [BusExceptionTimeBetweenStopItem] {
-        var busExceptionTimeBetweenStopItems: [BusExceptionTimeBetweenStopItem] = []
-        
-        if let representation = representation as? [[String: AnyObject]] {
-            for busExceptionTimeBetweenStopRepresentation in representation {
-                if let busExceptionTimeBetweenStopItem = BusExceptionTimeBetweenStopItem(representation: busExceptionTimeBetweenStopRepresentation) {
-                    busExceptionTimeBetweenStopItems.append(busExceptionTimeBetweenStopItem)
-                }
-            }
+
+    static func collection(parameter: JSON) -> [BusExceptionTimeBetweenStopItem] {
+        var items: [BusExceptionTimeBetweenStopItem] = []
+
+        for timeBetweenStops in parameter.arrayValue {
+            items.append(BusExceptionTimeBetweenStopItem(parameter: timeBetweenStops))
         }
-        
-        return busExceptionTimeBetweenStopItems
-    }
-    
-    func getTripId() -> Int {
-        return self.tripId
-    }
-    
-    func getLocationNumber() -> Int {
-        return self.locationNumber
-    }
-    
-    func getExceptionTime() -> Int {
-        return self.exceptionTime
+
+        return items
     }
 }

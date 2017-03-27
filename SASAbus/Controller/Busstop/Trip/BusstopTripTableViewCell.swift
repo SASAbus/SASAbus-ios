@@ -23,30 +23,30 @@
 import UIKit
 
 class BusstopTripTableViewCell: UITableViewCell {
-    
+
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var busStationLabel: UILabel!
-    
+
     static let TYPE_START = "start"
     static let TYPE_MIDDLE = "middle"
     static let TYPE_END = "end"
-    
-    override func setHighlighted(highlighted: Bool, animated: Bool) {
+
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if (highlighted) {
-            self.timeLabel.textColor = Theme.colorWhite
-            self.busStationLabel.textColor = Theme.colorWhite
-            self.iconImageView.tintColor = Theme.colorWhite
-            self.backgroundColor = Theme.colorOrange
+            self.timeLabel.textColor = Theme.white
+            self.busStationLabel.textColor = Theme.white
+            self.iconImageView.tintColor = Theme.white
+            self.backgroundColor = Theme.orange
         } else {
-            self.timeLabel.textColor = Theme.colorDarkGrey
-            self.busStationLabel.textColor = Theme.colorDarkGrey
-            self.iconImageView.tintColor = Theme.colorOrange
-            self.backgroundColor = Theme.colorTransparent
+            self.timeLabel.textColor = Theme.darkGrey
+            self.busStationLabel.textColor = Theme.darkGrey
+            self.iconImageView.tintColor = Theme.orange
+            self.backgroundColor = Theme.transparent
         }
     }
-    
-    func setImageFromType(type: String) {
+
+    func setImageFromType(_ type: String) {
         self.iconImageView.image = UIImage(named: "busstop_" + type + ".png")
     }
 }

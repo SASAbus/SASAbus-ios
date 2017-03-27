@@ -21,35 +21,25 @@
 //
 
 import CoreLocation
+import SwiftyJSON
 
-final class BusTripVariantItem: ResponseObjectSerializable, ResponseCollectionSerializable {
-    private let variant: Int!
-    private let trips: [BusTripItem]!
-    
-    init?( representation: AnyObject) {
-        self.variant = representation.valueForKeyPath("STR_LI_VAR") as! Int
-        self.trips = BusTripItem.collection(representation.valueForKeyPath("triplist")!)
+final class BusTripVariantItem: JSONable, JSONCollection {
+
+    let variant: Int!
+    let trips: [BusTripItem]!
+
+    required init(parameter: JSON) {
+        self.variant = parameter["STR_LI_VAR"].intValue
+        self.trips = BusTripItem.collection(parameter: parameter["triplist"])
     }
-    
-    static func collection(representation: AnyObject) -> [BusTripVariantItem] {
-        var busTripVariantItems: [BusTripVariantItem] = []
-        
-        if let representation = representation as? [[String: AnyObject]] {
-            for busTripVariantRepresentation in representation {
-                if let busTripVariantItem = BusTripVariantItem(representation: busTripVariantRepresentation) {
-                    busTripVariantItems.append(busTripVariantItem)
-                }
-            }
+
+    static func collection(parameter: JSON) -> [BusTripVariantItem] {
+        var items: [BusTripVariantItem] = []
+
+        for trip in parameter.arrayValue {
+            items.append(BusTripVariantItem(parameter: trip))
         }
-        
-        return busTripVariantItems
-    }
-    
-    func getVariant() -> Int {
-        return self.variant
-    }
-    
-    func getTrips() -> [BusTripItem] {
-        return self.trips
+
+        return items
     }
 }
