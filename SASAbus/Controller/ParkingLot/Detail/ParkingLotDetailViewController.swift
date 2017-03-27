@@ -67,15 +67,15 @@ class ParkingLotDetailViewController: UIViewController, UITableViewDataSource, U
 
         cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        cell.stationLabel.text = busStationDistance.getBusStation().getDescription()
-        cell.distanceLabel.text = Int(round(busStationDistance.getDistance())).description + "m"
+        cell.stationLabel.text = busStationDistance.busStation.getDescription()
+        cell.distanceLabel.text = Int(round(busStationDistance.distance)).description + "m"
 
         return cell;
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let busStationDistance = self.nearestBusStations[indexPath.row]
-        let busstopViewController = BusStopViewController(busStation: busStationDistance.getBusStation(), title: NSLocalizedString("Busstop", comment: ""))
+        let busstopViewController = BusStopViewController(busStation: busStationDistance.busStation, title: NSLocalizedString("Busstop", comment: ""))
         (UIApplication.shared.delegate as! AppDelegate).navigateTo(busstopViewController)
     }
 
@@ -90,7 +90,7 @@ class ParkingLotDetailViewController: UIViewController, UITableViewDataSource, U
             for busStop in busStation.busStops {
                 distance = busStop.location.distance(from: self.parkingStationItem.location)
 
-                if (busStationDistance == nil || distance < busStationDistance!.getDistance()) {
+                if (busStationDistance == nil || distance < busStationDistance!.distance) {
                     busStationDistance = BusStationDistance(busStationItem: busStation, distance: distance)
                 }
             }
@@ -100,7 +100,7 @@ class ParkingLotDetailViewController: UIViewController, UITableViewDataSource, U
             }
         }
 
-        nearestBusStations = nearestBusStations.sorted(by: { $0.getDistance() < $1.getDistance() })
+        nearestBusStations = nearestBusStations.sorted(by: { $0.distance < $1.distance })
 
         return Array(nearestBusStations[0 ..< 5])
     }

@@ -31,7 +31,7 @@ protocol JSONable {
 }
 
 extension Array {
-    func find(predicate: (Array.Iterator.Element) throws -> Bool) rethrows -> Array.Iterator.Element? {
+    func find(_ predicate: (Array.Iterator.Element) throws -> Bool) rethrows -> Array.Iterator.Element? {
         return try index(where: predicate).map({self[$0]})
     }
 }

@@ -63,16 +63,17 @@ class NewsTableViewController: MasterTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let newsItem = self.newsItems[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as! NewsTableViewCell
+
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.linesLabel.text = newsItem.getLinesString()
         cell.titleLabel.text = newsItem.title
+
         return cell;
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let newsDetailViewController = NewsDetailViewController(nibName: "NewsDetailViewController", bundle: nil, newsItem: self.newsItems[indexPath.row]);
-        self.navigationController!.pushViewController(newsDetailViewController, animated: true)
-
+        let controller = NewsDetailViewController(nibName: "NewsDetailViewController", bundle: nil, newsItem: self.newsItems[indexPath.row]);
+        self.navigationController!.pushViewController(controller, animated: true)
     }
 
 
@@ -82,11 +83,11 @@ class NewsTableViewController: MasterTableViewController {
         for index in stride(from: (newsItems.count - 1), through: 0, by: -1) {
             let newsItem = newsItems[index]
 
-            // TODO
+            Log.info(self.location)
 
-            /*if ((self.location == "BZ" && newsItem.zone != 2) || (self.location == "ME" && newsItem.zone != 1)) {
+            if self.location != newsItem.zone {
                 newsItems.remove(at: index)
-            }*/
+            }
         }
 
         self.newsItems = newsItems
@@ -97,9 +98,11 @@ class NewsTableViewController: MasterTableViewController {
 
     func initRefreshControl() {
         let refreshControl = UIRefreshControl()
+
         refreshControl.tintColor = Theme.colorLightOrange
         refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""), attributes: [NSForegroundColorAttributeName: Theme.colorDarkGrey])
         refreshControl.addTarget(self.tabBarController, action: "getNews", for: UIControlEvents.valueChanged)
+
         self.refreshControl = refreshControl
     }
 }

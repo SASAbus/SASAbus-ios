@@ -57,8 +57,7 @@ public class Config {
     // Bus beacon
     static let beaconSecondsInBus = 120
     static let beaconMinTripDistance = 100
-    static let beaconLastSeenTreshold = 20
-
+    static let beaconLastSeenThreshold = 20
 
     // Bus stop beacon
     static let busStopValiditySeconds = 10
@@ -70,5 +69,5 @@ public class Config {
     static let surveyRecurringTimeDefault = 0
 
     // Bus stop
-    static let busStopDistanceTreshold = 0.0
+    static let busStopDistanceThreshold = 0.0
 }

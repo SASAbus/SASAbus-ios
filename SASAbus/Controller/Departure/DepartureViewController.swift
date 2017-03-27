@@ -20,10 +20,11 @@
 // along with SASAbus.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-
 import UIKit
 import Alamofire
 import SwiftyJSON
+import RxCocoa
+import RxSwift
 
 class DepartureViewController: MasterViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -129,8 +130,8 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
         print("Loading departures")
 
         let busLineVariantTripResult = self.getBusLineVariantTripsAndIdentifiers(self.secondsFromMidnight)
-        let busLineVariantTrips: [BusLineVariantTrip] = busLineVariantTripResult.getBusLineVariantTrips()
-        let lineVariantIdentifiers: [String] = busLineVariantTripResult.getLineVariantIdentifiers()
+        let busLineVariantTrips: [BusLineVariantTrip] = busLineVariantTripResult.busLineVariantTrips
+        let lineVariantIdentifiers: [String] = busLineVariantTripResult.lineVariantIdentifiers
 
         if lineVariantIdentifiers.count > 0 {
             self.disableSearching()
@@ -142,75 +143,75 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
         let busStations = SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_ORT) as [BusStationItem]
         var busStationDictionary = [Int: BusStationItem]()
 
-        Alamofire.request(RealTimeDataApiRouter.getPositionForLineVariants(lineVariantIdentifiers)).responseJSON { response in
-            var departures: [DepartureItem] = []
-            var positionItems: [RealtimeBus] = []
-            var filteredBusLines: [BusLineFilter] = []
+        RealtimeApi.lines(lines: lineVariantIdentifiers)
+                .subscribeOn(MainScheduler.asyncInstance)
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { buses in
+                    var departures: [DepartureItem] = []
+                    var filteredBusLines: [BusLineFilter] = []
 
-            if (response.result.isSuccess) {
-                positionItems = RealtimeBus.collection(parameter: JSON(response.data))
-            }
+                    for (count, busLineVariantTrip) in busLineVariantTrips.enumerated() {
+                        let stopTimes: [BusTripBusStopTime] = BusTripCalculator.calculateBusStopTimes(busLineVariantTrip)
+                        let stopTimesCount = stopTimes.count
+                        let destinationBusStation: BusStationItem?
+                        let busStopKey = stopTimes[stopTimesCount - 1].busStop
 
-            for (count, busLineVariantTrip) in busLineVariantTrips.enumerated() {
-                let stopTimes: [BusTripBusStopTime] = BusTripCalculator.calculateBusStopTimes(busLineVariantTrip)
-                let stopTimesCount = stopTimes.count
-                let destinationBusStation: BusStationItem?
-                let busStopKey = stopTimes[stopTimesCount - 1].busStop
-
-                if busStationDictionary.keys.contains(busStopKey!) {
-                    destinationBusStation = busStationDictionary[busStopKey!]
-                } else {
-                    destinationBusStation = busStations.find(predicate: { $0.busStops.find(predicate: { $0.number == busStopKey }) != nil })
-                    busStationDictionary[busStopKey!] = destinationBusStation
-                }
-
-                let positionItem: RealtimeBus? = positionItems.find(predicate: { $0.trip == busLineVariantTrip.trip.tripId })
-                var delayStopFoundIndex = 9999
-                var delaySecondsRoundedToMin = 0
-                var realTime = false
-                var departureIndex = 9999
-
-                for index in 0 ... stopTimesCount - 1 {
-                    let stopTime = stopTimes[index]
-                    if (positionItem != nil) {
-                        if (stopTime.seconds > (self.secondsFromMidnight - positionItem!.delay)) {
-                            positionItem!.locationNumber = stopTimes[index].busStop
-                            departureIndex = index
-                            delayStopFoundIndex = index
-                            delaySecondsRoundedToMin = positionItem!.delay
-                            realTime = true
-                            break
+                        if busStationDictionary.keys.contains(busStopKey!) {
+                            destinationBusStation = busStationDictionary[busStopKey!]
+                        } else {
+                            destinationBusStation = busStations.find(predicate: { $0.busStops.find(predicate: { $0.number == busStopKey }) != nil })
+                            busStationDictionary[busStopKey!] = destinationBusStation
                         }
-                    } else {
-                        if (stopTime.seconds > self.secondsFromMidnight) {
-                            departureIndex = index
-                            break
+
+                        let positionItem: RealtimeBus? = buses.find(predicate: { $0.trip == busLineVariantTrip.trip.tripId })
+                        var delayStopFoundIndex = 9999
+                        var delaySecondsRoundedToMin = 0
+                        var realTime = false
+                        var departureIndex = 9999
+
+                        for index in 0 ... stopTimesCount - 1 {
+                            let stopTime = stopTimes[index]
+                            if (positionItem != nil) {
+                                if (stopTime.seconds > (self.secondsFromMidnight - positionItem!.delay)) {
+                                    positionItem!.locationNumber = stopTimes[index].busStop
+                                    departureIndex = index
+                                    delayStopFoundIndex = index
+                                    delaySecondsRoundedToMin = positionItem!.delay
+                                    realTime = true
+                                    break
+                                }
+                            } else {
+                                if (stopTime.seconds > self.secondsFromMidnight) {
+                                    departureIndex = index
+                                    break
+                                }
+                            }
+                        }
+
+                        for index in 0 ... stopTimesCount - 1 {
+                            let stopTime = stopTimes[index]
+                            if (self.checkIfBusStopIsSuitable(stopTime, index: index, delayStopFoundIndex: delayStopFoundIndex, delaySecondsRoundedToMin: delaySecondsRoundedToMin, secondsFromMidnight: self.secondsFromMidnight, positionItem: positionItem)) {
+                                departures.append(DepartureItem(busTripStopTime: stopTime, destinationBusStation: destinationBusStation, busLine: busLineVariantTrip.busLine, busStopNumber: stopTime.busStop, text: "", stopTimes: stopTimes, index: index, departureIndex: departureIndex, delaySecondsRounded: delaySecondsRoundedToMin, delayStopFoundIndex: delayStopFoundIndex, realTime: realTime, positionItem: positionItem))
+                                if !filteredBusLines.contains(where: { $0.busLine.id == busLineVariantTrip.busLine.id }) {
+                                    filteredBusLines.append(BusLineFilter(busLine: busLineVariantTrip.busLine))
+                                }
+                                break
+                            }
+                        }
+
+                        if (self.departures.count == 0) {
+                            self.tableView.progress(Int((100 * count) / busLineVariantTrips.count))
                         }
                     }
-                }
 
-                for index in 0 ... stopTimesCount - 1 {
-                    let stopTime = stopTimes[index]
-                    if (self.checkIfBusStopIsSuitable(stopTime, index: index, delayStopFoundIndex: delayStopFoundIndex, delaySecondsRoundedToMin: delaySecondsRoundedToMin, secondsFromMidnight: self.secondsFromMidnight, positionItem: positionItem)) {
-                        departures.append(DepartureItem(busTripStopTime: stopTime, destinationBusStation: destinationBusStation, busLine: busLineVariantTrip.busLine, busStopNumber: stopTime.busStop, text: "", stopTimes: stopTimes, index: index, departureIndex: departureIndex, delaySecondsRounded: delaySecondsRoundedToMin, delayStopFoundIndex: delayStopFoundIndex, realTime: realTime, positionItem: positionItem))
-                        if !filteredBusLines.contains(where: { $0.busLine.id == busLineVariantTrip.busLine.id }) {
-                            filteredBusLines.append(BusLineFilter(busLine: busLineVariantTrip.busLine))
-                        }
-                        break
-                    }
-                }
+                    departures = departures.sorted(by: { $0.busTripStopTime.seconds < $1.busTripStopTime.seconds })
 
-                if (self.departures.count == 0) {
-                    self.tableView.progress(Int((100 * count) / busLineVariantTrips.count))
-                }
-            }
-
-            departures = departures.sorted(by: { $0.busTripStopTime.seconds < $1.busTripStopTime.seconds })
-
-            self.departures = departures
-            self.tableView.finished()
-            self.setFilteredBusLines(filteredBusLines)
-        }
+                    self.departures = departures
+                    self.tableView.finished()
+                    self.setFilteredBusLines(filteredBusLines)
+                }, onError: { error in
+                    Log.error(error)
+                })
     }
 
     internal func setFilteredBusLines(_ filteredBusLines: [BusLineFilter]) {

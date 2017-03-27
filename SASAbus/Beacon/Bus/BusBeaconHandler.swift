@@ -91,7 +91,7 @@ class BusBeaconHandler: BeaconHandlerProtocol {
                         .observeOn(MainScheduler.instance)
                         .subscribe(onNext: { bus in
                             if (bus != nil) {
-                                beaconInfo.setBusInformation(bus)
+                                beaconInfo.setBusInformation(bus!)
                             } else {
                                 //get location from device
                                 self.beaconLocationHandlerStart = SurveyLocationHandler(locationFoundProtocol: StartLocationFound(beaconInfo: beaconInfo))
@@ -132,15 +132,15 @@ class BusBeaconHandler: BeaconHandlerProtocol {
     func checkIfBeaconIsSuitableForSurvey(_ beaconInfo: SurveyBeaconInfo, group: DispatchGroup) {
         let now = Date()
 
-        if (Int(beaconInfo.lastSeen.timeIntervalSince1970) + Config.beaconLastSeenTreshold) > Int(now.timeIntervalSince1970) {
+        if (Int(beaconInfo.lastSeen.timeIntervalSince1970) + Config.beaconLastSeenThreshold) > Int(now.timeIntervalSince1970) {
 
             _ = RealtimeApi.vehicle(vehicle: beaconInfo.major)
                     .subscribeOn(MainScheduler.asyncInstance)
                     .observeOn(MainScheduler.instance)
                     .subscribe(onNext: { bus in
                         if (bus != nil) {
-                            beaconInfo.stopPositionItem = bus
-                            self.checkTrip(beaconInfo, location: bus.getCoordinates())
+                            beaconInfo.stopPositionItem = bus!
+                            self.checkTrip(beaconInfo, location: bus!.getCoordinates())
                         } else {
                             self.beaconLocationHandlerStop = SurveyLocationHandler(locationFoundProtocol: StopLocationFound(beaconInfo: beaconInfo, master: self))
                             self.beaconLocationHandlerStop!.getLocationAsync()

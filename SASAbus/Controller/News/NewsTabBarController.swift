@@ -38,6 +38,7 @@ class NewsTabBarController: MasterTabBarController {
 
         newsBozenViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Bozen", comment: ""),
                 image: UIImage(named: "wappen_bz.png"), selectedImage: nil)
+
         newsMeranViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Meran", comment: ""),
                 image: UIImage(named: "wappen_me.png"), selectedImage: nil)
 

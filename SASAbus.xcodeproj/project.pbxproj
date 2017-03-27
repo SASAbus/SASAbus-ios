@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F2E30091314118FA692ED7E /* JSONExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E305B7FD6D5C0FD22769D /* JSONExtension.swift */; };
 		1F2E301104347CE734265D3E /* bus_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E349B53634062572F9F94 /* bus_icon@3x.png */; };
 		1F2E303AEE5715E4D1A84EA8 /* BadgeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E355F63256D7A0449C9E9 /* BadgeHelper.swift */; };
 		1F2E3054C877946428535F13 /* BusLineWaitTimeAtStopItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E1EDA0D6034A9AC59F8 /* BusLineWaitTimeAtStopItem.swift */; };
@@ -19,6 +18,7 @@
 		1F2E3097D9CEBF5A44D706BF /* ic_navigation_news.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3035985188C1AED9D6A3 /* ic_navigation_news.png */; };
 		1F2E309B5EDAA0FBC8561671 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D827343EAE0FFB7E873 /* Vehicle.swift */; };
 		1F2E30A38C99EA5FE7E11D0B /* ProgressIndicatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E34DA330A83076C2E818F /* ProgressIndicatorProtocol.swift */; };
+		1F2E30C82B27DEAB3D89DECE /* AuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3FFD27A033A1323EA96D /* AuthHelper.swift */; };
 		1F2E30E1B1DE2EF9AA630891 /* map_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E39FE33BB3E6FAC801F58 /* map_icon.png */; };
 		1F2E30E38E5B3C1BFA4B2C2C /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E31B8D683354B7C9CC83F /* Formatters.swift */; };
 		1F2E310FB8D5674CC26D7A90 /* MapJavascriptBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E37A7C5963A2E654DD5FD /* MapJavascriptBridge.swift */; };
@@ -35,14 +35,15 @@
 		1F2E31E65F7999C88C17F10A /* LineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3028344E4E802423214B /* LineViewController.xib */; };
 		1F2E31E95B18D55FBAE2EBEA /* BusstopFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3FCB85FA15E717DFA57F /* BusstopFilterViewController.swift */; };
 		1F2E31ED8D435B72C8D5A04E /* alle_icon_filled@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E33C7C4E63D3693E6F9B4 /* alle_icon_filled@3x.png */; };
+		1F2E31F18AD68FE67C35FDD6 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3C399DD6BBFD96E9947F /* Endpoint.swift */; };
 		1F2E320B30AD91BEF60B58ED /* ic_navigation_busstop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3C8A610C93D71F954C19 /* ic_navigation_busstop@2x.png */; };
 		1F2E321CCFF15E0A748E6B62 /* busstops.realm in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E39A7174FDC9983C98452 /* busstops.realm */; };
+		1F2E324262D701F66F322989 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E36E1C0CD0B4ECCF5213B /* Line.swift */; };
 		1F2E32509D20814A9E9323FF /* BeaconHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E34946082E0067129B3C0 /* BeaconHandlerProtocol.swift */; };
 		1F2E327146013DBA624DB089 /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3CD791307CED24B1AC4D /* menu_icon@2x.png */; };
 		1F2E327243F3791097D5A656 /* NewsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3BDA042747AD83ACAA24 /* NewsApi.swift */; };
 		1F2E3277A2E2E9437A7A362E /* map_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E374B6A6AA41322835195 /* map_icon@3x.png */; };
 		1F2E329914BEDA9EB59B7F8F /* ParkingLotDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E390D5B23D1597BEF70FB /* ParkingLotDetailTableViewCell.xib */; };
-		1F2E32A30B23DC5B16E72631 /* RealTimeDataApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E39C70FE812C022DF8B99 /* RealTimeDataApiRouter.swift */; };
 		1F2E32A8BB6E5A21CDADA0CF /* BusstopTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E351772251D46F248F46E /* BusstopTripTableViewCell.xib */; };
 		1F2E32ACD0F5558CDB7C9914 /* SurveyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E377575AACFD4BC32D87B /* SurveyItem.swift */; };
 		1F2E32AE1E5F7A76AEE2EEDF /* busstop_middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E382AEB7FAB6C9F4773E3 /* busstop_middle@2x.png */; };
@@ -85,6 +86,7 @@
 		1F2E35780AAE511BFAFD5D0C /* BusstopFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E32CF9CA1919786A38CC6 /* BusstopFilterCollectionViewCell.swift */; };
 		1F2E3595CC90EFB4C8667536 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E38646F207DFEB9DA0201 /* MenuItem.swift */; };
 		1F2E35C2CE994008079BC6E1 /* more_icon_filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E369A4DDB7F43BDDB36DD /* more_icon_filled.png */; };
+		1F2E35DD0E04CED20979E5A1 /* JSONExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E325E2D8ADCABF37D8E00 /* JSONExtension.swift */; };
 		1F2E35E9FDA164B8EE01A166 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E31A084EA7B0986A6F3A1 /* BottomSheetViewController.swift */; };
 		1F2E360399D40AABFC2191D4 /* DepartureItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3C533AD12ECC6DEA0907 /* DepartureItem.swift */; };
 		1F2E360AFFC183236DEF06E7 /* alle_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E30B44857610B2C72EA41 /* alle_icon@3x.png */; };
@@ -132,7 +134,6 @@
 		1F2E38FC4FE0E3DAAF5657F8 /* PulleyPassthroughScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F659C980E0FFE07BD4F /* PulleyPassthroughScrollDelegate.swift */; };
 		1F2E390631531B005348B96F /* NewsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E382F555119AD8AE7C89F /* NewsTabBarController.swift */; };
 		1F2E390FC1B0757DF64A78B3 /* BusstopGpsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E55BBB782AE8F0DB3A0 /* BusstopGpsTableViewCell.swift */; };
-		1F2E391593F75E4AD0D659DF /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D511B8C7201406D8581 /* Endpoint.swift */; };
 		1F2E394D20DEC5B0A2A58519 /* favorit_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3F88B4A5EBB309F9811D /* favorit_icon@3x.png */; };
 		1F2E396971B063F1AC2BC041 /* RealtimeBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E395F61B7BE3C96603958 /* RealtimeBus.swift */; };
 		1F2E397565C1A3001165B7B2 /* BusstopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E30405FA6F806615EECF3 /* BusstopViewController.swift */; };
@@ -146,12 +147,12 @@
 		1F2E39C3012AE96F5953EBE4 /* BuslineAutocompleteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E34A82211A17FA893CBBF /* BuslineAutocompleteTableViewCell.xib */; };
 		1F2E39D3A76E90022131B13E /* wappen_bz@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E329E0011816B8CA2BA23 /* wappen_bz@2x.png */; };
 		1F2E39DC74DB674E8CFDFAE4 /* more_icon_filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3EDB95CEDF9ABF34547F /* more_icon_filled@2x.png */; };
+		1F2E39F6E44220B03186733E /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3B8E4910D6C3E433EFA3 /* RestClient.swift */; };
 		1F2E3A159C5E6E12F0B4F420 /* BusLineFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F469B54DBC78F302DF6 /* BusLineFilter.swift */; };
 		1F2E3A38A4AE5B9BEB806087 /* BusDayTypeTripItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3BBA282BB7B1D7B5EF73 /* BusDayTypeTripItem.swift */; };
 		1F2E3A4A95AFC11145F8DE81 /* ParkingLotDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3A38E885B487CCB8E80B /* ParkingLotDetailViewController.xib */; };
 		1F2E3A4AB8E43A406324344B /* UserDefaultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E344B0DD6DB645A377C9A /* UserDefaultHelper.swift */; };
 		1F2E3A4E75D30892AB9A8BF0 /* ic_navigation_parking@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E310674A12F46E334DE54 /* ic_navigation_parking@3x.png */; };
-		1F2E3A5F80F9A878803E62E7 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E324E2470C52B88B63C9D /* Line.swift */; };
 		1F2E3A622872609CBAF474AA /* MapTilesDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E340BEC1BB097317FE76D /* MapTilesDownloader.swift */; };
 		1F2E3A62A686D79B7DB39DCD /* filter_icon_filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3CC9F49DDF6DC34088C8 /* filter_icon_filled.png */; };
 		1F2E3A62E2C918318A2497C1 /* BusstopFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E33DBA263C0BAED0C4C1F /* BusstopFilterViewController.xib */; };
@@ -199,7 +200,6 @@
 		1F2E3C9EB27A33A3540223AA /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3B5703B6A6A1524BF439 /* NewsTableViewController.swift */; };
 		1F2E3CAA4D61944E453EB5DE /* ParkingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E37F6F553C5F0E20790A0 /* ParkingTableViewCell.xib */; };
 		1F2E3CB6A2BC57AD029A97A5 /* ic_navigation_parking@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3BAC6F02D291E9F639D6 /* ic_navigation_parking@2x.png */; };
-		1F2E3CBC028A065E054D9B44 /* NewsApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E35096CCA02E69BCA922C /* NewsApiRouter.swift */; };
 		1F2E3CDC60AC36749B44C572 /* ParkingApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E38B3345BD30DB4596856 /* ParkingApiRouter.swift */; };
 		1F2E3D0A5B788F5536E844C4 /* DepartureBuslineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E38F135189CC6C160A83C /* DepartureBuslineTableViewCell.xib */; };
 		1F2E3D15DE19313DA383638C /* BusstopGpsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E384EBDA4706A134EE1DC /* BusstopGpsViewController.xib */; };
@@ -263,7 +263,6 @@
 		1F2E303B9B0A84DF5B980060 /* ic_navigation_news@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_navigation_news@2x.png"; sourceTree = "<group>"; };
 		1F2E30405FA6F806615EECF3 /* BusstopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusstopViewController.swift; sourceTree = "<group>"; };
 		1F2E304C289F0A84BA31ED03 /* ParkingLotDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingLotDetailViewController.swift; sourceTree = "<group>"; };
-		1F2E305B7FD6D5C0FD22769D /* JSONExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtension.swift; sourceTree = "<group>"; };
 		1F2E308BFAAFC9B7FF34A230 /* favorit_icon_filled@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorit_icon_filled@3x.png"; sourceTree = "<group>"; };
 		1F2E30ACCA7288348A159518 /* MasterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterTableView.swift; sourceTree = "<group>"; };
 		1F2E30B44857610B2C72EA41 /* alle_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alle_icon@3x.png"; sourceTree = "<group>"; };
@@ -287,7 +286,7 @@
 		1F2E322121987E3FE692246F /* bus_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus_icon@2x.png"; sourceTree = "<group>"; };
 		1F2E322997B253B8B50F2BF7 /* MenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
 		1F2E323E4CA5E310E1F4A4F7 /* menu_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_icon@3x.png"; sourceTree = "<group>"; };
-		1F2E324E2470C52B88B63C9D /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		1F2E325E2D8ADCABF37D8E00 /* JSONExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtension.swift; sourceTree = "<group>"; };
 		1F2E325FADA66170017761E8 /* BusStationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStationItem.swift; sourceTree = "<group>"; };
 		1F2E328173928A704889C86A /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		1F2E3297B3A0A79C2C8DADEC /* filter_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filter_icon@2x.png"; sourceTree = "<group>"; };
@@ -327,7 +326,6 @@
 		1F2E34ED967F2958949CDEE0 /* BusPathVariantItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusPathVariantItem.swift; sourceTree = "<group>"; };
 		1F2E34FA0338C872F13170B3 /* ic_navigation_bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_navigation_bus@2x.png"; sourceTree = "<group>"; };
 		1F2E350249678B1340FA91D4 /* BusStopItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopItem.swift; sourceTree = "<group>"; };
-		1F2E35096CCA02E69BCA922C /* NewsApiRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsApiRouter.swift; sourceTree = "<group>"; };
 		1F2E351772251D46F248F46E /* BusstopTripTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusstopTripTableViewCell.xib; sourceTree = "<group>"; };
 		1F2E35367E8F87478B340CCB /* alle_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alle_icon.png; sourceTree = "<group>"; };
 		1F2E3541103CD7A91DCF19AB /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
@@ -354,6 +352,7 @@
 		1F2E369A4DDB7F43BDDB36DD /* more_icon_filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_icon_filled.png; sourceTree = "<group>"; };
 		1F2E36AE3D53FC131C8B0DF0 /* ParkingStationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingStationItem.swift; sourceTree = "<group>"; };
 		1F2E36BD359ABF56B7BA4637 /* DefaultSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = DefaultSettings.plist; sourceTree = "<group>"; };
+		1F2E36E1C0CD0B4ECCF5213B /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		1F2E370B0B1219FB74797821 /* BusstopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusstopViewController.xib; sourceTree = "<group>"; };
 		1F2E371F68487BE4D1330513 /* BusBeaconHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusBeaconHandler.swift; sourceTree = "<group>"; };
 		1F2E374B6A6AA41322835195 /* map_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_icon@3x.png"; sourceTree = "<group>"; };
@@ -404,7 +403,6 @@
 		1F2E39B66FD53DA49A4321CA /* filter_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filter_icon@3x.png"; sourceTree = "<group>"; };
 		1F2E39BCB54C7827A564E1BC /* location_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_icon@3x.png"; sourceTree = "<group>"; };
 		1F2E39C626E8D8564487FB5A /* BusStopRealmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopRealmHelper.swift; sourceTree = "<group>"; };
-		1F2E39C70FE812C022DF8B99 /* RealTimeDataApiRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeDataApiRouter.swift; sourceTree = "<group>"; };
 		1F2E39F78C779A060ECF5C2F /* SASAbus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SASAbus.xcdatamodel; sourceTree = "<group>"; };
 		1F2E39F88749EFD9B9B26268 /* SurveyActionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyActionProtocol.swift; sourceTree = "<group>"; };
 		1F2E39FE33BB3E6FAC801F58 /* map_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_icon.png; sourceTree = "<group>"; };
@@ -428,6 +426,7 @@
 		1F2E3B469BB12C29ED444079 /* more_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_icon@3x.png"; sourceTree = "<group>"; };
 		1F2E3B5703B6A6A1524BF439 /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		1F2E3B67B10FE24B94760216 /* RealtimeMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealtimeMapViewController.swift; sourceTree = "<group>"; };
+		1F2E3B8E4910D6C3E433EFA3 /* RestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
 		1F2E3BAC6F02D291E9F639D6 /* ic_navigation_parking@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_navigation_parking@2x.png"; sourceTree = "<group>"; };
 		1F2E3BADB5D699D377694079 /* SASA-Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SASA-Logo.png"; sourceTree = "<group>"; };
 		1F2E3BAFD721ABE79288E643 /* BottomSheetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomSheetViewController.xib; sourceTree = "<group>"; };
@@ -436,6 +435,7 @@
 		1F2E3BDA042747AD83ACAA24 /* NewsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsApi.swift; sourceTree = "<group>"; };
 		1F2E3C2322BDEC33DA45C256 /* NotificationAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationAction.swift; sourceTree = "<group>"; };
 		1F2E3C343897647B201C47DB /* SasaBusDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SasaBusDownloader.swift; sourceTree = "<group>"; };
+		1F2E3C399DD6BBFD96E9947F /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		1F2E3C4C3CD0569D7518F954 /* map_icon_filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_icon_filled@2x.png"; sourceTree = "<group>"; };
 		1F2E3C5301D11C3B9360C4FB /* BusstopTripViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusstopTripViewController.xib; sourceTree = "<group>"; };
 		1F2E3C533AD12ECC6DEA0907 /* DepartureItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartureItem.swift; sourceTree = "<group>"; };
@@ -453,7 +453,6 @@
 		1F2E3CD791307CED24B1AC4D /* menu_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_icon@2x.png"; sourceTree = "<group>"; };
 		1F2E3CFAAB98E73A0824F6B7 /* BG_sidemenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BG_sidemenu@2x.png"; sourceTree = "<group>"; };
 		1F2E3D3AEB58423590CAFEF6 /* BusBeaconObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusBeaconObserver.swift; sourceTree = "<group>"; };
-		1F2E3D511B8C7201406D8581 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		1F2E3D62D6A45005C662B813 /* BusTripCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusTripCalculator.swift; sourceTree = "<group>"; };
 		1F2E3D64289AFC9A46AE8449 /* location_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_icon.png; sourceTree = "<group>"; };
 		1F2E3D74BC0AC7B329114C47 /* DeviceUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUtils.swift; sourceTree = "<group>"; };
@@ -502,6 +501,7 @@
 		1F2E3FD2C9A25034F0E6ED38 /* ExpirationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpirationItem.swift; sourceTree = "<group>"; };
 		1F2E3FE39A5208A561324532 /* BusstopTripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusstopTripTableViewCell.swift; sourceTree = "<group>"; };
 		1F2E3FF6B0055A36CF5780A5 /* bus_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus_icon.png; sourceTree = "<group>"; };
+		1F2E3FFD27A033A1323EA96D /* AuthHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthHelper.swift; sourceTree = "<group>"; };
 		20594126F6048CC98FF546B4 /* Pods-SASAbus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SASAbus.release.xcconfig"; path = "Pods/Target Support Files/Pods-SASAbus/Pods-SASAbus.release.xcconfig"; sourceTree = "<group>"; };
 		313321FC1BC2622600EB9E92 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		31CFDFE51BB2877200636599 /* SASAbus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SASAbus.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -538,8 +538,6 @@
 		1F2E305A870346BA4E50810A /* api */ = {
 			isa = PBXGroup;
 			children = (
-				1F2E3D511B8C7201406D8581 /* Endpoint.swift */,
-				1F2E305B7FD6D5C0FD22769D /* JSONExtension.swift */,
 				1F2E35C837B9BEA5139691D2 /* LinesApi.swift */,
 				1F2E311965AFA80F8F14F0EB /* RealtimeApi.swift */,
 				1F2E3EE9CF14C395A092BA23 /* UserApi.swift */,
@@ -567,7 +565,6 @@
 		1F2E3116D13EBA129A33332F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1F2E33EC3756A72A436B682A /* api */,
 				1F2E30F732B683C27A73E7EC /* BusDayTypeItem.swift */,
 				1F2E3BBA282BB7B1D7B5EF73 /* BusDayTypeTripItem.swift */,
 				1F2E38F4556DC6F0D2340701 /* BusDefaultWaitTimeAtStopItem.swift */,
@@ -652,12 +649,12 @@
 			path = Log;
 			sourceTree = "<group>";
 		};
-		1F2E33EC3756A72A436B682A /* api */ = {
+		1F2E3452EC191AE6ADA05017 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				1F2E324E2470C52B88B63C9D /* Line.swift */,
+				1F2E36E1C0CD0B4ECCF5213B /* Line.swift */,
 			);
-			path = api;
+			path = model;
 			sourceTree = "<group>";
 		};
 		1F2E346A42E0EEBAE131AAA9 /* Favorites */ = {
@@ -939,12 +936,15 @@
 				1F2E348A9D1D700B647F2205 /* Download */,
 				1F2E305A870346BA4E50810A /* api */,
 				1F2E3CA243DECF779A3AD2F8 /* NetUtils.swift */,
-				1F2E35096CCA02E69BCA922C /* NewsApiRouter.swift */,
 				1F2E38B3345BD30DB4596856 /* ParkingApiRouter.swift */,
 				1F2E396A19007B65D0362616 /* PrivacyApiRouter.swift */,
-				1F2E39C70FE812C022DF8B99 /* RealTimeDataApiRouter.swift */,
 				1F2E37E30EA0B54980BF399A /* SasaOpenDataApiRouter.swift */,
 				1F2E367E8396866AC8669D88 /* SurveyApiRouter.swift */,
+				1F2E3FFD27A033A1323EA96D /* AuthHelper.swift */,
+				1F2E3B8E4910D6C3E433EFA3 /* RestClient.swift */,
+				1F2E325E2D8ADCABF37D8E00 /* JSONExtension.swift */,
+				1F2E3C399DD6BBFD96E9947F /* Endpoint.swift */,
+				1F2E3452EC191AE6ADA05017 /* model */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1414,8 +1414,6 @@
 				1F2E3BC83760CB9A70EBD9FC /* DeviceUtils.swift in Sources */,
 				1F2E36427A799469292A573E /* Utils.swift in Sources */,
 				1F2E3E79113A731A5DD08531 /* RealtimeApi.swift in Sources */,
-				1F2E30091314118FA692ED7E /* JSONExtension.swift in Sources */,
-				1F2E391593F75E4AD0D659DF /* Endpoint.swift in Sources */,
 				1F2E380533CCDFA313BDB1F7 /* UserApi.swift in Sources */,
 				1F2E380B08FEECD6B88B0465 /* LinesApi.swift in Sources */,
 				1F2E3FAEB0D3063F958E1488 /* DownloaderProtocol.swift in Sources */,
@@ -1424,8 +1422,6 @@
 				1F2E3AC7C384BDB2A4AE42D7 /* SasaBusDownloader.swift in Sources */,
 				1F2E3D6C14E42A9D41C4D629 /* LogProgressIndicator.swift in Sources */,
 				1F2E3CDC60AC36749B44C572 /* ParkingApiRouter.swift in Sources */,
-				1F2E3CBC028A065E054D9B44 /* NewsApiRouter.swift in Sources */,
-				1F2E32A30B23DC5B16E72631 /* RealTimeDataApiRouter.swift in Sources */,
 				1F2E31AE126CC22AD329A73B /* SasaOpenDataApiRouter.swift in Sources */,
 				1F2E3B8D3DDA5B44DA30E8D2 /* SurveyApiRouter.swift in Sources */,
 				1F2E3EAB155E6910E094D983 /* PrivacyApiRouter.swift in Sources */,
@@ -1493,7 +1489,6 @@
 				1F2E3367C47E4B5F3E4DEF01 /* BusWaitTimeAtStopItem.swift in Sources */,
 				1F2E396971B063F1AC2BC041 /* RealtimeBus.swift in Sources */,
 				1F2E32ACD0F5558CDB7C9914 /* SurveyItem.swift in Sources */,
-				1F2E3A5F80F9A878803E62E7 /* Line.swift in Sources */,
 				1F2E3DD25E46F7D5ECD78B0A /* Buses.swift in Sources */,
 				1F2E309B5EDAA0FBC8561671 /* Vehicle.swift in Sources */,
 				1F2E372821AE920A6AFAAE50 /* MapAnnotation.swift in Sources */,
@@ -1514,6 +1509,11 @@
 				1F2E35076C6E11E67822353B /* Themes.swift in Sources */,
 				1F2E3175BF74F73F026E9612 /* Utilities.swift in Sources */,
 				1F2E3BBC0417D0D1190AB621 /* Analytics.swift in Sources */,
+				1F2E30C82B27DEAB3D89DECE /* AuthHelper.swift in Sources */,
+				1F2E39F6E44220B03186733E /* RestClient.swift in Sources */,
+				1F2E35DD0E04CED20979E5A1 /* JSONExtension.swift in Sources */,
+				1F2E31F18AD68FE67C35FDD6 /* Endpoint.swift in Sources */,
+				1F2E324262D701F66F322989 /* Line.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
