@@ -29,23 +29,27 @@ class BusStopBeaconObserver: NSObject, CLLocationManagerDelegate {
     fileprivate let locationManager = CLLocationManager()
     fileprivate var region: CLBeaconRegion!
     fileprivate var beaconHandler: BeaconHandlerProtocol!
-    fileprivate var regions: Dictionary<String, CLBeaconRegion> = Dictionary<String, CLBeaconRegion>()
-    fileprivate var didEnterRegionDate: Date? = nil
-    fileprivate var didExitRegionDate: Date? = nil
+    fileprivate var regions: [String : CLBeaconRegion] = [String: CLBeaconRegion]()
+    fileprivate var didEnterRegionDate: Date?
+    fileprivate var didExitRegionDate: Date?
 
 
     init(_ beaconHandler: BeaconHandlerProtocol) {
         super.init()
         self.locationManager.delegate = self
         self.beaconHandler = beaconHandler
-        self.region = CLBeaconRegion(proximityUUID: UUID(uuidString: beaconHandler.getUuid())!, identifier: beaconHandler.getIdentifier())
+
+        self.region = CLBeaconRegion(proximityUUID: UUID(uuidString: beaconHandler.getUuid())!,
+                identifier: beaconHandler.getIdentifier())
+
         self.region.notifyEntryStateOnDisplay = true
-        self.region.notifyOnEntry = true;
-        self.region.notifyOnExit = true;
+        self.region.notifyOnEntry = true
+        self.region.notifyOnExit = true
     }
 
+
     func startObserving() {
-        if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedAlways) {
+        if CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedAlways {
             locationManager.requestAlwaysAuthorization()
         }
 
@@ -54,6 +58,7 @@ class BusStopBeaconObserver: NSObject, CLLocationManagerDelegate {
         locationManager.startMonitoring(for: self.region)
         locationManager.startRangingBeacons(in: self.region)
     }
+
 
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         let knownBeacons = beacons.filter {
@@ -72,7 +77,7 @@ class BusStopBeaconObserver: NSObject, CLLocationManagerDelegate {
         if didEnterRegionDate == nil || (now.timeIntervalSince1970 - (didEnterRegionDate?.timeIntervalSince1970)!) > 2 {
             didEnterRegionDate = now
             Log.debug("didEnterRegion \(beaconHandler.getUuid())")
-            self.beaconHandler.clearBeacons();
+            self.beaconHandler.clearBeacons()
             locationManager.startRangingBeacons(in: self.region)
         }
     }
@@ -83,7 +88,7 @@ class BusStopBeaconObserver: NSObject, CLLocationManagerDelegate {
         if didExitRegionDate == nil || (now.timeIntervalSince1970 - (didExitRegionDate?.timeIntervalSince1970)!) > 2 {
             didExitRegionDate = now
 
-            self.beaconHandler.inspectBeacons();
+            self.beaconHandler.inspectBeacons()
             locationManager.stopRangingBeacons(in: self.region)
         }
     }

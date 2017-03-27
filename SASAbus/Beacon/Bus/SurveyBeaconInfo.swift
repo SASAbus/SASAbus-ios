@@ -26,9 +26,9 @@ import CoreLocation
 
 class SurveyBeaconInfo {
 
-    var lastSeen: Date!;
-    var startDate: Date;
-    var seconds: Int! = 0;
+    var lastSeen: Date!
+    var startDate: Date
+    var seconds: Int! = 0
     var locationTime: Int
     var uuid: String
     var major: Int
@@ -42,14 +42,14 @@ class SurveyBeaconInfo {
         self.major = major
         self.minor = minor
         self.locationTime = time
-        self.startDate = Date();
+        self.startDate = Date()
         self.lastSeen = startDate
     }
 
     func seen() {
-        let now = Date();
+        let now = Date()
         self.seconds = Int(now.timeIntervalSince1970) - Int(self.startDate.timeIntervalSince1970);
-        self.lastSeen = now;
+        self.lastSeen = now
     }
 
     func setBusInformation(_ positionItem: RealtimeBus) {

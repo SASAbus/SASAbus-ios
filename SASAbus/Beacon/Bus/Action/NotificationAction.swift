@@ -36,9 +36,7 @@ class NotificationAction: SurveyActionProtocol {
                     let firstQuestion = self.getFirstQuestion(surveyDefinition, beaconInfo: beaconInfo);
                     let localNotification = UILocalNotification()
 
-                    if #available(iOS 8.2, *) {
-                        localNotification.alertTitle = NSLocalizedString("Survey", comment: "")
-                    }
+                    localNotification.alertTitle = NSLocalizedString("Survey", comment: "")
 
                     localNotification.alertBody = firstQuestion
                     localNotification.alertAction = NSLocalizedString("Survey", comment: "")
@@ -64,7 +62,7 @@ class NotificationAction: SurveyActionProtocol {
 
                     info["start_busstop_id"] = "" as AnyObject??
                     if beaconInfo.getStartBusStop() != nil {
-                        info["start_busstop_id"] = beaconInfo.getStartBusStop()!  as AnyObject??
+                        info["start_busstop_id"] = beaconInfo.getStartBusStop()! as AnyObject??
                     }
 
                     info["stop_busstop_id"] = "" as AnyObject??
@@ -86,10 +84,9 @@ class NotificationAction: SurveyActionProtocol {
 
         if beaconInfo.getLineName() != nil &&
                    !beaconInfo.getLineName()!.isEmpty {
-            let firstQuestionPlaceHolder = surveyDefinition.getFirstQuestionPlaceholderLocalized();
+            let firstQuestionPlaceHolder = surveyDefinition.getFirstQuestionPlaceholderLocalized()
             firstQuestion = firstQuestionPlaceHolder.replacingOccurrences(of: "%s", with: beaconInfo.getLineName()!)
         }
         return firstQuestion
     }
-
 }

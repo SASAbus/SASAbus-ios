@@ -62,6 +62,7 @@
 		1F2E360399D40AABFC2191D4 /* DepartureItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3C533AD12ECC6DEA0907 /* DepartureItem.swift */; };
 		1F2E360B9D9092570FCED479 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E328173928A704889C86A /* Color.swift */; };
 		1F2E36204E03FDAC9448AFE8 /* Parking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3402217FEA5E0C80897C /* Parking.swift */; };
+		1F2E362F8C618CE6BC21AF5C /* DownloadFinishedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3CAF10B86204E5DD5B2E /* DownloadFinishedProtocol.swift */; };
 		1F2E363D52A8FB957E02CD84 /* BusstopTripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3FE39A5208A561324532 /* BusstopTripTableViewCell.swift */; };
 		1F2E36427A799469292A573E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A48B17EA4A9A805D353 /* Utils.swift */; };
 		1F2E364604107CDF65715320 /* BusstopGpsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E360B010C24AB9B2F8300 /* BusstopGpsViewController.swift */; };
@@ -312,6 +313,7 @@
 		1F2E3C98D12DD5C379E6EE77 /* Buses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buses.swift; sourceTree = "<group>"; };
 		1F2E3CA243DECF779A3AD2F8 /* NetUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetUtils.swift; sourceTree = "<group>"; };
 		1F2E3CA8CFDB1891990F7A67 /* BusstopFilterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusstopFilterCollectionViewCell.xib; sourceTree = "<group>"; };
+		1F2E3CAF10B86204E5DD5B2E /* DownloadFinishedProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadFinishedProtocol.swift; sourceTree = "<group>"; };
 		1F2E3CC52EB744D0064E58C5 /* BusstopAutocompleteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusstopAutocompleteTableViewCell.xib; sourceTree = "<group>"; };
 		1F2E3CD088D426AAB3FAC196 /* BusstopGpsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusstopGpsTableViewCell.xib; sourceTree = "<group>"; };
 		1F2E3D3AEB58423590CAFEF6 /* BusBeaconObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusBeaconObserver.swift; sourceTree = "<group>"; };
@@ -517,6 +519,7 @@
 				1F2E340BEC1BB097317FE76D /* MapTilesDownloader.swift */,
 				1F2E34DA330A83076C2E818F /* ProgressIndicatorProtocol.swift */,
 				1F2E3C343897647B201C47DB /* SasaBusDownloader.swift */,
+				1F2E3CAF10B86204E5DD5B2E /* DownloadFinishedProtocol.swift */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -1200,6 +1203,7 @@
 				1F2E375A4C248F2C358C4FAB /* ParkingApi.swift in Sources */,
 				1F2E36204E03FDAC9448AFE8 /* Parking.swift in Sources */,
 				1F2E3E36CBD911CFD6715006 /* Notifications.swift in Sources */,
+				1F2E362F8C618CE6BC21AF5C /* DownloadFinishedProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

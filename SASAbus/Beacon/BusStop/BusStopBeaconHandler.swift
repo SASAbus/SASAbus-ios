@@ -43,6 +43,7 @@ class BusStopBeaconHandler: BeaconHandlerProtocol {
 
     func beaconsInRange(_ beacons: [CLBeacon]) {
         var nearestBeacon: CLBeacon? = nil
+
         for beacon in beacons {
             if nearestBeacon == nil ||
                        (beacon.accuracy > 0 &&
@@ -56,15 +57,15 @@ class BusStopBeaconHandler: BeaconHandlerProtocol {
     }
 
     func beaconInRange(_ major: Int, minor: Int) {
-        UserDefaultHelper.instance.setCurrentBusStopId(major);
+        UserDefaultHelper.instance.setCurrentBusStopId(major)
     }
 
     func clearBeacons() {
-        UserDefaultHelper.instance.setCurrentBusStopId(nil);
+        UserDefaultHelper.instance.setCurrentBusStopId(nil)
     }
 
     func inspectBeacons() {
-        UserDefaultHelper.instance.setCurrentBusStopId(nil);
+        UserDefaultHelper.instance.setCurrentBusStopId(nil)
     }
 
     func handlerIsActive() -> Bool {

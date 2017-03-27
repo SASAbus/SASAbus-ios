@@ -100,12 +100,12 @@ class MapTilesDownloader: DownloaderProtocol {
                     try fileManager.createDirectory(at: targetPath, withIntermediateDirectories: true)
                 } else {
                     Log.info("Extracting file \(targetPath.absoluteString)")
-                    try entry.newData().write(to: targetPath);
+                    try entry.newData().write(to: targetPath)
                 }
 
                 let progress = Int((100 * fileCount) / totalFiles)
                 if progress > self.lastProgress {
-                    self.lastProgress = progress;
+                    self.lastProgress = progress
                     circularProgress.progress(progress, description: nil)
                 }
             }

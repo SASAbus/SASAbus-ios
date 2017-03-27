@@ -76,7 +76,7 @@ class DownloadViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if (self.downloader is SasaBusDownloader) {
+        if self.downloader is SasaBusDownloader {
             Log.info("Downloading plan data")
 
             if UserDefaultHelper.instance.getDataDownloadStatus() == false {
@@ -91,9 +91,13 @@ class DownloadViewController: UIViewController {
                             if (result.result.isSuccess) {
                                 do {
                                     let expirationItemServer = ExpirationItem(parameter: JSON(result.data))
-                                    let expirationItemLocal: ExpirationItem = try SasaDataHelper.getData(SasaDataHelper.BASIS_VER_GUELTIGKEIT)! as ExpirationItem
+                                    let expirationItemLocal = try SasaDataHelper
+                                            .getData(SasaDataHelper.BASIS_VER_GUELTIGKEIT)! as ExpirationItem
 
-                                    if Calendar.current.compare((expirationItemServer.expirationDate)!, to: expirationItemLocal.expirationDate, toGranularity: Calendar.Component.day) != ComparisonResult.orderedSame {
+                                    if Calendar.current.compare((expirationItemServer.expirationDate)!,
+                                            to: expirationItemLocal.expirationDate, toGranularity: Calendar.Component.day)
+                                               != ComparisonResult.orderedSame {
+
                                         self.startDownload()
                                     } else {
                                         self.cancelButtonDown(self)
@@ -127,29 +131,36 @@ class DownloadViewController: UIViewController {
 
     // Refactor message hardcoded for map download
     func askForDownloadDialog() {
-        let toDownloadAlert = UIAlertController(title: NSLocalizedString("Download", comment: ""), message: NSLocalizedString("Do you want to download the mapdata now?", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+        let toDownloadAlert = UIAlertController(title: NSLocalizedString("Download", comment: ""),
+                message: NSLocalizedString("Do you want to download the mapdata now?", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
 
-        toDownloadAlert.addAction(UIAlertAction(title: NSLocalizedString("No later", comment: ""), style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+        toDownloadAlert.addAction(UIAlertAction(title: NSLocalizedString("No later", comment: ""),
+                style: UIAlertActionStyle.default, handler: { (_: UIAlertAction!) in
+
             UserDefaultHelper.instance.incrementAskedForDownloadsNoCount()
             self.cancelButtonDown(self)
         }))
 
-        toDownloadAlert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+        toDownloadAlert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""),
+                style: UIAlertActionStyle.default, handler: { (_: UIAlertAction!) in
             self.startDownload()
         }))
 
         if (UserDefaultHelper.instance.getAskedForDownloadsNoCount() >= Config.mapHowOftenShouldIAskForMapDownload) {
-            toDownloadAlert.addAction(UIAlertAction(title: NSLocalizedString("Do not ask me again", comment: ""), style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+            toDownloadAlert.addAction(UIAlertAction(title: NSLocalizedString("Do not ask me again", comment: ""),
+                    style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
 
-                let mapDowloadReminderAlert = UIAlertController(title: NSLocalizedString("Info", comment: ""), message: NSLocalizedString("You can re enable map download in app settings", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+                let mapDownloadReminderAlert = UIAlertController(title: NSLocalizedString("Info", comment: ""),
+                        message: NSLocalizedString("You can re enable map download in app settings", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
 
-                mapDowloadReminderAlert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+                mapDownloadReminderAlert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""),
+                        style: UIAlertActionStyle.default, handler: { (_: UIAlertAction!) in
 
                     UserDefaultHelper.instance.setAskForMapDownload(false)
                     self.cancelButtonDown(self)
                 }))
 
-                self.present(mapDowloadReminderAlert, animated: true, completion: nil)
+                self.present(mapDownloadReminderAlert, animated: true, completion: nil)
             }))
         }
 
@@ -170,9 +181,11 @@ class DownloadViewController: UIViewController {
 
     func downloadFinished() {
         if self.showFinishedDialog == true {
-            let downloadFinishedAlert = UIAlertController(title: NSLocalizedString("Download", comment: ""), message: NSLocalizedString("Download finished successfully", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+            let downloadFinishedAlert = UIAlertController(title: NSLocalizedString("Download", comment: ""),
+                    message: NSLocalizedString("Download finished successfully", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
 
-            downloadFinishedAlert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
+            downloadFinishedAlert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""),
+                    style: .default, handler: { (_: UIAlertAction!) in
                 self.propagateDelegate()
 
             }))
@@ -183,13 +196,16 @@ class DownloadViewController: UIViewController {
     }
 
     func downloadFinishedWithError(_ errorMessage: String, killApp: Bool) {
-
         var message = errorMessage
         if killApp == true {
-            message = message + " " + NSLocalizedString("App is closing now", comment: "")
+            message += " " + NSLocalizedString("App is closing now", comment: "")
         }
-        let downloadFinishedErrorAlert = UIAlertController(title: NSLocalizedString("Download", comment: ""), message: message, preferredStyle: UIAlertControllerStyle.alert)
-        downloadFinishedErrorAlert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
+
+        let downloadFinishedErrorAlert = UIAlertController(title: NSLocalizedString("Download", comment: ""),
+                message: message, preferredStyle: UIAlertControllerStyle.alert)
+
+        downloadFinishedErrorAlert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""),
+                style: .default, handler: { (_: UIAlertAction!) in
             if killApp {
                 exit(0)
             } else {
@@ -197,6 +213,7 @@ class DownloadViewController: UIViewController {
             }
 
         }))
+
         self.present(downloadFinishedErrorAlert, animated: true, completion: nil)
     }
 

@@ -66,10 +66,14 @@ class SurveyContactViewController: MasterViewController, ValidationDelegate, UIT
         self.surveyData["email"] = "" as AnyObject?
         self.surveyData["phone"] = "" as AnyObject?
 
-        let emailPlaceholder = NSAttributedString(string: NSLocalizedString("E-Mail Address", comment: ""), attributes: [NSForegroundColorAttributeName: Theme.lightGrey])
-        self.emailContact.attributedPlaceholder = emailPlaceholder;
-        let phonePlaceholder = NSAttributedString(string: NSLocalizedString("Phone Number", comment: ""), attributes: [NSForegroundColorAttributeName: Theme.lightGrey])
-        self.phoneContact.attributedPlaceholder = phonePlaceholder;
+        let emailPlaceholder = NSAttributedString(string: NSLocalizedString("E-Mail Address", comment: ""),
+                attributes: [NSForegroundColorAttributeName: Theme.lightGrey])
+
+        self.emailContact.attributedPlaceholder = emailPlaceholder
+        let phonePlaceholder = NSAttributedString(string: NSLocalizedString("Phone Number", comment: ""),
+                attributes: [NSForegroundColorAttributeName: Theme.lightGrey])
+
+        self.phoneContact.attributedPlaceholder = phonePlaceholder
 
         self.surveyContactDescription.text = String(describing: self.surveyData["secondQuestion"])
         self.surveyTitle.text = NSLocalizedString("Shortsurvey", comment: "")
@@ -83,7 +87,7 @@ class SurveyContactViewController: MasterViewController, ValidationDelegate, UIT
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated);
+        super.viewWillAppear(animated)
 
         Analytics.track("SurveyContact")
     }
@@ -101,7 +105,7 @@ class SurveyContactViewController: MasterViewController, ValidationDelegate, UIT
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        return true;
+        return true
     }
 
     func validationSuccessful() {
@@ -140,18 +144,24 @@ class SurveyContactViewController: MasterViewController, ValidationDelegate, UIT
     fileprivate func resetForm() {
         self.emailContact.textColor = Theme.darkGrey
         self.phoneContact.textColor = Theme.darkGrey
+
         self.emailContact.layer.borderColor = Theme.darkGrey.cgColor
         self.phoneContact.layer.borderColor = Theme.darkGrey.cgColor
+
         self.errorLabelEmail.isHidden = true
         self.errorLabelPhone.isHidden = true
-        self.validator.registerField(self.emailContact, errorLabel: errorLabelEmail, rules: [RequiredRule(), EmailRule(message: NSLocalizedString("Invalid email", comment: ""))])
-        self.validator.registerField(self.phoneContact, errorLabel: errorLabelPhone, rules: [RequiredRule(), PhoneNumberRule(message: NSLocalizedString("Not a valid phone number", comment: ""))])
+
+        self.validator.registerField(self.emailContact, errorLabel: errorLabelEmail,
+                rules: [RequiredRule(), EmailRule(message: NSLocalizedString("Invalid email", comment: ""))])
+        self.validator.registerField(self.phoneContact, errorLabel: errorLabelPhone,
+                rules: [RequiredRule(), PhoneNumberRule(message: NSLocalizedString("Not a valid phone number", comment: ""))])
     }
 
     fileprivate func preValidate() {
         let email = self.emailContact.text
         let phone = self.phoneContact.text
         self.resetForm()
+
         if email != "" || phone != "" {
             if email == "" {
                 validator.unregisterField(self.emailContact)

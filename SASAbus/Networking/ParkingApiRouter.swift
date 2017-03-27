@@ -47,7 +47,7 @@ enum ParkingApiRouter: URLRequestConvertible {
         case .getParkingIds:
             return "/getParkingIds"
         case .getParkingStation(let identifier):
-            return "/getParkingStation?identifier=\(identifier)";
+            return "/getParkingStation?identifier=\(identifier)"
         case .getNumberOfFreeSlots(let identifier):
             return "/getNumberOfFreeSlots?identifier=\(identifier)"
         }

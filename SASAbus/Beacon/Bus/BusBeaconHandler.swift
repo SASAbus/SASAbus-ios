@@ -142,13 +142,15 @@ class BusBeaconHandler: BeaconHandlerProtocol {
                             beaconInfo.stopPositionItem = bus!
                             self.checkTrip(beaconInfo, location: bus!.getCoordinates())
                         } else {
-                            self.beaconLocationHandlerStop = SurveyLocationHandler(locationFoundProtocol: StopLocationFound(beaconInfo: beaconInfo, master: self))
+                            self.beaconLocationHandlerStop =
+                                    SurveyLocationHandler(locationFoundProtocol: StopLocationFound(beaconInfo: beaconInfo, master: self))
                             self.beaconLocationHandlerStop!.getLocationAsync()
                         }
                     }, onError: { error in
                         print(error)
 
-                        self.beaconLocationHandlerStop = SurveyLocationHandler(locationFoundProtocol: StopLocationFound(beaconInfo: beaconInfo, master: self))
+                        self.beaconLocationHandlerStop =
+                                SurveyLocationHandler(locationFoundProtocol: StopLocationFound(beaconInfo: beaconInfo, master: self))
                         self.beaconLocationHandlerStop!.getLocationAsync()
                     })
         }

@@ -27,11 +27,11 @@ class SurveyLocationHandler: NSObject, CLLocationManagerDelegate {
 
     var locationManager: CLLocationManager?
     var locationFoundProtocol: LocationFoundProtocol!
-    var locationAquired: Bool!
+    var locationAcquired: Bool!
 
     init(locationFoundProtocol: LocationFoundProtocol) {
         super.init()
-        self.locationAquired = false
+        self.locationAcquired = false
         self.locationFoundProtocol = locationFoundProtocol
     }
 
@@ -50,9 +50,10 @@ class SurveyLocationHandler: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //first stop locationmanager from updating
-        if self.locationAquired == false {
-            self.locationAquired = true
+        // First stop location manager from updating
+
+        if self.locationAcquired == false {
+            self.locationAcquired = true
             if locationManager != nil {
                 self.locationManager?.stopUpdatingLocation()
             }

@@ -26,12 +26,12 @@ import UIKit
 
 class BusBeaconObserver: NSObject, CLLocationManagerDelegate {
 
-    fileprivate let locationManager = CLLocationManager()
-    fileprivate var region: CLBeaconRegion!
-    fileprivate var beaconHandler: BeaconHandlerProtocol!
-    fileprivate var regions: Dictionary<String, CLBeaconRegion> = Dictionary<String, CLBeaconRegion>()
-    fileprivate var didEnterRegionDate: Date? = nil
-    fileprivate var didExitRegionDate: Date? = nil
+    let locationManager = CLLocationManager()
+    var region: CLBeaconRegion!
+    var beaconHandler: BeaconHandlerProtocol!
+    var regions: [String : CLBeaconRegion] = [String: CLBeaconRegion]()
+    var didEnterRegionDate: Date?
+    var didExitRegionDate: Date?
 
 
     init(_ beaconHandler: BeaconHandlerProtocol) {
@@ -39,14 +39,16 @@ class BusBeaconObserver: NSObject, CLLocationManagerDelegate {
         self.locationManager.delegate = self
         self.beaconHandler = beaconHandler
 
-        self.region = CLBeaconRegion(proximityUUID: UUID(uuidString: beaconHandler.getUuid())!, identifier: beaconHandler.getIdentifier())
+        self.region = CLBeaconRegion(proximityUUID:
+        UUID(uuidString: beaconHandler.getUuid())!, identifier: beaconHandler.getIdentifier())
+
         self.region.notifyEntryStateOnDisplay = true
-        self.region.notifyOnEntry = true;
-        self.region.notifyOnExit = true;
+        self.region.notifyOnEntry = true
+        self.region.notifyOnExit = true
     }
 
     func startObserving() {
-        if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedAlways) {
+        if CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedAlways {
             locationManager.requestAlwaysAuthorization()
         }
 
@@ -70,7 +72,9 @@ class BusBeaconObserver: NSObject, CLLocationManagerDelegate {
                 let identifier: String = "\(beaconHandler.getIdentifier())_\(major)"
 
                 if !self.regions.keys.contains(key) {
-                    let newRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: beaconHandler.getUuid())!, major: major, identifier: identifier)
+                    let newRegion = CLBeaconRegion(proximityUUID:
+                    UUID(uuidString: beaconHandler.getUuid())!, major: major, identifier: identifier)
+
                     newRegion.notifyOnEntry = false
                     newRegion.notifyOnExit = true
                     self.locationManager.startMonitoring(for: newRegion)
@@ -88,7 +92,7 @@ class BusBeaconObserver: NSObject, CLLocationManagerDelegate {
         if didEnterRegionDate == nil || (now.timeIntervalSince1970 - (didEnterRegionDate?.timeIntervalSince1970)!) > 2 {
             didEnterRegionDate = now
             print("didEnterRegion \(beaconHandler.getUuid())")
-            self.beaconHandler.clearBeacons();
+            self.beaconHandler.clearBeacons()
             locationManager.startRangingBeacons(in: self.region)
         }
     }
@@ -96,7 +100,7 @@ class BusBeaconObserver: NSObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         let beaconRegion = region as! CLBeaconRegion
 
-        if (beaconRegion.major != nil) {
+        if beaconRegion.major != nil {
             let now = Date()
 
             if didExitRegionDate == nil || (now.timeIntervalSince1970 - (didExitRegionDate?.timeIntervalSince1970)!) > 2 {
@@ -108,10 +112,11 @@ class BusBeaconObserver: NSObject, CLLocationManagerDelegate {
                 if newRegion != nil {
                     self.locationManager.stopMonitoring(for: newRegion!)
                 }
+
                 self.beaconHandler.beaconInRange(Int(beaconRegion.major!), minor: 0)
 
                 if self.regions.count == 0 {
-                    self.beaconHandler.inspectBeacons();
+                    self.beaconHandler.inspectBeacons()
                     locationManager.stopRangingBeacons(in: self.region)
                 }
             }

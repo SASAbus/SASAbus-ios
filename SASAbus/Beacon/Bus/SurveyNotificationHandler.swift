@@ -36,29 +36,33 @@ class SurveyNotificationHandler: NotificationProtocol {
         return self.name
     }
 
-    func handleNotificationForeground(_ viewController: UIViewController, userInfo: [String: Any]?) {
-        let surveyAlert = UIAlertController(title: NSLocalizedString("Survey", comment: ""), message: String(describing: userInfo!["firstQuestion"]!), preferredStyle: UIAlertControllerStyle.alert)
-        surveyAlert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
-            self.answereIsNo(userInfo!)
+    func handleNotificationForeground(_ viewController: UIViewController, userInfo: [String : Any]?) {
+        let surveyAlert = UIAlertController(title: NSLocalizedString("Survey", comment: ""),
+                message: String(describing: userInfo!["firstQuestion"]!), preferredStyle: UIAlertControllerStyle.alert)
+
+        surveyAlert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""),
+                style: UIAlertActionStyle.default, handler: { _ in
+            self.answerIsNo(userInfo!)
         }))
 
-        surveyAlert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
-            self.answereIsYes(userInfo)
-
+        surveyAlert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""),
+                style: UIAlertActionStyle.default, handler: { _ in
+            self.answerIsYes(userInfo)
         }))
+
         viewController.present(surveyAlert, animated: true, completion: nil)
     }
 
-    func handleNotificationBackground(_ identifier: String? = nil, userInfo: [String: Any]?) {
+    func handleNotificationBackground(_ identifier: String? = nil, userInfo: [String : Any]?) {
         if identifier == "Yes" {
-            self.answereIsYes(userInfo!)
+            self.answerIsYes(userInfo!)
         } else if identifier == "No" {
-            self.answereIsNo(userInfo!)
+            self.answerIsNo(userInfo!)
         }
     }
 
 
-    func answereIsYes(_ notificationInfoItem: [String: Any]?) {
+    func answerIsYes(_ notificationInfoItem: [String : Any]?) {
         Notifications.clearAll()
 
         var surveyData = self.getSurveyDataFromNotificationItem(notificationInfoItem!)
@@ -67,14 +71,16 @@ class SurveyNotificationHandler: NotificationProtocol {
         surveyData["phone"] = "" as AnyObject?
         surveyData["email"] = "" as AnyObject?
 
-        Alamofire.request(SurveyApiRouter.insertSurvey(surveyData)).responseJSON { response in
+        Alamofire.request(SurveyApiRouter.insertSurvey(surveyData)).responseJSON { _ in
         }
     }
 
-    func answereIsNo(_ notificationInfoItem: [String: Any]) {
+    func answerIsNo(_ notificationInfoItem: [String : Any]) {
         Notifications.clearAll()
 
-        let surveyContactViewController = SurveyContactViewController(nibName: "SurveyContactViewController", title: NSLocalizedString("Survey", comment: ""))
+        let surveyContactViewController = SurveyContactViewController(nibName: "SurveyContactViewController",
+                title: NSLocalizedString("Survey", comment: ""))
+
         var surveyData = self.getSurveyDataFromNotificationItem(notificationInfoItem)
 
         surveyData["result"] = "n" as AnyObject?
@@ -86,7 +92,7 @@ class SurveyNotificationHandler: NotificationProtocol {
         appDelegate.navigateTo(surveyContactViewController)
     }
 
-    fileprivate func getSurveyDataFromNotificationItem(_ notificationInfoItem: [String: Any]) -> [String: AnyObject] {
+    fileprivate func getSurveyDataFromNotificationItem(_ notificationInfoItem: [String : Any]) -> [String : AnyObject] {
         var surveyData = [String: AnyObject]()
 
         surveyData["result"] = "y" as AnyObject?
