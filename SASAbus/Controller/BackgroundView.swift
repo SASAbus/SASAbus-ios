@@ -41,6 +41,7 @@ class BackgroundView: UIView {
     func injectEasterEgg(_ target: UIView, numberOfTapsRequired: Int) {
         let bSelector: Selector = #selector(BackgroundView.tap(_:))
         let doubleTapGesture = UITapGestureRecognizer(target: target, action: bSelector)
+
         doubleTapGesture.numberOfTapsRequired = numberOfTapsRequired
         target.addGestureRecognizer(doubleTapGesture)
     }
