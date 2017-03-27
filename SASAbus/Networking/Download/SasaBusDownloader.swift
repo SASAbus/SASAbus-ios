@@ -44,7 +44,6 @@ class SasaBusDownloader: DownloaderProtocol {
     var errorDescription: String?
     var alamoFireManager: SessionManager?
 
-
     func startDownload(_ progressIndicator: ProgressIndicatorProtocol!) {
         let configuration = URLSessionConfiguration.default
 
@@ -79,7 +78,7 @@ class SasaBusDownloader: DownloaderProtocol {
                 // Prepare data for download step 2
                 self.downloadCount = 0
 
-                let calendar: [BusDayTypeItem] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.FIRMENKALENDER) as [BusDayTypeItem]
+                let calendar = SasaDataHelper.getData(SasaDataHelper.FIRMENKALENDER) as [BusDayTypeItem]
 
                 var uniqueDayTypes = [Int]()
 
@@ -91,7 +90,7 @@ class SasaBusDownloader: DownloaderProtocol {
 
                 uniqueDayTypes.sort()
 
-                let busLineList: [Line] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_LID) as [Line]
+                let busLineList: [Line] = SasaDataHelper.getData(SasaDataHelper.REC_LID) as [Line]
 
                 var uniqueBusLines = [Int]()
                 for busLine in busLineList {
@@ -135,7 +134,6 @@ class SasaBusDownloader: DownloaderProtocol {
         }
     }
 
-
     func downloadFile(_ param: String, to: URL, progressIndicator: ProgressIndicatorProtocol, group: DispatchGroup) {
         var file = param.replacingOccurrences(of: "&", with: "_")
 
@@ -167,10 +165,9 @@ class SasaBusDownloader: DownloaderProtocol {
         }
     }
 
-
     func calculateBusLinesOfBusStation() -> String {
-        let busStationList: [BusStationItem] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_ORT) as [BusStationItem]
-        let busPathList: [BusPathItem] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.LID_VERLAUF) as [BusPathItem]
+        let busStationList: [BusStationItem] = SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem]
+        let busPathList: [BusPathItem] = SasaDataHelper.getData(SasaDataHelper.LID_VERLAUF) as [BusPathItem]
 
         for busPathItem in busPathList {
             for busPathVariant in busPathItem.variants {
@@ -230,11 +227,13 @@ class SasaBusDownloader: DownloaderProtocol {
 
     func createFolderIfNotExistent(_ path: String) {
         do {
-            let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+            let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory,
+                    FileManager.SearchPathDomainMask.userDomainMask, true)
+
             var documentsDirectory: String = paths[0]
             documentsDirectory.append(Config.PLANNED_DATA_FOLDER)
 
-            if (!FileManager.default.fileExists(atPath: documentsDirectory)) {
+            if !FileManager.default.fileExists(atPath: documentsDirectory) {
                 try FileManager.default.createDirectory(atPath: documentsDirectory, withIntermediateDirectories: false)
             }
         } catch {

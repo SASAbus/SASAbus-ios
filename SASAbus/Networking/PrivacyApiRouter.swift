@@ -39,7 +39,7 @@ enum PrivacyApiRouter: URLRequestConvertible {
     var path: String {
         switch self {
         case .getPrivacyHtml(let os):
-            return "/?OS=\(os)";
+            return "/?OS=\(os)"
         }
     }
 

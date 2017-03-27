@@ -37,7 +37,7 @@ open class Log {
 
     /// The logger colors
     public static var colors: String {
-        return theme.description 
+        return theme.description
     }
 
     /// The queue used for logging.
@@ -54,7 +54,9 @@ open class Log {
      - parameter column:     The column at which the log happens.
      - parameter function:   The function in which the log happens.
      */
-    open static func trace(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
+    open static func trace(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file,
+                           line: Int = #line, column: Int = #column, function: String = #function) {
+
         log(.trace, items, separator, terminator, file, line, column, function)
     }
 
@@ -69,7 +71,9 @@ open class Log {
      - parameter column:     The column at which the log happens.
      - parameter function:   The function in which the log happens.
      */
-    open static func debug(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
+    open static func debug(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file,
+                           line: Int = #line, column: Int = #column, function: String = #function) {
+
         log(.debug, items, separator, terminator, file, line, column, function)
     }
 
@@ -84,7 +88,9 @@ open class Log {
      - parameter column:     The column at which the log happens.
      - parameter function:   The function in which the log happens.
      */
-    open static func info(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
+    open static func info(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file,
+                          line: Int = #line, column: Int = #column, function: String = #function) {
+
         log(.info, items, separator, terminator, file, line, column, function)
     }
 
@@ -99,7 +105,9 @@ open class Log {
      - parameter column:     The column at which the log happens.
      - parameter function:   The function in which the log happens.
      */
-    open static func warning(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
+    open static func warning(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file,
+                             line: Int = #line, column: Int = #column, function: String = #function) {
+
         log(.warning, items, separator, terminator, file, line, column, function)
     }
 
@@ -114,7 +122,9 @@ open class Log {
      - parameter column:     The column at which the log happens.
      - parameter function:   The function in which the log happens.
      */
-    open static func error(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
+    open static func error(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file,
+                           line: Int = #line, column: Int = #column, function: String = #function) {
+
         log(.error, items, separator, terminator, file, line, column, function)
     }
 
@@ -130,7 +140,9 @@ open class Log {
      - parameter column:     The column at which the log happens.
      - parameter function:   The function in which the log happens.
      */
-    private static func log(_ level: Level, _ items: [Any], _ separator: String, _ terminator: String, _ file: String, _ line: Int, _ column: Int, _ function: String) {
+    private static func log(_ level: Level, _ items: [Any], _ separator: String, _ terminator: String, _ file: String,
+                            _ line: Int, _ column: Int, _ function: String) {
+
         guard enabled && level >= minLevel else { return }
 
         let date = Date()

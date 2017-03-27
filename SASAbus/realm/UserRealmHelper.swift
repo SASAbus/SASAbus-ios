@@ -18,28 +18,27 @@ class UserRealmHelper {
     static func setup() {
         var config = Realm.Configuration()
         config.schemaVersion = 1
-        
+
         config.objectTypes = [
             FavoriteLine.self,
             FavoriteBusStop.self
         ]
-        
+
         config.fileURL = config.fileURL!.deletingLastPathComponent()
             .appendingPathComponent(DB_NAME)
-        
+
         // Set this as the configuration used for the default Realm
         Realm.Configuration.defaultConfiguration = config
-        
+
         do {
             _ = try Realm(configuration: config)
         } catch let error {
             print("Could not open user realm: \(error)")
         }
     }
-    
-    
+
     // ======================================= RECENTS =============================================
-    
+
     static func insertRecent(departureId: Int, arrivalId: Int) {
     /*if (!recentExists(departureId, arrivalId)) {
     Realm realm = Realm.getDefaultInstance();
@@ -61,7 +60,7 @@ class UserRealmHelper {
     realm.close();
     }*/
     }
-    
+
     static func deleteRecent(id: Int) {
     /*Realm realm = Realm.getDefaultInstance();
     
@@ -73,7 +72,7 @@ class UserRealmHelper {
     
     realm.close();*/
     }
-    
+
     static func recentExists(departureId: Int, arrivalId: Int) -> Bool {
     /*Realm realm = Realm.getDefaultInstance();
     
@@ -83,90 +82,88 @@ class UserRealmHelper {
     realm.close();
     
     return count > 0;*/
-        
+
         return false
     }
-    
-    
+
     // ====================================== FAVORITES ============================================
-    
+
     static func addFavoriteLine(lineId: Int) {
         let realm = try! Realm()
-    
+
         if hasFavoriteLine(lineId: lineId) {
             // Line already exists in database, skip it.
             Log.debug("Favorite line \(lineId) already exists, skipping.")
             return
         }
-        
+
         let favoriteLine = FavoriteLine()
         favoriteLine.id = lineId
-        
+
         try! realm.write {
             realm.add(favoriteLine)
         }
-        
+
         Log.debug("Added favorite line \(lineId)")
     }
-    
+
     static func addFavoriteBusStop(busStopGroup: Int) {
         let realm = try! Realm()
-    
+
         if hasFavoriteBusStop(busStopGroup: busStopGroup) {
             // Bus stop group already exists in database, skip it.
             Log.debug("Favorite bus stop group \(busStopGroup) already exists, skipping.")
             return
         }
-        
+
         let favoriteBusStop = FavoriteBusStop()
         favoriteBusStop.group = busStopGroup
-        
+
         try! realm.write {
             realm.add(favoriteBusStop)
         }
-    
+
         Log.debug("Added favorite bus stop group \(busStopGroup)")
     }
-    
+
     static func removeFavoriteLine(lineId: Int) {
         let realm = try! Realm()
-        
+
         let line = realm.objects(FavoriteLine.self).filter("id = \(lineId)").first
         if line != nil {
             try! realm.write {
                 realm.delete(line!)
             }
         }
-    
+
         Log.debug("Removed favorite line \(lineId)")
     }
-    
+
     static func removeFavoriteBusStop(busStopGroup: Int) {
         let realm = try! Realm()
-        
+
         let busStop = realm.objects(FavoriteBusStop.self).filter("group = \(busStopGroup)").first
         if busStop != nil {
             try! realm.write {
                 realm.delete(busStop!)
             }
         }
-        
+
         Log.debug("Removed favorite bus stop group \(busStopGroup)")
     }
-    
+
     static func hasFavoriteLine(lineId: Int) -> Bool {
         let realm = try! Realm()
         return realm.objects(FavoriteLine.self).filter("id = \(lineId)").count > 0
     }
-    
+
     static func hasFavoriteBusStop(busStopGroup: Int) -> Bool {
         let realm = try! Realm()
         return realm.objects(FavoriteBusStop.self).filter("group = \(busStopGroup)").count > 0
     }
-    
-    
+
     // ======================================= TRIPS ===============================================
-    
+
     /*static func insertTrip(beacon: BusBeacon) {
     /*// Save the beacon trip list to a temporary list.
     List<Integer> stops = new ArrayList<>(beacon.busStops);
@@ -259,10 +256,9 @@ class UserRealmHelper {
     
     LogUtils.w(TAG, "Inserted trip " + cloudTrip.hash);*/
     }*/
-    
-    
+
     // ===================================== DISRUPTIONS ===========================================
-    
+
     static func getDisruptionLines() -> [Int] {
     /*Realm realm = Realm.getDefaultInstance();
     
@@ -278,10 +274,10 @@ class UserRealmHelper {
     realm.close();
     
     return lines;*/
-        
+
         return []
     }
-    
+
     static func setDisruptionLines(lines: [Int]) {
     /*Realm realm = Realm.getDefaultInstance();
     
@@ -300,7 +296,7 @@ class UserRealmHelper {
     
     realm.close();*/
     }
-    
+
     static func getDisruptionTimes() -> [Int] {
     /*Realm realm = Realm.getDefaultInstance();
     
@@ -316,10 +312,10 @@ class UserRealmHelper {
     realm.close();
     
     return times;*/
-        
+
         return []
     }
-    
+
     static func setDisruptionTimes(times: [Int]) {
     /*Realm realm = Realm.getDefaultInstance();
     
@@ -338,10 +334,9 @@ class UserRealmHelper {
     
     realm.close();*/
     }
-    
-    
+
     // ===================================== DISRUPTIONS ===========================================
-    
+
     static func setFilter(lines: [Int]) {
     /*Realm realm = Realm.getDefaultInstance();
     
@@ -362,7 +357,7 @@ class UserRealmHelper {
     
     LogUtils.w(TAG, "Updated filter");*/
     }
-    
+
     static func getFilter() -> [Int] {
     /*Realm realm = Realm.getDefaultInstance();
     
@@ -386,13 +381,12 @@ class UserRealmHelper {
     }
     
     return lines;*/
-        
+
         return []
     }
-    
-    
+
     // ======================================= BEACONS =============================================
-    
+
     /*public static void addBeacon(org.altbeacon.beacon.Beacon beacon, String type) {
     Realm realm = Realm.getDefaultInstance();
     
@@ -417,10 +411,9 @@ class UserRealmHelper {
     
     LogUtils.i(TAG, "Added beacon " + major + " to realm");
     }*/
-    
-    
+
     // ======================================= BADGES ==============================================
-    
+
     static func hasEarnedBadge(badgeId: Int) -> Bool {
     /*Realm realm = Realm.getDefaultInstance();
     
@@ -431,10 +424,10 @@ class UserRealmHelper {
     realm.close();
     
     return result;*/
-        
+
         return false
     }
-    
+
     static func setEarnedBadge(badgeId: Int) {
     /*Realm realm = Realm.getDefaultInstance();
     

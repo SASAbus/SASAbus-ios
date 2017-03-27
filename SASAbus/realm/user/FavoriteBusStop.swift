@@ -7,6 +7,6 @@ import RealmSwift
  * @author Alex Lardschneider
  */
 class FavoriteBusStop: Object {
-    
+
     dynamic var group: Int = 0
 }

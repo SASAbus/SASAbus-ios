@@ -91,7 +91,7 @@ class DownloadViewController: UIViewController {
                             if (result.result.isSuccess) {
                                 do {
                                     let expirationItemServer = ExpirationItem(parameter: JSON(result.data))
-                                    let expirationItemLocal: ExpirationItem = try SasaDataHelper.getSingleElementForRepresentation(SasaDataHelper.BASIS_VER_GUELTIGKEIT)! as ExpirationItem
+                                    let expirationItemLocal: ExpirationItem = try SasaDataHelper.getData(SasaDataHelper.BASIS_VER_GUELTIGKEIT)! as ExpirationItem
 
                                     if Calendar.current.compare((expirationItemServer.expirationDate)!, to: expirationItemLocal.expirationDate, toGranularity: Calendar.Component.day) != ComparisonResult.orderedSame {
                                         self.startDownload()

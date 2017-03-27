@@ -59,7 +59,7 @@ class SurveyNotificationHandler: NotificationProtocol {
 
 
     func answereIsYes(_ notificationInfoItem: [String: Any]?) {
-        BadgeHelper.clearBadges()
+        Notifications.clearAll()
 
         var surveyData = self.getSurveyDataFromNotificationItem(notificationInfoItem!)
 
@@ -72,7 +72,7 @@ class SurveyNotificationHandler: NotificationProtocol {
     }
 
     func answereIsNo(_ notificationInfoItem: [String: Any]) {
-        BadgeHelper.clearBadges()
+        Notifications.clearAll()
 
         let surveyContactViewController = SurveyContactViewController(nibName: "SurveyContactViewController", title: NSLocalizedString("Survey", comment: ""))
         var surveyData = self.getSurveyDataFromNotificationItem(notificationInfoItem)

@@ -38,7 +38,7 @@ class BusTripBusStopTime {
         let minutes = Int(floor(Double(self.seconds / 60) - Double(hours * 60)))
         var minutesString = String(minutes)
 
-        if (minutes < 10) {
+        if minutes < 10 {
             minutesString = "0" + minutesString
         }
 

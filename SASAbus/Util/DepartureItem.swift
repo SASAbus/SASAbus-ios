@@ -23,7 +23,7 @@
 import Foundation
 
 class DepartureItem {
-    
+
     let busTripStopTime: BusTripBusStopTime
     let destinationBusStation: BusStationItem?
     let busLine: Line!
@@ -37,10 +37,10 @@ class DepartureItem {
     let realTime: Bool
     let positionItem: RealtimeBus?
 
-    init(busTripStopTime: BusTripBusStopTime, destinationBusStation: BusStationItem?, busLine: Line, 
-         busStopNumber: Int, text: String, stopTimes: [BusTripBusStopTime], index: Int, departureIndex: Int, 
+    init(busTripStopTime: BusTripBusStopTime, destinationBusStation: BusStationItem?, busLine: Line,
+         busStopNumber: Int, text: String, stopTimes: [BusTripBusStopTime], index: Int, departureIndex: Int,
          delaySecondsRounded: Int, delayStopFoundIndex: Int, realTime: Bool, positionItem: RealtimeBus?) {
-        
+
         self.busTripStopTime = busTripStopTime
         self.destinationBusStation = destinationBusStation
         self.busStopNumber = busStopNumber

@@ -51,7 +51,7 @@ class UserDefaultHelper {
     }
 
     func getUserDefaults() -> UserDefaults {
-        return UserDefaults.standard;
+        return UserDefaults.standard
     }
 
     func addFavoriteBusStation(_ busStation: BusStationItem) -> Bool {
@@ -60,8 +60,10 @@ class UserDefaultHelper {
 
         if favoriteBusStations.find({ $0.name == busStation.name }) == nil {
             favoriteBusStations.append(busStation)
-            self.getUserDefaults().set(NSKeyedArchiver.archivedData(withRootObject: favoriteBusStations), forKey: UserDefaultHelper.BUS_STATION_FAVORITES_KEY)
+            self.getUserDefaults().set(NSKeyedArchiver.archivedData(withRootObject: favoriteBusStations),
+                    forKey: UserDefaultHelper.BUS_STATION_FAVORITES_KEY)
             self.getUserDefaults().synchronize()
+
             success = true
         }
         return success
@@ -72,7 +74,8 @@ class UserDefaultHelper {
         var favoriteBusStations = self.getFavoriteBusStations()
         if let index = favoriteBusStations.index(where: { $0.name == busStation.name }) {
             favoriteBusStations.remove(at: index)
-            self.getUserDefaults().set(NSKeyedArchiver.archivedData(withRootObject: favoriteBusStations), forKey: UserDefaultHelper.BUS_STATION_FAVORITES_KEY)
+            self.getUserDefaults().set(NSKeyedArchiver.archivedData(withRootObject: favoriteBusStations),
+                    forKey: UserDefaultHelper.BUS_STATION_FAVORITES_KEY)
             self.getUserDefaults().synchronize()
             success = true
         }
@@ -85,7 +88,8 @@ class UserDefaultHelper {
         if data != nil {
             favoriteBusStations = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [BusStationItem]
         }
-        favoriteBusStations.sort(by: { $0.getDescription().localizedCaseInsensitiveCompare($1.getDescription()) == ComparisonResult.orderedAscending })
+        favoriteBusStations.sort(by: { $0.getDescription()
+                .localizedCaseInsensitiveCompare($1.getDescription()) == ComparisonResult.orderedAscending })
         return favoriteBusStations
     }
 
@@ -136,7 +140,6 @@ class UserDefaultHelper {
         return surveyCycle
     }
 
-
     func isBeaconStationDetectionEnabled() -> Bool {
         var beaconStationDetectionEnabled: Bool = true
         if self.getUserDefaults().object(forKey: UserDefaultHelper.BEACON_STATION_DETECTION_KEY) != nil {
@@ -144,7 +147,6 @@ class UserDefaultHelper {
         }
         return beaconStationDetectionEnabled
     }
-
 
     func shouldAskForMapDownload() -> Bool {
         var askForMapDownload: Bool = true
@@ -194,7 +196,8 @@ class UserDefaultHelper {
         }
 
         if self.getUserDefaults().object(forKey: UserDefaultHelper.BEACON_CURRENT_BUS_STOP_TIMESTAMP_KEY) != nil {
-            currentBusStopTimeStamp = self.getUserDefaults().integer(forKey: UserDefaultHelper.BEACON_CURRENT_BUS_STOP_TIMESTAMP_KEY)
+            currentBusStopTimeStamp = self.getUserDefaults().integer(forKey:
+            UserDefaultHelper.BEACON_CURRENT_BUS_STOP_TIMESTAMP_KEY)
         }
 
         if currentBusStopTimeStamp != nil &&
@@ -221,7 +224,8 @@ class UserDefaultHelper {
             self.getUserDefaults().removeObject(forKey: UserDefaultHelper.BEACON_CURRENT_BUS_STOP_TIMESTAMP_KEY)
         } else {
             self.getUserDefaults().setValue(value, forKey: UserDefaultHelper.BEACON_CURRENT_BUS_STOP_KEY)
-            self.getUserDefaults().setValue(Int(Date().timeIntervalSince1970), forKey: UserDefaultHelper.BEACON_CURRENT_BUS_STOP_TIMESTAMP_KEY)
+            self.getUserDefaults().setValue(Int(Date().timeIntervalSince1970), forKey:
+            UserDefaultHelper.BEACON_CURRENT_BUS_STOP_TIMESTAMP_KEY)
         }
         self.getUserDefaults().synchronize()
     }

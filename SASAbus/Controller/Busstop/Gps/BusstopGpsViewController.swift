@@ -97,7 +97,7 @@ class BusstopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
         let location = locationArray.lastObject as? CLLocation
 
         if location != nil {
-            let busStations = (SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_ORT) as [BusStationItem]).filter({ $0.busStops.filter({ $0.location.distance(from: location!) < Config.busStopDistanceThreshold }).count > 0 })
+            let busStations = (SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem]).filter({ $0.busStops.filter({ $0.location.distance(from: location!) < Config.busStopDistanceThreshold }).count > 0 })
             var nearbyBusStations: [BusStationDistance] = []
 
             for busStation in busStations {

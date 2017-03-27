@@ -85,7 +85,7 @@ class ParkingLotDetailViewController: UIViewController, UITableViewDataSource, U
 
 
     func getNearestBusStations() -> [BusStationDistance] {
-        let busStations: [BusStationItem] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_ORT) as [BusStationItem]
+        let busStations: [BusStationItem] = SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem]
         var nearestBusStations: [BusStationDistance] = []
 
         for busStation in busStations {

@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var notificationHandlers: [String: NotificationProtocol] = [String: NotificationProtocol]()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        BadgeHelper.clearBadges()
+        Notifications.clearAll()
 
         Buses.setup()
         BusStopRealmHelper.setup()
@@ -108,13 +108,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        // Sent when the application is about to move from active to inactive state.
+        // This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message)
+        // or when the user quits the application and it begins the transition to the background state.
+        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates.
+        // Games should use this method to pause the game.
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        // Use this method to release shared resources, save user data, invalidate timers, and store enough application
+        // state information to restore your application to its current state in case it is terminated later.
+        // If your application supports background execution,
+        // this method is called instead of applicationWillTerminate: when the user quits.
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -134,13 +139,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // MARK: - Core Data stack
 
     lazy var applicationDocumentsDirectory: URL = {
-        // The directory the application uses to store the Core Data store file. This code uses a directory named "it.sasabz.ios.SASAbus" in the application's documents Application Support directory.
+        // The directory the application uses to store the Core Data store file.
+        // This code uses a directory named "it.sasabz.ios.SASAbus" in the application's documents
+        // Application Support directory.
+
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.count - 1]
     }()
 
     lazy var managedObjectModel: NSManagedObjectModel = {
-        // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
+        // The managed object model for the application. This property is not optional. It is a fatal error for the
+        // application not to be able to find and load its model.
+
         let modelURL = Bundle.main.url(forResource: "SASAbus", withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
@@ -176,7 +186,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }()
 
     lazy var managedObjectContext: NSManagedObjectContext = {
-        // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
+        // Returns the managed object context for the application (which is already bound to the persistent store
+        // coordinator for the application.) This property is optional since there are legitimate error conditions that
+        // could cause the creation of the context to fail.
+
         let coordinator = self.persistentStoreCoordinator
         var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
@@ -184,6 +197,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }()
 
     // MARK: - Core Data Saving support
+
     func saveContext() {
         if managedObjectContext.hasChanges {
             do {
@@ -199,7 +213,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-        BadgeHelper.clearBadges()
+        Notifications.clearAll()
 
         if notificationHandlers.keys.contains(notification.category!) {
             let notificationHandler = notificationHandlers[notification.category!]
@@ -207,8 +221,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
     }
 
-    func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, for notification: UILocalNotification, completionHandler: @escaping () -> Void) {
-        BadgeHelper.clearBadges()
+    func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?,
+                     for notification: UILocalNotification, completionHandler: @escaping () -> Void) {
+        Notifications.clearAll()
 
         if notificationHandlers.keys.contains(notification.category!) {
             let notificationHandler = notificationHandlers[notification.category!]

@@ -58,7 +58,6 @@ class RestClient {
         }
     }
 
-
     static func getInternal(_ endpoint: String, parameters: Parameters? = nil) -> Alamofire.DataRequest {
         let url = "\(Endpoint.API)\(endpoint)"
 
@@ -66,14 +65,15 @@ class RestClient {
         return request(url, method: .get, parameters: parameters, headers: headers)
     }
 
-    static func request(_ url: URLConvertible, method: HTTPMethod, parameters: Parameters? = nil, headers: [String: String]) -> Alamofire.DataRequest {
+    static func request(_ url: URLConvertible, method: HTTPMethod, parameters: Parameters? = nil,
+                        headers: [String : String]) -> Alamofire.DataRequest {
+
         Log.info("\(method.rawValue.uppercased()): \(url)")
 
         return Alamofire.request(url, method: method, parameters: parameters, headers: headers)
     }
 
-
-    static func getHeaders(_ url: URLConvertible) -> [String: String] {
+    static func getHeaders(_ url: URLConvertible) -> [String : String] {
         let versionCode = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
         let versionName = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
 

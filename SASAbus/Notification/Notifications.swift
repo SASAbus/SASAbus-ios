@@ -22,9 +22,9 @@
 
 import Foundation
 
-class BadgeHelper {
+class Notifications {
 
-    static func clearBadges() {
+    static func clearAll() {
         UIApplication.shared.cancelAllLocalNotifications()
         UIApplication.shared.applicationIconBadgeNumber = 0
     }

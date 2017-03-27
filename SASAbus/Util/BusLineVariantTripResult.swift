@@ -28,8 +28,8 @@ class BusLineVariantTripResult {
     var busLineVariantTrips: [BusLineVariantTrip]! = []
 
     func addBusLineVariantTrip(_ busLineVariantTrip: BusLineVariantTrip) {
-        let lineVariantIdentifier = String(busLineVariantTrip.busLine.id) + ":" + String(busLineVariantTrip.variant.variant)
-        
+        let lineVariantIdentifier = "\(busLineVariantTrip.busLine.id):\(busLineVariantTrip.variant.variant)"
+
         if !self.lineVariantIdentifiers.contains(lineVariantIdentifier) {
             self.lineVariantIdentifiers.append(lineVariantIdentifier)
         }

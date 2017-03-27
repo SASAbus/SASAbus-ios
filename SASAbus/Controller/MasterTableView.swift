@@ -42,10 +42,12 @@ class MasterTableView: UITableView, ProgressIndicatorProtocol {
     override func reloadData() {
         super.reloadData()
         var rows = 0
+
         for section in 0 ... self.numberOfSections - 1 {
-            rows = rows + self.numberOfRows(inSection: section)
+            rows += self.numberOfRows(inSection: section)
         }
-        if (rows == 0) {
+
+        if rows == 0 {
             self.backgroundImageView.alpha = 0.3
             self.backgroundView = self.backgroundImageView
         } else {
@@ -63,11 +65,12 @@ class MasterTableView: UITableView, ProgressIndicatorProtocol {
 
     func progress(_ percent: Int, description: String? = nil) {
         DispatchQueue.main.async {
-            if (self.backgroundImageView.progressIndicatorView.layer.presentation() != nil) {
+            if self.backgroundImageView.progressIndicatorView.layer.presentation() != nil {
                 let newAngleValue = Double((360 * percent) / 100)
 
-                if (self.backgroundImageView.progressIndicatorView.angle != newAngleValue) {
-                    self.backgroundImageView.progressIndicatorView.animate(toAngle: newAngleValue, duration: 0.02, completion: nil)
+                if self.backgroundImageView.progressIndicatorView.angle != newAngleValue {
+                    self.backgroundImageView.progressIndicatorView.animate(toAngle: newAngleValue,
+                            duration: 0.02, completion: nil)
                 }
             }
         }
@@ -80,9 +83,10 @@ class MasterTableView: UITableView, ProgressIndicatorProtocol {
 
     func finished() {
         DispatchQueue.main.async {
-            if (self.backgroundImageView.progressIndicatorView.layer.presentation() != nil) {
+            if self.backgroundImageView.progressIndicatorView.layer.presentation() != nil {
                 self.backgroundImageView.progressIndicatorView.animate(toAngle: 0, duration: 0, completion: nil)
             }
+
             self.backgroundImageView.alpha = 0.0
             self.backgroundView = self.backgroundImageView
         }

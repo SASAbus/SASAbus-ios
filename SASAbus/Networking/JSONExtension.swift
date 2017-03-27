@@ -1,23 +1,23 @@
 import SwiftyJSON
 
 extension JSON {
-    
+
     func to<T>(type: T?) -> Any? {
         if let baseObj = type as? JSONable.Type {
             if self.type == .array {
                 var arrObject: [Any] = []
-                
+
                 for obj in self.arrayValue {
                     let object = baseObj.init(parameter: obj)
                     arrObject.append(object)
                 }
-                
+
                 return arrObject
             } else {
                 return baseObj.init(parameter: self)
             }
         }
-        
+
         return nil
     }
 }

@@ -40,7 +40,7 @@ extension LogThemes {
             error:   "\\e[31m",
             hex: false
     )
-    
+
     public static let dusk = LogTheme(
         trace:   "#FFFFFF",
         debug:   "#526EDA",
@@ -48,7 +48,7 @@ extension LogThemes {
         warning: "#D28F5A",
         error:   "#E44347"
     )
-    
+
     public static let midnight = LogTheme(
         trace:   "#FFFFFF",
         debug:   "#527EFF",
@@ -56,7 +56,7 @@ extension LogThemes {
         warning: "#EB905A",
         error:   "#FF4647"
     )
-    
+
     public static let tomorrow = LogTheme(
         trace:   "#4D4D4C",
         debug:   "#4271AE",
@@ -64,7 +64,7 @@ extension LogThemes {
         warning: "#EAB700",
         error:   "#C82829"
     )
-    
+
     public static let tomorrowNight = LogTheme(
         trace:   "#C5C8C6",
         debug:   "#81A2BE",
@@ -72,7 +72,7 @@ extension LogThemes {
         warning: "#F0C674",
         error:   "#CC6666"
     )
-    
+
     public static let tomorrowNightEighties = LogTheme(
         trace:   "#CCCCCC",
         debug:   "#6699CC",
@@ -80,7 +80,7 @@ extension LogThemes {
         warning: "#FFCC66",
         error:   "#F2777A"
     )
-    
+
     public static let tomorrowNightBright = LogTheme(
         trace:   "#EAEAEA",
         debug:   "#7AA6DA",

@@ -1,9 +1,9 @@
 import Foundation
 
 class Buses {
-    
-    static var BUSES = [Int:Bus]()
-    
+
+    static var BUSES = [Int: Bus]()
+
     static func setup() {
         let sprinter_new = Vehicle(manufacturer: "Mercedes-Benz", model: "Sprinter O 513 NFXL", fuel: 1, color: 1, emission: 90, code: "mercedes_benz_sprinter_o_513_nxfl")
         let urbino_18 = Vehicle(manufacturer: "Solaris", model: "Urbino 18", fuel: 1, color: 1, emission: 90, code: "solaris_urbino_18")
@@ -30,7 +30,7 @@ class Buses {
         let m_221 = Vehicle(manufacturer: "BredaMenarinibus", model: "Monocar 221/1/LU/3P", fuel: 1, color: 2, emission: 160, code: "bredamenarinibus_monocar_221")
         let man_4x_short = Vehicle(manufacturer: "MAN", model: "NL 313", fuel: 1, color: 2, emission: 160, code: "man_nl_313")
         let man_4x_long = Vehicle(manufacturer: "MAN", model: "NG 313", fuel: 1, color: 2, emission: 160, code: "man_ng_313")
-        
+
         BUSES[439] = Bus(id: 439, licensePlate: "ES788TJ", vehicle: sprinter_new)
 
         BUSES[438] = Bus(id: 438, licensePlate: "ES802TJ", vehicle: urbino_18)
@@ -44,7 +44,7 @@ class Buses {
         BUSES[432] = Bus(id: 432, licensePlate: "ER345VP", vehicle: hydrogen)
         BUSES[431] = Bus(id: 431, licensePlate: "ER344VP", vehicle: hydrogen)
         BUSES[430] = Bus(id: 430, licensePlate: "ER346VP", vehicle: hydrogen)
-        
+
         BUSES[429] = Bus(id: 429, licensePlate: "ER342VP", vehicle: hydrogen)
         BUSES[428] = Bus(id: 428, licensePlate: "ER343VP", vehicle: hydrogen)
 
@@ -214,17 +214,18 @@ class Buses {
     static func getBus(id: Int) -> Bus? {
         return BUSES[id]
     }
-    
+
     class Bus {
-        
+
         let id: Int
         let licensePlate: String!
         let vehicle: Vehicle
-        
+
         init(id: Int, licensePlate: String, vehicle: Vehicle) {
             self.id = id
             self.licensePlate = licensePlate
             self.vehicle = vehicle
         }
     }
+
 }

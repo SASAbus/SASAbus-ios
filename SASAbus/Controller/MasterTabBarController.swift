@@ -20,19 +20,18 @@
 // along with SASAbus.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-
 import UIKit
 import DrawerController
 
 class MasterTabBarController: UITabBarController {
 
     init(nibName nibNameOrNil: String?, title: String?) {
-        super.init(nibName: nibNameOrNil, bundle: nil);
-        self.title = title;
+        super.init(nibName: nibNameOrNil, bundle: nil)
+        self.title = title
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder);
+        super.init(coder: aDecoder)
     }
 
     override func viewDidLoad() {
@@ -41,7 +40,10 @@ class MasterTabBarController: UITabBarController {
     }
 
     func setupLeftMenuButton() {
-        let leftDrawerButton = UIBarButtonItem(image: UIImage(named: "menu_icon.png")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate), style: UIBarButtonItemStyle.plain, target: self, action: #selector(MasterTabBarController.leftDrawerButtonPress(_:)))
+        let leftDrawerButton = UIBarButtonItem(image: UIImage(named: "menu_icon.png")?
+                .withRenderingMode(UIImageRenderingMode.alwaysTemplate), style: UIBarButtonItemStyle.plain, target: self,
+                action: #selector(MasterTabBarController.leftDrawerButtonPress(_:)))
+
         leftDrawerButton.tintColor = Theme.white
         leftDrawerButton.accessibilityLabel = NSLocalizedString("Menu", comment: "")
         self.navigationItem.setLeftBarButton(leftDrawerButton, animated: true)

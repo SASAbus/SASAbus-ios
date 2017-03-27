@@ -24,11 +24,13 @@ import Foundation
 
 class BusTripCalculator {
 
-    static var standardTimeCache: [String: BusStandardTimeBetweenStopItem]?
+    static var standardTimeCache: [String : BusStandardTimeBetweenStopItem]?
 
     static func calculateBusStopTimes(_ busLineVariantTrip: BusLineVariantTrip) -> [BusTripBusStopTime] {
         var stopTimes: [BusTripBusStopTime] = []
-        let standardTimes: [BusStandardTimeBetweenStopItem] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.SEL_FZT_FELD) as [BusStandardTimeBetweenStopItem]
+        let standardTimes: [BusStandardTimeBetweenStopItem] = SasaDataHelper.getData(SasaDataHelper.SEL_FZT_FELD)
+        as [BusStandardTimeBetweenStopItem]
+
         var standardTimesDictionary = [String: BusStandardTimeBetweenStopItem]()
 
         if standardTimeCache == nil {
@@ -40,11 +42,12 @@ class BusTripCalculator {
             standardTimesDictionary = standardTimeCache!
         }
 
-        let exceptionTimes: [BusExceptionTimeBetweenStopItem] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_FRT_FZT) as [BusExceptionTimeBetweenStopItem]
-        let defaultWaitTimes: [BusWaitTimeAtStopItem] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_FRT_HZT) as [BusWaitTimeAtStopItem]
-        let busDefaultWaitTimes: [BusDefaultWaitTimeAtStopItem] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.ORT_HZT) as [BusDefaultWaitTimeAtStopItem]
-        let busLineWaitTimes: [BusLineWaitTimeAtStopItem] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_LIVAR_HZT) as [BusLineWaitTimeAtStopItem]
-        let busPaths: [BusPathItem] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.LID_VERLAUF) as [BusPathItem]
+        let exceptionTimes = SasaDataHelper.getData(SasaDataHelper.REC_FRT_FZT) as [BusExceptionTimeBetweenStopItem]
+        let defaultWaitTimes = SasaDataHelper.getData(SasaDataHelper.REC_FRT_HZT) as [BusWaitTimeAtStopItem]
+        let busDefaultWaitTimes = SasaDataHelper.getData(SasaDataHelper.ORT_HZT) as [BusDefaultWaitTimeAtStopItem]
+        let busLineWaitTimes = SasaDataHelper.getData(SasaDataHelper.REC_LIVAR_HZT) as [BusLineWaitTimeAtStopItem]
+
+        let busPaths: [BusPathItem] = SasaDataHelper.getData(SasaDataHelper.LID_VERLAUF) as [BusPathItem]
 
         let busPath = busPaths.find {
             $0.lineNumber == busLineVariantTrip.busLine.id
@@ -65,7 +68,8 @@ class BusTripCalculator {
 
                     if index > 0 {
                         let lastBusStop = busStops[index - 1]
-                        let exceptionTime = exceptionTimes.filter({ $0.tripId == busLineVariantTrip.trip.tripId }).find({ $0.locationNumber == lastBusStop })
+                        let exceptionTime = exceptionTimes.filter({ $0.tripId == busLineVariantTrip.trip.tripId })
+                                .find({ $0.locationNumber == lastBusStop })
 
                         if exceptionTime != nil {
                             currentTime = currentTime! + exceptionTime!.exceptionTime
@@ -78,23 +82,33 @@ class BusTripCalculator {
 
                             let standardTime = standardTimesDictionary[standardTimeIdentifier]
 
-                            if (standardTime != nil) {
+                            if standardTime != nil {
                                 currentTime = currentTime! + standardTime!.standardTime
                             }
                         }
 
-                        if (index < busStopsCount - 1) {
-                            let defaultWaitTime = defaultWaitTimes.filter({ $0.tripId == busLineVariantTrip.trip.tripId }).find({ $0.locationNumber == busStop })
+                        if index < busStopsCount - 1 {
+                            let defaultWaitTime = defaultWaitTimes
+                                    .filter({ $0.tripId == busLineVariantTrip.trip.tripId })
+                                    .find({ $0.locationNumber == busStop })
 
-                            if (defaultWaitTime != nil) {
+                            if defaultWaitTime != nil {
                                 currentTime = currentTime! + defaultWaitTime!.waitTime
                             } else {
-                                let busWaitTime = busLineWaitTimes.filter({ $0.lineNumber == busLineVariantTrip.busLine.id }).filter({ $0.variantNumber == busLineVariantTrip.variant.variant }).filter({ $0.groupNumber == busLineVariantTrip.trip.groupNumber }).find({ $0.busStopOfTrip == index + 1 })
-                                if (busWaitTime != nil) {
+                                let busWaitTime = busLineWaitTimes
+                                        .filter({ $0.lineNumber == busLineVariantTrip.busLine.id })
+                                        .filter({ $0.variantNumber == busLineVariantTrip.variant.variant })
+                                        .filter({ $0.groupNumber == busLineVariantTrip.trip.groupNumber })
+                                        .find({ $0.busStopOfTrip == index + 1 })
+
+                                if busWaitTime != nil {
                                     currentTime = currentTime! + busWaitTime!.waitTime
                                 } else {
-                                    let busDefaultWaitTime = busDefaultWaitTimes.filter({ $0.locationNumber == busStop }).find({ $0.groupNumber == busLineVariantTrip.trip.groupNumber })
-                                    if (busDefaultWaitTime != nil) {
+                                    let busDefaultWaitTime = busDefaultWaitTimes
+                                            .filter({ $0.locationNumber == busStop })
+                                            .find({ $0.groupNumber == busLineVariantTrip.trip.groupNumber })
+
+                                    if busDefaultWaitTime != nil {
                                         currentTime = currentTime! + busDefaultWaitTime!.waitTime
                                     }
                                 }

@@ -113,7 +113,7 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
             } else {
                 currentStopNumber = departure.busStopNumber
             }
-            let currentBusStation = (SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_ORT) as [BusStationItem]).find({ $0.busStops.find({ $0.number == currentStopNumber }) != nil })
+            let currentBusStation = (SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem]).find({ $0.busStops.find({ $0.number == currentStopNumber }) != nil })
             if currentBusStation != nil {
                 cell.infoLabel.text = currentBusStation!.getDescription()
             } else {
@@ -153,7 +153,7 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
             }
         }
 
-        let busStations = SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_ORT) as [BusStationItem]
+        let busStations = SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem]
         var busStationDictionary = [Int: BusStationItem]()
 
         if lineVariantIdentifiers.isEmpty {

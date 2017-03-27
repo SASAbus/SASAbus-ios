@@ -54,10 +54,10 @@ class SasaDataHelper {
             fileContent = defaultValue!
         }
 
-        return fileContent;
+        return fileContent
     }
 
-    static func getDataForRepresentation<T:JSONCollection>(_ file: String) -> [T] {
+    static func getData<T:JSONCollection>(_ file: String) -> [T] {
         Log.debug("Loading data from \(file)")
 
         var result: [T] = []
@@ -68,7 +68,9 @@ class SasaDataHelper {
             do {
                 let contentAsString = self.getData(file)
                 let content = contentAsString!.data(using: String.Encoding.utf8)
-                let data = try JSONSerialization.jsonObject(with: content!, options: JSONSerialization.ReadingOptions.mutableContainers)
+                let data = try JSONSerialization.jsonObject(with: content!, options:
+                JSONSerialization.ReadingOptions.mutableContainers)
+
                 result = T.collection(parameter: JSON(data))
                 SasaDataHelper.cache[file] = result as AnyObject
             } catch {
@@ -79,7 +81,7 @@ class SasaDataHelper {
         return result
     }
 
-    static func getSingleElementForRepresentation<T:JSONable>(_ file: String) throws -> T? {
+    static func getData<T:JSONable>(_ file: String) throws -> T? {
         Log.debug("Loading single element from \(file)")
 
         let contentAsString = self.getData(file)

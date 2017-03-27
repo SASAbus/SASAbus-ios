@@ -6,6 +6,6 @@ import RealmSwift
  * @author Alex Lardschneider
  */
 class FavoriteLine: Object {
-    
+
     dynamic var id: Int = 0
 }

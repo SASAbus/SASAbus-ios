@@ -33,7 +33,7 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
     var dateTimePicker: UIDatePicker!
     var selectedBusLine: Line?
 
-    var busLines: [Line] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_LID) as [Line]
+    var busLines: [Line] = SasaDataHelper.getData(SasaDataHelper.REC_LID) as [Line]
     var foundBusLines: [Line]! = []
 
     var selectedTab: String = "ALL"
@@ -253,9 +253,9 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
         let busLineVariantTripResult: BusLineVariantTripResult = BusLineVariantTripResult()
 
         if self.selectedBusLine != nil {
-            let busDayType = (SasaDataHelper.getDataForRepresentation(SasaDataHelper.FIRMENKALENDER) as [BusDayTypeItem]).find({ (Calendar.current as NSCalendar).compare($0.date, to: self.searchDate, toUnitGranularity: NSCalendar.Unit.day) == ComparisonResult.orderedSame })
+            let busDayType = (SasaDataHelper.getData(SasaDataHelper.FIRMENKALENDER) as [BusDayTypeItem]).find({ (Calendar.current as NSCalendar).compare($0.date, to: self.searchDate, toUnitGranularity: NSCalendar.Unit.day) == ComparisonResult.orderedSame })
             let lookBack = 60 * 60 * 2
-            let busDayTimeTrips: [BusDayTypeTripItem] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.BusDayTypeTrip(self.selectedBusLine!, dayType: busDayType!)) as [BusDayTypeTripItem]
+            let busDayTimeTrips: [BusDayTypeTripItem] = SasaDataHelper.getData(SasaDataHelper.BusDayTypeTrip(self.selectedBusLine!, dayType: busDayType!)) as [BusDayTypeTripItem]
 
             for busDayTimeTrip in busDayTimeTrips {
                 for busTripVariant in busDayTimeTrip.busTripVariants {
@@ -300,7 +300,7 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
     func loadBusLines() {
         Log.info("Loading bus lines for zone \(selectedTab)")
 
-        var busLines = SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_LID) as [Line]
+        var busLines = SasaDataHelper.getData(SasaDataHelper.REC_LID) as [Line]
 
         if selectedTab != "ALL" {
             busLines = busLines.filter({ $0.getArea() == selectedTab })
