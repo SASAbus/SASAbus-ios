@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol DownloadFinishedProtocol {
     func finished()

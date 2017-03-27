@@ -221,7 +221,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // coordinator for the application.) This property is optional since there are legitimate error conditions that
         // could cause the creation of the context to fail.
 
-        let coordinator = self.persistentStoreCoordinator
+        let coordinator = getPersistentStoreCoordinator()
         var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
@@ -231,9 +231,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // MARK: - Core Data Saving support
 
     func saveContext() {
-        if managedObjectContext.hasChanges {
+        if getManagedObjectContext().hasChanges {
             do {
-                try managedObjectContext.save()
+                try getManagedObjectContext().save()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // abort() causes the application to generate a crash log and terminate.
