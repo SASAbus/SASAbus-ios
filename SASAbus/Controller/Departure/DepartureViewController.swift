@@ -108,7 +108,7 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
             } else {
                 currentStopNumber = departure.busStopNumber
             }
-            let currentBusStation = (SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_ORT) as [BusStationItem]).find(predicate: { $0.busStops.find(predicate: { $0.number == currentStopNumber }) != nil })
+            let currentBusStation = (SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_ORT) as [BusStationItem]).find({ $0.busStops.find({ $0.number == currentStopNumber }) != nil })
             if currentBusStation != nil {
                 cell.infoLabel.text = currentBusStation!.getDescription()
             } else {
@@ -159,11 +159,11 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
                         if busStationDictionary.keys.contains(busStopKey!) {
                             destinationBusStation = busStationDictionary[busStopKey!]
                         } else {
-                            destinationBusStation = busStations.find(predicate: { $0.busStops.find(predicate: { $0.number == busStopKey }) != nil })
+                            destinationBusStation = busStations.find({ $0.busStops.find({ $0.number == busStopKey }) != nil })
                             busStationDictionary[busStopKey!] = destinationBusStation
                         }
 
-                        let positionItem: RealtimeBus? = buses.find(predicate: { $0.trip == busLineVariantTrip.trip.tripId })
+                        let positionItem: RealtimeBus? = buses.find({ $0.trip == busLineVariantTrip.trip.tripId })
                         var delayStopFoundIndex = 9999
                         var delaySecondsRoundedToMin = 0
                         var realTime = false

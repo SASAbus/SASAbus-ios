@@ -53,7 +53,7 @@ class BusstopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
         self.busStationLabel.textColor = Theme.colorWhite
         self.loadFavoriteBusStations()
 
-        if (self.busStation != nil && self.favoriteBusStations.find(predicate: { $0.name == self.busStation!.name }) == nil) {
+        if (self.busStation != nil && self.favoriteBusStations.find({ $0.name == self.busStation!.name }) == nil) {
             self.busStationLabel.text = self.busStation.getDescription()
             let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(BusstopFavoritesViewController.saveFavoriteBusStation(_:)))
             addButton.tintColor = Theme.colorWhite

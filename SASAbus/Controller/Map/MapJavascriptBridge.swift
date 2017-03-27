@@ -175,7 +175,7 @@ class MapJavascriptBridge {
         let stationName = String(nameParts[0]).trimmingCharacters(in: NSCharacterSet.whitespaces).lowercased()
         let communityName = String(nameParts[1]).replacingOccurrences(of: ")", with: "").lowercased()
         let busStation = (SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_ORT) as [BusStationItem])
-                .filter({ $0.community.lowercased().contains(communityName) }).find(predicate: { $0.name.lowercased().contains(stationName) })
+                .filter({ $0.community.lowercased().contains(communityName) }).find({ $0.name.lowercased().contains(stationName) })
 
         if busStation != nil {
             self.openBusStation(busStation!)

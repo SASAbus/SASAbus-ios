@@ -45,12 +45,17 @@ class BusTripCalculator {
         let busDefaultWaitTimes: [BusDefaultWaitTimeAtStopItem] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.ORT_HZT) as [BusDefaultWaitTimeAtStopItem]
         let busLineWaitTimes: [BusLineWaitTimeAtStopItem] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_LIVAR_HZT) as [BusLineWaitTimeAtStopItem]
         let busPaths: [BusPathItem] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.LID_VERLAUF) as [BusPathItem]
-        let busPath = busPaths.find(predicate: { $0.lineNumber == busLineVariantTrip.busLine.id })
 
-        if (busPath != nil) {
-            let variant = busPath?.variants.find(predicate: { $0.variantNumber == busLineVariantTrip.variant.variant })
+        let busPath = busPaths.find {
+            $0.lineNumber == busLineVariantTrip.busLine.id
+        }
 
-            if (variant != nil) {
+        if busPath != nil {
+            let variant = busPath?.variants.find {
+                $0.variantNumber == busLineVariantTrip.variant.variant
+            }
+
+            if variant != nil {
                 let busStops = variant!.busStops!
                 let busStopsCount = busStops.count
                 var currentTime = busLineVariantTrip.trip.startTime
@@ -58,11 +63,11 @@ class BusTripCalculator {
                 for index in 0 ... busStopsCount - 1 {
                     let busStop = busStops[index]
 
-                    if (index > 0) {
+                    if index > 0 {
                         let lastBusStop = busStops[index - 1]
-                        let exceptionTime = exceptionTimes.filter({ $0.tripId == busLineVariantTrip.trip.tripId }).find(predicate: { $0.locationNumber == lastBusStop })
+                        let exceptionTime = exceptionTimes.filter({ $0.tripId == busLineVariantTrip.trip.tripId }).find({ $0.locationNumber == lastBusStop })
 
-                        if (exceptionTime != nil) {
+                        if exceptionTime != nil {
                             currentTime = currentTime! + exceptionTime!.exceptionTime
                         } else {
                             let standardTimeIdentifier: String = [
@@ -79,16 +84,16 @@ class BusTripCalculator {
                         }
 
                         if (index < busStopsCount - 1) {
-                            let defaultWaitTime = defaultWaitTimes.filter({ $0.tripId == busLineVariantTrip.trip.tripId }).find(predicate: { $0.locationNumber == busStop })
+                            let defaultWaitTime = defaultWaitTimes.filter({ $0.tripId == busLineVariantTrip.trip.tripId }).find({ $0.locationNumber == busStop })
 
                             if (defaultWaitTime != nil) {
                                 currentTime = currentTime! + defaultWaitTime!.waitTime
                             } else {
-                                let busWaitTime = busLineWaitTimes.filter({ $0.lineNumber == busLineVariantTrip.busLine.id }).filter({ $0.variantNumber == busLineVariantTrip.variant.variant }).filter({ $0.groupNumber == busLineVariantTrip.trip.groupNumber }).find(predicate: { $0.busStopOfTrip == index + 1 })
+                                let busWaitTime = busLineWaitTimes.filter({ $0.lineNumber == busLineVariantTrip.busLine.id }).filter({ $0.variantNumber == busLineVariantTrip.variant.variant }).filter({ $0.groupNumber == busLineVariantTrip.trip.groupNumber }).find({ $0.busStopOfTrip == index + 1 })
                                 if (busWaitTime != nil) {
                                     currentTime = currentTime! + busWaitTime!.waitTime
                                 } else {
-                                    let busDefaultWaitTime = busDefaultWaitTimes.filter({ $0.locationNumber == busStop }).find(predicate: { $0.groupNumber == busLineVariantTrip.trip.groupNumber })
+                                    let busDefaultWaitTime = busDefaultWaitTimes.filter({ $0.locationNumber == busStop }).find({ $0.groupNumber == busLineVariantTrip.trip.groupNumber })
                                     if (busDefaultWaitTime != nil) {
                                         currentTime = currentTime! + busDefaultWaitTime!.waitTime
                                     }

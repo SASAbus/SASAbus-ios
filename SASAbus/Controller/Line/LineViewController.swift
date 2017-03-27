@@ -251,7 +251,7 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
         let busLineVariantTripResult: BusLineVariantTripResult = BusLineVariantTripResult()
 
         if self.selectedBusLine != nil {
-            let busDayType = (SasaDataHelper.getDataForRepresentation(SasaDataHelper.FIRMENKALENDER) as [BusDayTypeItem]).find(predicate: { (Calendar.current as NSCalendar).compare($0.date, to: self.searchDate, toUnitGranularity: NSCalendar.Unit.day) == ComparisonResult.orderedSame })
+            let busDayType = (SasaDataHelper.getDataForRepresentation(SasaDataHelper.FIRMENKALENDER) as [BusDayTypeItem]).find({ (Calendar.current as NSCalendar).compare($0.date, to: self.searchDate, toUnitGranularity: NSCalendar.Unit.day) == ComparisonResult.orderedSame })
             let lookBack = 60 * 60 * 2
             let busDayTimeTrips: [BusDayTypeTripItem] = SasaDataHelper.getDataForRepresentation(SasaDataHelper.BusDayTypeTrip(self.selectedBusLine!, dayType: busDayType!)) as [BusDayTypeTripItem]
 

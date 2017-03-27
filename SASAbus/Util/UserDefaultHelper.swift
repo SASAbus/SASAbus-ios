@@ -58,7 +58,7 @@ class UserDefaultHelper {
         var success = false
         var favoriteBusStations = self.getFavoriteBusStations()
 
-        if favoriteBusStations.find(predicate: { $0.name == busStation.name }) == nil {
+        if favoriteBusStations.find({ $0.name == busStation.name }) == nil {
             favoriteBusStations.append(busStation)
             self.getUserDefaults().set(NSKeyedArchiver.archivedData(withRootObject: favoriteBusStations), forKey: UserDefaultHelper.BUS_STATION_FAVORITES_KEY)
             self.getUserDefaults().synchronize()

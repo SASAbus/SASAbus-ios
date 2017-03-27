@@ -103,7 +103,7 @@ class BusstopTripViewController: UIViewController, UITableViewDelegate, UITableV
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let stop = self.departure.stopTimes[indexPath.row]
-        let busStation = (SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_ORT) as [BusStationItem]).find(predicate: { $0.busStops.find(predicate: { $0.number == stop.busStop }) != nil })
+        let busStation = (SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_ORT) as [BusStationItem]).find({ $0.busStops.find({ $0.number == stop.busStop }) != nil })
         let cell = tableView.dequeueReusableCell(withIdentifier: "BusstopTripTableViewCell", for: indexPath) as! BusstopTripTableViewCell
 
         cell.selectionStyle = UITableViewCellSelectionStyle.none

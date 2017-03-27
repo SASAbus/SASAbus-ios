@@ -209,7 +209,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
 
         if self.selectedBusStation != nil {
             let busDayType = (SasaDataHelper.getDataForRepresentation(SasaDataHelper.FIRMENKALENDER) as [BusDayTypeItem])
-                    .find(predicate: { (Calendar.current as NSCalendar).compare($0.date, to: self.searchDate, toUnitGranularity: NSCalendar.Unit.day) == ComparisonResult.orderedSame })
+                    .find({ (Calendar.current as NSCalendar).compare($0.date, to: self.searchDate, toUnitGranularity: NSCalendar.Unit.day) == ComparisonResult.orderedSame })
 
             if busDayType != nil {
                 let lookBack = 60 * 60 * 2
@@ -322,7 +322,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
             if currentBusStop != nil {
                 Log.info("Current bus stop: \(currentBusStop)")
 
-                let busStation = (SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_ORT) as [BusStationItem]).find(predicate: { $0.busStops.filter({ $0.number == currentBusStop }).count > 0 })
+                let busStation = (SasaDataHelper.getDataForRepresentation(SasaDataHelper.REC_ORT) as [BusStationItem]).find({ $0.busStops.filter({ $0.number == currentBusStop }).count > 0 })
 
                 if busStation != nil {
                     self.setBusStation(busStation!)

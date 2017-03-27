@@ -79,7 +79,7 @@ final class BusStationItem: NSCoding, JSONable, JSONCollection {
     }
 
     func containsBusStop(_ busStopId: Int) -> Bool {
-        return (self.busStops.find(predicate: { $0.number == busStopId }) != nil)
+        return (self.busStops.find({ $0.number == busStopId }) != nil)
     }
 
     func getDescription() -> String {
@@ -101,7 +101,10 @@ final class BusStationItem: NSCoding, JSONable, JSONCollection {
         var stationBusLines: [Line] = []
 
         for busLineId in self.busLineIds {
-            let busLine: Line? = busLines.find(predicate: { $0.id == busLineId })
+            let busLine: Line? = busLines.find {
+                $0.id == busLineId
+            }
+
             if (busLine != nil) {
                 stationBusLines.append(busLine!)
             }
