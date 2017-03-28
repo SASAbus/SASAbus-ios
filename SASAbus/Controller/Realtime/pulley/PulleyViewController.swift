@@ -267,6 +267,8 @@ class PulleyViewController: MasterViewController, UIScrollViewDelegate, PulleyPa
 
         self.view.backgroundColor = UIColor.white
 
+        backgroundImage.contentMode = .scaleAspectFill
+
         self.view.addSubview(primaryContentContainer)
         self.view.addSubview(backgroundDimmingView)
         self.view.addSubview(backgroundImage)
