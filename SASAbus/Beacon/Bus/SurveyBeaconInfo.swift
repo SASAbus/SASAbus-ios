@@ -48,7 +48,7 @@ class SurveyBeaconInfo {
 
     func seen() {
         let now = Date()
-        self.seconds = Int(now.timeIntervalSince1970) - Int(self.startDate.timeIntervalSince1970);
+        self.seconds = Int(now.timeIntervalSince1970) - Int(self.startDate.timeIntervalSince1970)
         self.lastSeen = now
     }
 

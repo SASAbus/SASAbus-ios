@@ -60,8 +60,10 @@ class UserDefaultHelper {
 
         if favoriteBusStations.find({ $0.name == busStation.name }) == nil {
             favoriteBusStations.append(busStation)
+
             self.getUserDefaults().set(NSKeyedArchiver.archivedData(withRootObject: favoriteBusStations),
                     forKey: UserDefaultHelper.BUS_STATION_FAVORITES_KEY)
+
             self.getUserDefaults().synchronize()
 
             success = true
@@ -225,8 +227,10 @@ class UserDefaultHelper {
         } else {
             self.getUserDefaults().setValue(value, forKey: UserDefaultHelper.BEACON_CURRENT_BUS_STOP_KEY)
             self.getUserDefaults().setValue(Int(Date().timeIntervalSince1970), forKey:
+
             UserDefaultHelper.BEACON_CURRENT_BUS_STOP_TIMESTAMP_KEY)
         }
+
         self.getUserDefaults().synchronize()
     }
 }

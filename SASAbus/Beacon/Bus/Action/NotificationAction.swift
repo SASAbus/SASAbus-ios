@@ -33,7 +33,7 @@ class NotificationAction: SurveyActionProtocol {
                 let surveyDefinition: SurveyItem = SurveyItem(parameter: JSON(response.data))
 
                 if surveyDefinition.status == "success" {
-                    let firstQuestion = self.getFirstQuestion(surveyDefinition, beaconInfo: beaconInfo);
+                    let firstQuestion = self.getFirstQuestion(surveyDefinition, beaconInfo: beaconInfo)
                     let localNotification = UILocalNotification()
 
                     localNotification.alertTitle = NSLocalizedString("Survey", comment: "")

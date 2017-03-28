@@ -36,12 +36,15 @@ class SurveyLocationHandler: NSObject, CLLocationManagerDelegate{
     }
     
     
-    func getLocationAsync(){
+    func getLocationAsync() {
         self.locationManager = CLLocationManager()
+        
         // Ask for Authorisation from the User.
         self.locationManager!.requestAlwaysAuthorization()
+        
         // For use in foreground
         self.locationManager!.requestWhenInUseAuthorization()
+        
         if CLLocationManager.locationServicesEnabled() {
             self.locationManager!.delegate = self
             self.locationManager!.desiredAccuracy = kCLLocationAccuracyNearestTenMeters

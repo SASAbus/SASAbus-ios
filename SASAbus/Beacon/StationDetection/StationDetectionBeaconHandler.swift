@@ -57,15 +57,15 @@ class StationDetectionBeaconHandler:BeaconHandlerProtocol {
     }
     
     func beaconInRange(major:Int , minor:Int) {
-        UserDefaultHelper.instance.setCurrentBusStopId(major);
+        UserDefaultHelper.instance.setCurrentBusStopId(major)
     }
     
     func clearBeacons() {
-        UserDefaultHelper.instance.setCurrentBusStopId(nil);
+        UserDefaultHelper.instance.setCurrentBusStopId(nil)
     }
     
     func inspectBeacons() {
-        UserDefaultHelper.instance.setCurrentBusStopId(nil);
+        UserDefaultHelper.instance.setCurrentBusStopId(nil)
     }
     
     func handlerIsActive() -> Bool {

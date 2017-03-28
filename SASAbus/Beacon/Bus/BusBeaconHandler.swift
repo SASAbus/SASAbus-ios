@@ -74,7 +74,7 @@ class BusBeaconHandler: BeaconHandlerProtocol {
     }
 
     func beaconInRange(_ major: Int, minor: Int) {
-        let key: String = "\(self.uuid)_\(major)";
+        let key: String = "\(self.uuid)_\(major)"
 
         if self.checkLastSurveyTime() == true {
 
@@ -83,14 +83,14 @@ class BusBeaconHandler: BeaconHandlerProtocol {
                 beaconInfo!.seen()
                 Log.info("Beacon has been seen for \((beaconInfo?.seconds.description)!)")
             } else {
-                let beaconInfo = SurveyBeaconInfo(uuid: self.uuid, major: major, minor: minor, time: Int((Date()).timeIntervalSince1970));
+                let beaconInfo = SurveyBeaconInfo(uuid: self.uuid, major: major, minor: minor, time: Int((Date()).timeIntervalSince1970))
                 beaconsToObserve[key] = beaconInfo
 
                 _ = RealtimeApi.vehicle(vehicle: major)
                         .subscribeOn(MainScheduler.asyncInstance)
                         .observeOn(MainScheduler.instance)
                         .subscribe(onNext: { bus in
-                            if (bus != nil) {
+                            if bus != nil {
                                 beaconInfo.setBusInformation(bus!)
                             } else {
                                 //get location from device
@@ -117,11 +117,11 @@ class BusBeaconHandler: BeaconHandlerProtocol {
 
         for beacon in beaconsToObserve.values {
             inspectBeaconGroup.enter()
-            checkIfBeaconIsSuitableForSurvey(beacon, group: inspectBeaconGroup);
+            checkIfBeaconIsSuitableForSurvey(beacon, group: inspectBeaconGroup)
         }
 
         inspectBeaconGroup.notify(queue: DispatchQueue.main, execute: {
-            self.clearBeacons();
+            self.clearBeacons()
         })
     }
 
@@ -138,7 +138,7 @@ class BusBeaconHandler: BeaconHandlerProtocol {
                     .subscribeOn(MainScheduler.asyncInstance)
                     .observeOn(MainScheduler.instance)
                     .subscribe(onNext: { bus in
-                        if (bus != nil) {
+                        if bus != nil {
                             beaconInfo.stopPositionItem = bus!
                             self.checkTrip(beaconInfo, location: bus!.getCoordinates())
                         } else {
@@ -187,7 +187,7 @@ class BusBeaconHandler: BeaconHandlerProtocol {
             let lastSurveyDate = Date(timeIntervalSince1970: TimeInterval(lastSurveyTimeStamp!))
             let secondsLastSurvey = Int(lastSurveyDate.timeIntervalSince1970)
             let secondsNow = Int(Date().timeIntervalSince1970)
-            let secondsBetweenSurvey = secondsNow - secondsLastSurvey;
+            let secondsBetweenSurvey = secondsNow - secondsLastSurvey
             let prefSurveyRecurring = UserDefaultHelper.instance.getSurveyCycle()
             result = secondsBetweenSurvey > prefSurveyRecurring
         }

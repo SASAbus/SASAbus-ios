@@ -26,16 +26,16 @@ import CoreLocation
 
 class SurveyBeaconInfo {
     
-    var lastSeen:NSDate!;
-    var startDate:NSDate;
-    var seconds:Int! = 0;
-    var locationTime:Int
-    var uuid:String
-    var major:Int
-    var minor:Int
-    var positionItem:PositionItem?
-    var location:CLLocation?
-    var stopPositionItem:PositionItem?
+    var lastSeen: NSDate!
+    var startDate: NSDate
+    var seconds: Int! = 0
+    var locationTime: Int
+    var uuid: String
+    var major: Int
+    var minor: Int
+    var positionItem: PositionItem?
+    var location: CLLocation?
+    var stopPositionItem: PositionItem?
     
     init(uuid:String, major:Int, minor:Int, time:Int) {
         self.uuid = uuid
@@ -48,8 +48,8 @@ class SurveyBeaconInfo {
     
     func seen() {
         let now = NSDate();
-        self.seconds = Int(now.timeIntervalSince1970) - Int(self.startDate.timeIntervalSince1970);
-        self.lastSeen = now;
+        self.seconds = Int(now.timeIntervalSince1970) - Int(self.startDate.timeIntervalSince1970)
+        self.lastSeen = now
     }
     
     func setBusInformation(positionItem:PositionItem) {
