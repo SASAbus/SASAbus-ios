@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BusstopTripViewController" customModule="SASAbus" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BusStopTripViewController" customModule="SASAbus" customModuleProvider="target">
             <connections>
                 <outlet property="lineLabel" destination="zCA-l9-Dhf" id="8U2-Cl-zk4"/>
                 <outlet property="tableView" destination="pTn-Xa-Jht" id="j7J-u2-7u1"/>

@@ -375,7 +375,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
     }
 
     func goToFilter() {
-        let busStopFilterViewController = BusstopFilterViewController(filteredBusLines: self.filteredBusLines,
+        let busStopFilterViewController = BusStopFilterViewController(filteredBusLines: self.filteredBusLines,
                 nibName: "BusstopFilterViewController", bundle: nil)
 
         self.navigationController!.pushViewController(busStopFilterViewController, animated: true)

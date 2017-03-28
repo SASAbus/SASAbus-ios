@@ -35,7 +35,7 @@ fileprivate func <<T:Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 }
 
-class BusstopTripViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BusStopTripViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var lineLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -43,8 +43,8 @@ class BusstopTripViewController: UIViewController, UITableViewDelegate, UITableV
     fileprivate var departure: DepartureItem!
     fileprivate var currentStopIndex: Int?
 
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, departure: DepartureItem) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    init(departure: DepartureItem) {
+        super.init(nibName: "BusStopTripViewController", bundle: nil)
 
         self.departure = departure
         self.currentStopIndex = nil

@@ -25,7 +25,7 @@ import CoreLocation
 
 class BusStopMapViewController: UIViewController, UIWebViewDelegate, CLLocationManagerDelegate {
 
-    var initializedJavascript: DarwinBoolean = false;
+    var initializedJavascript: DarwinBoolean = false
     var mapJavascriptBridge: MapJavascriptBridge?
     var locationManager: CLLocationManager?
 
@@ -36,7 +36,7 @@ class BusStopMapViewController: UIViewController, UIWebViewDelegate, CLLocationM
         super.init(nibName: "BusStopMapViewController", bundle: nil)
     }
 
-    required override init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -56,7 +56,7 @@ class BusStopMapViewController: UIViewController, UIWebViewDelegate, CLLocationM
                 selectButtonText: NSLocalizedString("Show departures", comment: ""))
 
         mapWebView.loadRequest(request)
-        mapWebView.delegate = self;
+        mapWebView.delegate = self
     }
 
     override func viewDidDisappear(_ animated: Bool) {

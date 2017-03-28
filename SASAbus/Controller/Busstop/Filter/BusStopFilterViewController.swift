@@ -22,13 +22,14 @@
 
 import UIKit
 
-class BusstopFilterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIToolbarDelegate {
+class BusStopFilterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIToolbarDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var enableAllButton: UIBarButtonItem!
     @IBOutlet weak var disableAllButton: UIBarButtonItem!
 
     fileprivate var filteredBusLines: [BusLineFilter]!
+
 
     init(filteredBusLines: [BusLineFilter], nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -39,6 +40,7 @@ class BusstopFilterViewController: UIViewController, UICollectionViewDelegate, U
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +69,7 @@ class BusstopFilterViewController: UIViewController, UICollectionViewDelegate, U
         super.didReceiveMemoryWarning()
     }
 
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredBusLines.count
     }
@@ -88,6 +91,7 @@ class BusstopFilterViewController: UIViewController, UICollectionViewDelegate, U
 
         return cell
     }
+
 
     func setFilterActive(_ sender: UISwitch) {
         filteredBusLines[sender.tag].active = !filteredBusLines[sender.tag].active

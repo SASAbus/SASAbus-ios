@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BusstopFilterViewController" customModule="SASAbus" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BusStopFilterViewController" customModule="SASAbus" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="d8c-y9-2hX" id="7ea-xn-dGs"/>
                 <outlet property="disableAllButton" destination="12Q-dM-SAl" id="62b-PA-B58"/>

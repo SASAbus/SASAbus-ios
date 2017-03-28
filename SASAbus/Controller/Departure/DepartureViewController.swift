@@ -107,7 +107,8 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
             cell.delayLabel.text = NSLocalizedString("no data", comment: "")
             cell.setDelayColor(Theme.darkGrey)
         }
-        if self.cellNibName == "DepartureBuslineTableViewCell" {
+
+        if self.cellNibName == "DepartureBusLineTableViewCell" {
             let currentStopNumber: Int!
             if departure.positionItem != nil {
                 currentStopNumber = departure.positionItem!.locationNumber
@@ -126,15 +127,16 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
         } else {
             cell.infoLabel.text = departure.busLine.name
         }
+
         cell.directionLabel.text = departure.destinationBusStation?.descriptionIt
+
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let busstopTripViewController = BusstopTripViewController(nibName: "BusstopTripViewController",
-                bundle: nil, departure: self.filteredDepartures[indexPath.row])
+        let busStopTripViewController = BusStopTripViewController(departure: self.filteredDepartures[indexPath.row])
 
-        self.navigationController!.pushViewController(busstopTripViewController, animated: true)
+        self.navigationController!.pushViewController(busStopTripViewController, animated: true)
     }
 
 
