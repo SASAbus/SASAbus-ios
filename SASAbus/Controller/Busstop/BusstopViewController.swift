@@ -28,9 +28,9 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
     @IBOutlet weak var timeField: UITextField!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var autoCompleteTableView: UITableView!
 
     fileprivate var selectedBusStation: BusStationItem?
-    @IBOutlet weak var autoCompleteTableView: UITableView!
     fileprivate let busStations: [BusStationItem] = SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem]
     fileprivate var foundBusStations: [BusStationItem] = []
     fileprivate var datePicker: UIDatePicker!
@@ -49,6 +49,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
         NotificationCenter.default.removeObserver(self)
         self.observerAdded = false
     }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -160,7 +161,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
 
-        if (self.autoCompleteTableView != nil && tableView.isEqual(self.autoCompleteTableView)) {
+        if self.autoCompleteTableView != nil && tableView.isEqual(self.autoCompleteTableView) {
             count = self.foundBusStations.count
         } else {
             count = super.tableView(tableView, numberOfRowsInSection: section)
@@ -170,9 +171,11 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (self.autoCompleteTableView != nil && tableView.isEqual(self.autoCompleteTableView)) {
+        if self.autoCompleteTableView != nil && tableView.isEqual(self.autoCompleteTableView) {
             let busStation = self.foundBusStations[indexPath.row]
-            let cell = tableView.dequeueReusableCell(withIdentifier: "BusstopAutocompleteTableViewCell", for: indexPath) as! BusStopAutocompleteTableViewCell
+
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopAutoCompleteTableViewCell",
+                    for: indexPath) as! BusStopAutoCompleteTableViewCell
 
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.busStationLabel.text = busStation.getDescription()
@@ -214,13 +217,14 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
 
         if self.selectedBusStation != nil {
             let busDayType = (SasaDataHelper.getData(SasaDataHelper.FIRMENKALENDER) as [BusDayTypeItem])
-                    .find({ (Calendar.current as NSCalendar).compare($0.date, to: self.searchDate, toUnitGranularity: NSCalendar.Unit.day) == ComparisonResult.orderedSame })
+                    .find({ (Calendar.current as NSCalendar).compare($0.date, to: self.searchDate,
+                    toUnitGranularity: NSCalendar.Unit.day) == ComparisonResult.orderedSame })
 
             if busDayType != nil {
                 let lookBack = 60 * 60 * 2
 
                 for busLine in self.selectedBusStation!.getBusLines() {
-                    let busDayTimeTrips: [BusDayTypeTripItem] = SasaDataHelper.getData(SasaDataHelper.BusDayTypeTrip(busLine, dayType: busDayType!)) as [BusDayTypeTripItem]
+                    let busDayTimeTrips = SasaDataHelper.getData(SasaDataHelper.BusDayTypeTrip(busLine, dayType: busDayType!)) as [BusDayTypeTripItem]
 
                     for busDayTimeTrip in busDayTimeTrips {
                         for busTripVariant in busDayTimeTrip.busTripVariants {
@@ -243,7 +247,9 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
         self.autoCompleteTableView!.isHidden = true
         self.updateFoundBusStations("")
         self.view.addSubview(self.autoCompleteTableView!)
-        self.autoCompleteTableView!.register(UINib(nibName: "BusstopAutocompleteTableViewCell", bundle: nil), forCellReuseIdentifier: "BusstopAutocompleteTableViewCell")
+
+        self.autoCompleteTableView!.register(UINib(nibName: "BusStopAutoCompleteTableViewCell", bundle: nil),
+                forCellReuseIdentifier: "BusStopAutoCompleteTableViewCell")
     }
 
     fileprivate func updateFoundBusStations(_ searchText: String) {
@@ -272,7 +278,8 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
     }
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(BusStopViewController.searchBarCancel))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel,
+                target: self, action: #selector(BusStopViewController.searchBarCancel))
         searchBar.text = ""
         self.updateFoundBusStations(searchBar.text!)
         self.autoCompleteTableView.isHidden = false
@@ -282,7 +289,9 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
         let activeLines = self.filteredBusLines.filter({ $0.active })
 
         if self.filter {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: self.filterImage, style: UIBarButtonItemStyle.plain, target: self, action: #selector(BusStopViewController.goToFilter))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: self.filterImage,
+                    style: UIBarButtonItemStyle.plain, target: self, action: #selector(BusStopViewController.goToFilter))
+
             self.navigationItem.rightBarButtonItem!.accessibilityLabel = NSLocalizedString("Linefilter", comment: "")
 
             if activeLines.count != self.filteredBusLines.count {
@@ -354,20 +363,22 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
 
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item.tag == 0 {
-            let busstopGpsViewController = BusstopGpsViewController(nibName: "BusstopGpsViewController", bundle: nil)
-            self.navigationController!.pushViewController(busstopGpsViewController, animated: true)
+            let busStopGpsViewController = BusStopGpsViewController()
+            self.navigationController!.pushViewController(busStopGpsViewController, animated: true)
         } else if item.tag == 1 {
-            let busstopMapViewController = BusstopMapViewController(nibName: "BusstopMapViewController", bundle: nil)
-            self.navigationController!.pushViewController(busstopMapViewController, animated: true)
+            let busStopMapViewController = BusStopMapViewController()
+            self.navigationController!.pushViewController(busStopMapViewController, animated: true)
         } else if item.tag == 2 {
-            let busstopFavoritesViewController = BusstopFavoritesViewController(nibName: "BusstopFavoritesViewController", bundle: nil, busStation: self.selectedBusStation)
-            self.navigationController!.pushViewController(busstopFavoritesViewController, animated: true)
+            let busStopFavoritesViewController = BusStopFavoritesViewController(busStation: self.selectedBusStation)
+            self.navigationController!.pushViewController(busStopFavoritesViewController, animated: true)
         }
     }
 
     func goToFilter() {
-        let busstopFilterViewController = BusstopFilterViewController(filteredBusLines: self.filteredBusLines, nibName: "BusstopFilterViewController", bundle: nil)
-        self.navigationController!.pushViewController(busstopFilterViewController, animated: true)
+        let busStopFilterViewController = BusstopFilterViewController(filteredBusLines: self.filteredBusLines,
+                nibName: "BusstopFilterViewController", bundle: nil)
+
+        self.navigationController!.pushViewController(busStopFilterViewController, animated: true)
     }
 
     func setBusStation(_ busStation: BusStationItem) {

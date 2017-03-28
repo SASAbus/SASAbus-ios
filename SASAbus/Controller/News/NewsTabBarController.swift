@@ -33,8 +33,8 @@ class NewsTabBarController: MasterTabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let newsBozenViewController = NewsTableViewController(nibName: "NewsTableViewController", title: "", location: "BZ")
-        let newsMeranViewController = NewsTableViewController(nibName: "NewsTableViewController", title: "", location: "ME")
+        let newsBozenViewController = NewsTableViewController(zone: "BZ")
+        let newsMeranViewController = NewsTableViewController(zone: "ME")
 
         newsBozenViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Bozen", comment: ""),
                 image: UIImage(named: "wappen_bz.png"), selectedImage: nil)
@@ -44,13 +44,13 @@ class NewsTabBarController: MasterTabBarController {
 
         self.viewControllers = [newsBozenViewController, newsMeranViewController]
         self.tabBar.tintColor = Theme.orange
-        self.tabBar.isTranslucent = false;
+        self.tabBar.isTranslucent = false
 
         self.getNews()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated);
+        super.viewWillAppear(animated)
 
         Analytics.track("News")
     }
@@ -70,7 +70,7 @@ class NewsTabBarController: MasterTabBarController {
                 .subscribe(onNext: { news in
                     (self.selectedViewController as! NewsTableViewController).refreshView(news)
                 }, onError: { error in
-                    print(error)
+                    Log.error(error)
                     (self.selectedViewController as! NewsTableViewController).refreshView([])
                 })
     }

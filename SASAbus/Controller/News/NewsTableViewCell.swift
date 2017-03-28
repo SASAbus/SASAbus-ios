@@ -28,7 +28,7 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        if (highlighted) {
+        if highlighted {
             self.linesLabel.textColor = Theme.white
             self.titleLabel.textColor = Theme.white
             self.backgroundColor = Theme.darkGrey

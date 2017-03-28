@@ -30,8 +30,8 @@ class ParkingViewController: MasterTableViewController {
     var items = [Parking]()
 
     init(title: String?) {
-        super.init(nibName: "ParkingViewController", title: nil);
-        self.title = title;
+        super.init(nibName: "ParkingViewController", title: nil)
+        self.title = title
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -42,7 +42,7 @@ class ParkingViewController: MasterTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(UINib(nibName: "ParkingTableViewCell", bundle: nil), forCellReuseIdentifier: "ParkingTableViewCell");
+        tableView.register(UINib(nibName: "ParkingTableViewCell", bundle: nil), forCellReuseIdentifier: "ParkingTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -61,7 +61,7 @@ class ParkingViewController: MasterTableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated);
+        super.viewWillAppear(animated)
 
         Analytics.track("Parkings")
     }
@@ -98,7 +98,7 @@ class ParkingViewController: MasterTableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let parkingLotDetailViewController = ParkingLotDetailViewController(nibName: "ParkingLotDetailViewController",
-                bundle: nil, item: self.items[indexPath.row]);
+                bundle: nil, item: self.items[indexPath.row])
 
         self.navigationController!.pushViewController(parkingLotDetailViewController, animated: true)
     }

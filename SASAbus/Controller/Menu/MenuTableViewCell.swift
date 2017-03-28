@@ -29,7 +29,7 @@ class MenuTableViewCell: UITableViewCell {
     @IBOutlet weak var indicatorView: UIView!
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        if (highlighted) {
+        if highlighted {
             self.titleLabel.textColor = Theme.white
             self.iconImageView.tintColor = Theme.white
         } else {
@@ -40,7 +40,7 @@ class MenuTableViewCell: UITableViewCell {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        if (selected) {
+        if selected {
             self.setHighlighted(true, animated: animated)
             self.indicatorView.backgroundColor = Theme.orange
         } else {
@@ -48,4 +48,3 @@ class MenuTableViewCell: UITableViewCell {
         }
     }
 }
-  

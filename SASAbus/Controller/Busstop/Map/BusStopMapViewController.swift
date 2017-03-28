@@ -23,7 +23,7 @@
 import UIKit
 import CoreLocation
 
-class BusstopMapViewController: UIViewController, UIWebViewDelegate, CLLocationManagerDelegate {
+class BusStopMapViewController: UIViewController, UIWebViewDelegate, CLLocationManagerDelegate {
 
     var initializedJavascript: DarwinBoolean = false;
     var mapJavascriptBridge: MapJavascriptBridge?
@@ -31,16 +31,29 @@ class BusstopMapViewController: UIViewController, UIWebViewDelegate, CLLocationM
 
     @IBOutlet weak var mapWebView: UIWebView!
 
+
+    init() {
+        super.init(nibName: "BusStopMapViewController", bundle: nil)
+    }
+
+    required override init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = NSLocalizedString("Bus stations map", comment: "")
         self.locationManager = CLLocationManager()
+
         let path = Bundle.main.path(forResource: "SASAbusWebMap", ofType: "html", inDirectory: "www/webmap")
-        let requestURL = URL(string: path!);
-        let request = URLRequest(url: requestURL!);
+        let requestURL = URL(string: path!)
+        let request = URLRequest(url: requestURL!)
+
         self.mapJavascriptBridge = MapJavascriptBridge(viewController: self, webView: mapWebView, initialLat: Config.mapStandardLatitude,
-                initialLon: Config.mapStandardLongitude, initialZoom: Config.mapStandardZoom, selectButtonText: NSLocalizedString("Show departures", comment: ""))
+                initialLon: Config.mapStandardLongitude, initialZoom: Config.mapStandardZoom,
+                selectButtonText: NSLocalizedString("Show departures", comment: ""))
 
         mapWebView.loadRequest(request)
         mapWebView.delegate = self;
@@ -63,24 +76,28 @@ class BusstopMapViewController: UIViewController, UIWebViewDelegate, CLLocationM
         }
     }
 
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue: CLLocationCoordinate2D = manager.location!.coordinate
         self.mapJavascriptBridge?.setRequestLocation(locValue.latitude, longitude: locValue.longitude, accuracy: 5.0)
     }
 
+
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        let url = request.url;
+        let url = request.url
+
         if url?.scheme == "ios" {
-            self.mapJavascriptBridge?.handleCallsFromJavascript(url!);
-            return false;
+            self.mapJavascriptBridge?.handleCallsFromJavascript(url!)
+            return false
         }
-        return true;
+
+        return true
     }
 
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        if (initializedJavascript == false) {
+        if initializedJavascript == false {
             self.mapJavascriptBridge?.loadJavascript()
-            initializedJavascript = true;
+            initializedJavascript = true
         }
     }
 }

@@ -48,8 +48,8 @@ class ParkingLotDetailViewController: UIViewController, UITableViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = NSLocalizedString("Parking lot detail", comment: "");
-        tableView.register(UINib(nibName: "ParkingLotDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "ParkingLotDetailTableViewCell");
+        self.title = NSLocalizedString("Parking lot detail", comment: "")
+        tableView.register(UINib(nibName: "ParkingLotDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "ParkingLotDetailTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
 
@@ -74,7 +74,7 @@ class ParkingLotDetailViewController: UIViewController, UITableViewDataSource, U
         cell.stationLabel.text = busStationDistance.busStation.getDescription()
         cell.distanceLabel.text = Int(round(busStationDistance.distance)).description + "m"
 
-        return cell;
+        return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -95,12 +95,12 @@ class ParkingLotDetailViewController: UIViewController, UITableViewDataSource, U
             for busStop in busStation.busStops {
                 distance = busStop.location.distance(from: self.parking.location)
 
-                if (busStationDistance == nil || distance < busStationDistance!.distance) {
+                if busStationDistance == nil || distance < busStationDistance!.distance {
                     busStationDistance = BusStationDistance(busStationItem: busStation, distance: distance)
                 }
             }
 
-            if (busStationDistance != nil) {
+            if busStationDistance != nil {
                 nearestBusStations.append(busStationDistance!)
             }
         }

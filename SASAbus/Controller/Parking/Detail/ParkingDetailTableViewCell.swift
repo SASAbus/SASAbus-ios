@@ -30,7 +30,7 @@ class ParkingLotDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var distanceLabel: UILabel!
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        if (highlighted) {
+        if highlighted {
             self.stationLabel.textColor = Theme.white
             self.distanceLabel.textColor = Theme.white
             self.iconImageView.tintColor = Theme.white

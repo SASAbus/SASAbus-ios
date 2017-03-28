@@ -90,7 +90,7 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated);
+        super.viewWillAppear(animated)
 
         Analytics.track("BusSchedules")
     }
@@ -99,31 +99,32 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
 
-        if (self.autoCompleteTableView != nil && tableView.isEqual(self.autoCompleteTableView)) {
+        if self.autoCompleteTableView != nil && tableView.isEqual(self.autoCompleteTableView) {
             count = self.foundBusLines.count
         } else {
             count = super.tableView(tableView, numberOfRowsInSection: section)
         }
 
-        return count;
+        return count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (self.autoCompleteTableView != nil && tableView.isEqual(self.autoCompleteTableView)) {
+        if self.autoCompleteTableView != nil && tableView.isEqual(self.autoCompleteTableView) {
             let busLine: Line = self.foundBusLines[indexPath.row]
-            let cell = tableView.dequeueReusableCell(withIdentifier: "BuslineAutocompleteTableViewCell", for: indexPath) as! BuslineAutocompleteTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BusLineAutoCompleteTableViewCell",
+                    for: indexPath) as! BusLineAutoCompleteTableViewCell
 
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.busLineLabel.text = busLine.name
 
-            return cell;
+            return cell
         } else {
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (self.autoCompleteTableView != nil && tableView.isEqual(self.autoCompleteTableView)) {
+        if self.autoCompleteTableView != nil && tableView.isEqual(self.autoCompleteTableView) {
             self.setBusLine(self.foundBusLines[indexPath.row])
         } else {
             super.tableView(tableView, didSelectRowAt: indexPath)
@@ -169,12 +170,16 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
         self.autoCompleteTableView!.isHidden = true
         self.updateFoundBusLines("")
         self.view.addSubview(self.autoCompleteTableView!)
-        self.autoCompleteTableView!.register(UINib(nibName: "BuslineAutocompleteTableViewCell", bundle: nil), forCellReuseIdentifier: "BuslineAutocompleteTableViewCell");
+
+        self.autoCompleteTableView!.register(UINib(nibName: "BusLineAutoCompleteTableViewCell", bundle: nil),
+                forCellReuseIdentifier: "BusLineAutoCompleteTableViewCell")
     }
 
     func resetLinePickerDataSource() {
         self.linePickerDataSource = []
-        let defaultItem = Line(shortName: NSLocalizedString("Select ...", comment: ""), name: NSLocalizedString("Select ...", comment: ""), variants: [0], number: 0)
+        let defaultItem = Line(shortName: NSLocalizedString("Select ...", comment: ""),
+                name: NSLocalizedString("Select ...", comment: ""), variants: [0], number: 0)
+
         self.linePickerDataSource.append(defaultItem)
     }
 
@@ -219,17 +224,20 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
 
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(LineViewController.searchBarCancel))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel,
+                target: self, action: #selector(LineViewController.searchBarCancel))
+
         searchBar.text = ""
         self.updateFoundBusLines(searchBar.text!)
         self.autoCompleteTableView.isHidden = false
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if (self.selectedBusLine != nil) {
+        if self.selectedBusLine != nil {
             self.selectedBusLine = nil
             self.getDepartures()
         }
+
         self.updateFoundBusLines(searchText)
     }
 
@@ -253,15 +261,21 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
         let busLineVariantTripResult: BusLineVariantTripResult = BusLineVariantTripResult()
 
         if self.selectedBusLine != nil {
-            let busDayType = (SasaDataHelper.getData(SasaDataHelper.FIRMENKALENDER) as [BusDayTypeItem]).find({ (Calendar.current as NSCalendar).compare($0.date, to: self.searchDate, toUnitGranularity: NSCalendar.Unit.day) == ComparisonResult.orderedSame })
+            let busDayType = (SasaDataHelper.getData(SasaDataHelper.FIRMENKALENDER) as [BusDayTypeItem])
+                    .find({ (Calendar.current as NSCalendar)
+                    .compare($0.date, to: self.searchDate, toUnitGranularity: NSCalendar.Unit.day) == ComparisonResult.orderedSame })
+
             let lookBack = 60 * 60 * 2
-            let busDayTimeTrips: [BusDayTypeTripItem] = SasaDataHelper.getData(SasaDataHelper.BusDayTypeTrip(self.selectedBusLine!, dayType: busDayType!)) as [BusDayTypeTripItem]
+
+            let busDayTimeTrips = SasaDataHelper.getData(SasaDataHelper
+                    .BusDayTypeTrip(self.selectedBusLine!, dayType: busDayType!)) as [BusDayTypeTripItem]
 
             for busDayTimeTrip in busDayTimeTrips {
                 for busTripVariant in busDayTimeTrip.busTripVariants {
                     for busTrip in busTripVariant.trips {
-                        if (busTrip.startTime > secondsFromMidnight - lookBack) {
-                            busLineVariantTripResult.addBusLineVariantTrip(BusLineVariantTrip(busLine: self.selectedBusLine!, variant: busTripVariant, trip: busTrip))
+                        if busTrip.startTime > secondsFromMidnight - lookBack {
+                            busLineVariantTripResult.addBusLineVariantTrip(BusLineVariantTrip(busLine:
+                            self.selectedBusLine!, variant: busTripVariant, trip: busTrip))
                         }
                     }
                 }
@@ -275,7 +289,9 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
                                                     delay: Int, secondsFromMidnight: Int, realtimeBus: RealtimeBus?) -> Bool {
         var suitable = false
 
-        if (realtimeBus != nil && realtimeBus!.locationNumber == stopTime.busStop) || (realtimeBus == nil && stopTime.seconds >= self.secondsFromMidnight) {
+        if (realtimeBus != nil && realtimeBus!.locationNumber == stopTime.busStop) ||
+                   (realtimeBus == nil && stopTime.seconds >= self.secondsFromMidnight) {
+
             suitable = true
         }
 
@@ -306,7 +322,7 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
             busLines = busLines.filter({ $0.getArea() == selectedTab })
         }
 
-        self.busLines = busLines.sorted(by: { $0.name < $1.name })
+        self.busLines = busLines.sorted(by: { $0.id < $1.id })
         self.tableView.reloadData()
         self.updateFoundBusLines("")
     }
@@ -325,7 +341,9 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        let datePickerDoneButton = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: UIBarButtonItemStyle.done, target: self, action: #selector(LineViewController.endDateEditing(_:)))
+        let datePickerDoneButton = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""),
+                style: UIBarButtonItemStyle.done, target: self, action: #selector(LineViewController.endDateEditing(_:)))
+
         self.navigationItem.rightBarButtonItem = datePickerDoneButton
     }
 

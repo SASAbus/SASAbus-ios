@@ -25,8 +25,8 @@ import SwiftyJSON
 
 final class BusTripVariantItem: JSONable, JSONCollection {
 
-    let variant: Int!
-    let trips: [BusTripItem]!
+    let variant: Int
+    let trips: [BusTripItem]
 
     required init(parameter: JSON) {
         self.variant = parameter["STR_LI_VAR"].intValue

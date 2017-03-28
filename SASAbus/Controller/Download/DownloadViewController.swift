@@ -31,6 +31,7 @@ class DownloadViewController: UIViewController {
     @IBOutlet var progressLabel: UILabel!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var cancelButton: UIButton!
+
     let downloader: DownloaderProtocol!
     let downloadFinishedDelegate: DownloadFinishedProtocol!
     var canBeCanceled: Bool!
@@ -148,7 +149,7 @@ class DownloadViewController: UIViewController {
 
         if (UserDefaultHelper.instance.getAskedForDownloadsNoCount() >= Config.mapHowOftenShouldIAskForMapDownload) {
             toDownloadAlert.addAction(UIAlertAction(title: NSLocalizedString("Do not ask me again", comment: ""),
-                    style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+                    style: UIAlertActionStyle.default, handler: { (_: UIAlertAction!) in
 
                 let mapDownloadReminderAlert = UIAlertController(title: NSLocalizedString("Info", comment: ""),
                         message: NSLocalizedString("You can re enable map download in app settings", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
@@ -165,10 +166,6 @@ class DownloadViewController: UIViewController {
         }
 
         self.present(toDownloadAlert, animated: true, completion: nil)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 
     @IBAction func cancelButtonDown(_ sender: AnyObject) {

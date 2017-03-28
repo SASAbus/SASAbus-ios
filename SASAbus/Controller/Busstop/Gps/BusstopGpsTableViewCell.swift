@@ -23,14 +23,14 @@
 
 import UIKit
 
-class BusstopGpsTableViewCell: UITableViewCell {
+class BusStopGpsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var stationLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var distanceLabel: UILabel!
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        if (highlighted) {
+        if highlighted {
             self.stationLabel.textColor = Theme.white
             self.distanceLabel.textColor = Theme.white
             self.iconImageView.tintColor = Theme.white

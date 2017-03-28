@@ -42,22 +42,23 @@ class NewsDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.title = NSLocalizedString("News detail", comment: "")
         self.edgesForExtendedLayout = UIRectEdge()
-        self.extendedLayoutIncludesOpaqueBars = false;
-        self.automaticallyAdjustsScrollViewInsets = false;
+        self.extendedLayoutIncludesOpaqueBars = false
+        self.automaticallyAdjustsScrollViewInsets = false
+
         let font = UIFont.systemFont(ofSize: 17)
         self.titleLabel.text = self.newsItem.title
-        let messageString = "<span style=\"font-family:Helvetica; font-size: " + String(describing: font.pointSize) + "; color: " + ColorHelper.getHexColor(Theme.darkGrey) + "\">" + newsItem.message + "</span>"
+
+        let messageString = "<span style=\"font-family:Helvetica; font-size: \(font.pointSize); color: " +
+                ColorHelper.getHexColor(Theme.darkGrey) + "\">\(newsItem.message)</span>"
+
         self.messageView.loadHTMLString(messageString, baseURL: nil)
         self.titleLabel.textColor = Theme.white
         self.messageView.isOpaque = false
         self.messageView.backgroundColor = Theme.transparent
         self.view.backgroundColor = Theme.darkGrey
         self.messageScrollView.backgroundColor = Theme.white
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 }

@@ -6,9 +6,9 @@ protocol PulleyPassthroughScrollViewDelegate: class {
 }
 
 public class PulleyPassthroughScrollView: UIScrollView {
-    
+
     weak var touchDelegate: PulleyPassthroughScrollViewDelegate?
-    
+
     override public func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         if let touchDel = touchDelegate {
             if touchDel.shouldTouchPassthroughScrollView(scrollView: self, point: point) {
@@ -16,7 +16,7 @@ public class PulleyPassthroughScrollView: UIScrollView {
                     .convert(point, from: self), with: event)
             }
         }
-        
+
         return super.hitTest(point, with: event)
     }
 }

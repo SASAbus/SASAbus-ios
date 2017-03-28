@@ -76,9 +76,11 @@ class BusstopTripViewController: UIViewController, UITableViewDelegate, UITableV
             if self.departure.delaySecondsRounded == 0 {
                 self.lineLabel.text = self.lineLabel.text! + NSLocalizedString("Punctual", comment: "")
             } else if self.departure.delaySecondsRounded < 0 {
-                self.lineLabel.text = self.lineLabel.text! + abs(self.departure.delaySecondsRounded).description + "' " + NSLocalizedString("premature", comment: "")
+                self.lineLabel.text = self.lineLabel.text! + abs(self.departure.delaySecondsRounded).description + "' " +
+                        NSLocalizedString("premature", comment: "")
             } else {
-                self.lineLabel.text = self.lineLabel.text! + self.departure.delaySecondsRounded.description + "' " + NSLocalizedString("delayed", comment: "")
+                self.lineLabel.text = self.lineLabel.text! + self.departure.delaySecondsRounded.description + "' " +
+                        NSLocalizedString("delayed", comment: "")
             }
         } else {
             self.lineLabel.text = self.lineLabel.text! + NSLocalizedString("no data", comment: "")
@@ -87,7 +89,7 @@ class BusstopTripViewController: UIViewController, UITableViewDelegate, UITableV
         if self.currentStopIndex != nil {
             var scrollIndex = self.currentStopIndex!
             if scrollIndex > 1 {
-                scrollIndex = scrollIndex - 1
+                scrollIndex -= -1
             }
             self.tableView.scrollToRow(at: IndexPath(row: scrollIndex, section: 0), at: .top, animated: true)
         }
@@ -103,7 +105,10 @@ class BusstopTripViewController: UIViewController, UITableViewDelegate, UITableV
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let stop = self.departure.stopTimes[indexPath.row]
-        let busStation = (SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem]).find({ $0.busStops.find({ $0.number == stop.busStop }) != nil })
+
+        let busStation = (SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem])
+                .find({ $0.busStops.find({ $0.number == stop.busStop }) != nil })
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "BusstopTripTableViewCell", for: indexPath) as! BusstopTripTableViewCell
 
         cell.selectionStyle = UITableViewCellSelectionStyle.none
@@ -126,6 +131,6 @@ class BusstopTripViewController: UIViewController, UITableViewDelegate, UITableV
 
         cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
 
-        return cell;
+        return cell
     }
 }

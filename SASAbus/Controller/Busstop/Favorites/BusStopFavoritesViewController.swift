@@ -22,7 +22,7 @@
 
 import UIKit
 
-class BusstopFavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BusStopFavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var busStationLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -30,8 +30,9 @@ class BusstopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
     fileprivate var busStation: BusStationItem!
     fileprivate var favoriteBusStations: [BusStationItem]!
 
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, busStation: BusStationItem?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    init(busStation: BusStationItem?) {
+        super.init(nibName: "BusStopFavoritesViewController", bundle: nil)
+
         self.busStation = busStation
     }
 
@@ -43,7 +44,7 @@ class BusstopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
         super.viewDidLoad()
         self.title = NSLocalizedString("Bus station favorites", comment: "")
 
-        tableView.register(UINib(nibName: "BusstopFavoritesTableViewCell", bundle: nil), forCellReuseIdentifier: "BusstopFavoritesTableViewCell");
+        tableView.register(UINib(nibName: "BusStopFavoritesTableViewCell", bundle: nil), forCellReuseIdentifier: "BusStopFavoritesTableViewCell");
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.allowsMultipleSelectionDuringEditing = false;
@@ -55,7 +56,9 @@ class BusstopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
 
         if (self.busStation != nil && self.favoriteBusStations.find({ $0.name == self.busStation!.name }) == nil) {
             self.busStationLabel.text = self.busStation.getDescription()
-            let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(BusstopFavoritesViewController.saveFavoriteBusStation(_:)))
+            let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self,
+                    action: #selector(BusStopFavoritesViewController.saveFavoriteBusStation(_:)))
+
             addButton.tintColor = Theme.white
             self.navigationItem.rightBarButtonItem = addButton
         } else {
@@ -73,16 +76,21 @@ class BusstopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let busStation = self.favoriteBusStations[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BusstopFavoritesTableViewCell", for: indexPath) as! BusstopFavoritesTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopFavoritesTableViewCell", for: indexPath) as! BusStopFavoritesTableViewCell
+
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.busStationLabel.text = busStation.getDescription()
-        return cell;
+
+        return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let busStation = self.favoriteBusStations[indexPath.row]
-        let busstopViewController = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.index(of: self))! - 1] as! BusStopViewController
-        busstopViewController.setBusStation(busStation)
+
+        let busStopViewController = self.navigationController?.viewControllers[(self.navigationController?
+                .viewControllers.index(of: self))! - 1] as! BusStopViewController
+
+        busStopViewController.setBusStation(busStation)
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -91,7 +99,7 @@ class BusstopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.delete) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
             let busStation = self.favoriteBusStations[indexPath.row]
 
             if UserDefaultHelper.instance.removeFavoriteBusStation(busStation) {
@@ -100,7 +108,10 @@ class BusstopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
 
                 if busStation.name == self.busStation.name {
                     self.busStationLabel.text = self.busStation.getDescription()
-                    let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(BusstopFavoritesViewController.saveFavoriteBusStation(_:)))
+
+                    let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self,
+                            action: #selector(BusStopFavoritesViewController.saveFavoriteBusStation(_:)))
+
                     addButton.tintColor = Theme.white
                     self.navigationItem.rightBarButtonItem = addButton
                 }

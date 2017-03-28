@@ -24,13 +24,14 @@ import UIKit
 
 class NewsTableViewController: MasterTableViewController {
 
-    var location: String!
+    var newsZone: String!
     var newsItems: [NewsItem] = []
 
 
-    init(nibName nibNameOrNil: String?, title: String?, location: String) {
-        self.location = location
-        super.init(nibName: nibNameOrNil, title: title)
+    init(zone: String) {
+        super.init(nibName: "NewsTableViewController", title: nil)
+
+        self.newsZone = zone
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -41,7 +42,7 @@ class NewsTableViewController: MasterTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "NewsTableViewCell");
+        tableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "NewsTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -50,14 +51,14 @@ class NewsTableViewController: MasterTableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated);
+        super.viewWillAppear(animated)
 
         Analytics.track("CityNews")
     }
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newsItems.count;
+        return newsItems.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -68,11 +69,11 @@ class NewsTableViewController: MasterTableViewController {
         cell.linesLabel.text = newsItem.getLinesString()
         cell.titleLabel.text = newsItem.title
 
-        return cell;
+        return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = NewsDetailViewController(nibName: "NewsDetailViewController", bundle: nil, newsItem: self.newsItems[indexPath.row]);
+        let controller = NewsDetailViewController(nibName: "NewsDetailViewController", bundle: nil, newsItem: self.newsItems[indexPath.row])
         self.navigationController!.pushViewController(controller, animated: true)
     }
 
@@ -83,9 +84,9 @@ class NewsTableViewController: MasterTableViewController {
         for index in stride(from: (newsItems.count - 1), through: 0, by: -1) {
             let newsItem = newsItems[index]
 
-            Log.info("Zone: \(location)")
+            Log.info("Zone: \(newsZone!)")
 
-            if self.location != newsItem.zone {
+            if self.newsZone != newsItem.zone {
                 newsItems.remove(at: index)
             }
         }
@@ -93,6 +94,7 @@ class NewsTableViewController: MasterTableViewController {
         self.newsItems = newsItems
         self.tableView.reloadData()
         self.tableView.separatorColor = Theme.grey
+
         self.refreshControl!.endRefreshing()
     }
 

@@ -32,7 +32,7 @@ class ParkingTableViewCell: UITableViewCell {
     @IBOutlet weak var iconImageView: UIImageView!
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        if (highlighted) {
+        if highlighted {
             self.titleLabel.textColor = Theme.white
             self.messageLabel.textColor = Theme.white
             self.addressLabel.textColor = Theme.white

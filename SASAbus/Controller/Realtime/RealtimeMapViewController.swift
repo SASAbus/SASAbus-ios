@@ -76,7 +76,7 @@ class RealtimeMapViewController: UIViewController, MKMapViewDelegate, PulleyPrim
         let bottomSheet = parentVC?.childViewControllers[1] as! BottomSheetViewController
         bottomSheet.updateBottomSheet(bus: selectedBus!)
 
-        parentVC.setDrawerPosition(position: .PartiallyRevealed, animated: true)
+        parentVC.setDrawerPosition(position: .partiallyRevealed, animated: true)
     }
 
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
@@ -86,7 +86,7 @@ class RealtimeMapViewController: UIViewController, MKMapViewDelegate, PulleyPrim
         let bottomSheet = parentVC?.childViewControllers[1] as! BottomSheetViewController
         bottomSheet.selectedBus = nil
 
-        self.parentVC.setDrawerPosition(position: .Collapsed, animated: true)
+        self.parentVC.setDrawerPosition(position: .collapsed, animated: true)
 
         if tileOverlay != nil {
             mapView.remove(tileOverlay!)
@@ -108,7 +108,7 @@ class RealtimeMapViewController: UIViewController, MKMapViewDelegate, PulleyPrim
 
 
     func openViewController() {
-        parentVC.setDrawerPosition(position: .Open, animated: true)
+        parentVC.setDrawerPosition(position: .open, animated: true)
     }
 
     func parseData() {
@@ -132,6 +132,7 @@ class RealtimeMapViewController: UIViewController, MKMapViewDelegate, PulleyPrim
                 .subscribe(onNext: { buses in
                     self.onSuccess(buses: buses)
                 }, onError: { error in
+                    Log.error(error)
                     self.onFailure()
                 })
     }
@@ -236,7 +237,7 @@ class RealtimeMapViewController: UIViewController, MKMapViewDelegate, PulleyPrim
 
                 let request = NSURLRequest(url: url)
 
-                let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error -> Void in
+                let task = session.dataTask(with: request as URLRequest, completionHandler: { data, _, error -> Void in
                     if let data = data {
                         self.cache.setObject(data as NSData, forKey: url.absoluteString as NSString)
                     }

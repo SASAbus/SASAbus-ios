@@ -33,7 +33,7 @@ class BusstopTripTableViewCell: UITableViewCell {
     static let TYPE_END = "end"
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        if (highlighted) {
+        if highlighted {
             self.timeLabel.textColor = Theme.white
             self.busStationLabel.textColor = Theme.white
             self.iconImageView.tintColor = Theme.white

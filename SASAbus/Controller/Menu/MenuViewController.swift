@@ -58,25 +58,25 @@ struct Menu {
             MenuItem(
                     title: NSLocalizedString("Info", comment: ""),
                     image: "",
-                    viewController: InfoViewController(title: NSLocalizedString("Info", comment: ""))),
+                    viewController: InfoViewController(title: NSLocalizedString("Info", comment: "")))
     ]
 }
 
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var tableView: UITableView!;
+    @IBOutlet weak var tableView: UITableView!
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(UINib(nibName: "MenuTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuTableViewCell");
+        tableView.register(UINib(nibName: "MenuTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuTableViewCell")
         tableView.backgroundColor = Theme.transparent
     }
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Menu.items.count;
+        return Menu.items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -95,14 +95,14 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         cell.iconImageView.tintColor = Theme.white
 
-        return cell;
+        return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let menuItem = Menu.items[indexPath.row]
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
-        if (menuItem.viewController != nil) {
+        if menuItem.viewController != nil {
             appDelegate.navigateTo(menuItem.viewController!)
         }
     }

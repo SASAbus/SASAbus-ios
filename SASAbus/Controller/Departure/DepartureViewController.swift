@@ -253,7 +253,8 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
         if self.filteredBusLines.count > 0 {
             let activeLines = self.filteredBusLines.filter({ $0.active })
             if self.filter {
-                self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: self.filterImage, style: UIBarButtonItemStyle.plain, target: self, action: Selector("goToFilter"))
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: self.filterImage,
+                        style: UIBarButtonItemStyle.plain, target: self, action: Selector("goToFilter"))
 
                 if activeLines.count != self.filteredBusLines.count {
                     self.navigationItem.rightBarButtonItem?.image = self.filterImageFilled

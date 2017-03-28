@@ -1,5 +1,5 @@
 //
-// BusstopFavoritesTableViewCell.swift
+// BusstopFilterCollectionViewCell.swift
 // SASAbus
 //
 // Copyright (C) 2011-2015 Raiffeisen Online GmbH (Norman Marmsoler, Jürgen Sprenger, Aaron Falk) <info@raiffeisen.it>
@@ -22,17 +22,8 @@
 
 import UIKit
 
-class BusstopFavoritesTableViewCell: UITableViewCell {
+class BusStopFilterCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var busStationLabel: UILabel!
-
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        if (highlighted) {
-            self.busStationLabel.textColor = Theme.white
-            self.backgroundColor = Theme.orange
-        } else {
-            self.busStationLabel.textColor = Theme.darkGrey
-            self.backgroundColor = Theme.transparent
-        }
-    }
+    @IBOutlet weak var filterSwitch: UISwitch!
+    @IBOutlet weak var busLineLabel: UILabel!
 }

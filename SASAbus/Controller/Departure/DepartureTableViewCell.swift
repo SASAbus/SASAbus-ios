@@ -30,10 +30,11 @@ class DepartureTableViewCell: UITableViewCell {
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var delayLabel: UILabel!
     @IBOutlet weak var directionLabel: UILabel!
+
     fileprivate var delayColor = Theme.darkGrey
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        if (highlighted) {
+        if highlighted {
             self.timeLabel.textColor = Theme.white
             self.infoLabel.textColor = Theme.white
             self.delayLabel.textColor = Theme.white
