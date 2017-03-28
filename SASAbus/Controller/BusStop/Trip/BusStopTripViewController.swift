@@ -63,7 +63,7 @@ class BusStopTripViewController: UIViewController, UITableViewDelegate, UITableV
 
         self.title = NSLocalizedString("Bus trip", comment: "")
 
-        tableView.register(UINib(nibName: "BusstopTripTableViewCell", bundle: nil), forCellReuseIdentifier: "BusstopTripTableViewCell");
+        tableView.register(UINib(nibName: "BusStopTripTableViewCell", bundle: nil), forCellReuseIdentifier: "BusStopTripTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.separatorColor = Theme.transparent
@@ -109,7 +109,7 @@ class BusStopTripViewController: UIViewController, UITableViewDelegate, UITableV
         let busStation = (SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem])
                 .find({ $0.busStops.find({ $0.number == stop.busStop }) != nil })
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BusstopTripTableViewCell", for: indexPath) as! BusstopTripTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopTripTableViewCell", for: indexPath) as! BusStopTripTableViewCell
 
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.timeLabel.text = stop.getTime()
@@ -122,11 +122,11 @@ class BusStopTripViewController: UIViewController, UITableViewDelegate, UITableV
         }
 
         if indexPath.row == 0 {
-            cell.setImageFromType(BusstopTripTableViewCell.TYPE_START)
+            cell.setImageFromType(BusStopTripTableViewCell.TYPE_START)
         } else if indexPath.row == self.departure.stopTimes.count - 1 {
-            cell.setImageFromType(BusstopTripTableViewCell.TYPE_END)
+            cell.setImageFromType(BusStopTripTableViewCell.TYPE_END)
         } else {
-            cell.setImageFromType(BusstopTripTableViewCell.TYPE_MIDDLE)
+            cell.setImageFromType(BusStopTripTableViewCell.TYPE_MIDDLE)
         }
 
         cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)

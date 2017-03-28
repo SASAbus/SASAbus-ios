@@ -37,7 +37,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
     fileprivate var observerAdded: Bool! = false
 
     init(busStation: BusStationItem?, title: String?) {
-        super.init(cellNibName: "DepartureBusstopTableViewCell", nibName: "BusstopViewController", title: title)
+        super.init(cellNibName: "DepartureBusStopTableViewCell", nibName: "BusStopViewController", title: title)
         self.selectedBusStation = busStation
     }
 

@@ -1,5 +1,5 @@
 //
-// RealtimeMapViewController.swift
+// BusstopMapViewController.swift
 // SASAbus
 //
 // Copyright (C) 2011-2015 Raiffeisen Online GmbH (Norman Marmsoler, Jürgen Sprenger, Aaron Falk) <info@raiffeisen.it>
@@ -24,17 +24,15 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class MapViewController: MasterViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class BusStopMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     var mapJavascriptBridge: MapJavascriptBridge?
     var locationManager: CLLocationManager?
 
     @IBOutlet weak var mapView: MKMapView!
 
-
-    init(title: String?) {
-        super.init(nibName: "MapViewController", title: nil)
-        self.title = title
+    init() {
+        super.init(nibName: "BusStopMapViewController", bundle: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -44,6 +42,9 @@ class MapViewController: MasterViewController, MKMapViewDelegate, CLLocationMana
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.title = NSLocalizedString("Bus stations map", comment: "")
+        self.locationManager = CLLocationManager()
 
         self.locationManager = CLLocationManager()
 
@@ -72,12 +73,6 @@ class MapViewController: MasterViewController, MKMapViewDelegate, CLLocationMana
         }
 
         parseData()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        Analytics.track("Map")
     }
 
 

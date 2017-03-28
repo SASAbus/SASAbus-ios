@@ -22,7 +22,7 @@
 
 import UIKit
 
-class BusstopTripTableViewCell: UITableViewCell {
+class BusStopTripTableViewCell: UITableViewCell {
 
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
