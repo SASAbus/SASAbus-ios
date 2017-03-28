@@ -36,6 +36,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
     fileprivate var datePicker: UIDatePicker!
     fileprivate var observerAdded: Bool! = false
 
+
     init(busStation: BusStationItem?, title: String?) {
         super.init(cellNibName: "DepartureBusStopTableViewCell", nibName: "BusStopViewController", title: title)
         self.selectedBusStation = busStation
@@ -217,8 +218,10 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
 
         if self.selectedBusStation != nil {
             let busDayType = (SasaDataHelper.getData(SasaDataHelper.FIRMENKALENDER) as [BusDayTypeItem])
-                    .find({ (Calendar.current as NSCalendar).compare($0.date, to: self.searchDate,
-                    toUnitGranularity: NSCalendar.Unit.day) == ComparisonResult.orderedSame })
+                    .find({
+                (Calendar.current as NSCalendar).compare($0.date, to: self.searchDate,
+                        toUnitGranularity: NSCalendar.Unit.day) == ComparisonResult.orderedSame
+            })
 
             if busDayType != nil {
                 let lookBack = 60 * 60 * 2
