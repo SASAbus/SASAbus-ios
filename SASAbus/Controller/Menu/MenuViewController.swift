@@ -23,76 +23,86 @@
 import UIKit
 
 struct Menu {
-    
-    static let items:[MenuItem] = [
-        MenuItem(
-            title:NSLocalizedString("Busstop", comment:""),
-            image:"ic_navigation_busstop",
-            viewController:BusstopViewController(busStation: nil, nibName: "BusstopViewController", title: NSLocalizedString("Busstop", comment:""))),
-        MenuItem(
-            title:NSLocalizedString("Line", comment:""),
-            image:"ic_navigation_bus",
-            viewController:LineViewController(nibName: "LineViewController", title: NSLocalizedString("Line", comment:""))),
-        MenuItem(
-            title:NSLocalizedString("News", comment:""),
-            image:"ic_navigation_news",
-            viewController:NewsTabBarController(nibName: nil, title: NSLocalizedString("News", comment: ""))),
-        MenuItem(
-            title:NSLocalizedString("Map", comment:""),
-            image:"ic_navigation_map",
-            viewController:MapViewController(nibName: "MapViewController", title: NSLocalizedString("Map", comment:""))),
-        MenuItem(
-            title:NSLocalizedString("Parking lot", comment:""),
-            image:"ic_navigation_parking",
-            viewController:ParkingLotTabBarController(nibName: nil, title: NSLocalizedString("Parking lot", comment:""))),
-        MenuItem(
-            title:NSLocalizedString("Info", comment:""),
-            image:"",
-            viewController:InfoViewController(nibName: "InfoViewController", title: NSLocalizedString("Info", comment:""))),
-    ];
+
+    static let items: [MenuItem] = [
+            MenuItem(
+                    title: NSLocalizedString("Busstop", comment: ""),
+                    image: "ic_navigation_busstop",
+                    viewController: BusStopViewController(busStation: nil, title: NSLocalizedString("Busstop", comment: ""))),
+
+            MenuItem(
+                    title: NSLocalizedString("Realtime Map", comment: ""),
+                    image: "ic_navigation_map",
+                    viewController: MainMapViewController.getViewController()),
+
+            MenuItem(
+                    title: NSLocalizedString("Line", comment: ""),
+                    image: "ic_navigation_bus",
+                    viewController: LineViewController(title: NSLocalizedString("Line", comment: ""))),
+
+            MenuItem(
+                    title: NSLocalizedString("News", comment: ""),
+                    image: "ic_navigation_news",
+                    viewController: NewsTabBarController(nibName: nil, title: NSLocalizedString("News", comment: ""))),
+
+            MenuItem(
+                    title: NSLocalizedString("Map", comment: ""),
+                    image: "ic_navigation_map",
+                    viewController: MapViewController(title: NSLocalizedString("Map", comment: ""))),
+
+            MenuItem(
+                    title: NSLocalizedString("Parking lot", comment: ""),
+                    image: "ic_navigation_parking",
+                    viewController: ParkingViewController(title: NSLocalizedString("Parking lot", comment: ""))),
+
+            MenuItem(
+                    title: NSLocalizedString("Info", comment: ""),
+                    image: "",
+                    viewController: InfoViewController(title: NSLocalizedString("Info", comment: "")))
+    ]
 }
 
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    @IBOutlet weak var tableView: UITableView!;
-    
+
+    @IBOutlet weak var tableView: UITableView!
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.registerNib(UINib(nibName: "MenuTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuTableViewCell");
-        tableView.backgroundColor = Theme.colorTransparent
+
+        tableView.register(UINib(nibName: "MenuTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuTableViewCell")
+        tableView.backgroundColor = Theme.transparent
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Menu.items.count
     }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        return Menu.items.count;
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-        
-    {
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let menuItem = Menu.items[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("MenuTableViewCell", forIndexPath: indexPath) as! MenuTableViewCell
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
-        cell.backgroundColor = Theme.colorTransparent
-        cell.titleLabel.textColor = Theme.colorWhite
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuTableViewCell", for: indexPath) as! MenuTableViewCell
+
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        cell.backgroundColor = Theme.transparent
+        cell.titleLabel.textColor = Theme.white
         cell.titleLabel.text = menuItem.title
+
         if !menuItem.image.isEmpty {
             cell.iconImageView.image = UIImage(named: menuItem.image)
         }
-        cell.iconImageView.image = cell.iconImageView.image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        cell.iconImageView.tintColor = Theme.colorWhite
-        return cell;
+
+        cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        cell.iconImageView.tintColor = Theme.white
+
+        return cell
     }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
-    {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let menuItem = Menu.items[indexPath.row]
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        if (menuItem.viewController != nil){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+        if menuItem.viewController != nil {
             appDelegate.navigateTo(menuItem.viewController!)
         }
     }

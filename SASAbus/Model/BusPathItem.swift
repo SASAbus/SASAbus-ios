@@ -20,34 +20,26 @@
 // along with SASAbus.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-final class BusPathItem: ResponseObjectSerializable, ResponseCollectionSerializable {
-    private let lineNumber: Int!
-    private let variants: [BusPathVariantItem]!
-    
-    init?( representation: AnyObject) {
-        self.lineNumber = Int(representation.valueForKeyPath("LI_NR") as! String)
-        self.variants = BusPathVariantItem.collection(representation.valueForKeyPath("varlist")!)
-        
+import SwiftyJSON
+
+final class BusPathItem: JSONable, JSONCollection {
+
+    let lineNumber: Int!
+    let variants: [BusPathVariantItem]!
+
+    required init(parameter: JSON) {
+        self.lineNumber = parameter["LI_NR"].intValue
+        self.variants = BusPathVariantItem.collection(parameter: parameter["varlist"])
+
     }
-    
-    static func collection(representation: AnyObject) -> [BusPathItem] {
+
+    static func collection(parameter: JSON) -> [BusPathItem] {
         var items: [BusPathItem] = []
-        
-        if let representation = representation as? [[String: AnyObject]] {
-            for itemRepresentation in representation {
-                if let item = BusPathItem(representation: itemRepresentation) {
-                    items.append(item)
-                }
-            }
+
+        for itemRepresentation in parameter.arrayValue {
+            items.append(BusPathItem(parameter: itemRepresentation))
         }
+
         return items
-    }
-    
-    func getLineNumber() -> Int {
-        return self.lineNumber
-    }
-    
-    func getVariants() -> [BusPathVariantItem]! {
-        return self.variants
     }
 }

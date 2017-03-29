@@ -22,45 +22,56 @@
 
 import UIKit
 import Alamofire
+import RxSwift
+import RxCocoa
 
 class NewsTabBarController: MasterTabBarController {
 
     var newsItems: [NewsItem] = []
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        let newsBozenViewController = NewsTableViewController(nibName: "NewsTableViewController", title: "", location: "BZ")
-        newsBozenViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Bozen", comment: ""), image: UIImage(named: "wappen_bz.png"), selectedImage: nil)
-        let newsMeranViewController = NewsTableViewController(nibName: "NewsTableViewController", title: "", location: "ME")
-        newsMeranViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Meran", comment: ""), image: UIImage(named: "wappen_me.png"), selectedImage: nil)
+
+        let newsBozenViewController = NewsTableViewController(zone: "BZ")
+        let newsMeranViewController = NewsTableViewController(zone: "ME")
+
+        newsBozenViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Bozen", comment: ""),
+                image: UIImage(named: "wappen_bz.png"), selectedImage: nil)
+
+        newsMeranViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Meran", comment: ""),
+                image: UIImage(named: "wappen_me.png"), selectedImage: nil)
+
         self.viewControllers = [newsBozenViewController, newsMeranViewController]
-        self.tabBar.tintColor = Theme.colorOrange
-        self.tabBar.translucent = false;
+        self.tabBar.tintColor = Theme.orange
+        self.tabBar.isTranslucent = false
+
         self.getNews()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        Analytics.track("News")
     }
-    
-    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+
+
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         self.getNews()
     }
-    
+
+
     func getNews() {
-        Alamofire.request(NewsApiRouter.GetNews()).responseCollection { (response: Response<[NewsItem], NSError>) in
-            if (response.result.isSuccess) {
-                (self.selectedViewController as! NewsTableViewController).refreshView(response.result.value!)
-            } else {
-                (self.selectedViewController as! NewsTableViewController).refreshView([])
-            }
-        }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated);
-        
-        self.track("News")
-    }
+        Log.info("Loading news")
 
+        _ = NewsApi.news()
+                .subscribeOn(MainScheduler.asyncInstance)
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { news in
+                    (self.selectedViewController as! NewsTableViewController).refreshView(news)
+                }, onError: { error in
+                    Log.error(error)
+                    (self.selectedViewController as! NewsTableViewController).refreshView([])
+                })
+    }
 }

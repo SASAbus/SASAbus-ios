@@ -19,14 +19,22 @@
 // You should have received a copy of the GNU General Public License
 // along with SASAbus.  If not, see <http://www.gnu.org/licenses/>.
 //
+
 import CoreLocation
 
 protocol BeaconHandlerProtocol {
+
     func getUuid() -> String
+
     func getIdentifier() -> String
-    func beaconInRange(major:Int , minor:Int)
-    func beaconsInRange(beacons:[CLBeacon])
+
+    func beaconInRange(_ major: Int, minor: Int)
+
+    func beaconsInRange(_ beacons: [CLBeacon])
+
     func clearBeacons()
+
     func inspectBeacons()
+
     func handlerIsActive() -> Bool
 }

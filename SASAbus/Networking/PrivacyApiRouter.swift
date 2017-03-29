@@ -19,34 +19,36 @@
 // You should have received a copy of the GNU General Public License
 // along with SASAbus.  If not, see <http://www.gnu.org/licenses/>.
 //
+
 import Alamofire
 
 enum PrivacyApiRouter: URLRequestConvertible {
-    static let baseURLString = Configuration.privacyBaseUrl
-    
+
+    static let baseURLString = Config.privacyBaseUrl
+
     // APIs exposed
-    case GetPrivacyHtml(String)
-    
-    var method: Alamofire.Method {
+    case getPrivacyHtml(String)
+
+    var method: HTTPMethod {
         switch self {
-        case .GetPrivacyHtml:
-            return .GET
+        case .getPrivacyHtml:
+            return .get
         }
     }
-    
+
     var path: String {
         switch self {
-        case .GetPrivacyHtml(let os):
-            return "/?OS=\(os)";
+        case .getPrivacyHtml(let os):
+            return "/?OS=\(os)"
         }
     }
-    
-    // MARK: URLRequestConvertible    
-    var URLRequest: NSMutableURLRequest {
-        let URL = NSURL(string: PrivacyApiRouter.baseURLString + path)!
-        let mutableURLRequest = NSMutableURLRequest(URL: URL)
-        mutableURLRequest.HTTPMethod = method.rawValue
-        mutableURLRequest.timeoutInterval = Configuration.timeoutInterval
-        return mutableURLRequest
+
+    func asURLRequest() throws -> URLRequest {
+        let url = URL(string: PrivacyApiRouter.baseURLString + path)!
+        let mutableURLRequest = NSMutableURLRequest(url: url)
+
+        mutableURLRequest.httpMethod = method.rawValue
+        mutableURLRequest.timeoutInterval = Config.timeoutInterval
+        return mutableURLRequest as URLRequest
     }
 }

@@ -24,19 +24,12 @@ import Foundation
 import CoreLocation
 
 class BusStationDistance {
-    private let distance: CLLocationDistance!
-    private let busStation: BusStationItem!
-    
+
+    let distance: CLLocationDistance!
+    let busStation: BusStationItem!
+
     init(busStationItem: BusStationItem, distance: CLLocationDistance) {
         self.busStation = busStationItem
         self.distance = distance
-    }
-    
-    func getBusStation() -> BusStationItem {
-        return self.busStation
-    }
-    
-    func getDistance() -> CLLocationDistance {
-        return self.distance
     }
 }

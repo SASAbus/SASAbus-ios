@@ -23,83 +23,88 @@
 import UIKit
 
 class NewsTableViewController: MasterTableViewController {
-    
-    var location: String!
+
+    var newsZone: String!
     var newsItems: [NewsItem] = []
-    
-    init(nibName nibNameOrNil: String?, title: String?, location: String) {
-        self.location = location
-        super.init(nibName: nibNameOrNil, title: title)
+
+
+    init(zone: String) {
+        super.init(nibName: "NewsTableViewController", title: nil)
+
+        self.newsZone = zone
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.registerNib(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "NewsTableViewCell");
+
+        tableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "NewsTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+
         self.initRefreshControl()
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        Analytics.track("CityNews")
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return newsItems.count
     }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        return newsItems.count;
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-        
-    {
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let newsItem = self.newsItems[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("NewsTableViewCell", forIndexPath: indexPath) as! NewsTableViewCell
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as! NewsTableViewCell
+
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.linesLabel.text = newsItem.getLinesString()
-        cell.titleLabel.text = newsItem.getTitle()
-        return cell;
+        cell.titleLabel.text = newsItem.title
+
+        return cell
     }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
-    {
-        let newsDetailViewController = NewsDetailViewController(nibName: "NewsDetailViewController", bundle: nil, newsItem: self.newsItems[indexPath.row]);
-        self.navigationController!.pushViewController(newsDetailViewController, animated: true)
-        
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let controller = NewsDetailViewController(nibName: "NewsDetailViewController", bundle: nil, newsItem: self.newsItems[indexPath.row])
+        self.navigationController!.pushViewController(controller, animated: true)
     }
-    
-    private func initRefreshControl() {
-        let refreshControl = UIRefreshControl()
-        refreshControl.tintColor = Theme.colorLightOrange
-        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""), attributes: [NSForegroundColorAttributeName: Theme.colorDarkGrey])
-        refreshControl.addTarget(self.tabBarController, action: "getNews", forControlEvents: UIControlEvents.ValueChanged)
-        self.refreshControl = refreshControl
-    }
-    
-    func refreshView(var newsItems: [NewsItem]) {
-        for index in (newsItems.count - 1).stride(through: 0, by: -1) {
+
+
+    func refreshView(_ newsItems: [NewsItem]) {
+        var newsItems = newsItems
+
+        for index in stride(from: (newsItems.count - 1), through: 0, by: -1) {
             let newsItem = newsItems[index]
-            if (newsItem.getArea() != 0 && ((self.location == "BZ" && newsItem.getArea() != 2) || (self.location == "ME" && newsItem.getArea() != 1))) {
-                newsItems.removeAtIndex(index)
+
+            Log.info("Zone: \(newsZone!)")
+
+            if self.newsZone != newsItem.zone {
+                newsItems.remove(at: index)
             }
         }
+
         self.newsItems = newsItems
         self.tableView.reloadData()
-        self.tableView.separatorColor = Theme.colorGrey
+        self.tableView.separatorColor = Theme.grey
+
         self.refreshControl!.endRefreshing()
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated);
-        
-        self.track("CityNews")
+
+    func initRefreshControl() {
+        let refreshControl = UIRefreshControl()
+
+        refreshControl.tintColor = Theme.lightOrange
+        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""), attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
+        refreshControl.addTarget(self.tabBarController, action: "getNews", for: UIControlEvents.valueChanged)
+
+        self.refreshControl = refreshControl
     }
 }

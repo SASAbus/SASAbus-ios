@@ -23,23 +23,11 @@
 import Foundation
 
 class BusLineFilter {
-    
-    private let busLine: BusLineItem!
-    private var active: Bool! = true
-    
-    init(busLine: BusLineItem) {
+
+    let busLine: Line!
+    var active: Bool! = true
+
+    init(busLine: Line) {
         self.busLine = busLine
-    }
-    
-    func getBusLine() -> BusLineItem {
-        return self.busLine
-    }
-    
-    func isActive() -> Bool {
-        return self.active
-    }
-    
-    func setActive(active: Bool) {
-        self.active = active
     }
 }

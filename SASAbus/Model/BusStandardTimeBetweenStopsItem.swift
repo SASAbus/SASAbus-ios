@@ -21,60 +21,39 @@
 //
 
 import Foundation
+import SwiftyJSON
 
-final class BusStandardTimeBetweenStopItem: ResponseObjectSerializable, ResponseCollectionSerializable {
-    
-    private let groupNumber: Int!
-    private let locationNumber: Int!
-    private let standardTime: Int!
-    private let destination: Int!
-    private let locationDestinationGroupIdentifier: String
-    
-    init?( representation: AnyObject) {
-        self.groupNumber = Int(representation.valueForKeyPath("FGR_NR") as! String)!
-        self.locationNumber = Int(representation.valueForKeyPath("ORT_NR") as! String)!
-        self.standardTime = Int(representation.valueForKeyPath("SEL_FZT") as! String)!
-        self.destination = Int(representation.valueForKeyPath("SEL_ZIEL") as! String)!
+final class BusStandardTimeBetweenStopItem: JSONable, JSONCollection {
+
+    let groupNumber: Int!
+    let locationNumber: Int!
+    let standardTime: Int!
+    let destination: Int!
+
+    let locationDestinationGroupIdentifier: String!
+
+    required init(parameter: JSON) {
+        self.groupNumber = parameter["FGR_NR"].intValue
+        self.locationNumber = parameter["ORT_NR"].intValue
+
+        self.standardTime = parameter["SEL_FZT"].intValue
+        self.destination = parameter["SEL_ZIEL"].intValue
+
         self.locationDestinationGroupIdentifier = [
-            String(self.locationNumber),
-            String(self.destination),
-            String(self.groupNumber)
-            ].joinWithSeparator(":")
+                String(self.locationNumber),
+                String(self.destination),
+                String(self.groupNumber)
+        ].joined(separator: ":")
     }
-    
-    
-    static func collection(representation: AnyObject) -> [BusStandardTimeBetweenStopItem] {
-        var busStandardTimeBetweenStopItems: [BusStandardTimeBetweenStopItem] = []
-        
-        if let representation = representation as? [[String: AnyObject]] {
-            for busStandardTimeBetweenStopRepresentation in representation {
-                if let busStandardTimeBetweenStopItem = BusStandardTimeBetweenStopItem(representation: busStandardTimeBetweenStopRepresentation) {
-                    busStandardTimeBetweenStopItems.append(busStandardTimeBetweenStopItem)
-                }
-            }
-        }
-        
-        return busStandardTimeBetweenStopItems
-    }
-    
-    func getGroupNumber() -> Int {
-        return self.groupNumber
-    }
-    
-    func getLocationNumber() -> Int {
-        return self.locationNumber
-    }
-    
-    func getStandardTime() -> Int {
-        return self.standardTime
-    }
-    
-    func getDestination() -> Int {
-        return self.destination
-    }
-    
-    func getLocationDestinationGroupIdentifier() -> String {
 
-        return self.locationDestinationGroupIdentifier
+
+    static func collection(parameter: JSON) -> [BusStandardTimeBetweenStopItem] {
+        var items: [BusStandardTimeBetweenStopItem] = []
+
+        for standardTime in parameter.arrayValue {
+            items.append(BusStandardTimeBetweenStopItem(parameter: standardTime))
+        }
+
+        return items
     }
 }

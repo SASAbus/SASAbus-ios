@@ -21,59 +21,40 @@
 //
 
 import CoreLocation
+import SwiftyJSON
 
-final class ParkingStationItem: ResponseObjectSerializable {
-    private let phone: String
-    private let status: Int
-    private let address: String
-    private let slots: Int
-    private let description: String
-    private let name: String
-    private let location: CLLocation
-    
-    init?(representation: AnyObject) {
-        self.phone = representation.valueForKeyPath("phone") as! String
-        self.status = representation.valueForKeyPath("status") as! Int
-        self.address = representation.valueForKeyPath("address") as! String
-        self.slots = representation.valueForKeyPath("slots") as! Int
-        self.description = representation.valueForKeyPath("description") as! String
-        self.name = representation.valueForKeyPath("name") as! String
-        let longitude: CLLocationDegrees = representation.valueForKeyPath("longitude") as! Double
-        let latitude: CLLocationDegrees = representation.valueForKeyPath("latitude") as! Double
+final class ParkingStationItem: JSONable, JSONCollection {
+
+    let phone: String
+    let status: Int
+    let address: String
+    let slots: Int
+    let description: String
+    let name: String
+    let location: CLLocation
+
+    required init(parameter: JSON) {
+        self.phone = parameter["phone"].stringValue
+        self.status = parameter["status"].intValue
+
+        self.address = parameter["address"].stringValue
+        self.slots = parameter["slots"].intValue
+        self.description = parameter["description"].stringValue
+        self.name = parameter["name"].stringValue
+
+        let longitude: CLLocationDegrees = parameter["longitude"].doubleValue
+        let latitude: CLLocationDegrees = parameter["latitude"].doubleValue
+
         self.location = CLLocation(latitude: latitude, longitude: longitude)
     }
-    
-    /*static func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [ParkingStationItem] {
-    var parkingStationItems: [ParkingStationItem] = []
-    
-    if let representation = representation as? [[String: AnyObject]] {
-    for parkingStationRepresentation in representation {
-    if let parkingStationItem = ParkingStationItem(response: response, representation: parkingStationRepresentation) {
-    parkingStationItems.append(parkingStationItem)
-    }
-    }
-    }
-    
-    return parkingStationItems
-    }*/
-    
-    func getName() -> String {
-        return self.name
-    }
-    
-    func getAddress() -> String {
-        return self.address
-    }
-    
-    func getPhone() -> String {
-        return self.phone
-    }
-    
-    func getSlots() -> Int {
-        return self.slots
-    }
-    
-    func getLocation() -> CLLocation {
-        return self.location
+
+    static func collection(parameter: JSON) -> [ParkingStationItem] {
+        var items: [ParkingStationItem] = []
+
+        for parking in parameter.arrayValue {
+            items.append(ParkingStationItem(parameter: parking))
+        }
+
+        return items
     }
 }

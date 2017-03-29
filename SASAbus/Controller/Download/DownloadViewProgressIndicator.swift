@@ -23,15 +23,15 @@
 import Foundation
 
 class DownloadViewProgressIndicator: ProgressIndicatorProtocol {
-    
+
     let downloadViewController: DownloadViewController!
-    
+
     init(downloadViewController: DownloadViewController!) {
         self.downloadViewController = downloadViewController
     }
-    
-    func started(title:String?) {
-        dispatch_async(dispatch_get_main_queue()) {
+
+    func started(_ title: String?) {
+        DispatchQueue.main.async {
             //circularProgress.angle = progress
             if title != nil {
                 self.downloadViewController.titleLabel.text = title
@@ -39,41 +39,48 @@ class DownloadViewProgressIndicator: ProgressIndicatorProtocol {
             self.downloadViewController.progressLabel.text = NSLocalizedString("Download started", comment: "")
         }
     }
-    func progress(percent:Int, var description:String? = nil) {
-        dispatch_async(dispatch_get_main_queue()) {
+
+    func progress(_ percent: Int, description: String? = nil) {
+        var description = description
+
+        DispatchQueue.main.async {
             //circularProgress.angle = progress
-            let newAngleValue = Int((360 * percent) / 100 )
+            let newAngleValue = Double((360 * percent) / 100)
+
             if description == nil {
                 description = NSLocalizedString("\(percent)%", comment: "")
             }
+
             self.downloadViewController.progressLabel.text = description
+
             if (self.downloadViewController.downloadProgress.angle < newAngleValue) {
-                self.downloadViewController.downloadProgress.animateToAngle(newAngleValue, duration: 0.05, completion: nil)
+                self.downloadViewController.downloadProgress.animate(toAngle: newAngleValue, duration: 0.05, completion: nil)
             }
         }
     }
-    
+
     func finished() {
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.downloadViewController.downloadFinished()
         }
     }
-    
-    func error(message: String?, fatal:Bool) {
-        dispatch_async(dispatch_get_main_queue()) {
+
+    func error(_ message: String?, fatal: Bool) {
+        DispatchQueue.main.async {
             self.downloadViewController.progressLabel.text = message
-            self.downloadViewController.downloadFinishedWithError(message!, killApp:fatal)
+            self.downloadViewController.downloadFinishedWithError(message!, killApp: fatal)
         }
     }
-    
-    func reset(newTitle:String? = nil) {
-        dispatch_async(dispatch_get_main_queue()) {
+
+    func reset(_ newTitle: String? = nil) {
+        DispatchQueue.main.async {
             if newTitle != nil {
                 self.downloadViewController.titleLabel.text = newTitle
             }
+
             self.downloadViewController.downloadProgress.angle = 0
-            self.downloadViewController.cancelButton.hidden = true //cancel button should be hidden for map download
-            self.downloadViewController.downloadProgress.animateToAngle(0, duration: 0, completion: nil)
+            self.downloadViewController.cancelButton.isHidden = true // Cancel button should be hidden for map download
+            self.downloadViewController.downloadProgress.animate(toAngle: 0, duration: 0, completion: nil)
         }
     }
 }

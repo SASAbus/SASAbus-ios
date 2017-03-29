@@ -24,46 +24,40 @@
 import UIKit
 import DrawerController
 
-class MasterViewController: UIViewController, GoogleAnalyticsProtocol{
-    
-    init(nibName nibNameOrNil: String?, title: String?) {
-        super.init(nibName: nibNameOrNil, bundle: nil);
+class MasterViewController: UIViewController {
+
+    init(nibName: String?, title: String?) {
+        super.init(nibName: nibName, bundle: nil);
         self.title = title;
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.edgesForExtendedLayout = UIRectEdge.None
+
+        self.edgesForExtendedLayout = UIRectEdge()
         self.extendedLayoutIncludesOpaqueBars = false;
         self.automaticallyAdjustsScrollViewInsets = false;
         self.setupLeftMenuButton()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
+
     func setupLeftMenuButton() {
-        let leftDrawerButton = UIBarButtonItem(image: UIImage(named: "menu_icon.png")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate), style: UIBarButtonItemStyle.Plain, target: self, action: "leftDrawerButtonPress:")
-        leftDrawerButton.tintColor = Theme.colorWhite
+        let leftDrawerButton = UIBarButtonItem(image: UIImage(named: "menu_icon.png")?
+                .withRenderingMode(UIImageRenderingMode.alwaysTemplate), style: UIBarButtonItemStyle.plain,
+                target: self, action: #selector(MasterViewController.leftDrawerButtonPress(_:)))
+
+        leftDrawerButton.tintColor = Theme.white
         leftDrawerButton.accessibilityLabel = NSLocalizedString("Menu", comment: "")
-        self.navigationItem.setLeftBarButtonItem(leftDrawerButton, animated: true)
+
+        self.navigationItem.setLeftBarButton(leftDrawerButton, animated: true)
     }
-    
+
     // MARK: - Button Handlers
-    func leftDrawerButtonPress(sender: AnyObject?) {
-        self.evo_drawerController?.toggleDrawerSide(.Left, animated: true, completion: nil)
-    }
-    
-    func track(screen: String) {
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: screen)
-        
-        let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+
+    func leftDrawerButtonPress(_ sender: AnyObject?) {
+        self.evo_drawerController?.toggleDrawerSide(.left, animated: true, completion: nil)
     }
 }

@@ -22,15 +22,13 @@
 
 import Foundation
 
-class CurrenBusStopHelper {
+class CurrentBusStopHelper {
 
-    static let instance = CurrenBusStopHelper()
-    
-    func getCurrentBusStation() -> Int {
+    static func getCurrentBusStation() -> Int {
         return 1
     }
-    
-    func deleteCurrentBusStation() {
-        
+
+    static func deleteCurrentBusStation() {
+
     }
 }

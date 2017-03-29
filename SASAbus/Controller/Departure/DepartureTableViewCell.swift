@@ -24,33 +24,34 @@
 import UIKit
 
 class DepartureTableViewCell: UITableViewCell {
-    
+
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var delayLabel: UILabel!
     @IBOutlet weak var directionLabel: UILabel!
-    private var delayColor = Theme.colorDarkGrey
-    
-    override func setHighlighted(highlighted: Bool, animated: Bool) {
-        if (highlighted) {
-            self.timeLabel.textColor = Theme.colorWhite
-            self.infoLabel.textColor = Theme.colorWhite
-            self.delayLabel.textColor = Theme.colorWhite
-            self.directionLabel.textColor = Theme.colorWhite
-            self.iconImageView.tintColor = Theme.colorWhite
-            self.backgroundColor = Theme.colorOrange
+
+    fileprivate var delayColor = Theme.darkGrey
+
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        if highlighted {
+            self.timeLabel.textColor = Theme.white
+            self.infoLabel.textColor = Theme.white
+            self.delayLabel.textColor = Theme.white
+            self.directionLabel.textColor = Theme.white
+            self.iconImageView.tintColor = Theme.white
+            self.backgroundColor = Theme.orange
         } else {
-            self.timeLabel.textColor = Theme.colorDarkGrey
+            self.timeLabel.textColor = Theme.darkGrey
             self.delayLabel.textColor = self.delayColor
-            self.infoLabel.textColor = Theme.colorDarkGrey
-            self.directionLabel.textColor = Theme.colorDarkGrey
-            self.iconImageView.tintColor = Theme.colorOrange
-            self.backgroundColor = Theme.colorTransparent
+            self.infoLabel.textColor = Theme.darkGrey
+            self.directionLabel.textColor = Theme.darkGrey
+            self.iconImageView.tintColor = Theme.orange
+            self.backgroundColor = Theme.transparent
         }
     }
-    
-    func setDelayColor(color: UIColor) {
+
+    func setDelayColor(_ color: UIColor) {
         self.delayColor = color
     }
 }

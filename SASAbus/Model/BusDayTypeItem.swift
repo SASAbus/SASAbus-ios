@@ -19,38 +19,30 @@
 // You should have received a copy of the GNU General Public License
 // along with SASAbus.  If not, see <http://www.gnu.org/licenses/>.
 //
-import Foundation
 
-final class BusDayTypeItem: ResponseObjectSerializable, ResponseCollectionSerializable {
-    private let date: NSDate!
-    private let dayTypeNumber: Int!
-    
-    init?( representation: AnyObject) {
-        let dateFormatter = NSDateFormatter()
+import Foundation
+import SwiftyJSON
+
+final class BusDayTypeItem: JSONable, JSONCollection {
+
+    let date: Date!
+    let dayTypeNumber: Int!
+
+    required init(parameter: JSON) {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        self.date = dateFormatter.dateFromString(representation.valueForKeyPath("BETRIEBSTAG") as! String)
-        self.dayTypeNumber = Int(representation.valueForKeyPath("TAGESART_NR") as! String)
+
+        self.date = dateFormatter.date(from: parameter["BETRIEBSTAG"].stringValue)
+        self.dayTypeNumber = parameter["TAGESART_NR"].intValue
     }
-    
-    static func collection(representation: AnyObject) -> [BusDayTypeItem] {
+
+    static func collection(parameter: JSON) -> [BusDayTypeItem] {
         var items: [BusDayTypeItem] = []
-        
-        if let representation = representation as? [[String: AnyObject]] {
-            for itemRepresentation in representation {
-                if let item = BusDayTypeItem(representation: itemRepresentation) {
-                    items.append(item)
-                }
-            }
+
+        for itemRepresentation in parameter.arrayValue {
+            items.append(BusDayTypeItem(parameter: itemRepresentation))
         }
+
         return items
-    }
-    
-    func getDate() -> NSDate {
-        return self.date
-    }
-    
-    func getDayTypeNumber() -> Int {
-        return self.dayTypeNumber
     }
 }

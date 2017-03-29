@@ -23,7 +23,10 @@
 import UIKit
 
 protocol NotificationProtocol {
+
     func getName() -> String
-    func handleNotificationForeground(viewController:UIViewController, userInfo:[NSObject:AnyObject]?)
-    func handleNotificationBackground(identifier:String?, userInfo:[NSObject:AnyObject]?)
+
+    func handleNotificationForeground(_ viewController: UIViewController, userInfo: [String: Any]?)
+
+    func handleNotificationBackground(_ identifier: String?, userInfo: [String: Any]?)
 }

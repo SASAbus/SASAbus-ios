@@ -21,63 +21,78 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class SasaDataHelper {
-    
-    static let BusDayTypeList:String = "FIRMENKALENDER"
-    static let BusPathList:String = "LID_VERLAUF"
-    static let BusStandardTimeBetweenStopsList:String = "SEL_FZT_FELD"
-    static let BusDefaultWaitTimeAtStopList:String = "ORT_HZT"
-    static let BusLineWaitTimeAtStopList:String = "REC_LIVAR_HZT"
-    static let BusWaitTimeAtStopList:String = "REC_FRT_HZT"
-    static let BusLines:String = "REC_LID"
-    static let BusStations:String = "REC_ORT"
-    static let BusExceptionTimeBetweenStops:String = "REC_FRT_FZT"
-    static let ExpirationDate:String = "BASIS_VER_GUELTIGKEIT"
-    
-    static let instance = SasaDataHelper()
-    
-    static var cache = [String: Any]()
-    func getData(file:String, defaultValue:String? = "") -> String? {
-        //init rec_ort
+
+    static let ORT_HZT: String = "ORT_HZT"
+    static let LID_VERLAUF: String = "LID_VERLAUF"
+    static let SEL_FZT_FELD: String = "SEL_FZT_FELD"
+    static let FIRMENKALENDER: String = "FIRMENKALENDER"
+    static let BASIS_VER_GUELTIGKEIT: String = "BASIS_VER_GUELTIGKEIT"
+
+    static let REC_LID: String = "REC_LID"
+    static let REC_ORT: String = "REC_ORT"
+    static let REC_FRT_HZT: String = "REC_FRT_HZT"
+    static let REC_FRT_FZT: String = "REC_FRT_FZT"
+    static let REC_LIVAR_HZT: String = "REC_LIVAR_HZT"
+
+    static var cache = [String: AnyObject]()
+
+    static func getData(_ file: String, defaultValue: String? = "") -> String? {
         var fileContent = String()
+
         do {
-            let fileManager = NSFileManager.defaultManager()
-            let directoryURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-            let recFileName = directoryURL.URLByAppendingPathComponent(Configuration.dataFolder + file, isDirectory: false)
-            fileContent = try String(contentsOfFile: recFileName.path!, encoding:NSUTF8StringEncoding)
+            let fileManager = FileManager.default
+            let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let recFileName = directoryURL.appendingPathComponent(Config.PLANNED_DATA_FOLDER + file, isDirectory: false)
+
+            fileContent = try String(contentsOfFile: recFileName.path, encoding: String.Encoding.utf8)
         } catch {
+            Log.error("Cannot load \(file): \(error)")
+
             fileContent = defaultValue!
         }
-        return fileContent;
+
+        return fileContent
     }
-    
-    func getDataForRepresentation<T: ResponseCollectionSerializable>(file:String)  -> [T] {
+
+    static func getData<T:JSONCollection>(_ file: String) -> [T] {
+        Log.debug("Loading data from \(file)")
+
         var result: [T] = []
+
         if (SasaDataHelper.cache[file] != nil) {
             result = SasaDataHelper.cache[file] as! [T]
         } else {
             do {
                 let contentAsString = self.getData(file)
-                let content = contentAsString!.dataUsingEncoding(NSUTF8StringEncoding)
-                let data = try NSJSONSerialization.JSONObjectWithData(content!, options: NSJSONReadingOptions.MutableContainers)
-                result = T.collection(data)
-                SasaDataHelper.cache[file] = result
+                let content = contentAsString!.data(using: String.Encoding.utf8)
+                let data = try JSONSerialization.jsonObject(with: content!, options:
+                JSONSerialization.ReadingOptions.mutableContainers)
+
+                result = T.collection(parameter: JSON(data))
+                SasaDataHelper.cache[file] = result as AnyObject
             } catch {
+                Log.error("Cannot load \(file): \(error)")
             }
         }
+
         return result
     }
-    
-    func getSingleElementForRepresentation<T: ResponseObjectSerializable>(file:String) throws -> T? {
+
+    static func getData<T:JSONable>(_ file: String) throws -> T? {
+        Log.debug("Loading single element from \(file)")
+
         let contentAsString = self.getData(file)
-        let content = contentAsString!.dataUsingEncoding(NSUTF8StringEncoding)
-        let data = try NSJSONSerialization.JSONObjectWithData(content!, options: NSJSONReadingOptions.MutableContainers)
-        return T(representation: data)!
-    
+        let content = contentAsString!.data(using: String.Encoding.utf8)
+        let data = try JSONSerialization.jsonObject(with: content!, options: JSONSerialization.ReadingOptions.mutableContainers)
+
+        return T(parameter: JSON(data))
+
     }
-    
-    static func BusDayTypeTrip(busLine: BusLineItem, dayType: BusDayTypeItem) -> String {
-        return "REC_FRT_LI_NR_" + String(busLine.getNumber()) + "_TAGESART_NR_" + String(dayType.getDayTypeNumber())
+
+    static func BusDayTypeTrip(_ busLine: Line, dayType: BusDayTypeItem) -> String {
+        return "REC_FRT_LI_NR_" + String(busLine.id) + "_TAGESART_NR_" + String(dayType.dayTypeNumber)
     }
 }

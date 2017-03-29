@@ -24,36 +24,37 @@ import UIKit
 import KDCircularProgress
 
 class BackgroundView: UIView {
-    
+
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var progressIndicatorView: KDCircularProgress!
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let nibView = NSBundle.mainBundle().loadNibNamed("BackgroundView", owner: self, options: nil)[0] as! UIView
+        let nibView = Bundle.main.loadNibNamed("BackgroundView", owner: self, options: nil)?[0] as! UIView
         nibView.frame = self.bounds;
         self.addSubview(nibView)
-        
+
         self.injectEasterEgg(self, numberOfTapsRequired: 35)
         self.setupProgressIndicator()
     }
-    
-    func injectEasterEgg(target:UIView, numberOfTapsRequired:Int) {
-        let bSelector : Selector = "tap:"
-        let doubleTapGesture =  UITapGestureRecognizer(target: target, action: bSelector)
+
+    func injectEasterEgg(_ target: UIView, numberOfTapsRequired: Int) {
+        let bSelector: Selector = #selector(BackgroundView.tap(_:))
+        let doubleTapGesture = UITapGestureRecognizer(target: target, action: bSelector)
+
         doubleTapGesture.numberOfTapsRequired = numberOfTapsRequired
         target.addGestureRecognizer(doubleTapGesture)
     }
-    
-    @IBAction func tap(sender: AnyObject){
+
+    @IBAction func tap(_ sender: AnyObject) {
         backgroundImageView.image = UIImage(named: "system_preference_layer")
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
-    private func setupProgressIndicator() {
+
+    fileprivate func setupProgressIndicator() {
         self.progressIndicatorView.angle = 0
         self.progressIndicatorView.progressThickness = 0.04
         self.progressIndicatorView.trackThickness = 0.05
@@ -61,9 +62,9 @@ class BackgroundView: UIView {
         self.progressIndicatorView.center = self.center
         self.progressIndicatorView.gradientRotateSpeed = 100
         self.progressIndicatorView.roundedCorners = true
-        self.progressIndicatorView.glowMode = .NoGlow
-        self.progressIndicatorView.trackColor = Theme.colorWhite
-        self.progressIndicatorView.setColors(Theme.colorOrange ,Theme.colorOrange, Theme.colorOrange)
-        self.progressIndicatorView.hidden = false
+        self.progressIndicatorView.glowMode = .noGlow
+        self.progressIndicatorView.trackColor = Theme.white
+        self.progressIndicatorView.set(colors: Theme.orange, Theme.orange, Theme.orange)
+        self.progressIndicatorView.isHidden = false
     }
 }

@@ -21,42 +21,29 @@
 //
 
 import CoreLocation
+import SwiftyJSON
 
-final class BusDayTypeTripItem: ResponseObjectSerializable, ResponseCollectionSerializable {
-    private let busLineId: Int!
-    private let dayTypeId: Int!
-    private let busTripVariants: [BusTripVariantItem]!
-    
-    init?( representation: AnyObject) {
-        self.busLineId = Int(representation.valueForKeyPath("LI_NR") as! String)!
-        let dayTypeList = representation.valueForKeyPath("tagesartlist") as! NSArray
-        self.dayTypeId = dayTypeList[0].valueForKeyPath("TAGESART_NR") as! Int
-        self.busTripVariants = BusTripVariantItem.collection(dayTypeList[0].valueForKeyPath("varlist")!)
+final class BusDayTypeTripItem: JSONable, JSONCollection {
+
+    let busLineId: Int!
+    let dayTypeId: Int!
+    let busTripVariants: [BusTripVariantItem]!
+
+    required init(parameter: JSON) {
+        self.busLineId = parameter["LI_NR"].intValue
+        let dayTypeList = parameter["tagesartlist"].arrayValue
+        self.dayTypeId = dayTypeList[0]["TAGESART_NR"].intValue
+
+        self.busTripVariants = BusTripVariantItem.collection(parameter: dayTypeList[0]["varlist"])
     }
-    
-    static func collection(representation: AnyObject) -> [BusDayTypeTripItem] {
-        var busDayTypeTripItems: [BusDayTypeTripItem] = []
-        
-        if let representation = representation as? [[String: AnyObject]] {
-            for busDayTypeTripRepresentation in representation {
-                if let busDayTypeTripItem = BusDayTypeTripItem(representation: busDayTypeTripRepresentation) {
-                    busDayTypeTripItems.append(busDayTypeTripItem)
-                }
-            }
+
+    static func collection(parameter: JSON) -> [BusDayTypeTripItem] {
+        var items: [BusDayTypeTripItem] = []
+
+        for dayType in parameter.arrayValue {
+            items.append(BusDayTypeTripItem(parameter: dayType))
         }
-        
-        return busDayTypeTripItems
-    }
-    
-    func getBusLineId() -> Int {
-        return self.busLineId
-    }
-    
-    func getDayTypeId() -> Int {
-        return self.dayTypeId
-    }
-    
-    func getBusTripVariants() -> [BusTripVariantItem] {
-        return self.busTripVariants
+
+        return items
     }
 }

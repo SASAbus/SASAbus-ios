@@ -23,32 +23,35 @@
 import Alamofire
 
 enum SasaOpenDataApiRouter: URLRequestConvertible {
-    static let baseURLString = Configuration.dataUrl
-    
+
+    static let baseURLString = Config.PLANNED_DATA_URL
+
     // APIs exposed
-    case GetExpirationDate()
-    
-    var method: Alamofire.Method {
+    case getExpirationDate()
+
+    var method: HTTPMethod {
         switch self {
-        case .GetExpirationDate:
-            return .GET
+        case .getExpirationDate:
+            return .get
         }
     }
-    
+
     var path: String {
         switch self {
-        case .GetExpirationDate:
-            return "?type=\(SasaDataHelper.ExpirationDate)"
+        case .getExpirationDate:
+            return "?type=\(SasaDataHelper.BASIS_VER_GUELTIGKEIT)"
         }
     }
-    
+
     // MARK: URLRequestConvertible
-    
-    var URLRequest: NSMutableURLRequest {
-        let URL = NSURL(string: SasaOpenDataApiRouter.baseURLString + path)!
-        let mutableURLRequest = NSMutableURLRequest(URL: URL)
-        mutableURLRequest.HTTPMethod = method.rawValue
-        mutableURLRequest.timeoutInterval = Configuration.timeoutInterval
-        return mutableURLRequest
+
+    func asURLRequest() throws -> URLRequest {
+        let url = URL(string: SasaOpenDataApiRouter.baseURLString + path)!
+        let mutableURLRequest = NSMutableURLRequest(url: url)
+
+        mutableURLRequest.httpMethod = method.rawValue
+        mutableURLRequest.timeoutInterval = Config.timeoutInterval
+
+        return mutableURLRequest as URLRequest
     }
 }

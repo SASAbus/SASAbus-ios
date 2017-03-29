@@ -25,5 +25,5 @@ import Foundation
 
 protocol SurveyActionProtocol {
     
-    func triggerSurvey(beaconInfo:SurveyBeaconInfo)
+    func triggerSurvey(beaconInfo: SurveyBeaconInfo)
 }

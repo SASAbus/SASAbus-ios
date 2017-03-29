@@ -23,10 +23,10 @@
 import SwiftValidator
 
 class PhoneNumberRule: RegexRule {
-    
+
     static let regex = "^\\+?\\d{8,14}$"
-    
-    convenience init(message : String = NSLocalizedString("Not a valid phone number", comment: "")){
-        self.init(regex: PhoneNumberRule.regex, message : message)
+
+    convenience init(message: String = NSLocalizedString("Not a valid phone number", comment: "")) {
+        self.init(regex: PhoneNumberRule.regex, message: message)
     }
 }

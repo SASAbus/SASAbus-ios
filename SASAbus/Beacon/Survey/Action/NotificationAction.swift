@@ -25,7 +25,7 @@ import Alamofire
 
 class NotificationAction:SurveyActionProtocol {
     
-    func triggerSurvey(beaconInfo:SurveyBeaconInfo) {
+    func triggerSurvey(beaconInfo: SurveyBeaconInfo) {
     
         Alamofire.request(SurveyApiRouter.GetSurvey).responseObject{ (response: Response<SurveyItem, NSError>) in
             if response.result.isSuccess {
@@ -33,7 +33,7 @@ class NotificationAction:SurveyActionProtocol {
                     let surveyDefinition:SurveyItem = response.result.value!
                     if surveyDefinition.getStatus() == "success" {
                         
-                        let firstQuestion = self.getFirstQuestion(surveyDefinition, beaconInfo:beaconInfo);
+                        let firstQuestion = self.getFirstQuestion(surveyDefinition, beaconInfo:beaconInfo)
                         let localNotification = UILocalNotification()
                         if #available(iOS 8.2, *) {
                             localNotification.alertTitle = NSLocalizedString("Survey", comment: "")
@@ -47,7 +47,7 @@ class NotificationAction:SurveyActionProtocol {
                         localNotification.category = "surveyCategory"
                         var info = [NSObject:AnyObject]()
                         
-                        info["firstQuestion"] = firstQuestion;
+                        info["firstQuestion"] = firstQuestion
                         info["secondQuestion"] = surveyDefinition.getSecondQuestionLocalized()
                         info["user_id"] = UIDevice.currentDevice().identifierForVendor!.UUIDString
                         info["frt_id"] = ""
@@ -67,6 +67,7 @@ class NotificationAction:SurveyActionProtocol {
                         if beaconInfo.getStopBusStop() != nil {
                             info["stop_busstop_id"] = beaconInfo.getStopBusStop()!
                         }
+                        
                         localNotification.userInfo = info
                         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
                         UserDefaultHelper.instance.setLastSurveyTimeStamp(Int(NSDate().timeIntervalSince1970))

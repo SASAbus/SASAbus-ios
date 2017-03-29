@@ -21,43 +21,27 @@
 //
 
 import Foundation
+import SwiftyJSON
 
-final class BusTripItem: ResponseObjectSerializable, ResponseCollectionSerializable {
-    
-    private let tripId: Int!
-    private let startTime: Int!
-    private let groupNumber: Int!
-    
-    init?( representation: AnyObject) {
-        self.tripId = representation.valueForKeyPath("FRT_FID") as! Int
-        self.startTime = representation.valueForKeyPath("FRT_START") as! Int
-        self.groupNumber = representation.valueForKeyPath("FGR_NR") as! Int
+final class BusTripItem: JSONable, JSONCollection {
+
+    let tripId: Int!
+    let startTime: Int!
+    let groupNumber: Int!
+
+    required init(parameter: JSON) {
+        self.tripId = parameter["FRT_FID"].intValue
+        self.startTime = parameter["FRT_START"].intValue
+        self.groupNumber = parameter["FGR_NR"].intValue
     }
-    
-    
-    static func collection(representation: AnyObject) -> [BusTripItem] {
-        var busTripItems: [BusTripItem] = []
-        
-        if let representation = representation as? [[String: AnyObject]] {
-            for busTripRepresentation in representation {
-                if let busTripItem = BusTripItem(representation: busTripRepresentation) {
-                    busTripItems.append(busTripItem)
-                }
-            }
+
+    static func collection(parameter: JSON) -> [BusTripItem] {
+        var items: [BusTripItem] = []
+
+        for trip in parameter.arrayValue {
+            items.append(BusTripItem(parameter: trip))
         }
-        
-        return busTripItems
-    }
-    
-    func getTripId() -> Int {
-        return self.tripId
-    }
-    
-    func getStartTime() -> Int {
-        return self.startTime
-    }
-    
-    func getGroupNumber() -> Int {
-        return self.groupNumber
+
+        return items
     }
 }
