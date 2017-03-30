@@ -31,18 +31,18 @@ class BackgroundView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         let nibView = Bundle.main.loadNibNamed("BackgroundView", owner: self, options: nil)?[0] as! UIView
-        nibView.frame = self.bounds;
+        nibView.frame = self.bounds
         self.addSubview(nibView)
 
-        self.injectEasterEgg(self, numberOfTapsRequired: 35)
-        self.setupProgressIndicator()
+        injectEasterEgg(self)
+        setupProgressIndicator()
     }
 
-    func injectEasterEgg(_ target: UIView, numberOfTapsRequired: Int) {
+    func injectEasterEgg(_ target: UIView) {
         let bSelector: Selector = #selector(BackgroundView.tap(_:))
         let doubleTapGesture = UITapGestureRecognizer(target: target, action: bSelector)
 
-        doubleTapGesture.numberOfTapsRequired = numberOfTapsRequired
+        doubleTapGesture.numberOfTapsRequired = 10
         target.addGestureRecognizer(doubleTapGesture)
     }
 

@@ -148,7 +148,7 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
     }
 
     func getDepartures() {
-        print("Loading departures")
+        Log.info("Loading departures")
 
         let busLineVariantTripResult = self.getBusLineVariantTripsAndIdentifiers(self.secondsFromMidnight)
         let busLineVariantTrips: [BusLineVariantTrip] = busLineVariantTripResult.busLineVariantTrips

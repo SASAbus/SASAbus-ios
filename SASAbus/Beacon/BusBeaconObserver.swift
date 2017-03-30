@@ -91,7 +91,7 @@ class BusBeaconObserver: NSObject, CLLocationManagerDelegate {
         let now = Date()
         if didEnterRegionDate == nil || (now.timeIntervalSince1970 - (didEnterRegionDate?.timeIntervalSince1970)!) > 2 {
             didEnterRegionDate = now
-            print("didEnterRegion \(beaconHandler.getUuid())")
+            Log.warning("didEnterRegion \(beaconHandler.getUuid())")
             self.beaconHandler.clearBeacons()
             locationManager.startRangingBeacons(in: self.region)
         }
@@ -105,7 +105,7 @@ class BusBeaconObserver: NSObject, CLLocationManagerDelegate {
 
             if didExitRegionDate == nil || (now.timeIntervalSince1970 - (didExitRegionDate?.timeIntervalSince1970)!) > 2 {
                 didExitRegionDate = now
-                print("didExitRegion \(beaconHandler.getUuid()) \(beaconRegion.major)")
+                Log.warning("didExitRegion \(beaconHandler.getUuid()) \(beaconRegion.major)")
 
                 let key: String = "\(beaconHandler.getUuid())_\(beaconRegion.major!)"
                 let newRegion = self.regions.removeValue(forKey: key)

@@ -155,7 +155,7 @@ class SasaBusDownloader: DownloaderProtocol {
                 self.enrichData(file, destinationUrl: destinationUrl)
                 self.incrementProgress(progressIndicator)
             } else {
-                print(response.error!)
+                Log.error(response.error!)
 
                 self.errorOccured = true
                 self.errorDescription = response.error?.localizedDescription
@@ -237,7 +237,7 @@ class SasaBusDownloader: DownloaderProtocol {
                 try FileManager.default.createDirectory(atPath: documentsDirectory, withIntermediateDirectories: false)
             }
         } catch {
-            print(error)
+            Log.error(error)
         }
     }
 }

@@ -32,11 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow?
     var drawerController: DrawerController!
 
-    var beaconObserver: BusBeaconObserver! = BusBeaconObserver(BusBeaconHandler(surveyAction: NotificationAction()))
-    var beaconObserverStation: BusStopBeaconObserver! = BusStopBeaconObserver(BusStopBeaconHandler())
+    // var beaconObserver: BusBeaconObserver! = BusBeaconObserver(BusBeaconHandler(surveyAction: NotificationAction()))
+    // var beaconObserverStation: BusStopBeaconObserver! = BusStopBeaconObserver(BusStopBeaconHandler())
+
+    var busBeaconHandler = BusBeaconHandler()
+    var busStopBeaconHandler = BusStopBeaconHandler()
 
     var notificationHandlers: [String : NotificationProtocol] = [String: NotificationProtocol]()
-
 
     // MARK: - UIApplicationDelegate
 
@@ -64,9 +66,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         assert(configureError == nil, "Error configuring Google services: \(configureError)")
 
         // Optional: configure GAI options.
-        //let gai = GAI.sharedInstance()
-        //gai.trackUncaughtExceptions = true  // report uncaught exceptions
-        //gai.logger.logLevel = GAILogLevel.Verbose  // remove before app release
+        let gai = GAI.sharedInstance()
+        gai?.trackUncaughtExceptions = true
+        // gai?.logger?.logLevel = GAILogLevel.verbose
+
+        busBeaconHandler.startObserving()
+        busStopBeaconHandler.startObserving()
 
         return true
     }
@@ -126,7 +131,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         self.saveContext()
     }
 
-
     func startDownloadSplashScreen() {
         let delegate = DownloadDataFinished()
         delegate.appDelegate = self
@@ -140,9 +144,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func startApplication() {
 
-        //start listening to beacons
-        self.beaconObserver.startObserving()
-        self.beaconObserverStation.startObserving()
+        // start listening to beacons
+        // self.beaconObserver.startObserving()
+        // self.beaconObserverStation.startObserving()
         self.registerForLocalNotifications()
 
         // Ask for Authorisation from the User.
@@ -165,7 +169,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         self.drawerController.closeDrawerGestureModeMask = CloseDrawerGestureMode.panningCenterView
         self.window!.rootViewController = self.drawerController
     }
-
 
     // MARK: - Core Data stack
 
@@ -227,7 +230,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         return managedObjectContext
     }
 
-
     // MARK: - Core Data Saving support
 
     func saveContext() {
@@ -266,7 +268,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         surveyCategory.identifier = surveyNotificationHandler.getName()
         surveyCategory.setActions([notificationYes, notificationNo], for: UIUserNotificationActionContext.default)
         surveyCategory.setActions([notificationYes, notificationNo], for: UIUserNotificationActionContext.minimal)
-
 
         self.notificationHandlers[surveyNotificationHandler.getName()] = surveyNotificationHandler
 

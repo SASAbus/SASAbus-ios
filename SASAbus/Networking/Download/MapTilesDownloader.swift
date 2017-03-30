@@ -60,7 +60,7 @@ class MapTilesDownloader: DownloaderProtocol {
                     if response.result.isSuccess {
                         self.extract(circularProgress, directory: directoryURL, file: filename)
                     } else {
-                        print(response.error!)
+                        Log.error(response.error!)
                         circularProgress.error(response.error?.localizedDescription, fatal: false)
                     }
                 }
@@ -116,7 +116,7 @@ class MapTilesDownloader: DownloaderProtocol {
             //delete file
             try fileManager.removeItem(at: url)
         } catch {
-            print(error)
+            Log.error(error)
             circularProgress.error(error.localizedDescription, fatal: false)
         }
     }

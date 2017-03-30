@@ -31,8 +31,8 @@ class BusStopFilterViewController: UIViewController, UICollectionViewDelegate, U
     fileprivate var filteredBusLines: [BusLineFilter]!
 
 
-    init(filteredBusLines: [BusLineFilter], nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    init(filteredBusLines: [BusLineFilter]) {
+        super.init(nibName: "BusStopFilterViewController", bundle: nil)
 
         self.filteredBusLines = filteredBusLines
     }

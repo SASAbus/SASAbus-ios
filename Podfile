@@ -19,8 +19,12 @@ target 'SASAbus' do
   pod 'RxCocoa',    '~> 3.0'
 
   pod 'RealmSwift'
-  
-  pod 'Log'
+
+  pod 'Kingfisher', '~> 3.0'
+
+  pod "StatefulViewController", "~> 3.0"
+
+  pod 'SSZipArchive'
 end
 
 post_install do |installer|
@@ -30,4 +34,3 @@ post_install do |installer|
     end
   end
 end
-

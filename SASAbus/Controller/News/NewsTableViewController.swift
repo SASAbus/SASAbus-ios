@@ -84,8 +84,6 @@ class NewsTableViewController: MasterTableViewController {
         for index in stride(from: (newsItems.count - 1), through: 0, by: -1) {
             let newsItem = newsItems[index]
 
-            Log.info("Zone: \(newsZone!)")
-
             if self.newsZone != newsItem.zone {
                 newsItems.remove(at: index)
             }
@@ -102,7 +100,8 @@ class NewsTableViewController: MasterTableViewController {
         let refreshControl = UIRefreshControl()
 
         refreshControl.tintColor = Theme.lightOrange
-        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""), attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
+        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""),
+                attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
         refreshControl.addTarget(self.tabBarController, action: "getNews", for: UIControlEvents.valueChanged)
 
         self.refreshControl = refreshControl

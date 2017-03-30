@@ -7,7 +7,7 @@ class Utils {
         return String(fullLocale.characters.prefix(2))
     }
 
-    /*static func insertTripIfValid(beacon: BusBeacon) -> Bool {
+    static func insertTripIfValid(beacon: BusBeacon) -> Bool {
         return true
-    }*/
+    }
 }

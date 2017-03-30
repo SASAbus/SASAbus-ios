@@ -2,7 +2,617 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7581f885-3cb4-404b-a04e-4d5aa80cc55c" name="Default" comment="Synx cleanup">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus.xcodeproj/project.xcworkspace/xcuserdata/ufala.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus.xcworkspace/xcuserdata/Alex.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus.xcworkspace/xcuserdata/umarn.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/AppIcon.appiconset/Icon-40.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/AppIcon.appiconset/Icon-40@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/AppIcon.appiconset/Icon-40@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/AppIcon.appiconset/Icon-60@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/AppIcon.appiconset/Icon-60@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/AppIcon.appiconset/Icon-76.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/AppIcon.appiconset/Icon-76@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/AppIcon.appiconset/Icon-Small.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/AppIcon.appiconset/Icon-Small@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/AppIcon.appiconset/Icon-Small@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/BG_sidemenu.imageset/BG_sidemenu.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/BG_sidemenu.imageset/BG_sidemenu@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/BG_sidemenu.imageset/BG_sidemenu@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/SASA-Logo.imageset/SASA-Logo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/alle_icon.imageset/alle_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/alle_icon.imageset/alle_icon@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/alle_icon.imageset/alle_icon@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/alle_icon_filled.imageset/alle_icon_filled.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/alle_icon_filled.imageset/alle_icon_filled@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/alle_icon_filled.imageset/alle_icon_filled@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/bus_icon.imageset/bus_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/bus_icon.imageset/bus_icon@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/bus_icon.imageset/bus_icon@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/busstop_end.imageset/busstop_end.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/busstop_end.imageset/busstop_end@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/busstop_middle.imageset/busstop_middle.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/busstop_middle.imageset/busstop_middle@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/busstop_start.imageset/busstop_start.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/busstop_start.imageset/busstop_start@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/favorit_icon.imageset/favorit_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/favorit_icon.imageset/favorit_icon@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/favorit_icon.imageset/favorit_icon@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/favorit_icon_filled.imageset/favorit_icon_filled.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/favorit_icon_filled.imageset/favorit_icon_filled@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/favorit_icon_filled.imageset/favorit_icon_filled@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/filter_icon.imageset/filter_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/filter_icon.imageset/filter_icon@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/filter_icon.imageset/filter_icon@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/filter_icon_filled.imageset/filter_icon_filled.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/filter_icon_filled.imageset/filter_icon_filled@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/filter_icon_filled.imageset/filter_icon_filled@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_account_circle_white.imageset/ic_account_circle_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_account_circle_white.imageset/ic_account_circle_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_account_circle_white.imageset/ic_account_circle_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_account_circle_white_36pt.imageset/ic_account_circle_white_36pt.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_account_circle_white_36pt.imageset/ic_account_circle_white_36pt_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_account_circle_white_36pt.imageset/ic_account_circle_white_36pt_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_app.imageset/ic_launcher-1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_app.imageset/ic_launcher-2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_app.imageset/ic_launcher.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_bubble_chart_white.imageset/ic_bubble_chart_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_bubble_chart_white.imageset/ic_bubble_chart_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_bubble_chart_white.imageset/ic_bubble_chart_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_bubble_chart_white_48pt.imageset/ic_bubble_chart_white_48pt.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_bubble_chart_white_48pt.imageset/ic_bubble_chart_white_48pt_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_bubble_chart_white_48pt.imageset/ic_bubble_chart_white_48pt_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_bus_orange.imageset/ic_bus_orange.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_bus_stop_red.imageset/ic_bus_stop_red.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_call_made_white.imageset/ic_call_made_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_call_made_white.imageset/ic_call_made_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_call_made_white.imageset/ic_call_made_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_directions_bus_white.imageset/ic_directions_bus_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_directions_bus_white.imageset/ic_directions_bus_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_directions_bus_white.imageset/ic_directions_bus_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_directions_walk_white.imageset/ic_directions_walk_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_directions_walk_white.imageset/ic_directions_walk_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_directions_walk_white.imageset/ic_directions_walk_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_done_white.imageset/ic_done_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_done_white.imageset/ic_done_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_done_white.imageset/ic_done_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_done_white_48pt.imageset/ic_done_white_48pt.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_done_white_48pt.imageset/ic_done_white_48pt_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_done_white_48pt.imageset/ic_done_white_48pt_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_event_note_white.imageset/ic_event_note_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_event_note_white.imageset/ic_event_note_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_event_note_white.imageset/ic_event_note_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_event_white.imageset/ic_event_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_event_white.imageset/ic_event_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_event_white.imageset/ic_event_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_explore_white.imageset/ic_explore_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_explore_white.imageset/ic_explore_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_explore_white.imageset/ic_explore_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_flag_white.imageset/ic_flag_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_flag_white.imageset/ic_flag_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_flag_white.imageset/ic_flag_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_flag_white_48pt.imageset/ic_flag_white_48pt.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_flag_white_48pt.imageset/ic_flag_white_48pt_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_flag_white_48pt.imageset/ic_flag_white_48pt_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_font_download_white.imageset/ic_font_download_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_font_download_white.imageset/ic_font_download_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_font_download_white.imageset/ic_font_download_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_hydrogen_white.imageset/ic_hydrogen_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_hydrogen_white.imageset/ic_hydrogen_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_hydrogen_white.imageset/ic_hydrogen_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_info_outline_white.imageset/ic_info_outline_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_info_outline_white.imageset/ic_info_outline_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_info_outline_white.imageset/ic_info_outline_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_language_white.imageset/ic_language_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_language_white.imageset/ic_language_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_language_white.imageset/ic_language_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_list_white_36pt.imageset/ic_list_white_36pt.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_list_white_36pt.imageset/ic_list_white_36pt_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_list_white_36pt.imageset/ic_list_white_36pt_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_local_gas_station_white.imageset/ic_local_gas_station_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_local_gas_station_white.imageset/ic_local_gas_station_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_local_gas_station_white.imageset/ic_local_gas_station_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_loyalty_white.imageset/ic_loyalty_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_loyalty_white.imageset/ic_loyalty_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_loyalty_white.imageset/ic_loyalty_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_loyalty_white_36pt.imageset/ic_loyalty_white_36pt.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_loyalty_white_36pt.imageset/ic_loyalty_white_36pt_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_loyalty_white_36pt.imageset/ic_loyalty_white_36pt_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_loyalty_white_48pt.imageset/ic_loyalty_white_48pt.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_loyalty_white_48pt.imageset/ic_loyalty_white_48pt_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_loyalty_white_48pt.imageset/ic_loyalty_white_48pt_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_map_white.imageset/ic_map_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_map_white.imageset/ic_map_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_map_white.imageset/ic_map_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_map_yellow.imageset/ic_map_yellow_3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_nature_people_white.imageset/ic_nature_people_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_nature_people_white.imageset/ic_nature_people_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_nature_people_white.imageset/ic_nature_people_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_bus.imageset/ic_navigation_bus.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_bus.imageset/ic_navigation_bus@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_bus.imageset/ic_navigation_bus@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_busstop.imageset/ic_navigation_busstop.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_busstop.imageset/ic_navigation_busstop@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_busstop.imageset/ic_navigation_busstop@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_map.imageset/ic_navigation_map.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_map.imageset/ic_navigation_map@2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_map.imageset/ic_navigation_map@3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_news.imageset/ic_navigation_news.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_news.imageset/ic_navigation_news@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_news.imageset/ic_navigation_news@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_parking.imageset/ic_navigation_parking.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_parking.imageset/ic_navigation_parking@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_parking.imageset/ic_navigation_parking@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_news_blue.imageset/ic_news_blue.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_palette_white.imageset/ic_palette_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_palette_white.imageset/ic_palette_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_palette_white.imageset/ic_palette_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_parking_green.imageset/ic_parking_green.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_pin_drop_white.imageset/ic_pin_drop_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_pin_drop_white.imageset/ic_pin_drop_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_pin_drop_white.imageset/ic_pin_drop_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_refresh_white.imageset/ic_refresh_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_refresh_white.imageset/ic_refresh_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_refresh_white.imageset/ic_refresh_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_reorder_white.imageset/ic_reorder_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_reorder_white.imageset/ic_reorder_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_reorder_white.imageset/ic_reorder_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_route_purple.imageset/ic_route_purple.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_schedule_white.imageset/ic_schedule_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_schedule_white.imageset/ic_schedule_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_schedule_white.imageset/ic_schedule_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_star_border_white.imageset/ic_star_border_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_star_border_white.imageset/ic_star_border_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_star_border_white.imageset/ic_star_border_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_star_white.imageset/ic_star_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_star_white.imageset/ic_star_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_star_white.imageset/ic_star_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_store_white.imageset/ic_store_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_store_white.imageset/ic_store_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_store_white.imageset/ic_store_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_timeline_white.imageset/ic_timeline_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_timeline_white.imageset/ic_timeline_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_timeline_white.imageset/ic_timeline_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_timetables_turquoise.imageset/ic_timetables_turquoise.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_track_changes_white.imageset/ic_track_changes_white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_track_changes_white.imageset/ic_track_changes_white_2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_track_changes_white.imageset/ic_track_changes_white_3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_trips_deep_purple.imageset/ic_trips_deep_purple.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/intro_agreement.imageset/agreement.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/intro_bluetooth.imageset/beacons.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/intro_data.imageset/data.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/intro_permission.imageset/permission.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/intro_realtime.imageset/real-time.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/line_course_dot.imageset/dot.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/line_course_dots.imageset/dots.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/line_course_dots_5.imageset/ic_dots_5.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/location_icon.imageset/location_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/location_icon.imageset/location_icon@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/location_icon.imageset/location_icon@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/location_icon_filled.imageset/location_icon_filled.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/location_icon_filled.imageset/location_icon_filled@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/location_icon_filled.imageset/location_icon_filled@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/logo_SASA_2014_nur_rund.imageset/logo_SASA_2014_nur_rund.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/map_icon.imageset/map_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/map_icon.imageset/map_icon@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/map_icon.imageset/map_icon@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/map_icon_filled.imageset/map_icon_filled.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/map_icon_filled.imageset/map_icon_filled@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/map_icon_filled.imageset/map_icon_filled@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/menu_icon.imageset/menu_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/menu_icon.imageset/menu_icon@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/menu_icon.imageset/menu_icon@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/more_icon.imageset/more_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/more_icon.imageset/more_icon@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/more_icon.imageset/more_icon@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/more_icon_filled.imageset/more_icon_filled.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/more_icon_filled.imageset/more_icon_filled@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/more_icon_filled.imageset/more_icon_filled@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/parking.imageset/parking.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/real-time2.imageset/real-time2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/system_preference_layer.imageset/system_preference_layer.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/wappen_bz.imageset/wappen_bz.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/wappen_bz.imageset/wappen_bz@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/wappen_me.imageset/wappen_me.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/wappen_me.imageset/wappen_me@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/wave.imageset/Wave.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/bredamenarinibus_avancity.imageset/bredamenarinibus_avancity.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/bredamenarinibus_monocar_221.imageset/bredamenarinibus_monocar_221.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/bredamenarinibus_monocar_231.imageset/bredamenarinibus_monocar_231.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/bredamenarinibus_monocar_240.imageset/bredamenarinibus_monocar_240.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/bredamenarinibus_monocar_240_nu.imageset/bredamenarinibus_monocar_240_nu.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/bredamenarinibus_vivacity.imageset/bredamenarinibus_vivacity.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/bredamenarinibus_vivacity_plus.imageset/bredamenarinibus_vivacity_plus.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/iveco_irisbus.imageset/iveco_irisbus.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/man_313_ng_cng.imageset/man_313_ng_cng.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/man_lions_city.imageset/man_lions_city.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/man_ng_313.imageset/man_ng_313.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/man_nl_313.imageset/man_nl_313.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/mercedes_benz_citaro_o_530_bz.imageset/mercedes_benz_citaro_o_530_bz.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/mercedes_benz_citaro_o_530_gn.imageset/mercedes_benz_citaro_o_530_gn.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/mercedes_benz_citaro_o_530_k.imageset/mercedes_benz_citaro_o_530_k.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/mercedes_benz_citaro_o_530_n.imageset/mercedes_benz_citaro_o_530_n.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/mercedes_benz_citaro_o_530_n_387.imageset/mercedes_benz_citaro_o_530_n_387.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/mercedes_benz_citaro_o_530_n_orange.imageset/mercedes_benz_citaro_o_530_n_orange.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/mercedes_benz_sprinter_o_513_nxfl.imageset/mercedes_benz_sprinter_o_513_nxfl.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/redamenarinibus_monocar_240_ls_3p.imageset/redamenarinibus_monocar_240_ls_3p.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/solaris_urbino_12.imageset/solaris_urbino_12.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/solaris_urbino_18.imageset/solaris_urbino_18.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/www/webmap/favicon.ico" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/www/webmap/sasabuswebmap/clear.cache.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/SASAbus-ios.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/xcode.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Podfile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Podfile.lock" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus.xcodeproj/project.pbxproj" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus.xcodeproj/project.xcworkspace/contents.xcworkspacedata" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus.xcodeproj/project.xcworkspace/xcuserdata/Alex.xcuserdatad/xcschemes/xcschememanagement.plist" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus.xcodeproj/xcuserdata/Alex.xcuserdatad/xcschemes/SASAbus.xcscheme" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus.xcodeproj/xcuserdata/Alex.xcuserdatad/xcschemes/xcschememanagement.plist" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus.xcodeproj/xcuserdata/ufala.xcuserdatad/xcschemes/SASAbus.xcscheme" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus.xcodeproj/xcuserdata/ufala.xcuserdatad/xcschemes/xcschememanagement.plist" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus.xcodeproj/xcuserdata/umarn.xcuserdatad/xcschemes/SASAbus.xcscheme" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus.xcodeproj/xcuserdata/umarn.xcuserdatad/xcschemes/xcschememanagement.plist" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus.xcworkspace/contents.xcworkspacedata" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus.xcworkspace/xcuserdata/Alex.xcuserdatad/xcschemes/xcschememanagement.plist" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus.xcworkspace/xcuserdata/umarn.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/AppDelegate-Bridging-Header.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/AppDelegate.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/AppIcon.appiconset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/BG_sidemenu.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/SASA-Logo.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/alle_icon.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/alle_icon_filled.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/bus_icon.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/busstop_end.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/busstop_middle.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/busstop_start.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/favorit_icon.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/favorit_icon_filled.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/filter_icon.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/filter_icon_filled.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_account_circle_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_account_circle_white_36pt.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_app.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_bubble_chart_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_bubble_chart_white_48pt.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_bus_orange.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_bus_stop_red.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_call_made_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_directions_bus_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_directions_walk_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_done_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_done_white_48pt.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_event_note_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_event_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_explore_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_flag_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_flag_white_48pt.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_font_download_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_hydrogen_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_info_outline_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_language_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_list_white_36pt.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_local_gas_station_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_loyalty_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_loyalty_white_36pt.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_loyalty_white_48pt.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_map_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_map_yellow.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_nature_people_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_bus.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_busstop.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_map.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_news.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_navigation_parking.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_news_blue.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_palette_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_parking_green.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_pin_drop_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_refresh_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_reorder_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_route_purple.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_schedule_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_star_border_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_star_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_store_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_timeline_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_timetables_turquoise.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_track_changes_white.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_trips_deep_purple.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/intro_agreement.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/intro_bluetooth.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/intro_data.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/intro_permission.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/intro_realtime.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/line_course_dot.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/line_course_dots.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/line_course_dots_5.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/location_icon.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/location_icon_filled.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/logo_SASA_2014_nur_rund.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/map_icon.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/map_icon_filled.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/menu_icon.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/more_icon.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/more_icon_filled.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/parking.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/real-time2.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/system_preference_layer.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/wappen_bz.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/wappen_me.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/wave.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Beacon/BeaconHandlerProtocol.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Beacon/Bus/Action/NotificationAction.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Beacon/Bus/BusBeaconHandlerOld.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Beacon/Bus/LocationFoundProtocol.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Beacon/Bus/SurveyActionProtocol.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Beacon/Bus/SurveyBeaconInfo.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Beacon/Bus/SurveyLocationHandler.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Beacon/Bus/SurveyNotificationHandler.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Beacon/BusBeaconObserver.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Beacon/BusStop/BusStopBeaconHandlerOld.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Beacon/BusStopBeaconObserver.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Beacon/New/BeaconStorage.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Beacon/New/bus/BusBeacon.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Beacon/New/bus/BusBeaconHandler.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Beacon/New/bus/CurrentTrip.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Beacon/New/busstop/BusStopBeaconHandler.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/bredamenarinibus_avancity.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/bredamenarinibus_monocar_221.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/bredamenarinibus_monocar_231.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/bredamenarinibus_monocar_240.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/bredamenarinibus_monocar_240_nu.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/bredamenarinibus_vivacity.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/bredamenarinibus_vivacity_plus.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/iveco_irisbus.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/man_313_ng_cng.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/man_lions_city.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/man_ng_313.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/man_nl_313.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/mercedes_benz_citaro_o_530_bz.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/mercedes_benz_citaro_o_530_gn.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/mercedes_benz_citaro_o_530_k.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/mercedes_benz_citaro_o_530_n.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/mercedes_benz_citaro_o_530_n_387.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/mercedes_benz_citaro_o_530_n_orange.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/mercedes_benz_sprinter_o_513_nxfl.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/redamenarinibus_monocar_240_ls_3p.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/solaris_urbino_12.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/BusImages.xcassets/solaris_urbino_18.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Config.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BackgroundView.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BackgroundView.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/BusStopAutoCompleteTableViewCell.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/BusStopAutoCompleteTableViewCell.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/BusStopViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/BusStopViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/Favorites/BusStopFavoritesTableViewCell.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/Favorites/BusStopFavoritesTableViewCell.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/Favorites/BusStopFavoritesViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/Favorites/BusStopFavoritesViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/Filter/BusStopFilterCollectionViewCell.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/Filter/BusStopFilterCollectionViewCell.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/Filter/BusStopFilterViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/Filter/BusStopFilterViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/Gps/BusStopGpsTableViewCell.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/Gps/BusStopGpsViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/Gps/BusStopGpsViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/Gps/BusstopGpsTableViewCell.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/Map/BusStopMapViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/Map/BusStopMapViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/Trip/BusStopTripTableViewCell.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/Trip/BusStopTripTableViewCell.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/Trip/BusStopTripViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusStop/Trip/BusStopTripViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Departure/DepartureBusLineTableViewCell.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Departure/DepartureBusStopTableViewCell.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Departure/DepartureTableViewCell.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Departure/DepartureViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Download/DownloadViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Download/DownloadViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Download/DownloadViewProgressIndicator.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Badges/EcoPointsBadgeCell.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Badges/EcoPointsBadgeCell.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Badges/EcoPointsBadgeFooterCell.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Badges/EcoPointsBadgesViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Badges/EcoPointsBadgesViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/EcoPointsTabViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/EcoPointsTabViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/EcoPointsViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/EcoPointsViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Leaderboard/EcoPointsLeaderboardFooterCell.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Leaderboard/EcoPointsLeaderboardUserCell.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Leaderboard/EcoPointsLeaderboardUserCell.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Leaderboard/EcoPointsLeaderboardViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Leaderboard/EcoPointsLeaderboardViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Login/LoginViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Login/LoginViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Profile/EcoPointsProfileCell.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Profile/EcoPointsProfileCell.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Profile/EcoPointsProfileViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Profile/EcoPointsProfileViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Info/InfoViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Info/InfoViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Launch/Launch Screen.storyboard" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Line/BusLineAutoCompleteTableViewCell.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Line/BuslineAutocompleteTableViewCell.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Line/LineViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Line/LineViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Map/MapJavascriptBridge.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Map/MapViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Map/MapViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/MasterTabBarController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/MasterTableView.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/MasterTableViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/MasterViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Menu/MenuItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Menu/MenuTableViewCell.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Menu/MenuTableViewCell.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Menu/MenuViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Menu/MenuViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Menu/NewsApi.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/News/Detail/NewsDetailViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/News/Detail/NewsDetailViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/News/NewsTabBarController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/News/NewsTableViewCell.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/News/NewsTableViewCell.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/News/NewsTableViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/News/NewsTableViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Parking/Detail/ParkingDetailTableViewCell.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Parking/Detail/ParkingDetailTableViewCell.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Parking/Detail/ParkingDetailViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Parking/Detail/ParkingDetailViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Parking/ParkingTableViewCell.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Parking/ParkingTableViewCell.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Parking/ParkingViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Parking/ParkingViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Realtime/BottomSheetViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Realtime/BottomSheetViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Realtime/MainMapViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Realtime/RealtimeMapViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Realtime/RealtimeMapViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Realtime/pulley/PulleyPassthroughScrollDelegate.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Realtime/pulley/PulleyViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Survey/SurveyContactViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Survey/SurveyContactViewController.xib" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Controller/Survey/Validator/PhoneNumberRule.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/DefaultSettings.plist" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/GoogleService-Info.plist" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Info.plist" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Log/Formatter.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Log/Formatters.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Log/Log.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Log/LogTheme.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Log/Themes.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Log/Utilities.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/BusDayTypeItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/BusDayTypeTripItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/BusDefaultWaitTimeAtStopItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/BusExceptionTimeBetweenStopItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/BusLineWaitTimeAtStopItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/BusPathItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/BusPathVariantItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/BusStandardTimeBetweenStopsItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/BusStationItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/BusStopItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/BusStopMapAnnotation.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/BusTripItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/BusTripVariantItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/BusWaitTimeAtStopItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/Buses.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/ExpirationItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/Lines.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/MapAnnotation.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/NewsItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/ParkingStationItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/RealtimeBus.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/SurveyItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Model/Vehicle.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/Api/EcoPointsApi.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/Api/LinesApi.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/Api/ParkingApi.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/Api/RealtimeApi.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/Api/UserApi.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/AuthHelper.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/Download/DownloadFinishedProtocol.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/Download/DownloaderProtocol.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/Download/MapTilesDownloader.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/Download/ProgressIndicatorProtocol.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/Download/SasaBusDownloader.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/Endpoint.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/Model/EcoPoints/Badge.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/Model/EcoPoints/LeaderboardPlayer.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/Model/EcoPoints/Profile.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/Model/Line.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/Model/Parking.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/NetUtils.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/ParkingApiRouter.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/PrivacyApiRouter.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/RestClient.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/SasaOpenDataApiRouter.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Networking/SurveyApiRouter.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Notification/NotificationProtocol.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Notification/Notifications.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Realm/BusStop/BusStop.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Realm/BusStopRealmHelper.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Realm/User/FavoriteBusStop.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Realm/User/FavoriteLine.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Realm/UserRealmHelper.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Realm/busstops.realm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/SASAbus.xcdatamodeld/.xccurrentversion" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/SASAbus.xcdatamodeld/SASAbus.xcdatamodel/contents" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Settings.bundle/Root.plist" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Settings.bundle/de.lproj/Root.strings" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Settings.bundle/en.lproj/Root.strings" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Settings.bundle/it.lproj/Root.strings" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Theme.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/Analytics.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/BusLineFilter.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/BusLineVariantTrip.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/BusLineVariantTripResult.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/BusStationDistance.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/BusTripBusStopTime.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/BusTripCalculator.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/Color.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/ColorHelper.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/CurrentBusStopHelper.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/DepartureItem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/DeviceUtils.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/IOUtils.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/Json/Array+Serializable.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/Json/JSONExtension.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/Json/Serializable.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/SasaDataHelper.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/Settings.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/UIUtils.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/UserDefaultHelper.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/Utils.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/View/LoadingIndicator.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/View/Placeholder/BasicPlaceholderView.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/View/Placeholder/EmptyView.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/View/Placeholder/ErrorView.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/View/Placeholder/LoadingView.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/api/API.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/api/ApiUtils.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/api/PlanData.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/api/api/CompanyCalendar.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/api/api/Departures.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/api/api/HaltTimes.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/api/api/Handler.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/api/api/Intervals.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/api/api/Paths.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/api/api/StopTimes.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/api/api/Trips.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/api/model/ApiBusStop.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/api/model/Interval.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/api/model/PlannedDeparture.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/api/model/StopTime.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/api/model/Trip.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/de.lproj/Localizable.strings" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/en.lproj/Localizable.strings" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/it.lproj/Localizable.strings" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/www/webmap/SASAbusWebMap.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/www/webmap/SASAbusWebMap.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/www/webmap/leaflet-0.7/leaflet.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/www/webmap/leaflet-0.7/leaflet.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/www/webmap/sasabuswebmap/214F94276E9BDFA35B7601205C686431.cache.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/www/webmap/sasabuswebmap/8BDC8958C283A717BA81B02244EF1E16.cache.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/www/webmap/sasabuswebmap/931B864CF1F0989A41665666AD4E57C0.cache.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/www/webmap/sasabuswebmap/A063CF2A14DE9B4133ABC2003B174377.cache.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/www/webmap/sasabuswebmap/F2E2EC56DFE2B0B33F91A97D14D6C991.cache.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/www/webmap/sasabuswebmap/compilation-mappings.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/www/webmap/sasabuswebmap/sasabuswebmap.devmode.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/www/webmap/sasabuswebmap/sasabuswebmap.nocache.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/de.lproj/Localizable.strings" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/en.lproj/Localizable.strings" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/it.lproj/Localizable.strings" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -67,20 +677,6 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SASAbus" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SASAbus" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Cidr.FilesView" />
@@ -89,7 +685,7 @@
   <component name="PropertiesComponent">
     <property name="FullScreen" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.SASAbus">
     <configuration default="true" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SASAbus" TARGET_NAME="SASAbus" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="SASAbus" RUN_TARGET_NAME="SASAbus" MAKE_ACTIVE="TRUE">
       <envs />
       <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
@@ -97,6 +693,16 @@
       </EXTENSION>
       <method />
     </configuration>
+    <configuration default="false" name="SASAbus" type="AppleRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-v" WORKING_DIR="" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SASAbus" TARGET_NAME="SASAbus" CONFIG_NAME="Debug" SCHEME_NAME="SASAbus" RUN_TARGET_PROJECT_NAME="SASAbus" RUN_TARGET_NAME="SASAbus" MAKE_ACTIVE="TRUE">
+      <envs />
+      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
+        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
+      </EXTENSION>
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Application.SASAbus" />
+    </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -111,37 +717,36 @@
       <workItem from="1490880248729" duration="7000" />
       <workItem from="1490880369834" duration="287000" />
       <workItem from="1490880776526" duration="1044000" />
-      <workItem from="1490883350086" duration="164000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1502000" />
+    <option name="totallyTimeSpent" value="1338000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24954791" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959184" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24954791" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959184" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,6 +786,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="31" column="25" lean-forward="true" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -188,6 +794,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="551">
           <caret line="369" column="43" lean-forward="false" selection-start-line="369" selection-start-column="43" selection-end-line="369" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>

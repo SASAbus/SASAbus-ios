@@ -6,19 +6,16 @@ import SwiftyJSON
 
 class RestClient {
 
-    static func get<T:JSONable>(_ url: String, index: String) -> Observable<T?> {
+    static func get<T: JSONable>(_ url: String, index: String) -> Observable<T?> {
         return Observable<T?>.create { observer -> Disposable in
             let requestReference = getInternal(url)
                     .responseJSON(completionHandler: { response in
                         if response.result.isSuccess {
                             let json = JSON(response.result.value)
 
-                            var items: [T?] = []
-                            if let item = json[index].to(type: T.self) {
-                                items = item as! [T?]
-                            }
+                            let item = json[index].to(type: T.self)
 
-                            observer.onNext(items.first as Any as? T)
+                            observer.onNext(item as? T)
 
                             observer.onCompleted()
                         } else {
@@ -32,7 +29,7 @@ class RestClient {
         }
     }
 
-    static func get<T:JSONable>(_ url: String, index: String) -> Observable<[T]> {
+    static func get<T: JSONable>(_ url: String, index: String) -> Observable<[T]> {
         return Observable<[T]>.create { observer -> Disposable in
             let requestReference = getInternal(url)
                     .responseJSON(completionHandler: { response in
@@ -58,11 +55,40 @@ class RestClient {
         }
     }
 
+    static func post(_ url: String, parameters: [String : String]) -> Observable<JSON> {
+        return Observable<JSON>.create { observer -> Disposable in
+            let requestReference = postInternal(url, parameters: parameters)
+                    .responseJSON(completionHandler: { response in
+                        if response.result.isSuccess {
+                            let json = JSON(response.result.value)
+                            observer.onNext(json)
+                            observer.onCompleted()
+                        } else {
+                            observer.onError(response.result.error!)
+                        }
+                    })
+
+            return Disposables.create {
+                requestReference.cancel()
+            }
+        }
+    }
+
+
+    // - MARK: Internal network requests
+
     static func getInternal(_ endpoint: String, parameters: Parameters? = nil) -> Alamofire.DataRequest {
         let url = "\(Endpoint.API)\(endpoint)"
 
         let headers = getHeaders(url)
         return request(url, method: .get, parameters: parameters, headers: headers)
+    }
+
+    static func postInternal(_ endpoint: String, parameters: Parameters? = nil) -> Alamofire.DataRequest {
+        let url = "\(Endpoint.API)\(endpoint)"
+
+        let headers = getHeaders(url)
+        return request(url, method: .post, parameters: parameters, headers: headers)
     }
 
     static func request(_ url: URLConvertible, method: HTTPMethod, parameters: Parameters? = nil,
@@ -72,6 +98,9 @@ class RestClient {
 
         return Alamofire.request(url, method: method, parameters: parameters, headers: headers)
     }
+
+
+    // - MARK: Headers
 
     static func getHeaders(_ url: URLConvertible) -> [String : String] {
         let versionCode = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
@@ -93,7 +122,7 @@ class RestClient {
             if let token = token {
                 headers["Authorization"] = "Bearer \(token)"
             } else {
-                print("Token is invalid")
+                Log.error("Token is invalid")
             }
         }
 

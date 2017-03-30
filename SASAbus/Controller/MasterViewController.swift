@@ -27,20 +27,20 @@ import DrawerController
 class MasterViewController: UIViewController {
 
     init(nibName: String?, title: String?) {
-        super.init(nibName: nibName, bundle: nil);
-        self.title = title;
+        super.init(nibName: nibName, bundle: nil)
+        self.title = title
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder);
+        super.init(coder: aDecoder)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.edgesForExtendedLayout = UIRectEdge()
-        self.extendedLayoutIncludesOpaqueBars = false;
-        self.automaticallyAdjustsScrollViewInsets = false;
+        self.extendedLayoutIncludesOpaqueBars = false
+        self.automaticallyAdjustsScrollViewInsets = false
         self.setupLeftMenuButton()
     }
 
