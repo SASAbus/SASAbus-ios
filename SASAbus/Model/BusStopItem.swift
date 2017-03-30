@@ -59,11 +59,13 @@ final class BusStopItem: NSObject, NSCoding, JSONable, JSONCollection {
         return items
     }
 
-    func getDictionary() -> Dictionary<String, AnyObject> {
-        var jsonDictinary = [String: AnyObject]()
-        jsonDictinary["ORT_NR"] = self.number as AnyObject?
-        jsonDictinary["ORT_POS_BREITE"] = self.location.coordinate.latitude as AnyObject?
-        jsonDictinary["ORT_POS_LAENGE"] = self.location.coordinate.longitude as AnyObject?
-        return jsonDictinary
+    func getDictionary() -> [String : AnyObject] {
+        var json = [String: AnyObject]()
+
+        json["ORT_NR"] = self.number as AnyObject?
+        json["ORT_POS_BREITE"] = self.location.coordinate.latitude as AnyObject?
+        json["ORT_POS_LAENGE"] = self.location.coordinate.longitude as AnyObject?
+
+        return json
     }
 }

@@ -54,7 +54,9 @@ class MasterTableViewController: UITableViewController {
         self.navigationItem.setLeftBarButton(leftDrawerButton, animated: true)
     }
 
+
     // MARK: - Button Handlers
+
     func leftDrawerButtonPress(_ sender: AnyObject?) {
         self.evo_drawerController?.toggleDrawerSide(.left, animated: true, completion: nil)
     }

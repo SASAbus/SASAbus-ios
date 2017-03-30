@@ -26,7 +26,6 @@ class UserDefaultHelper {
 
     static let instance = UserDefaultHelper()
 
-    //all userdefault keys here
     static let MAP_DOWNLOADED_DONE_KEY: String = "MAP_DOWNLOADED_DONE_KEY"
     static let DATA_DOWNLOADED_DONE_KEY: String = "DATA_DOWNLOADED_DONE_KEY"
     static let LAST_SURVEY_KEY: String = "LAST_SURVEY_KEY"
@@ -41,11 +40,13 @@ class UserDefaultHelper {
 
     init() {
         //Init user defaults
-        var appDefaults = Dictionary<String, AnyObject>()
+        var appDefaults: [String: AnyObject] = [:]
+
         appDefaults[UserDefaultHelper.ASK_FOR_MAPS_DOWNLOAD_KEY] = true as AnyObject?
         appDefaults[UserDefaultHelper.BEACON_STATION_DETECTION_KEY] = true as AnyObject?
         appDefaults[UserDefaultHelper.SURVEY_CYCLE_KEY] = 604800 as AnyObject?
         appDefaults[UserDefaultHelper.ASK_FOR_MAPS_DOWNLOAD_NO_COUNT_KEY] = 0 as AnyObject?
+
         UserDefaults.standard.register(defaults: appDefaults)
         UserDefaults.standard.synchronize()
     }

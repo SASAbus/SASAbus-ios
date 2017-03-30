@@ -25,13 +25,13 @@ import SwiftyJSON
 
 final class BusStationItem: NSCoding, JSONable, JSONCollection {
 
-    var community: String!
-    var name: String!
-    var busStops: [BusStopItem]!
-    var descriptionDe: String!
-    var descriptionIt: String!
-    var busLineIds: [Int]!
+    var name: String
+    var descriptionDe: String
+    var descriptionIt: String
+    var community: String
 
+    var busStops: [BusStopItem]
+    var busLineIds: [Int]
 
     func encode(with aCoder: NSCoder) {
         aCoder.encode(self.community, forKey: "community")
@@ -65,6 +65,9 @@ final class BusStationItem: NSCoding, JSONable, JSONCollection {
             self.busLineIds = []
         }
 
+        descriptionDe = ""
+        descriptionIt = ""
+
         self.generateDescription()
     }
 
@@ -84,10 +87,12 @@ final class BusStationItem: NSCoding, JSONable, JSONCollection {
 
     func getDescription() -> String {
         var description = self.descriptionDe
-        if (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode) as! String == "it" {
+
+        if Utils.locale() == "it" {
             description = self.descriptionIt
         }
-        return description!
+
+        return description
     }
 
     func addBusLineId(_ number: Int) {
@@ -114,39 +119,40 @@ final class BusStationItem: NSCoding, JSONable, JSONCollection {
     }
 
     fileprivate func generateDescription() {
-        self.descriptionIt = self.name
-        self.descriptionDe = self.name
+        descriptionIt = name
+        descriptionDe = name
 
-        let locationNames = self.name.characters.split {
+        let locationNames = name.characters.split {
             $0 == "-"
         }
 
-        if (locationNames.count > 1) {
+        if locationNames.count > 1 {
             self.descriptionIt = String(locationNames[0]).trimmingCharacters(in: CharacterSet.whitespaces)
             self.descriptionDe = String(locationNames[1]).trimmingCharacters(in: CharacterSet.whitespaces)
         }
 
-        let communityNames = self.community.characters.split {
+        let communityNames = community.characters.split {
             $0 == "-"
         }
 
-        self.descriptionIt = self.descriptionIt + " (" + String(communityNames[0]).trimmingCharacters(in: CharacterSet.whitespaces) + ")"
-        self.descriptionDe = self.descriptionDe + " (" + String(communityNames[1]).trimmingCharacters(in: CharacterSet.whitespaces) + ")"
+        descriptionIt += " (" + String(communityNames[0]).trimmingCharacters(in: CharacterSet.whitespaces) + ")"
+        descriptionDe += " (" + String(communityNames[1]).trimmingCharacters(in: CharacterSet.whitespaces) + ")"
     }
 
-    func getDictionary() -> Dictionary<String, AnyObject> {
-        var jsonDictinary = [String: AnyObject]()
+    func getDictionary() -> [String : AnyObject] {
+        var json = [String: AnyObject]()
 
-        jsonDictinary["ORT_GEMEINDE"] = self.community as AnyObject?
-        jsonDictinary["ORT_NAME"] = self.name as AnyObject?
-        jsonDictinary["busLineIds"] = self.busLineIds as AnyObject?
+        json["ORT_GEMEINDE"] = self.community as AnyObject?
+        json["ORT_NAME"] = self.name as AnyObject?
+        json["busLineIds"] = self.busLineIds as AnyObject?
 
-        var busStops = [Dictionary<String, AnyObject>]()
+        var busStops = [[String: AnyObject]]()
         for busStop in self.busStops {
             busStops.append(busStop.getDictionary())
         }
 
-        jsonDictinary["busstops"] = busStops as AnyObject?
-        return jsonDictinary
+        json["busstops"] = busStops as AnyObject?
+
+        return json
     }
 }

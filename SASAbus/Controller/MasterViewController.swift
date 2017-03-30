@@ -55,6 +55,7 @@ class MasterViewController: UIViewController {
         self.navigationItem.setLeftBarButton(leftDrawerButton, animated: true)
     }
 
+
     // MARK: - Button Handlers
 
     func leftDrawerButtonPress(_ sender: AnyObject?) {

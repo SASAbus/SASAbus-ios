@@ -184,7 +184,7 @@ class SasaBusDownloader: DownloaderProtocol {
             }
         }
 
-        var busStationDictionaries = [Dictionary<String, AnyObject>]()
+        var busStationDictionaries = [[String: AnyObject]]()
         for busStation in busStationList {
             busStationDictionaries.append(busStation.getDictionary())
         }

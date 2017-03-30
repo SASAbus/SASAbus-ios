@@ -29,12 +29,14 @@ class MasterTableView: UITableView, ProgressIndicatorProtocol {
 
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
+
         self.backgroundImageView = BackgroundView(frame: self.frame)
         self.backgroundImageView.bounds = self.bounds
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+
         self.backgroundImageView = BackgroundView(frame: self.frame)
         self.backgroundImageView.bounds = self.bounds
     }

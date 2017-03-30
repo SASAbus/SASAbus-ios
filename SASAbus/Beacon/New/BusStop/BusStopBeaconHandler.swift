@@ -8,7 +8,7 @@ class BusStopBeaconHandler: NSObject, CLLocationManagerDelegate {
 
     private let locationManager = CLLocationManager()
     private var region: CLBeaconRegion!
-    private var regions: Dictionary<String, CLBeaconRegion> =  Dictionary<String, CLBeaconRegion>()
+    private var regions: [String : CLBeaconRegion] = [:]
     private var didEnterRegionDate: NSDate?
     private var didExitRegionDate: NSDate?
 

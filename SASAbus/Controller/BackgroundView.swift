@@ -28,6 +28,7 @@ class BackgroundView: UIView {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var progressIndicatorView: KDCircularProgress!
 
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         let nibView = Bundle.main.loadNibNamed("BackgroundView", owner: self, options: nil)?[0] as! UIView
@@ -38,6 +39,11 @@ class BackgroundView: UIView {
         setupProgressIndicator()
     }
 
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+
     func injectEasterEgg(_ target: UIView) {
         let bSelector: Selector = #selector(BackgroundView.tap(_:))
         let doubleTapGesture = UITapGestureRecognizer(target: target, action: bSelector)
@@ -46,25 +52,22 @@ class BackgroundView: UIView {
         target.addGestureRecognizer(doubleTapGesture)
     }
 
+    func setupProgressIndicator() {
+        progressIndicatorView.angle = 0
+        progressIndicatorView.progressThickness = 0.04
+        progressIndicatorView.trackThickness = 0.05
+        progressIndicatorView.clockwise = true
+        progressIndicatorView.center = center
+        progressIndicatorView.gradientRotateSpeed = 100
+        progressIndicatorView.roundedCorners = true
+        progressIndicatorView.glowMode = .noGlow
+        progressIndicatorView.trackColor = Theme.white
+        progressIndicatorView.set(colors: Theme.orange, Theme.orange, Theme.orange)
+        progressIndicatorView.isHidden = false
+    }
+
+
     @IBAction func tap(_ sender: AnyObject) {
         backgroundImageView.image = UIImage(named: "system_preference_layer")
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
-    fileprivate func setupProgressIndicator() {
-        self.progressIndicatorView.angle = 0
-        self.progressIndicatorView.progressThickness = 0.04
-        self.progressIndicatorView.trackThickness = 0.05
-        self.progressIndicatorView.clockwise = true
-        self.progressIndicatorView.center = self.center
-        self.progressIndicatorView.gradientRotateSpeed = 100
-        self.progressIndicatorView.roundedCorners = true
-        self.progressIndicatorView.glowMode = .noGlow
-        self.progressIndicatorView.trackColor = Theme.white
-        self.progressIndicatorView.set(colors: Theme.orange, Theme.orange, Theme.orange)
-        self.progressIndicatorView.isHidden = false
     }
 }
