@@ -26,7 +26,6 @@ import MapKit
 
 class BusStopMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
-    var mapJavascriptBridge: MapJavascriptBridge?
     var locationManager: CLLocationManager?
 
     @IBOutlet weak var mapView: MKMapView!
@@ -122,12 +121,6 @@ class BusStopMapViewController: UIViewController, MKMapViewDelegate, CLLocationM
                 (UIApplication.shared.delegate as! AppDelegate).navigateTo(busStopViewController!)
             }
         }
-    }
-
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue: CLLocationCoordinate2D = manager.location!.coordinate
-        self.mapJavascriptBridge?.setRequestLocation(locValue.latitude, longitude: locValue.longitude, accuracy: 5.0)
     }
 
 

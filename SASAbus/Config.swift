@@ -32,9 +32,6 @@ public class Config {
     static let downloadTimeoutIntervalForResource = 0.0
     static let downloadTimeoutIntervalForRequest = 0.0
 
-    // Realtime
-    static let realTimeDataUrl = ""
-
     // privacy
     static let privacyBaseUrl = ""
 
@@ -42,10 +39,6 @@ public class Config {
     static let MAP_URL = "http://opensasa.info/files/maptiles/osm-tiles.zip"
     static let MAP_FOLDER = "map/"
 
-    static let mapOnlineTiles = ""
-    static let mapStandardLatitude = 46.58
-    static let mapStandardLongitude = 11.25
-    static let mapStandardZoom = 12
     static let mapHowOftenShouldIAskForMapDownload = 0
 
     // Bus beacon

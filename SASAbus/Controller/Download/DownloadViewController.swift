@@ -147,12 +147,13 @@ class DownloadViewController: UIViewController {
             self.startDownload()
         }))
 
-        if (UserDefaultHelper.instance.getAskedForDownloadsNoCount() >= Config.mapHowOftenShouldIAskForMapDownload) {
+        if UserDefaultHelper.instance.getAskedForDownloadsNoCount() >= Config.mapHowOftenShouldIAskForMapDownload {
             toDownloadAlert.addAction(UIAlertAction(title: NSLocalizedString("Do not ask me again", comment: ""),
                     style: UIAlertActionStyle.default, handler: { (_: UIAlertAction!) in
 
                 let mapDownloadReminderAlert = UIAlertController(title: NSLocalizedString("Info", comment: ""),
-                        message: NSLocalizedString("You can re enable map download in app settings", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+                        message: NSLocalizedString("You can re enable map download in app settings", comment: ""),
+                        preferredStyle: UIAlertControllerStyle.alert)
 
                 mapDownloadReminderAlert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""),
                         style: UIAlertActionStyle.default, handler: { (_: UIAlertAction!) in
