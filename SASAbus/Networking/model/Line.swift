@@ -53,9 +53,9 @@ final class Line: JSONable, JSONCollection {
 
         self.variants = variants
 
-        days = 0;
+        days = 0
 
-        origin = "";
+        origin = ""
         destination = ""
 
         city = ""

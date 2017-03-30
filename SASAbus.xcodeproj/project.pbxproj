@@ -485,7 +485,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F2E305A870346BA4E50810A /* Api */ = {
+		1F2E305A870346BA4E50810A /* api */ = {
 			isa = PBXGroup;
 			children = (
 				1F2E3E19B01E5B96049FCC0D /* EcoPointsApi.swift */,
@@ -494,7 +494,7 @@
 				1F2E311965AFA80F8F14F0EB /* RealtimeApi.swift */,
 				1F2E3EE9CF14C395A092BA23 /* UserApi.swift */,
 			);
-			path = Api;
+			path = api;
 			sourceTree = "<group>";
 		};
 		1F2E3064461887C5910CBE5D /* BusStop */ = {
@@ -555,7 +555,7 @@
 			path = Departure;
 			sourceTree = "<group>";
 		};
-		1F2E31C841BB8B600C9CB4E6 /* model */ = {
+		1F2E31C841BB8B600C9CB4E6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				1F2E3D492460306266A6D95F /* ApiBusStop.swift */,
@@ -564,7 +564,7 @@
 				1F2E30F17D004934B5EEF212 /* StopTime.swift */,
 				1F2E31F2B84B4911CC523BA7 /* Trip.swift */,
 			);
-			path = model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1F2E31E9538B2DF763E70772 /* Gps */ = {
@@ -624,14 +624,14 @@
 			path = Json;
 			sourceTree = "<group>";
 		};
-		1F2E3452EC191AE6ADA05017 /* Model */ = {
+		1F2E3452EC191AE6ADA05017 /* model */ = {
 			isa = PBXGroup;
 			children = (
 				1F2E39E97A41F51AE9369BA9 /* EcoPoints */,
 				1F2E36E1C0CD0B4ECCF5213B /* Line.swift */,
 				1F2E3402217FEA5E0C80897C /* Parking.swift */,
 			);
-			path = Model;
+			path = model;
 			sourceTree = "<group>";
 		};
 		1F2E346A42E0EEBAE131AAA9 /* Favorites */ = {
@@ -705,7 +705,7 @@
 				1F2E330FDDD5BD3C5AA0DB29 /* Realm */,
 				1F2E3F4C5A2064154E9A336A /* Util */,
 				1F2E38B61288F49268565F0F /* View */,
-				1F2E3D98EEFF1E035E467D7E /* api */,
+				1F2E3D98EEFF1E035E467D7E /* Vdv */,
 				1F2E376AABC148165730D015 /* AppDelegate-Bridging-Header.h */,
 				1F2E392E4D8E452DC8E7A19F /* AppDelegate.swift */,
 				1F2E34673F66A58761B74D1C /* Assets.xcassets */,
@@ -733,8 +733,8 @@
 		1F2E36828EA85BC8ACF547DB /* New */ = {
 			isa = PBXGroup;
 			children = (
-				1F2E3AAFF23C039D408C16EB /* bus */,
-				1F2E3E3C14730D86C3BE851A /* busstop */,
+				1F2E3AAFF23C039D408C16EB /* Bus */,
+				1F2E3E3C14730D86C3BE851A /* BusStop */,
 				1F2E3ABCCDFA54319083DE81 /* BeaconStorage.swift */,
 			);
 			path = New;
@@ -858,7 +858,7 @@
 			path = Notification;
 			sourceTree = "<group>";
 		};
-		1F2E39921E2B9E623A05C754 /* api */ = {
+		1F2E39921E2B9E623A05C754 /* Api */ = {
 			isa = PBXGroup;
 			children = (
 				1F2E3A8E5FB865863F0B5B9F /* CompanyCalendar.swift */,
@@ -870,7 +870,7 @@
 				1F2E3879202DFDED803BE791 /* StopTimes.swift */,
 				1F2E34040F3D86E50C576084 /* Trips.swift */,
 			);
-			path = api;
+			path = Api;
 			sourceTree = "<group>";
 		};
 		1F2E39E97A41F51AE9369BA9 /* EcoPoints */ = {
@@ -906,22 +906,22 @@
 			path = Leaderboard;
 			sourceTree = "<group>";
 		};
-		1F2E3AAFF23C039D408C16EB /* bus */ = {
+		1F2E3AAFF23C039D408C16EB /* Bus */ = {
 			isa = PBXGroup;
 			children = (
 				1F2E31E5AF51CD68D8D18A4B /* BusBeacon.swift */,
 				1F2E3914AF3554EC110C42B2 /* BusBeaconHandler.swift */,
 				1F2E3866F967C7663C83C6B1 /* CurrentTrip.swift */,
 			);
-			path = bus;
+			path = Bus;
 			sourceTree = "<group>";
 		};
 		1F2E3AFD0F0C340D44C07314 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				1F2E305A870346BA4E50810A /* Api */,
+				1F2E305A870346BA4E50810A /* api */,
 				1F2E348A9D1D700B647F2205 /* Download */,
-				1F2E3452EC191AE6ADA05017 /* Model */,
+				1F2E3452EC191AE6ADA05017 /* model */,
 				1F2E3FFD27A033A1323EA96D /* AuthHelper.swift */,
 				1F2E3C399DD6BBFD96E9947F /* Endpoint.swift */,
 				1F2E3CA243DECF779A3AD2F8 /* NetUtils.swift */,
@@ -1002,16 +1002,16 @@
 			path = pulley;
 			sourceTree = "<group>";
 		};
-		1F2E3D98EEFF1E035E467D7E /* api */ = {
+		1F2E3D98EEFF1E035E467D7E /* Vdv */ = {
 			isa = PBXGroup;
 			children = (
-				1F2E39921E2B9E623A05C754 /* api */,
-				1F2E31C841BB8B600C9CB4E6 /* model */,
+				1F2E39921E2B9E623A05C754 /* Api */,
+				1F2E31C841BB8B600C9CB4E6 /* Model */,
 				1F2E39A34B1C17136E45AC4C /* API.swift */,
 				1F2E33D97D9EE3D33642585A /* ApiUtils.swift */,
 				1F2E3B9E59F648CC5D9F8A22 /* PlanData.swift */,
 			);
-			path = api;
+			path = Vdv;
 			sourceTree = "<group>";
 		};
 		1F2E3DA55145DBA1199AB695 /* Download */ = {
@@ -1032,12 +1032,12 @@
 			path = BusStop;
 			sourceTree = "<group>";
 		};
-		1F2E3E3C14730D86C3BE851A /* busstop */ = {
+		1F2E3E3C14730D86C3BE851A /* BusStop */ = {
 			isa = PBXGroup;
 			children = (
 				1F2E337CA5DA340A26E006BA /* BusStopBeaconHandler.swift */,
 			);
-			path = busstop;
+			path = BusStop;
 			sourceTree = "<group>";
 		};
 		1F2E3E7DA530A38EC76143EA /* Profile */ = {
