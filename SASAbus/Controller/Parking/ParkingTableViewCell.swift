@@ -31,23 +31,15 @@ class ParkingTableViewCell: UITableViewCell {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
 
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        if highlighted {
-            self.titleLabel.textColor = Theme.white
-            self.messageLabel.textColor = Theme.white
-            self.addressLabel.textColor = Theme.white
-            self.phoneLabel.tintColor = Theme.white
-            self.progressView.progressTintColor = Theme.white
-            self.iconImageView.tintColor = Theme.white
-            self.backgroundColor = Theme.darkGrey
-        } else {
-            self.titleLabel.textColor = Theme.darkGrey
-            self.messageLabel.textColor = Theme.darkGrey
-            self.addressLabel.textColor = Theme.darkGrey
-            self.phoneLabel.tintColor = nil
-            self.progressView.progressTintColor = Theme.orange
-            self.iconImageView.tintColor = Theme.orange
-            self.backgroundColor = Theme.transparent
-        }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        self.titleLabel.textColor = Theme.darkGrey
+        self.messageLabel.textColor = Theme.darkGrey
+        self.addressLabel.textColor = Theme.darkGrey
+        self.phoneLabel.tintColor = nil
+        self.progressView.progressTintColor = Theme.orange
+        self.iconImageView.tintColor = Theme.orange
+        self.backgroundColor = Theme.transparent
     }
 }

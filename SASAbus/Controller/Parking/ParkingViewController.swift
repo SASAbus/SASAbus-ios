@@ -24,14 +24,17 @@ import UIKit
 import Alamofire
 import RxCocoa
 import RxSwift
+import StatefulViewController
 
-class ParkingViewController: MasterTableViewController {
+class ParkingViewController: MasterViewController, StatefulViewController, UITableViewDelegate, UITableViewDataSource {
+
+    @IBOutlet weak var tableView: UITableView!
 
     var items = [Parking]()
 
+
     init(title: String?) {
-        super.init(nibName: "ParkingViewController", title: nil)
-        self.title = title
+        super.init(nibName: "ParkingViewController", title: title)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -42,22 +45,20 @@ class ParkingViewController: MasterTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.delegate = self
+        tableView.dataSource = self
+
         tableView.register(UINib(nibName: "ParkingTableViewCell", bundle: nil), forCellReuseIdentifier: "ParkingTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView(frame: CGRect.zero)
 
-        let refreshControl = UIRefreshControl()
+        loadingView = LoadingView(frame: view.frame)
+        emptyView = EmptyView(frame: view.frame)
+        errorView = ErrorView(frame: view.frame, target: self, action: #selector(parseData))
 
-        refreshControl.tintColor = Theme.lightOrange
-        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""),
-                attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
-
-        refreshControl.addTarget(self, action: #selector(parseData), for: UIControlEvents.valueChanged)
-
-        self.refreshControl = refreshControl
-
-        self.parseData()
+        setupRefresh()
+        parseData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -67,11 +68,11 @@ class ParkingViewController: MasterTableViewController {
     }
 
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.items.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ParkingTableViewCell", for: indexPath) as! ParkingTableViewCell
 
         cell.selectionStyle = UITableViewCellSelectionStyle.none
@@ -96,15 +97,39 @@ class ParkingViewController: MasterTableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let parkingLotDetailViewController = ParkingDetailViewController(item: self.items[indexPath.row])
 
         self.navigationController!.pushViewController(parkingLotDetailViewController, animated: true)
     }
 
 
+    func hasContent() -> Bool {
+        return !items.isEmpty
+    }
+
+    func setupRefresh() {
+        let refreshControl = UIRefreshControl()
+
+        refreshControl.tintColor = Theme.lightOrange
+        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""),
+                attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
+
+        refreshControl.addTarget(self, action: #selector(parseData), for: UIControlEvents.valueChanged)
+
+        self.tableView.refreshControl = refreshControl
+    }
+
     func parseData() {
         Log.info("Loading parking data")
+
+        startLoading(animated: false)
+
+        if !NetUtils.isOnline() {
+            endLoading(animated: false, error: NetUtils.networkError())
+            Log.info("Device offline")
+            return
+        }
 
         _ = ParkingApi.get()
                 .subscribeOn(MainScheduler.asyncInstance)
@@ -114,8 +139,17 @@ class ParkingViewController: MasterTableViewController {
                     self.items.append(contentsOf: parkings)
 
                     self.tableView.reloadData()
+                    self.tableView.refreshControl?.endRefreshing()
+
+                    self.endLoading(animated: false)
                 }, onError: { error in
                     Log.error(error)
+
+                    self.items.removeAll()
+                    self.tableView.reloadData()
+
+                    self.tableView.refreshControl?.endRefreshing()
+                    self.endLoading(animated: false, error: error)
                 })
     }
 }

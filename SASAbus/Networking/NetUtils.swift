@@ -25,9 +25,8 @@ class NetUtils {
         let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
         return (isReachable && !needsConnection)
     }
-}
 
-enum Result<U, T> {
-    case Success(U)
-    case Failure(T)
+    static func networkError() -> NSError {
+        return NSError(domain: "com.davale.sasabus", code: 1001, userInfo: [:])
+    }
 }

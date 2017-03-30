@@ -83,8 +83,7 @@ class EcoPointsLeaderboardViewController: UIViewController, UITableViewDataSourc
         startLoading(animated: false)
 
         if !NetUtils.isOnline() {
-            endLoading(animated: false, error: NSError(domain: "somedomain", code: 123, userInfo: [:]))
-
+            endLoading(animated: false, error: NetUtils.networkError())
             Log.error("Device offline")
             return
         }
