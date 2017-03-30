@@ -1,0 +1,95 @@
+PODS:
+  - Alamofire (4.4.0)
+  - Alamofire-SwiftyJSON (2.0.0-beta.1):
+    - Alamofire (~> 4.0)
+    - SwiftyJSON (~> 3.0)
+  - DrawerController (3.1.0):
+    - DrawerController/Core (= 3.1.0)
+    - DrawerController/DrawerVisualStates (= 3.1.0)
+  - DrawerController/Core (3.1.0)
+  - DrawerController/DrawerVisualStates (3.1.0):
+    - DrawerController/Core
+  - Google/Analytics (1.0.7):
+    - Google/Core
+    - GoogleAnalytics (~> 3.12)
+  - Google/Core (1.0.7):
+    - GoogleNetworkingUtilities (~> 1.0)
+    - GoogleSymbolUtilities (~> 1.0)
+    - GoogleUtilities (~> 1.0)
+  - GoogleAnalytics (3.17.0)
+  - GoogleNetworkingUtilities (1.2.2):
+    - GoogleSymbolUtilities (~> 1.1)
+  - GoogleSymbolUtilities (1.1.2)
+  - GoogleUtilities (1.3.2):
+    - GoogleSymbolUtilities (~> 1.1)
+  - KDCircularProgress (1.5.2)
+  - Kingfisher (3.6.0)
+  - Realm (2.5.0):
+    - Realm/Headers (= 2.5.0)
+  - Realm/Headers (2.5.0)
+  - RealmSwift (2.5.0):
+    - Realm (= 2.5.0)
+  - RxCocoa (3.3.1):
+    - RxSwift (~> 3.3)
+  - RxSwift (3.3.1)
+  - SSZipArchive (1.7)
+  - StatefulViewController (3.0)
+  - SwiftValidator (4.0.0)
+  - SwiftyJSON (3.1.4)
+  - zipzap (8.0.6)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.4)
+  - Alamofire-SwiftyJSON (from `https://github.com/SwiftyJSON/Alamofire-SwiftyJSON`, branch `master`)
+  - DrawerController (~> 3.1)
+  - Google/Analytics (~> 1.0.0)
+  - KDCircularProgress (~> 1.2)
+  - Kingfisher (~> 3.0)
+  - RealmSwift
+  - RxCocoa (~> 3.0)
+  - RxSwift (~> 3.0)
+  - SSZipArchive
+  - StatefulViewController (~> 3.0)
+  - SwiftValidator (from `https://github.com/jpotts18/SwiftValidator.git`, branch `swift-3`)
+  - zipzap (~> 8.0.4)
+
+EXTERNAL SOURCES:
+  Alamofire-SwiftyJSON:
+    :branch: master
+    :git: https://github.com/SwiftyJSON/Alamofire-SwiftyJSON
+  SwiftValidator:
+    :branch: swift-3
+    :git: https://github.com/jpotts18/SwiftValidator.git
+
+CHECKOUT OPTIONS:
+  Alamofire-SwiftyJSON:
+    :commit: 1473239ce0fc9b10f905f257c2698c7f6444dc15
+    :git: https://github.com/SwiftyJSON/Alamofire-SwiftyJSON
+  SwiftValidator:
+    :commit: 5721426cbcffef7efc3b27a9077b9e9451ac5574
+    :git: https://github.com/jpotts18/SwiftValidator.git
+
+SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  Alamofire-SwiftyJSON: 0a9e28b43e448ee58d11e41f8ddda52f17be90b2
+  DrawerController: 89efc782dd732c0ec7891910a6bcca01433fad32
+  Google: 875f5a8ade86dd02e36586e4a54814843938c7f6
+  GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
+  GoogleNetworkingUtilities: 3edd3a8161347494f2da60ea0deddc8a472d94cb
+  GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
+  GoogleUtilities: 8bbc733218aad26306f9d4a253823986110e3358
+  KDCircularProgress: 12f677b2deb02409ab48c6cae1898d146b8ad549
+  Kingfisher: 300035f9a40634dc9b452d946c9f22250688fecd
+  Realm: 62abce501668580092d2be9b6ba7324a3d5f906a
+  RealmSwift: 9f1a8f624f2f153410115c2cb7d486be9976565d
+  RxCocoa: 7dcb7a1860fc9cd0e23dae67ab105fc2916670b6
+  RxSwift: 8fc9f2de6275a9101d518444e00bf32f1a42caac
+  SSZipArchive: 63f8e11cfcc33e03e4cd666b4359ea8bd6facd0c
+  StatefulViewController: 4803bf900d44de26074344998e10e041113b5931
+  SwiftValidator: 25ded5ca1f10c05adf57f6ac82a72d28ac8d91af
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  zipzap: 9de722cee38b7c3a8b1134913a8a67ab36cb97c1
+
+PODFILE CHECKSUM: 6a40e359493d53d682506bda90f5927b7d656327
+
+COCOAPODS: 1.2.0

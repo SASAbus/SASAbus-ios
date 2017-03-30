@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LineViewController" customModule="SASAbus" customModuleProvider="target">
+            <connections>
+                <outlet property="autoCompleteTableView" destination="fKl-Ka-szb" id="qyi-dP-XrR"/>
+                <outlet property="dateTimeTextField" destination="YVg-Ey-xJf" id="zGf-Lr-nKj"/>
+                <outlet property="searchBar" destination="GL4-V1-iOX" id="A7P-O0-hgK"/>
+                <outlet property="tabBar" destination="4i9-Yz-mNe" id="VpW-va-zC3"/>
+                <outlet property="tableView" destination="tsP-nV-rd0" id="Y4E-kk-9ms"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tsP-nV-rd0" customClass="MasterTableView" customModule="SASAbus" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="109" width="600" height="491"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="aQq-Gg-I6h"/>
+                        <outlet property="delegate" destination="-1" id="fpQ-If-iif"/>
+                    </connections>
+                </tableView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="23.08.2006 09:55" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YVg-Ey-xJf">
+                    <rect key="frame" x="464" y="16" width="120" height="30"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.30383660019999997" green="0.15929994880000001" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="DEx-yC-dNu"/>
+                        <constraint firstAttribute="width" constant="120" id="Nkx-yL-U34"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4i9-Yz-mNe">
+                    <rect key="frame" x="0.0" y="60" width="600" height="49"/>
+                    <animations/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <items>
+                        <tabBarItem title="Alle" image="alle_icon.png" selectedImage="alle_icon_filled.png" id="QCZ-Uu-hua"/>
+                        <tabBarItem tag="1" title="Bozen" image="wappen_bz.png" id="pDt-TB-hHQ"/>
+                        <tabBarItem tag="2" title="Meran" image="wappen_me.png" id="ZAF-8d-rcx"/>
+                        <tabBarItem tag="3" title="Others" image="more_icon.png" selectedImage="more_icon_filled.png" id="i0A-fH-hqS"/>
+                    </items>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="0ZV-vb-K74"/>
+                    </connections>
+                </tabBar>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="GL4-V1-iOX">
+                    <rect key="frame" x="8" y="8" width="448" height="44"/>
+                    <animations/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="lwK-bd-fwg"/>
+                    </connections>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fKl-Ka-szb">
+                    <rect key="frame" x="0.0" y="109" width="600" height="491"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Gpn-Rh-Ihd"/>
+                        <outlet property="delegate" destination="-1" id="zpV-4J-yYa"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="4i9-Yz-mNe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="19h-av-dhg"/>
+                <constraint firstItem="tsP-nV-rd0" firstAttribute="top" secondItem="YVg-Ey-xJf" secondAttribute="bottom" constant="16" id="1wx-hi-jpX"/>
+                <constraint firstItem="tsP-nV-rd0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3ld-sn-bOf"/>
+                <constraint firstItem="YVg-Ey-xJf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="6W5-b7-Cez"/>
+                <constraint firstItem="4i9-Yz-mNe" firstAttribute="top" secondItem="GL4-V1-iOX" secondAttribute="bottom" constant="10" id="8zY-vF-Uro"/>
+                <constraint firstAttribute="trailing" secondItem="tsP-nV-rd0" secondAttribute="trailing" id="BMa-dG-cYp"/>
+                <constraint firstItem="YVg-Ey-xJf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="Dth-z5-nFE"/>
+                <constraint firstAttribute="trailing" secondItem="4i9-Yz-mNe" secondAttribute="trailing" id="FlX-RU-TbO"/>
+                <constraint firstItem="4i9-Yz-mNe" firstAttribute="top" secondItem="YVg-Ey-xJf" secondAttribute="bottom" constant="16" id="M5t-Mj-vy6"/>
+                <constraint firstItem="tsP-nV-rd0" firstAttribute="top" secondItem="4i9-Yz-mNe" secondAttribute="bottom" id="NLr-Dk-meL"/>
+                <constraint firstAttribute="bottom" secondItem="tsP-nV-rd0" secondAttribute="bottom" id="OAl-Yd-Ch8"/>
+                <constraint firstItem="4i9-Yz-mNe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PT6-H2-8Ex"/>
+                <constraint firstItem="GL4-V1-iOX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="QKB-Xl-cdR"/>
+                <constraint firstAttribute="trailing" secondItem="tsP-nV-rd0" secondAttribute="trailing" id="QeY-NG-Dph"/>
+                <constraint firstItem="fKl-Ka-szb" firstAttribute="top" secondItem="4i9-Yz-mNe" secondAttribute="bottom" id="Riz-q4-CGz"/>
+                <constraint firstAttribute="trailing" secondItem="fKl-Ka-szb" secondAttribute="trailing" id="TFc-P2-f4Z"/>
+                <constraint firstItem="YVg-Ey-xJf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="TQy-C5-v4f"/>
+                <constraint firstAttribute="bottom" secondItem="tsP-nV-rd0" secondAttribute="bottom" constant="8" id="VpT-oc-m70"/>
+                <constraint firstAttribute="trailing" secondItem="4i9-Yz-mNe" secondAttribute="trailing" id="WgH-BL-Mvo"/>
+                <constraint firstItem="4i9-Yz-mNe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aYX-Ic-Iny"/>
+                <constraint firstAttribute="trailing" secondItem="YVg-Ey-xJf" secondAttribute="trailing" constant="16" id="acI-hV-mCH"/>
+                <constraint firstItem="YVg-Ey-xJf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="fVI-bY-tS8"/>
+                <constraint firstItem="YVg-Ey-xJf" firstAttribute="leading" secondItem="GL4-V1-iOX" secondAttribute="trailing" constant="8" id="g9Z-x3-n6S"/>
+                <constraint firstAttribute="bottom" secondItem="fKl-Ka-szb" secondAttribute="bottom" id="i4n-py-enr"/>
+                <constraint firstAttribute="trailing" secondItem="YVg-Ey-xJf" secondAttribute="trailing" constant="16" id="ihV-2i-qZk"/>
+                <constraint firstItem="fKl-Ka-szb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jML-Ju-xhX"/>
+                <constraint firstItem="4i9-Yz-mNe" firstAttribute="top" secondItem="YVg-Ey-xJf" secondAttribute="bottom" constant="14" id="low-VU-3pc"/>
+                <constraint firstItem="tsP-nV-rd0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nMH-Sa-wCE"/>
+                <constraint firstAttribute="bottom" secondItem="tsP-nV-rd0" secondAttribute="bottom" id="oBL-cv-fer"/>
+                <constraint firstItem="YVg-Ey-xJf" firstAttribute="leading" secondItem="GL4-V1-iOX" secondAttribute="trailing" id="p4n-Jl-qhc"/>
+                <constraint firstItem="YVg-Ey-xJf" firstAttribute="top" secondItem="4i9-Yz-mNe" secondAttribute="bottom" constant="16" id="qiR-Sj-7pw"/>
+                <constraint firstItem="4i9-Yz-mNe" firstAttribute="top" secondItem="GL4-V1-iOX" secondAttribute="bottom" constant="8" id="rQ1-sx-kaY"/>
+                <constraint firstItem="GL4-V1-iOX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="uCL-V0-MdX"/>
+                <constraint firstItem="4i9-Yz-mNe" firstAttribute="top" secondItem="YVg-Ey-xJf" secondAttribute="bottom" constant="16" id="uo0-RQ-5tM"/>
+                <constraint firstAttribute="trailing" secondItem="YVg-Ey-xJf" secondAttribute="trailing" constant="16" id="y84-aQ-0Z8"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="8zY-vF-Uro"/>
+                    <exclude reference="FlX-RU-TbO"/>
+                    <exclude reference="M5t-Mj-vy6"/>
+                    <exclude reference="PT6-H2-8Ex"/>
+                    <exclude reference="aYX-Ic-Iny"/>
+                    <exclude reference="uo0-RQ-5tM"/>
+                    <exclude reference="1wx-hi-jpX"/>
+                    <exclude reference="3ld-sn-bOf"/>
+                    <exclude reference="OAl-Yd-Ch8"/>
+                    <exclude reference="QeY-NG-Dph"/>
+                    <exclude reference="VpT-oc-m70"/>
+                    <exclude reference="Dth-z5-nFE"/>
+                    <exclude reference="TQy-C5-v4f"/>
+                    <exclude reference="acI-hV-mCH"/>
+                    <exclude reference="fVI-bY-tS8"/>
+                    <exclude reference="ihV-2i-qZk"/>
+                    <exclude reference="p4n-Jl-qhc"/>
+                    <exclude reference="qiR-Sj-7pw"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="324" y="256"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="alle_icon.png" width="32" height="32"/>
+        <image name="alle_icon_filled.png" width="32" height="32"/>
+        <image name="more_icon.png" width="32" height="32"/>
+        <image name="more_icon_filled.png" width="32" height="32"/>
+        <image name="wappen_bz.png" width="30" height="30"/>
+        <image name="wappen_me.png" width="30" height="30"/>
+    </resources>
+</document>
