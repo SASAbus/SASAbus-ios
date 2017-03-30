@@ -22,7 +22,7 @@
 
 import UIKit
 
-class BusStopAutoCompleteTableViewCell: UITableViewCell {
+class BusStopAutocompleteTableViewCell: UITableViewCell {
 
     @IBOutlet weak var busStationLabel: UILabel!
 
