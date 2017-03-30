@@ -485,7 +485,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F2E305A870346BA4E50810A /* api */ = {
+		1F2E305A870346BA4E50810A /* Api */ = {
 			isa = PBXGroup;
 			children = (
 				1F2E3E19B01E5B96049FCC0D /* EcoPointsApi.swift */,
@@ -494,7 +494,7 @@
 				1F2E311965AFA80F8F14F0EB /* RealtimeApi.swift */,
 				1F2E3EE9CF14C395A092BA23 /* UserApi.swift */,
 			);
-			path = api;
+			path = Api;
 			sourceTree = "<group>";
 		};
 		1F2E3064461887C5910CBE5D /* BusStop */ = {
@@ -624,14 +624,14 @@
 			path = Json;
 			sourceTree = "<group>";
 		};
-		1F2E3452EC191AE6ADA05017 /* model */ = {
+		1F2E3452EC191AE6ADA05017 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				1F2E39E97A41F51AE9369BA9 /* EcoPoints */,
 				1F2E36E1C0CD0B4ECCF5213B /* Line.swift */,
 				1F2E3402217FEA5E0C80897C /* Parking.swift */,
 			);
-			path = model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1F2E346A42E0EEBAE131AAA9 /* Favorites */ = {
@@ -919,9 +919,9 @@
 		1F2E3AFD0F0C340D44C07314 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				1F2E305A870346BA4E50810A /* api */,
+				1F2E305A870346BA4E50810A /* Api */,
 				1F2E348A9D1D700B647F2205 /* Download */,
-				1F2E3452EC191AE6ADA05017 /* model */,
+				1F2E3452EC191AE6ADA05017 /* Model */,
 				1F2E3FFD27A033A1323EA96D /* AuthHelper.swift */,
 				1F2E3C399DD6BBFD96E9947F /* Endpoint.swift */,
 				1F2E3CA243DECF779A3AD2F8 /* NetUtils.swift */,
