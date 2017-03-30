@@ -25,6 +25,9 @@ target 'SASAbus' do
   pod "StatefulViewController", "~> 3.0"
 
   pod 'SSZipArchive'
+
+  pod 'Fabric'
+  pod 'Crashlytics'
 end
 
 post_install do |installer|

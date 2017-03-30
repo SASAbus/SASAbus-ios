@@ -3,12 +3,15 @@ PODS:
   - Alamofire-SwiftyJSON (2.0.0-beta.1):
     - Alamofire (~> 4.0)
     - SwiftyJSON (~> 3.0)
+  - Crashlytics (3.8.4):
+    - Fabric (~> 1.6.3)
   - DrawerController (3.1.0):
     - DrawerController/Core (= 3.1.0)
     - DrawerController/DrawerVisualStates (= 3.1.0)
   - DrawerController/Core (3.1.0)
   - DrawerController/DrawerVisualStates (3.1.0):
     - DrawerController/Core
+  - Fabric (1.6.11)
   - Google/Analytics (1.0.7):
     - Google/Core
     - GoogleAnalytics (~> 3.12)
@@ -41,7 +44,9 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.4)
   - Alamofire-SwiftyJSON (from `https://github.com/SwiftyJSON/Alamofire-SwiftyJSON`, branch `master`)
+  - Crashlytics
   - DrawerController (~> 3.1)
+  - Fabric
   - Google/Analytics (~> 1.0.0)
   - KDCircularProgress (~> 1.2)
   - Kingfisher (~> 3.0)
@@ -72,7 +77,9 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Alamofire-SwiftyJSON: 0a9e28b43e448ee58d11e41f8ddda52f17be90b2
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   DrawerController: 89efc782dd732c0ec7891910a6bcca01433fad32
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Google: 875f5a8ade86dd02e36586e4a54814843938c7f6
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleNetworkingUtilities: 3edd3a8161347494f2da60ea0deddc8a472d94cb
@@ -90,6 +97,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   zipzap: 9de722cee38b7c3a8b1134913a8a67ab36cb97c1
 
-PODFILE CHECKSUM: 6a40e359493d53d682506bda90f5927b7d656327
+PODFILE CHECKSUM: bd94cc85d67b0fef090d5703b48e509ea749d24b
 
 COCOAPODS: 1.2.0
