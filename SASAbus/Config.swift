@@ -48,9 +48,6 @@ public class Config {
     static let mapStandardZoom = 12
     static let mapHowOftenShouldIAskForMapDownload = 0
 
-    // Parking
-    static let parkingLotBaseUrl = "http://ipchannels.integreen-life.bz.it/parkingFrontEnd/rest"
-
     // Bus beacon
     static let beaconSecondsInBus = 120
     static let beaconMinTripDistance = 100

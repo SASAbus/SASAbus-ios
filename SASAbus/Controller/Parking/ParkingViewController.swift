@@ -97,8 +97,7 @@ class ParkingViewController: MasterTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let parkingLotDetailViewController = ParkingLotDetailViewController(nibName: "ParkingLotDetailViewController",
-                bundle: nil, item: self.items[indexPath.row])
+        let parkingLotDetailViewController = ParkingDetailViewController(item: self.items[indexPath.row])
 
         self.navigationController!.pushViewController(parkingLotDetailViewController, animated: true)
     }

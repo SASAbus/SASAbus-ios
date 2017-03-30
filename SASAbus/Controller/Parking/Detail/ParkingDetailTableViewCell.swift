@@ -23,7 +23,7 @@
 
 import UIKit
 
-class ParkingLotDetailTableViewCell: UITableViewCell {
+class ParkingDetailTableViewCell: UITableViewCell {
 
     @IBOutlet weak var stationLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!

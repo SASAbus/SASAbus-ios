@@ -24,7 +24,7 @@ import UIKit
 import Alamofire
 import CoreLocation
 
-class ParkingLotDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ParkingDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -34,9 +34,8 @@ class ParkingLotDetailViewController: UIViewController, UITableViewDataSource, U
     var nearestBusStations: [BusStationDistance] = []
 
 
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, item: Parking!) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-
+    init(item: Parking!) {
+        super.init(nibName: "ParkingDetailViewController", bundle: nil)
         self.parking = item
     }
 
@@ -49,7 +48,7 @@ class ParkingLotDetailViewController: UIViewController, UITableViewDataSource, U
         super.viewDidLoad()
 
         self.title = NSLocalizedString("Parking lot detail", comment: "")
-        tableView.register(UINib(nibName: "ParkingLotDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "ParkingLotDetailTableViewCell")
+        tableView.register(UINib(nibName: "ParkingDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "ParkingDetailTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
 
@@ -67,7 +66,7 @@ class ParkingLotDetailViewController: UIViewController, UITableViewDataSource, U
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let busStationDistance = self.nearestBusStations[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ParkingLotDetailTableViewCell", for: indexPath) as! ParkingLotDetailTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ParkingDetailTableViewCell", for: indexPath) as! ParkingDetailTableViewCell
 
         cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         cell.selectionStyle = UITableViewCellSelectionStyle.none
