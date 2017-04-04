@@ -1,125 +1,103 @@
 import Foundation
+import EVReflection
 
-class CurrentTrip: Serializable {
+class CurrentTrip: EVObject {
 
-    var beacon: BusBeacon?
+    var beacon: BusBeacon!
 
-    var path = [BusStop]()
-
-    var times: [ApiBusStop]?
-
-    var isNotificationShown: Bool = false
-    var updated: Bool = false
-    var hasReachedSecondBusStop: Bool = false
-
-    convenience init(beacon: BusBeacon) {
-        self.init()
-
+    init(beacon: BusBeacon) {
         self.beacon = beacon
 
-        // TODO
-        /*
+        super.init()
+
         // Check for badge
-        BadgeHelper.evaluate(mContext, beacon);*/
+        // TODO
+        // BadgeHelper.evaluate(mContext!!, beacon)
 
         setup()
     }
 
-    func setup() {
+    public required init() {
+        fatalError("init() in CurrentTrip not implemented")
+    }
+
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init?(coder aDecoder: NSCoder) in CurrentTrip not implemented")
+    }
+
+
+    private var mNotificationVisible: Bool = false
+
+    var hasReachedSecondBusStop: Bool = false
+
+    var path = [BusStop]()
+    var times: [VdvBusStop]?
+
+    private func setup() {
         path.removeAll()
 
         if times != nil {
-            times?.removeAll()
+            times!.removeAll()
         }
 
         hasReachedSecondBusStop = false
 
-        times = Trips.getPath(tripId: (beacon!.getLastTrip()))
+        let newTimes = Api2.getTrip(tripId: beacon.lastTrip, verifyUiThread: false).calcTimedPath()
+        if newTimes.isEmpty {
+            Log.error("Trips for trip %s do not exist", beacon.lastTrip)
 
-        if times == nil || (times?.isEmpty)! {
-            /*SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-            
-            String date = format.format(new Date());
-            
-            String message = String.format("times == null. \n" +
-                "day type: %s, " +
-                "day: %s, " +
-                "trip id: %s, " +
-                "line: %s, " +
-                "variant: %s, " +
-                "Trips.TRIPS.size: %s, " +
-                "Paths.PATHS.size: %s, " +
-                "Paths.PATHS.values.size: %s, " +
-                CompanyCalendar.getDayType(date),
-                                           date,
-                                           beacon.getLastTrip(),
-                                           beacon.getLastLine(),
-                                           beacon.getLastVariant(),
-                                           Trips.getTrips().size(),
-                                           Paths.getPaths().size(),
-                                           Paths.getPaths().values().size(),
-                                           Paths.getPaths().values().size());
-            
-            Throwable throwable = new Throwable(message);
-            
-            Utils.logException(throwable);*/
+            beacon.setSuitableForTrip(false)
 
-            beacon?.setSuitableForTrip(suitableForTrip: false)
-
-            //NotificationUtils.cancelBus(mContext);
-
-            Log.error("Invalid path for trip \(beacon?.getLastTrip())")
+            // TODO
+            // TripNotification.hide(mContext!!, this)
         } else {
+            times = Array(newTimes)
+
             for busStop in times! {
-                path.append(BusStopRealmHelper.getBusStop(id: busStop.getId()))
+                path.append(BusStopRealmHelper.getBusStop(id: busStop.id))
             }
         }
     }
 
-    func checkUpdate() -> Bool {
-        let temp = updated
-        updated = false
-        return temp
+    var id: Int {
+        get {
+            return beacon.id
+        }
     }
 
-    func getId() -> Int {
-        return beacon!.id
-    }
-
-    func getDelay() -> Int {
-        return beacon!.delay
-    }
-
-    func setBeacon(beacon: BusBeacon) {
-        self.beacon = beacon
+    var delay: Int {
+        get {
+            return beacon.delay
+        }
     }
 
     func update() {
-        updated = true
-
-        // TODO
-        /*if beacon.isSuitableForTrip && BusBeaconHandler.notificationAction != null {
-            BusBeaconHandler.notificationAction.showNotification(this);
-        }*/
-    }
-
-    func setNotificationShown(shown: Bool) {
-        isNotificationShown = shown
+        if beacon.isSuitableForTrip && isNotificationVisible {
+            // TODO
+            // TripNotification.show(mContext!!, this)
+        }
     }
 
     func reset() {
+        Log.error("Trip reset")
         setup()
     }
 
-    func getTimes() -> [ApiBusStop]? {
-        return times
+    var title: String {
+        get {
+            return beacon.title!
+        }
     }
 
-    func getTitle() -> String? {
-        return beacon?.title
-    }
 
-    func getPath() -> [BusStop] {
-        return path
+// ==================================== NOTIFICATION ===========================================
+
+    var isNotificationVisible: Bool {
+        get {
+            return mNotificationVisible
+        }
+        set {
+            mNotificationVisible = newValue
+        }
     }
 }

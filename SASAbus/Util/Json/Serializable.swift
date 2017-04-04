@@ -2,6 +2,11 @@ import Foundation
 
 public class Serializable: NSObject {
 
+    public override init() {
+        super.init()
+    }
+
+
     private class SortedDictionary: NSMutableDictionary {
 
         var dict = [String: AnyObject]()

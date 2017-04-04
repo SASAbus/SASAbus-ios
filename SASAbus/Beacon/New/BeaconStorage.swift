@@ -2,59 +2,76 @@ import Foundation
 
 class BeaconStorage {
 
-    static let PREF_BEACON_CURRENT_TRIP = "pref_beacon_current_trip"
-    static let PREF_BUS_BEACON_MAP = "pref_bus_beacon_map"
-    static let PREF_BUS_BEACON_MAP_LAST = "pref_bus_beacon_map_last"
+    private static var mCurrentTrip: CurrentTrip?
+    private static var mCurrentBusStop: BusStopBeacon?
 
-    static var currentTrip: CurrentTrip?
+    private static var PREF_BEACON_CURRENT_TRIP = "pref_beacon_current_trip"
+    private static var PREF_BEACON_CURRENT_BUS_STOP = "pref_beacon_current_bus_stop"
+    private static var PREF_BUS_BEACON_MAP = "pref_bus_beacon_map"
+    private static var PREF_BUS_BEACON_MAP_LAST = "pref_bus_beacon_map_last"
 
-    static func setCurrentTrip(trip: CurrentTrip?) {
-        currentTrip = trip
+    private static var BEACON_MAP_TIMEOUT: Int64 = 240 * 1000
 
-        if let trip = trip {
-            if trip.checkUpdate() && trip.isNotificationShown &&
-                (trip.beacon?.isSuitableForTrip)! && Settings.isBusNotificationEnabled() {
+    static func clear() {
+        Log.error("Clearing beacon storage")
 
-                //BusBeaconHandler.notificationAction.showNotification(trip);
-            }
+        UserDefaults.standard.removeObject(forKey: PREF_BEACON_CURRENT_TRIP)
+        UserDefaults.standard.removeObject(forKey: PREF_BUS_BEACON_MAP)
+        UserDefaults.standard.removeObject(forKey: PREF_BUS_BEACON_MAP_LAST)
+    }
 
-            let json = trip.toJsonString(prettyPrinted: true)
-            UserDefaults.standard.set(json, forKey: PREF_BEACON_CURRENT_TRIP)
-        } else {
-            Log.info("trip == null, cancelling notification")
 
-            //NotificationUtils.cancelBus(mContext);
+// =================================== CURRENT TRIP ============================================
+
+    static func saveCurrentTrip(trip: CurrentTrip?) {
+        mCurrentTrip = trip
+
+        if trip == nil {
+            Log.error("trip == null, cancelling notification")
+            // TODO
+            // TripNotification.hide(mContext, null)
 
             UserDefaults.standard.removeObject(forKey: PREF_BEACON_CURRENT_TRIP)
+        } else {
+            do {
+                var json = trip!.toJsonString()
+                Log.trace("Saving current trip: \(json)")
+                UserDefaults.standard.set(json, forKey: PREF_BEACON_CURRENT_TRIP)
+            } catch {
+                Log.error(error)
+            }
         }
     }
 
-    static func getCurrentTrip() -> CurrentTrip? {
-        if let currentTrip = currentTrip {
-            return currentTrip
-        }
+    static var currentTrip: CurrentTrip? {
+        get {
+            if mCurrentTrip == nil {
+                mCurrentTrip = readCurrentTrip()
+            }
 
-        currentTrip = readCurrentTrip()
-        return currentTrip
+            return mCurrentTrip
+        }
     }
 
-    static func readCurrentTrip() -> CurrentTrip? {
-        let json = UserDefaults.standard.object(forKey: PREF_BEACON_CURRENT_TRIP)
+    static private func readCurrentTrip() -> CurrentTrip? {
+        var json = UserDefaults.standard.string(forKey: PREF_BEACON_CURRENT_TRIP)
 
         if json == nil {
             return nil
         }
 
-        let trip = CurrentTrip(json: json as! String)
+        Log.trace("Reading current trip: \(json)")
+
+        var trip = CurrentTrip(json: json)
 
         trip.update()
 
-        if trip.beacon?.getLastTrip() == 0 {
+        if trip.beacon.lastTrip == 0 {
             return nil
         }
 
-        if trip.getPath().isEmpty || trip.getTimes()?.isEmpty == false {
-            Log.info("path or times empty for current trip")
+        if trip.path.isEmpty || trip.times != nil && trip.times!.isEmpty {
+            Log.error("Path or times empty for current trip, will reset...")
 
             trip.reset()
         }
@@ -62,57 +79,111 @@ class BeaconStorage {
         return trip
     }
 
-    static func writeBeaconMap(map: [Int:BusBeacon]?) {
+    static func hasCurrentTrip() -> Bool {
+        return currentTrip != nil
+    }
+
+
+// ================================= CURRENT BUS STOP ==========================================
+
+    static func saveCurrentBusStop(beacon: BusStopBeacon?) {
+        mCurrentBusStop = beacon
+
+        if beacon == nil {
+            UserDefaults.standard.removeObject(forKey: PREF_BEACON_CURRENT_BUS_STOP)
+        } else {
+            var json = beacon!.toJsonString()
+            Log.trace("Saving current bus stop: \(json)")
+            UserDefaults.standard.set(json, forKey: PREF_BEACON_CURRENT_TRIP)
+        }
+    }
+
+    static var currentBusStop: BusStopBeacon? {
+        get {
+            if mCurrentBusStop == nil {
+                mCurrentBusStop = readCurrentBusStop()
+            }
+
+            return mCurrentBusStop
+        }
+    }
+
+    private static func readCurrentBusStop() -> BusStopBeacon? {
+        var json = UserDefaults.standard.string(forKey: PREF_BEACON_CURRENT_BUS_STOP)
+
+        if json == nil {
+            return nil
+        }
+
+        Log.trace("Reading current bus stop: \(json)")
+
+        do {
+            var beacon = BusStopBeacon(json: json)
+            beacon.busStop = BusStopRealmHelper.getBusStop(id: beacon.id)
+
+            return beacon
+        } catch {
+            Log.error(error)
+        }
+
+        return nil
+    }
+
+
+// ==================================== BEACON MAP =============================================
+
+    static func writeBeaconMap(map: [Int : BusBeacon]?) {
         if map == nil {
             UserDefaults.standard.removeObject(forKey: PREF_BUS_BEACON_MAP_LAST)
         } else {
-            var dictionary = [Int: String]()
+            let returnDict = NSMutableDictionary()
 
-            for (key, beacon) in map! {
-                dictionary[key] = beacon.toJsonString()
+            for (key, value) in map! {
+                returnDict[String(key)] = value.toJsonString()
             }
 
-            UserDefaults.standard.set(dictionary, forKey: PREF_BUS_BEACON_MAP)
-            UserDefaults.standard.set(Int(Date().millis()), forKey: PREF_BUS_BEACON_MAP_LAST)
+            UserDefaults.standard.set(returnDict.toJsonString(), forKey: PREF_BUS_BEACON_MAP)
+            UserDefaults.standard.set(Date().seconds(), forKey: PREF_BUS_BEACON_MAP_LAST)
         }
     }
 
-    static func getBeaconMap() -> [Int:BusBeacon] {
-        var currentTripTimeStamp = 0
+    static var beaconMap: [Int : BusBeacon] {
+        get {
+            var lastMapSave: Int64 = 0
 
-        let timeStamp = UserDefaults.standard.integer(forKey: PREF_BUS_BEACON_MAP_LAST)
-        if timeStamp != -999 {
-            currentTripTimeStamp = timeStamp
-        }
-
-        if currentTripTimeStamp != 0 {
-            let nowTimeStamp = Date().millis()
-            let difference = nowTimeStamp - currentTripTimeStamp
-            let configuredMilliseconds = 240000
-
-            if Int64(difference) < Int64(configuredMilliseconds) {
-                let map = UserDefaults.standard.dictionary(forKey: PREF_BUS_BEACON_MAP)
-                if map == nil {
-                    return [:]
-                }
-
-                var realMap = [Int: BusBeacon]()
-
-                for (key, value) in map! {
-                    realMap[Int(key)!] = BusBeacon(json: value as! String)
-                }
-
-                return realMap
-            } else {
-                setCurrentTrip(trip: nil)
-                return [:]
+            if UserDefaults.standard.integer(forKey: PREF_BUS_BEACON_MAP_LAST) != 0 {
+                lastMapSave = Int64(UserDefaults.standard.integer(forKey: PREF_BUS_BEACON_MAP_LAST) * 1000)
             }
+
+            if lastMapSave != 0 {
+                var difference = Date().millis() - lastMapSave
+
+                if difference < BEACON_MAP_TIMEOUT {
+                    do {
+                        var json = UserDefaults.standard.string(forKey: PREF_BUS_BEACON_MAP)
+
+                        if json == nil {
+                            return [:]
+                        }
+
+                        var oldDict = NSMutableDictionary(json: json!) as! [String : String]
+                        var newDict = [Int: BusBeacon]()
+
+                        for (key, value) in oldDict {
+                            newDict[Int(key)!] = BusBeacon(json: value)
+                        }
+
+                        return newDict
+                    } catch {
+                        Log.error(error)
+                    }
+
+                } else {
+                    saveCurrentTrip(trip: nil)
+                }
+            }
+
+            return [:]
         }
-
-        return [:]
-    }
-
-    static func hasCurrentTrip() -> Bool {
-        return getCurrentTrip() != nil
     }
 }

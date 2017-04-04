@@ -28,6 +28,8 @@ target 'SASAbus' do
 
   pod 'Fabric'
   pod 'Crashlytics'
+
+  pod "EVReflection"
 end
 
 post_install do |installer|

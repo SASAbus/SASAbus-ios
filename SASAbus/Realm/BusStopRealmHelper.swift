@@ -76,7 +76,7 @@ class BusStopRealmHelper {
         return (busStop?.family)!
     }
 
-    static func getBusStopsFromFamily(family: Int) -> [ApiBusStop] {
+    static func getBusStopsFromFamily(family: Int) -> [VdvBusStop] {
         let realm = try! Realm(configuration: CONFIG)
 
         let busStops = realm.objects(BusStop.self).filter("family = \(family)")
@@ -86,10 +86,10 @@ class BusStopRealmHelper {
             return []
         }
 
-        var stops = [ApiBusStop]()
+        var stops = [VdvBusStop]()
 
         for busStop in busStops {
-            stops.append(ApiBusStop(id: busStop.id))
+            stops.append(VdvBusStop(id: busStop.id))
         }
 
         return stops

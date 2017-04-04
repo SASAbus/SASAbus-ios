@@ -13,7 +13,7 @@ class RestClient {
                         if response.result.isSuccess {
                             let json = JSON(response.result.value)
 
-                            let item = json[index].to(type: T.self)
+                            let item = json[index][0].to(type: T.self)
 
                             observer.onNext(item as? T)
 

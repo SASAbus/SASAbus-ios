@@ -24,7 +24,7 @@ class EcoPointsProfileViewController: UITableViewController {
         super.init(nibName: "EcoPointsProfileViewController", bundle: nil)
     }
 
-    override required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -40,6 +40,7 @@ class EcoPointsProfileViewController: UITableViewController {
         initRefreshControl()
         parseProfile()
     }
+
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -67,6 +68,12 @@ class EcoPointsProfileViewController: UITableViewController {
             cell.loadingView.alpha = 0
         } else {
             cell.loadingView.alpha = 1
+        }
+
+        cell.settingsButton.addTarget(self, action: "buttonClicked:", for: UIControlEvents.touchUpInside)
+
+        cell.onButtonTapped = {
+            print("Click")
         }
 
         return cell
@@ -105,5 +112,15 @@ class EcoPointsProfileViewController: UITableViewController {
         refreshControl.addTarget(self, action: "parseProfile", for: UIControlEvents.valueChanged)
 
         self.refreshControl = refreshControl
+    }
+
+    func goToSettings() {
+        let settingsViewController = EcoPointsSettingsViewController()
+        self.navigationController!.pushViewController(settingsViewController, animated: true)
+    }
+
+
+    func buttonClicked(sender: UIButton!) {
+        print("Button tapped")
     }
 }

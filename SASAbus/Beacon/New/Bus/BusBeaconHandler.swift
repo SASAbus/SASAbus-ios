@@ -5,12 +5,15 @@ import RxCocoa
 
 class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
 
-    private var MAX_BEACON_DISTANCE = 5
-    private var BUS_LAST_SEEN_THRESHOLD = 180000
-    private var SECONDS_IN_BUS = 90
-    private var MIN_NOTIFICATION_SECONDS = 60
+    private var MAX_BEACON_DISTANCE: Int64 = 5
+    private var BUS_LAST_SEEN_THRESHOLD: Int64 = 180000
+    private var SECONDS_IN_BUS: Int64 = 90
+    private var MIN_NOTIFICATION_SECONDS: Int64 = 60
 
     private var TIMEOUT = 10000
+
+    private var TIMER_INTERVAL: Double = 150
+    // Seconds
 
     private let UUID_STRING = "e923b236-f2b7-4a83-bb74-cfb7fa44cab8"
     private let IDENTIFIER = "BUS"
@@ -24,6 +27,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
     private var mCycleCounter = 0
 
     private var beaconMap = [Int: BusBeacon]()
+
 
     override init() {
         super.init()
@@ -45,78 +49,39 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
 
         locationManager.startMonitoring(for: self.region)
         locationManager.startRangingBeacons(in: self.region)
+
+        beaconMap += BeaconStorage.beaconMap
+        deleteInvisibleBeacons()
+
+        BeaconStorage.writeBeaconMap(map: [:])
+
+        DispatchQueue.main.async {
+            _ = Timer.scheduledTimer(withTimeInterval: self.TIMER_INTERVAL, repeats: true) { _ in
+                Log.info("Running timer")
+                self.inspectBeacons()
+            }
+        }
     }
 
 
     // MARK: - CLLocationManagerDelegate
 
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+        if beacons.isEmpty {
+            return
+        }
+
+        Log.trace("didRangeBeacons(): \(region) \(beacons.count)")
+
         for beacon in beacons {
-            Log.info("Beacon #\(beacon.major), distance: \(beacon.proximity.rawValue)")
+            var major = beacon.major as! Int
+            var minor = beacon.minor as! Int
+
+            validateBeacon(beacon: beacon, major: major, minor: minor)
         }
 
         deleteInvisibleBeacons()
-
-        var firstBeacon: BusBeacon? = nil
-
-        for (_, beacon) in beaconMap {
-            if (firstBeacon == nil || beacon.getStartDate().millis() < (firstBeacon?.getStartDate().millis())!) &&
-                       beacon.lastSeen + 30000 > Date().millis() {
-
-                firstBeacon = beacon
-            }
-        }
-
-        if let firstBeacon = firstBeacon {
-            if firstBeacon.isSuitableForTrip {
-                if BeaconStorage.hasCurrentTrip() && BeaconStorage.getCurrentTrip()?.beacon?.id == firstBeacon.id {
-
-                    if firstBeacon.lastSeen + TIMEOUT >= Date().millis() {
-                        Log.info("Seen: \(firstBeacon.lastSeen + TIMEOUT - Date().millis())")
-
-                        let currentTrip: CurrentTrip = BeaconStorage.getCurrentTrip()!
-                        currentTrip.setBeacon(beacon: firstBeacon)
-
-                        /*Pair<Integer, BusStop> currentBusStop = BusStopBeaconHandler.getInstance(mContext)
-                        .getCurrentBusStop();
-                        if (currentBusStop != null) {
-                            List<BusStop> path = currentTrip.getPath();
-                            
-                            for (BusStop busStop : path) {
-                                if (busStop.getGroup() == currentBusStop.second.getGroup()) {
-                                    firstBeacon.setBusStop(currentBusStop.second, currentBusStop.first);
-                                    currentTrip.update();
-                                    
-                                    Timber.e("Set current bus stop %d for vehicle %d",
-                                             busStop.getId(), firstBeacon.id);
-                                    
-                                    break;
-                                }
-                            }
-                        }*/
-
-                        if !currentTrip.isNotificationShown && currentTrip.beacon!.isSuitableForTrip &&
-                                   Settings.isBusNotificationEnabled() {
-
-                            currentTrip.setNotificationShown(shown: true)
-
-                            //notificationAction.showNotification(currentTrip);
-                        }
-
-                        if firstBeacon.shouldFetchDelay() {
-                            fetchBusDelayAndInfo(trip: currentTrip)
-                        }
-
-                        BeaconStorage.setCurrentTrip(trip: currentTrip)
-                    }
-                } else if mCycleCounter % 3 == 0/* && firstBeacon.distance <= MAX_BEACON_DISTANCE*/ {
-                    isBeaconCurrentTrip(beacon: firstBeacon)
-                    mCycleCounter = 0
-                }
-            }
-        }
-
-        mCycleCounter += 1
+        updateCurrentTrip()
 
         BeaconStorage.writeBeaconMap(map: beaconMap)
     }
@@ -133,13 +98,52 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        let now = Date()
+        Log.warning("didExitRegion()")
 
-        if didExitRegionDate == nil || now.timeIntervalSince1970 - (didExitRegionDate?.timeIntervalSince1970)! > 2 {
-            didExitRegionDate = now
+        // Clear all beacon maps
+        BeaconStorage.writeBeaconMap(map: [:])
 
-            Log.warning("didExitRegion() BUS")
-            locationManager.stopRangingBeacons(in: self.region)
+        deleteInvisibleBeacons()
+
+        let currentTrip = BeaconStorage.currentTrip
+        if currentTrip != nil {
+            hideCurrentTrip(currentTrip!)
+        }
+
+        inspectBeacons()
+    }
+
+
+    func validateBeacon(beacon: CLBeacon, major: Int, minor: Int) {
+        var busBeacon: BusBeacon
+
+        if beaconMap[major] != nil {
+            busBeacon = beaconMap[major]!
+
+            busBeacon.seen()
+            busBeacon.distance = beacon.proximity
+
+            Log.trace("Vehicle \(major), seen: \(busBeacon.seenSeconds), distance: \(busBeacon.distance.rawValue)")
+
+            /*
+             * Checks if a beacon needs to download bus info because it is suitable for
+             * a trip.
+             */
+            if busBeacon.origin == 0 && NetUtils.isOnline() &&
+                       busBeacon.distance.rawValue < CLProximity.far.rawValue {
+
+                getBusInformation(beacon: busBeacon)
+            }
+        } else {
+            busBeacon = BusBeacon(id: major)
+
+            beaconMap[major] = busBeacon
+
+            Log.info("Added vehicle \(major)")
+
+            if NetUtils.isOnline() && busBeacon.distance == CLProximity.near {
+                getBusInformation(beacon: busBeacon)
+            }
         }
     }
 
@@ -158,38 +162,145 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
         }
     }
 
-    func validateBeacon(beacon: CLBeacon, major: Int, minor: Int) {
-        var busBeacon: BusBeacon
+    func deleteInvisibleBeacons() {
+        Log.info("deleteInvisibleBeacons()")
 
-        if beaconMap[major] != nil {
-            busBeacon = beaconMap[major]!
+        var currentTrip = BeaconStorage.currentTrip
 
-            busBeacon.seen()
-            busBeacon.setDistance(distance: beacon.proximity.rawValue)
+        for (key, beacon) in beaconMap {
+            if beacon.lastSeen + BUS_LAST_SEEN_THRESHOLD < Date().millis() {
+                beaconMap.removeValue(forKey: key)
 
-            Log.info("Vehicle \(major), seen: \(busBeacon.seenSeconds), distance: \(busBeacon.distance)")
+                Log.error("Removed beacon %d", key)
 
-            /*
-             * Checks if a beacon needs to download bus info because it is suitable for
-             * a trip.
-             */
-            if busBeacon.origin == 0 && NetUtils.isOnline() &&
-                       busBeacon.distance <= MAX_BEACON_DISTANCE {
+                if currentTrip != nil && currentTrip?.beacon.id == beacon.id {
+                    saveTrip(beacon)
 
-                getBusInformation(beacon: busBeacon)
-            }
-        } else {
-            busBeacon = BusBeacon(id: major, hash: "")
-
-            beaconMap[major] = busBeacon
-
-            Log.info("Added vehicle \(major)")
-
-            if NetUtils.isOnline() && busBeacon.distance <= MAX_BEACON_DISTANCE {
-                getBusInformation(beacon: busBeacon)
+                    BeaconStorage.saveCurrentTrip(trip: nil)
+                }
+            } else if beacon.lastSeen + TIMEOUT < Date().millis() {
+                if currentTrip != nil && currentTrip?.beacon.id == beacon.id {
+                    hideCurrentTrip(currentTrip!)
+                }
             }
         }
     }
+
+    func currentBusStopOutOfRange(beacon: BusStopBeacon) {
+        var currentTrip = BeaconStorage.currentTrip
+
+        if let currentTrip = currentTrip {
+            var path = currentTrip.path
+
+            var index = -1
+            var i = 0
+            var pathSize = path.count
+
+            while i < pathSize {
+                var busStop = path[i]
+                if busStop.family == beacon.busStop.family {
+                    index = i
+                    break
+                }
+
+                i += 1
+            }
+
+            if index == -1 {
+                return
+            }
+
+            if index < path.count - 1 {
+                var newBusStop = path[index + 1]
+
+                currentTrip.beacon.setBusStop(newBusStop, type: BusBeacon.TYPE_BEACON)
+                currentTrip.update()
+
+                Log.error("Set \(newBusStop.id) \(newBusStop.nameDe) as new bus stop for \(currentTrip.beacon.id)")
+            }
+        }
+    }
+
+
+    // MARK: - Trip
+
+    func updateCurrentTrip() {
+        mCycleCounter += 1
+
+        var beacon: BusBeacon!
+
+        for (_, value) in beaconMap {
+            if (beacon == nil || value.startDate < beacon.startDate) && value.lastSeen + 30000 > Date().millis() {
+                beacon = value
+            }
+        }
+
+        if beacon == nil || !beacon.isSuitableForTrip {
+            return
+        }
+
+        var currentTrip = BeaconStorage.currentTrip
+
+        if let currentTrip = currentTrip, currentTrip.beacon.id == beacon.id {
+            if beacon.lastSeen + TIMEOUT >= Date().millis() {
+                Log.info("Seen: %s", beacon.lastSeen + TIMEOUT - Date().millis())
+
+                currentTrip.beacon = beacon
+
+                /*var currentBusStop = BusStopBeaconHandler.getInstance()
+                        .currentBusStop
+
+                if currentBusStop != nil {
+                    var path = currentTrip.path
+
+                    for busStop in path {
+                        if busStop.group == currentBusStop.busStop.group {
+                            beacon.setBusStop(currentBusStop.busStop, BusBeacon.TYPE_BEACON)
+
+                            currentTrip.update()
+
+                            Log.error("Set current bus stop %d for vehicle %d",
+                                    busStop.id, beacon.id)
+
+                            break
+                        }
+                    }
+                }*/
+
+                if currentTrip.beacon.isSuitableForTrip {
+                    // TripNotification.show(mContext, currentTrip)
+                }
+
+                if beacon.shouldFetchDelay() {
+                    fetchBusDelayAndInfo(currentTrip: currentTrip)
+                }
+
+                BeaconStorage.saveCurrentTrip(trip: currentTrip)
+            }
+        } else if mCycleCounter % 3 == 0 && beacon.distance.rawValue <= CLProximity.far.rawValue {
+            isBeaconCurrentTrip(beacon: beacon)
+            mCycleCounter = 0
+        }
+    }
+
+    func hideCurrentTrip(_ trip: CurrentTrip) {
+        Log.info("hideCurrentTrip()")
+
+        if trip.isNotificationVisible {
+            // TODO
+
+            // TripNotification.hide(mContext, trip)
+
+            getDestinationBusStop(beacon: trip.beacon)
+
+            BeaconStorage.saveCurrentTrip(trip: trip)
+        } else {
+            Log.info("Current trip has no notification.")
+        }
+    }
+
+
+    // MARK: - Data loading
 
     func getBusInformation(beacon: BusBeacon) {
         guard !beacon.isOriginPending else {
@@ -197,7 +308,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
         }
 
         if !beacon.canRetry() {
-            beacon.setSuitableForTrip(suitableForTrip: false)
+            beacon.setSuitableForTrip(false)
             return
         }
 
@@ -208,189 +319,71 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
 
         Log.warning("getBusInformation \(beacon.id)")
 
-        beacon.setOriginPending(pending: true)
+        beacon.isOriginPending = true
         beacon.retry()
 
         _ = RealtimeApi.vehicle(vehicle: beacon.id)
-                .subscribeOn(MainScheduler.asyncInstance)
+                .subscribeOn(MainScheduler.background)
+                .observeOn(MainScheduler.background)
                 .subscribe(onNext: { bus in
                     guard let bus: RealtimeBus = bus else {
-
                         Log.error("Vehicle \(beacon.id) not driving")
 
-                        beacon.setSuitableForTrip(suitableForTrip: false)
-                        beacon.setOriginPending(pending: false)
+                        beacon.setSuitableForTrip(false)
+                        beacon.isOriginPending = false
 
                         return
                     }
 
-                    Log.info("getBusInformation: \(bus.busStop)")
+                    Log.error("getBusInformation: \(bus.busStop)")
 
-                    let path: [Int] = bus.path
+                    var busStopsPath = Api2.getTrip(tripId: bus.trip).calcPath()
+                    var path = busStopsPath.map {
+                        $0.id
+                    }
 
                     if path.isEmpty {
-                        beacon.setOriginPending(pending: false)
-                        beacon.setSuitableForTrip(suitableForTrip: false)
+                        beacon.isOriginPending = false
+                        beacon.setSuitableForTrip(false)
 
-                        Log.warning("Triplist for \(beacon.id) empty")
+                        Log.error("Triplist for \(beacon.id) null or empty")
 
                         return
                     }
 
-                    beacon.setOrigin(origin: bus.busStop)
+                    beacon.origin = bus.busStop
+                    beacon.departure = bus.departure
+
                     beacon.addLine(line: bus.lineId)
                     beacon.addTrip(trip: bus.trip)
                     beacon.addVariant(variant: bus.variant)
-                    beacon.setFuelPrice(price: 1.35)
-                    beacon.departure = bus.departure
 
-                    beacon.setBusStop(busStop: BusStopRealmHelper.getBusStop(id: bus.busStop), type: BusBeacon.TYPE_REALTIME)
+                    beacon.setBusStop(BusStopRealmHelper.getBusStop(id: bus.busStop), type: BusBeacon.TYPE_REALTIME)
 
                     beacon.setBusStops(busStops: path)
 
-                    beacon.setDelay(delay: bus.delay)
+                    beacon.delay = bus.delay
                     beacon.updateLastDelayFetch()
 
-                    let destination = BusStopRealmHelper.getName(id: path.last!)
+                    var destination = BusStopRealmHelper
+                            .getName(id: path[path.count - 1])
 
-                    // var title = mContext.getString(R.string.notification_bus_title, Lines.lidToName(bus.lineId), destination);
-                    let title = "Line \(bus.lineName) to \(destination)"
+                    beacon.title = "Line \(bus.lineName) to \(destination)"
 
-                    beacon.setTitle(title: title)
-
-                    let hash = "1234123412341234"
-                    //var hash = HashUtils.getHashForTrip(beacon);
-                    beacon.tripHash = hash
+                    var hash = HashUtils.getHashForTrip(beacon: beacon)
+                    beacon.setHash(hash: hash)
 
                     Log.warning("Got bus info for \(beacon.id), bus stop \(bus.busStop)")
 
-                    beacon.setSuitableForTrip(suitableForTrip: true)
-                    beacon.setOriginPending(pending: false)
+                    beacon.setSuitableForTrip(true)
+                    beacon.isOriginPending = false
                 }, onError: { error in
                     Log.error("getBusInformation() error: \(error)")
                     //Utils.logException(e);
 
-                    beacon.setOriginPending(pending: false)
-                    beacon.setSuitableForTrip(suitableForTrip: false)
+                    beacon.isOriginPending = false
+                    beacon.setSuitableForTrip(false)
                 })
-    }
-
-    func deleteInvisibleBeacons() {
-        Log.info("deleteInvisibleBeacons()")
-
-        let currentTrip = BeaconStorage.getCurrentTrip()
-
-        for (key, beacon) in beaconMap {
-            if beacon.lastSeen + BUS_LAST_SEEN_THRESHOLD < Date().millis() {
-                beaconMap.removeValue(forKey: key)
-
-                Log.warning("Removed beacon \(key)")
-
-                if BeaconStorage.hasCurrentTrip() && currentTrip?.getId() == beacon.id {
-                    //addTrip(beacon)
-
-                    BeaconStorage.setCurrentTrip(trip: nil)
-                }
-            } else if beacon.lastSeen + TIMEOUT < Date().millis() {
-                if let trip = currentTrip {
-                    if trip.isNotificationShown && trip.getId() == beacon.id {
-                        trip.setNotificationShown(shown: false)
-                        trip.setBeacon(beacon: beacon)
-
-                        Log.warning("Dismissing notification for \(key)")
-
-                        //NotificationUtils.cancelBus(mContext);
-
-                        //getStopStation(beacon);
-
-                        BeaconStorage.setCurrentTrip(trip: trip)
-                    }
-                }
-            }
-        }
-    }
-
-    func addTrip(beacon: BusBeacon) {
-        if beacon.seenSeconds < SECONDS_IN_BUS {
-            Log.error("Beacon must be visible at least \(SECONDS_IN_BUS) seconds")
-            return
-        }
-
-        if beacon.destination == 0 {
-            Log.error("\(beacon.id) destination == 0")
-            return
-        }
-
-        /*
-         * Gets the index of the stop station from the stop list.
-         */
-        let index = beacon.busStops.index(of: beacon.destination)
-        if index == nil {
-            Log.error("\(beacon.id) index == nil, stopStation: \(beacon.destination), stopList: \(beacon.busStops)")
-            return
-        }
-
-        /*
-         * As the realtime api outputs the next station of the trip, we need to
-         * go back by one in the trip list. If the bus is at the second bus stop,
-         * the api already outputs it at the third.
-         */
-        if index! > 0 {
-            beacon.setDestination(destination: beacon.busStops[index! - 1])
-        } else {
-            beacon.setDestination(destination: beacon.busStops[index!])
-        }
-
-        if Utils.insertTripIfValid(beacon: beacon) && Settings.isTripNotificationEnabled() {
-            //NotificationUtils.trip(mContext, beacon.getHash());
-
-            Log.warning("Saved trip \(beacon.id)")
-
-            if Settings.isSurveyEnabled() {
-                Log.info("Survey is enabled")
-
-                let interval = Settings.getSurveyInterval()
-                let lastSurvey = Settings.getLastSurveyMillis()
-                var showSurvey = false
-
-                switch interval {
-                case 0: // Show every time
-                    Log.info("Survey interval: every time")
-
-                    showSurvey = true
-                case 1: // Once a day
-                    Log.info("Survey interval: once a day")
-
-                    if Date().millis() - lastSurvey > 86400000 {
-                        showSurvey = true
-                    }
-                case 2: // Once a week
-                    Log.info("Survey interval: once a week")
-
-                    if Date().millis() - lastSurvey > 604800000 {
-                        showSurvey = true
-                    }
-                case 3: // Once a month
-                    Log.info("Survey interval: once a month")
-
-                    if Int64(Date().millis() - lastSurvey) > (2_592_000_000 as Int64) {
-                        showSurvey = true
-                    }
-                default:
-                    Log.error("Unknown survey interval: \(interval)")
-                }
-
-                if showSurvey {
-                    Log.warning("Showing survey")
-
-                    //NotificationUtils.survey(mContext, beacon.getHash());
-
-                    Settings.setLastSurveyMillis(millis: Date().millis())
-                }
-            }
-        } else {
-            Log.error("Could not save trip \(beacon.id)")
-        }
     }
 
     func isBeaconCurrentTrip(beacon: BusBeacon) {
@@ -403,7 +396,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
         if beacon.seenSeconds > MIN_NOTIFICATION_SECONDS {
             Log.warning("Added trip because it was in range for more than \(MIN_NOTIFICATION_SECONDS)s")
 
-            BeaconStorage.setCurrentTrip(trip: CurrentTrip(beacon: beacon))
+            BeaconStorage.saveCurrentTrip(trip: CurrentTrip(beacon: beacon))
 
             return
         }
@@ -413,70 +406,36 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
             return
         }
 
-        beacon.setCurrentTripPending(pending: true)
+        beacon.isCurrentTripPending = true
 
         _ = RealtimeApi.vehicle(vehicle: beacon.id)
                 .subscribeOn(MainScheduler.asyncInstance)
                 .subscribe(onNext: { bus in
-                    beacon.setCurrentTripPending(pending: false)
-
                     guard let bus: RealtimeBus = bus else {
-                        Log.error("isBeaconCurrentTrip() buses empty")
+                        Log.error("isBeaconCurrentTrip() bus \(beacon.id) not driving")
                         return
                     }
 
-                    Log.info("isBeaconCurrentTrip() response: \(bus.busStop)")
+                    beacon.isCurrentTripPending = false
+
+                    Log.error("isBeaconCurrentTrip(): %d", bus.busStop)
 
                     if beacon.origin != bus.busStop {
-                        Log.info("Setting new bus stop for \(beacon.id)")
+                        Log.error("Setting new bus stop for %d", beacon.id)
 
-                        if BeaconStorage.hasCurrentTrip() && BeaconStorage.getCurrentTrip()?.beacon?.id != beacon.id {
-                            let preBeaconInfo = BeaconStorage.getCurrentTrip()?.beacon
-                            self.addTrip(beacon: preBeaconInfo!)
-                        }
+                        beacon.setBusStop(BusStopRealmHelper
+                                .getBusStop(id: bus.busStop), type: BusBeacon.TYPE_REALTIME)
 
-                        beacon.setBusStop(busStop: BusStop(value: BusStopRealmHelper
-                                .getBusStop(id: bus.busStop)), type: BusBeacon.TYPE_REALTIME)
-
-                        BeaconStorage.setCurrentTrip(trip: CurrentTrip(beacon: beacon))
-
-                        // Cancel all bus stop notifications
-                        /*for (int i = 0; i < 6000; i++) {
-                            NotificationUtils.cancel(mContext, i);
-                        }*/
+                        BeaconStorage.saveCurrentTrip(trip: CurrentTrip(beacon: beacon))
                     }
                 }, onError: { error in
                     Log.error("isBeaconCurrentTrip() error: \(error)")
 
-                    beacon.setCurrentTripPending(pending: false)
+                    beacon.isCurrentTripPending = false
                 })
     }
 
-    func getStopStation(beacon: BusBeacon) {
-        Log.warning("getStopStation \(beacon.id)")
-
-        if !NetUtils.isOnline() {
-            Log.error("No internet connection")
-            return
-        }
-
-        _ = RealtimeApi.vehicle(vehicle: beacon.id)
-                .subscribeOn(MainScheduler.asyncInstance)
-                .subscribe(onNext: { bus in
-                    guard let bus: RealtimeBus = bus else {
-                        Log.error("Unable to get stop station for bus \(beacon.id)")
-                        return
-                    }
-
-                    beacon.setDestination(destination: bus.busStop)
-
-                    Log.info("Stop station for \(beacon.id): \(bus.busStop)")
-                }, onError: { error in
-                    Log.error("getStopStation() error: \(error)")
-                })
-    }
-
-    func fetchBusDelayAndInfo(trip: CurrentTrip) {
+    func fetchBusDelayAndInfo(currentTrip: CurrentTrip) {
         Log.warning("fetchBusDelayAndInfo()")
 
         if !NetUtils.isOnline() {
@@ -484,7 +443,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
             return
         }
 
-        let beacon: BusBeacon = trip.beacon!
+        let beacon: BusBeacon = currentTrip.beacon
         beacon.updateLastDelayFetch()
 
         _ = RealtimeApi.vehicle(vehicle: beacon.id)
@@ -495,83 +454,199 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
                         return
                     }
 
-                    Log.info("Got bus delay for vehicle \(beacon.id): \(bus.delay)")
+                    Log.warning("Got bus delay for vehicle \(currentTrip.id): \(bus.delay)")
 
-                    let realmStop = BusStopRealmHelper.getBusStopOrNil(id: bus.busStop)
+                    var realmStop = BusStopRealmHelper.getBusStopOrNil(id: bus.busStop)
 
-                    if let stop = realmStop {
-                        let busStop = BusStop(value: stop)
-                        beacon.setBusStop(busStop: busStop, type: BusBeacon.TYPE_REALTIME)
-                        Log.info("Got bus stop for vehicle \(beacon.id): \(busStop.id) \(busStop.nameDe)")
+                    if realmStop != nil {
+                        beacon.setBusStop(realmStop!, type: BusBeacon.TYPE_REALTIME)
+
+                        Log.warning("Got bus stop for vehicle \(currentTrip.id): \(realmStop!.id) \(realmStop!.nameDe)")
                     }
 
-                    beacon.setDelay(delay: bus.delay)
+                    beacon.delay = bus.delay
+                    beacon.departure = bus.departure
 
-                    if beacon.getLastTrip() != bus.trip {
-                        Log.warning("Trip reset for vehicle \(beacon.id)")
+                    if beacon.lastTrip != bus.trip {
+                        Log.error("Trip reset for vehicle %s", beacon.id)
 
                         // Assume that the bus changed variant (probably because it arrived at
                         // its destination), so reset the trip by clearing the old path and times.
 
-                        let newTrip = bus.trip
-                        let newLine = bus.lineId
-                        let newVariant = bus.variant
+                        var newTrip = bus.trip
+                        var newLine = bus.lineId
+                        var newVariant = bus.variant
 
-                        Log.info("Old trip: \(beacon.getLastTrip()), new trip: \(newTrip)")
-                        Log.info("Old line: \(beacon.getLastLine()), new line: \(newLine)")
-                        Log.info("Old variant: \(beacon.getLastVariant()), new variant: \(newVariant)")
+                        Log.error("Old trip: %s, new trip: %s", beacon.lastTrip, newTrip)
+                        Log.error("Old line: %s, new line: %s", beacon.lastLine, newLine)
+                        Log.error("Old variant: %s, new variant: %s",
+                                beacon.lastVariant, newVariant)
 
                         beacon.addLine(line: newLine)
                         beacon.addTrip(trip: newTrip)
                         beacon.addVariant(variant: newVariant)
 
-                        beacon.departure = bus.departure
+                        var busStopsPath: [VdvBusStop] = Api2.getTrip(tripId: bus.trip).calcPath()
+                        var path = busStopsPath.map {
+                            $0.id
+                        }
 
-                        let path = bus.path
-                        beacon.appendBusStops(busStops: path)
+                        if path.isEmpty {
+                            beacon.isOriginPending = false
+                            beacon.setSuitableForTrip(false)
 
-                        let destination = BusStopRealmHelper.getName(id: path.last!)
+                            Log.error("New trip list for %s null or empty", beacon.id)
 
-                        /*var title = mContext.getString(R.string.notification_bus_title,
-                            Lines.lidToName(bus.lineId), destination);*/
+                            return
+                        }
 
-                        let title = "Line \(bus.lineName) heading to \(destination)"
-                        beacon.setTitle(title: title)
+                        beacon.appendBusStops(stops: path)
 
-                        trip.reset()
+                        var destination = BusStopRealmHelper.getName(id: path[path.count - 1])
+
+                        beacon.title = "Line \(bus.lineName) to \(destination)"
+
+                        currentTrip.reset()
                     }
+
+                    currentTrip.update()
                 }, onError: { error in
                     Log.error("fetchBusDelayAndInfo() error: \(error)")
                 })
     }
 
-    func currentBusStopOutOfRange(currentBusStop: BusStop) {
-        if BeaconStorage.hasCurrentTrip() {
-            let currentTrip: CurrentTrip = BeaconStorage.getCurrentTrip()!
+    func getDestinationBusStop(beacon: BusBeacon) {
+        Log.error("getDestinationBusStop %d", beacon.id)
 
-            var path = currentTrip.getPath()
+        if !NetUtils.isOnline() {
+            Log.error("No internet connection")
+            return
+        }
 
-            var index = -1
-            for i in 0 ..< path.count {
-                let busStop = path[i]
-                if busStop.family == currentBusStop.family {
-                    index = i
-                    break
+        RealtimeApi.vehicle(vehicle: beacon.id)
+                .subscribeOn(MainScheduler.asyncInstance)
+                .observeOn(MainScheduler.instance)
+                .retryWhen { (errors: Observable<Error>) in
+                    return errors.flatMapWithIndex { (error, attempts) -> Observable<Int64> in
+                        if attempts >= 3 - 1 {
+                            return Observable.error(error)
+                        }
+
+                        return Observable<Int64>.timer(RxTimeInterval((attempts + 1) * 5), scheduler: MainScheduler.asyncInstance)
+                    }
                 }
+                .subscribe(onNext: { bus in
+                    guard let bus: RealtimeBus = bus else {
+                        return
+                    }
+
+                    beacon.destination = bus.busStop
+
+                    Log.error("Stop station for %d: %d", beacon.id, bus.busStop)
+                }, onError: { error in
+                    Log.error(error)
+                })
+    }
+
+
+    func saveTrip(_ beacon: BusBeacon) {
+        Log.warning("saveTrip()")
+
+        if beacon.seenSeconds < SECONDS_IN_BUS {
+            Log.error("Beacon must be visible at least %d seconds", SECONDS_IN_BUS)
+            return
+        }
+
+        if beacon.destination == 0 {
+            Log.error("Trip %s is invalid: destination == 0", beacon.id)
+            return
+        }
+
+        /*
+     * Gets the index of the stop station from the stop list.
+     */
+        var index = beacon.busStops.index(of: beacon.destination) ?? -1
+        if index == -1 {
+            Log.error("\(beacon.id) index == -1, destination: \(beacon.destination), busStops: \(beacon.busStops)")
+
+            return
+        }
+
+        /*
+         * As the realtime api outputs the next station of the trip, we need to
+         * go back by one in the trip list. If the bus is at the second bus stop,
+         * the api already outputs it at the third.
+         */
+        if index > 0 {
+            beacon.destination = beacon.busStops[index - 1]
+        } else {
+            beacon.destination = beacon.busStops[index]
+        }
+
+        if Utils.insertTripIfValid(beacon: beacon)/* && NotificationSettings.isTripEnabled()*/ {
+            // TODO
+            // Notifications.trip(beacon.tripHash!!)
+
+            Log.warning("Saved trip %d", beacon.id)
+
+            checkForSurvey(beacon: beacon)
+        } else {
+            Log.error("Could save trip %d", beacon.id)
+        }
+    }
+
+
+    private func checkForSurvey(beacon: BusBeacon) {
+        Log.warning("checkForSurvey()")
+
+        if NotificationSettings.isSurveyEnabled() {
+            Log.info("Survey is enabled")
+
+            var lastSurvey = NotificationSettings.getLastSurveyMillis()
+            var showSurvey = false
+
+            switch NotificationSettings.getSurveyInterval() {
+            case 0: // Show every time
+                Log.info("Survey interval: every time")
+                showSurvey = true
+            case 1: // Once a day
+                Log.info("Survey interval: once a day")
+
+                if Date().millis() - lastSurvey > 1 * 24 * 60 * 60 * 1000 {
+                    showSurvey = true
+                }
+            case 2: // Once a week
+                Log.info("Survey interval: once a week")
+
+                if Date().millis() - lastSurvey > 7 * 24 * 60 * 60 * 1000 {
+                    showSurvey = true
+                }
+            case 3: // Once a month
+                Log.info("Survey interval: once a month")
+
+                if Date().millis() - lastSurvey > 30 * 24 * 60 * 60 * 1000 {
+                    showSurvey = true
+                }
+            default: break
             }
 
-            if index == -1 {
-                return
+            if showSurvey {
+                Log.warning("Showing survey")
+                // TODO
+                // Notifications.survey(context, beacon.tripHash!!)
+                // NotificationSettings.setLastSurveyMillis(context, NtpDate.now())
             }
+        } else {
+            Log.error("Surveys are disabled")
+        }
+    }
+}
 
-            if index < path.count - 1 {
-                let newBusStop = path[index + 1]
+extension Dictionary where Key == Int, Value == BusBeacon {
 
-                currentTrip.beacon?.setBusStop(busStop: newBusStop, type: BusBeacon.TYPE_BEACON)
-                currentTrip.update()
-
-                Log.info("Set \(newBusStop.id) \(newBusStop.nameDe) as new bus stop for \(currentTrip.getId())")
-            }
+    static func +=<Int, BusBeacon>(left: inout [Int : BusBeacon], right: [Int : BusBeacon]) {
+        for (k, v) in right {
+            left[k] = v
         }
     }
 }

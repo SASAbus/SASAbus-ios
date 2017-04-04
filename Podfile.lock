@@ -11,6 +11,9 @@ PODS:
   - DrawerController/Core (3.1.0)
   - DrawerController/DrawerVisualStates (3.1.0):
     - DrawerController/Core
+  - EVReflection (4.8.0):
+    - EVReflection/Core (= 4.8.0)
+  - EVReflection/Core (4.8.0)
   - Fabric (1.6.11)
   - Google/Analytics (1.0.7):
     - Google/Core
@@ -46,6 +49,7 @@ DEPENDENCIES:
   - Alamofire-SwiftyJSON (from `https://github.com/SwiftyJSON/Alamofire-SwiftyJSON`, branch `master`)
   - Crashlytics
   - DrawerController (~> 3.1)
+  - EVReflection
   - Fabric
   - Google/Analytics (~> 1.0.0)
   - KDCircularProgress (~> 1.2)
@@ -79,6 +83,7 @@ SPEC CHECKSUMS:
   Alamofire-SwiftyJSON: 0a9e28b43e448ee58d11e41f8ddda52f17be90b2
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   DrawerController: 89efc782dd732c0ec7891910a6bcca01433fad32
+  EVReflection: 45760b8603c14c3dbb61395a4e77ba797b3b5c69
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Google: 875f5a8ade86dd02e36586e4a54814843938c7f6
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
@@ -97,6 +102,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   zipzap: 9de722cee38b7c3a8b1134913a8a67ab36cb97c1
 
-PODFILE CHECKSUM: bd94cc85d67b0fef090d5703b48e509ea749d24b
+PODFILE CHECKSUM: befeaaedecb1e92076ae5f166a34b0fb7047d9e3
 
 COCOAPODS: 1.2.0

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16E192b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E192b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="366"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="365"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="365.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0fC-uC-7T4" userLabel="Profile container">
@@ -146,12 +147,16 @@
                                     <constraint firstAttribute="height" constant="100" id="Ox9-j2-9wB"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View profile details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xiy-31-iiu">
-                                <rect key="frame" x="107" y="338.5" width="106" height="14.5"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXd-xg-a5Q">
+                                <rect key="frame" x="107" y="330.5" width="106" height="27"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="View profile details">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="settingsButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5tp-5M-Yjy"/>
+                                </connections>
+                            </button>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ea4-DC-vge" userLabel="Loading">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="365.5"/>
                                 <subviews>
@@ -169,17 +174,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="365.5" id="3lC-OH-ip8"/>
+                            <constraint firstItem="dXd-xg-a5Q" firstAttribute="centerX" secondItem="0fC-uC-7T4" secondAttribute="centerX" id="4Pa-9D-vko"/>
                             <constraint firstItem="38U-Wv-x8E" firstAttribute="top" secondItem="Gaz-y6-uqn" secondAttribute="bottom" constant="32" id="56D-V6-wSd"/>
                             <constraint firstAttribute="bottom" secondItem="Ea4-DC-vge" secondAttribute="bottom" id="9Fp-EF-lzD"/>
-                            <constraint firstItem="Xiy-31-iiu" firstAttribute="centerX" secondItem="0fC-uC-7T4" secondAttribute="centerX" id="EPe-sV-oF5"/>
                             <constraint firstItem="4Vb-EQ-Kx0" firstAttribute="centerX" secondItem="0fC-uC-7T4" secondAttribute="centerX" id="Gxc-xh-R4M"/>
                             <constraint firstItem="4Vb-EQ-Kx0" firstAttribute="top" secondItem="0fC-uC-7T4" secondAttribute="top" constant="24" id="Hpx-lG-Y3v"/>
                             <constraint firstItem="Ea4-DC-vge" firstAttribute="leading" secondItem="0fC-uC-7T4" secondAttribute="leading" id="QcX-fK-TKY"/>
                             <constraint firstItem="Ea4-DC-vge" firstAttribute="top" secondItem="0fC-uC-7T4" secondAttribute="top" id="Qwq-9S-CTl"/>
                             <constraint firstItem="wwF-34-3Cb" firstAttribute="top" secondItem="4Vb-EQ-Kx0" secondAttribute="bottom" constant="12" id="X2X-nm-e7Z"/>
                             <constraint firstItem="Gaz-y6-uqn" firstAttribute="top" secondItem="wwF-34-3Cb" secondAttribute="bottom" constant="2" id="Xif-2N-9bN"/>
+                            <constraint firstItem="dXd-xg-a5Q" firstAttribute="top" secondItem="38U-Wv-x8E" secondAttribute="bottom" constant="12" id="Ybs-y4-AC8"/>
                             <constraint firstAttribute="trailing" secondItem="38U-Wv-x8E" secondAttribute="trailing" id="ccC-Kj-3gn"/>
-                            <constraint firstItem="Xiy-31-iiu" firstAttribute="top" secondItem="38U-Wv-x8E" secondAttribute="bottom" constant="20" id="cxw-jz-MaT"/>
                             <constraint firstItem="38U-Wv-x8E" firstAttribute="leading" secondItem="0fC-uC-7T4" secondAttribute="leading" id="ekE-GC-kZZ"/>
                             <constraint firstItem="wwF-34-3Cb" firstAttribute="centerX" secondItem="0fC-uC-7T4" secondAttribute="centerX" id="gs2-w4-d0Y"/>
                             <constraint firstAttribute="trailing" secondItem="Ea4-DC-vge" secondAttribute="trailing" id="nbj-va-cpT"/>
@@ -206,6 +211,7 @@
                 <outlet property="profilePicture" destination="4Vb-EQ-Kx0" id="3WC-mk-k2w"/>
                 <outlet property="rankImage" destination="VHO-PO-hKL" id="7l4-Yn-Mfz"/>
                 <outlet property="rankText" destination="86Q-nW-O2z" id="g8s-Bx-SPz"/>
+                <outlet property="settingsButton" destination="dXd-xg-a5Q" id="gQt-Pg-Rwn"/>
             </connections>
             <point key="canvasLocation" x="50" y="226"/>
         </tableViewCell>

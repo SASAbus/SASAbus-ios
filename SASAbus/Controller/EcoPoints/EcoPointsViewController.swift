@@ -5,7 +5,6 @@ class EcoPointsViewController: MasterViewController {
     @IBOutlet var loginContainer: UIView!
     @IBOutlet var contentContainer: UIView!
 
-    var hairLineImage: UIImageView!
     var isLoginActive: Bool = false
 
 
@@ -40,14 +39,6 @@ class EcoPointsViewController: MasterViewController {
 
             loginContainer.alpha = 1
             contentContainer.alpha = 0
-
-            /*for parent in self.navigationController.navigationBar.subviews {
-                for childView in parent.subviews {
-                    if childView is UIImageView && childView.bounds.height <= 1 {
-                        hairLineImage = childView as! UIImageView
-                    }
-                }
-            }*/
         } else {
             loginContainer.alpha = 0
             contentContainer.alpha = 1
@@ -60,8 +51,6 @@ class EcoPointsViewController: MasterViewController {
         if isLoginActive, let navController = self.navigationController {
             navController.navigationBar.tintColor = UIColor.white
             navController.navigationBar.barTintColor = Color.loginBackground
-
-            // hairLineImage.alpha = 0
         }
     }
 
@@ -71,8 +60,6 @@ class EcoPointsViewController: MasterViewController {
         if isLoginActive, let navController = self.navigationController {
             navController.navigationBar.tintColor = UIColor.white
             navController.navigationBar.barTintColor = Color.materialOrange500
-
-            // hairLineImage.alpha = 1
         }
     }
 
@@ -87,8 +74,6 @@ class EcoPointsViewController: MasterViewController {
             if let navController = self.navigationController {
                 navController.navigationBar.tintColor = UIColor.white
                 navController.navigationBar.barTintColor = Color.materialOrange500
-
-                self.hairLineImage.alpha = 1
             }
         }
     }

@@ -27,9 +27,12 @@ import Alamofire
 import CoreLocation
 import Fabric
 import Crashlytics
+import UserNotifications
+import RxSwift
+import RxCocoa
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
     var drawerController: DrawerController!
@@ -49,20 +52,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
         Notifications.clearAll()
 
+        let domainName = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: domainName)
+
         Buses.setup()
+        Lines.setup()
         BusStopRealmHelper.setup()
         UserRealmHelper.setup()
 
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window!.backgroundColor = UIColor.white
-        self.window!.makeKeyAndVisible()
+        VdvHandler.load()
+                .subscribeOn(MainScheduler.background)
+                .observeOn(MainScheduler.background)
+                .subscribe(onError: { error in
+                    Log.error(error)
+                })
 
-        let navigationBarAppearance = UINavigationBar.appearance()
-        navigationBarAppearance.isTranslucent = false
-        navigationBarAppearance.tintColor = Theme.white  // Back buttons and such
-        navigationBarAppearance.barTintColor = Theme.orange  // Bar's background color
-        navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: Theme.white]  // Title's text color
-        self.startDownloadSplashScreen()
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+
+
+        if !Settings.isIntroFinished() {
+            let storyboard = UIStoryboard(name: "Intro", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "intro_parent_controller")
+            as! IntroParentViewController
+
+            viewController.dataOnly = false
+
+            self.window?.rootViewController = viewController
+            self.window?.makeKeyAndVisible()
+        } else {
+            self.window!.backgroundColor = UIColor.white
+            self.window!.makeKeyAndVisible()
+
+            self.startDownloadSplashScreen()
+        }
 
         // Configure tracker from GoogleService-Info.plist.
         var configureError: NSError?
@@ -76,6 +98,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
         busBeaconHandler.startObserving()
         busStopBeaconHandler.startObserving()
+
+        registerForRemoteNotification()
 
         return true
     }
@@ -135,6 +159,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         self.saveContext()
     }
 
+
     func startDownloadSplashScreen() {
         let delegate = DownloadDataFinished()
         delegate.appDelegate = self
@@ -147,6 +172,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 
     func startApplication() {
+        let navigationBarAppearance = UINavigationBar.appearance()
+        navigationBarAppearance.isTranslucent = false
+        navigationBarAppearance.tintColor = Theme.white  // Back buttons and such
+        navigationBarAppearance.barTintColor = Theme.orange  // Bar's background color
+        navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: Theme.white]  // Title's text color
 
         // start listening to beacons
         // self.beaconObserver.startObserving()
@@ -173,6 +203,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         self.drawerController.closeDrawerGestureModeMask = CloseDrawerGestureMode.panningCenterView
         self.window!.rootViewController = self.drawerController
     }
+
 
     // MARK: - Core Data stack
 
@@ -233,6 +264,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }
+
 
     // MARK: - Core Data Saving support
 
@@ -301,5 +333,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func getNavigationController(_ viewController: UIViewController) -> UINavigationController {
         return UINavigationController(rootViewController: viewController)
+    }
+
+
+    func registerForRemoteNotification() {
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+        center.requestAuthorization(options: [.sound, .alert, .badge]) { (_, error) in
+            if error == nil {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
+
+        var content = UNMutableNotificationContent()
+        content.title = "Don't forget"
+        content.body = "Buy some milk"
+        content.sound = UNNotificationSound.default()
+
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10,
+                repeats: false)
+
+        let identifier = "UYLLocalNotification"
+        let request = UNNotificationRequest(identifier: identifier,
+                content: content, trigger: trigger)
+
+        center.add(request, withCompletionHandler: { (error) in
+            if let error = error {
+                print(error)
+            }
+        })
+    }
+
+    // Called when a notification is delivered to a foreground app.
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+
+        print("User Info = ", notification.request.content.userInfo)
+        completionHandler([.alert, .badge, .sound])
+    }
+
+    // Called to let your app know which action was selected by the user for a given notification.
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+
+        print("User Info = ", response.notification.request.content.userInfo)
+        completionHandler()
     }
 }
