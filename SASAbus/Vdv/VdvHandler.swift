@@ -14,12 +14,10 @@ class VdvHandler {
     static var isLoading = false
     static var isValid = false
 
-    private static let asyncGroup = DispatchGroup()
-
     static func load() -> Observable<Any> {
         return Observable.create { observer in
             if Thread.isMainThread {
-                fatalError()
+                fatalError("Loading planned data on main thread is prohibited!")
             }
 
             // JodaTimeAndroid.init(context)
@@ -46,36 +44,35 @@ class VdvHandler {
             do {
                 var time = -Date().millis()
 
-                var rawData = IOUtils.readFileAsString(path: getPlannedDataFile())
-                var jsonObject = JSON(rawData)
+                var json = try IOUtils.readFileAsJson(path: getPlannedDataFile())
 
                 observer.on(.next(94))
 
-                VdvCalendar.loadCalendar(jCalendar: jsonObject["calendar"].arrayValue)
+                VdvCalendar.loadCalendar(jCalendar: json["calendar"].arrayValue)
 
                 observer.on(.next(95))
 
-                VdvPaths.loadPaths(jPaths: jsonObject["paths"].arrayValue)
+                VdvPaths.loadPaths(jPaths: json["paths"].arrayValue)
 
                 observer.on(.next(96))
 
-                try VdvTrips.loadTrips(jDepartures: jsonObject["trips"].arrayValue, dayId: VdvCalendar.today().id)
+                try VdvTrips.loadTrips(jDepartures: json["trips"].arrayValue, dayId: VdvCalendar.today().id)
 
                 observer.on(.next(97))
 
-                VdvIntervals.loadIntervals(jIntervals: jsonObject["travel_times"].arrayValue)
+                VdvIntervals.loadIntervals(jIntervals: json["travel_times"].arrayValue)
 
                 observer.on(.next(98))
 
-                VdvBusStopBreaks.loadBreaks(jStopTimes: jsonObject["bus_stop_stop_times"].arrayValue)
+                VdvBusStopBreaks.loadBreaks(jStopTimes: json["bus_stop_stop_times"].arrayValue)
 
                 observer.on(.next(99))
 
-                VdvTripBreaks.loadBreaks(jHaltTimes: jsonObject["trip_stop_times"].arrayValue)
+                VdvTripBreaks.loadBreaks(jHaltTimes: json["trip_stop_times"].arrayValue)
 
                 isValid = true
 
-                Log.info("Loaded planned data in %d ms", time + Date().millis())
+                Log.info("Loaded planned data in \(time + Date().millis()) ms")
             } catch VdvError.vdvError(let message) {
                 BeaconHandler.get().stop()
                 Log.error("Cannot load planned data: \(message)")
@@ -97,9 +94,6 @@ class VdvHandler {
             isLoaded = true
             isLoading = false
 
-            // Awake sleeping threads waiting for plan data loading to complete
-            asyncGroup.leave()
-
             observer.on(.next(100))
 
             Log.error("Finished vdv data loading")
@@ -119,7 +113,7 @@ class VdvHandler {
             Log.info("Data not loaded yet, waiting...")
 
             while !isLoaded {
-                asyncGroup.enter()
+                usleep(100000)
             }
 
             Log.info("Data finished loading")

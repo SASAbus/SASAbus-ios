@@ -4,18 +4,26 @@
 //
 
 import Foundation
+import ObjectMapper
 
 /**
  * Represents a bus stop.
  */
-class VdvBusStop: Hashable {
+class VdvBusStop: Hashable, Mappable {
 
     var id: Int = 0
-
     var departure: Int = 0
 
     init(id: Int) {
         self.id = id
+    }
+
+    required init?(map: Map) {
+    }
+
+    func mapping(map: Map) {
+        id <- map["id"]
+        departure <- map["departure"]
     }
 
     var hashValue: Int {

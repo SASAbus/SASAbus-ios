@@ -13,9 +13,14 @@ class RestClient {
                         if response.result.isSuccess {
                             let json = JSON(response.result.value)
 
-                            let item = json[index][0].to(type: T.self)
+                            let item = json[index].arrayValue
 
-                            observer.onNext(item as? T)
+                            if item.isEmpty {
+                                observer.on(.next(nil))
+                            } else {
+                                let casted = item[0].to(type: T.self) as? T
+                                observer.onNext(casted)
+                            }
 
                             observer.onCompleted()
                         } else {
@@ -94,7 +99,7 @@ class RestClient {
     static func request(_ url: URLConvertible, method: HTTPMethod, parameters: Parameters? = nil,
                         headers: [String : String]) -> Alamofire.DataRequest {
 
-        Log.info("\(method.rawValue.uppercased()): \(url)")
+        Log.debug("\(method.rawValue.uppercased()): \(url)")
 
         return Alamofire.request(url, method: method, parameters: parameters, headers: headers)
     }

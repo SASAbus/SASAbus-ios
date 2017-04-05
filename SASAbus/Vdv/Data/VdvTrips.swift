@@ -12,13 +12,13 @@ class VdvTrips {
     static var TRIPS = [VdvTrip]()
 
     public static func loadTrips(jDepartures: [JSON], dayId: Int) {
-        Log.warning("Loading trips of day %d", dayId)
+        Log.warning("Loading trips of day \(dayId)")
 
         VdvTrips.jDepartures = jDepartures
 
         var trips = [VdvTrip]()
 
-        for i in 0...VdvTrips.jDepartures.count {
+        for i in 0...VdvTrips.jDepartures.count - 1 {
             var jLine = VdvTrips.jDepartures[i]
 
             for j in 0...jLine["days"].count - 1 {

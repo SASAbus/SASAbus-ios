@@ -4,16 +4,20 @@ platform :ios, '9.0'
 
 use_frameworks!
 
-target 'SASAbus' do
+def default_pods
   pod 'DrawerController', '~> 3.1'
-  pod 'Google/Analytics', '~> 1.0.0'
+
+  pod 'Google/Analytics'
+
   pod 'zipzap', '~> 8.0.4'
+  
   pod 'KDCircularProgress', '~> 1.2'
 
   pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :branch => 'swift-3'
 
   pod 'Alamofire', '~> 4.4'
-  pod 'Alamofire-SwiftyJSON', :git => 'https://github.com/SwiftyJSON/Alamofire-SwiftyJSON', :branch => 'master'
+
+  pod 'SwiftyJSON'
 
   pod 'RxSwift',    '~> 3.0'
   pod 'RxCocoa',    '~> 3.0'
@@ -22,14 +26,22 @@ target 'SASAbus' do
 
   pod 'Kingfisher', '~> 3.0'
 
-  pod "StatefulViewController", "~> 3.0"
+  pod 'StatefulViewController', '~> 3.0'
 
   pod 'SSZipArchive'
 
   pod 'Fabric'
   pod 'Crashlytics'
 
-  pod "EVReflection"
+  pod 'ObjectMapper', '~> 2.2'
+end
+
+target 'SASAbus' do
+    default_pods
+end
+
+target 'TripNotification' do
+    default_pods
 end
 
 post_install do |installer|

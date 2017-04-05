@@ -23,7 +23,7 @@
 import Foundation
 import UIKit
 
-class MasterTableView: UITableView, ProgressIndicatorProtocol {
+class MasterTableView: UITableView {
 
     var backgroundImageView: BackgroundView!
 

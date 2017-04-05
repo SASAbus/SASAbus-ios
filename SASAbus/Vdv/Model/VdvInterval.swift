@@ -28,10 +28,6 @@ class VdvInterval: Hashable {
     }
 
     public static func ==(lhs: VdvInterval, rhs: VdvInterval) -> Bool {
-        if lhs == rhs {
-            return true
-        }
-
         if lhs.timeGroup != rhs.timeGroup {
             return false
         }

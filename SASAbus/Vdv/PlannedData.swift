@@ -18,7 +18,9 @@ class PlannedData {
         if dataExists == nil {
             let url = IOUtils.dataDir().appendingPathComponent("planned-data.json")
 
-            if FileManager.default.fileExists(atPath: url.absoluteString) {
+            Log.trace(url)
+
+            if FileManager.default.fileExists(atPath: url.path) {
                 dataExists = true
             } else {
                 Log.error("Planned data (JSON file) is missing")
@@ -58,7 +60,7 @@ class PlannedData {
             // Download new data
             let request = Alamofire.download(Endpoint.API.appending(FILENAME_ONLINE), to: destination)
                     .downloadProgress(queue: DispatchQueue.main, closure: progress)
-                    .response { response in
+                    .response(queue: DispatchQueue(label: "com.sasabus.download", qos: .utility, attributes: [.concurrent])) { response in
                         if let error = response.error {
                             observer.on(.error(error))
                         } else {
@@ -68,7 +70,14 @@ class PlannedData {
                                 try unzipData(downloadUrl: downloadUrl)
                             } catch {
                                 observer.on(.error(error))
+                                return
                             }
+
+                            dataExists = true
+                            setUpdateAvailable(false)
+                            setDataDate()
+
+                            _ = VdvHandler.load().subscribe()
 
                             observer.on(.completed)
                         }

@@ -1,14 +1,19 @@
 import Foundation
-import EVReflection
+import ObjectMapper
 
-class CurrentTrip: EVObject {
+class CurrentTrip: Mappable {
 
     var beacon: BusBeacon!
 
+    var isNotificationVisible: Bool = false
+
+    var hasReachedSecondBusStop: Bool = false
+
+    var path = [LocalBusStop]()
+    var times: [VdvBusStop]?
+
     init(beacon: BusBeacon) {
         self.beacon = beacon
-
-        super.init()
 
         // Check for badge
         // TODO
@@ -17,21 +22,16 @@ class CurrentTrip: EVObject {
         setup()
     }
 
-    public required init() {
-        fatalError("init() in CurrentTrip not implemented")
+    required init?(map: Map) {
     }
 
-    public required init?(coder aDecoder: NSCoder) {
-        fatalError("init?(coder aDecoder: NSCoder) in CurrentTrip not implemented")
+    func mapping(map: Map) {
+        beacon <- map["beacon"]
+        isNotificationVisible <- map["isNotificationVisible"]
+        hasReachedSecondBusStop <- map["hasReachedSecondBusStop"]
+        path <- map["path"]
+        times <- map["times"]
     }
-
-
-    private var mNotificationVisible: Bool = false
-
-    var hasReachedSecondBusStop: Bool = false
-
-    var path = [BusStop]()
-    var times: [VdvBusStop]?
 
     private func setup() {
         path.removeAll()
@@ -42,19 +42,20 @@ class CurrentTrip: EVObject {
 
         hasReachedSecondBusStop = false
 
-        let newTimes = Api2.getTrip(tripId: beacon.lastTrip, verifyUiThread: false).calcTimedPath()
-        if newTimes.isEmpty {
-            Log.error("Trips for trip %s do not exist", beacon.lastTrip)
+        DispatchQueue(label: "com.app.queue", qos: .background).async {
+            let newTimes = Api2.getTrip(tripId: self.beacon.lastTrip, verifyUiThread: false).calcTimedPath()
+            if newTimes.isEmpty {
+                Log.error("Trips for trip %s do not exist", self.beacon.lastTrip)
 
-            beacon.setSuitableForTrip(false)
+                self.beacon.setSuitableForTrip(false)
 
-            // TODO
-            // TripNotification.hide(mContext!!, this)
-        } else {
-            times = Array(newTimes)
+                TripNotification.hide(trip: self)
+            } else {
+                self.times = Array(newTimes)
 
-            for busStop in times! {
-                path.append(BusStopRealmHelper.getBusStop(id: busStop.id))
+                for busStop in self.times! {
+                    self.path.append(LocalBusStop(realm: BusStopRealmHelper.getBusStop(id: busStop.id)))
+                }
             }
         }
     }
@@ -73,8 +74,11 @@ class CurrentTrip: EVObject {
 
     func update() {
         if beacon.isSuitableForTrip && isNotificationVisible {
-            // TODO
-            // TripNotification.show(mContext!!, this)
+            Log.error("Updating current trip notification")
+
+            TripNotification.show(trip: self)
+        } else {
+            Log.error("Cannot update current trip notification because trip is not suitable")
         }
     }
 
@@ -85,19 +89,7 @@ class CurrentTrip: EVObject {
 
     var title: String {
         get {
-            return beacon.title!
-        }
-    }
-
-
-// ==================================== NOTIFICATION ===========================================
-
-    var isNotificationVisible: Bool {
-        get {
-            return mNotificationVisible
-        }
-        set {
-            mNotificationVisible = newValue
+            return beacon.title
         }
     }
 }

@@ -1,3 +1,5 @@
+import Foundation
+
 public enum Level {
     case trace, debug, info, warning, error
 

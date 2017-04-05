@@ -5,28 +5,11 @@
 
 import Foundation
 import CoreLocation
-import EVReflection
+import ObjectMapper
 
-class AbsBeacon: EVObject {
+class AbsBeacon: Mappable {
 
-    var id: Int
-
-    init(id: Int) {
-        self.id = id
-
-        super.init()
-
-        seen()
-    }
-
-    public required init() {
-        fatalError()
-    }
-
-    public required init?(coder aDecoder: NSCoder) {
-        fatalError()
-    }
-
+    var id: Int!
 
     var startDate = Date()
 
@@ -34,6 +17,24 @@ class AbsBeacon: EVObject {
     var lastSeen: Int64 = 0
 
     var distance: CLProximity = .unknown
+
+    init(id: Int) {
+        self.id = id
+
+        seen()
+    }
+
+    required init?(map: Map) {
+
+    }
+
+    func mapping(map: Map) {
+        id <- map["id"]
+        startDate <- (map["startDate"], DateTransform())
+        seenSeconds <- map["seenSeconds"]
+        lastSeen <- map["lastSeen"]
+        distance <- map["distance"]
+    }
 
     func seen() {
         let millis = Date().millis()

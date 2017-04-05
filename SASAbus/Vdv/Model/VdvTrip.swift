@@ -36,7 +36,7 @@ class VdvTrip: Hashable {
         VdvHandler.blockTillLoaded()
 
         if path == nil {
-            path = VdvPaths.getPath(lineId: lineId, variantId: variant)
+            path = VdvPaths.getPath(lineId: lineId, variant: variant)
         }
 
         return path!

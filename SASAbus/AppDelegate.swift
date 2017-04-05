@@ -52,15 +52,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
         Notifications.clearAll()
 
-        let domainName = Bundle.main.bundleIdentifier!
-        UserDefaults.standard.removePersistentDomain(forName: domainName)
-
         Buses.setup()
         Lines.setup()
         BusStopRealmHelper.setup()
         UserRealmHelper.setup()
 
-        VdvHandler.load()
+        _ = VdvHandler.load()
                 .subscribeOn(MainScheduler.background)
                 .observeOn(MainScheduler.background)
                 .subscribe(onError: { error in
@@ -83,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             self.window!.backgroundColor = UIColor.white
             self.window!.makeKeyAndVisible()
 
-            self.startDownloadSplashScreen()
+            self.startApplication()
         }
 
         // Configure tracker from GoogleService-Info.plist.
@@ -100,32 +97,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         busStopBeaconHandler.startObserving()
 
         registerForRemoteNotification()
+        // TripNotification.createReminderNotification()
 
         return true
     }
 
-    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-        Notifications.clearAll()
-
-        if notificationHandlers.keys.contains(notification.category!) {
-            let notificationHandler = notificationHandlers[notification.category!]
-
-            notificationHandler!.handleNotificationForeground(self.window!.rootViewController!,
-                    userInfo: notification.userInfo as? [String : Any])
-        }
-    }
-
-    func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?,
-                     for notification: UILocalNotification, completionHandler: @escaping () -> Void) {
-        Notifications.clearAll()
-
-        if notificationHandlers.keys.contains(notification.category!) {
-            let notificationHandler = notificationHandlers[notification.category!]
-            notificationHandler?.handleNotificationBackground(identifier, userInfo: notification.userInfo as? [String : Any])
-        }
-
-        completionHandler()
-    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state.
@@ -159,17 +135,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         self.saveContext()
     }
 
-
-    func startDownloadSplashScreen() {
-        let delegate = DownloadDataFinished()
-        delegate.appDelegate = self
-
-        let downloadViewController = DownloadViewController(nibName: "DownloadViewController", bundle: nil,
-                downloader: SasaBusDownloader(), downloadFinishedDelegate: delegate, canBeCanceled: false, showFinishedDialog: false)
-
-        downloadViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-        self.window!.rootViewController = downloadViewController
-    }
 
     func startApplication() {
         let navigationBarAppearance = UINavigationBar.appearance()
@@ -339,29 +304,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func registerForRemoteNotification() {
         let center = UNUserNotificationCenter.current()
         center.delegate = self
+
         center.requestAuthorization(options: [.sound, .alert, .badge]) { (_, error) in
             if error == nil {
                 UIApplication.shared.registerForRemoteNotifications()
             }
         }
-
-        var content = UNMutableNotificationContent()
-        content.title = "Don't forget"
-        content.body = "Buy some milk"
-        content.sound = UNNotificationSound.default()
-
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10,
-                repeats: false)
-
-        let identifier = "UYLLocalNotification"
-        let request = UNNotificationRequest(identifier: identifier,
-                content: content, trigger: trigger)
-
-        center.add(request, withCompletionHandler: { (error) in
-            if let error = error {
-                print(error)
-            }
-        })
     }
 
     // Called when a notification is delivered to a foreground app.
@@ -381,4 +329,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         print("User Info = ", response.notification.request.content.userInfo)
         completionHandler()
     }
+
+
+
+    /*func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+    Notifications.clearAll()
+
+    if notificationHandlers.keys.contains(notification.category!) {
+        let notificationHandler = notificationHandlers[notification.category!]
+
+        notificationHandler!.handleNotificationForeground(self.window!.rootViewController!,
+                userInfo: notification.userInfo as? [String : Any])
+    }
+}
+
+func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?,
+                 for notification: UILocalNotification, completionHandler: @escaping () -> Void) {
+    Notifications.clearAll()
+
+    if notificationHandlers.keys.contains(notification.category!) {
+        let notificationHandler = notificationHandlers[notification.category!]
+        notificationHandler?.handleNotificationBackground(identifier, userInfo: notification.userInfo as? [String : Any])
+    }
+
+    completionHandler()
+}*/
 }

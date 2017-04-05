@@ -19,7 +19,7 @@ class VdvBusStopBreaks {
         var map = [VdvStopTime: Int]()
 
         // iterates through all the stop times
-        for i in 0...jStopTimes.count {
+        for i in 0...jStopTimes.count - 1 {
             var jStopTime = jStopTimes[i]
 
             let stopTime = VdvStopTime(

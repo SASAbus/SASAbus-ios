@@ -41,7 +41,7 @@ class IntroDataPageViewController: IntroPageViewController {
         }
 
         _ = PlannedData.downloadPlanData()
-            .subscribeOn(MainScheduler.asyncInstance)
+            .subscribeOn(MainScheduler.background)
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { progress in

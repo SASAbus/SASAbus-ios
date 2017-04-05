@@ -71,7 +71,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
             return
         }
 
-        Log.trace("didRangeBeacons(): \(region) \(beacons.count)")
+        Log.trace("didRangeBeacons(): BUS, count: \(beacons.count)")
 
         for beacon in beacons {
             var major = beacon.major as! Int
@@ -163,7 +163,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
     }
 
     func deleteInvisibleBeacons() {
-        Log.info("deleteInvisibleBeacons()")
+        Log.trace("deleteInvisibleBeacons()")
 
         var currentTrip = BeaconStorage.currentTrip
 
@@ -171,7 +171,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
             if beacon.lastSeen + BUS_LAST_SEEN_THRESHOLD < Date().millis() {
                 beaconMap.removeValue(forKey: key)
 
-                Log.error("Removed beacon %d", key)
+                Log.error("Removed beacon \(key)")
 
                 if currentTrip != nil && currentTrip?.beacon.id == beacon.id {
                     saveTrip(beacon)
@@ -213,7 +213,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
             if index < path.count - 1 {
                 var newBusStop = path[index + 1]
 
-                currentTrip.beacon.setBusStop(newBusStop, type: BusBeacon.TYPE_BEACON)
+                currentTrip.beacon.setBusStop(local: newBusStop, type: BusBeacon.TYPE_BEACON)
                 currentTrip.update()
 
                 Log.error("Set \(newBusStop.id) \(newBusStop.nameDe) as new bus stop for \(currentTrip.beacon.id)")
@@ -243,7 +243,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
 
         if let currentTrip = currentTrip, currentTrip.beacon.id == beacon.id {
             if beacon.lastSeen + TIMEOUT >= Date().millis() {
-                Log.info("Seen: %s", beacon.lastSeen + TIMEOUT - Date().millis())
+                Log.info("Seen: \(beacon.lastSeen + TIMEOUT - Date().millis())")
 
                 currentTrip.beacon = beacon
 
@@ -267,17 +267,14 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
                     }
                 }*/
 
-                if currentTrip.beacon.isSuitableForTrip {
-                    // TripNotification.show(mContext, currentTrip)
-                }
+                currentTrip.update()
+                BeaconStorage.saveCurrentTrip(trip: currentTrip)
 
                 if beacon.shouldFetchDelay() {
                     fetchBusDelayAndInfo(currentTrip: currentTrip)
                 }
-
-                BeaconStorage.saveCurrentTrip(trip: currentTrip)
             }
-        } else if mCycleCounter % 3 == 0 && beacon.distance.rawValue <= CLProximity.far.rawValue {
+        } else if mCycleCounter % 6 == 0 && beacon.distance.rawValue <= CLProximity.far.rawValue {
             isBeaconCurrentTrip(beacon: beacon)
             mCycleCounter = 0
         }
@@ -286,17 +283,11 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
     func hideCurrentTrip(_ trip: CurrentTrip) {
         Log.info("hideCurrentTrip()")
 
-        if trip.isNotificationVisible {
-            // TODO
+        TripNotification.hide(trip: trip)
 
-            // TripNotification.hide(mContext, trip)
+        getDestinationBusStop(beacon: trip.beacon)
 
-            getDestinationBusStop(beacon: trip.beacon)
-
-            BeaconStorage.saveCurrentTrip(trip: trip)
-        } else {
-            Log.info("Current trip has no notification.")
-        }
+        BeaconStorage.saveCurrentTrip(trip: trip)
     }
 
 
@@ -337,7 +328,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
 
                     Log.error("getBusInformation: \(bus.busStop)")
 
-                    var busStopsPath = Api2.getTrip(tripId: bus.trip).calcPath()
+                    let busStopsPath = Api2.getTrip(tripId: bus.trip).calcPath()
                     var path = busStopsPath.map {
                         $0.id
                     }
@@ -358,7 +349,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
                     beacon.addTrip(trip: bus.trip)
                     beacon.addVariant(variant: bus.variant)
 
-                    beacon.setBusStop(BusStopRealmHelper.getBusStop(id: bus.busStop), type: BusBeacon.TYPE_REALTIME)
+                    beacon.setBusStop(realm: BusStopRealmHelper.getBusStop(id: bus.busStop), type: BusBeacon.TYPE_REALTIME)
 
                     beacon.setBusStops(busStops: path)
 
@@ -373,7 +364,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
                     var hash = HashUtils.getHashForTrip(beacon: beacon)
                     beacon.setHash(hash: hash)
 
-                    Log.warning("Got bus info for \(beacon.id), bus stop \(bus.busStop)")
+                    Log.warning("Got bus info for \(beacon.id!), bus stop \(bus.busStop)")
 
                     beacon.setSuitableForTrip(true)
                     beacon.isOriginPending = false
@@ -409,7 +400,6 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
         beacon.isCurrentTripPending = true
 
         _ = RealtimeApi.vehicle(vehicle: beacon.id)
-                .subscribeOn(MainScheduler.asyncInstance)
                 .subscribe(onNext: { bus in
                     guard let bus: RealtimeBus = bus else {
                         Log.error("isBeaconCurrentTrip() bus \(beacon.id) not driving")
@@ -418,12 +408,12 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
 
                     beacon.isCurrentTripPending = false
 
-                    Log.error("isBeaconCurrentTrip(): %d", bus.busStop)
+                    Log.error("isBeaconCurrentTrip(): \(bus.busStop)")
 
                     if beacon.origin != bus.busStop {
-                        Log.error("Setting new bus stop for %d", beacon.id)
+                        Log.error("Setting new bus stop for \(beacon.id)")
 
-                        beacon.setBusStop(BusStopRealmHelper
+                        beacon.setBusStop(realm: BusStopRealmHelper
                                 .getBusStop(id: bus.busStop), type: BusBeacon.TYPE_REALTIME)
 
                         BeaconStorage.saveCurrentTrip(trip: CurrentTrip(beacon: beacon))
@@ -447,7 +437,8 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
         beacon.updateLastDelayFetch()
 
         _ = RealtimeApi.vehicle(vehicle: beacon.id)
-                .subscribeOn(MainScheduler.asyncInstance)
+                .subscribeOn(MainScheduler.background)
+                .observeOn(MainScheduler.background)
                 .subscribe(onNext: { bus in
                     guard let bus: RealtimeBus = bus else {
                         Log.error("Vehicle \(beacon.id) not driving")
@@ -459,7 +450,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
                     var realmStop = BusStopRealmHelper.getBusStopOrNil(id: bus.busStop)
 
                     if realmStop != nil {
-                        beacon.setBusStop(realmStop!, type: BusBeacon.TYPE_REALTIME)
+                        beacon.setBusStop(realm: realmStop!, type: BusBeacon.TYPE_REALTIME)
 
                         Log.warning("Got bus stop for vehicle \(currentTrip.id): \(realmStop!.id) \(realmStop!.nameDe)")
                     }
@@ -477,10 +468,9 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
                         var newLine = bus.lineId
                         var newVariant = bus.variant
 
-                        Log.error("Old trip: %s, new trip: %s", beacon.lastTrip, newTrip)
-                        Log.error("Old line: %s, new line: %s", beacon.lastLine, newLine)
-                        Log.error("Old variant: %s, new variant: %s",
-                                beacon.lastVariant, newVariant)
+                        Log.error("Old trip: \(beacon.lastTrip), new trip: \(newTrip)")
+                        Log.error("Old line: \(beacon.lastLine), new line: \(newLine)")
+                        Log.error("Old variant: \(beacon.lastVariant), new variant: \(newVariant)")
 
                         beacon.addLine(line: newLine)
                         beacon.addTrip(trip: newTrip)
@@ -495,7 +485,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
                             beacon.isOriginPending = false
                             beacon.setSuitableForTrip(false)
 
-                            Log.error("New trip list for %s null or empty", beacon.id)
+                            Log.error("New trip list for \(beacon.id) null or empty")
 
                             return
                         }
@@ -516,7 +506,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
     }
 
     func getDestinationBusStop(beacon: BusBeacon) {
-        Log.error("getDestinationBusStop %d", beacon.id)
+        Log.error("getDestinationBusStop \(beacon.id)")
 
         if !NetUtils.isOnline() {
             Log.error("No internet connection")
@@ -542,7 +532,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
 
                     beacon.destination = bus.busStop
 
-                    Log.error("Stop station for %d: %d", beacon.id, bus.busStop)
+                    Log.error("Stop station for \(beacon.id): \(bus.busStop)")
                 }, onError: { error in
                     Log.error(error)
                 })
@@ -553,12 +543,12 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
         Log.warning("saveTrip()")
 
         if beacon.seenSeconds < SECONDS_IN_BUS {
-            Log.error("Beacon must be visible at least %d seconds", SECONDS_IN_BUS)
+            Log.error("Beacon must be visible at least \(SECONDS_IN_BUS) seconds")
             return
         }
 
         if beacon.destination == 0 {
-            Log.error("Trip %s is invalid: destination == 0", beacon.id)
+            Log.error("Trip \(beacon.id) is invalid: destination == 0")
             return
         }
 
@@ -587,11 +577,11 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
             // TODO
             // Notifications.trip(beacon.tripHash!!)
 
-            Log.warning("Saved trip %d", beacon.id)
+            Log.warning("Saved trip \(beacon.id)")
 
             checkForSurvey(beacon: beacon)
         } else {
-            Log.error("Could save trip %d", beacon.id)
+            Log.error("Could save trip \(beacon.id)")
         }
     }
 
@@ -624,9 +614,10 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
             case 3: // Once a month
                 Log.info("Survey interval: once a month")
 
-                if Date().millis() - lastSurvey > 30 * 24 * 60 * 60 * 1000 {
-                    showSurvey = true
-                }
+                    // TODO
+                    /*if Date().millis() - lastSurvey > 30 * 24 * 60 * 60 * 1000 {
+                        showSurvey = true
+                    }*/
             default: break
             }
 

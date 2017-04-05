@@ -38,16 +38,16 @@ class VdvPaths {
         Log.info("Loaded paths")
     }
 
-    static func getPath(lineId: Int, variantId: Int) -> [VdvBusStop] {
+    static func getPath(lineId: Int, variant: Int) -> [VdvBusStop] {
         VdvHandler.blockTillLoaded()
 
         var path = PATHS[lineId]
         if path == nil {
-            Log.error("Requesting path failed: line=%s, variant=%s", lineId, variantId)
+            Log.error("Requesting path failed: line=\(lineId), variant=\(variant)")
             return []
         }
 
-        return path![variantId - 1]
+        return path![variant - 1]
     }
 
     static func getPaths() -> [Int : [[VdvBusStop]]] {

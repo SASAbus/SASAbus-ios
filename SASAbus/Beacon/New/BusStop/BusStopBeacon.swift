@@ -1,10 +1,11 @@
 import Foundation
+import ObjectMapper
 
 class BusStopBeacon: AbsBeacon {
 
     var isNotificationShown: Bool = false
 
-    var busStop: BusStop
+    var busStop: BusStop!
 
 
     override init(id: Int) {
@@ -13,18 +14,18 @@ class BusStopBeacon: AbsBeacon {
         super.init(id: id)
     }
 
-    public required init() {
-        fatalError("init() in BusStopBeacon not implemented")
+    required init?(map: Map) {
+        super.init(map: map)
     }
 
-    public required init?(coder aDecoder: NSCoder) {
-        fatalError("init?(coder aDecoder: NSCoder) in BusStopBeacon not implemented")
+    // Mappable
+    override func mapping(map: Map) {
+        super.mapping(map: map)
+
+        busStop <- map["busStop"]
+        isNotificationShown <- map["isNotificationShown"]
     }
 
-
-    /**
-     * Sets [.isNotificationShown] to `true`.
-     */
     func setNotificationShown() {
         isNotificationShown = true
     }

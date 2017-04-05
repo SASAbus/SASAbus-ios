@@ -11,6 +11,8 @@
  * @author David Dejori
  */
 
+import Foundation
+
 class Api2 {
 
     static func getTrip(tripId: Int, verifyUiThread: Bool = true) -> VdvTrip {
@@ -24,7 +26,7 @@ class Api2 {
             }
         }
 
-        Log.error("Trip %s not found", tripId)
+        Log.error("Trip \(tripId) not found")
 
         return VdvTrip.empty
     }

@@ -1,4 +1,5 @@
 import Foundation
+import RealmSwift
 
 class BeaconStorage {
 
@@ -33,13 +34,8 @@ class BeaconStorage {
 
             UserDefaults.standard.removeObject(forKey: PREF_BEACON_CURRENT_TRIP)
         } else {
-            do {
-                var json = trip!.toJsonString()
-                Log.trace("Saving current trip: \(json)")
-                UserDefaults.standard.set(json, forKey: PREF_BEACON_CURRENT_TRIP)
-            } catch {
-                Log.error(error)
-            }
+            var json = trip!.toJSONString(prettyPrint: false)
+            UserDefaults.standard.set(json, forKey: PREF_BEACON_CURRENT_TRIP)
         }
     }
 
@@ -60,23 +56,23 @@ class BeaconStorage {
             return nil
         }
 
-        Log.trace("Reading current trip: \(json)")
+        if let trip = CurrentTrip(JSONString: json!) {
+            trip.update()
 
-        var trip = CurrentTrip(json: json)
+            if trip.beacon.lastTrip == 0 {
+                return nil
+            }
 
-        trip.update()
+            if trip.path.isEmpty || trip.times != nil && trip.times!.isEmpty {
+                Log.error("Path or times empty for current trip, will reset...")
 
-        if trip.beacon.lastTrip == 0 {
-            return nil
+                trip.reset()
+            }
+
+            return trip
         }
 
-        if trip.path.isEmpty || trip.times != nil && trip.times!.isEmpty {
-            Log.error("Path or times empty for current trip, will reset...")
-
-            trip.reset()
-        }
-
-        return trip
+        return nil
     }
 
     static func hasCurrentTrip() -> Bool {
@@ -92,7 +88,7 @@ class BeaconStorage {
         if beacon == nil {
             UserDefaults.standard.removeObject(forKey: PREF_BEACON_CURRENT_BUS_STOP)
         } else {
-            var json = beacon!.toJsonString()
+            var json = beacon!.toJSONString(prettyPrint: false)
             Log.trace("Saving current bus stop: \(json)")
             UserDefaults.standard.set(json, forKey: PREF_BEACON_CURRENT_TRIP)
         }
@@ -117,13 +113,9 @@ class BeaconStorage {
 
         Log.trace("Reading current bus stop: \(json)")
 
-        do {
-            var beacon = BusStopBeacon(json: json)
+        if let beacon = BusStopBeacon(JSONString: json!) {
             beacon.busStop = BusStopRealmHelper.getBusStop(id: beacon.id)
-
             return beacon
-        } catch {
-            Log.error(error)
         }
 
         return nil
@@ -136,13 +128,13 @@ class BeaconStorage {
         if map == nil {
             UserDefaults.standard.removeObject(forKey: PREF_BUS_BEACON_MAP_LAST)
         } else {
-            let returnDict = NSMutableDictionary()
+            /*let returnDict = NSMutableDictionary()
 
             for (key, value) in map! {
                 returnDict[String(key)] = value.toJsonString()
-            }
+            }*/
 
-            UserDefaults.standard.set(returnDict.toJsonString(), forKey: PREF_BUS_BEACON_MAP)
+            UserDefaults.standard.set("", forKey: PREF_BUS_BEACON_MAP)
             UserDefaults.standard.set(Date().seconds(), forKey: PREF_BUS_BEACON_MAP_LAST)
         }
     }
@@ -156,24 +148,26 @@ class BeaconStorage {
             }
 
             if lastMapSave != 0 {
-                var difference = Date().millis() - lastMapSave
+                let difference = Date().millis() - lastMapSave
 
                 if difference < BEACON_MAP_TIMEOUT {
                     do {
-                        var json = UserDefaults.standard.string(forKey: PREF_BUS_BEACON_MAP)
+                        let json = UserDefaults.standard.string(forKey: PREF_BUS_BEACON_MAP)
 
                         if json == nil {
                             return [:]
                         }
 
-                        var oldDict = NSMutableDictionary(json: json!) as! [String : String]
+                        /*var oldDict = NSMutableDictionary(json: json!) as! [String : String]
                         var newDict = [Int: BusBeacon]()
 
                         for (key, value) in oldDict {
                             newDict[Int(key)!] = BusBeacon(json: value)
                         }
 
-                        return newDict
+                        return newDict*/
+
+                        return [:]
                     } catch {
                         Log.error(error)
                     }

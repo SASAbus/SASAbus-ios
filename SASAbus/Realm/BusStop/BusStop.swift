@@ -1,6 +1,7 @@
 import RealmSwift
+import ObjectMapper
 
-class BusStop: Object {
+class BusStop: Object, Mappable {
 
     dynamic var id = 0
     dynamic var family = 0
@@ -12,6 +13,10 @@ class BusStop: Object {
 
     dynamic var lat: Float = 0.0
     dynamic var lng: Float = 0.0
+
+    required convenience init?(map: Map) {
+        self.init()
+    }
 
     convenience init(id: Int, name: String, munic: String, lat: Float, lng: Float, family: Int) {
         self.init()
@@ -26,9 +31,15 @@ class BusStop: Object {
         self.family = family
     }
 
+
     override var hashValue: Int {
         return family
     }
+
+    override func isEqual(_ object: Any?) -> Bool {
+        return (object as! BusStop).family == self.family
+    }
+
 
     func name(locale: String) -> String {
         return (locale == "de" ? nameDe : nameIt)!
@@ -38,7 +49,14 @@ class BusStop: Object {
         return (locale == "de" ? municDe : municIt)!
     }
 
-    override func isEqual(_ object: Any?) -> Bool {
-        return (object as! BusStop).family == self.family
+
+    func mapping(map: Map) {
+        id <- map["id"]
+        family <- map["family"]
+        nameDe <- map["nameDe"]
+        nameIt <- map["nameIt"]
+        municDe <- map["municIt"]
+        lat <- map["lat"]
+        lng <- map["lng"]
     }
 }

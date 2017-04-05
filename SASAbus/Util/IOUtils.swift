@@ -4,28 +4,19 @@ import SwiftyJSON
 
 class IOUtils {
 
-    static func readFileAsString(path: URL) -> String? {
-        do {
-            return try String(contentsOf: path)
-        } catch let error {
-            Log.error("Could not read fle \(path.path): \(error)")
-        }
-
-        return nil
+    static func readFileAsString(path: URL) throws -> String {
+        return try String(contentsOf: path)
     }
 
-    static func readFileAsJson(path: URL) -> JSON? {
-        if let json = readFileAsString(path: path) {
-            return JSON.parse(json)
-        }
-
-        return nil
+    static func readFileAsJson(path: URL) throws -> JSON {
+        let json = try readFileAsString(path: path)
+        return JSON(parseJSON: json)
     }
 
     static func unzipFile(from: URL, to: URL) throws {
         let success = SSZipArchive.unzipFile(atPath: from.path, toDestination: to.path)
         if success {
-            Log.warning("Unzipped timetables")
+            Log.warning("Unzipped file \(from) to \(to)")
         } else {
             Log.error("Could not unzip files")
             throw NSError(domain: "com.davale.sasabus", code: -1, userInfo: nil)
