@@ -124,7 +124,7 @@ class PlannedData {
      * @param context Context to be used to edit the [SharedPreferences].
      */
     private static func setDataDate() {
-        var format = DateFormatter()
+        let format = DateFormatter()
         format.dateFormat = "yyyMMdd"
 
         UserDefaults.standard.set(format.string(from: Date()), forKey: PREF_DATA_DATE)

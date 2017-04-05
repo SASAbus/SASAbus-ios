@@ -175,14 +175,3 @@ class BusBeacon: AbsBeacon {
         }
     }
 }
-
-extension Date {
-
-    func millis() -> Int64 {
-        return Int64(timeIntervalSince1970 * 1000)
-    }
-
-    func seconds() -> Int {
-        return Int(timeIntervalSince1970)
-    }
-}

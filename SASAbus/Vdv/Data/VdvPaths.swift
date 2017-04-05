@@ -12,7 +12,7 @@ class VdvPaths {
         // iterates through all the lines
         for i in 0...jPaths.count - 1 {
             var jVariants = jPaths[i]["variants"]
-            var line = jPaths[i]["line_id"].intValue
+            let line = jPaths[i]["line_id"].intValue
 
             // HashMap with variants
             var variants = [[VdvBusStop]]()

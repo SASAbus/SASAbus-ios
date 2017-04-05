@@ -22,7 +22,7 @@ class VdvIntervals {
         for i in 0...jIntervals.count - 1 {
             var jInterval = jIntervals[i]
 
-            var interval = VdvInterval(
+            let interval = VdvInterval(
                     timeGroup: jInterval["time_group"].intValue,
                     origin: jInterval["origin_id"].intValue,
                     destination: jInterval["destination_id"].intValue
@@ -35,7 +35,7 @@ class VdvIntervals {
     }
 
     static func getInterval(timeGroup: Int, origin: Int, destination: Int) -> Int {
-        var interval = VdvInterval(timeGroup: timeGroup, origin: origin, destination: destination)
+        let interval = VdvInterval(timeGroup: timeGroup, origin: origin, destination: destination)
         return INTERVALS[interval] ?? 0
     }
 }
