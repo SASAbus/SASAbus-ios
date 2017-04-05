@@ -42,24 +42,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // MARK: - UIApplicationDelegate
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool {
-        Fabric.with([Crashlytics.self])
-
-        Notifications.clearAll()
-
-        Buses.setup()
-        Lines.setup()
-        BusStopRealmHelper.setup()
-        UserRealmHelper.setup()
-
-        _ = VdvHandler.load()
-                .subscribeOn(MainScheduler.background)
-                .observeOn(MainScheduler.background)
-                .subscribe(onError: { error in
-                    Log.error(error)
-                })
+        setupLogging()
+        setupRealm()
+        setupModels()
+        setupGoogle()
+        setupBeacons()
+        setupNotifications()
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
-
 
         if !Settings.isIntroFinished() {
             let storyboard = UIStoryboard(name: "Intro", bundle: nil)
@@ -76,21 +66,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
             self.startApplication()
         }
-
-        // Configure tracker from GoogleService-Info.plist.
-        var configureError: NSError?
-        GGLContext.sharedInstance().configureWithError(&configureError)
-        assert(configureError == nil, "Error configuring Google services: \(configureError)")
-
-        // Optional: configure GAI options.
-        let gai = GAI.sharedInstance()
-        gai?.trackUncaughtExceptions = true
-        // gai?.logger?.logLevel = GAILogLevel.verbose
-
-        BeaconHandler.instance.start()
-
-        registerForRemoteNotification()
-        // TripNotification.createReminderNotification()
 
         return true
     }
@@ -144,11 +119,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         navigationBarAppearance.barTintColor = Theme.orange  // Bar's background color
         navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: Theme.white]  // Title's text color
 
-        // start listening to beacons
-        // self.beaconObserver.startObserving()
-        // self.beaconObserverStation.startObserving()
-        self.registerForLocalNotifications()
-
         // Ask for Authorisation from the User.
         CLLocationManager().requestAlwaysAuthorization()
 
@@ -171,38 +141,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 
 
-    func registerForLocalNotifications() {
-        // Specify the notification actions.
-        let notificationYes = UIMutableUserNotificationAction()
-        notificationYes.identifier = "Yes"
-        notificationYes.title = NSLocalizedString("Yes", comment: "")
-        notificationYes.activationMode = UIUserNotificationActivationMode.background
-        notificationYes.isDestructive = false
-        notificationYes.isAuthenticationRequired = false
-
-        let notificationNo = UIMutableUserNotificationAction()
-        notificationNo.identifier = "No"
-        notificationNo.title = NSLocalizedString("No", comment: "")
-        notificationNo.activationMode = UIUserNotificationActivationMode.foreground
-        notificationNo.isDestructive = true
-        notificationNo.isAuthenticationRequired = false
-
-        // Create a category with the above actions
-        let surveyNotificationHandler = SurveyNotificationHandler(name: "surveyCategory")
-        let surveyCategory = UIMutableUserNotificationCategory()
-        surveyCategory.identifier = surveyNotificationHandler.getName()
-        surveyCategory.setActions([notificationYes, notificationNo], for: UIUserNotificationActionContext.default)
-        surveyCategory.setActions([notificationYes, notificationNo], for: UIUserNotificationActionContext.minimal)
-
-        self.notificationHandlers[surveyNotificationHandler.getName()] = surveyNotificationHandler
-
-        // Register for notification: This will prompt for the user's consent to receive notifications from this app.
-        let notificationSettings = UIUserNotificationSettings(types: [.alert, .sound, .badge],
-                categories: [surveyCategory])
-
-        // Registering UIUserNotificationSettings more than once results in previous settings being overwritten.
-        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
+    func setupBeacons() {
+        BeaconHandler.instance.start()
     }
+
+    func setupLogging() {
+        #if DEBUG
+            Fabric.with([Crashlytics.self])
+        #endif
+    }
+
+    func setupGoogle() {
+        // Configure tracker from GoogleService-Info.plist.
+        var configureError: NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
+        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+
+        // Optional: configure GAI options.
+        let gai = GAI.sharedInstance()
+        gai?.trackUncaughtExceptions = true
+        // gai?.logger?.logLevel = GAILogLevel.verbose
+    }
+
+    func setupRealm() {
+        BusStopRealmHelper.setup()
+        UserRealmHelper.setup()
+    }
+
+    func setupModels() {
+        Buses.setup()
+        Lines.setup()
+
+        _ = VdvHandler.load()
+                .subscribeOn(MainScheduler.background)
+                .observeOn(MainScheduler.background)
+                .subscribe(onError: { error in
+                    Log.error(error)
+                })
+    }
+
+    func setupNotifications() {
+        Notifications.clearAll()
+
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+
+        center.requestAuthorization(options: [.sound, .alert, .badge]) { (_, error) in
+            if error == nil {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
+    }
+
 
     func navigateTo(_ viewController: UIViewController) {
         self.drawerController!.centerViewController = self.getNavigationController(viewController)
@@ -225,30 +215,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 
 
-    func registerForRemoteNotification() {
-        let center = UNUserNotificationCenter.current()
-        center.delegate = self
+    // - MARK: UNUserNotificationCenterDelegate
 
-        center.requestAuthorization(options: [.sound, .alert, .badge]) { (_, error) in
-            if error == nil {
-                UIApplication.shared.registerForRemoteNotifications()
-            }
-        }
-    }
-
-    // Called when a notification is delivered to a foreground app.
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+
+        // Called when a notification is delivered to a foreground app.
 
         Log.warning("Got notification request: \(notification.request.identifier)")
         completionHandler([.alert, .badge, .sound])
     }
 
-    // Called to let your app know which action was selected by the user for a given notification.
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
+
+        // Called to let your app know which action was selected by the user for a given notification.
 
         Log.warning("Got notification action: \(response.actionIdentifier)")
         completionHandler()

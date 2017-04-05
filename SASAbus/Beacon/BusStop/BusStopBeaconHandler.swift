@@ -1,74 +1,64 @@
-//
-// StationDetectionBeaconHandler.swift
-// SASAbus
-//
-// Copyright (C) 2011-2015 Raiffeisen Online GmbH (Norman Marmsoler, Jürgen Sprenger, Aaron Falk) <info@raiffeisen.it>
-//
-// This file is part of SASAbus.
-//
-// SASAbus is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// SASAbus is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with SASAbus.  If not, see <http://www.gnu.org/licenses/>.
-//
-
 import Foundation
-import Alamofire
 import CoreLocation
 
-class BusStopBeaconHandler: BeaconHandlerProtocol {
+class BusStopBeaconHandler: NSObject, CLLocationManagerDelegate {
 
-    let uuid = "8f771fca-e25a-4a7f-af4e-1745a7be89ef"
-    let identifier = "BUS_STOP"
+    let UUID_STRING = "8f771fca-e25a-4a7f-af4e-1745a7be89ef"
+    let IDENTIFIER = "BUS_STOP"
 
-    init() {
+    private let locationManager = CLLocationManager()
+    private var region: CLBeaconRegion!
+    private var regions: [String : CLBeaconRegion] = [:]
+    private var didEnterRegionDate: NSDate?
+    private var didExitRegionDate: NSDate?
 
+    override init() {
+        super.init()
+
+        self.locationManager.delegate = self
+
+        self.region = CLBeaconRegion(proximityUUID: UUID(uuidString: UUID_STRING)!, identifier: IDENTIFIER)
+        self.region.notifyEntryStateOnDisplay = true
+        self.region.notifyOnEntry = true
+        self.region.notifyOnExit = true
     }
 
-    func getUuid() -> String {
-        return self.uuid
+    func startObserving() {
+        if CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedAlways {
+            locationManager.requestAlwaysAuthorization()
+        }
+
+        Log.warning("startObserving() BUS_STOP")
+
+        locationManager.startMonitoring(for: self.region)
+        locationManager.startRangingBeacons(in: self.region)
     }
 
-    func getIdentifier() -> String {
-        return self.identifier
-    }
-
-    func beaconsInRange(_ beacons: [CLBeacon]) {
-        var nearestBeacon: CLBeacon? = nil
-
+    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         for beacon in beacons {
-            if nearestBeacon == nil ||
-                       (beacon.accuracy > 0 &&
-                               beacon.accuracy < nearestBeacon!.accuracy) {
-                nearestBeacon = beacon
-            }
-        }
-        if nearestBeacon != nil {
-            self.beaconInRange(Int(nearestBeacon!.major), minor: Int(nearestBeacon!.minor))
+            Log.info("Beacon #\(beacon.major), distance: \(beacon.proximity.rawValue)")
         }
     }
 
-    func beaconInRange(_ major: Int, minor: Int) {
-        UserDefaultHelper.instance.setCurrentBusStopId(major)
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        let now = NSDate()
+
+        if didEnterRegionDate == nil || now.timeIntervalSince1970 - (didEnterRegionDate?.timeIntervalSince1970)! > 2 {
+            didEnterRegionDate = now
+
+            Log.warning("didEnterRegion() BUS_STOP")
+            locationManager.startRangingBeacons(in: self.region)
+        }
     }
 
-    func clearBeacons() {
-        UserDefaultHelper.instance.setCurrentBusStopId(nil)
-    }
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        let now = NSDate()
 
-    func inspectBeacons() {
-        UserDefaultHelper.instance.setCurrentBusStopId(nil)
-    }
+        if didExitRegionDate == nil || now.timeIntervalSince1970 - (didExitRegionDate?.timeIntervalSince1970)! > 2 {
+            didExitRegionDate = now
 
-    func handlerIsActive() -> Bool {
-        return UserDefaultHelper.instance.isBeaconStationDetectionEnabled()
+            Log.warning("didExitRegion() BUS_STOP")
+            locationManager.stopRangingBeacons(in: self.region)
+        }
     }
 }
