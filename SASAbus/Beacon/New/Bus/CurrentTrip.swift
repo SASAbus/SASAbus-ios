@@ -12,6 +12,25 @@ class CurrentTrip: Mappable {
     var path = [LocalBusStop]()
     var times: [VdvBusStop]?
 
+    var id: Int {
+        get {
+            return beacon.id
+        }
+    }
+
+    var delay: Int {
+        get {
+            return beacon.delay
+        }
+    }
+
+    var title: String {
+        get {
+            return beacon.title
+        }
+    }
+
+
     init(beacon: BusBeacon) {
         self.beacon = beacon
 
@@ -31,6 +50,23 @@ class CurrentTrip: Mappable {
         hasReachedSecondBusStop <- map["hasReachedSecondBusStop"]
         path <- map["path"]
         times <- map["times"]
+    }
+
+
+
+    func update() {
+        if beacon.isSuitableForTrip {
+            Log.error("Updating current trip notification")
+
+            TripNotification.show(trip: self)
+        } else {
+            Log.error("Cannot update current trip notification because trip is not suitable")
+        }
+    }
+
+    func reset() {
+        Log.error("Trip reset")
+        setup()
     }
 
     private func setup() {
@@ -57,39 +93,6 @@ class CurrentTrip: Mappable {
                     self.path.append(LocalBusStop(realm: BusStopRealmHelper.getBusStop(id: busStop.id)))
                 }
             }
-        }
-    }
-
-    var id: Int {
-        get {
-            return beacon.id
-        }
-    }
-
-    var delay: Int {
-        get {
-            return beacon.delay
-        }
-    }
-
-    func update() {
-        if beacon.isSuitableForTrip && isNotificationVisible {
-            Log.error("Updating current trip notification")
-
-            TripNotification.show(trip: self)
-        } else {
-            Log.error("Cannot update current trip notification because trip is not suitable")
-        }
-    }
-
-    func reset() {
-        Log.error("Trip reset")
-        setup()
-    }
-
-    var title: String {
-        get {
-            return beacon.title
         }
     }
 }

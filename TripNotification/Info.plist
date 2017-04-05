@@ -27,7 +27,7 @@
 			<key>UNNotificationExtensionCategory</key>
 			<string>trip_notification</string>
 			<key>UNNotificationExtensionInitialContentSizeRatio</key>
-			<real>1</real>
+			<real>0.7</real>
 		</dict>
 		<key>NSExtensionMainStoryboard</key>
 		<string>MainInterface</string>

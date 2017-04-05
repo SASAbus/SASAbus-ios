@@ -9,7 +9,7 @@ import ObjectMapper
 
 class AbsBeacon: Mappable {
 
-    var id: Int!
+    var id: Int = -1
 
     var startDate = Date()
 

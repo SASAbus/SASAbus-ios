@@ -23,7 +23,7 @@ class VdvHandler {
             // JodaTimeAndroid.init(context)
 
             if !PlannedData.planDataExists() {
-                BeaconHandler.get().stop()
+                BeaconHandler.instance.stop()
                 Log.error("Planned data does not exist, skipping loading")
                 return Disposables.create()
             }
@@ -74,7 +74,7 @@ class VdvHandler {
 
                 Log.info("Loaded planned data in \(time + Date().millis()) ms")
             } catch VdvError.vdvError(let message) {
-                BeaconHandler.get().stop()
+                BeaconHandler.instance.stop()
                 Log.error("Cannot load planned data: \(message)")
                 return Disposables.create()
             } catch VdvError.jsonError {
@@ -82,7 +82,7 @@ class VdvHandler {
                 // If this happens, the json plan data most likely is in an invalid format
                 // because it got corrupted somehow, or someone modified it on purpose.
                 // We should reschedule a new plan data download if this happens.
-                BeaconHandler.get().stop()
+                BeaconHandler.instance.stop()
                 PlannedData.setUpdateAvailable(true)
 
                 observer.on(.error(VdvError.jsonError))

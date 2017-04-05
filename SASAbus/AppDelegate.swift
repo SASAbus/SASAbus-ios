@@ -37,12 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow?
     var drawerController: DrawerController!
 
-    // var beaconObserver: BusBeaconObserver! = BusBeaconObserver(BusBeaconHandler(surveyAction: NotificationAction()))
-    // var beaconObserverStation: BusStopBeaconObserver! = BusStopBeaconObserver(BusStopBeaconHandler())
-
-    var busBeaconHandler = BusBeaconHandler()
-    var busStopBeaconHandler = BusStopBeaconHandler()
-
     var notificationHandlers: [String : NotificationProtocol] = [String: NotificationProtocol]()
 
     // MARK: - UIApplicationDelegate
@@ -93,8 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         gai?.trackUncaughtExceptions = true
         // gai?.logger?.logLevel = GAILogLevel.verbose
 
-        busBeaconHandler.startObserving()
-        busStopBeaconHandler.startObserving()
+        BeaconHandler.instance.start()
 
         registerForRemoteNotification()
         // TripNotification.createReminderNotification()
@@ -104,6 +97,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
 
     func applicationWillResignActive(_ application: UIApplication) {
+        Log.warning("applicationWillResignActive()")
+
         // Sent when the application is about to move from active to inactive state.
         // This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message)
         // or when the user quits the application and it begins the transition to the background state.
@@ -112,6 +107,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
+        Log.warning("applicationDidEnterBackground()")
+
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application
         // state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution,
@@ -119,20 +116,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
+        Log.warning("applicationWillEnterForeground()")
+
         // Called as part of the transition from the background to the inactive state;
         // here you can undo many of the changes made on entering the background.
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        Log.warning("applicationDidBecomeActive()")
+
         // Restart any tasks that were paused (or not yet started) while the application was inactive.
         // If the application was previously in the background, optionally refresh the user interface.
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
+        Log.warning("applicationWillTerminate()")
+
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-
-        self.saveContext()
     }
 
 
@@ -169,83 +170,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         self.window!.rootViewController = self.drawerController
     }
 
-
-    // MARK: - Core Data stack
-
-    func getApplicationDocumentsDirectory() -> URL {
-        // The directory the application uses to store the Core Data store file.
-        // This code uses a directory named "it.sasabz.ios.SASAbus" in the application's documents
-        // Application Support directory.
-
-        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return urls[urls.count - 1]
-    }
-
-    func getManagedObjectModel() -> NSManagedObjectModel {
-        // The managed object model for the application. This property is not optional. It is a fatal error for the
-        // application not to be able to find and load its model.
-
-        let modelURL = Bundle.main.url(forResource: "SASAbus", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOf: modelURL)!
-    }
-
-    func getPersistentStoreCoordinator() -> NSPersistentStoreCoordinator {
-        // The persistent store coordinator for the application. This implementation creates and returns a coordinator,
-        // having added the store for the application to it. This property is optional since there are legitimate error
-        // conditions that could cause the creation of the store to fail.
-        // Create the coordinator and store
-
-        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: getManagedObjectModel())
-        let url = getApplicationDocumentsDirectory().appendingPathComponent("SingleViewCoreData.sqlite")
-        var failureReason = "There was an error creating or loading the application's saved data."
-
-        do {
-            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
-        } catch {
-            // Report any error we got.
-            var dict = [String: AnyObject]()
-            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject?
-            dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject?
-
-            dict[NSUnderlyingErrorKey] = error as NSError
-            let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
-            // Replace this with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate.
-            // You should not use this function in a shipping application, although it may be useful during development.
-            Log.error("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
-            abort()
-        }
-
-        return coordinator
-    }
-
-    func getManagedObjectContext() -> NSManagedObjectContext {
-        // Returns the managed object context for the application (which is already bound to the persistent store
-        // coordinator for the application.) This property is optional since there are legitimate error conditions that
-        // could cause the creation of the context to fail.
-
-        let coordinator = getPersistentStoreCoordinator()
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        managedObjectContext.persistentStoreCoordinator = coordinator
-        return managedObjectContext
-    }
-
-
-    // MARK: - Core Data Saving support
-
-    func saveContext() {
-        if getManagedObjectContext().hasChanges {
-            do {
-                try getManagedObjectContext().save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate.
-                // You should not use this function in a shipping application, although it may be useful during development.
-                Log.error("Unresolved error \(error)")
-                abort()
-            }
-        }
-    }
 
     func registerForLocalNotifications() {
         // Specify the notification actions.
@@ -317,7 +241,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
 
-        print("User Info = ", notification.request.content.userInfo)
+        Log.warning("Got notification request: \(notification.request.identifier)")
         completionHandler([.alert, .badge, .sound])
     }
 
@@ -326,32 +250,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
 
-        print("User Info = ", response.notification.request.content.userInfo)
+        Log.warning("Got notification action: \(response.actionIdentifier)")
         completionHandler()
     }
-
-
-
-    /*func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-    Notifications.clearAll()
-
-    if notificationHandlers.keys.contains(notification.category!) {
-        let notificationHandler = notificationHandlers[notification.category!]
-
-        notificationHandler!.handleNotificationForeground(self.window!.rootViewController!,
-                userInfo: notification.userInfo as? [String : Any])
-    }
-}
-
-func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?,
-                 for notification: UILocalNotification, completionHandler: @escaping () -> Void) {
-    Notifications.clearAll()
-
-    if notificationHandlers.keys.contains(notification.category!) {
-        let notificationHandler = notificationHandlers[notification.category!]
-        notificationHandler?.handleNotificationBackground(identifier, userInfo: notification.userInfo as? [String : Any])
-    }
-
-    completionHandler()
-}*/
 }

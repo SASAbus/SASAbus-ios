@@ -22,22 +22,7 @@ class BeaconStorage {
     }
 
 
-// =================================== CURRENT TRIP ============================================
-
-    static func saveCurrentTrip(trip: CurrentTrip?) {
-        mCurrentTrip = trip
-
-        if trip == nil {
-            Log.error("trip == null, cancelling notification")
-            // TODO
-            // TripNotification.hide(mContext, null)
-
-            UserDefaults.standard.removeObject(forKey: PREF_BEACON_CURRENT_TRIP)
-        } else {
-            var json = trip!.toJSONString(prettyPrint: false)
-            UserDefaults.standard.set(json, forKey: PREF_BEACON_CURRENT_TRIP)
-        }
-    }
+    // =================================== CURRENT TRIP ============================================
 
     static var currentTrip: CurrentTrip? {
         get {
@@ -46,6 +31,22 @@ class BeaconStorage {
             }
 
             return mCurrentTrip
+        }
+        set {
+            mCurrentTrip = newValue
+        }
+    }
+
+
+    static func saveCurrentTrip() {
+        if mCurrentTrip == nil {
+            Log.error("trip == null, cancelling notification")
+            TripNotification.hide(trip: nil)
+
+            UserDefaults.standard.removeObject(forKey: PREF_BEACON_CURRENT_TRIP)
+        } else {
+            var json = mCurrentTrip!.toJSONString(prettyPrint: false)
+            UserDefaults.standard.set(json, forKey: PREF_BEACON_CURRENT_TRIP)
         }
     }
 
@@ -80,19 +81,7 @@ class BeaconStorage {
     }
 
 
-// ================================= CURRENT BUS STOP ==========================================
-
-    static func saveCurrentBusStop(beacon: BusStopBeacon?) {
-        mCurrentBusStop = beacon
-
-        if beacon == nil {
-            UserDefaults.standard.removeObject(forKey: PREF_BEACON_CURRENT_BUS_STOP)
-        } else {
-            var json = beacon!.toJSONString(prettyPrint: false)
-            Log.trace("Saving current bus stop: \(json)")
-            UserDefaults.standard.set(json, forKey: PREF_BEACON_CURRENT_TRIP)
-        }
-    }
+    // ================================= CURRENT BUS STOP ==========================================
 
     static var currentBusStop: BusStopBeacon? {
         get {
@@ -101,6 +90,20 @@ class BeaconStorage {
             }
 
             return mCurrentBusStop
+        }
+        set {
+            mCurrentBusStop = newValue
+        }
+    }
+
+
+    static func saveCurrentBusStop() {
+        if mCurrentBusStop == nil {
+            UserDefaults.standard.removeObject(forKey: PREF_BEACON_CURRENT_BUS_STOP)
+        } else {
+            var json = mCurrentBusStop!.toJSONString(prettyPrint: false)
+            Log.trace("Saving current bus stop: \(json)")
+            UserDefaults.standard.set(json, forKey: PREF_BEACON_CURRENT_TRIP)
         }
     }
 
@@ -122,7 +125,7 @@ class BeaconStorage {
     }
 
 
-// ==================================== BEACON MAP =============================================
+    // ==================================== BEACON MAP =============================================
 
     static func writeBeaconMap(map: [Int : BusBeacon]?) {
         if map == nil {
@@ -139,45 +142,38 @@ class BeaconStorage {
         }
     }
 
-    static var beaconMap: [Int : BusBeacon] {
-        get {
-            var lastMapSave: Int64 = 0
+    static func getBeaconMap() -> [Int : BusBeacon] {
+        var lastMapSave: Int64 = 0
 
-            if UserDefaults.standard.integer(forKey: PREF_BUS_BEACON_MAP_LAST) != 0 {
-                lastMapSave = Int64(UserDefaults.standard.integer(forKey: PREF_BUS_BEACON_MAP_LAST) * 1000)
-            }
-
-            if lastMapSave != 0 {
-                let difference = Date().millis() - lastMapSave
-
-                if difference < BEACON_MAP_TIMEOUT {
-                    do {
-                        let json = UserDefaults.standard.string(forKey: PREF_BUS_BEACON_MAP)
-
-                        if json == nil {
-                            return [:]
-                        }
-
-                        /*var oldDict = NSMutableDictionary(json: json!) as! [String : String]
-                        var newDict = [Int: BusBeacon]()
-
-                        for (key, value) in oldDict {
-                            newDict[Int(key)!] = BusBeacon(json: value)
-                        }
-
-                        return newDict*/
-
-                        return [:]
-                    } catch {
-                        Log.error(error)
-                    }
-
-                } else {
-                    saveCurrentTrip(trip: nil)
-                }
-            }
-
-            return [:]
+        if UserDefaults.standard.integer(forKey: PREF_BUS_BEACON_MAP_LAST) != 0 {
+            lastMapSave = Int64(UserDefaults.standard.integer(forKey: PREF_BUS_BEACON_MAP_LAST) * 1000)
         }
+
+        if lastMapSave != 0 {
+            let difference = Date().millis() - lastMapSave
+
+            if difference < BEACON_MAP_TIMEOUT {
+                let json = UserDefaults.standard.string(forKey: PREF_BUS_BEACON_MAP)
+
+                if json == nil {
+                    return [:]
+                }
+
+                /*var oldDict = NSMutableDictionary(json: json!) as! [String : String]
+                var newDict = [Int: BusBeacon]()
+
+                for (key, value) in oldDict {
+                    newDict[Int(key)!] = BusBeacon(json: value)
+                }
+
+                return newDict*/
+
+                return [:]
+            } else {
+                saveCurrentTrip()
+            }
+        }
+
+        return [:]
     }
 }

@@ -9,11 +9,15 @@ class BeaconHandler {
 
     static let instance = BeaconHandler()
 
-    static func get() -> BeaconHandler {
-        return instance
+    func start() {
+        BusBeaconHandler.instance.startObserving()
     }
 
     func stop() {
+        BusBeaconHandler.instance.stopObserving()
+    }
 
+    func save() {
+        BusBeaconHandler.instance.saveState()
     }
 }

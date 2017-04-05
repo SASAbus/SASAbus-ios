@@ -45,10 +45,12 @@ class TripNotification {
         }
     }
 
-    static func hide(trip: CurrentTrip) {
-        Log.warning("Hiding notification for vehicle \(trip.id)")
+    static func hide(trip: CurrentTrip?) {
+        Log.warning("Hiding notification for vehicle \(trip?.id)")
 
-        trip.isNotificationVisible = false
+        if let trip = trip {
+            trip.isNotificationVisible = false
+        }
 
         let center = UNUserNotificationCenter.current()
         center.removeDeliveredNotifications(withIdentifiers: ["trip"])
