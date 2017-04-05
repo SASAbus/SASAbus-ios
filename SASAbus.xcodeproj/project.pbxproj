@@ -235,6 +235,8 @@
 		8209412F31A20D6101E5A337 /* Pods_TripNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B2ED616AB2156B38A561B93 /* Pods_TripNotification.framework */; };
 		C0B47346C75AAFE57DA45528 /* Pods_SASAbus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D691B23DAE0CB65656C8EAF5 /* Pods_SASAbus.framework */; };
 		CD34D06B1BC5594D00912806 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD34D06D1BC5594D00912806 /* Localizable.strings */; };
+		FA1763F21E9539B50081ADCB /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3678B3629E7C96BDD85E /* DateExtension.swift */; };
+		FA1763F31E9539B60081ADCB /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D57BBA4062A9689AEDD /* DictionaryExtension.swift */; };
 		FA2690DF1E93B927000B8A84 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2690DE1E93B927000B8A84 /* UserNotifications.framework */; };
 		FA2690E11E93B927000B8A84 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2690E01E93B927000B8A84 /* UserNotificationsUI.framework */; };
 		FA2690E41E93B927000B8A84 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2690E31E93B927000B8A84 /* NotificationViewController.swift */; };
@@ -1726,7 +1728,9 @@
 				FA2691001E93F6B2000B8A84 /* LogTheme.swift in Sources */,
 				FA26910D1E93FA2B000B8A84 /* Endpoint.swift in Sources */,
 				FA26910A1E93F9ED000B8A84 /* NetUtils.swift in Sources */,
+				FA1763F31E9539B60081ADCB /* DictionaryExtension.swift in Sources */,
 				FA2691081E93F9BE000B8A84 /* VdvBusStop.swift in Sources */,
+				FA1763F21E9539B50081ADCB /* DateExtension.swift in Sources */,
 				FA2690F51E93CA8F000B8A84 /* UIUtils.swift in Sources */,
 				FA2691091E93F9E6000B8A84 /* BusStop.swift in Sources */,
 				FA2690FF1E93F6AF000B8A84 /* Formatters.swift in Sources */,

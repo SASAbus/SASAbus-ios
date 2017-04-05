@@ -49,8 +49,8 @@ class VdvTrip: Hashable {
             path[0].departure = departure
 
             for i in 1...path.count - 1 {
-                var last = path[i - 1]
-                var current = path[i]
+                let last = path[i - 1]
+                let current = path[i]
 
                 current.departure = last.departure +
                         VdvIntervals.getInterval(timeGroup: timeGroup, origin: last.id, destination: current.id) +

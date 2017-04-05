@@ -181,8 +181,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 
     func setupNotifications() {
-        Notifications.clearAll()
-
         let center = UNUserNotificationCenter.current()
         center.delegate = self
 
@@ -191,6 +189,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 UIApplication.shared.registerForRemoteNotifications()
             }
         }
+
+        Notifications.clearAll()
     }
 
 

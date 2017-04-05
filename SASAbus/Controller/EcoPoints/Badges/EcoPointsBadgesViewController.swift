@@ -13,7 +13,7 @@ class EcoPointsBadgesViewController: UITableViewController {
         super.init(nibName: "EcoPointsBadgesViewController", bundle: nil)
     }
 
-    override required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -152,7 +152,7 @@ class EcoPointsBadgesViewController: UITableViewController {
         refreshControl.tintColor = Theme.lightOrange
         refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""),
                 attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
-        refreshControl.addTarget(self, action: "parseData", for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(EcoPointsBadgesViewController.parseData), for: UIControlEvents.valueChanged)
 
         self.refreshControl = refreshControl
     }

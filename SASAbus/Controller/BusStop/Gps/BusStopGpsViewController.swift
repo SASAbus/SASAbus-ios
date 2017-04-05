@@ -38,7 +38,7 @@ class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
         super.init(nibName: "BusStopGpsViewController", bundle: nil)
     }
 
-    required override init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 

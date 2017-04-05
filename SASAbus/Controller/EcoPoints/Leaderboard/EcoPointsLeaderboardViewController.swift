@@ -110,7 +110,7 @@ class EcoPointsLeaderboardViewController: UIViewController, UITableViewDataSourc
         refreshControl.tintColor = Theme.lightOrange
         refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""),
                 attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
-        refreshControl.addTarget(self, action: "parseLeaderboard", for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(EcoPointsLeaderboardViewController.parseLeaderboard), for: UIControlEvents.valueChanged)
 
         self.tableView.refreshControl = refreshControl
     }

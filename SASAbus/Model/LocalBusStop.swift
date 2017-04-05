@@ -6,10 +6,10 @@ class LocalBusStop: Mappable, Hashable {
     var id = 0
     var family = 0
 
-    var nameDe: String?
-    var nameIt: String?
-    var municDe: String?
-    var municIt: String?
+    var nameDe: String = ""
+    var nameIt: String = ""
+    var municDe: String = ""
+    var municIt: String = ""
 
     var lat: Float = 0.0
     var lng: Float = 0.0
@@ -36,10 +36,10 @@ class LocalBusStop: Mappable, Hashable {
         self.init()
 
         self.id = realm.id
-        self.nameDe = realm.nameDe
-        self.nameIt = realm.nameIt
-        self.municDe = realm.municDe
-        self.municIt = realm.municIt
+        self.nameDe = realm.nameDe!
+        self.nameIt = realm.nameIt!
+        self.municDe = realm.municDe!
+        self.municIt = realm.municIt!
         self.lat = realm.lat
         self.lng = realm.lng
         self.family = realm.family
@@ -47,11 +47,11 @@ class LocalBusStop: Mappable, Hashable {
 
 
     func name(locale: String = Utils.locale()) -> String {
-        return (locale == "de" ? nameDe : nameIt)!
+        return locale == "de" ? nameDe : nameIt
     }
 
     func munic(locale: String = Utils.locale()) -> String {
-        return (locale == "de" ? municDe : municIt)!
+        return locale == "de" ? municDe : municIt
     }
 
     func mapping(map: Map) {
@@ -72,5 +72,4 @@ class LocalBusStop: Mappable, Hashable {
     public static func ==(lhs: LocalBusStop, rhs: LocalBusStop) -> Bool {
         return lhs.family == rhs.family
     }
-
 }

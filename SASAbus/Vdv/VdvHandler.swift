@@ -42,7 +42,7 @@ class VdvHandler {
             isLoading = true
 
             do {
-                var time = -Date().millis()
+                let time = -Date().millis()
 
                 var json = try IOUtils.readFileAsJson(path: getPlannedDataFile())
 

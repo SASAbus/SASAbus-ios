@@ -61,10 +61,6 @@ final class BusStationItem: NSCoding, JSONable, JSONCollection {
             $0.intValue
         }
 
-        if self.busLineIds == nil {
-            self.busLineIds = []
-        }
-
         descriptionDe = ""
         descriptionIt = ""
 

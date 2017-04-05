@@ -21,11 +21,12 @@
 //
 
 import Foundation
+import UserNotifications
 
 class Notifications {
 
     static func clearAll() {
-        UIApplication.shared.cancelAllLocalNotifications()
-        UIApplication.shared.applicationIconBadgeNumber = 0
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 }

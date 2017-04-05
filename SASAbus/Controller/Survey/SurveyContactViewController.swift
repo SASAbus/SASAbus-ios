@@ -127,7 +127,7 @@ class SurveyContactViewController: MasterViewController, ValidationDelegate, UIT
     }
 
     func validationFailed(_ errors: [(Validatable, ValidationError)]) {
-        for (field, error) in validator.errors {
+        for (_, error) in validator.errors {
             // TODO
 
             /*field.layer.borderColor = UIColor.redColor().CGColor

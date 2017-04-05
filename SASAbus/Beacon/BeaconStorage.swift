@@ -45,13 +45,13 @@ class BeaconStorage {
 
             UserDefaults.standard.removeObject(forKey: PREF_BEACON_CURRENT_TRIP)
         } else {
-            var json = mCurrentTrip!.toJSONString(prettyPrint: false)
+            let json = mCurrentTrip!.toJSONString(prettyPrint: false)
             UserDefaults.standard.set(json, forKey: PREF_BEACON_CURRENT_TRIP)
         }
     }
 
     static private func readCurrentTrip() -> CurrentTrip? {
-        var json = UserDefaults.standard.string(forKey: PREF_BEACON_CURRENT_TRIP)
+        let json = UserDefaults.standard.string(forKey: PREF_BEACON_CURRENT_TRIP)
 
         if json == nil {
             return nil
@@ -101,14 +101,14 @@ class BeaconStorage {
         if mCurrentBusStop == nil {
             UserDefaults.standard.removeObject(forKey: PREF_BEACON_CURRENT_BUS_STOP)
         } else {
-            var json = mCurrentBusStop!.toJSONString(prettyPrint: false)
+            let json = mCurrentBusStop!.toJSONString(prettyPrint: false)
             Log.trace("Saving current bus stop: \(json)")
             UserDefaults.standard.set(json, forKey: PREF_BEACON_CURRENT_TRIP)
         }
     }
 
     private static func readCurrentBusStop() -> BusStopBeacon? {
-        var json = UserDefaults.standard.string(forKey: PREF_BEACON_CURRENT_BUS_STOP)
+        let json = UserDefaults.standard.string(forKey: PREF_BEACON_CURRENT_BUS_STOP)
 
         if json == nil {
             return nil

@@ -169,7 +169,7 @@ class DepartureViewController: MasterViewController, UITableViewDelegate, UITabl
             return
         }
 
-        RealtimeApi.lines(lines: lineVariantIdentifiers)
+        _ = RealtimeApi.lines(lines: lineVariantIdentifiers)
                 .subscribeOn(MainScheduler.asyncInstance)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { buses in

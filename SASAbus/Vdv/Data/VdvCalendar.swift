@@ -9,7 +9,7 @@ import SwiftyJSON
 class VdvCalendar {
 
     static var DATE_FORMAT: DateFormatter {
-        var formatter = DateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }
@@ -40,7 +40,7 @@ class VdvCalendar {
     public static func today() throws -> VdvDate {
         try assertCalendarInitialized()
 
-        var today = Date()
+        let today = Date()
 
         for date in CALENDAR {
             if isToday(today: today, toCheck: date.date) {
@@ -51,11 +51,11 @@ class VdvCalendar {
         // TODO
         // Settings.markDataUpdateAvailable(context, true);
 
-        var plannedDataFile = VdvHandler.getPlannedDataFile()
+        _ = VdvHandler.getPlannedDataFile()
         // var md5 = HashUtils.getFileMd5(plannedDataFile)
-        var md5 = "md5"
+        let md5 = "md5"
 
-        var message = "Today (\(DATE_FORMAT.string(from: Date())) doesn't exist in the calendar," +
+        let message = "Today (\(DATE_FORMAT.string(from: Date())) doesn't exist in the calendar," +
                 " calendar=\(CALENDAR), md5=\(md5)"
 
         throw VdvError.vdvError(message: message)
@@ -64,7 +64,7 @@ class VdvCalendar {
     public static func date(_ date: Date) throws -> Int {
         try assertCalendarInitialized()
 
-        var dateString = DATE_FORMAT.string(from: date)
+        let dateString = DATE_FORMAT.string(from: date)
 
         for d in CALENDAR {
             if DATE_FORMAT.string(from: d.date) == dateString {
@@ -76,8 +76,8 @@ class VdvCalendar {
     }
 
     private static func isToday(today: Date, toCheck: Date) -> Bool {
-        var julianToday = today.millis() / 86400000
-        var julianToCheck = toCheck.millis() / 86400000 + 1
+        let julianToday = today.millis() / 86400000
+        let julianToCheck = toCheck.millis() / 86400000 + 1
 
         return julianToday == julianToCheck
     }

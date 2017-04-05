@@ -86,8 +86,8 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
         Log.trace("didRangeBeacons(): BUS, count: \(beacons.count)")
 
         for beacon in beacons {
-            var major = beacon.major as! Int
-            var minor = beacon.minor as! Int
+            let major = beacon.major as! Int
+            let minor = beacon.minor as! Int
 
             validateBeacon(beacon: beacon, major: major, minor: minor)
         }
@@ -175,7 +175,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
     func deleteInvisibleBeacons() {
         Log.trace("deleteInvisibleBeacons()")
 
-        var currentTrip = BeaconStorage.currentTrip
+        let currentTrip = BeaconStorage.currentTrip
 
         for (key, beacon) in beaconMap {
             if beacon.lastSeen + BUS_LAST_SEEN_THRESHOLD < Date().millis() {
@@ -197,17 +197,17 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
     }
 
     func currentBusStopOutOfRange(beacon: BusStopBeacon) {
-        var currentTrip = BeaconStorage.currentTrip
+        let currentTrip = BeaconStorage.currentTrip
 
         if let currentTrip = currentTrip {
             var path = currentTrip.path
 
             var index = -1
             var i = 0
-            var pathSize = path.count
+            let pathSize = path.count
 
             while i < pathSize {
-                var busStop = path[i]
+                let busStop = path[i]
                 if busStop.family == beacon.busStop.family {
                     index = i
                     break
@@ -221,7 +221,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
             }
 
             if index < path.count - 1 {
-                var newBusStop = path[index + 1]
+                let newBusStop = path[index + 1]
 
                 currentTrip.beacon.setBusStop(local: newBusStop, type: BusBeacon.TYPE_BEACON)
                 currentTrip.update()
@@ -249,7 +249,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
             return
         }
 
-        var currentTrip = BeaconStorage.currentTrip
+        let currentTrip = BeaconStorage.currentTrip
 
         if let currentTrip = currentTrip, currentTrip.beacon.id == beacon.id {
             if beacon.lastSeen + TIMEOUT >= Date().millis() {
@@ -369,12 +369,12 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
                     beacon.delay = bus.delay
                     beacon.updateLastDelayFetch()
 
-                    var destination = BusStopRealmHelper
+                    let destination = BusStopRealmHelper
                             .getName(id: path[path.count - 1])
 
                     beacon.title = "Line \(bus.lineName) to \(destination)"
 
-                    var hash = HashUtils.getHashForTrip(beacon: beacon)
+                    let hash = HashUtils.getHashForTrip(beacon: beacon)
                     beacon.setHash(hash: hash)
 
                     Log.warning("Got bus info for \(beacon.id), bus stop \(bus.busStop)")
@@ -460,7 +460,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
 
                     Log.warning("Got bus delay for vehicle \(currentTrip.id): \(bus.delay)")
 
-                    var realmStop = BusStopRealmHelper.getBusStopOrNil(id: bus.busStop)
+                    let realmStop = BusStopRealmHelper.getBusStopOrNil(id: bus.busStop)
 
                     if realmStop != nil {
                         beacon.setBusStop(realm: realmStop!, type: BusBeacon.TYPE_REALTIME)
@@ -477,9 +477,9 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
                         // Assume that the bus changed variant (probably because it arrived at
                         // its destination), so reset the trip by clearing the old path and times.
 
-                        var newTrip = bus.trip
-                        var newLine = bus.lineId
-                        var newVariant = bus.variant
+                        let newTrip = bus.trip
+                        let newLine = bus.lineId
+                        let newVariant = bus.variant
 
                         Log.error("Old trip: \(beacon.lastTrip), new trip: \(newTrip)")
                         Log.error("Old line: \(beacon.lastLine), new line: \(newLine)")
@@ -489,7 +489,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
                         beacon.addTrip(trip: newTrip)
                         beacon.addVariant(variant: newVariant)
 
-                        var busStopsPath: [VdvBusStop] = Api2.getTrip(tripId: bus.trip).calcPath()
+                        let busStopsPath: [VdvBusStop] = Api2.getTrip(tripId: bus.trip).calcPath()
                         var path = busStopsPath.map {
                             $0.id
                         }
@@ -505,7 +505,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
 
                         beacon.appendBusStops(stops: path)
 
-                        var destination = BusStopRealmHelper.getName(id: path[path.count - 1])
+                        let destination = BusStopRealmHelper.getName(id: path[path.count - 1])
 
                         beacon.title = "Line \(bus.lineName) to \(destination)"
 
@@ -526,7 +526,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
             return
         }
 
-        RealtimeApi.vehicle(vehicle: beacon.id)
+        _ = RealtimeApi.vehicle(vehicle: beacon.id)
                 .subscribeOn(MainScheduler.asyncInstance)
                 .observeOn(MainScheduler.instance)
                 .retryWhen { (errors: Observable<Error>) in
@@ -568,7 +568,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
         /*
      * Gets the index of the stop station from the stop list.
      */
-        var index = beacon.busStops.index(of: beacon.destination) ?? -1
+        let index = beacon.busStops.index(of: beacon.destination) ?? -1
         if index == -1 {
             Log.error("\(beacon.id) index == -1, destination: \(beacon.destination), busStops: \(beacon.busStops)")
 
@@ -611,7 +611,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
         if NotificationSettings.isSurveyEnabled() {
             Log.info("Survey is enabled")
 
-            var lastSurvey = NotificationSettings.getLastSurveyMillis()
+            let lastSurvey = NotificationSettings.getLastSurveyMillis()
             var showSurvey = false
 
             switch NotificationSettings.getSurveyInterval() {

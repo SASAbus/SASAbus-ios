@@ -34,7 +34,7 @@ class Api2 {
     static func getPassingLines(group: Int) -> [Int] {
         VdvHandler.blockTillLoaded()
 
-        var busStops = BusStopRealmHelper.getBusStopsFromFamily(family: group)
+        let busStops = BusStopRealmHelper.getBusStopsFromFamily(family: group)
 
         var lines = [Int]()
         for (key, value) in VdvPaths.getPaths() {
@@ -85,7 +85,7 @@ class ApiTime {
     }
 
     static func now() -> Int64 {
-        var now = Date().millis()
+        let now = Date().millis()
         return now + Int64(NSTimeZone(name: "Europe/Rome")!.daylightSavingTimeOffset)
     }
 
