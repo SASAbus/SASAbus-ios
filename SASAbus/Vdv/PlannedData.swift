@@ -18,8 +18,6 @@ class PlannedData {
         if dataExists == nil {
             let url = IOUtils.dataDir().appendingPathComponent("planned-data.json")
 
-            Log.trace(url)
-
             if FileManager.default.fileExists(atPath: url.path) {
                 dataExists = true
             } else {

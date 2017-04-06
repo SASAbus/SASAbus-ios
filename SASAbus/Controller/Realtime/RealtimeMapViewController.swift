@@ -60,6 +60,10 @@ class RealtimeMapViewController: UIViewController, MKMapViewDelegate, PulleyPrim
     }
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if view.annotation is MKUserLocation {
+            return
+        }
+
         let annotation = view.annotation as! MapAnnotation
         annotation.selected = true
 
@@ -80,6 +84,10 @@ class RealtimeMapViewController: UIViewController, MKMapViewDelegate, PulleyPrim
     }
 
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        if view.annotation is MKUserLocation {
+            return
+        }
+
         let annotation = view.annotation as! MapAnnotation
         annotation.selected = false
 

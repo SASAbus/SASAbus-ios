@@ -132,6 +132,7 @@
 		1F2E390631531B005348B96F /* NewsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E382F555119AD8AE7C89F /* NewsTabBarController.swift */; };
 		1F2E390FC1B0757DF64A78B3 /* BusstopGpsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E55BBB782AE8F0DB3A0 /* BusstopGpsTableViewCell.swift */; };
 		1F2E391BA5C0AB8817EACAD8 /* CurrentTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E39BD5B11199DA50218D2 /* CurrentTrip.swift */; };
+		1F2E391E2DE3C5D719BA8919 /* BusDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3FABBA042F7BB5F49EC3 /* BusDetailsViewController.swift */; };
 		1F2E3939E0C2D483A1831C3B /* CurrentTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E39BD5B11199DA50218D2 /* CurrentTrip.swift */; };
 		1F2E3944002B9C6B467B05E0 /* LogTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E34597576D4A84B926FF3 /* LogTheme.swift */; };
 		1F2E3951C79CAE0E2E9CA9BF /* BusBeaconHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A58068D4B40D68E74D3 /* BusBeaconHandler.swift */; };
@@ -311,6 +312,7 @@
 		FA54DE5A1E9651EC0071E42C /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3431AD33060D6A461061 /* Badge.swift */; };
 		FA54DE5B1E9651EC0071E42C /* LeaderboardPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E34C67C1D1C3F8B2FA867 /* LeaderboardPlayer.swift */; };
 		FA54DE5C1E9651EC0071E42C /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3C9A91161ACFF458A7E8 /* Profile.swift */; };
+		FA54DE5E1E969AAA0071E42C /* BusDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA54DE5D1E969AAA0071E42C /* BusDetailsViewController.xib */; };
 		FABD85CE1E87F8A1007A5EF6 /* BusImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FABD85CD1E87F8A1007A5EF6 /* BusImages.xcassets */; };
 		FABD85D01E8801DC007A5EF6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABD85CF1E8801DC007A5EF6 /* MapKit.framework */; };
 		FAC517CE1E8A794100EC26DF /* EcoPointsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC517CD1E8A794100EC26DF /* EcoPointsViewController.xib */; };
@@ -562,6 +564,7 @@
 		1F2E3F99F72A9D38B244E630 /* BusStandardTimeBetweenStopsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStandardTimeBetweenStopsItem.swift; sourceTree = "<group>"; };
 		1F2E3FA429036496C6B8CF1E /* FavoriteBusStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteBusStop.swift; sourceTree = "<group>"; };
 		1F2E3FA9F1EF7090A113A700 /* BusTripItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusTripItem.swift; sourceTree = "<group>"; };
+		1F2E3FABBA042F7BB5F49EC3 /* BusDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusDetailsViewController.swift; sourceTree = "<group>"; };
 		1F2E3FB2FBEEC4D8C581ED7A /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		1F2E3FBB5CE98E0FC5522F57 /* BeaconStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconStorage.swift; sourceTree = "<group>"; };
 		1F2E3FC7099C24BF8541A1D1 /* BusLineVariantTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusLineVariantTrip.swift; sourceTree = "<group>"; };
@@ -589,6 +592,7 @@
 		FA2690F11E93C7E6000B8A84 /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		FA2690F31E93C9E4000B8A84 /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		FA401F2A1E921EA400E7F282 /* SASAbus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SASAbus.entitlements; sourceTree = "<group>"; };
+		FA54DE5D1E969AAA0071E42C /* BusDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusDetailsViewController.xib; sourceTree = "<group>"; };
 		FABD85CD1E87F8A1007A5EF6 /* BusImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BusImages.xcassets; sourceTree = "<group>"; };
 		FABD85CF1E8801DC007A5EF6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FAC517CD1E8A794100EC26DF /* EcoPointsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EcoPointsViewController.xib; sourceTree = "<group>"; };
@@ -825,6 +829,15 @@
 			path = Bus;
 			sourceTree = "<group>";
 		};
+		1F2E358AADFDAADB0313F5DF /* BusDetails */ = {
+			isa = PBXGroup;
+			children = (
+				1F2E3FABBA042F7BB5F49EC3 /* BusDetailsViewController.swift */,
+				FA54DE5D1E969AAA0071E42C /* BusDetailsViewController.xib */,
+			);
+			path = BusDetails;
+			sourceTree = "<group>";
+		};
 		1F2E360A7D2B2C108768FD70 /* SASAbus */ = {
 			isa = PBXGroup;
 			children = (
@@ -929,6 +942,7 @@
 				1F2E35A8D8EE1369BE6F7ECA /* MasterTableViewController.swift */,
 				1F2E30F3FE4F7FFA628ECFB4 /* MasterViewController.swift */,
 				1F2E3AE4F24CCE4C2782A3D3 /* Intro */,
+				1F2E358AADFDAADB0313F5DF /* BusDetails */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1465,6 +1479,7 @@
 				1F2E39C3012AE96F5953EBE4 /* BusLineAutoCompleteTableViewCell.xib in Resources */,
 				1F2E3506A122956E186FB4FB /* MapViewController.xib in Resources */,
 				1F2E3E322FF1D1727DF89470 /* MenuTableViewCell.xib in Resources */,
+				FA54DE5E1E969AAA0071E42C /* BusDetailsViewController.xib in Resources */,
 				1F2E3F01E096F3584DA5C58A /* MenuViewController.xib in Resources */,
 				1F2E3F4A1D53AE3221241AA4 /* NewsDetailViewController.xib in Resources */,
 				FAC517CE1E8A794100EC26DF /* EcoPointsViewController.xib in Resources */,
@@ -1795,6 +1810,7 @@
 				1F2E30592E28BD9D78B7DBD9 /* EarnedBadge.swift in Sources */,
 				1F2E368923403BF254809C1D /* FirstStepBadge.swift in Sources */,
 				1F2E3AB3A29E702C2C527455 /* VeryBeginningBadge.swift in Sources */,
+				1F2E391E2DE3C5D719BA8919 /* BusDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -119,8 +119,6 @@ class BottomSheetViewController: UIViewController, PulleyDrawerViewControllerDel
         tripText.text = "Trip #\(bus.trip)"
 
         if let vehicle = Buses.getBus(id: bus.vehicle) {
-            Log.debug("Loading image \(vehicle.vehicle.code)")
-
             parentVC!.backgroundImage.image = UIImage(named: vehicle.vehicle.code)
         } else {
             Log.error("Vehicle \(bus.vehicle) does not exist")
@@ -181,11 +179,11 @@ class BottomSheetViewController: UIViewController, PulleyDrawerViewControllerDel
     // MARK: Click handlers
 
     func onLineClick(gestureRecognizer: UIGestureRecognizer) {
-        parentVC?.performSegue(withIdentifier: "segue_map_line_details", sender: selectedBus)
     }
 
     func onVehicleClick(gestureRecognizer: UIGestureRecognizer) {
-        parentVC?.performSegue(withIdentifier: "segue_map_bus_details", sender: selectedBus)
+        let busDetailsViewController = BusDetailsViewController(vehicleId: selectedBus.vehicle)
+        self.navigationController!.pushViewController(busDetailsViewController, animated: true)
     }
 
     func onCourseClick(gestureRecognizer: UIGestureRecognizer) {

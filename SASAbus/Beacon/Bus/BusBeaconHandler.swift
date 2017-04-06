@@ -21,8 +21,6 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     private var region: CLBeaconRegion!
     private var regions: [String : CLBeaconRegion] = [:]
-    private var didEnterRegionDate: Date?
-    private var didExitRegionDate: Date?
 
     private var mCycleCounter = 0
 
@@ -51,7 +49,6 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
         Log.warning("startObserving() BUS")
 
         locationManager.startMonitoring(for: self.region)
-        locationManager.startRangingBeacons(in: self.region)
 
         beaconMap += BeaconStorage.getBeaconMap()
         deleteInvisibleBeacons()
@@ -78,6 +75,29 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
 
     // MARK: - CLLocationManagerDelegate
 
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        Log.warning("didEnterRegion() BUS")
+        locationManager.startRangingBeacons(in: self.region)
+    }
+
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        Log.warning("didExitRegion() BUS")
+
+        // Clear all beacon maps
+        BeaconStorage.writeBeaconMap(map: [:])
+
+        deleteInvisibleBeacons()
+
+        let currentTrip = BeaconStorage.currentTrip
+        if currentTrip != nil {
+            hideCurrentTrip(currentTrip!)
+        }
+
+        inspectBeacons()
+
+        locationManager.stopRangingBeacons(in: self.region)
+    }
+
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         deleteInvisibleBeacons()
 
@@ -97,31 +117,8 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
         updateCurrentTrip()
     }
 
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        let now = Date()
-
-        if didEnterRegionDate == nil || now.timeIntervalSince1970 - (didEnterRegionDate?.timeIntervalSince1970)! > 2 {
-            didEnterRegionDate = now
-
-            Log.warning("didEnterRegion() BUS")
-            locationManager.startRangingBeacons(in: self.region)
-        }
-    }
-
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        Log.warning("didExitRegion() BUS")
-
-        // Clear all beacon maps
-        BeaconStorage.writeBeaconMap(map: [:])
-
-        deleteInvisibleBeacons()
-
-        let currentTrip = BeaconStorage.currentTrip
-        if currentTrip != nil {
-            hideCurrentTrip(currentTrip!)
-        }
-
-        inspectBeacons()
+    func locationManager(_ manager: CLLocationManager, rangingBeaconsDidFailFor region: CLBeaconRegion, withError error: Error) {
+        Log.error("Monitoring beacons failed: \(error)")
     }
 
 
