@@ -38,9 +38,10 @@ class MasterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.edgesForExtendedLayout = UIRectEdge()
-        self.extendedLayoutIncludesOpaqueBars = false
-        self.automaticallyAdjustsScrollViewInsets = false
+        // self.edgesForExtendedLayout = UIRectEdge()
+        // self.extendedLayoutIncludesOpaqueBars = false
+        // self.automaticallyAdjustsScrollViewInsets = false
+
         self.setupLeftMenuButton()
     }
 

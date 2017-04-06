@@ -172,6 +172,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         Buses.setup()
         Lines.setup()
 
+        Settings.registerDefaults()
+
         _ = VdvHandler.load()
                 .subscribeOn(MainScheduler.background)
                 .observeOn(MainScheduler.background)

@@ -17,6 +17,7 @@ class Settings {
 
     static let PREF_TRIP_NOTIFICATION_ENABLED = "pref_trips_enabled"
 
+
     static func registerDefaults() {
         let defaultPrefsFile = Bundle.main.path(forResource: "DefaultSettings", ofType: "plist")
         let defaultPrefs = NSDictionary(contentsOfFile: defaultPrefsFile!) as! [String : AnyObject]

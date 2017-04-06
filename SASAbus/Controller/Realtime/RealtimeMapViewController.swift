@@ -208,10 +208,6 @@ class RealtimeMapViewController: UIViewController, MKMapViewDelegate, PulleyPrim
         }
 
         override func url(forTilePath path: MKTileOverlayPath) -> URL {
-            /*if !checkTileExists(zoom: path.z) {
-                return URL(string: "")!
-            }*/
-
             let urlFormatted: String
 
             if parent.allMapOverlaysEnabled {

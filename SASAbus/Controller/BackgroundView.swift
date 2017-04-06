@@ -28,9 +28,9 @@ class BackgroundView: UIView {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var progressIndicatorView: KDCircularProgress!
 
-
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         let nibView = Bundle.main.loadNibNamed("BackgroundView", owner: self, options: nil)?[0] as! UIView
         nibView.frame = self.bounds
         self.addSubview(nibView)
@@ -48,7 +48,7 @@ class BackgroundView: UIView {
         let bSelector: Selector = #selector(BackgroundView.tap(_:))
         let doubleTapGesture = UITapGestureRecognizer(target: target, action: bSelector)
 
-        doubleTapGesture.numberOfTapsRequired = 10
+        doubleTapGesture.numberOfTapsRequired = 5
         target.addGestureRecognizer(doubleTapGesture)
     }
 
