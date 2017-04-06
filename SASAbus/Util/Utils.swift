@@ -1,4 +1,6 @@
 import Foundation
+import Realm
+import RealmSwift
 
 class Utils {
 
@@ -8,6 +10,20 @@ class Utils {
     }
 
     static func insertTripIfValid(beacon: BusBeacon) -> Bool {
-        return true
+        if beacon.origin == beacon.destination && beacon.lastSeen - beacon.startDate.millis() < 600000 {
+            Log.error("Trip \(beacon.id) invalid -> origin == destination => \(beacon.origin) == \(beacon.destination)")
+            return false
+        }
+
+        let realm = try! Realm()
+        let trip = realm.objects(Trip.self).filter("tripHash == '\(beacon.tripHash)'").first
+
+        if trip != nil {
+            // Trip is already in db.
+            // We do not care about this error so do not show an error notification
+            return false
+        }
+
+        return UserRealmHelper.insertTrip(beacon: beacon)
     }
 }

@@ -3,6 +3,7 @@ import Foundation
 class AuthHelper {
 
     static let PREF_AUTH_TOKEN = "pref_auth_token"
+    static let PREF_USER_ID = "pref_user_id"
     static let PREF_IS_GOOGLE_ACCOUNT = "pref_is_google_account"
 
     // =============================================== PREFERENCES =====================================================
@@ -23,7 +24,15 @@ class AuthHelper {
         UserDefaults.standard.set(value, forKey: PREF_IS_GOOGLE_ACCOUNT)
     }
 
-    // =========================================== TOKEN VERIFICATION ==================================================
+    static func getUserId() -> String? {
+        return UserDefaults.standard.string(forKey: PREF_USER_ID)
+    }
+
+    private static func setUserId(userId: String?) {
+        UserDefaults.standard.set(userId, forKey: PREF_USER_ID)
+    }
+
+// =========================================== TOKEN VERIFICATION ==================================================
 
     static func getTokenIfValid() -> String? {
         if isLoggedIn() {
@@ -51,4 +60,5 @@ class AuthHelper {
         setAuthToken(token: token)
         return true
     }
+
 }

@@ -46,7 +46,7 @@ class TripNotification {
     }
 
     static func hide(trip: CurrentTrip?) {
-        Log.warning("Hiding notification for vehicle \(trip?.id)")
+        Log.warning("Hiding notification for vehicle \(String(describing: trip?.id))")
 
         if let trip = trip {
             trip.isNotificationVisible = false

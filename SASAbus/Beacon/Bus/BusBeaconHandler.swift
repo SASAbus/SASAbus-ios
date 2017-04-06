@@ -79,6 +79,8 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
     // MARK: - CLLocationManagerDelegate
 
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+        deleteInvisibleBeacons()
+
         if beacons.isEmpty {
             return
         }
@@ -92,7 +94,6 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
             validateBeacon(beacon: beacon, major: major, minor: minor)
         }
 
-        deleteInvisibleBeacons()
         updateCurrentTrip()
     }
 
@@ -108,7 +109,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        Log.warning("didExitRegion()")
+        Log.warning("didExitRegion() BUS")
 
         // Clear all beacon maps
         BeaconStorage.writeBeaconMap(map: [:])
@@ -296,15 +297,17 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
     func hideCurrentTrip(_ trip: CurrentTrip) {
         Log.info("hideCurrentTrip()")
 
-        TripNotification.hide(trip: trip)
+        if trip.isNotificationVisible {
+            TripNotification.hide(trip: trip)
 
-        getDestinationBusStop(beacon: trip.beacon)
+            getDestinationBusStop(beacon: trip.beacon)
 
-        BeaconStorage.currentTrip = trip
+            BeaconStorage.currentTrip = trip
+        }
     }
 
 
-// MARK: - Data loading
+    // MARK: - Data loading
 
     func getBusInformation(beacon: BusBeacon) {
         guard !beacon.isOriginPending else {

@@ -57,4 +57,9 @@ public class Config {
 
     // Bus stop
     static let busStopDistanceThreshold = 0.0
+
+    static let DELIMITER = ", "
+
+    static let DIESEL_PRICE: Float = 1.48
+
 }
