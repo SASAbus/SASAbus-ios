@@ -25,4 +25,8 @@ class EcoPointsApi {
     static func getEarnedBadges() -> Observable<[Badge]> {
         return RestClient.get(Endpoint.ECO_POINTS_BADGES_EARNED, index: "badges")
     }
+
+    static func sendBadge(id: Int) -> Observable<Any?> {
+        return RestClient.putNoResponse("\(Endpoint.ECO_POINTS_BADGES_SEND)\(id)")
+    }
 }

@@ -86,9 +86,9 @@ class RestClient {
     }
 
 
-// - MARK: POST
+    // - MARK: POST
 
-    static func post(_ url: String, parameters: [String : String]) -> Observable<JSON> {
+    static func post(_ url: String, parameters: Parameters? = nil) -> Observable<JSON> {
         return Observable<JSON>.create { observer -> Disposable in
             let requestReference = postInternal(url, parameters: parameters)
                     .responseJSON(completionHandler: { response in
@@ -107,7 +107,59 @@ class RestClient {
         }
     }
 
-    static func postBody(_ url: String, json body: String) -> Observable<JSON> {
+
+    // - MARK: PUT
+
+    static func put<T:JSONable>(_ url: String, index: String) -> Observable<T?> {
+        return Observable<T?>.create { observer -> Disposable in
+            let requestReference = putInternal(url)
+                    .responseJSON(completionHandler: { response in
+                        if response.result.isSuccess {
+                            let json = JSON(response.result.value)
+
+                            if json[index].exists() {
+                                let items = json[index].arrayValue
+                                if !items.isEmpty {
+                                    let casted = items[0].to(type: T.self) as? T
+                                    observer.on(.next(casted))
+                                } else {
+                                    let casted = json[index].to(type: T.self) as? T
+                                    observer.on(.next(casted))
+                                }
+                            } else {
+                                observer.on(.next(nil))
+                            }
+
+                            observer.onCompleted()
+                        } else {
+                            observer.onError(response.result.error!)
+                        }
+                    })
+
+            return Disposables.create {
+                requestReference.cancel()
+            }
+        }
+    }
+
+    static func putNoResponse(_ url: String) -> Observable<Any?> {
+        return Observable<Any?>.create { observer -> Disposable in
+            let requestReference = putInternal(url).response { response in
+                if response.error == nil {
+                    observer.onNext(nil)
+                    observer.onCompleted()
+                } else {
+                    observer.onError(response.error!)
+                }
+            }
+
+            return Disposables.create {
+                requestReference.cancel()
+            }
+        }
+    }
+
+    static func putBody(_ url: String, json body: String) -> Observable<JSON> {
         return Observable<JSON>.create { observer -> Disposable in
             let fullUrl = "\(Endpoint.API)\(url)"
             var request = URLRequest(url: URL(string: fullUrl)!)
@@ -140,24 +192,23 @@ class RestClient {
     }
 
 
-// - MARK: Internal network requests
+    // - MARK: Internal network requests
 
     static func getInternal(_ endpoint: String, parameters: Parameters? = nil) -> Alamofire.DataRequest {
-        let url = "\(Endpoint.API)\(endpoint)"
-
-        let headers = getHeaders(url)
-        return request(url, method: .get, parameters: parameters, headers: headers)
+        return request(endpoint, method: .get, parameters: parameters)
     }
 
     static func postInternal(_ endpoint: String, parameters: Parameters? = nil) -> Alamofire.DataRequest {
-        let url = "\(Endpoint.API)\(endpoint)"
-
-        let headers = getHeaders(url)
-        return request(url, method: .post, parameters: parameters, headers: headers)
+        return request(endpoint, method: .post, parameters: parameters)
     }
 
-    static func request(_ url: URLConvertible, method: HTTPMethod, parameters: Parameters? = nil,
-                        headers: [String : String]) -> Alamofire.DataRequest {
+    static func putInternal(_ endpoint: String, parameters: Parameters? = nil) -> Alamofire.DataRequest {
+        return request(endpoint, method: .put, parameters: parameters)
+    }
+
+    static func request(_ endpoint: String, method: HTTPMethod, parameters: Parameters? = nil) -> Alamofire.DataRequest {
+        let url = "\(Endpoint.API)\(endpoint)"
+        let headers = getHeaders(url)
 
         Log.debug("\(method.rawValue.uppercased()): \(url)")
 
@@ -165,7 +216,7 @@ class RestClient {
     }
 
 
-// - MARK: Headers
+    // - MARK: Headers
 
     static func getHeaders(_ url: URLConvertible) -> [String : String] {
         // let versionCode = Bundle.main.infoDictionary?["CFBundleVersion"] as! String

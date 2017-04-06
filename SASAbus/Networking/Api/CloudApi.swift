@@ -14,6 +14,6 @@ class CloudApi {
     static func uploadTrips(trips: [CloudTrip]) -> Observable<JSON> {
         let jsonString = Mapper().toJSONString(trips)
 
-        return RestClient.postBody(Endpoint.CLOUD_TRIPS, json: jsonString!)
+        return RestClient.putBody(Endpoint.CLOUD_TRIPS, json: jsonString!)
     }
 }

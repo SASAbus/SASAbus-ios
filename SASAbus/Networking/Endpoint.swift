@@ -35,7 +35,7 @@ public struct Endpoint {
     static let ECO_POINTS_BADGES = "eco/badges"
     static let ECO_POINTS_BADGES_NEXT = "eco/badges/next"
     static let ECO_POINTS_BADGES_EARNED = "eco/badges/earned"
-    static let ECO_POINTS_BADGES_SEND = "eco/badges/earned/{id}" // {id}
+    static let ECO_POINTS_BADGES_SEND = "eco/badges/earned/" // {id}
     static let ECO_POINTS_LEADERBOARD = "eco/leaderboard/page/" // {page}
     static let ECO_POINTS_PROFILE = "eco/profile"
     static let ECO_POINTS_PROFILE_PICTURE_DEFAULT = "eco/profile/default"

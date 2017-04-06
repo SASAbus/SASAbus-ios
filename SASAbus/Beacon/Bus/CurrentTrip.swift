@@ -35,8 +35,7 @@ class CurrentTrip: Mappable {
         self.beacon = beacon
 
         // Check for badge
-        // TODO
-        // BadgeHelper.evaluate(mContext!!, beacon)
+        BadgeHelper.evaluate(beacon: beacon)
 
         setup()
     }
@@ -51,7 +50,6 @@ class CurrentTrip: Mappable {
         path <- map["path"]
         times <- map["times"]
     }
-
 
 
     func update() {

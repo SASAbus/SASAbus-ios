@@ -25,7 +25,8 @@ class UserRealmHelper {
         config.objectTypes = [
                 FavoriteLine.self,
                 FavoriteBusStop.self,
-                Trip.self
+                Trip.self,
+                EarnedBadge.self
         ]
 
         config.deleteRealmIfMigrationNeeded = true
@@ -415,30 +416,21 @@ LogUtils.i(TAG, "Added beacon " + major + " to realm");
 // ======================================= BADGES ==============================================
 
     static func hasEarnedBadge(badgeId: Int) -> Bool {
-        /*Realm realm = Realm.getDefaultInstance();
+        var realm = try! Realm()
 
-        EarnedBadge badge = realm.where(EarnedBadge.class).equalTo("id", badgeId).findFirst();
+        var badge = realm.objects(EarnedBadge.self).filter("id == \(badgeId)").first
 
-        boolean result = badge != null;
-
-        realm.close();
-
-        return result;*/
-
-        return false
+        return badge != nil
     }
 
     static func setEarnedBadge(badgeId: Int) {
-        /*Realm realm = Realm.getDefaultInstance();
+        var realm = try! Realm()
 
-        realm.beginTransaction();
+        var badge = EarnedBadge()
+        badge.id = badgeId
 
-        EarnedBadge badge = realm.createObject(EarnedBadge.class);
-        badge.setId(badgeId);
-
-        realm.commitTransaction();
-
-        realm.close();*/
+        try! realm.write {
+            realm.add(badge)
+        }
     }
-
 }
