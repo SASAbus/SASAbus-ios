@@ -48,19 +48,20 @@ class BottomSheetViewController: UIViewController, PulleyDrawerViewControllerDel
 
     var selectedBus: RealtimeBus!
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        UIUtils.tintImage(image: lineButtonImage, tint: Color.materialIndigo500)
-        UIUtils.tintImage(image: vehicleButtonImage, tint: Color.materialIndigo500)
-        UIUtils.tintImage(image: courseButtonImage, tint: Color.materialIndigo500)
+        lineButtonImage.tint(with: Color.materialIndigo500)
+        vehicleButtonImage.tint(with: Color.materialIndigo500)
+        courseButtonImage.tint(with: Color.materialIndigo500)
 
-        UIUtils.tintImage(image: delayImage, tint: UIColor.darkGray)
-        UIUtils.tintImage(image: headingToImage, tint: UIColor.darkGray)
-        UIUtils.tintImage(image: updatedImage, tint: UIColor.darkGray)
-        UIUtils.tintImage(image: busImage, tint: UIColor.darkGray)
-        UIUtils.tintImage(image: variantImage, tint: UIColor.darkGray)
-        UIUtils.tintImage(image: tripImage, tint: UIColor.darkGray)
+        delayImage.tint(with: UIColor.darkGray)
+        headingToImage.tint(with: UIColor.darkGray)
+        updatedImage.tint(with: UIColor.darkGray)
+        busImage.tint(with: UIColor.darkGray)
+        variantImage.tint(with: UIColor.darkGray)
+        tripImage.tint(with: UIColor.darkGray)
 
         peekColorView.alpha = 0
 

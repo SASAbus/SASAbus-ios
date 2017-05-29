@@ -74,10 +74,10 @@ class BusDetailsViewController: UIViewController {
                 // navController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black]
             }
 
-            UIUtils.tintImage(image: manufacturerImage, tint: color)
-            UIUtils.tintImage(image: licensePlateImage, tint: color)
-            UIUtils.tintImage(image: fuelImage, tint: color)
-            UIUtils.tintImage(image: colorImage, tint: color)
+            manufacturerImage.tint(with: color)
+            licensePlateImage.tint(with: color)
+            fuelImage.tint(with: color)
+            colorImage.tint(with: color)
 
             specifications.textColor = color
 

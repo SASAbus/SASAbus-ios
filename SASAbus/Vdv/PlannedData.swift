@@ -108,7 +108,7 @@ class PlannedData {
     // - MARK: Settings
 
     static func setUpdateAvailable(_ newValue: Bool) {
-        Log.info("Updating plan data update available flag to '%s'", newValue)
+        Log.info("Updating plan data update available flag to '\(newValue)'")
         UserDefaults.standard.set(newValue, forKey: PREF_UPDATE_AVAILABLE)
     }
 

@@ -14,7 +14,7 @@ class IntroDataPageViewController: IntroPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        UIUtils.tintImage(image: doneImage, tint: color)
+        doneImage.tint(with: color)
 
         doneImage.alpha = 0
     }

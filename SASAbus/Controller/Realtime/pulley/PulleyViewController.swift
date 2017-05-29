@@ -483,9 +483,9 @@ class PulleyViewController: MasterViewController, UIScrollViewDelegate, PulleyPa
                 }
             }
 
-            if abs(Float(currentClosestStop - (self.view.bounds.size.height - topInset))) <= FLT_EPSILON {
+            if abs(Float(currentClosestStop - (self.view.bounds.size.height - topInset))) <= Float.ulpOfOne {
                 setDrawerPosition(position: .open, animated: true)
-            } else if abs(Float(currentClosestStop - collapsedHeight)) <= FLT_EPSILON {
+            } else if abs(Float(currentClosestStop - collapsedHeight)) <= Float.ulpOfOne {
                 setDrawerPosition(position: .collapsed, animated: true)
             } else {
                 setDrawerPosition(position: .partiallyRevealed, animated: true)

@@ -7,10 +7,11 @@ use_frameworks!
 def default_pods
   pod 'DrawerController', '~> 3.1'
 
-  pod 'Google/Analytics'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
 
   pod 'zipzap', '~> 8.0.4'
-  
+
   pod 'KDCircularProgress', '~> 1.2'
 
   pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :branch => 'swift-3'

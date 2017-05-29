@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 class EmptyView: BasicPlaceholderView {
 

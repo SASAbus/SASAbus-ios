@@ -311,7 +311,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
 
         if item.isDot {
             let cell = tableView.dequeueReusableCell(withIdentifier: "notification_cell_dot", for: indexPath) as! NotificationCellDot
-            UIUtils.tintImage(image: cell.icon, tint: lineColor)
+            cell.icon.tint(with: lineColor)
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "notification_cell", for: indexPath) as! NotificationCell
@@ -322,10 +322,9 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
             cell.delay.textColor = item.delayColor
 
             cell.busStop.attributedText = item.destination
+
             cell.icon.image = UIImage(named: item.icon)
-
-
-            UIUtils.tintImage(image: cell.icon, tint: lineColor)
+            cell.icon.tint(with: lineColor)
 
             return cell
         }

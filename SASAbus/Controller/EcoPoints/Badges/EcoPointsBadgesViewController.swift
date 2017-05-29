@@ -27,8 +27,6 @@ class EcoPointsBadgesViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 56.0
 
-        tableView.activityIndicatorView.startAnimating()
-
         initRefreshControl()
         parseData()
     }
@@ -117,7 +115,6 @@ class EcoPointsBadgesViewController: UITableViewController {
                     self.nextBadges.append(contentsOf: badges)
 
                     self.tableView.reloadData()
-                    self.tableView.activityIndicatorView.stopAnimating()
                     self.refreshControl!.endRefreshing()
                 }, onError: { error in
                     Log.error("Couldn't load next badges: \(error)")
@@ -138,7 +135,6 @@ class EcoPointsBadgesViewController: UITableViewController {
                     self.earnedBadges.append(contentsOf: badges)
 
                     self.tableView.reloadData()
-                    self.tableView.activityIndicatorView.stopAnimating()
                     self.refreshControl!.endRefreshing()
                 }, onError: { error in
                     Log.error("Couldn't load earned badges: \(error)")

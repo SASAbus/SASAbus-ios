@@ -30,12 +30,15 @@ import Crashlytics
 import UserNotifications
 import RxSwift
 import RxCocoa
+import Firebase
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var drawerController: DrawerController!
+
+    let gcmMessageIDKey = "gcm.message_id"
 
     var notificationHandlers: [String : NotificationProtocol] = [String: NotificationProtocol]()
 
@@ -146,21 +149,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 
     func setupLogging() {
-        #if DEBUG
-            Fabric.with([Crashlytics.self])
-        #endif
+#if DEBUG
+        Fabric.with([Crashlytics.self])
+#endif
     }
 
     func setupGoogle() {
-        // Configure tracker from GoogleService-Info.plist.
-        var configureError: NSError?
-        GGLContext.sharedInstance().configureWithError(&configureError)
-        assert(configureError == nil, "Error configuring Google services: \(configureError)")
 
-        // Optional: configure GAI options.
-        let gai = GAI.sharedInstance()
-        gai?.trackUncaughtExceptions = true
-        // gai?.logger?.logLevel = GAILogLevel.verbose
     }
 
     func setupRealm() {
@@ -183,16 +178,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 
     func setupNotifications() {
-        let center = UNUserNotificationCenter.current()
-        center.delegate = self
+        UNUserNotificationCenter.current().delegate = self
 
-        center.requestAuthorization(options: [.sound, .alert, .badge]) { (_, error) in
-            if error == nil {
-                UIApplication.shared.registerForRemoteNotifications()
-            }
-        }
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { _, _ in })
 
+        UIApplication.shared.registerForRemoteNotifications()
         Notifications.clearAll()
+
+        FirebaseApp.configure()
+
+        Messaging.messaging().delegate = self
+        Messaging.messaging().shouldEstablishDirectChannel = true
+
+        Messaging.messaging().subscribe(toTopic: "/topics/general")
+        Messaging.messaging().subscribe(toTopic: "general")
     }
 
 
@@ -215,27 +215,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func getNavigationController(_ viewController: UIViewController) -> UINavigationController {
         return UINavigationController(rootViewController: viewController)
     }
+}
 
 
-    // - MARK: UNUserNotificationCenterDelegate
+extension AppDelegate: UNUserNotificationCenterDelegate {
 
-    @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
+    // Receive displayed notifications for iOS 10 devices.
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
 
-        // Called when a notification is delivered to a foreground app.
-
-        Log.warning("Got notification request: \(notification.request.identifier)")
+        Log.warning("willPresent withCompletionHandler: \(notification.request.identifier)")
         completionHandler([.alert, .badge, .sound])
     }
 
-    @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse,
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
 
-        // Called to let your app know which action was selected by the user for a given notification.
-
-        Log.warning("Got notification action: \(response.actionIdentifier)")
+        Log.warning("didReceive withCompletionHandler: \(response.actionIdentifier)")
         completionHandler()
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        Log.error("Firebase registration token: \(fcmToken)")
+    }
+
+    // Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
+    // To enable direct data messages, you can set Messaging.messaging().shouldEstablishDirectChannel to true.
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        Log.error("Received data message: \(remoteMessage.appData)")
     }
 }

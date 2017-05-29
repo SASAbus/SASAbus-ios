@@ -2,6 +2,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Kingfisher
+import RealmSwift
+import CoreLocation
 
 class EcoPointsProfileViewController: UITableViewController {
 
@@ -18,6 +20,12 @@ class EcoPointsProfileViewController: UITableViewController {
     @IBOutlet weak var badgesText: UILabel!
 
     var profile: Profile?
+    var showStatistics: Bool = false
+
+    var distance: Double = 0
+    var emissions: Double = 0
+    var money: Double = 0
+    var trips = 0
 
 
     init() {
@@ -33,17 +41,25 @@ class EcoPointsProfileViewController: UITableViewController {
         super.viewDidLoad()
 
         tableView.register(UINib(nibName: "EcoPointsProfileCell", bundle: nil), forCellReuseIdentifier: "eco_points_profile_header")
+        tableView.register(UINib(nibName: "EcoPointsStatsCell", bundle: nil), forCellReuseIdentifier: "eco_points_stats")
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 56.0
 
         initRefreshControl()
+
         parseProfile()
+        parseStatistics()
+    }
+
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return section == 0 ? nil : "Statistics"
     }
 
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return showStatistics ? 2 : 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,32 +67,50 @@ class EcoPointsProfileViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "eco_points_profile_header") as! EcoPointsProfileCell
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "eco_points_profile_header") as! EcoPointsProfileCell
 
-        if let profile = self.profile {
-            cell.nameText.text = profile.username
-            cell.levelText.text = profile.cls
+            if let profile = self.profile {
+                cell.nameText.text = profile.username
+                cell.levelText.text = profile.cls
 
-            cell.pointsText.text = "\(profile.points)"
-            cell.badgesText.text = "\(profile.badges)"
-            cell.rankText.text = "\(profile.rank)"
+                cell.pointsText.text = "\(profile.points)"
+                cell.badgesText.text = "\(profile.badges)"
+                cell.rankText.text = "\(profile.rank)"
 
-            let profileId: Int = (self.profile?.profile)!
-            let url = URL(string: Endpoint.API + Endpoint.ECO_POINTS_PROFILE_PICTURE_USER + String(profileId))!
-            cell.profilePicture.kf.setImage(with: url)
+                let profileId: Int = (self.profile?.profile)!
+                let url = URL(string: Endpoint.API + Endpoint.ECO_POINTS_PROFILE_PICTURE_USER + String(profileId))!
+                cell.profilePicture.kf.setImage(with: url)
 
-            cell.loadingView.alpha = 0
+                cell.loadingView.alpha = 0
+            } else {
+                cell.loadingView.alpha = 1
+            }
+
+            cell.onButtonTapped = {
+                print("Click")
+            }
+
+            return cell
         } else {
-            cell.loadingView.alpha = 1
+            let cell = tableView.dequeueReusableCell(withIdentifier: "eco_points_stats") as! EcoPointsStatsCell
+
+            if distance < 1000 {
+                cell.distanceText.text = "\(distance) m"
+            } else {
+                var rounded = Utils.roundToPlaces((distance / 1000), places: 2)
+                cell.distanceText.text = String(describing: rounded).replacingOccurrences(of: ".", with: ",") + " km"
+            }
+
+            var roundedEmissions = emissions
+            var roundedMoney = Utils.roundToPlaces(money, places: 2)
+
+            cell.totalTripsText.text = "\(trips)"
+            cell.co2Text.text = "\(roundedEmissions) g"
+            cell.moneyText.text = "\(roundedMoney) €"
+
+            return cell
         }
-
-        cell.settingsButton.addTarget(self, action: "buttonClicked:", for: UIControlEvents.touchUpInside)
-
-        cell.onButtonTapped = {
-            print("Click")
-        }
-
-        return cell
     }
 
 
@@ -102,6 +136,82 @@ class EcoPointsProfileViewController: UITableViewController {
                     Log.error("Couldn't load profile: \(error)")
                 })
     }
+
+    func parseStatistics() {
+        Observable.create { _ in
+                    var realm = try! Realm()
+                    var trips = realm.objects(Trip.self)
+
+                    if trips.count == 0 {
+                        return Disposables.create()
+                    }
+
+                    for trip: Trip in trips {
+                        var tripDistance: Double = 0
+                        var tripEmission: Double = 0
+                        var tripMoney: Double = 0
+
+                        // Calculate driven distance
+                        var tripList = trip.path!.components(separatedBy: Config.DELIMITER)
+
+                        var busStops = tripList.map {
+                            BusStopRealmHelper.getBusStop(id: Int($0) ?? -1 )
+                        }
+
+                        var i = 0
+                        var busStopsSize = busStops.count
+
+                        while i < busStopsSize {
+                            var busStop = busStops[i]
+
+                            if i < busStopsSize - 1 {
+                                var next = busStops[i + 1]
+
+                                var start = CLLocation(latitude: Double(busStop.lat), longitude: Double(busStop.lng))
+                                var stop = CLLocation(latitude: Double(next.lat), longitude: Double(next.lng))
+
+                                tripDistance += MapUtils.distance(first: start, second: stop)
+                            }
+
+                            i += 1
+                        }
+
+                        // Calculate CO2 emissions and price
+                        var bus = Buses.getBus(id: trip.vehicle)
+                        var vehicle = bus?.vehicle
+
+                        if let vehicle = vehicle {
+                            var co2 = Double(vehicle.emission) * tripDistance / 1000
+                            var co2Car = 120 * tripDistance / 1000
+                            var fuelOffset = co2Car - co2
+
+                            var fuelConsumption = 0.119
+                            var fuelPrice = fuelConsumption * tripDistance / 1000.0 * Double(trip.fuelPrice)
+
+                            tripEmission += fuelOffset
+                            tripMoney += fuelPrice
+                        }
+
+                        self.distance += tripDistance
+                        self.emissions += tripEmission
+                        self.money += tripMoney
+
+                        self.trips += 1
+                    }
+
+                    self.showStatistics = true
+
+                    return Disposables.create()
+                }
+                .subscribeOn(MainScheduler.background)
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: {
+                    self.tableView.reloadData()
+                }, onError: { error in
+                    Log.error("Could not compute trip statistics: \(error)")
+                })
+    }
+
 
     func initRefreshControl() {
         let refreshControl = UIRefreshControl()

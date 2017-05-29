@@ -23,8 +23,6 @@
 #ifndef AppDelegate_Bridging_Header_h
 #define AppDelegate_Bridging_Header_h
 
-#import <Google/Analytics.h>
-
 #import <CommonCrypto/CommonCrypto.h>
 
-#endif /* AppDelegate_Bridging_Header_h */
+#endif
