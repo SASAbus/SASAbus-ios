@@ -28,7 +28,7 @@ struct Menu {
             MenuItem(
                     title: NSLocalizedString("Busstop", comment: ""),
                     image: "ic_navigation_busstop",
-                    viewController: BusStopViewController(busStation: nil, title: NSLocalizedString("Busstop", comment: ""))),
+                    viewController: BusStopViewController(busStop: nil, title: NSLocalizedString("Busstop", comment: ""))),
 
             MenuItem(
                     title: NSLocalizedString("Realtime Map", comment: ""),

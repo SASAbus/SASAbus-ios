@@ -23,6 +23,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import RealmSwift
 
 class MapViewController: MasterViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
@@ -111,18 +112,17 @@ class MapViewController: MasterViewController, MKMapViewDelegate, CLLocationMana
 
             var busStopViewController: BusStopViewController!
 
-            let busStation = (SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem])
-                    .find({ $0.busStops.filter({ $0.number == id }).count > 0 })
+            let busStop = BBusStop(fromRealm: try! Realm().objects(BusStop.self).filter("id == \(id)").first!)
 
             if (self.navigationController?.viewControllers.count)! > 1 {
                 busStopViewController = self.navigationController?
                         .viewControllers[(self.navigationController?
                         .viewControllers.index(of: self))! - 1] as? BusStopViewController
 
-                busStopViewController!.setBusStation(busStation!)
+                busStopViewController!.setBusStop(busStop)
                 self.navigationController?.popViewController(animated: true)
             } else {
-                busStopViewController = BusStopViewController(busStation: busStation, title: NSLocalizedString("Busstop", comment: ""))
+                busStopViewController = BusStopViewController(busStop: busStop, title: NSLocalizedString("Busstop", comment: ""))
                 (UIApplication.shared.delegate as! AppDelegate).navigateTo(busStopViewController!)
             }
         }

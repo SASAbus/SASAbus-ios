@@ -69,8 +69,7 @@ class Api2 {
 
         if !exists {
             Log.error("Plan data not valid")
-            // TODO
-            // PlannedData.setUpdateAvailable(true)
+            PlannedData.setUpdateAvailable(true)
         }
 
         return exists

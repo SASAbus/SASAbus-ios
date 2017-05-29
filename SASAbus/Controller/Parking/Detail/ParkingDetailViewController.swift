@@ -23,6 +23,7 @@
 import UIKit
 import Alamofire
 import CoreLocation
+import RealmSwift
 
 class ParkingDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -70,7 +71,7 @@ class ParkingDetailViewController: UIViewController, UITableViewDataSource, UITa
 
         cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        cell.stationLabel.text = busStationDistance.busStation.getDescription()
+        cell.stationLabel.text = busStationDistance.busStation.name()
         cell.distanceLabel.text = Int(round(busStationDistance.distance)).description + "m"
 
         return cell
@@ -78,25 +79,24 @@ class ParkingDetailViewController: UIViewController, UITableViewDataSource, UITa
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let busStationDistance = self.nearestBusStations[indexPath.row]
-        let busstopViewController = BusStopViewController(busStation: busStationDistance.busStation, title: NSLocalizedString("Busstop", comment: ""))
+        let busstopViewController = BusStopViewController(busStop: busStationDistance.busStation, title: NSLocalizedString("Busstop", comment: ""))
         (UIApplication.shared.delegate as! AppDelegate).navigateTo(busstopViewController)
     }
 
 
     func getNearestBusStations() -> [BusStationDistance] {
-        let busStations: [BusStationItem] = SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem]
+        let busStops = try! Realm().objects(BusStop.self)
         var nearestBusStations: [BusStationDistance] = []
 
-        for busStation in busStations {
+        for busStop in busStops {
             var busStationDistance: BusStationDistance?
             var distance: CLLocationDistance = 0.0
 
-            for busStop in busStation.busStops {
-                distance = busStop.location.distance(from: self.parking.location)
+            let location = CLLocation(latitude: Double(busStop.lat), longitude: Double(busStop.lng))
+            distance = location.distance(from: self.parking.location)
 
-                if busStationDistance == nil || distance < busStationDistance!.distance {
-                    busStationDistance = BusStationDistance(busStationItem: busStation, distance: distance)
-                }
+            if busStationDistance == nil || distance < busStationDistance!.distance {
+                busStationDistance = BusStationDistance(busStationItem: BBusStop(fromRealm: busStop), distance: distance)
             }
 
             if busStationDistance != nil {
@@ -106,6 +106,6 @@ class ParkingDetailViewController: UIViewController, UITableViewDataSource, UITa
 
         nearestBusStations = nearestBusStations.sorted(by: { $0.distance < $1.distance })
 
-        return Array(nearestBusStations[0 ..< 5])
+        return Array(nearestBusStations[0..<5])
     }
 }

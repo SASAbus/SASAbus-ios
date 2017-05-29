@@ -40,18 +40,18 @@ class BusStopTripViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var lineLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
-    fileprivate var departure: DepartureItem!
+    fileprivate var departure: Departure!
     fileprivate var currentStopIndex: Int?
 
-    init(departure: DepartureItem) {
+    init(departure: Departure) {
         super.init(nibName: "BusStopTripViewController", bundle: nil)
 
         self.departure = departure
         self.currentStopIndex = nil
 
-        if self.departure.positionItem != nil && self.departure.positionItem?.locationNumber != nil {
+        /*if self.departure.vehicle != 0 && self.departure.positionItem?.locationNumber != nil {
             self.currentStopIndex = self.departure.stopTimes.index(where: { $0.busStop == self.departure.positionItem?.locationNumber })
-        }
+        }*/
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -70,16 +70,16 @@ class BusStopTripViewController: UIViewController, UITableViewDelegate, UITableV
 
         self.view.backgroundColor = Theme.darkGrey
         self.lineLabel.textColor = Theme.white
-        self.lineLabel.text = self.departure.busLine.name + " - "
+        self.lineLabel.text = self.departure.line + " - "
 
-        if self.departure.realTime {
-            if self.departure.delaySecondsRounded == 0 {
+        if self.departure.vehicle != 0 {
+            if self.departure.delay == 0 {
                 self.lineLabel.text = self.lineLabel.text! + NSLocalizedString("Punctual", comment: "")
-            } else if self.departure.delaySecondsRounded < 0 {
-                self.lineLabel.text = self.lineLabel.text! + abs(self.departure.delaySecondsRounded).description + "' " +
+            } else if self.departure.delay < 0 {
+                self.lineLabel.text = "\(self.lineLabel.text!)\(abs(self.departure.delay))' " +
                         NSLocalizedString("premature", comment: "")
             } else {
-                self.lineLabel.text = self.lineLabel.text! + self.departure.delaySecondsRounded.description + "' " +
+                self.lineLabel.text = "\(self.lineLabel.text!)\(self.departure.delay)' " +
                         NSLocalizedString("delayed", comment: "")
             }
         } else {
@@ -95,42 +95,43 @@ class BusStopTripViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.departure.stopTimes.count
+        // return self.departure.stopTimes.count
+
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let stop = self.departure.stopTimes[indexPath.row]
+        /* let stop = self.departure.stopTimes[indexPath.row]
 
-        let busStation = (SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem])
-                .find({ $0.busStops.find({ $0.number == stop.busStop }) != nil })
+         let busStation = (SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem])
+                 .find({ $0.busStops.find({ $0.number == stop.busStop }) != nil })
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopTripTableViewCell", for: indexPath) as! BusStopTripTableViewCell
+         let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopTripTableViewCell", for: indexPath) as! BusStopTripTableViewCell
 
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
-        cell.timeLabel.text = stop.getTime()
-        cell.busStationLabel.text = busStation?.getDescription()
+         cell.selectionStyle = UITableViewCellSelectionStyle.none
+         cell.timeLabel.text = stop.getTime()
+         cell.busStationLabel.text = busStation?.getDescription()
 
-        if self.currentStopIndex != nil && indexPath.row < self.currentStopIndex {
-            cell.contentView.alpha = 0.3
-        } else {
-            cell.contentView.alpha = 1.0
-        }
+         if self.currentStopIndex != nil && indexPath.row < self.currentStopIndex {
+             cell.contentView.alpha = 0.3
+         } else {
+             cell.contentView.alpha = 1.0
+         }
 
-        if indexPath.row == 0 {
-            cell.setImageFromType(BusStopTripTableViewCell.TYPE_START)
-        } else if indexPath.row == self.departure.stopTimes.count - 1 {
-            cell.setImageFromType(BusStopTripTableViewCell.TYPE_END)
-        } else {
-            cell.setImageFromType(BusStopTripTableViewCell.TYPE_MIDDLE)
-        }
+         if indexPath.row == 0 {
+             cell.setImageFromType(BusStopTripTableViewCell.TYPE_START)
+         } else if indexPath.row == self.departure.stopTimes.count - 1 {
+             cell.setImageFromType(BusStopTripTableViewCell.TYPE_END)
+         } else {
+             cell.setImageFromType(BusStopTripTableViewCell.TYPE_MIDDLE)
+         }
 
-        cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+         cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
 
-        return cell
+         return cell*/
+
+        return UITableViewCell()
     }
+
 }

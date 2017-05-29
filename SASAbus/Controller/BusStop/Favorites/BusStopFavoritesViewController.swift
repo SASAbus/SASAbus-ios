@@ -27,13 +27,13 @@ class BusStopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var busStationLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
-    fileprivate var busStation: BusStationItem!
-    fileprivate var favoriteBusStations: [BusStationItem]!
+    fileprivate var busStop: BBusStop!
+    fileprivate var favoriteBusStops: [BBusStop]!
 
-    init(busStation: BusStationItem?) {
+    init(busStop: BBusStop?) {
         super.init(nibName: "BusStopFavoritesViewController", bundle: nil)
 
-        self.busStation = busStation
+        self.busStop = busStop
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -54,8 +54,9 @@ class BusStopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
         self.busStationLabel.textColor = Theme.white
         self.loadFavoriteBusStations()
 
-        if (self.busStation != nil && self.favoriteBusStations.find({ $0.name == self.busStation!.name }) == nil) {
-            self.busStationLabel.text = self.busStation.getDescription()
+        if (self.busStop != nil && self.favoriteBusStops.find({ $0.name() == self.busStop!.name() }) == nil) {
+            self.busStationLabel.text = self.busStop.name()
+
             let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self,
                     action: #selector(BusStopFavoritesViewController.saveFavoriteBusStation(_:)))
 
@@ -71,26 +72,26 @@ class BusStopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.favoriteBusStations.count
+        return self.favoriteBusStops.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let busStation = self.favoriteBusStations[indexPath.row]
+        let busStation = self.favoriteBusStops[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopFavoritesTableViewCell", for: indexPath) as! BusStopFavoritesTableViewCell
 
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        cell.busStationLabel.text = busStation.getDescription()
+        cell.busStationLabel.text = busStation.name()
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let busStation = self.favoriteBusStations[indexPath.row]
+        let busStop = self.favoriteBusStops[indexPath.row]
 
         let busStopViewController = self.navigationController?.viewControllers[(self.navigationController?
                 .viewControllers.index(of: self))! - 1] as! BusStopViewController
 
-        busStopViewController.setBusStation(busStation)
+        busStopViewController.setBusStop(busStop)
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -100,14 +101,14 @@ class BusStopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
-            let busStation = self.favoriteBusStations[indexPath.row]
+            let busStop = self.favoriteBusStops[indexPath.row]
 
-            if UserDefaultHelper.instance.removeFavoriteBusStation(busStation) {
-                self.favoriteBusStations.remove(at: indexPath.row)
+            if UserDefaultHelper.instance.removeFavoriteBusStation(busStop) {
+                self.favoriteBusStops.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
 
-                if busStation.name == self.busStation.name {
-                    self.busStationLabel.text = self.busStation.getDescription()
+                if busStop.name() == self.busStop.name() {
+                    self.busStationLabel.text = self.busStop.name()
 
                     let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self,
                             action: #selector(BusStopFavoritesViewController.saveFavoriteBusStation(_:)))
@@ -120,12 +121,12 @@ class BusStopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
     }
 
     fileprivate func loadFavoriteBusStations() {
-        self.favoriteBusStations = UserDefaultHelper.instance.getFavoriteBusStations()
+        self.favoriteBusStops = UserDefaultHelper.instance.getFavoriteBusStops()
         self.tableView.reloadData()
     }
 
     func saveFavoriteBusStation(_ sender: UIBarButtonItem) {
-        if UserDefaultHelper.instance.addFavoriteBusStation(self.busStation) {
+        if UserDefaultHelper.instance.addFavoriteBusStation(self.busStop) {
             self.loadFavoriteBusStations()
             self.busStationLabel.text = NSLocalizedString("Select a bus station from your favorites", comment: "")
             self.navigationItem.rightBarButtonItem = nil

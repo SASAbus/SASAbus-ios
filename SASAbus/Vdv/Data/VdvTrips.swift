@@ -1,8 +1,3 @@
-//
-// Created by Alex Lardschneider on 03/04/2017.
-// Copyright (c) 2017 SASA AG. All rights reserved.
-//
-
 import Foundation
 import SwiftyJSON
 
@@ -11,10 +6,12 @@ class VdvTrips {
     static var jDepartures: [JSON]!
     static var TRIPS = [VdvTrip]()
 
-    public static func loadTrips(jDepartures: [JSON], dayId: Int) {
+    public static func loadTrips(jDepartures: [JSON]?, dayId: Int) {
         Log.warning("Loading trips of day \(dayId)")
 
-        VdvTrips.jDepartures = jDepartures
+        if jDepartures != nil {
+            VdvTrips.jDepartures = jDepartures!
+        }
 
         var trips = [VdvTrip]()
 

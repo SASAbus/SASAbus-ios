@@ -22,23 +22,28 @@
 
 import UIKit
 import Alamofire
+import RealmSwift
+import Realm
+import RxSwift
+import RxCocoa
 
 class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearchBarDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var timeField: UITextField!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tabBar: UITabBar!
-
-    fileprivate var selectedBusStation: BusStationItem?
     @IBOutlet weak var autoCompleteTableView: UITableView!
-    fileprivate let busStations: [BusStationItem] = SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem]
-    fileprivate var foundBusStations: [BusStationItem] = []
+
+    fileprivate var selectedBusStop: BBusStop?
+
+    fileprivate var foundBusStations: [BBusStop] = []
+
     fileprivate var datePicker: UIDatePicker!
     fileprivate var observerAdded: Bool! = false
 
-    init(busStation: BusStationItem?, title: String?) {
+    init(busStop: BBusStop?, title: String?) {
         super.init(cellNibName: "DepartureBusStopTableViewCell", nibName: "BusStopViewController", title: title)
-        self.selectedBusStation = busStation
+        self.selectedBusStop = busStop
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -85,9 +90,9 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
         self.timeField.inputView = self.datePicker
         self.setupAutoCompleteTableView()
 
-        if self.selectedBusStation != nil {
+        if self.selectedBusStop != nil {
             self.setupBusStopSearchDate()
-            self.setBusStation(self.selectedBusStation!)
+            self.setBusStop(self.selectedBusStop!)
         }
     }
 
@@ -98,7 +103,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
         self.autoCompleteTableView.isHidden = true
         self.tabBar.selectedItem = nil
 
-        if self.selectedBusStation == nil {
+        if self.selectedBusStop == nil {
             self.setBusStationFromCurrentLocation()
         }
 
@@ -162,7 +167,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
 
-        if (self.autoCompleteTableView != nil && tableView.isEqual(self.autoCompleteTableView)) {
+        if self.autoCompleteTableView != nil && tableView.isEqual(self.autoCompleteTableView) {
             count = self.foundBusStations.count
         } else {
             count = super.tableView(tableView, numberOfRowsInSection: section)
@@ -179,7 +184,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
                     for: indexPath) as! BusStopAutoCompleteTableViewCell
 
             cell.selectionStyle = UITableViewCellSelectionStyle.none
-            cell.busStationLabel.text = busStation.getDescription()
+            cell.busStationLabel.text = busStation.name()
 
             return cell
         } else {
@@ -188,43 +193,28 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (self.autoCompleteTableView != nil && tableView.isEqual(self.autoCompleteTableView)) {
-            self.setBusStation(self.foundBusStations[indexPath.row])
+        if autoCompleteTableView != nil && tableView.isEqual(autoCompleteTableView) {
+            setBusStop(foundBusStations[indexPath.row])
         } else {
             super.tableView(tableView, didSelectRowAt: indexPath)
         }
     }
 
 
-    override internal func checkIfBusStopIsSuitable(_ busTrip: BusTripBusStopTime, index: Int, delayStopFoundIndex: Int,
-                                                    delay: Int, secondsFromMidnight: Int, realtimeBus: RealtimeBus?) -> Bool {
-        var suitable = false
-        var delay1 = 0
-
-        if (index >= delayStopFoundIndex) {
-            delay1 = delay
-        }
-
-        if (self.selectedBusStation!.containsBusStop(busTrip.busStop)
-                && busTrip.seconds + delay1 >= secondsFromMidnight) {
-            suitable = true
-        }
-
-        return suitable
-    }
-
     override internal func getBusLineVariantTripsAndIdentifiers(_ secondsFromMidnight: Int) -> BusLineVariantTripResult {
-        let busLineVariantTripResult: BusLineVariantTripResult = BusLineVariantTripResult()
+        /*let busLineVariantTripResult: BusLineVariantTripResult = BusLineVariantTripResult()
 
-        if self.selectedBusStation != nil {
+        if self.selectedBusStop != nil {
             let busDayType = (SasaDataHelper.getData(SasaDataHelper.FIRMENKALENDER) as [BusDayTypeItem])
-                    .find({ (Calendar.current as NSCalendar)
-                    .compare($0.date, to: self.searchDate, toUnitGranularity: NSCalendar.Unit.day) == ComparisonResult.orderedSame })
+                    .find({
+                (Calendar.current as NSCalendar)
+                        .compare($0.date, to: self.searchDate, toUnitGranularity: NSCalendar.Unit.day) == ComparisonResult.orderedSame
+            })
 
             if busDayType != nil {
                 let lookBack = 60 * 60 * 2
 
-                for busLine in self.selectedBusStation!.getBusLines() {
+                for busLine in self.selectedBusStop!.getBusLines() {
                     let busDayTimeTrips: [BusDayTypeTripItem] = SasaDataHelper.getData(SasaDataHelper.BusDayTypeTrip(
                             busLine, dayType: busDayType!)) as [BusDayTypeTripItem]
 
@@ -242,7 +232,9 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
             }
         }
 
-        return busLineVariantTripResult
+        return busLineVariantTripResult*/
+
+        return BusLineVariantTripResult()
     }
 
 
@@ -256,20 +248,32 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
     }
 
     fileprivate func updateFoundBusStations(_ searchText: String) {
-        self.foundBusStations = self.busStations
+        let busStops: Results<BusStop>
 
-        if searchText != "" {
-            self.foundBusStations = foundBusStations.filter({ $0.getDescription().lowercased().contains(searchText.lowercased()) })
+        if searchText.isEmpty {
+            busStops = realm.objects(BusStop.self)
+        } else {
+            busStops = realm.objects(BusStop.self)
+                    .filter("nameDe CONTAINS[c] '\(searchText)' OR nameIt CONTAINS[c] '\(searchText)'")
         }
 
-        self.foundBusStations = foundBusStations.sorted(by: { $0.getDescription() < $1.getDescription() })
+        let mapped = busStops.map {
+            BBusStop(fromRealm: $0)
+        }
+
+        foundBusStations = Array(Set(mapped))
+
+        self.foundBusStations = foundBusStations.sorted(by: {
+            $0.name(locale: Utils.locale()) < $1.name(locale: Utils.locale())
+        })
+
         self.autoCompleteTableView.reloadData()
     }
 
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if (self.selectedBusStation != nil) {
-            self.selectedBusStation = nil
+        if self.selectedBusStop != nil {
+            self.selectedBusStop = nil
             self.getDepartures()
         }
 
@@ -330,9 +334,9 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.navigationItem.rightBarButtonItem = nil
         self.departures = []
-        self.filteredDepartures = []
         self.tableView.reloadData()
         self.getDepartures()
+
         textField.resignFirstResponder()
     }
 
@@ -340,14 +344,13 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
     func setBusStationFromCurrentLocation() {
         if UserDefaultHelper.instance.isBeaconStationDetectionEnabled() {
             let currentBusStop = UserDefaultHelper.instance.getCurrentBusStop()
+
             if currentBusStop != nil {
                 Log.info("Current bus stop: \(currentBusStop)")
 
-                let busStation = (SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem])
-                        .find({ $0.busStops.filter({ $0.number == currentBusStop }).count > 0 })
+                if let busStop = realm.objects(BusStop.self).filter("id == \(currentBusStop)").first {
+                    self.setBusStop(BBusStop(fromRealm: busStop))
 
-                if busStation != nil {
-                    self.setBusStation(busStation!)
                     self.setupBusStopSearchDate()
                     self.autoCompleteTableView.isHidden = true
                     self.tabBar.selectedItem = nil
@@ -373,7 +376,7 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
             let busStopMapViewController = BusStopMapViewController()
             self.navigationController!.pushViewController(busStopMapViewController, animated: true)
         } else if item.tag == 2 {
-            let busStopFavoritesViewController = BusStopFavoritesViewController(busStation: self.selectedBusStation)
+            let busStopFavoritesViewController = BusStopFavoritesViewController(busStop: self.selectedBusStop)
             self.navigationController!.pushViewController(busStopFavoritesViewController, animated: true)
         }
     }
@@ -383,17 +386,50 @@ class BusStopViewController: DepartureViewController, UITabBarDelegate, UISearch
         self.navigationController!.pushViewController(busStopFilterViewController, animated: true)
     }
 
-    func setBusStation(_ busStation: BusStationItem) {
-        self.selectedBusStation = busStation
+    func setBusStop(_ busStop: BBusStop) {
+        self.selectedBusStop = busStop
         self.autoCompleteTableView.isHidden = false
-        self.searchBar.text = self.selectedBusStation?.getDescription()
+        self.searchBar.text = self.selectedBusStop?.name()
         self.searchBar.endEditing(true)
         self.searchBar.resignFirstResponder()
         self.departures = []
-        self.filteredDepartures = []
         self.tableView.reloadData()
 
+        parseData()
+    }
+
+    override func parseData() {
+
         self.getDepartures()
+                .subscribeOn(MainScheduler.background)
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { items in
+                    self.departures = items
+                    self.tableView.reloadData()
+
+                    // TODO load real time delay data
+                }, onError: { error in
+                    Log.error("Could not fetch departures: \(error)")
+                })
+    }
+
+    func getDepartures() -> Observable<[Departure]> {
+        return Observable.create { observer in
+            let departures = DepartureMonitor()
+                    .atBusStopFamily(family: 1)
+                    .at(date: Date())
+                    .collect()
+
+            let mapped = departures.map {
+                $0.asDeparture(busStopId: self.selectedBusStop?.id ?? 0)
+            }
+
+            Log.error("Departures: \(mapped)")
+
+            observer.on(.next(mapped))
+
+            return Disposables.create()
+        }
     }
 
     func setSearchDate() {

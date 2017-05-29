@@ -33,7 +33,7 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
     var dateTimePicker: UIDatePicker!
     var selectedBusLine: Line?
 
-    var busLines: [Line] = SasaDataHelper.getData(SasaDataHelper.REC_LID) as [Line]
+    var busLines: [Line] = []
     var foundBusLines: [Line]! = []
 
     var selectedTab: String = "ALL"
@@ -202,7 +202,7 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if self.tabId != item.tag {
             self.selectedBusLine = nil
-            self.getDepartures()
+            self.parseData()
         }
 
         self.tabId = item.tag
@@ -235,7 +235,7 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if self.selectedBusLine != nil {
             self.selectedBusLine = nil
-            self.getDepartures()
+            self.parseData()
         }
 
         self.updateFoundBusLines(searchText)
@@ -258,31 +258,33 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
 
 
     override internal func getBusLineVariantTripsAndIdentifiers(_ secondsFromMidnight: Int) -> BusLineVariantTripResult {
-        let busLineVariantTripResult: BusLineVariantTripResult = BusLineVariantTripResult()
+        /*let busLineVariantTripResult: BusLineVariantTripResult = BusLineVariantTripResult()
 
-        if self.selectedBusLine != nil {
-            let busDayType = (SasaDataHelper.getData(SasaDataHelper.FIRMENKALENDER) as [BusDayTypeItem])
-                    .find({ (Calendar.current as NSCalendar)
-                    .compare($0.date, to: self.searchDate, toUnitGranularity: NSCalendar.Unit.day) == ComparisonResult.orderedSame })
+         if self.selectedBusLine != nil {
+             let busDayType = (SasaDataHelper.getData(SasaDataHelper.FIRMENKALENDER) as [BusDayTypeItem])
+                     .find({ (Calendar.current as NSCalendar)
+                     .compare($0.date, to: self.searchDate, toUnitGranularity: NSCalendar.Unit.day) == ComparisonResult.orderedSame })
 
-            let lookBack = 60 * 60 * 2
+             let lookBack = 60 * 60 * 2
 
-            let busDayTimeTrips = SasaDataHelper.getData(SasaDataHelper
-                    .BusDayTypeTrip(self.selectedBusLine!, dayType: busDayType!)) as [BusDayTypeTripItem]
+             let busDayTimeTrips = SasaDataHelper.getData(SasaDataHelper
+                     .BusDayTypeTrip(self.selectedBusLine!, dayType: busDayType!)) as [BusDayTypeTripItem]
 
-            for busDayTimeTrip in busDayTimeTrips {
-                for busTripVariant in busDayTimeTrip.busTripVariants {
-                    for busTrip in busTripVariant.trips {
-                        if busTrip.startTime > secondsFromMidnight - lookBack {
-                            busLineVariantTripResult.addBusLineVariantTrip(BusLineVariantTrip(busLine:
-                            self.selectedBusLine!, variant: busTripVariant, trip: busTrip))
-                        }
-                    }
-                }
-            }
-        }
+             for busDayTimeTrip in busDayTimeTrips {
+                 for busTripVariant in busDayTimeTrip.busTripVariants {
+                     for busTrip in busTripVariant.trips {
+                         if busTrip.startTime > secondsFromMidnight - lookBack {
+                             busLineVariantTripResult.addBusLineVariantTrip(BusLineVariantTrip(busLine:
+                             self.selectedBusLine!, variant: busTripVariant, trip: busTrip))
+                         }
+                     }
+                 }
+             }
+         }
 
-        return busLineVariantTripResult
+         return busLineVariantTripResult*/
+
+        return BusLineVariantTripResult()
     }
 
     override internal func checkIfBusStopIsSuitable(_ stopTime: BusTripBusStopTime, index: Int, delayStopFoundIndex: Int,
@@ -316,7 +318,7 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
     func loadBusLines() {
         Log.info("Loading bus lines for zone \(selectedTab)")
 
-        var busLines = SasaDataHelper.getData(SasaDataHelper.REC_LID) as [Line]
+        var busLines: [Line] = []
 
         if selectedTab != "ALL" {
             busLines = busLines.filter({ $0.getArea() == selectedTab })
@@ -335,9 +337,9 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
         self.searchBar.endEditing(true)
         self.searchBar.resignFirstResponder()
         self.departures = []
-        self.filteredDepartures = []
         self.tableView.reloadData()
-        self.getDepartures()
+
+        self.parseData()
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -361,9 +363,10 @@ class LineViewController: DepartureViewController, UITextFieldDelegate, UITabBar
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.navigationItem.rightBarButtonItem = nil
         self.departures = []
-        self.filteredDepartures = []
         self.tableView.reloadData()
-        self.getDepartures()
+
+        self.parseData()
+
         textField.resignFirstResponder()
     }
 }

@@ -1,14 +1,9 @@
-//
-// Created by Alex Lardschneider on 03/04/2017.
-// Copyright (c) 2017 SASA AG. All rights reserved.
-//
-
 import Foundation
 
 /**
  * Represents a time interval between two bus stops.
  */
-class VdvInterval: Hashable {
+class VdvInterval {
 
     var timeGroup: Int
     var origin: Int
@@ -19,6 +14,9 @@ class VdvInterval: Hashable {
         self.origin = origin
         self.destination = destination
     }
+}
+
+extension VdvInterval: Hashable {
 
     var hashValue: Int {
         var result = timeGroup

@@ -98,7 +98,7 @@ final class BusStationItem: NSCoding, JSONable, JSONCollection {
     }
 
     func getBusLines() -> [Line] {
-        let busLines: [Line] = SasaDataHelper.getData(SasaDataHelper.REC_LID)
+        let busLines: [Line] = []
         var stationBusLines: [Line] = []
 
         for busLineId in self.busLineIds {

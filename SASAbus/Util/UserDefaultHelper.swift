@@ -55,9 +55,11 @@ class UserDefaultHelper {
         return UserDefaults.standard
     }
 
-    func addFavoriteBusStation(_ busStation: BusStationItem) -> Bool {
-        var success = false
-        var favoriteBusStations = self.getFavoriteBusStations()
+    func addFavoriteBusStation(_ busStation: BBusStop) -> Bool {
+        // TODO: Implement favorite bus stops using Realm
+
+        /*var success = false
+        var favoriteBusStations = self.getFavoriteBusStops()
 
         if favoriteBusStations.find({ $0.name == busStation.name }) == nil {
             favoriteBusStations.append(busStation)
@@ -69,12 +71,16 @@ class UserDefaultHelper {
 
             success = true
         }
-        return success
+        return success*/
+
+        return true
     }
 
-    func removeFavoriteBusStation(_ busStation: BusStationItem) -> Bool {
-        var success = false
-        var favoriteBusStations = self.getFavoriteBusStations()
+    func removeFavoriteBusStation(_ busStation: BBusStop) -> Bool {
+        // TODO: Implement favorite bus stops using Realm
+
+        /*var success = false
+        var favoriteBusStations = self.getFavoriteBusStops()
         if let index = favoriteBusStations.index(where: { $0.name == busStation.name }) {
             favoriteBusStations.remove(at: index)
             self.getUserDefaults().set(NSKeyedArchiver.archivedData(withRootObject: favoriteBusStations),
@@ -82,18 +88,28 @@ class UserDefaultHelper {
             self.getUserDefaults().synchronize()
             success = true
         }
-        return success
+
+        return success*/
+
+        return true
     }
 
-    func getFavoriteBusStations() -> [BusStationItem] {
-        var favoriteBusStations: [BusStationItem] = []
+    func getFavoriteBusStops() -> [BBusStop] {
+        // TODO: Implement favorite bus stops using Realm
+
+        /*var favoriteBusStations: [BusStationItem] = []
         let data = self.getUserDefaults().object(forKey: UserDefaultHelper.BUS_STATION_FAVORITES_KEY)
+
         if data != nil {
             favoriteBusStations = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [BusStationItem]
         }
+
         favoriteBusStations.sort(by: { $0.getDescription()
                 .localizedCaseInsensitiveCompare($1.getDescription()) == ComparisonResult.orderedAscending })
-        return favoriteBusStations
+
+        return favoriteBusStations*/
+
+        return []
     }
 
     func setDataDownloadStatus(_ done: Bool) {

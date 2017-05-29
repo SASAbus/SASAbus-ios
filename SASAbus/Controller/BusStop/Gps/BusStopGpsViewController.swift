@@ -22,6 +22,7 @@
 
 import UIKit
 import CoreLocation
+import RealmSwift
 
 class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
 
@@ -93,7 +94,7 @@ class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
 
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-        cell.stationLabel.text = busStationDistance.busStation.getDescription()
+        cell.stationLabel.text = busStationDistance.busStation.name()
         cell.distanceLabel.text = Int(round(busStationDistance.distance)).description + "m"
 
         return cell
@@ -105,40 +106,39 @@ class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
         let busStopViewController = navigationController?.viewControllers[(navigationController?
                 .viewControllers.index(of: self))! - 1] as! BusStopViewController
 
-        busStopViewController.setBusStation(busStationDistance.busStation)
+        busStopViewController.setBusStop(busStationDistance.busStation)
         self.navigationController?.popViewController(animated: true)
     }
 
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locationArray = locations as NSArray
-        let location = locationArray.lastObject as? CLLocation
+        guard let currentLocation = locations.last else {
+            Log.warning("No recent location available")
+            return
+        }
 
-        if location != nil {
-            let busStations = (SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem])
-                    .filter({ $0.busStops.filter({ $0.location.distance(from: location!) < Config.busStopDistanceThreshold }).count > 0 })
+        let busStations = try! Realm().objects(BusStop.self)
+        var nearbyBusStations: [BusStationDistance] = []
 
-            var nearbyBusStations: [BusStationDistance] = []
+        for busStop in busStations {
+            var busStationDistance: BusStationDistance?
+            var distance: CLLocationDistance = 0.0
 
-            for busStation in busStations {
-                var busStationDistance: BusStationDistance?
-                var distance: CLLocationDistance = 0.0
+            let location = CLLocation(latitude: Double(busStop.lat), longitude: Double(busStop.lng))
+            distance = currentLocation.distance(from: location)
 
-                for busStop in busStation.busStops {
-                    distance = busStop.location.distance(from: location!)
-                    if busStationDistance == nil || distance < busStationDistance!.distance {
-                        busStationDistance = BusStationDistance(busStationItem: busStation, distance: distance)
-                    }
-                }
-
-                if busStationDistance != nil {
-                    nearbyBusStations.append(busStationDistance!)
-                }
+            if busStationDistance == nil || distance < busStationDistance!.distance {
+                busStationDistance = BusStationDistance(busStationItem: BBusStop(fromRealm: busStop), distance: distance)
             }
 
-            nearbyBusStations = nearbyBusStations.sorted(by: { $0.distance < $1.distance })
-            tableView.reloadData()
-            locationManager?.stopUpdatingLocation()
+            if busStationDistance != nil {
+                nearbyBusStations.append(busStationDistance!)
+            }
         }
+
+        nearbyBusStations = nearbyBusStations.sorted(by: { $0.distance < $1.distance })
+
+        tableView.reloadData()
+        locationManager?.stopUpdatingLocation()
     }
 }
