@@ -23,11 +23,12 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import StatefulViewController
 
-class LineViewController: MasterViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
+class LineViewController: MasterViewController, StatefulViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
 
     @IBOutlet weak var tabBar: UITabBar!
-    @IBOutlet weak var tableView: MasterTableView!
+    @IBOutlet weak var tableView: UITableView!
 
     var selectedTab: String = "FAVORITES"
     var tabId: Int = 0
@@ -63,7 +64,11 @@ class LineViewController: MasterViewController, UITableViewDelegate, UITableView
         tabBarItems[1].title = NSLocalizedString("Bozen", comment: "")
         tabBarItems[2].title = NSLocalizedString("Meran", comment: "")
 
-        parseLines()
+        loadingView = LoadingView(frame: view.frame)
+        errorView = ErrorView(frame: view.frame, target: self, action: #selector(parseData))
+
+        setupRefresh()
+        parseData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -77,54 +82,24 @@ class LineViewController: MasterViewController, UITableViewDelegate, UITableView
     }
 
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return lines[tabId]?.count ?? 0
-    }
+    func parseData() {
+        startLoading(animated: false)
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let line = self.lines[tabId]![indexPath.section]
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell_lines_all", for: indexPath) as! LineCell
-
-        cell.titleLeft.text = "Line \(line.name)"
-        cell.titleRight.text = line.city
-
-        cell.subtitleTop.text = line.origin
-        cell.subtitleBottom.text = line.destination
-
-        return cell
-    }
-
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let line = self.lines[tabId]![indexPath.section]
-
-        let lineDetails = LineDetailsViewController(lineId: line.id, vehicleId: 0)
-        self.navigationController!.pushViewController(lineDetails, animated: true)
-    }
-
-
-    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        self.tabId = item.tag
-
-        switch self.tabId {
-        case 1:
-            self.selectedTab = "BZ"
-        case 2:
-            self.selectedTab = "ME"
-        default:
-            self.selectedTab = "FAVORITES"
-        }
-
-        tableView.reloadData()
-    }
-
-
-    func parseLines() {
         Log.info("Loading all lines")
+
+        if !NetUtils.isOnline() {
+            Log.error("Device offline")
+
+            self.lines[1]?.removeAll()
+            self.lines[2]?.removeAll()
+
+            self.tableView.reloadData()
+
+            endLoading(animated: false, error: NetUtils.networkError())
+            tableView.refreshControl?.endRefreshing()
+
+            return
+        }
 
         _ = LinesApi.getAllLines()
                 .subscribeOn(MainScheduler.background)
@@ -158,8 +133,84 @@ class LineViewController: MasterViewController, UITableViewDelegate, UITableView
                     self.lines[2] = me
 
                     self.tableView.reloadData()
+                    self.tableView.refreshControl?.endRefreshing()
+
+                    self.endLoading(animated: false)
                 }, onError: { error in
                     Log.error("Could not load all lines: \(error)")
+
+                    self.lines[1]?.removeAll()
+                    self.lines[2]?.removeAll()
+
+                    self.tableView.reloadData()
+                    self.tableView.refreshControl?.endRefreshing()
+
+                    self.endLoading(animated: false, error: error)
                 })
+    }
+
+
+    func setupRefresh() {
+        let refreshControl = UIRefreshControl()
+
+        refreshControl.tintColor = Theme.lightOrange
+        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""),
+                attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
+
+        refreshControl.addTarget(self, action: #selector(parseData), for: UIControlEvents.valueChanged)
+
+        self.tableView.refreshControl = refreshControl
+    }
+
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        self.tabId = item.tag
+
+        switch self.tabId {
+        case 1:
+            self.selectedTab = "BZ"
+        case 2:
+            self.selectedTab = "ME"
+        default:
+            self.selectedTab = "FAVORITES"
+        }
+
+        tableView.reloadData()
+    }
+
+    func hasContent() -> Bool {
+        return !(lines[tabId]?.isEmpty ?? true)
+    }
+}
+
+extension LineViewController {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        let count = lines[tabId]?.count ?? 0
+        return count
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let line = self.lines[tabId]![indexPath.section]
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell_lines_all", for: indexPath) as! LineCell
+
+        cell.titleLeft.text = "Line \(line.name)"
+        cell.titleRight.text = line.city
+
+        cell.subtitleTop.text = line.origin
+        cell.subtitleBottom.text = line.destination
+
+        return cell
+    }
+
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let line = self.lines[tabId]![indexPath.section]
+
+        let lineDetails = LineDetailsViewController(lineId: line.id, vehicle: 0)
+        self.navigationController!.pushViewController(lineDetails, animated: true)
     }
 }

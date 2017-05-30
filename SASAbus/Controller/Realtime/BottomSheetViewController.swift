@@ -180,6 +180,8 @@ class BottomSheetViewController: UIViewController, PulleyDrawerViewControllerDel
     // MARK: Click handlers
 
     func onLineClick(gestureRecognizer: UIGestureRecognizer) {
+        let busDetailsViewController = LineDetailsViewController(lineId: selectedBus.lineId, vehicle: selectedBus.vehicle)
+        self.navigationController!.pushViewController(busDetailsViewController, animated: true)
     }
 
     func onVehicleClick(gestureRecognizer: UIGestureRecognizer) {
@@ -188,7 +190,7 @@ class BottomSheetViewController: UIViewController, PulleyDrawerViewControllerDel
     }
 
     func onCourseClick(gestureRecognizer: UIGestureRecognizer) {
-        parentVC?.performSegue(withIdentifier: "segue_map_line_course", sender: selectedBus)
+        // TODO add segue to line course
     }
 
     func onPeekClick(gestureRecognizer: UIGestureRecognizer) {

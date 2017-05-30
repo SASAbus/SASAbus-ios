@@ -18,9 +18,9 @@ class LineDetailsBusesViewController: UITableViewController {
     }
 
 
-    init(lineId: Int, vehicleId: Int) {
+    init(lineId: Int, vehicle: Int) {
         self.lineId = lineId
-        self.vehicle = vehicleId
+        self.vehicle = vehicle
 
         super.init(nibName: "LineDetailsBusesViewController", bundle: nil)
     }

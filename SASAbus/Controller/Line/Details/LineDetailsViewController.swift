@@ -15,9 +15,9 @@ class LineDetailsViewController: UIViewController {
     var vehicle: Int = 0
 
 
-    init(lineId: Int, vehicleId: Int) {
+    init(lineId: Int, vehicle: Int) {
         self.lineId = lineId
-        self.vehicle = vehicleId
+        self.vehicle = vehicle
 
         super.init(nibName: "LineDetailsViewController", bundle: nil)
     }
@@ -86,7 +86,7 @@ class LineDetailsViewController: UIViewController {
 
 
     func prepareBusesViewController() {
-        let controller = LineDetailsBusesViewController(lineId: lineId, vehicleId: vehicle)
+        let controller = LineDetailsBusesViewController(lineId: lineId, vehicle: vehicle)
 
         controller.view.removeFromSuperview()
         controller.removeFromParentViewController()
