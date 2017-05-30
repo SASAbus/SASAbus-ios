@@ -1,5 +1,6 @@
 import Foundation
 import RealmSwift
+import Realm
 
 func bundleURL(name: String) -> URL? {
     return Bundle.main.url(forResource: name, withExtension: "realm")
@@ -28,7 +29,7 @@ class BusStopRealmHelper {
     }
 
     static func getName(id: Int) -> String {
-        let realm = try! Realm(configuration: CONFIG)
+        let realm = Realm.busStops()
         let busStop = realm.objects(BusStop.self).filter("id = \(id)").first
 
         if busStop == nil {
@@ -39,7 +40,7 @@ class BusStopRealmHelper {
     }
 
     static func getMunic(id: Int) -> String {
-        let realm = try! Realm(configuration: CONFIG)
+        let realm = Realm.busStops()
         let busStop = realm.objects(BusStop.self).filter("id = \(id)").first
 
         if busStop == nil {
@@ -50,7 +51,7 @@ class BusStopRealmHelper {
     }
 
     static func getBusStop(id: Int) -> BusStop {
-        let realm = try! Realm(configuration: CONFIG)
+        let realm = Realm.busStops()
         var busStop = realm.objects(BusStop.self).filter("id = \(id)").first
 
         if busStop == nil {
@@ -61,12 +62,12 @@ class BusStopRealmHelper {
     }
 
     static func getBusStopOrNil(id: Int) -> BusStop? {
-        let realm = try! Realm(configuration: CONFIG)
+        let realm = Realm.busStops()
         return realm.objects(BusStop.self).filter("id = \(id)").first
     }
 
     static func getBusStopGroup(id: Int) -> Int {
-        let realm = try! Realm(configuration: CONFIG)
+        let realm = Realm.busStops()
         var busStop = realm.objects(BusStop.self).filter("id = \(id)").first
 
         if busStop == nil {
@@ -77,7 +78,7 @@ class BusStopRealmHelper {
     }
 
     static func getBusStopsFromFamily(family: Int) -> [VdvBusStop] {
-        let realm = try! Realm(configuration: CONFIG)
+        let realm = Realm.busStops()
 
         let busStops = realm.objects(BusStop.self).filter("family = \(family)")
 
@@ -96,14 +97,14 @@ class BusStopRealmHelper {
     }
 
     static func getBusStopsFromGroup(group: Int) -> [BusStop] {
-        let realm = try! Realm(configuration: CONFIG)
+        let realm = Realm.busStops()
         let results = realm.objects(BusStop.self).filter("family = \(group)")
 
         return Array(results)
     }
 
     static func all() -> [BusStop] {
-        let realm = try! Realm(configuration: CONFIG)
+        let realm = Realm.busStops()
         let results = realm.objects(BusStop.self)
 
         return Array(results)

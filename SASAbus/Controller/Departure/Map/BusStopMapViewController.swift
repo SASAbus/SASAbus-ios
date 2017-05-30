@@ -27,9 +27,10 @@ import RealmSwift
 
 class BusStopMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
-    var locationManager: CLLocationManager?
-
     @IBOutlet weak var mapView: MKMapView!
+
+    var locationManager: CLLocationManager?
+    var realm = Realm.busStops()
 
     init() {
         super.init(nibName: "BusStopMapViewController", bundle: nil)
@@ -107,7 +108,7 @@ class BusStopMapViewController: UIViewController, MKMapViewDelegate, CLLocationM
 
             var busStopViewController: BusStopViewController!
 
-            let busStop = BBusStop(fromRealm: try! Realm().objects(BusStop.self).filter("id == \(id)").first!)
+            let busStop = BBusStop(fromRealm: realm.objects(BusStop.self).filter("id == \(id)").first!)
 
             if (self.navigationController?.viewControllers.count)! > 1 {
                 busStopViewController = self.navigationController?

@@ -55,7 +55,7 @@
 		1F2E337B8F90493DF52F6364 /* LineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E39FE887D4A0F3075EF7A /* LineCell.swift */; };
 		1F2E33B353D9594DA661A0CB /* BusStopGpsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3502C11C79BA94192028 /* BusStopGpsViewController.xib */; };
 		1F2E33B69B4524782611BB53 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3678B3629E7C96BDD85E /* DateExtension.swift */; };
-		1F2E33D7268F9F61216D073B /* BusstopGpsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E35649B08AAD4B2CA6284 /* BusstopGpsTableViewCell.swift */; };
+		1F2E33D7268F9F61216D073B /* BusStopGpsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E35649B08AAD4B2CA6284 /* BusStopGpsTableViewCell.swift */; };
 		1F2E33E56D1265649F7720D5 /* RealtimeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3B67B10FE24B94760216 /* RealtimeMapViewController.swift */; };
 		1F2E33E72F7EB43F4A317C90 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D57BBA4062A9689AEDD /* DictionaryExtension.swift */; };
 		1F2E33E8F59181A88F4D414C /* VdvBusStopBreaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A2726BF9FD7BE32A39A /* VdvBusStopBreaks.swift */; };
@@ -119,6 +119,7 @@
 		1F2E380533CCDFA313BDB1F7 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3EE9CF14C395A092BA23 /* UserApi.swift */; };
 		1F2E380B08FEECD6B88B0465 /* LinesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E35C837B9BEA5139691D2 /* LinesApi.swift */; };
 		1F2E380FE88DA6D637EB3F53 /* VdvIntervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3880D12AE9454C2005D6 /* VdvIntervals.swift */; };
+		1F2E382C913E8D051A9D720A /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E7568A92A475D5BC983 /* Realm.swift */; };
 		1F2E3836711DD38C0C3AF3EB /* BusStopItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E350249678B1340FA91D4 /* BusStopItem.swift */; };
 		1F2E383A6D1D2F305E12446B /* UserRealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A4A10A23D582CA365C5 /* UserRealmHelper.swift */; };
 		1F2E3843F068E9CA7C73DD81 /* BBusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F06D855F593F6C4DAF9 /* BBusStop.swift */; };
@@ -238,6 +239,7 @@
 		1F2E3EFD19875C873ACBC396 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E30D8F50F0E971CD1A73D /* Settings.bundle */; };
 		1F2E3F01E096F3584DA5C58A /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E322997B253B8B50F2BF7 /* MenuViewController.xib */; };
 		1F2E3F0B94E3A01957A1E3C5 /* DepartureBusStopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E31BAC0323AFF9B65A8CF /* DepartureBusStopTableViewCell.xib */; };
+		1F2E3F1B1E088828538433C4 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E7568A92A475D5BC983 /* Realm.swift */; };
 		1F2E3F1CC4C3C83F7BEE1B57 /* BusStopTripViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3867AFAA017BA2A35EAD /* BusStopTripViewController.xib */; };
 		1F2E3F29887E814B897670F4 /* MainSchedulerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3C1F558242A1757D49A7 /* MainSchedulerExtension.swift */; };
 		1F2E3F4A1D53AE3221241AA4 /* NewsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E358D2B083A996B27A59C /* NewsDetailViewController.xib */; };
@@ -423,7 +425,7 @@
 		1F2E353918A4A220826C92BD /* VdvTripBreaks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VdvTripBreaks.swift; sourceTree = "<group>"; };
 		1F2E3541103CD7A91DCF19AB /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
 		1F2E3542D7725C08B2E3F402 /* BusStopFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopFilterViewController.swift; sourceTree = "<group>"; };
-		1F2E35649B08AAD4B2CA6284 /* BusstopGpsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusstopGpsTableViewCell.swift; sourceTree = "<group>"; };
+		1F2E35649B08AAD4B2CA6284 /* BusStopGpsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopGpsTableViewCell.swift; sourceTree = "<group>"; };
 		1F2E3567754558C8A44EC6CD /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		1F2E358305B89A9E1191D341 /* BackgroundView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackgroundView.xib; sourceTree = "<group>"; };
 		1F2E358D2B083A996B27A59C /* NewsDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsDetailViewController.xib; sourceTree = "<group>"; };
@@ -551,6 +553,7 @@
 		1F2E3E52DD45713902484579 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		1F2E3E6151F48557F5C47762 /* BusStopFavoritesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusStopFavoritesTableViewCell.xib; sourceTree = "<group>"; };
 		1F2E3E6B54D5A057CA4FC5D9 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
+		1F2E3E7568A92A475D5BC983 /* Realm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
 		1F2E3E901D36F1C4161C7B68 /* EcoPointsBadgeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EcoPointsBadgeCell.swift; sourceTree = "<group>"; };
 		1F2E3E91094AAD40074C377C /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		1F2E3E933E1C7E5FCFFAC471 /* EcoPointsProfileSettingsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EcoPointsProfileSettingsCell.xib; sourceTree = "<group>"; };
@@ -1175,6 +1178,7 @@
 				1F2E3678B3629E7C96BDD85E /* DateExtension.swift */,
 				1F2E3D57BBA4062A9689AEDD /* DictionaryExtension.swift */,
 				1F2E3C42A50A43899D8ACB03 /* JSONExtension.swift */,
+				1F2E3E7568A92A475D5BC983 /* Realm.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1208,7 +1212,7 @@
 				1F2E3073041C1A852C67F2B8 /* BusStopGpsTableViewCell.xib */,
 				1F2E3AA75E66DDAF52692C1D /* BusStopGpsViewController.swift */,
 				1F2E3502C11C79BA94192028 /* BusStopGpsViewController.xib */,
-				1F2E35649B08AAD4B2CA6284 /* BusstopGpsTableViewCell.swift */,
+				1F2E35649B08AAD4B2CA6284 /* BusStopGpsTableViewCell.swift */,
 			);
 			path = Gps;
 			sourceTree = "<group>";
@@ -1838,7 +1842,7 @@
 				1F2E38C8A4BAB4FA0D8DDBE8 /* BusStopFilterViewController.swift in Sources */,
 				1F2E386910AA1B1C516192A1 /* BusStopViewController.swift in Sources */,
 				1F2E3EFC3AFAAFD2E375288B /* BusStopGpsViewController.swift in Sources */,
-				1F2E33D7268F9F61216D073B /* BusstopGpsTableViewCell.swift in Sources */,
+				1F2E33D7268F9F61216D073B /* BusStopGpsTableViewCell.swift in Sources */,
 				1F2E31658731E4459262D181 /* BusStopMapViewController.swift in Sources */,
 				1F2E3918B388BA64C9BF3005 /* LineDetailsViewController.swift in Sources */,
 				1F2E36D1957BB2BC11217A80 /* LineDetailsBusesViewController.swift in Sources */,
@@ -1847,6 +1851,7 @@
 				1F2E38D9AAAB8416AACB13DB /* LineDetailsHeaderCell.swift in Sources */,
 				1F2E32BE95CB4E539AB4C5AE /* PathsApi.swift in Sources */,
 				1F2E37BD92DCF0F20B356CF9 /* BusStopAnnotation.swift in Sources */,
+				1F2E3F1B1E088828538433C4 /* Realm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1927,6 +1932,7 @@
 				1F2E374F07F9EC55E726B097 /* VdvBusStopBreaks.swift in Sources */,
 				1F2E3843F068E9CA7C73DD81 /* BBusStop.swift in Sources */,
 				1F2E32842167290D835C432C /* PathsApi.swift in Sources */,
+				1F2E382C913E8D051A9D720A /* Realm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -34,6 +34,8 @@ class ParkingDetailViewController: UIViewController, UITableViewDataSource, UITa
     var parking: Parking!
     var nearestBusStations: [BusStationDistance] = []
 
+    var realm = Realm.busStops()
+
 
     init(item: Parking!) {
         super.init(nibName: "ParkingDetailViewController", bundle: nil)
@@ -85,7 +87,7 @@ class ParkingDetailViewController: UIViewController, UITableViewDataSource, UITa
 
 
     func getNearestBusStations() -> [BusStationDistance] {
-        let busStops = try! Realm().objects(BusStop.self)
+        let busStops = realm.objects(BusStop.self)
         var nearestBusStations: [BusStationDistance] = []
 
         for busStop in busStops {

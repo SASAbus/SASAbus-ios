@@ -56,7 +56,7 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
 
     var working: Bool! = false
 
-    var realm = try! Realm(configuration: BusStopRealmHelper.CONFIG)
+    var realm = Realm.busStops()
 
 
     init(busStop: BBusStop?, title: String?) {

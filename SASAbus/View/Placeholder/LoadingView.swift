@@ -1,8 +1,3 @@
-//
-// Created by Alex Lardschneider on 29/03/2017.
-// Copyright (c) 2017 SASA AG. All rights reserved.
-//
-
 import Foundation
 
 import UIKit

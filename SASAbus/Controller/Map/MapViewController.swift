@@ -31,6 +31,8 @@ class MapViewController: MasterViewController, MKMapViewDelegate, CLLocationMana
 
     @IBOutlet weak var mapView: MKMapView!
 
+    var realm = Realm.busStops()
+
 
     init(title: String?) {
         super.init(nibName: "MapViewController", title: nil)
@@ -112,7 +114,7 @@ class MapViewController: MasterViewController, MKMapViewDelegate, CLLocationMana
 
             var busStopViewController: BusStopViewController!
 
-            let busStop = BBusStop(fromRealm: try! Realm().objects(BusStop.self).filter("id == \(id)").first!)
+            let busStop = BBusStop(fromRealm: realm.objects(BusStop.self).filter("id == \(id)").first!)
 
             if (self.navigationController?.viewControllers.count)! > 1 {
                 busStopViewController = self.navigationController?

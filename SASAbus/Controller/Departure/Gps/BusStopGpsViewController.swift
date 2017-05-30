@@ -1,5 +1,5 @@
 //
-// BusstopGpsViewController.swift
+// BusStopGpsViewController.swift
 // SASAbus
 //
 // Copyright (C) 2011-2015 Raiffeisen Online GmbH (Norman Marmsoler, Jürgen Sprenger, Aaron Falk) <info@raiffeisen.it>
@@ -26,13 +26,15 @@ import RealmSwift
 
 class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
 
-    @IBOutlet weak var busStationLabel: UILabel!
+    @IBOutlet weak var busStopLabel: UILabel!
     @IBOutlet weak var tableView: MasterTableView!
 
-    fileprivate var busStation: BusStationItem!
-    fileprivate var nearbyBusStations: [BusStationDistance]! = []
+    fileprivate var busStop: BusStationItem!
+    fileprivate var nearbyBusStops: [BusStationDistance]! = []
 
     var locationManager: CLLocationManager?
+
+    var realm = Realm.busStops()
 
 
     init() {
@@ -47,20 +49,22 @@ class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = NSLocalizedString("Bus stops near you", comment: "")
+
         tableView.register(UINib(nibName: "BusStopGpsViewController", bundle: nil), forCellReuseIdentifier: "BusStopGpsViewController")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView(frame: CGRect.zero)
 
         locationManager = CLLocationManager()
-        title = NSLocalizedString("Bus stops near you", comment: "")
-        view.backgroundColor = Theme.darkGrey
-        busStationLabel.textColor = Theme.white
 
-        if busStation != nil {
-            busStationLabel.text = busStation.getDescription()
+        view.backgroundColor = Theme.darkGrey
+        busStopLabel.textColor = Theme.white
+
+        if busStop != nil {
+            busStopLabel.text = busStop.getDescription()
         } else {
-            busStationLabel.text = NSLocalizedString("Select a nearby bus station", comment: "")
+            busStopLabel.text = NSLocalizedString("Select a nearby bus station", comment: "")
         }
     }
 
@@ -84,40 +88,13 @@ class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return nearbyBusStations.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let busStationDistance = nearbyBusStations[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopGpsTableViewCell", for: indexPath) as! BusStopGpsTableViewCell
-
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
-        cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-        cell.stationLabel.text = busStationDistance.busStation.name()
-        cell.distanceLabel.text = Int(round(busStationDistance.distance)).description + "m"
-
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let busStationDistance = nearbyBusStations[indexPath.row]
-
-        let busStopViewController = navigationController?.viewControllers[(navigationController?
-                .viewControllers.index(of: self))! - 1] as! BusStopViewController
-
-        busStopViewController.setBusStop(busStationDistance.busStation)
-        self.navigationController?.popViewController(animated: true)
-    }
-
-
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.last else {
             Log.warning("No recent location available")
             return
         }
 
-        let busStations = try! Realm().objects(BusStop.self)
+        let busStations = realm.objects(BusStop.self)
         var nearbyBusStations: [BusStationDistance] = []
 
         for busStop in busStations {
@@ -140,5 +117,34 @@ class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
 
         tableView.reloadData()
         locationManager?.stopUpdatingLocation()
+    }
+}
+
+extension BusStopGpsViewController {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return nearbyBusStops.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let busStationDistance = nearbyBusStops[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopGpsTableViewCell", for: indexPath) as! BusStopGpsTableViewCell
+
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        cell.stationLabel.text = busStationDistance.busStation.name()
+        cell.distanceLabel.text = Int(round(busStationDistance.distance)).description + "m"
+
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let busStationDistance = nearbyBusStops[indexPath.row]
+
+        let busStopViewController = navigationController?.viewControllers[(navigationController?
+                .viewControllers.index(of: self))! - 1] as! BusStopViewController
+
+        busStopViewController.setBusStop(busStationDistance.busStation)
+        self.navigationController?.popViewController(animated: true)
     }
 }

@@ -1,5 +1,5 @@
 //
-// BusstopGpsTableViewCell.swift
+// BusStopGpsTableViewCell.swift
 // SASAbus
 //
 // Copyright (C) 2011-2015 Raiffeisen Online GmbH (Norman Marmsoler, Jürgen Sprenger, Aaron Falk) <info@raiffeisen.it>
@@ -19,7 +19,6 @@
 // You should have received a copy of the GNU General Public License
 // along with SASAbus.  If not, see <http://www.gnu.org/licenses/>.
 //
-
 
 import UIKit
 
