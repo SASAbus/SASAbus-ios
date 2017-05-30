@@ -429,7 +429,7 @@ extension BusStopViewController {
             cell.delayColor = Theme.darkGrey
         }
 
-        cell.infoLabel.text = "Line \(departure.line)"
+        cell.infoLabel.text = Lines.line(id: departure.lineId)
         cell.directionLabel.text = departure.destination
 
         return cell

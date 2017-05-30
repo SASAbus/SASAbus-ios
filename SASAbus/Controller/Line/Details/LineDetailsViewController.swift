@@ -20,6 +20,8 @@ class LineDetailsViewController: UIViewController {
         self.vehicle = vehicle
 
         super.init(nibName: "LineDetailsViewController", bundle: nil)
+
+        title = Lines.line(id: lineId)
     }
 
     public required init?(coder aDecoder: NSCoder) {

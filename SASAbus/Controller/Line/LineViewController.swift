@@ -198,7 +198,7 @@ extension LineViewController {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell_lines_all", for: indexPath) as! LineCell
 
-        cell.titleLeft.text = "Line \(line.name)"
+        cell.titleLeft.text = Lines.line(id: line.id)
         cell.titleRight.text = line.city
 
         cell.subtitleTop.text = line.origin
