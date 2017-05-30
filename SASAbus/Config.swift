@@ -22,30 +22,6 @@ public class Config {
     static let BUS_STOP_DETAILS_NO_DELAY: Int = 1 << 12
     static let BUS_STOP_DETAILS_OPERATION_RUNNING: Int = 1 << 11
 
-    static let PLANNED_DATA_FOLDER = "data/"
-    static let PLANNED_DATA_URL: String = "http://opensasa.info/SASAplandata/"
-
-    // Router
-    static let timeoutInterval = 0.0
-
-    // Download
-    static let downloadTimeoutIntervalForResource = 0.0
-    static let downloadTimeoutIntervalForRequest = 0.0
-
-    // privacy
-    static let privacyBaseUrl = ""
-
-    // Map
-    static let MAP_URL = "http://opensasa.info/files/maptiles/osm-tiles.zip"
-    static let MAP_FOLDER = "map/"
-
-    static let mapHowOftenShouldIAskForMapDownload = 0
-
-    // Bus beacon
-    static let beaconSecondsInBus = 120
-    static let beaconMinTripDistance = 100
-    static let beaconLastSeenThreshold = 20
-
     // Bus stop beacon
     static let busStopValiditySeconds = 10
 
@@ -55,11 +31,8 @@ public class Config {
     static let surveyApiPassword = ""
     static let surveyRecurringTimeDefault = 0
 
-    // Bus stop
-    static let busStopDistanceThreshold = 0.0
 
     static let DELIMITER = ", "
 
     static let DIESEL_PRICE: Float = 1.48
-
 }
