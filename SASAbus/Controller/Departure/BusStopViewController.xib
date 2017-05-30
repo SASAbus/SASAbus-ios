@@ -67,7 +67,7 @@
                         <outlet property="delegate" destination="-1" id="fuf-E8-mxw"/>
                     </connections>
                 </tabBar>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ntb-Vu-xeY" customClass="MasterTableView" customModule="SASAbus" customModuleProvider="target">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ntb-Vu-xeY">
                     <rect key="frame" x="0.0" y="109" width="375" height="558"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>

@@ -26,16 +26,17 @@ import RealmSwift
 import Realm
 import RxSwift
 import RxCocoa
+import StatefulViewController
 
 class BusStopViewController: MasterViewController, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate,
-        UISearchBarDelegate, UITextFieldDelegate {
+        UISearchBarDelegate, UITextFieldDelegate, StatefulViewController {
 
     @IBOutlet weak var timeField: UITextField!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tabBar: UITabBar!
-    @IBOutlet weak var autoCompleteTableView: UITableView!
 
-    @IBOutlet weak var tableView: MasterTableView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var autoCompleteTableView: UITableView!
 
     var selectedBusStop: BBusStop?
     var foundBusStations: [BBusStop] = []
@@ -120,6 +121,10 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
         timeField.textColor = Theme.white
         timeField.tintColor = Theme.transparent
         timeField.inputView = datePicker
+
+        loadingView = LoadingView(frame: view.frame)
+        emptyView = EmptyView(frame: view.frame)
+        errorView = ErrorView(frame: view.frame, target: self, action: #selector(parseData))
 
         setupAutoCompleteTableView()
 
@@ -255,32 +260,50 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
     }
 
     func setBusStop(_ busStop: BBusStop) {
-        self.selectedBusStop = busStop
-        self.autoCompleteTableView.isHidden = false
-        self.searchBar.text = self.selectedBusStop?.name()
-        self.searchBar.endEditing(true)
-        self.searchBar.resignFirstResponder()
-        self.departures = []
-        self.tableView.reloadData()
+        selectedBusStop = busStop
+        autoCompleteTableView.isHidden = false
+
+        searchBar.text = selectedBusStop?.name()
+        searchBar.endEditing(true)
+        searchBar.resignFirstResponder()
+
+        departures = []
+        
+        tableView.reloadData()
 
         parseData()
     }
 
 
     func parseData() {
+        guard selectedBusStop != nil else {
+            Log.error("No bus stop is currently selected")
+            return
+        }
+
+        startLoading()
+
         _ = self.getDepartures()
                 .subscribeOn(MainScheduler.background)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { items in
                     self.departures = items
-                    self.tableView.reloadData()
 
+                    self.tableView.reloadData()
                     self.tableView.refreshControl?.endRefreshing()
 
-                    // TODO load real time delay data
+                    self.endLoading(animated: false)
+
                     self.loadDelays()
                 }, onError: { error in
                     Log.error("Could not fetch departures: \(error)")
+
+                    self.departures.removeAll()
+
+                    self.tableView.reloadData()
+                    self.tableView.refreshControl?.endRefreshing()
+
+                    self.endLoading(animated: false, error: error)
                 })
     }
 
@@ -380,6 +403,10 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
                 [Calendar.Component.hour, Calendar.Component.minute, Calendar.Component.second], from: date)
 
         return (components.hour! * 60 + components.minute!) * 60
+    }
+
+    func hasContent() -> Bool {
+        return !departures.isEmpty
     }
 }
 

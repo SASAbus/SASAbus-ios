@@ -32,7 +32,7 @@ class Color {
     static let textPrimary = UIColor.black
     static let textSecondary = UIColor(red: 0, green: 0, blue: 0, alpha: 0.54)
 
-    static let lightWhite: UIColor = UIColor(red: 235, green: 235, blue: 235, alpha: 1)
+    static let lightWhite: UIColor = UIColor(red: 0.92, green: 0.92, blue: 0.92, alpha: 1)
     static let delayAmber: UIColor = UIColor(red: 1, green: 0.627, blue: 0, alpha: 1)
     static let iconDark = UIColor.darkGray
     static let activeLineBackground = UIColor(red: 0.89, green: 0.949, blue: 0.992, alpha: 1)

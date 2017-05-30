@@ -89,10 +89,6 @@ class LineDetailsViewController: UIViewController {
 
     func prepareBusesViewController() {
         let controller = LineDetailsBusesViewController(lineId: lineId, vehicle: vehicle)
-
-        controller.view.removeFromSuperview()
-        controller.removeFromParentViewController()
-
         let view = controller.view
 
         view!.translatesAutoresizingMaskIntoConstraints = true
@@ -107,10 +103,6 @@ class LineDetailsViewController: UIViewController {
 
     func prepareMapViewController() {
         let controller = LineDetailsMapViewController(lineId: lineId)
-
-        controller.view.removeFromSuperview()
-        controller.removeFromParentViewController()
-
         let view = controller.view
 
         view!.translatesAutoresizingMaskIntoConstraints = true

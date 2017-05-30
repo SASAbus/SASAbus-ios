@@ -43,11 +43,13 @@ class LineDetailsBusesViewController: UITableViewController {
         let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
         tableView.backgroundView = activityIndicatorView
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+
         self.activityIndicatorView = activityIndicatorView
         self.activityIndicatorView.hidesWhenStopped = true
 
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 56.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 56.0
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
 
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(parseDataSelector), for: UIControlEvents.valueChanged)
