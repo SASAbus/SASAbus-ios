@@ -11,29 +11,29 @@ class HashUtils {
 
         // Use the trip id as a identifier for this trip, as a trip with that id only drives once
         // a day.
-        var trip = beacon.lastTrip
+        let trip = beacon.lastTrip
 
-        var components: [Calendar.Component] = [.year, .month, .day, .hour, .minute, .second]
-        var calendarUnitFlags = Set(components)
-        var calendar = Calendar.current
+        let components: [Calendar.Component] = [.year, .month, .day, .hour, .minute, .second]
+        let calendarUnitFlags = Set(components)
+        let calendar = Calendar.current
         var start = calendar.dateComponents(calendarUnitFlags,
                 from: beacon.startDate)
 
         // Use the day of the year to uniquely identify the trip. The trip id alone is not enough
         // to identify this trip, as a bus which drives the next day can have the same trip id
         // as the one we're generating the hash for.
-        var dayOfYear = calendar.ordinality(of: .day, in: .year, for: beacon.startDate)!
+        let dayOfYear = calendar.ordinality(of: .day, in: .year, for: beacon.startDate)!
 
         // Use the year to prevent beacons with the same id having the same hash if they happened
         // in a different year.
-        var year = start.year!
+        let year = start.year!
 
         // Use the origin and destination bus stops to differentiate a trip which drives the same
         // line and trip as another one, but starts and ends at different bus stops (e.g. even though
         // a trip from stazione to ospedale might have the same trip id on the same day, the trip
         // from Stazione to Piazza Walther must have a different hash than a trip from Piazza Vittoria
         // to Via Sorrento).
-        var origin = beacon.origin
+        let origin = beacon.origin
 
         var accountId = AuthHelper.getUserId()
         if accountId == nil {
@@ -45,7 +45,7 @@ class HashUtils {
         }
 
         // The raw trip hash. The final hash will be a md5 version of this hash.
-        var identifier = String(format: "\(trip):\(dayOfYear):\(year):\(accountId!):\(origin)")
+        let identifier = String(format: "\(trip):\(dayOfYear):\(year):\(accountId!):\(origin)")
 
         Log.info("Generating hash for bus \(beacon.id): \(identifier)")
 

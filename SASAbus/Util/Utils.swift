@@ -29,7 +29,7 @@ class Utils {
 
 
     static func roundToPlaces(_ value: Double, places: Int) -> Double {
-        var factor = pow(10.0, places).doubleValue
+        let factor = pow(10.0, places).doubleValue
         return round(value * factor) / factor
     }
 }

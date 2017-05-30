@@ -106,7 +106,6 @@ class MainMapViewController: PulleyViewController {
         }
 
         let imageHeight = topInset
-        let totalDrawerHeight = DRAWER_HEIGHT
 
         height = CGFloat(totalHeight) - CGFloat(80)
 

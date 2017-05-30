@@ -71,7 +71,7 @@ class DepartureMonitor {
     }
 
     func collect() -> [VdvDeparture] {
-        var date = Date(timeIntervalSince1970: Double(time / 1000))
+        let date = Date(timeIntervalSince1970: Double(time / 1000))
 
         do {
             try VdvTrips.loadTrips(jDepartures: nil, dayId: VdvCalendar.date(date))

@@ -1,3 +1,4 @@
+
 import UIKit
 import RxSwift
 import RxCocoa
@@ -98,12 +99,12 @@ class EcoPointsProfileViewController: UITableViewController {
             if distance < 1000 {
                 cell.distanceText.text = "\(distance) m"
             } else {
-                var rounded = Utils.roundToPlaces((distance / 1000), places: 2)
+                let rounded = Utils.roundToPlaces((distance / 1000), places: 2)
                 cell.distanceText.text = String(describing: rounded).replacingOccurrences(of: ".", with: ",") + " km"
             }
 
-            var roundedEmissions = emissions
-            var roundedMoney = Utils.roundToPlaces(money, places: 2)
+            let roundedEmissions = emissions
+            let roundedMoney = Utils.roundToPlaces(money, places: 2)
 
             cell.totalTripsText.text = "\(trips)"
             cell.co2Text.text = "\(roundedEmissions) g"
@@ -138,9 +139,9 @@ class EcoPointsProfileViewController: UITableViewController {
     }
 
     func parseStatistics() {
-        Observable.create { _ in
-                    var realm = try! Realm()
-                    var trips = realm.objects(Trip.self)
+        _ = Observable.create { _ in
+                    let realm = try! Realm()
+                    let trips = realm.objects(Trip.self)
 
                     if trips.count == 0 {
                         return Disposables.create()
@@ -152,23 +153,23 @@ class EcoPointsProfileViewController: UITableViewController {
                         var tripMoney: Double = 0
 
                         // Calculate driven distance
-                        var tripList = trip.path!.components(separatedBy: Config.DELIMITER)
+                        let tripList = trip.path!.components(separatedBy: Config.DELIMITER)
 
                         var busStops = tripList.map {
                             BusStopRealmHelper.getBusStop(id: Int($0) ?? -1 )
                         }
 
                         var i = 0
-                        var busStopsSize = busStops.count
+                        let busStopsSize = busStops.count
 
                         while i < busStopsSize {
-                            var busStop = busStops[i]
+                            let busStop = busStops[i]
 
                             if i < busStopsSize - 1 {
-                                var next = busStops[i + 1]
+                                let next = busStops[i + 1]
 
-                                var start = CLLocation(latitude: Double(busStop.lat), longitude: Double(busStop.lng))
-                                var stop = CLLocation(latitude: Double(next.lat), longitude: Double(next.lng))
+                                let start = CLLocation(latitude: Double(busStop.lat), longitude: Double(busStop.lng))
+                                let stop = CLLocation(latitude: Double(next.lat), longitude: Double(next.lng))
 
                                 tripDistance += MapUtils.distance(first: start, second: stop)
                             }
@@ -177,16 +178,16 @@ class EcoPointsProfileViewController: UITableViewController {
                         }
 
                         // Calculate CO2 emissions and price
-                        var bus = Buses.getBus(id: trip.vehicle)
-                        var vehicle = bus?.vehicle
+                        let bus = Buses.getBus(id: trip.vehicle)
+                        let vehicle = bus?.vehicle
 
                         if let vehicle = vehicle {
-                            var co2 = Double(vehicle.emission) * tripDistance / 1000
-                            var co2Car = 120 * tripDistance / 1000
-                            var fuelOffset = co2Car - co2
+                            let co2 = Double(vehicle.emission) * tripDistance / 1000
+                            let co2Car = 120 * tripDistance / 1000
+                            let fuelOffset = co2Car - co2
 
-                            var fuelConsumption = 0.119
-                            var fuelPrice = fuelConsumption * tripDistance / 1000.0 * Double(trip.fuelPrice)
+                            let fuelConsumption = 0.119
+                            let fuelPrice = fuelConsumption * tripDistance / 1000.0 * Double(trip.fuelPrice)
 
                             tripEmission += fuelOffset
                             tripMoney += fuelPrice

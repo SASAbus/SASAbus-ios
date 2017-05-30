@@ -29,13 +29,13 @@ class InAppBadge {
     func complete() {
         UserRealmHelper.setEarnedBadge(badgeId: id)
 
-        EcoPointsApi.sendBadge(id: id)
+        _ = EcoPointsApi.sendBadge(id: id)
                 .subscribeOn(MainScheduler.background)
                 .observeOn(MainScheduler.background)
                 .subscribe(onNext: { _ in
-                    var realm = try! Realm()
+                    let realm = try! Realm()
 
-                    var badge = realm.objects(EarnedBadge.self).filter("id == \(self.id)").first
+                    let badge = realm.objects(EarnedBadge.self).filter("id == \(self.id)").first
 
                     if badge == nil {
                         Log.error("InAppBadge with id \(self.id) has been inserted into database, but cannot be queried.")

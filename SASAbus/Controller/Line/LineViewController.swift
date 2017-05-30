@@ -70,6 +70,10 @@ class LineViewController: MasterViewController, UITableViewDelegate, UITableView
         super.viewWillAppear(animated)
 
         Analytics.track("BusSchedules")
+
+        if let row = tableView.indexPathForSelectedRow {
+            self.tableView.deselectRow(at: row, animated: true)
+        }
     }
 
 
@@ -93,6 +97,13 @@ class LineViewController: MasterViewController, UITableViewDelegate, UITableView
         cell.subtitleBottom.text = line.destination
 
         return cell
+    }
+
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let line = self.lines[tabId]![indexPath.section]
+
+        let lineDetails = LineDetailsViewController(lineId: line.id, vehicleId: 0)
+        self.navigationController!.pushViewController(lineDetails, animated: true)
     }
 
 

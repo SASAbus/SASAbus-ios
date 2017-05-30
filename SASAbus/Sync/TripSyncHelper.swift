@@ -30,10 +30,10 @@ class TripSyncHelper {
                         }*/
                     }
 
-                    var realm = try! Realm()
+                    let realm = try! Realm()
 
                     for rejected in json["rejected_trips"].arrayValue {
-                        var trip = realm.objects(Trip.self).filter("hash == '\(rejected)'").first
+                        let trip = realm.objects(Trip.self).filter("hash == '\(rejected)'").first
 
                         if trip != nil {
                             try! realm.write {

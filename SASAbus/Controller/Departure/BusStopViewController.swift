@@ -269,7 +269,6 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
             setBusStop(foundBusStations[indexPath.row])
         } else {
             let busStopTripViewController = BusStopTripViewController(departure: departures[indexPath.row])
-
             self.navigationController!.pushViewController(busStopTripViewController, animated: true)
         }
     }
@@ -456,7 +455,7 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
 
 
     func parseData() {
-        self.getDepartures()
+        _ = self.getDepartures()
                 .subscribeOn(MainScheduler.background)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { items in

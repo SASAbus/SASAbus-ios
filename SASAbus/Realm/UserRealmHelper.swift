@@ -176,7 +176,7 @@ class UserRealmHelper {
         var stops: [Int] = Array(beacon.busStops)
         beacon.busStops.removeAll()
 
-        var startIndex = stops.index(of: beacon.origin) ?? -1
+        let startIndex = stops.index(of: beacon.origin) ?? -1
 
         if startIndex == -1 || startIndex + 1 > stops.count {
             Log.error("Trip %s startIndex invalid", beacon.id)
@@ -186,7 +186,7 @@ class UserRealmHelper {
         // Get the stops from the didEnterRegion index till the end of the list.
         stops = Array(stops[(startIndex + 1)..<stops.count])
 
-        var stopIndex = stops.index(of: beacon.destination) ?? -1
+        let stopIndex = stops.index(of: beacon.destination) ?? -1
 
         // Check if the end index is bigger than 0, thus it exists in the list.
         if stopIndex == -1 {
@@ -195,7 +195,7 @@ class UserRealmHelper {
         }
 
         // Get the stops from the didEnterRegion index till the end index.
-        var endIndex = stopIndex + 1 > stops.count ? stops.count : stopIndex + 1
+        let endIndex = stopIndex + 1 > stops.count ? stops.count : stopIndex + 1
         var stopList: [Int] = Array(stops[0..<endIndex])
 
         if stopList.isEmpty {
@@ -215,9 +215,9 @@ class UserRealmHelper {
 
         sb = String(sb.characters.dropLast(2))
 
-        var realm = try! Realm()
+        let realm = try! Realm()
 
-        var trip = Trip()
+        let trip = Trip()
         trip.vehicle = beacon.id
         trip.tripHash = beacon.tripHash
 
@@ -249,7 +249,7 @@ class UserRealmHelper {
         // Only post the trip if the user is logged in, as trip uploads are restricted to
         // eco point users only.
         if AuthHelper.isLoggedIn() {
-            var cloudTrip = CloudTrip(trip: trip)
+            let cloudTrip = CloudTrip(trip: trip)
             TripSyncHelper.upload(trips: [cloudTrip], scheduler: MainScheduler.background)
         } else {
             Log.info("Skipping trip upload, user not logged in")
@@ -416,17 +416,17 @@ LogUtils.i(TAG, "Added beacon " + major + " to realm");
 // ======================================= BADGES ==============================================
 
     static func hasEarnedBadge(badgeId: Int) -> Bool {
-        var realm = try! Realm()
+        let realm = try! Realm()
 
-        var badge = realm.objects(EarnedBadge.self).filter("id == \(badgeId)").first
+        let badge = realm.objects(EarnedBadge.self).filter("id == \(badgeId)").first
 
         return badge != nil
     }
 
     static func setEarnedBadge(badgeId: Int) {
-        var realm = try! Realm()
+        let realm = try! Realm()
 
-        var badge = EarnedBadge()
+        let badge = EarnedBadge()
         badge.id = badgeId
 
         try! realm.write {
