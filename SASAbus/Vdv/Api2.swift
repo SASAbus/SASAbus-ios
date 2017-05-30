@@ -78,9 +78,9 @@ class Api2 {
 
 class ApiTime {
 
-    static func addOffset(seconds: Int64) -> Int64 {
-        // return seconds + DateTimeZone.forID("Europe/Rome").getOffset(seconds).toLong()
-        return seconds + Int64(NSTimeZone(name: "Europe/Rome")!.daylightSavingTimeOffset)
+    static func addOffset(millis: Int64) -> Int64 {
+        let offset = NSTimeZone(name: "Europe/Rome")!.secondsFromGMT * 1000
+        return millis + Int64(offset)
     }
 
     static func now() -> Int64 {

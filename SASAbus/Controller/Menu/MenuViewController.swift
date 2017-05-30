@@ -26,14 +26,14 @@ struct Menu {
 
     static let items: [MenuItem] = [
             MenuItem(
-                    title: NSLocalizedString("Busstop", comment: ""),
-                    image: "ic_navigation_busstop",
-                    viewController: BusStopViewController(busStop: nil, title: NSLocalizedString("Busstop", comment: ""))),
-
-            MenuItem(
                     title: NSLocalizedString("Realtime Map", comment: ""),
                     image: "ic_navigation_map",
                     viewController: MainMapViewController.getViewController()),
+
+            MenuItem(
+                    title: NSLocalizedString("Departures", comment: ""),
+                    image: "ic_navigation_busstop",
+                    viewController: BusStopViewController(busStop: nil, title: NSLocalizedString("Departures", comment: ""))),
 
             MenuItem(
                     title: NSLocalizedString("Line", comment: ""),
@@ -44,11 +44,6 @@ struct Menu {
                     title: NSLocalizedString("News", comment: ""),
                     image: "ic_navigation_news",
                     viewController: NewsTabBarController(nibName: nil, title: NSLocalizedString("News", comment: ""))),
-
-            MenuItem(
-                    title: NSLocalizedString("Map", comment: ""),
-                    image: "ic_navigation_map",
-                    viewController: MapViewController(title: NSLocalizedString("Map", comment: ""))),
 
             MenuItem(
                     title: NSLocalizedString("Parking lot", comment: ""),

@@ -41,7 +41,7 @@ class DepartureMonitor {
     }
 
     private func at(millis: Int64) -> DepartureMonitor {
-        time = ApiTime.addOffset(seconds: millis)
+        time = ApiTime.addOffset(millis: millis)
 
         return self
     }

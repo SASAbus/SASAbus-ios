@@ -22,17 +22,17 @@
 
 import UIKit
 
-class BusStopAutoCompleteTableViewCell: UITableViewCell {
+class DepartureAutoCompleteCell: UITableViewCell {
 
-    @IBOutlet weak var busStationLabel: UILabel!
+    @IBOutlet weak var label: UILabel!
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if highlighted {
-            self.busStationLabel.textColor = Theme.white
+            self.label.textColor = UIColor.white
             self.backgroundColor = Theme.orange
         } else {
-            self.busStationLabel.textColor = Theme.darkGrey
-            self.backgroundColor = Theme.transparent
+            self.label.textColor = Theme.darkGrey
+            self.backgroundColor = UIColor.white
         }
     }
 }

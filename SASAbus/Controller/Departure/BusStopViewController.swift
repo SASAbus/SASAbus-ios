@@ -77,15 +77,12 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(UINib(nibName: "DepartureBusStopTableViewCell", bundle: nil),
-                forCellReuseIdentifier: "DepartureTableViewCell")
+        tableView.register(UINib(nibName: "DepartureViewCell", bundle: nil),
+                forCellReuseIdentifier: "DepartureViewCell")
 
         tableView.delegate = self
         tableView.dataSource = self
-
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 100
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.tableFooterView = UIView()
 
         refreshControl = UIRefreshControl()
         refreshControl.tintColor = Theme.lightOrange
@@ -94,7 +91,7 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
         refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""),
                 attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
 
-        tableView.addSubview(refreshControl)
+        tableView.refreshControl = refreshControl
 
         setupSearchDate()
 
@@ -109,10 +106,6 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
 
         (searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.darkGrey
         (searchBar.value(forKey: "searchField") as! UITextField).clearButtonMode = UITextFieldViewMode.never
-
-        tabBar.tintColor = Theme.orange
-        tabBar.isTranslucent = false
-        tabBar.barTintColor = Theme.white
 
         tabBar.items![0].title = NSLocalizedString("GPS", comment: "")
         tabBar.items![1].title = NSLocalizedString("Map", comment: "")
@@ -164,6 +157,7 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
     override func leftDrawerButtonPress(_ sender: AnyObject?) {
         self.searchBar.endEditing(true)
         self.timeField.endEditing(true)
+
         super.leftDrawerButtonPress(sender)
     }
 
@@ -173,8 +167,8 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
         self.updateFoundBusStations("")
         self.view.addSubview(self.autoCompleteTableView!)
 
-        self.autoCompleteTableView!.register(UINib(nibName: "BusStopAutoCompleteTableViewCell", bundle: nil),
-                forCellReuseIdentifier: "BusStopAutoCompleteTableViewCell")
+        self.autoCompleteTableView!.register(UINib(nibName: "DepartureAutoCompleteCell", bundle: nil),
+                forCellReuseIdentifier: "DepartureAutoCompleteCell")
     }
 
     fileprivate func updateFoundBusStations(_ searchText: String) {
@@ -407,41 +401,38 @@ extension BusStopViewController {
         if self.autoCompleteTableView != nil && tableView.isEqual(self.autoCompleteTableView) {
             let busStation = self.foundBusStations[indexPath.row]
 
-            let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopAutoCompleteTableViewCell",
-                    for: indexPath) as! BusStopAutoCompleteTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DepartureAutoCompleteCell",
+                    for: indexPath) as! DepartureAutoCompleteCell
 
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
-            cell.busStationLabel.text = busStation.name()
-
-            return cell
-        } else {
-            let departure = departures[indexPath.row]
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DepartureTableViewCell", for: indexPath) as! DepartureTableViewCell
-
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
-            cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-            cell.timeLabel.text = departure.time
-
-            if departure.vehicle != 0 {
-                cell.setDelayColor(Color.delay(departure.delay))
-
-                if departure.delay == 0 {
-                    cell.delayLabel.text = NSLocalizedString("Punctual", comment: "")
-                } else if departure.delay < 0 {
-                    cell.delayLabel.text = "\(abs(departure.delay))' " + NSLocalizedString("premature", comment: "")
-                } else {
-                    cell.delayLabel.text = "\(departure.delay)' " + NSLocalizedString("delayed", comment: "")
-                }
-            } else {
-                cell.delayLabel.text = NSLocalizedString("No data", comment: "")
-                cell.setDelayColor(Theme.darkGrey)
-            }
-
-            cell.infoLabel.text = departure.line
-            cell.directionLabel.text = departure.destination
+            cell.label.text = busStation.name()
 
             return cell
         }
+
+        let departure = departures[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DepartureViewCell", for: indexPath) as! DepartureViewCell
+
+        cell.timeLabel.text = departure.time
+
+        if departure.vehicle != 0 {
+            cell.delayColor = Color.delay(departure.delay)
+
+            if departure.delay == 0 {
+                cell.delayLabel.text = NSLocalizedString("Punctual", comment: "")
+            } else if departure.delay < 0 {
+                cell.delayLabel.text = "\(abs(departure.delay))' " + NSLocalizedString("premature", comment: "")
+            } else {
+                cell.delayLabel.text = "\(departure.delay)' " + NSLocalizedString("delayed", comment: "")
+            }
+        } else {
+            cell.delayLabel.text = NSLocalizedString("No data", comment: "")
+            cell.delayColor = Theme.darkGrey
+        }
+
+        cell.infoLabel.text = "Line \(departure.line)"
+        cell.directionLabel.text = departure.destination
+
+        return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
