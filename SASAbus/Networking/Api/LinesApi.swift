@@ -9,4 +9,8 @@ class LinesApi {
     static func filterLines(lines: String) -> Observable<[Line]> {
         return RestClient.get(Endpoint.LINES_FILTER + String(lines), index: "lines")
     }
+
+    static func getAllLines() -> Observable<[Line]> {
+        return RestClient.get(Endpoint.LINES_ALL, index: "lines")
+    }
 }

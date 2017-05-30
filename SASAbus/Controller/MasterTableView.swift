@@ -45,8 +45,10 @@ class MasterTableView: UITableView {
         super.reloadData()
         var rows = 0
 
-        for section in 0 ... self.numberOfSections - 1 {
-            rows += self.numberOfRows(inSection: section)
+        if self.numberOfSections > 0 {
+            for section in 0...self.numberOfSections - 1 {
+                rows += self.numberOfRows(inSection: section)
+            }
         }
 
         if rows == 0 {

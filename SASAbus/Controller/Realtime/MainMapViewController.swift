@@ -105,15 +105,8 @@ class MainMapViewController: PulleyViewController {
             topInset = totalHeight - DRAWER_HEIGHT
         }
 
-        Log.debug("Total height: \(totalHeight)")
-        Log.debug("Total width: \(totalWidth)")
-        Log.debug("Top inset: \(topInset)")
-
         let imageHeight = topInset
         let totalDrawerHeight = DRAWER_HEIGHT
-
-        Log.debug("Total drawer height: \(totalDrawerHeight)")
-        Log.debug("Image height: \(imageHeight)")
 
         height = CGFloat(totalHeight) - CGFloat(80)
 
