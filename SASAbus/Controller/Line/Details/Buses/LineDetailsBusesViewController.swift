@@ -197,7 +197,7 @@ extension LineDetailsBusesViewController {
             cell.destinationTime.text = item.lastTime
 
             cell.delay.text = String(format: "%d'", item.delay)
-            cell.delay.textColor = Color.color(forDelay: item.delay)
+            cell.delay.textColor = Color.delay(item.delay)
 
             if item.color {
                 cell.backgroundColor = Color.activeLineBackground

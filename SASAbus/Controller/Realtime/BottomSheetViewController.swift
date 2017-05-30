@@ -106,11 +106,11 @@ class BottomSheetViewController: UIViewController, PulleyDrawerViewControllerDel
         if didFadeToBlue {
             peekDelay.textColor = UIColor.white
         } else {
-            peekDelay.textColor = Color.color(forDelay: bus.delay)
+            peekDelay.textColor = Color.delay(bus.delay)
         }
 
         delayText.text = "\(bus.delay)' delayed"
-        delayText.textColor = Color.color(forDelay: bus.delay)
+        delayText.textColor = Color.delay(bus.delay)
 
         headingToText.text = "Heading to \(bus.destinationString)"
         updatedText.text = "Updated \(bus.updated_min_ago)' ago"
@@ -159,7 +159,7 @@ class BottomSheetViewController: UIViewController, PulleyDrawerViewControllerDel
 
         self.peekTitle.textColor = UIColor.black
         self.peekSubtitle.textColor = UIColor.darkGray
-        self.peekDelay.textColor = Color.color(forDelay: selectedBus.delay)
+        self.peekDelay.textColor = Color.delay(selectedBus.delay)
         self.peekColorView.alpha = 0
     }
 

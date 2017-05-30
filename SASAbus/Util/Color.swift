@@ -41,10 +41,10 @@ class Color {
 
     // MARK: - Color methods
 
-    static func color(forDelay: Int) -> UIColor {
-        if forDelay > 3 {
+    static func delay(_ delay: Int) -> UIColor {
+        if delay > 3 {
             return materialRed500
-        } else if forDelay > 0 {
+        } else if delay > 0 {
             return delayAmber
         } else {
             return materialGreen500
