@@ -1,13 +1,13 @@
 import UIKit
 
-protocol PulleyPassthroughScrollViewDelegate: class {
-    func shouldTouchPassthroughScrollView(scrollView: PulleyPassthroughScrollView, point: CGPoint) -> Bool
-    func viewToReceiveTouch(scrollView: PulleyPassthroughScrollView) -> UIView
+protocol BottomSheetPassthroughScrollViewDelegate: class {
+    func shouldTouchPassthroughScrollView(scrollView: BottomSheetPassthroughScrollView, point: CGPoint) -> Bool
+    func viewToReceiveTouch(scrollView: BottomSheetPassthroughScrollView) -> UIView
 }
 
-public class PulleyPassthroughScrollView: UIScrollView {
+public class BottomSheetPassthroughScrollView: UIScrollView {
 
-    weak var touchDelegate: PulleyPassthroughScrollViewDelegate?
+    weak var touchDelegate: BottomSheetPassthroughScrollViewDelegate?
 
     override public func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         if let touchDel = touchDelegate {

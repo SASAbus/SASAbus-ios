@@ -34,6 +34,8 @@ def default_pods
   pod 'Fabric'
   pod 'Crashlytics'
 
+  pod 'Pulley'
+
   pod 'ObjectMapper', '~> 2.2'
 end
 

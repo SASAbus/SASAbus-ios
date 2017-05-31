@@ -1,6 +1,6 @@
 import UIKit
 
-class MainMapViewController: PulleyViewController {
+class MainMapViewController: BottomSheetViewController {
 
     var activityIndicator: UIActivityIndicatorView?
 
@@ -25,8 +25,8 @@ class MainMapViewController: PulleyViewController {
         let contentNib = UINib(nibName: "MapViewController", bundle: nil)
         let contentViewController = contentNib.instantiate(withOwner: self)[0] as! MapViewController
 
-        let drawerNib = UINib(nibName: "BottomSheetViewController", bundle: nil)
-        let drawerViewController = drawerNib.instantiate(withOwner: self)[0] as! BottomSheetViewController
+        let drawerNib = UINib(nibName: "MapBottomSheetViewController", bundle: nil)
+        let drawerViewController = drawerNib.instantiate(withOwner: self)[0] as! MapBottomSheetViewController
 
         let mainViewController = MainMapViewController(
                 contentViewController: contentViewController,

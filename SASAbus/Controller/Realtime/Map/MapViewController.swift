@@ -4,7 +4,7 @@ import SwiftyJSON
 import RxSwift
 import RxCocoa
 
-class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryContentControllerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, BottomSheetPrimaryContentControllerDelegate {
 
     @IBOutlet var mapView: MKMapView!
 
@@ -122,7 +122,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryConte
         self.markers = updatedMarkers
 
         for (_, marker) in self.markers where marker.selected {
-            let bottomSheet = self.parentVC?.childViewControllers[1] as! BottomSheetViewController
+            let bottomSheet = self.parentVC?.childViewControllers[1] as! MapBottomSheetViewController
             bottomSheet.updateBottomSheet(bus: marker.busData)
         }
 
@@ -165,7 +165,7 @@ extension MapViewController {
 
         selectedBus = annotation.busData
 
-        let bottomSheet = parentVC?.childViewControllers[1] as! BottomSheetViewController
+        let bottomSheet = parentVC?.childViewControllers[1] as! MapBottomSheetViewController
         bottomSheet.updateBottomSheet(bus: selectedBus!)
 
         parentVC.setDrawerPosition(position: .partiallyRevealed, animated: true)
@@ -179,7 +179,7 @@ extension MapViewController {
         let annotation = view.annotation as! MapAnnotation
         annotation.selected = false
 
-        let bottomSheet = parentVC?.childViewControllers[1] as! BottomSheetViewController
+        let bottomSheet = parentVC?.childViewControllers[1] as! MapBottomSheetViewController
         bottomSheet.selectedBus = nil
 
         self.parentVC.setDrawerPosition(position: .collapsed, animated: true)

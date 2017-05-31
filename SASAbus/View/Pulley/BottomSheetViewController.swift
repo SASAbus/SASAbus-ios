@@ -4,8 +4,8 @@ import UIKit
  *  The base delegate protocol for Pulley delegates.
  */
 
-@objc protocol PulleyDelegate: class {
-    @objc optional func drawerPositionDidChange(drawer: PulleyViewController)
+@objc protocol BottomSheetDelegate: class {
+    @objc optional func drawerPositionDidChange(drawer: BottomSheetViewController)
 
     @objc optional func makeUIAdjustmentsForFullscreen(progress: CGFloat)
 
@@ -16,7 +16,7 @@ import UIKit
  *  View controllers in the drawer can implement this to receive changes in state or provide values for the different drawer positions.
  */
 
-@objc protocol PulleyDrawerViewControllerDelegate: PulleyDelegate {
+@objc protocol BottomSheetDrawerViewControllerDelegate: BottomSheetDelegate {
     func collapsedDrawerHeight() -> CGFloat
 
     func partialRevealDrawerHeight() -> CGFloat
@@ -26,7 +26,7 @@ import UIKit
  *  View controllers that are the main content can implement this to receive changes in state.
  */
 
-@objc protocol PulleyPrimaryContentControllerDelegate: PulleyDelegate {
+@objc protocol BottomSheetPrimaryContentControllerDelegate: BottomSheetDelegate {
 
     // Not currently used for anything, but it's here for parity with the hopes that it'll one day be used.
 }
@@ -39,7 +39,7 @@ import UIKit
  - Open:              When the drawer is fully open.
  */
 
-public enum PulleyPosition {
+public enum BottomSheetPosition {
     case collapsed
     case partiallyRevealed
     case open
@@ -48,7 +48,7 @@ public enum PulleyPosition {
 private let kPulleyDefaultCollapsedHeight: CGFloat = 68.0
 private let kPulleyDefaultPartialRevealHeight: CGFloat = 264.0
 
-class PulleyViewController: MasterViewController, UIScrollViewDelegate, PulleyPassthroughScrollViewDelegate {
+class BottomSheetViewController: MasterViewController, UIScrollViewDelegate, BottomSheetPassthroughScrollViewDelegate {
 
     // Interface Builder
 
@@ -64,7 +64,7 @@ class PulleyViewController: MasterViewController, UIScrollViewDelegate, PulleyPa
     private let primaryContentContainer: UIView = UIView()
     private let drawerContentContainer: UIView = UIView()
     private let drawerShadowView: UIView = UIView()
-    public let drawerScrollView: PulleyPassthroughScrollView = PulleyPassthroughScrollView()
+    public let drawerScrollView: BottomSheetPassthroughScrollView = BottomSheetPassthroughScrollView()
     private let backgroundDimmingView: UIView = UIView()
 
     private var dimmingViewTapRecognizer: UITapGestureRecognizer?
@@ -127,10 +127,10 @@ class PulleyViewController: MasterViewController, UIScrollViewDelegate, PulleyPa
 
     // The content view controller and drawer controller can receive delegate events already.
     // This lets another object observe the changes, if needed.
-    public weak var delegate: PulleyDelegate?
+    public weak var delegate: BottomSheetDelegate?
 
     // The current position of the drawer.
-    public private(set) var drawerPosition: PulleyPosition = .collapsed
+    public private(set) var drawerPosition: BottomSheetPosition = .collapsed
 
     // The inset from the top of the view controller when fully open.
     public var topInset: CGFloat = 200 {
@@ -315,7 +315,7 @@ class PulleyViewController: MasterViewController, UIScrollViewDelegate, PulleyPa
         var collapsedHeight: CGFloat = kPulleyDefaultCollapsedHeight
         var partialRevealHeight: CGFloat = kPulleyDefaultPartialRevealHeight
 
-        if let drawerVCCompliant = drawerContentViewController as? PulleyDrawerViewControllerDelegate {
+        if let drawerVCCompliant = drawerContentViewController as? BottomSheetDrawerViewControllerDelegate {
             collapsedHeight = drawerVCCompliant.collapsedDrawerHeight()
             partialRevealHeight = drawerVCCompliant.partialRevealDrawerHeight()
         }
@@ -361,13 +361,13 @@ class PulleyViewController: MasterViewController, UIScrollViewDelegate, PulleyPa
      - parameter position: The position to set the drawer to.
      - parameter animated: Whether or not to animate the change. (Default: true)
      */
-    public func setDrawerPosition(position: PulleyPosition, animated: Bool = true) {
+    public func setDrawerPosition(position: BottomSheetPosition, animated: Bool = true) {
         drawerPosition = position
 
         var collapsedHeight: CGFloat = kPulleyDefaultCollapsedHeight
         var partialRevealHeight: CGFloat = kPulleyDefaultPartialRevealHeight
 
-        if let drawerVCCompliant = drawerContentViewController as? PulleyDrawerViewControllerDelegate {
+        if let drawerVCCompliant = drawerContentViewController as? BottomSheetDrawerViewControllerDelegate {
             collapsedHeight = drawerVCCompliant.collapsedDrawerHeight()
             partialRevealHeight = drawerVCCompliant.partialRevealDrawerHeight()
         }
@@ -392,8 +392,8 @@ class PulleyViewController: MasterViewController, UIScrollViewDelegate, PulleyPa
 
                 if let drawer = self {
                     drawer.delegate?.drawerPositionDidChange?(drawer: drawer)
-                    (drawer.drawerContentViewController as? PulleyDrawerViewControllerDelegate)?.drawerPositionDidChange?(drawer: drawer)
-                    (drawer.primaryContentViewController as? PulleyPrimaryContentControllerDelegate)?.drawerPositionDidChange?(drawer: drawer)
+                    (drawer.drawerContentViewController as? BottomSheetDrawerViewControllerDelegate)?.drawerPositionDidChange?(drawer: drawer)
+                    (drawer.primaryContentViewController as? BottomSheetPrimaryContentControllerDelegate)?.drawerPositionDidChange?(drawer: drawer)
 
                     drawer.view.layoutIfNeeded()
                 }
@@ -402,8 +402,8 @@ class PulleyViewController: MasterViewController, UIScrollViewDelegate, PulleyPa
             drawerScrollView.setContentOffset(CGPoint(x: 0, y: stopToMoveTo - lowestStop), animated: false)
 
             delegate?.drawerPositionDidChange?(drawer: self)
-            (drawerContentViewController as? PulleyDrawerViewControllerDelegate)?.drawerPositionDidChange?(drawer: self)
-            (primaryContentViewController as? PulleyPrimaryContentControllerDelegate)?.drawerPositionDidChange?(drawer: self)
+            (drawerContentViewController as? BottomSheetDrawerViewControllerDelegate)?.drawerPositionDidChange?(drawer: self)
+            (primaryContentViewController as? BottomSheetPrimaryContentControllerDelegate)?.drawerPositionDidChange?(drawer: self)
         }
     }
 
@@ -465,7 +465,7 @@ class PulleyViewController: MasterViewController, UIScrollViewDelegate, PulleyPa
             var collapsedHeight: CGFloat = kPulleyDefaultCollapsedHeight
             var partialRevealHeight: CGFloat = kPulleyDefaultPartialRevealHeight
 
-            if let drawerVCCompliant = drawerContentViewController as? PulleyDrawerViewControllerDelegate {
+            if let drawerVCCompliant = drawerContentViewController as? BottomSheetDrawerViewControllerDelegate {
                 collapsedHeight = drawerVCCompliant.collapsedDrawerHeight()
                 partialRevealHeight = drawerVCCompliant.partialRevealDrawerHeight()
             }
@@ -509,7 +509,7 @@ class PulleyViewController: MasterViewController, UIScrollViewDelegate, PulleyPa
             var partialRevealHeight: CGFloat = kPulleyDefaultPartialRevealHeight
             var collapsedHeight: CGFloat = kPulleyDefaultCollapsedHeight
 
-            if let drawerVCCompliant = drawerContentViewController as? PulleyDrawerViewControllerDelegate {
+            if let drawerVCCompliant = drawerContentViewController as? BottomSheetDrawerViewControllerDelegate {
                 collapsedHeight = drawerVCCompliant.collapsedDrawerHeight()
                 partialRevealHeight = drawerVCCompliant.partialRevealDrawerHeight()
             }
@@ -526,8 +526,8 @@ class PulleyViewController: MasterViewController, UIScrollViewDelegate, PulleyPa
                 progress = (scrollView.contentOffset.y - (partialRevealHeight - lowestStop)) / (fullRevealHeight - (partialRevealHeight))
 
                 delegate?.makeUIAdjustmentsForFullscreen?(progress: progress)
-                (drawerContentViewController as? PulleyDrawerViewControllerDelegate)?.makeUIAdjustmentsForFullscreen?(progress: progress)
-                (primaryContentViewController as? PulleyPrimaryContentControllerDelegate)?.makeUIAdjustmentsForFullscreen?(progress: progress)
+                (drawerContentViewController as? BottomSheetDrawerViewControllerDelegate)?.makeUIAdjustmentsForFullscreen?(progress: progress)
+                (primaryContentViewController as? BottomSheetPrimaryContentControllerDelegate)?.makeUIAdjustmentsForFullscreen?(progress: progress)
 
                 backgroundDimmingView.alpha = progress * backgroundDimmingOpacity
 
@@ -537,8 +537,8 @@ class PulleyViewController: MasterViewController, UIScrollViewDelegate, PulleyPa
                     backgroundDimmingView.alpha = 0.0
 
                     delegate?.makeUIAdjustmentsForFullscreen?(progress: 0.0)
-                    (drawerContentViewController as? PulleyDrawerViewControllerDelegate)?.makeUIAdjustmentsForFullscreen?(progress: 0.0)
-                    (primaryContentViewController as? PulleyPrimaryContentControllerDelegate)?.makeUIAdjustmentsForFullscreen?(progress: 0.0)
+                    (drawerContentViewController as? BottomSheetDrawerViewControllerDelegate)?.makeUIAdjustmentsForFullscreen?(progress: 0.0)
+                    (primaryContentViewController as? BottomSheetPrimaryContentControllerDelegate)?.makeUIAdjustmentsForFullscreen?(progress: 0.0)
 
                     backgroundDimmingView.isUserInteractionEnabled = false
                 }
@@ -546,17 +546,17 @@ class PulleyViewController: MasterViewController, UIScrollViewDelegate, PulleyPa
 
             delegate?.offsetChanged?(distance: scrollView.contentOffset.y + lowestStop, offset: progress)
 
-            (drawerContentViewController as? PulleyDrawerViewControllerDelegate)?
+            (drawerContentViewController as? BottomSheetDrawerViewControllerDelegate)?
                     .offsetChanged?(distance: scrollView.contentOffset.y + lowestStop, offset: progress)
 
-            (primaryContentViewController as? PulleyPrimaryContentControllerDelegate)?
+            (primaryContentViewController as? BottomSheetPrimaryContentControllerDelegate)?
                     .offsetChanged?(distance: scrollView.contentOffset.y + lowestStop, offset: progress)
         }
     }
 
     // MARK: Touch Passthrough ScrollView Delegate
 
-    func shouldTouchPassthroughScrollView(scrollView: PulleyPassthroughScrollView, point: CGPoint) -> Bool {
+    func shouldTouchPassthroughScrollView(scrollView: BottomSheetPassthroughScrollView, point: CGPoint) -> Bool {
         let contentDrawerLocation = drawerContentContainer.frame.origin.y
 
         if point.y < contentDrawerLocation {
@@ -566,7 +566,7 @@ class PulleyViewController: MasterViewController, UIScrollViewDelegate, PulleyPa
         return false
     }
 
-    func viewToReceiveTouch(scrollView: PulleyPassthroughScrollView) -> UIView {
+    func viewToReceiveTouch(scrollView: BottomSheetPassthroughScrollView) -> UIView {
         if drawerPosition == .open {
             return backgroundDimmingView
         }

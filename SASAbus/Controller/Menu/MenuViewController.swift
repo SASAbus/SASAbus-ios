@@ -41,6 +41,11 @@ struct Menu {
                     viewController: LineViewController(title: NSLocalizedString("Lines", comment: ""))),
 
             MenuItem(
+                    title: NSLocalizedString("Route", comment: ""),
+                    image: "ic_navigation_bus",
+                    viewController: MainRouteViewController.getViewController()),
+
+            MenuItem(
                     title: NSLocalizedString("News", comment: ""),
                     image: "ic_navigation_news",
                     viewController: NewsTabBarController(nibName: nil, title: NSLocalizedString("News", comment: ""))),

@@ -1,7 +1,7 @@
 import UIKit
 
-class BottomSheetViewController: UIViewController, PulleyDrawerViewControllerDelegate,
-        PulleyPrimaryContentControllerDelegate {
+class MapBottomSheetViewController: UIViewController, BottomSheetDrawerViewControllerDelegate,
+        BottomSheetPrimaryContentControllerDelegate {
 
     var parentVC: MainMapViewController?
 
@@ -144,7 +144,7 @@ class BottomSheetViewController: UIViewController, PulleyDrawerViewControllerDel
         return PEEK_HEIGHT
     }
 
-    func drawerPositionDidChange(drawer: PulleyViewController) {
+    func drawerPositionDidChange(drawer: BottomSheetViewController) {
         scrollView.isScrollEnabled = drawer.drawerPosition == .open
     }
 
