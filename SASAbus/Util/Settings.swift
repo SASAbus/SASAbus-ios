@@ -3,7 +3,13 @@ import MapKit
 
 class Settings {
 
+    // pref_app_language
+    // pref_night_mode_enabled
+    // pref_start_screen
+    // pref_default_map_position
+
     static let PREF_INTRO_FINISHED = "pref_intro_finished"
+
     static let PREF_AUTO_REFRESH_ENABLED = "pref_map_auto_refresh_enabled"
     static let PREF_AUTO_REFRESH_INTERVAL = "pref_map_auto_refresh_interval"
 

@@ -137,12 +137,10 @@ class BottomSheetViewController: UIViewController, PulleyDrawerViewControllerDel
     }
 
     func collapsedDrawerHeight() -> CGFloat {
-        //return 72.0
         return 0
     }
 
     func partialRevealDrawerHeight() -> CGFloat {
-        //return 264.0
         return PEEK_HEIGHT
     }
 

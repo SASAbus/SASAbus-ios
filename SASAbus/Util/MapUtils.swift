@@ -5,6 +5,7 @@ import MapKit
 class MapUtils {
 
     static let PREF_MAP_TYPE = "pref_map_type"
+    static let PREF_DEFAULT_MAP_POSITION = "pref_default_map_position"
 
     static let PREF_TILE_OVERLAY_ENABLED = "pref_tile_overlay_enabled"
     static let PREF_TILE_OVERLAY_ENABLED_ALL = "pref_tile_overlay_enabled_all"
@@ -33,5 +34,36 @@ class MapUtils {
 
     static func allMapOverlaysEnabled() -> Bool {
         return UserDefaults.standard.bool(forKey: PREF_TILE_OVERLAY_ENABLED_ALL)
+    }
+
+    static func getRegion() -> MKCoordinateRegion {
+        let position = UserDefaults.standard.integer(forKey: PREF_DEFAULT_MAP_POSITION)
+
+        switch position {
+        case 2:
+            return cameraBz()
+        case 3:
+            return cameraMe()
+        default:
+            return defaultCamera()
+        }
+    }
+}
+
+extension MapUtils {
+
+    fileprivate static func defaultCamera() -> MKCoordinateRegion {
+        let center = CLLocationCoordinate2D(latitude: 46.58, longitude: 11.25)
+        return MKCoordinateRegionMakeWithDistance(center, 35000, 35000)
+    }
+
+    fileprivate static func cameraBz() -> MKCoordinateRegion {
+        let center = CLLocationCoordinate2D(latitude: 46.46, longitude: 11.33)
+        return MKCoordinateRegionMakeWithDistance(center, 16000, 16000)
+    }
+
+    fileprivate static func cameraMe() -> MKCoordinateRegion {
+        let center = CLLocationCoordinate2D(latitude: 46.6532, longitude: 11.1606)
+        return MKCoordinateRegionMakeWithDistance(center, 20000, 20000)
     }
 }

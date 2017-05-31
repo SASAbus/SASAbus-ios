@@ -4,7 +4,7 @@ import SwiftyJSON
 import RxSwift
 import RxCocoa
 
-class RealtimeMapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryContentControllerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, PulleyPrimaryContentControllerDelegate {
 
     @IBOutlet var mapView: MKMapView!
 
@@ -30,8 +30,6 @@ class RealtimeMapViewController: UIViewController, MKMapViewDelegate, PulleyPrim
         mapView.delegate = self
         mapView.mapType = MapUtils.getMapType()!
 
-        mapView.setRegion(Config.mapRegion, animated: false)
-
         if MapUtils.mapOverlaysEnabled() {
             tileOverlay = BusTileOverlay(parent: self)
         }
@@ -43,75 +41,12 @@ class RealtimeMapViewController: UIViewController, MKMapViewDelegate, PulleyPrim
         parseData()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
 
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation {
-            return nil
-        }
-
-        let marker = annotation as! MapAnnotation
-
-        let annotationView: MKPinAnnotationView = MKPinAnnotationView()
-        annotationView.pinTintColor = marker.pinColor
-        annotationView.annotation = annotation
-        annotationView.canShowCallout = true
-
-        return annotationView
-    }
-
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if view.annotation is MKUserLocation {
-            return
-        }
-
-        let annotation = view.annotation as! MapAnnotation
-        annotation.selected = true
-
-        if tileOverlay != nil {
-            mapView.add(tileOverlay!, level: .aboveLabels)
-        }
-
-        if tileOverlayRenderer != nil {
-            tileOverlayRenderer?.reloadData()
-        }
-
-        selectedBus = annotation.busData
-
-        let bottomSheet = parentVC?.childViewControllers[1] as! BottomSheetViewController
-        bottomSheet.updateBottomSheet(bus: selectedBus!)
-
-        parentVC.setDrawerPosition(position: .partiallyRevealed, animated: true)
-    }
-
-    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        if view.annotation is MKUserLocation {
-            return
-        }
-
-        let annotation = view.annotation as! MapAnnotation
-        annotation.selected = false
-
-        let bottomSheet = parentVC?.childViewControllers[1] as! BottomSheetViewController
-        bottomSheet.selectedBus = nil
-
-        self.parentVC.setDrawerPosition(position: .collapsed, animated: true)
-
-        if tileOverlay != nil {
-            mapView.remove(tileOverlay!)
-        }
-
-        if tileOverlayRenderer != nil {
-            tileOverlayRenderer?.reloadData()
-        }
-    }
-
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        guard let tileOverlay = overlay as? MKTileOverlay else {
-            return MKOverlayRenderer()
-        }
-
-        tileOverlayRenderer = MKTileOverlayRenderer(tileOverlay: tileOverlay)
-        return tileOverlayRenderer!
+        // Map position needs to be set here because in viewDidLoad() the true map bounds
+        // have not yet been calculated, because pulley modifies the view bounds.
+        mapView.setRegion(MapUtils.getRegion(), animated: false)
     }
 
 
@@ -205,9 +140,9 @@ class RealtimeMapViewController: UIViewController, MKMapViewDelegate, PulleyPrim
         let cache = NSCache<NSString, NSData>()
         let operationQueue = OperationQueue()
 
-        var parent: RealtimeMapViewController!
+        var parent: MapViewController!
 
-        init(parent: RealtimeMapViewController) {
+        init(parent: MapViewController) {
             super.init(urlTemplate: "")
 
             self.parent = parent
@@ -263,5 +198,78 @@ class RealtimeMapViewController: UIViewController, MKMapViewDelegate, PulleyPrim
 
             return parent.allMapOverlaysEnabled || parent.selectedBus != nil
         }
+    }
+}
+
+extension MapViewController {
+
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+
+        let marker = annotation as! MapAnnotation
+
+        let annotationView: MKPinAnnotationView = MKPinAnnotationView()
+        annotationView.pinTintColor = marker.pinColor
+        annotationView.annotation = annotation
+        annotationView.canShowCallout = true
+
+        return annotationView
+    }
+
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if view.annotation is MKUserLocation {
+            return
+        }
+
+        let annotation = view.annotation as! MapAnnotation
+        annotation.selected = true
+
+        if tileOverlay != nil {
+            mapView.add(tileOverlay!, level: .aboveLabels)
+        }
+
+        if tileOverlayRenderer != nil {
+            tileOverlayRenderer?.reloadData()
+        }
+
+        selectedBus = annotation.busData
+
+        let bottomSheet = parentVC?.childViewControllers[1] as! BottomSheetViewController
+        bottomSheet.updateBottomSheet(bus: selectedBus!)
+
+        parentVC.setDrawerPosition(position: .partiallyRevealed, animated: true)
+    }
+
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        if view.annotation is MKUserLocation {
+            return
+        }
+
+        let annotation = view.annotation as! MapAnnotation
+        annotation.selected = false
+
+        let bottomSheet = parentVC?.childViewControllers[1] as! BottomSheetViewController
+        bottomSheet.selectedBus = nil
+
+        self.parentVC.setDrawerPosition(position: .collapsed, animated: true)
+
+        if tileOverlay != nil {
+            mapView.remove(tileOverlay!)
+        }
+
+        if tileOverlayRenderer != nil {
+            tileOverlayRenderer?.reloadData()
+        }
+    }
+
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        guard let tileOverlay = overlay as? MKTileOverlay else {
+            return MKOverlayRenderer()
+        }
+
+        tileOverlayRenderer = MKTileOverlayRenderer(tileOverlay: tileOverlay)
+        return tileOverlayRenderer!
     }
 }

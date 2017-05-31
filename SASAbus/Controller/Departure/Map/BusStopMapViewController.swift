@@ -52,7 +52,7 @@ class BusStopMapViewController: UIViewController, MKMapViewDelegate, CLLocationM
         mapView.delegate = self
         mapView.mapType = MapUtils.getMapType()!
 
-        mapView.setRegion(Config.mapRegion, animated: false)
+        mapView.setRegion(MapUtils.getRegion(), animated: false)
     }
 
     override func viewDidDisappear(_ animated: Bool) {

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>StringsTable</key>
+	<string>Root</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Language</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>App language</string>
+			<key>Key</key>
+			<string>pref_app_language</string>
+			<key>DefaultValue</key>
+			<string>system</string>
+			<key>Titles</key>
+			<array>
+				<string>System language</string>
+				<string>English</string>
+				<string>Deutsch</string>
+				<string>Italiano</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>system</string>
+				<string>en</string>
+				<string>de</string>
+				<string>it</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Appearance</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Night mode</string>
+			<key>Key</key>
+			<string>pref_night_mode_enabled</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Start screen</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Start screen</string>
+			<key>Key</key>
+			<string>pref_start_screen</string>
+			<key>DefaultValue</key>
+			<string>system</string>
+			<key>Titles</key>
+			<array>
+				<string>Map</string>
+				<string>Departures</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>map</string>
+				<string>departures</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

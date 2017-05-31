@@ -22,13 +22,10 @@ class MainMapViewController: PulleyViewController {
 
 
     static func getViewController() -> MainMapViewController {
-        // var contentViewController = RealtimeMapViewController(nibName: "RealtimeMapViewController", bundle: nil)
-        // var drawerViewController = BottomSheetViewController(nibName: "BottomSheetViewController", bundle: nil)
+        let contentNib = UINib(nibName: "MapViewController", bundle: nil)
+        let contentViewController = contentNib.instantiate(withOwner: self)[0] as! MapViewController
 
-        let contentNib = UINib(nibName: "RealtimeMapViewController", bundle:nil)
-        let contentViewController = contentNib.instantiate(withOwner: self)[0] as! RealtimeMapViewController
-
-        let drawerNib = UINib(nibName: "BottomSheetViewController", bundle:nil)
+        let drawerNib = UINib(nibName: "BottomSheetViewController", bundle: nil)
         let drawerViewController = drawerNib.instantiate(withOwner: self)[0] as! BottomSheetViewController
 
         let mainViewController = MainMapViewController(
@@ -52,9 +49,9 @@ class MainMapViewController: PulleyViewController {
         let activityButton = UIBarButtonItem(customView: activityIndicator!)
 
         let refreshButton = UIBarButtonItem(
-            barButtonSystemItem: UIBarButtonSystemItem.refresh,
-            target: self,
-            action: #selector(parseData(sender:))
+                barButtonSystemItem: UIBarButtonSystemItem.refresh,
+                target: self,
+                action: #selector(parseData(sender:))
         )
 
         navigationItem.rightBarButtonItems = [refreshButton, activityButton]
@@ -105,7 +102,15 @@ class MainMapViewController: PulleyViewController {
             topInset = totalHeight - DRAWER_HEIGHT
         }
 
+        Log.debug("Total height: \(totalHeight)")
+        Log.debug("Total width: \(totalWidth)")
+        Log.debug("Top inset: \(topInset)")
+
         let imageHeight = topInset
+        let totalDrawerHeight = DRAWER_HEIGHT
+
+        Log.debug("Total drawer height: \(totalDrawerHeight)")
+        Log.debug("Image height: \(imageHeight)")
 
         height = CGFloat(totalHeight) - CGFloat(80)
 
@@ -127,7 +132,12 @@ class MainMapViewController: PulleyViewController {
     }
 
     func parseData(sender: UIBarButtonItem) {
-        let mapViewController = childViewControllers[0] as! RealtimeMapViewController
+        let mapViewController = childViewControllers[0] as! MapViewController
         mapViewController.parseData()
+    }
+
+    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+        Log.warning("Device rotation")
+        didLayoutImage = false
     }
 }
