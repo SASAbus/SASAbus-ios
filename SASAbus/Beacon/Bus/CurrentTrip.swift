@@ -9,7 +9,7 @@ class CurrentTrip: Mappable {
 
     var hasReachedSecondBusStop: Bool = false
 
-    var path = [LocalBusStop]()
+    var path = [BBusStop]()
     var times: [VdvBusStop]?
 
     var id: Int {
@@ -88,7 +88,7 @@ class CurrentTrip: Mappable {
                 self.times = Array(newTimes)
 
                 for busStop in self.times! {
-                    self.path.append(LocalBusStop(realm: BusStopRealmHelper.getBusStop(id: busStop.id)))
+                    self.path.append(BBusStop(fromRealm: BusStopRealmHelper.getBusStop(id: busStop.id)))
                 }
             }
         }

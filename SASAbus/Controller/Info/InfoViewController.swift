@@ -110,7 +110,7 @@ class InfoViewController: MasterViewController, UIToolbarDelegate {
         do {
             let font = UIFont.systemFont(ofSize: 14)
             let privacyHtml: String = "<span style=\"font-family:Helvetica; font-size: \(font.pointSize); color: " +
-                    ColorHelper.getHexColor(Theme.darkGrey) + "\">" + UserDefaultHelper.instance.getPrivacyHtml() + "</span>"
+                    Color.getHexColor(Theme.darkGrey) + "\">" + UserDefaultHelper.instance.getPrivacyHtml() + "</span>"
 
             let privacyData = privacyHtml.data(using: String.Encoding.utf8, allowLossyConversion: false)
             returnValue = try NSAttributedString(data: privacyData!,

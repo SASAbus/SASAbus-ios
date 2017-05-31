@@ -1,5 +1,5 @@
 //
-// BusTripVariantItem.swift
+// NewsItem.swift
 // SASAbus
 //
 // Copyright (C) 2011-2015 Raiffeisen Online GmbH (Norman Marmsoler, Jürgen Sprenger, Aaron Falk) <info@raiffeisen.it>
@@ -20,26 +20,45 @@
 // along with SASAbus.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import CoreLocation
+import UIKit
 import SwiftyJSON
 
-final class BusTripVariantItem: JSONable, JSONCollection {
+final class News: JSONable {
 
-    let variant: Int
-    let trips: [BusTripItem]
+    let id: Int
+
+    let title: String
+    let message: String
+
+    let lines: [Int]
+
+    let zone: String
+
+    let lastModified: Int
 
     required init(parameter: JSON) {
-        self.variant = parameter["STR_LI_VAR"].intValue
-        self.trips = BusTripItem.collection(parameter: parameter["triplist"])
-    }
+        id = parameter["id"].intValue
 
-    static func collection(parameter: JSON) -> [BusTripVariantItem] {
-        var items: [BusTripVariantItem] = []
+        title = parameter["title"].stringValue
+        message = parameter["message"].stringValue
 
-        for trip in parameter.arrayValue {
-            items.append(BusTripVariantItem(parameter: trip))
+        lines = parameter["lines"].arrayValue.map {
+            $0.intValue
         }
 
-        return items
+        zone = parameter["zone"].stringValue
+        lastModified = parameter["modified"].intValue
+    }
+
+    func getLinesString() -> String {
+        var linesString = ""
+
+        if self.lines.count > 0 {
+            let stringArray: [String] = lines.flatMap { String($0) }
+
+            linesString = NSLocalizedString("Lines: ", comment: "") + stringArray.joined(separator: ", ")
+        }
+
+        return linesString
     }
 }

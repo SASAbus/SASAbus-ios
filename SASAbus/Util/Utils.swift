@@ -27,7 +27,6 @@ class Utils {
         return UserRealmHelper.insertTrip(beacon: beacon)
     }
 
-
     static func roundToPlaces(_ value: Double, places: Int) -> Double {
         let factor = pow(10.0, places).doubleValue
         return round(value * factor) / factor
@@ -35,6 +34,7 @@ class Utils {
 }
 
 extension Decimal {
+
     var doubleValue: Double {
         return NSDecimalNumber(decimal: self).doubleValue
     }

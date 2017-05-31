@@ -30,7 +30,7 @@ class LineDetailsMapViewController: UIViewController, MKMapViewDelegate {
         }
 
         mapView.delegate = self
-        mapView.mapType = Settings.getMapType()!
+        mapView.mapType = MapUtils.getMapType()!
 
         mapView.setRegion(Config.mapRegion, animated: false)
 

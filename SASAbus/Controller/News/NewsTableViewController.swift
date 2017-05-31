@@ -25,7 +25,7 @@ import UIKit
 class NewsTableViewController: MasterTableViewController {
 
     var newsZone: String!
-    var newsItems: [NewsItem] = []
+    var newsItems: [News] = []
 
 
     init(zone: String) {
@@ -78,7 +78,7 @@ class NewsTableViewController: MasterTableViewController {
     }
 
 
-    func refreshView(_ newsItems: [NewsItem]) {
+    func refreshView(_ newsItems: [News]) {
         var newsItems = newsItems
 
         for index in stride(from: (newsItems.count - 1), through: 0, by: -1) {

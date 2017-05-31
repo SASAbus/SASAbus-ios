@@ -1,5 +1,5 @@
 //
-// BusstopMapViewController.swift
+// BusStopMapViewController.swift
 // SASAbus
 //
 // Copyright (C) 2011-2015 Raiffeisen Online GmbH (Norman Marmsoler, Jürgen Sprenger, Aaron Falk) <info@raiffeisen.it>
@@ -50,7 +50,7 @@ class BusStopMapViewController: UIViewController, MKMapViewDelegate, CLLocationM
         self.locationManager = CLLocationManager()
 
         mapView.delegate = self
-        mapView.mapType = Settings.getMapType()!
+        mapView.mapType = MapUtils.getMapType()!
 
         mapView.setRegion(Config.mapRegion, animated: false)
     }
@@ -100,8 +100,8 @@ class BusStopMapViewController: UIViewController, MKMapViewDelegate, CLLocationM
     }
 
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        let annotation = view.annotation as! BusStopMapAnnotation
-        let id = annotation.id
+        let annotation = view.annotation as! BusStopAnnotation
+        let id = annotation.busStop.id
 
         if control == view.rightCalloutAccessoryView {
             Log.warning("Clicked on \(id)")
@@ -129,11 +129,11 @@ class BusStopMapViewController: UIViewController, MKMapViewDelegate, CLLocationM
         let busStops = BusStopRealmHelper.all()
 
         for busStop in busStops {
-            let annotation = BusStopMapAnnotation(
+            let annotation = BusStopAnnotation(
                     title: busStop.name(locale: Utils.locale()),
                     subtitle: busStop.munic(locale: Utils.locale()),
                     coordinate: CLLocationCoordinate2D(latitude: Double(busStop.lat), longitude: Double(busStop.lng)),
-                    id: busStop.id
+                    busStop: busStop
             )
 
             mapView.addAnnotation(annotation)

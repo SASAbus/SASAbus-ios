@@ -4,11 +4,9 @@ import MapKit
 class Settings {
 
     static let PREF_INTRO_FINISHED = "pref_intro_finished"
-    static let PREF_MAP_TYPE = "pref_map_type"
     static let PREF_AUTO_REFRESH_ENABLED = "pref_map_auto_refresh_enabled"
     static let PREF_AUTO_REFRESH_INTERVAL = "pref_map_auto_refresh_interval"
-    static let PREF_TILE_OVERLAY_ENABLED = "pref_tile_overlay_enabled"
-    static let PREF_TILE_OVERLAY_ENABLED_ALL = "pref_tile_overlay_enabled_all"
+
     static let PREF_BUS_BEACONS_ENABLED = "pref_bus_beacons_enabled"
 
     static let PREF_SURVEY_ENABLED = "pref_survey_enabled"
@@ -26,30 +24,6 @@ class Settings {
         UserDefaults.standard.synchronize()
     }
 
-    static func getMapType() -> MKMapType? {
-        let userDefaults = UserDefaults.standard
-        let mapType = userDefaults.string(forKey: PREF_MAP_TYPE) ?? "standard"
-
-        switch mapType {
-            case "standard":
-                return MKMapType.standard
-            case "hybrid":
-                return MKMapType.hybrid
-            case "satellite":
-                return MKMapType.satellite
-            default:
-                Log.error("Invalid map type: \(mapType), returning default")
-                return MKMapType.standard
-        }
-    }
-
-    static func mapOverlaysEnabled() -> Bool {
-        return UserDefaults.standard.bool(forKey: PREF_TILE_OVERLAY_ENABLED)
-    }
-
-    static func allMapOverlaysEnabled() -> Bool {
-        return UserDefaults.standard.bool(forKey: PREF_TILE_OVERLAY_ENABLED_ALL)
-    }
 
     static func isIntroFinished() -> Bool {
         return UserDefaults.standard.bool(forKey: PREF_INTRO_FINISHED)
@@ -58,6 +32,7 @@ class Settings {
     static func setIntroFinished() {
         UserDefaults.standard.set(true, forKey: PREF_INTRO_FINISHED)
     }
+
 
     static func isBusNotificationEnabled() -> Bool {
         return UserDefaults.standard.bool(forKey: PREF_BUS_BEACONS_ENABLED)

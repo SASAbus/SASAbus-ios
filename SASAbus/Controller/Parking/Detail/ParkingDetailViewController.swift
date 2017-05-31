@@ -32,7 +32,7 @@ class ParkingDetailViewController: UIViewController, UITableViewDataSource, UITa
 
     var stations: [String] = []
     var parking: Parking!
-    var nearestBusStations: [BusStationDistance] = []
+    var nearestBusStations: [BusStopDistance] = []
 
     var realm = Realm.busStops()
 
@@ -86,19 +86,19 @@ class ParkingDetailViewController: UIViewController, UITableViewDataSource, UITa
     }
 
 
-    func getNearestBusStations() -> [BusStationDistance] {
+    func getNearestBusStations() -> [BusStopDistance] {
         let busStops = realm.objects(BusStop.self)
-        var nearestBusStations: [BusStationDistance] = []
+        var nearestBusStations: [BusStopDistance] = []
 
         for busStop in busStops {
-            var busStationDistance: BusStationDistance?
+            var busStationDistance: BusStopDistance?
             var distance: CLLocationDistance = 0.0
 
             let location = CLLocation(latitude: Double(busStop.lat), longitude: Double(busStop.lng))
             distance = location.distance(from: self.parking.location)
 
             if busStationDistance == nil || distance < busStationDistance!.distance {
-                busStationDistance = BusStationDistance(busStationItem: BBusStop(fromRealm: busStop), distance: distance)
+                busStationDistance = BusStopDistance(busStationItem: BBusStop(fromRealm: busStop), distance: distance)
             }
 
             if busStationDistance != nil {

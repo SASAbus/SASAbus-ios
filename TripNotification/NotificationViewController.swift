@@ -116,7 +116,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
             }
 
             titleText.text = delayString
-            titleText.textColor = UIUtils.getColorForDelay(delay: delay)
+            titleText.textColor = Color.delay(delay)
         }
 
         subtitleText.text = currentTrip.title
@@ -138,7 +138,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
     func setupViews() {
         items.removeAll()
 
-        var path: [LocalBusStop] = currentTrip.path
+        var path: [BBusStop] = currentTrip.path
         var times = currentTrip.times!
 
         let currentBusStop = currentTrip.beacon.busStop!
@@ -175,7 +175,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
             return
         }
 
-        let delayColor = UIUtils.getColorForDelay(delay: currentTrip.delay)
+        let delayColor = Color.delay(currentTrip.delay)
 
         // If the bus is not at the stop the notification will display the last bus stop
         // the bus passed by in the first row. The current bus stop will be displayed on the

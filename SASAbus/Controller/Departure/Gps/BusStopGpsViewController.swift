@@ -29,8 +29,8 @@ class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var busStopLabel: UILabel!
     @IBOutlet weak var tableView: MasterTableView!
 
-    fileprivate var busStop: BusStationItem!
-    fileprivate var nearbyBusStops: [BusStationDistance]! = []
+    var busStop: BBusStop!
+    var nearbyBusStops: [BusStopDistance]! = []
 
     var locationManager: CLLocationManager?
 
@@ -42,7 +42,7 @@ class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
 
 
@@ -62,7 +62,7 @@ class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
         busStopLabel.textColor = Theme.white
 
         if busStop != nil {
-            busStopLabel.text = busStop.getDescription()
+            busStopLabel.text = busStop.name()
         } else {
             busStopLabel.text = NSLocalizedString("Select a nearby bus station", comment: "")
         }
@@ -95,17 +95,17 @@ class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
         }
 
         let busStations = realm.objects(BusStop.self)
-        var nearbyBusStations: [BusStationDistance] = []
+        var nearbyBusStations: [BusStopDistance] = []
 
         for busStop in busStations {
-            var busStationDistance: BusStationDistance?
+            var busStationDistance: BusStopDistance?
             var distance: CLLocationDistance = 0.0
 
             let location = CLLocation(latitude: Double(busStop.lat), longitude: Double(busStop.lng))
             distance = currentLocation.distance(from: location)
 
             if busStationDistance == nil || distance < busStationDistance!.distance {
-                busStationDistance = BusStationDistance(busStationItem: BBusStop(fromRealm: busStop), distance: distance)
+                busStationDistance = BusStopDistance(busStationItem: BBusStop(fromRealm: busStop), distance: distance)
             }
 
             if busStationDistance != nil {

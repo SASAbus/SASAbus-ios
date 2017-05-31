@@ -27,7 +27,7 @@ import RxCocoa
 
 class NewsTabBarController: MasterTabBarController {
 
-    var newsItems: [NewsItem] = []
+    var newsItems: [News] = []
 
 
     override func viewDidLoad() {

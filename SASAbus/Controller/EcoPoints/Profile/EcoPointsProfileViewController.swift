@@ -171,7 +171,7 @@ class EcoPointsProfileViewController: UITableViewController {
                                 let start = CLLocation(latitude: Double(busStop.lat), longitude: Double(busStop.lng))
                                 let stop = CLLocation(latitude: Double(next.lat), longitude: Double(next.lng))
 
-                                tripDistance += MapUtils.distance(first: start, second: stop)
+                                tripDistance += start.distance(from: stop)
                             }
 
                             i += 1

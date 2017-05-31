@@ -29,9 +29,9 @@ class NewsDetailViewController: UIViewController {
     @IBOutlet weak var messageView: UIWebView!
     @IBOutlet weak var messageScrollView: UIScrollView!
 
-    let newsItem: NewsItem!
+    let newsItem: News!
 
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, newsItem: NewsItem) {
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, newsItem: News) {
         self.newsItem = newsItem
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -52,7 +52,7 @@ class NewsDetailViewController: UIViewController {
         self.titleLabel.text = self.newsItem.title
 
         let messageString = "<span style=\"font-family:Helvetica; font-size: \(font.pointSize); color: " +
-                ColorHelper.getHexColor(Theme.darkGrey) + "\">\(newsItem.message)</span>"
+                Color.getHexColor(Theme.darkGrey) + "\">\(newsItem.message)</span>"
 
         self.messageView.loadHTMLString(messageString, baseURL: nil)
         self.titleLabel.textColor = Theme.white

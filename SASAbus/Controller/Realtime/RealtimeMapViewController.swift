@@ -25,14 +25,14 @@ class RealtimeMapViewController: UIViewController, MKMapViewDelegate, PulleyPrim
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        allMapOverlaysEnabled = Settings.allMapOverlaysEnabled()
+        allMapOverlaysEnabled = MapUtils.allMapOverlaysEnabled()
 
         mapView.delegate = self
-        mapView.mapType = Settings.getMapType()!
+        mapView.mapType = MapUtils.getMapType()!
 
         mapView.setRegion(Config.mapRegion, animated: false)
 
-        if Settings.mapOverlaysEnabled() {
+        if MapUtils.mapOverlaysEnabled() {
             tileOverlay = BusTileOverlay(parent: self)
         }
     }

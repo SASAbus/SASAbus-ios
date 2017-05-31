@@ -32,7 +32,7 @@ class BusBeacon: AbsBeacon {
     var isCurrentTripPending: Bool = false
     var isSuitableForTrip: Bool = false
 
-    var busStop: LocalBusStop?
+    var busStop: BBusStop?
 
 
     override init(id: Int) {
@@ -117,10 +117,10 @@ class BusBeacon: AbsBeacon {
 
 
     func setBusStop(realm: BusStop, type: Int) {
-        setBusStop(local: LocalBusStop(realm: realm), type: type)
+        setBusStop(local: BBusStop(fromRealm: realm), type: type)
     }
 
-    func setBusStop(local: LocalBusStop, type: Int) {
+    func setBusStop(local: BBusStop, type: Int) {
         self.busStop = local
         self.busStopType = type
 
@@ -135,8 +135,7 @@ class BusBeacon: AbsBeacon {
         if !suitableForTrip {
             Log.error("Beacon is not suitable for a trip, dismissing notification")
 
-            // TODO
-            // TripNotification.hide(context, null)
+            TripNotification.hide(trip: nil)
         }
 
         isSuitableForTrip = suitableForTrip

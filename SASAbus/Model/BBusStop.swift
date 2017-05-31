@@ -1,20 +1,27 @@
 import RealmSwift
 import ObjectMapper
 
-class BBusStop {
+class BBusStop: Mappable {
 
     var id = 0
     var family = 0
 
-    var nameDe: String?
-    var nameIt: String?
-    var municDe: String?
-    var municIt: String?
+    var nameDe: String = ""
+    var nameIt: String = ""
+    var municDe: String = ""
+    var municIt: String = ""
 
     var lat: Float = 0.0
     var lng: Float = 0.0
 
-    init(id: Int, name: String, munic: String, lat: Float, lng: Float, family: Int) {
+
+    required convenience init?(map: Map) {
+        self.init()
+    }
+
+    convenience init(id: Int, name: String, munic: String, lat: Float, lng: Float, family: Int) {
+        self.init()
+
         self.id = id
         nameDe = name
         nameIt = name
@@ -25,23 +32,37 @@ class BBusStop {
         self.family = family
     }
 
-    init(fromRealm: BusStop) {
-        id = fromRealm.id
-        nameDe = fromRealm.nameDe
-        nameIt = fromRealm.nameIt
-        municDe = fromRealm.municDe
-        municIt = fromRealm.municIt
-        lat = fromRealm.lat
-        lng = fromRealm.lng
-        family = fromRealm.family
+    convenience init(fromRealm: BusStop) {
+        self.init()
+
+        self.id = fromRealm.id
+        self.nameDe = fromRealm.nameDe!
+        self.nameIt = fromRealm.nameIt!
+        self.municDe = fromRealm.municDe!
+        self.municIt = fromRealm.municIt!
+        self.lat = fromRealm.lat
+        self.lng = fromRealm.lng
+        self.family = fromRealm.family
     }
 
+
     func name(locale: String = Utils.locale()) -> String {
-        return (locale == "de" ? nameDe : nameIt)!
+        return locale == "de" ? nameDe : nameIt
     }
 
     func munic(locale: String = Utils.locale()) -> String {
-        return (locale == "de" ? municDe : municIt)!
+        return locale == "de" ? municDe : municIt
+    }
+
+
+    func mapping(map: Map) {
+        id <- map["id"]
+        family <- map["family"]
+        nameDe <- map["nameDe"]
+        nameIt <- map["nameIt"]
+        municDe <- map["municIt"]
+        lat <- map["lat"]
+        lng <- map["lng"]
     }
 }
 

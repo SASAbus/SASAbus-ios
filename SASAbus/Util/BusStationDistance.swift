@@ -23,7 +23,7 @@
 import Foundation
 import CoreLocation
 
-class BusStationDistance {
+class BusStopDistance {
 
     let distance: CLLocationDistance!
     let busStation: BBusStop!

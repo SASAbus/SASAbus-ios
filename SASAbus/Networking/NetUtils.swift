@@ -11,7 +11,7 @@ class NetUtils {
         zeroAddress.sin_family = sa_family_t(AF_INET)
 
         let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
-            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) { zeroSockAddress in
                 SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
             }
         }
@@ -23,10 +23,11 @@ class NetUtils {
 
         let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
         let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+
         return (isReachable && !needsConnection)
     }
 
     static func networkError() -> NSError {
-        return NSError(domain: "com.davale.sasabus", code: 1001, userInfo: [:])
+        return NSError(domain: "it.sasabz.ios.SASAbus", code: 1001, userInfo: [:])
     }
 }
