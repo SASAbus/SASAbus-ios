@@ -11,7 +11,7 @@ class MapUtils {
     static let PREF_TILE_OVERLAY_ENABLED_ALL = "pref_tile_overlay_enabled_all"
 
 
-    static func getMapType() -> MKMapType? {
+    static func getMapType() -> MKMapType {
         let userDefaults = UserDefaults.standard
         let mapType = userDefaults.string(forKey: PREF_MAP_TYPE) ?? "standard"
 
@@ -52,7 +52,7 @@ class MapUtils {
 
 extension MapUtils {
 
-    fileprivate static func defaultCamera() -> MKCoordinateRegion {
+    static func defaultCamera() -> MKCoordinateRegion {
         let center = CLLocationCoordinate2D(latitude: 46.58, longitude: 11.25)
         return MKCoordinateRegionMakeWithDistance(center, 35000, 35000)
     }

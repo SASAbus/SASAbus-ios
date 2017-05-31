@@ -36,9 +36,9 @@ struct Menu {
                     viewController: BusStopViewController(busStop: nil, title: NSLocalizedString("Departures", comment: ""))),
 
             MenuItem(
-                    title: NSLocalizedString("Line", comment: ""),
+                    title: NSLocalizedString("Lines", comment: ""),
                     image: "ic_navigation_bus",
-                    viewController: LineViewController(title: NSLocalizedString("Line", comment: ""))),
+                    viewController: LineViewController(title: NSLocalizedString("Lines", comment: ""))),
 
             MenuItem(
                     title: NSLocalizedString("News", comment: ""),
@@ -46,26 +46,25 @@ struct Menu {
                     viewController: NewsTabBarController(nibName: nil, title: NSLocalizedString("News", comment: ""))),
 
             MenuItem(
-                    title: NSLocalizedString("Parking lot", comment: ""),
+                    title: NSLocalizedString("Eco Points", comment: ""),
+                    image: "ic_nature_people_white",
+                    viewController: EcoPointsViewController(title: NSLocalizedString("Eco Points", comment: ""))),
+
+            MenuItem(
+                    title: NSLocalizedString("Parking", comment: ""),
                     image: "ic_navigation_parking",
-                    viewController: ParkingViewController(title: NSLocalizedString("Parking lot", comment: ""))),
+                    viewController: ParkingViewController(title: NSLocalizedString("Parking", comment: ""))),
 
             MenuItem(
                     title: NSLocalizedString("Info", comment: ""),
                     image: "ic_info_outline_white",
-                    viewController: InfoViewController(title: NSLocalizedString("Info", comment: ""))),
-
-            MenuItem(
-                    title: NSLocalizedString("Eco Points", comment: ""),
-                    image: "ic_nature_people_white",
-                    viewController: EcoPointsViewController(title: NSLocalizedString("Eco Points", comment: "")))
+                    viewController: InfoViewController(title: NSLocalizedString("Info", comment: "")))
     ]
 }
 
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-
 
     override func viewDidLoad() {
         super.viewDidLoad()

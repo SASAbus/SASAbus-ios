@@ -40,9 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let gcmMessageIDKey = "gcm.message_id"
 
-    var notificationHandlers: [String : NotificationProtocol] = [String: NotificationProtocol]()
-
-    // MARK: - UIApplicationDelegate
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool {
         setupLogging()
@@ -116,30 +113,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func startApplication() {
-        let navigationBarAppearance = UINavigationBar.appearance()
-        navigationBarAppearance.isTranslucent = false
-        navigationBarAppearance.tintColor = Theme.white  // Back buttons and such
-        navigationBarAppearance.barTintColor = Theme.orange  // Bar's background color
-        navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: Theme.white]  // Title's text color
+        let appearance = UINavigationBar.appearance()
+        appearance.isTranslucent = false
+        appearance.tintColor = Theme.white  // Back buttons and such
+        appearance.barTintColor = Theme.orange  // Bar's background color
+        appearance.titleTextAttributes = [NSForegroundColorAttributeName: Theme.white]  // Title's text color
 
-        // Ask for Authorisation from the User.
         CLLocationManager().requestAlwaysAuthorization()
-
-        // For use in foreground
         CLLocationManager().requestWhenInUseAuthorization()
 
         let navigationController = getNavigationController(Menu.items[0].viewController!)
-        let menuViewController: MenuViewController! = MenuViewController(nibName: "MenuViewController", bundle: nil)
-        self.drawerController = DrawerController(centerViewController: navigationController, leftDrawerViewController: menuViewController)
+        let menuController: MenuViewController! = MenuViewController(nibName: "MenuViewController", bundle: nil)
+        self.drawerController = DrawerController(centerViewController: navigationController, leftDrawerViewController: menuController)
 
-        let selectedMenuItemIndexPath: IndexPath = IndexPath(row: 0, section: 0)
+        let startIndex = Settings.getStartScreen()
+        let selectedMenuItem: IndexPath = IndexPath(row: startIndex, section: 0)
 
-        menuViewController.tableView.selectRow(at: selectedMenuItemIndexPath, animated: false, scrollPosition: UITableViewScrollPosition.none)
-        menuViewController.tableView.cellForRow(at: menuViewController.tableView.indexPathForSelectedRow!)?.setSelected(true, animated: false)
+        menuController.tableView.selectRow(at: selectedMenuItem, animated: false, scrollPosition: UITableViewScrollPosition.none)
+        menuController.tableView.cellForRow(at: menuController.tableView.indexPathForSelectedRow!)?.setSelected(true, animated: false)
 
         self.drawerController.showsShadows = false
         self.drawerController.openDrawerGestureModeMask = OpenDrawerGestureMode.bezelPanningCenterView
         self.drawerController.closeDrawerGestureModeMask = CloseDrawerGestureMode.panningCenterView
+
         self.window!.rootViewController = self.drawerController
     }
 

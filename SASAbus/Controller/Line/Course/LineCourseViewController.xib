@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G8c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LineCourseViewController" customModule="SASAbus" customModuleProvider="target">
+            <connections>
+                <outlet property="containerList" destination="suQ-ch-4sf" id="ohV-Ut-iT1"/>
+                <outlet property="containerMap" destination="oDy-cX-5Fk" id="xNS-ii-lgV"/>
+                <outlet property="segmentedBackground" destination="qeX-ji-PHG" id="rsT-Fc-Fru"/>
+                <outlet property="segmentedControl" destination="lIp-Jv-ca1" id="KLM-qm-YRl"/>
+                <outlet property="view" destination="OHE-h5-UHW" id="KUe-7d-oPP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="OHE-h5-UHW">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qeX-ji-PHG" userLabel="Segment">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                    <subviews>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lIp-Jv-ca1">
+                            <rect key="frame" x="16" y="8" width="343" height="29"/>
+                            <segments>
+                                <segment title="List"/>
+                                <segment title="Map"/>
+                            </segments>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="showComponent:" destination="-1" eventType="valueChanged" id="KKY-fe-xsX"/>
+                            </connections>
+                        </segmentedControl>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.58823529409999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="lIp-Jv-ca1" firstAttribute="top" secondItem="qeX-ji-PHG" secondAttribute="top" constant="8" id="4i2-Ij-OCD"/>
+                        <constraint firstAttribute="trailing" secondItem="lIp-Jv-ca1" secondAttribute="trailing" constant="16" id="7Zu-XG-BmR"/>
+                        <constraint firstItem="lIp-Jv-ca1" firstAttribute="leading" secondItem="qeX-ji-PHG" secondAttribute="leading" constant="16" id="K5i-9y-0J7"/>
+                        <constraint firstAttribute="bottom" secondItem="lIp-Jv-ca1" secondAttribute="bottom" constant="9" id="Q0b-Rk-7Pp"/>
+                    </constraints>
+                </view>
+                <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDy-cX-5Fk" userLabel="Map">
+                    <rect key="frame" x="0.0" y="45" width="375" height="622"/>
+                </containerView>
+                <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="suQ-ch-4sf" userLabel="List">
+                    <rect key="frame" x="0.0" y="45" width="375" height="622"/>
+                </containerView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="oDy-cX-5Fk" firstAttribute="top" secondItem="qeX-ji-PHG" secondAttribute="bottom" id="7SP-jZ-mM4"/>
+                <constraint firstAttribute="trailing" secondItem="qeX-ji-PHG" secondAttribute="trailing" id="9ee-0F-djd"/>
+                <constraint firstItem="suQ-ch-4sf" firstAttribute="top" secondItem="qeX-ji-PHG" secondAttribute="bottom" id="9jq-Ew-ED4"/>
+                <constraint firstItem="qeX-ji-PHG" firstAttribute="leading" secondItem="OHE-h5-UHW" secondAttribute="leading" id="AU2-KS-w5o"/>
+                <constraint firstAttribute="trailing" secondItem="suQ-ch-4sf" secondAttribute="trailing" id="Icl-d7-rGh"/>
+                <constraint firstAttribute="bottom" secondItem="suQ-ch-4sf" secondAttribute="bottom" id="Lbu-ax-aYM"/>
+                <constraint firstItem="qeX-ji-PHG" firstAttribute="top" secondItem="OHE-h5-UHW" secondAttribute="top" id="Oa1-aC-qnl"/>
+                <constraint firstItem="oDy-cX-5Fk" firstAttribute="leading" secondItem="OHE-h5-UHW" secondAttribute="leading" id="bU3-eD-ODv"/>
+                <constraint firstItem="suQ-ch-4sf" firstAttribute="leading" secondItem="OHE-h5-UHW" secondAttribute="leading" id="d4r-PO-hs1"/>
+                <constraint firstAttribute="trailing" secondItem="oDy-cX-5Fk" secondAttribute="trailing" id="fEa-dH-eve"/>
+                <constraint firstAttribute="bottom" secondItem="oDy-cX-5Fk" secondAttribute="bottom" id="mUf-cl-A8j"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

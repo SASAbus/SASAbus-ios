@@ -5,10 +5,11 @@ class Settings {
 
     // pref_app_language
     // pref_night_mode_enabled
-    // pref_start_screen
     // pref_default_map_position
 
     static let PREF_INTRO_FINISHED = "pref_intro_finished"
+
+    static let PREF_START_SCREEN = "pref_start_screen"
 
     static let PREF_AUTO_REFRESH_ENABLED = "pref_map_auto_refresh_enabled"
     static let PREF_AUTO_REFRESH_INTERVAL = "pref_map_auto_refresh_interval"
@@ -62,5 +63,10 @@ class Settings {
 
     static func isTripNotificationEnabled() -> Bool {
         return UserDefaults.standard.bool(forKey: PREF_TRIP_NOTIFICATION_ENABLED)
+    }
+
+
+    static func getStartScreen() -> Int {
+        return UserDefaults.standard.integer(forKey: PREF_START_SCREEN)
     }
 }

@@ -178,17 +178,18 @@ class BottomSheetViewController: UIViewController, PulleyDrawerViewControllerDel
     // MARK: Click handlers
 
     func onLineClick(gestureRecognizer: UIGestureRecognizer) {
-        let busDetailsViewController = LineDetailsViewController(lineId: selectedBus.lineId, vehicle: selectedBus.vehicle)
-        self.navigationController!.pushViewController(busDetailsViewController, animated: true)
+        let viewController = LineDetailsViewController(lineId: selectedBus.lineId, vehicle: selectedBus.vehicle)
+        self.navigationController!.pushViewController(viewController, animated: true)
     }
 
     func onVehicleClick(gestureRecognizer: UIGestureRecognizer) {
-        let busDetailsViewController = BusDetailsViewController(vehicleId: selectedBus.vehicle)
-        self.navigationController!.pushViewController(busDetailsViewController, animated: true)
+        let viewController = BusDetailsViewController(vehicleId: selectedBus.vehicle)
+        self.navigationController!.pushViewController(viewController, animated: true)
     }
 
     func onCourseClick(gestureRecognizer: UIGestureRecognizer) {
-        // TODO add segue to line course
+        let viewController = LineCourseViewController(lineId: selectedBus.lineId, vehicle: selectedBus.vehicle)
+        self.navigationController!.pushViewController(viewController, animated: true)
     }
 
     func onPeekClick(gestureRecognizer: UIGestureRecognizer) {
