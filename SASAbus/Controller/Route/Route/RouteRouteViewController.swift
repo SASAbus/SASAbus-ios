@@ -14,19 +14,27 @@ class RouteRouteViewController: UIViewController {
     }
 }
 
-extension RouteRouteViewController: PulleyDrawerViewControllerDelegate, PulleyPrimaryContentControllerDelegate {
+
+extension RouteRouteViewController: PulleyDrawerViewControllerDelegate {
 
     func collapsedDrawerHeight() -> CGFloat {
         return 164
     }
 
-    func partialRevealDrawerHeight() -> CGFloat {
-        return 0
-    }
-
     func supportedDrawerPositions() -> [PulleyPosition] {
         return [PulleyPosition.open, PulleyPosition.collapsed, PulleyPosition.closed]
     }
+
+    func drawerIndex() -> Int {
+        return 2
+    }
+
+    func initialPosition() -> PulleyPosition {
+        return PulleyPosition.closed
+    }
+}
+
+extension RouteRouteViewController: PulleyPrimaryContentControllerDelegate {
 
     func drawerPositionDidChange(drawer: MultiplePulleyViewController) {
         /*tableView.isScrollEnabled = drawer.drawerPosition == .open
@@ -36,6 +44,7 @@ extension RouteRouteViewController: PulleyDrawerViewControllerDelegate, PulleyPr
         }*/
     }
 }
+
 
 extension RouteRouteViewController: UITextFieldDelegate {
 

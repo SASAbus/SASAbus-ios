@@ -11,19 +11,23 @@ class RouteSearchViewController: UIViewController {
     }
 }
 
-extension RouteSearchViewController: PulleyDrawerViewControllerDelegate, PulleyPrimaryContentControllerDelegate {
+
+extension RouteSearchViewController: PulleyDrawerViewControllerDelegate {
 
     func collapsedDrawerHeight() -> CGFloat {
         return 44
     }
 
-    func partialRevealDrawerHeight() -> CGFloat {
+    func drawerIndex() -> Int {
         return 0
     }
 
-    func supportedDrawerPositions() -> [PulleyPosition] {
-        return [PulleyPosition.open, PulleyPosition.collapsed, PulleyPosition.closed]
+    func initialPosition() -> PulleyPosition {
+        return PulleyPosition.collapsed
     }
+}
+
+extension RouteSearchViewController: PulleyPrimaryContentControllerDelegate {
 
     func drawerPositionDidChange(drawer: MultiplePulleyViewController) {
         /*tableView.isScrollEnabled = drawer.drawerPosition == .open
@@ -34,13 +38,14 @@ extension RouteSearchViewController: PulleyDrawerViewControllerDelegate, PulleyP
     }
 }
 
+
 extension RouteSearchViewController: UITextFieldDelegate {
 
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         Log.error("textFieldShouldBeginEditing")
 
         if let drawerVC = self.parent as? MultiplePulleyViewController {
-            // drawerVC.setDrawerPosition(position: .open, animated: true)
+            drawerVC.setDrawerPosition(position: .open, animated: true, index: drawerIndex())
         }
 
         return true
