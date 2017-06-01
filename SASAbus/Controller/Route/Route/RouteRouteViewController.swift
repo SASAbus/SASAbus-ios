@@ -1,7 +1,6 @@
 import UIKit
-import Pulley
 
-class RouteBottomSheetViewController: UIViewController {
+class RouteRouteViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBackground: UIView!
@@ -13,49 +12,45 @@ class RouteBottomSheetViewController: UIViewController {
 
         searchBackground.layer.cornerRadius = 4
     }
-
-    func onPeekClick(gestureRecognizer: UIGestureRecognizer) {
-        self.parentVC?.setDrawerPosition(position: .open, animated: true, index: 0)
-    }
 }
 
-extension RouteBottomSheetViewController: PulleyDrawerViewControllerDelegate, PulleyPrimaryContentControllerDelegate {
+extension RouteRouteViewController: PulleyDrawerViewControllerDelegate, PulleyPrimaryContentControllerDelegate {
 
     func collapsedDrawerHeight() -> CGFloat {
-        return 160
+        return 164
     }
 
     func partialRevealDrawerHeight() -> CGFloat {
-        return 160
+        return 0
     }
 
     func supportedDrawerPositions() -> [PulleyPosition] {
-        return [PulleyPosition.closed, PulleyPosition.collapsed, PulleyPosition.open]
+        return [PulleyPosition.open, PulleyPosition.collapsed, PulleyPosition.closed]
     }
 
-    func drawerPositionDidChange(drawer: PulleyViewController) {
-        tableView.isScrollEnabled = drawer.drawerPosition == .open
+    func drawerPositionDidChange(drawer: MultiplePulleyViewController) {
+        /*tableView.isScrollEnabled = drawer.drawerPosition == .open
 
         if drawer.drawerPosition != .open {
             // searchBar.resignFirstResponder()
-        }
+        }*/
     }
 }
 
-extension RouteBottomSheetViewController: UITextFieldDelegate {
+extension RouteRouteViewController: UITextFieldDelegate {
 
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         Log.error("textFieldShouldBeginEditing")
 
-        if let drawerVC = self.parent as? PulleyViewController {
-            drawerVC.setDrawerPosition(position: .open, animated: true)
+        if let drawerVC = self.parent as? MultiplePulleyViewController {
+            // drawerVC.setDrawerPosition(position: .open, animated: true)
         }
 
         return true
     }
 }
 
-extension RouteBottomSheetViewController: UITableViewDelegate, UITableViewDataSource {
+extension RouteRouteViewController: UITableViewDelegate, UITableViewDataSource {
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "lol")

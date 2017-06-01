@@ -48,21 +48,27 @@ class MainRouteViewController: MultiplePulleyViewController {
                 contentViewController: contentViewController
         )
 
-        var drawerNib = UINib(nibName: "RouteBottomSheetViewController", bundle: nil)
-        var drawerViewController = drawerNib.instantiate(withOwner: self)[0] as! RouteBottomSheetViewController
 
-        mainViewController.addDrawer(drawerViewController)
+        let searchNib = UINib(nibName: "RouteSearchViewController", bundle: nil)
+        let searchViewController = searchNib.instantiate(withOwner: self)[0] as! RouteSearchViewController
+
+        mainViewController.addDrawer(searchViewController)
 
 
-        drawerNib = UINib(nibName: "RouteBottomSheetViewController", bundle: nil)
-        drawerViewController = drawerNib.instantiate(withOwner: self)[0] as! RouteBottomSheetViewController
+        let resultsNib = UINib(nibName: "RouteResultsViewController", bundle: nil)
+        let resultsViewController = resultsNib.instantiate(withOwner: self)[0] as! RouteResultsViewController
 
-        mainViewController.addDrawer(drawerViewController)
+        mainViewController.addDrawer(resultsViewController)
 
-        mainViewController.setDrawerPosition(position: .open, index: 0)
+
+        let routeNib = UINib(nibName: "RouteRouteViewController", bundle: nil)
+        let routeViewController = routeNib.instantiate(withOwner: self)[0] as! RouteRouteViewController
+
+        mainViewController.addDrawer(routeViewController)
+
 
         contentViewController.parentVC = mainViewController
-        drawerViewController.parentVC = mainViewController
+        resultsViewController.parentVC = mainViewController
 
         return mainViewController
     }

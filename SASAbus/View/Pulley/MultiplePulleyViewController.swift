@@ -96,22 +96,23 @@ public enum PulleyPosition: Int {
 private let kPulleyDefaultCollapsedHeight: CGFloat = 68.0
 private let kPulleyDefaultPartialRevealHeight: CGFloat = 264.0
 
+
 open class MultiplePulleyViewController: UIViewController {
 
-    // Internal
+    fileprivate var drawerCount = 0
+
     fileprivate let primaryContentContainer: UIView = UIView()
 
     fileprivate var drawerContentContainer: [UIView] = []
 
     fileprivate var drawerShadowView: [UIView] = []
     fileprivate var drawerScrollView: [PulleyPassthroughScrollView] = []
-    fileprivate var backgroundDimmingView: [UIView] = []
 
-    fileprivate var dimmingViewTapRecognizer: [UITapGestureRecognizer?] = []
+    fileprivate var backgroundDimmingView = UIView()
+    fileprivate var dimmingViewTapRecognizer: UITapGestureRecognizer?
 
     fileprivate var lastDragTargetContentOffset: [CGPoint] = []
 
-    fileprivate var drawerCount = 0
 
     /// The current content view controller (shown behind the drawer).
     public fileprivate(set) var primaryContentViewController: UIViewController! {
@@ -148,8 +149,6 @@ open class MultiplePulleyViewController: UIViewController {
         }
     }
 
-    /// The current drawer view controller (shown in the drawer).
-
     public fileprivate(set) var drawerContentViewController: [UIViewController] = []
 
 
@@ -157,12 +156,14 @@ open class MultiplePulleyViewController: UIViewController {
     // This lets another object observe the changes, if needed.
     public weak var delegate: PulleyDelegate?
 
+
     /// The current position of the drawer.
     public fileprivate(set) var drawerPosition: [PulleyPosition] = [] {
         didSet {
             setNeedsStatusBarAppearanceUpdate()
         }
     }
+
 
     /// The background visual effect layer for the drawer. By default this is the extraLight effect.
     /// You can change this if you want, or assign nil to remove it.
@@ -183,6 +184,7 @@ open class MultiplePulleyViewController: UIViewController {
             }
         }
     }
+
 
     /// The inset from the top of the view controller when fully open.
     @IBInspectable public var topInset: CGFloat = 50.0 {
@@ -228,9 +230,7 @@ open class MultiplePulleyViewController: UIViewController {
     @IBInspectable public var backgroundDimmingColor: UIColor = UIColor.black {
         didSet {
             if self.isViewLoaded {
-                for i in 0..<drawerCount {
-                    backgroundDimmingView[i].backgroundColor = backgroundDimmingColor
-                }
+                backgroundDimmingView.backgroundColor = backgroundDimmingColor
             }
         }
     }
@@ -246,8 +246,10 @@ open class MultiplePulleyViewController: UIViewController {
         }
     }
 
+
     /// The starting position for the drawer when it first loads
-    public var initialDrawerPosition: PulleyPosition = .collapsed
+    public var initialDrawerPosition: PulleyPosition = .open
+
 
     /// The drawer positions supported by the drawer
     fileprivate var supportedDrawerPositions: [PulleyPosition] = PulleyPosition.all {
@@ -314,22 +316,18 @@ open class MultiplePulleyViewController: UIViewController {
 
 
     public func addDrawer(_ controller: UIViewController) {
+        controller.view.translatesAutoresizingMaskIntoConstraints = true
         drawerContentViewController.append(controller)
-
-        let index = drawerContentViewController.count
-
-        drawerPosition.append(.collapsed)
 
         let contentContainer = UIView()
         contentContainer.backgroundColor = UIColor.clear
         drawerContentContainer.append(contentContainer)
 
-        controller.view.translatesAutoresizingMaskIntoConstraints = true
-
         self.drawerContentContainer.last!.addSubview(controller.view)
         self.addChildViewController(controller)
         controller.didMove(toParentViewController: self)
 
+        drawerPosition.append(.collapsed)
 
         // Scroll view
         let scrollView = PulleyPassthroughScrollView()
@@ -353,23 +351,8 @@ open class MultiplePulleyViewController: UIViewController {
         shadowView.layer.shadowRadius = shadowRadius
         shadowView.backgroundColor = UIColor.clear
         drawerShadowView.append(shadowView)
-
-
-        // Dimming view
-        let dimmingView = UIView()
-        dimmingView.backgroundColor = backgroundDimmingColor
-        dimmingView.isUserInteractionEnabled = false
-        dimmingView.alpha = 0.0
-
-        let selector = #selector(MultiplePulleyViewController.dimmingViewTapRecognizerAction(gestureRecognizer:))
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: selector)
-        dimmingViewTapRecognizer.append(tapRecognizer)
-
-        dimmingView.addGestureRecognizer(tapRecognizer)
-        backgroundDimmingView.append(dimmingView)
-
-
         scrollView.addSubview(shadowView)
+
 
         // Visual effect view
         let visualEffect = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
@@ -378,21 +361,18 @@ open class MultiplePulleyViewController: UIViewController {
         scrollView.addSubview(visualEffect)
         visualEffect.layer.cornerRadius = drawerCornerRadius
 
-
         scrollView.addSubview(contentContainer)
+
+        self.view.addSubview(scrollView)
 
         lastDragTargetContentOffset.append(CGPoint.zero)
 
-
-        self.view.addSubview(dimmingView)
-        self.view.addSubview(scrollView)
+        setDrawerPosition(position: initialDrawerPosition, animated: false, index: drawerCount)
 
         if self.isViewLoaded {
             self.view.setNeedsLayout()
             self.setNeedsSupportedDrawerPositionsUpdate(index: drawerCount)
         }
-
-        setDrawerPosition(position: initialDrawerPosition, animated: false, index: drawerCount)
 
         drawerCount += 1
     }
@@ -411,6 +391,17 @@ open class MultiplePulleyViewController: UIViewController {
         }
 
         primaryContentContainer.backgroundColor = UIColor.white
+
+        backgroundDimmingView.backgroundColor = backgroundDimmingColor
+        backgroundDimmingView.isUserInteractionEnabled = false
+        backgroundDimmingView.alpha = 0.0
+
+        let selector = #selector(MultiplePulleyViewController.dimmingViewTapRecognizerAction(gestureRecognizer:))
+        dimmingViewTapRecognizer = UITapGestureRecognizer(target: self, action: selector)
+
+        backgroundDimmingView.addGestureRecognizer(dimmingViewTapRecognizer!)
+
+        self.view.addSubview(backgroundDimmingView)
 
         self.view.backgroundColor = UIColor.white
         self.view.addSubview(primaryContentContainer)
@@ -441,10 +432,7 @@ open class MultiplePulleyViewController: UIViewController {
 
         // Layout main content
         primaryContentContainer.frame = self.view.bounds
-
-        for dimmingView in backgroundDimmingView {
-            dimmingView.frame = self.view.bounds
-        }
+        backgroundDimmingView.frame = self.view.bounds
 
         for i in 0..<drawerCount {
             // Layout container
@@ -682,15 +670,17 @@ open class MultiplePulleyViewController: UIViewController {
      Update the supported drawer positions allows by the Pulley Drawer
      */
     public func setNeedsSupportedDrawerPositionsUpdate(index: Int) {
-        let drawerVCCompliant = drawerContentViewController[index] as! PulleyDrawerViewControllerDelegate
-        supportedDrawerPositions = drawerVCCompliant.supportedDrawerPositions()
+        let drawer = drawerContentViewController[index] as! PulleyDrawerViewControllerDelegate
+        supportedDrawerPositions = drawer.supportedDrawerPositions()
     }
 
 
     // MARK: Actions
 
     func dimmingViewTapRecognizerAction(gestureRecognizer: UITapGestureRecognizer) {
-        var index = -1
+        // TODO: Add tap recognizer?
+
+        /*var index = -1
 
         for i in 0...dimmingViewTapRecognizer.count - 1 {
             let view = dimmingViewTapRecognizer[i]
@@ -706,7 +696,7 @@ open class MultiplePulleyViewController: UIViewController {
 
         if gestureRecognizer.state == .ended {
             self.setDrawerPosition(position: .collapsed, animated: true, index: index)
-        }
+        }*/
     }
 }
 
@@ -752,10 +742,10 @@ extension MultiplePulleyViewController: PulleyPassthroughScrollViewDelegate {
         Log.debug("viewToReceiveTouch scroll index: \(index)")
 
         if drawerPosition[index] == .open {
-            return backgroundDimmingView[index]
+            return backgroundDimmingView
         }
 
-        return primaryContentContainer
+        return index > 0 ? drawerContentContainer[index - 1] : primaryContentContainer
     }
 }
 
@@ -808,9 +798,13 @@ extension MultiplePulleyViewController: UIScrollViewDelegate {
             }
         }
 
-        if abs(Float(currentClosestStop - (self.view.bounds.size.height - topInset))) <= Float.ulpOfOne && supportedDrawerPositions.contains(.open) {
+        if abs(Float(currentClosestStop - (self.view.bounds.size.height - topInset))) <= Float.ulpOfOne &&
+                   supportedDrawerPositions.contains(.open) {
+
             setDrawerPosition(position: .open, animated: true, index: index)
-        } else if abs(Float(currentClosestStop - collapsedHeight)) <= Float.ulpOfOne && supportedDrawerPositions.contains(.collapsed) {
+        } else if abs(Float(currentClosestStop - collapsedHeight)) <= Float.ulpOfOne &&
+                          supportedDrawerPositions.contains(.collapsed) {
+
             setDrawerPosition(position: .collapsed, animated: true, index: index)
         } else if supportedDrawerPositions.contains(.partiallyRevealed) {
             setDrawerPosition(position: .partiallyRevealed, animated: true, index: index)
@@ -855,8 +849,8 @@ extension MultiplePulleyViewController: UIScrollViewDelegate {
 
         Log.debug("scrollViewDidScroll scroll index: \(index)")
 
-        var partialRevealHeight: CGFloat = kPulleyDefaultPartialRevealHeight
-        var collapsedHeight: CGFloat = kPulleyDefaultCollapsedHeight
+        var partialRevealHeight = kPulleyDefaultPartialRevealHeight
+        var collapsedHeight = kPulleyDefaultCollapsedHeight
 
         let drawerVCCompliant = drawerContentViewController[index] as! PulleyDrawerViewControllerDelegate
         collapsedHeight = drawerVCCompliant.collapsedDrawerHeight()
@@ -888,18 +882,17 @@ extension MultiplePulleyViewController: UIScrollViewDelegate {
             (drawerContentViewController as? PulleyDrawerViewControllerDelegate)?.makeUIAdjustmentsForFullscreen?(progress: progress)
             (primaryContentViewController as? PulleyPrimaryContentControllerDelegate)?.makeUIAdjustmentsForFullscreen?(progress: progress)
 
-            backgroundDimmingView[index].alpha = progress * backgroundDimmingOpacity
-
-            backgroundDimmingView[index].isUserInteractionEnabled = true
+            backgroundDimmingView.alpha = progress * backgroundDimmingOpacity
+            backgroundDimmingView.isUserInteractionEnabled = true
         } else {
-            if backgroundDimmingView[index].alpha >= 0.001 {
-                backgroundDimmingView[index].alpha = 0.0
+            if backgroundDimmingView.alpha >= 0.001 {
+                backgroundDimmingView.alpha = 0.0
 
                 delegate?.makeUIAdjustmentsForFullscreen?(progress: 0.0)
                 (drawerContentViewController as? PulleyDrawerViewControllerDelegate)?.makeUIAdjustmentsForFullscreen?(progress: 0.0)
                 (primaryContentViewController as? PulleyPrimaryContentControllerDelegate)?.makeUIAdjustmentsForFullscreen?(progress: 0.0)
 
-                backgroundDimmingView[index].isUserInteractionEnabled = false
+                backgroundDimmingView.isUserInteractionEnabled = false
             }
         }
 
@@ -911,4 +904,5 @@ extension MultiplePulleyViewController: UIScrollViewDelegate {
         (primaryContentViewController as? PulleyPrimaryContentControllerDelegate)?
                 .drawerChangedDistanceFromBottom?(drawer: self, distance: scrollView.contentOffset.y + lowestStop)
     }
+
 }
