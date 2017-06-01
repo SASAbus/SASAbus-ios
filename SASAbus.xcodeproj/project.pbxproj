@@ -16,6 +16,7 @@
 		1F2E307AF1FEDAC27DEFB001 /* LineCourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3DD57357734DC21B6F43 /* LineCourseListViewController.swift */; };
 		1F2E307C89A3D4E49910BC0D /* VdvHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E38DDC7CA8C24CDE54724 /* VdvHandler.swift */; };
 		1F2E308D9E1CD5EC39964859 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E390103030F9EA1B4CC2D /* Settings.swift */; };
+		1F2E309322BBDFF37AD138A0 /* PulleyPassthroughScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D71B19A5A911D7C2376 /* PulleyPassthroughScrollViewDelegate.swift */; };
 		1F2E30967E49BD86E6198334 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3111378CD352AECBA68C /* NewsTableViewCell.swift */; };
 		1F2E30B3E0A59AA5D14A1DC9 /* busstops.realm in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E393E9C0A342DCF1B01C1 /* busstops.realm */; };
 		1F2E30D12550775A28E14701 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3B480126F44819540A34 /* LoginViewController.swift */; };
@@ -235,6 +236,7 @@
 		1F2E3D38D00D81E184AAC49D /* CloudApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A67A910AE6D67ED64A2 /* CloudApi.swift */; };
 		1F2E3D63A312E998EA778B77 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3DC9A025F6F92E7B5089 /* InfoViewController.xib */; };
 		1F2E3D7F7CD3BC54E01DF301 /* SurveyApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E30940A41307533BC707A /* SurveyApiRouter.swift */; };
+		1F2E3D86C7A2711368077B73 /* MultiplePulleyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3551152E7B75E6D54EBC /* MultiplePulleyViewController.swift */; };
 		1F2E3D889D82FDFCF144048A /* NotificationCellDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3327A37FB85A8BF59D97 /* NotificationCellDot.swift */; };
 		1F2E3DA46360FE5AACFF77F5 /* IntroParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E302464CAA5DE853CDB7D /* IntroParentViewController.swift */; };
 		1F2E3DBDDBE1E84B547F2517 /* MainMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E37D24F0F8100DC6B143D /* MainMapViewController.swift */; };
@@ -425,6 +427,7 @@
 		1F2E353E9276C3481F8A8521 /* Api2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api2.swift; sourceTree = "<group>"; };
 		1F2E3541103CD7A91DCF19AB /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
 		1F2E3542D7725C08B2E3F402 /* BusStopFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopFilterViewController.swift; sourceTree = "<group>"; };
+		1F2E3551152E7B75E6D54EBC /* MultiplePulleyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplePulleyViewController.swift; sourceTree = "<group>"; };
 		1F2E35649B08AAD4B2CA6284 /* BusStopGpsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopGpsTableViewCell.swift; sourceTree = "<group>"; };
 		1F2E35784BFA80941FB8C9A0 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		1F2E358305B89A9E1191D341 /* BackgroundView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BackgroundView.xib; sourceTree = "<group>"; };
@@ -533,6 +536,7 @@
 		1F2E3CE1C685415B3BEAF608 /* Lines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lines.swift; sourceTree = "<group>"; };
 		1F2E3D02E5C6FE40A6949C04 /* VdvDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VdvDate.swift; sourceTree = "<group>"; };
 		1F2E3D57BBA4062A9689AEDD /* DictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
+		1F2E3D71B19A5A911D7C2376 /* PulleyPassthroughScrollViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PulleyPassthroughScrollViewDelegate.swift; sourceTree = "<group>"; };
 		1F2E3D74BC0AC7B329114C47 /* DeviceUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUtils.swift; sourceTree = "<group>"; };
 		1F2E3D7DFFD36A6C0968EEBF /* NewsTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewController.xib; sourceTree = "<group>"; };
 		1F2E3D8C69FDC39DFB6A2386 /* BusStopFavoritesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopFavoritesTableViewCell.swift; sourceTree = "<group>"; };
@@ -742,6 +746,15 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		1F2E33D16FF3B414877B5083 /* Pulley */ = {
+			isa = PBXGroup;
+			children = (
+				1F2E3551152E7B75E6D54EBC /* MultiplePulleyViewController.swift */,
+				1F2E3D71B19A5A911D7C2376 /* PulleyPassthroughScrollViewDelegate.swift */,
+			);
+			path = Pulley;
+			sourceTree = "<group>";
+		};
 		1F2E33D4C1427B42CE42A472 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -918,13 +931,13 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		1F2E377360BABB7A8E6E80DC /* Pulley */ = {
+		1F2E377360BABB7A8E6E80DC /* BottomSheet */ = {
 			isa = PBXGroup;
 			children = (
 				1F2E33681747D55D0E9B8919 /* BottomSheetPassthroughScrollDelegate.swift */,
 				1F2E3BD4251DA33C918CA95B /* BottomSheetViewController.swift */,
 			);
-			path = Pulley;
+			path = BottomSheet;
 			sourceTree = "<group>";
 		};
 		1F2E3785490AF124F6C7919F /* EcoPoints */ = {
@@ -1002,7 +1015,8 @@
 			isa = PBXGroup;
 			children = (
 				1F2E3F944771591C0C71FBD9 /* Placeholder */,
-				1F2E377360BABB7A8E6E80DC /* Pulley */,
+				1F2E377360BABB7A8E6E80DC /* BottomSheet */,
+				1F2E33D16FF3B414877B5083 /* Pulley */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1911,6 +1925,8 @@
 				1F2E3927E538901277E327A9 /* MainRouteViewController.swift in Sources */,
 				1F2E31C8106882A3A72B1FC0 /* RouteMapViewController.swift in Sources */,
 				1F2E34C9D046FC137609576E /* RouteBottomSheetViewController.swift in Sources */,
+				1F2E3D86C7A2711368077B73 /* MultiplePulleyViewController.swift in Sources */,
+				1F2E309322BBDFF37AD138A0 /* PulleyPassthroughScrollViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,8 +1,7 @@
 import UIKit
 import Pulley
 
-class RouteBottomSheetViewController: UIViewController, PulleyDrawerViewControllerDelegate,
-        PulleyPrimaryContentControllerDelegate {
+class RouteBottomSheetViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBackground: UIView!
@@ -15,6 +14,13 @@ class RouteBottomSheetViewController: UIViewController, PulleyDrawerViewControll
         searchBackground.layer.cornerRadius = 4
     }
 
+    func onPeekClick(gestureRecognizer: UIGestureRecognizer) {
+        self.parentVC?.setDrawerPosition(position: .open, animated: true, index: 0)
+    }
+}
+
+extension RouteBottomSheetViewController: PulleyDrawerViewControllerDelegate, PulleyPrimaryContentControllerDelegate {
+
     func collapsedDrawerHeight() -> CGFloat {
         return 160
     }
@@ -25,10 +31,6 @@ class RouteBottomSheetViewController: UIViewController, PulleyDrawerViewControll
 
     func supportedDrawerPositions() -> [PulleyPosition] {
         return [PulleyPosition.closed, PulleyPosition.collapsed, PulleyPosition.open]
-    }
-
-    func onPeekClick(gestureRecognizer: UIGestureRecognizer) {
-        self.parentVC?.setDrawerPosition(position: .open, animated: true)
     }
 
     func drawerPositionDidChange(drawer: PulleyViewController) {
@@ -50,5 +52,22 @@ extension RouteBottomSheetViewController: UITextFieldDelegate {
         }
 
         return true
+    }
+}
+
+extension RouteBottomSheetViewController: UITableViewDelegate, UITableViewDataSource {
+
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "lol")
+
+        cell.backgroundColor = UIColor.clear
+        cell.textLabel!.text = "Piazza Walther"
+        cell.detailTextLabel!.text = "Bolzano"
+
+        return cell
+    }
+
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 100
     }
 }

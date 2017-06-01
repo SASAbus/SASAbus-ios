@@ -1,15 +1,15 @@
 import UIKit
 import Pulley
 
-class MainRouteViewController: PulleyViewController {
+class MainRouteViewController: MultiplePulleyViewController {
 
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    required init(contentViewController: UIViewController, drawerViewController: UIViewController) {
-        super.init(contentViewController: contentViewController, drawerViewController: drawerViewController)
+    required init(contentViewController: UIViewController) {
+        super.init(contentViewController: contentViewController)
     }
 
 
@@ -44,13 +44,22 @@ class MainRouteViewController: PulleyViewController {
         let contentNib = UINib(nibName: "RouteMapViewController", bundle: nil)
         let contentViewController = contentNib.instantiate(withOwner: self)[0] as! RouteMapViewController
 
-        let drawerNib = UINib(nibName: "RouteBottomSheetViewController", bundle: nil)
-        let drawerViewController = drawerNib.instantiate(withOwner: self)[0] as! RouteBottomSheetViewController
-
         let mainViewController = MainRouteViewController(
-                contentViewController: contentViewController,
-                drawerViewController: drawerViewController
+                contentViewController: contentViewController
         )
+
+        var drawerNib = UINib(nibName: "RouteBottomSheetViewController", bundle: nil)
+        var drawerViewController = drawerNib.instantiate(withOwner: self)[0] as! RouteBottomSheetViewController
+
+        mainViewController.addDrawer(drawerViewController)
+
+
+        drawerNib = UINib(nibName: "RouteBottomSheetViewController", bundle: nil)
+        drawerViewController = drawerNib.instantiate(withOwner: self)[0] as! RouteBottomSheetViewController
+
+        mainViewController.addDrawer(drawerViewController)
+
+        mainViewController.setDrawerPosition(position: .open, index: 0)
 
         contentViewController.parentVC = mainViewController
         drawerViewController.parentVC = mainViewController
