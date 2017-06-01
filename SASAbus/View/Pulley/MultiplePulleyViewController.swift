@@ -401,10 +401,10 @@ open class MultiplePulleyViewController: UIViewController {
 
         backgroundDimmingView.addGestureRecognizer(dimmingViewTapRecognizer!)
 
-        self.view.addSubview(backgroundDimmingView)
-
         self.view.backgroundColor = UIColor.white
         self.view.addSubview(primaryContentContainer)
+
+        self.view.addSubview(backgroundDimmingView)
     }
 
     override open func viewDidLoad() {
