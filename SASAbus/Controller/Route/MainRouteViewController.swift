@@ -3,6 +3,10 @@ import Pulley
 
 class MainRouteViewController: MultiplePulleyViewController {
 
+    var searchController: RouteSearchViewController!
+    var resultsController: RouteResultsViewController!
+    var routeController: RouteRouteViewController!
+
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -52,18 +56,25 @@ class MainRouteViewController: MultiplePulleyViewController {
         let searchNib = UINib(nibName: "RouteSearchViewController", bundle: nil)
         let searchViewController = searchNib.instantiate(withOwner: self)[0] as! RouteSearchViewController
 
+        searchViewController.parentVC = mainViewController
+        mainViewController.searchController = searchViewController
         mainViewController.addDrawer(searchViewController)
 
 
         let resultsNib = UINib(nibName: "RouteResultsViewController", bundle: nil)
         let resultsViewController = resultsNib.instantiate(withOwner: self)[0] as! RouteResultsViewController
 
+        resultsViewController.parentVC = mainViewController
+        mainViewController.resultsController = resultsViewController
         mainViewController.addDrawer(resultsViewController)
 
 
         let routeNib = UINib(nibName: "RouteRouteViewController", bundle: nil)
         let routeViewController = routeNib.instantiate(withOwner: self)[0] as! RouteRouteViewController
+        routeViewController.parentVC = mainViewController
 
+        resultsViewController.parentVC = mainViewController
+        mainViewController.routeController = routeViewController
         mainViewController.addDrawer(routeViewController)
 
 

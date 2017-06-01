@@ -27,43 +27,36 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcF-dC-Kli" userLabel="Search view">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="677"/>
                                 <subviews>
-                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qfs-9K-jTz" userLabel="Header">
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for a place or address" translatesAutoresizingMaskIntoConstraints="NO" id="iKs-ay-XYq">
                                         <rect key="frame" x="4" y="4" width="367" height="44"/>
-                                        <subviews>
-                                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for a place or address" translatesAutoresizingMaskIntoConstraints="NO" id="vzN-D9-OsA">
-                                                <rect key="frame" x="0.0" y="0.0" width="367" height="44"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
-                                            </searchBar>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="vzN-D9-OsA" secondAttribute="trailing" id="AxE-vq-KGb"/>
-                                            <constraint firstAttribute="bottom" secondItem="vzN-D9-OsA" secondAttribute="bottom" id="EPv-z1-Vgh"/>
-                                            <constraint firstItem="vzN-D9-OsA" firstAttribute="leading" secondItem="Qfs-9K-jTz" secondAttribute="leading" id="IHz-Qm-ajA"/>
-                                            <constraint firstItem="vzN-D9-OsA" firstAttribute="top" secondItem="Qfs-9K-jTz" secondAttribute="top" id="w0Y-Sw-V2z"/>
-                                        </constraints>
-                                    </view>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                    </searchBar>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yds-hv-dW4" userLabel="Divider">
-                                        <rect key="frame" x="0.0" y="52" width="375" height="1"/>
+                                        <rect key="frame" x="4" y="52" width="371" height="1"/>
                                         <color key="backgroundColor" red="0.81960784310000001" green="0.81960784310000001" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="sXO-1D-AkD"/>
                                         </constraints>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="plain" separatorStyle="default" rowHeight="68" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lya-of-ROG">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lya-of-ROG">
                                         <rect key="frame" x="0.0" y="53" width="375" height="712"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="HvW-ek-mO7" id="pgn-dB-gbd"/>
+                                            <outlet property="delegate" destination="HvW-ek-mO7" id="KNn-Pi-HNb"/>
+                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="Qfs-9K-jTz" firstAttribute="leading" secondItem="fcF-dC-Kli" secondAttribute="leading" constant="4" id="8Mj-r2-jaf"/>
+                                    <constraint firstItem="iKs-ay-XYq" firstAttribute="top" secondItem="fcF-dC-Kli" secondAttribute="top" constant="4" id="3Gs-fS-vMw"/>
+                                    <constraint firstItem="iKs-ay-XYq" firstAttribute="leading" secondItem="fcF-dC-Kli" secondAttribute="leading" constant="4" id="9kI-mn-aYH"/>
                                     <constraint firstAttribute="trailing" secondItem="yds-hv-dW4" secondAttribute="trailing" id="GQv-FL-FtM"/>
-                                    <constraint firstItem="Qfs-9K-jTz" firstAttribute="top" secondItem="fcF-dC-Kli" secondAttribute="top" constant="4" id="Pzr-2c-VyW"/>
+                                    <constraint firstItem="yds-hv-dW4" firstAttribute="top" secondItem="iKs-ay-XYq" secondAttribute="bottom" constant="4" id="PAN-IX-MDi"/>
                                     <constraint firstItem="lya-of-ROG" firstAttribute="top" secondItem="yds-hv-dW4" secondAttribute="bottom" id="cns-dW-hF9"/>
                                     <constraint firstItem="lya-of-ROG" firstAttribute="leading" secondItem="fcF-dC-Kli" secondAttribute="leading" id="fSX-eE-bBP"/>
-                                    <constraint firstAttribute="trailing" secondItem="Qfs-9K-jTz" secondAttribute="trailing" constant="4" id="fro-xf-nuR"/>
-                                    <constraint firstItem="yds-hv-dW4" firstAttribute="top" secondItem="Qfs-9K-jTz" secondAttribute="bottom" constant="4" id="gUe-1j-SrM"/>
-                                    <constraint firstItem="yds-hv-dW4" firstAttribute="leading" secondItem="fcF-dC-Kli" secondAttribute="leading" id="jwD-1n-9ee"/>
+                                    <constraint firstAttribute="trailing" secondItem="iKs-ay-XYq" secondAttribute="trailing" constant="4" id="igm-Vd-Fmh"/>
+                                    <constraint firstItem="yds-hv-dW4" firstAttribute="leading" secondItem="fcF-dC-Kli" secondAttribute="leading" constant="4" id="jwD-1n-9ee"/>
                                     <constraint firstAttribute="bottom" secondItem="lya-of-ROG" secondAttribute="bottom" constant="-88" id="pcj-eT-ghH"/>
                                     <constraint firstAttribute="trailing" secondItem="lya-of-ROG" secondAttribute="trailing" id="vvO-hr-jYo"/>
                                 </constraints>
@@ -89,6 +82,7 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <connections>
+                <outlet property="searchBar" destination="iKs-ay-XYq" id="Zfu-ny-u43"/>
                 <outlet property="tableView" destination="lya-of-ROG" id="NST-1p-mHw"/>
             </connections>
             <point key="canvasLocation" x="1555.5" y="-1834.5"/>

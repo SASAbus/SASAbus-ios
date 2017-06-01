@@ -324,6 +324,7 @@
 		FABCEED51EDEB93F00E48116 /* LineCourseListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FABCEED41EDEB93F00E48116 /* LineCourseListViewController.xib */; };
 		FABCEED71EDEBA1C00E48116 /* LineCourseMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FABCEED61EDEBA1C00E48116 /* LineCourseMapViewController.xib */; };
 		FABCEED91EDEBD3C00E48116 /* LineCourseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FABCEED81EDEBD3C00E48116 /* LineCourseViewCell.xib */; };
+		FABCEEDE1EE0426700E48116 /* RouteResultsLoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FABCEEDD1EE0426700E48116 /* RouteResultsLoadingCell.xib */; };
 		FABD85CE1E87F8A1007A5EF6 /* BusImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FABD85CD1E87F8A1007A5EF6 /* BusImages.xcassets */; };
 		FABD85D01E8801DC007A5EF6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABD85CF1E8801DC007A5EF6 /* MapKit.framework */; };
 		FAC517CE1E8A794100EC26DF /* EcoPointsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC517CD1E8A794100EC26DF /* EcoPointsViewController.xib */; };
@@ -612,6 +613,7 @@
 		FABCEED41EDEB93F00E48116 /* LineCourseListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineCourseListViewController.xib; sourceTree = "<group>"; };
 		FABCEED61EDEBA1C00E48116 /* LineCourseMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineCourseMapViewController.xib; sourceTree = "<group>"; };
 		FABCEED81EDEBD3C00E48116 /* LineCourseViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineCourseViewCell.xib; sourceTree = "<group>"; };
+		FABCEEDD1EE0426700E48116 /* RouteResultsLoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RouteResultsLoadingCell.xib; sourceTree = "<group>"; };
 		FABD85CD1E87F8A1007A5EF6 /* BusImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BusImages.xcassets; sourceTree = "<group>"; };
 		FABD85CF1E8801DC007A5EF6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FAC517CD1E8A794100EC26DF /* EcoPointsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EcoPointsViewController.xib; sourceTree = "<group>"; };
@@ -707,6 +709,7 @@
 			children = (
 				1F2E3AB1EE7357F9F81E92B3 /* RouteResultsViewController.xib */,
 				1F2E381AEF2DB15CF3071376 /* RouteResultsViewController.swift */,
+				FABCEEDD1EE0426700E48116 /* RouteResultsLoadingCell.xib */,
 			);
 			path = Results;
 			sourceTree = "<group>";
@@ -1615,6 +1618,7 @@
 				1F2E3B9F149C97801A1E9BE1 /* NewsTableViewCell.xib in Resources */,
 				1F2E3A4A95AFC11145F8DE81 /* ParkingDetailViewController.xib in Resources */,
 				1F2E329914BEDA9EB59B7F8F /* ParkingDetailTableViewCell.xib in Resources */,
+				FABCEEDE1EE0426700E48116 /* RouteResultsLoadingCell.xib in Resources */,
 				1F2E367D890741B969D7157A /* ParkingViewController.xib in Resources */,
 				1F2E3CAA4D61944E453EB5DE /* ParkingTableViewCell.xib in Resources */,
 				1F2E3E6BFCB4F055F98C6309 /* SurveyContactViewController.xib in Resources */,

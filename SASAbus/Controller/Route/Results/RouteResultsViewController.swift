@@ -4,10 +4,31 @@ class RouteResultsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    var parentVC: MainRouteViewController?
+    @IBOutlet weak var destinationLabel: UILabel!
+    @IBOutlet weak var originLabel: UIButton!
+
+    var parentVC: MainRouteViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.register(UINib(nibName: "RouteResultsLoadingCell", bundle: nil),
+                forCellReuseIdentifier: "RouteResultsLoadingCell")
+    }
+
+    @IBAction func changeOrigin(_ sender: Any) {
+        Log.error("Origin button click")
+
+        parentVC.setDrawerPosition(position: .open, animated: true, completion: { _ in
+            self.parentVC.routeController.highlightOriginText()
+        }, index: parentVC.routeController.drawerIndex())
+    }
+
+    @IBAction func hideRoute(_ sender: Any) {
+        Log.error("Hide button click")
+
+        parentVC.setDrawerPosition(position: .closed, animated: true, index: drawerIndex())
+        parentVC.setDrawerPosition(position: .collapsed, animated: true, index: parentVC.searchController.drawerIndex())
     }
 }
 
@@ -15,11 +36,7 @@ class RouteResultsViewController: UIViewController {
 extension RouteResultsViewController: PulleyDrawerViewControllerDelegate {
 
     func collapsedDrawerHeight() -> CGFloat {
-        return 110
-    }
-
-    func supportedDrawerPositions() -> [PulleyPosition] {
-        return [PulleyPosition.open, PulleyPosition.collapsed, PulleyPosition.closed]
+        return 206
     }
 
     func drawerIndex() -> Int {
@@ -29,9 +46,6 @@ extension RouteResultsViewController: PulleyDrawerViewControllerDelegate {
     func initialPosition() -> PulleyPosition {
         return PulleyPosition.closed
     }
-}
-
-extension RouteResultsViewController: PulleyPrimaryContentControllerDelegate {
 
     func drawerPositionDidChange(drawer: MultiplePulleyViewController) {
         /*tableView.isScrollEnabled = drawer.drawerPosition == .open
@@ -42,33 +56,22 @@ extension RouteResultsViewController: PulleyPrimaryContentControllerDelegate {
     }
 }
 
-
-extension RouteResultsViewController: UITextFieldDelegate {
-
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        Log.error("textFieldShouldBeginEditing")
-
-        if let drawerVC = self.parent as? MultiplePulleyViewController {
-            // drawerVC.setDrawerPosition(position: .open, animated: true)
-        }
-
-        return true
-    }
-}
-
 extension RouteResultsViewController: UITableViewDelegate, UITableViewDataSource {
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "lol")
-
-        cell.backgroundColor = UIColor.clear
-        cell.textLabel!.text = "Piazza Walther"
-        cell.detailTextLabel!.text = "Bolzano"
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RouteResultsLoadingCell", for: indexPath)
         return cell
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return 1
+    }
+
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TODO Change this click action to the button once bug is fixed
+
+        changeOrigin(self)
+
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

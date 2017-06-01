@@ -5,12 +5,29 @@ class RouteRouteViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBackground: UIView!
 
-    var parentVC: MainRouteViewController?
+    @IBOutlet weak var originTextField: UITextField!
+    @IBOutlet weak var destinationTextField: UITextField!
+
+    var parentVC: MainRouteViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         searchBackground.layer.cornerRadius = 4
+    }
+
+    func highlightOriginText() {
+        originTextField.becomeFirstResponder()
+        originTextField.selectedTextRange = originTextField.textRange(from: originTextField.beginningOfDocument,
+                to: originTextField.endOfDocument)
+    }
+
+    @IBAction func findNewRoute(_ sender: Any) {
+        parentVC.setDrawerPosition(position: .closed, animated: true, index: drawerIndex())
+    }
+
+    @IBAction func cancelNewRoute(_ sender: Any) {
+        parentVC.setDrawerPosition(position: .closed, animated: true, index: drawerIndex())
     }
 }
 
@@ -21,10 +38,6 @@ extension RouteRouteViewController: PulleyDrawerViewControllerDelegate {
         return 164
     }
 
-    func supportedDrawerPositions() -> [PulleyPosition] {
-        return [PulleyPosition.open, PulleyPosition.collapsed, PulleyPosition.closed]
-    }
-
     func drawerIndex() -> Int {
         return 2
     }
@@ -32,9 +45,6 @@ extension RouteRouteViewController: PulleyDrawerViewControllerDelegate {
     func initialPosition() -> PulleyPosition {
         return PulleyPosition.closed
     }
-}
-
-extension RouteRouteViewController: PulleyPrimaryContentControllerDelegate {
 
     func drawerPositionDidChange(drawer: MultiplePulleyViewController) {
         /*tableView.isScrollEnabled = drawer.drawerPosition == .open
@@ -51,9 +61,13 @@ extension RouteRouteViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         Log.error("textFieldShouldBeginEditing")
 
-        if let drawerVC = self.parent as? MultiplePulleyViewController {
-            // drawerVC.setDrawerPosition(position: .open, animated: true)
-        }
+        return true
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+
+        findNewRoute(self)
 
         return true
     }

@@ -40,11 +40,17 @@
                                                 <rect key="frame" x="8" y="-1" width="56" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="Cancel"/>
+                                                <connections>
+                                                    <action selector="cancelNewRoute:" destination="HvW-ek-mO7" eventType="touchUpInside" id="C7g-B9-Tu4"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpd-5P-h0p">
                                                 <rect key="frame" x="303" y="-1" width="48" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="Route"/>
+                                                <connections>
+                                                    <action selector="findNewRoute:" destination="HvW-ek-mO7" eventType="touchUpInside" id="B4S-uH-bHW"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -155,6 +161,10 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="plain" separatorStyle="default" rowHeight="68" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DDq-rv-eNK">
                                         <rect key="frame" x="0.0" y="164" width="375" height="513"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="HvW-ek-mO7" id="mpz-IA-9bZ"/>
+                                            <outlet property="delegate" destination="HvW-ek-mO7" id="9NV-Rc-sOo"/>
+                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -195,6 +205,8 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <connections>
+                <outlet property="destinationTextField" destination="S0L-5g-8vV" id="Wo5-88-rfX"/>
+                <outlet property="originTextField" destination="plZ-RP-LGp" id="yWf-Y4-S8h"/>
                 <outlet property="searchBackground" destination="VwZ-4k-i24" id="JkL-6O-dAM"/>
                 <outlet property="tableView" destination="DDq-rv-eNK" id="RDF-rq-kjJ"/>
             </connections>
