@@ -6,8 +6,85 @@ import SwiftyJSON
 
 class RestClient {
 
+    // - MARK: Internal network requests
 
-    // - MARK: GET
+    static func getInternal(_ endpoint: String, parameters: Parameters? = nil) -> Alamofire.DataRequest {
+        return request(endpoint, method: .get, parameters: parameters)
+    }
+
+    static func postInternal(_ endpoint: String, parameters: Parameters? = nil) -> Alamofire.DataRequest {
+        return request(endpoint, method: .post, parameters: parameters)
+    }
+
+    static func putInternal(_ endpoint: String, parameters: Parameters? = nil) -> Alamofire.DataRequest {
+        return request(endpoint, method: .put, parameters: parameters)
+    }
+
+    static func request(_ endpoint: String, method: HTTPMethod, parameters: Parameters? = nil) -> Alamofire.DataRequest {
+        let url = "\(Endpoint.API)\(endpoint)"
+        let headers = getHeaders(url)
+
+        Log.debug("\(method.rawValue.uppercased()): \(url)")
+
+        return Alamofire.request(url, method: method, parameters: parameters, headers: headers)
+    }
+
+
+    // - MARK: Headers
+
+    static func getHeaders(_ url: URLConvertible) -> [String : String] {
+        // let versionCode = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
+        // let versionName = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+
+        let versionCode = "80"
+        let versionName = "2.8.0"
+
+        var headers = [
+                "User-Agent": "SasaBus Android",
+                "X-Device": DeviceUtils.getModel(),
+                "X-Language": Utils.locale(),
+                "X-Version-Code": versionCode,
+                "X-Version-Name": versionName,
+                "X-Android-Id": DeviceUtils.getIdentifier()
+        ]
+
+        if requiresAuthHeader(try! url.asURL().pathComponents) {
+            let token = AuthHelper.getTokenIfValid()
+
+            if let token = token {
+                headers["Authorization"] = "Bearer \(token)"
+            } else {
+                Log.error("Token is invalid")
+            }
+        }
+
+        return headers
+    }
+
+    static func requiresAuthHeader(_ segments: [String]) -> Bool {
+        if segments.count <= 3 {
+            return false
+        }
+
+        let path = segments[2]
+        let segment = segments[3]
+
+        if path == "eco" || path == "sync" {
+            return true
+        }
+
+        if path == "auth" {
+            if segment == "password" || segment == "logout" || segment == "delete" {
+                return true
+            }
+        }
+
+        return false
+    }
+}
+
+
+extension RestClient {
 
     static func get<T:JSONable>(_ url: String, index: String) -> Observable<T?> {
         return Observable<T?>.create { observer -> Disposable in
@@ -84,9 +161,9 @@ class RestClient {
             }
         }
     }
+}
 
-
-    // - MARK: POST
+extension RestClient {
 
     static func post(_ url: String, parameters: Parameters? = nil) -> Observable<JSON> {
         return Observable<JSON>.create { observer -> Disposable in
@@ -106,9 +183,9 @@ class RestClient {
             }
         }
     }
+}
 
-
-    // - MARK: PUT
+extension RestClient {
 
     static func put<T:JSONable>(_ url: String, index: String) -> Observable<T?> {
         return Observable<T?>.create { observer -> Disposable in
@@ -190,82 +267,4 @@ class RestClient {
             }
         }
     }
-
-
-    // - MARK: Internal network requests
-
-    static func getInternal(_ endpoint: String, parameters: Parameters? = nil) -> Alamofire.DataRequest {
-        return request(endpoint, method: .get, parameters: parameters)
-    }
-
-    static func postInternal(_ endpoint: String, parameters: Parameters? = nil) -> Alamofire.DataRequest {
-        return request(endpoint, method: .post, parameters: parameters)
-    }
-
-    static func putInternal(_ endpoint: String, parameters: Parameters? = nil) -> Alamofire.DataRequest {
-        return request(endpoint, method: .put, parameters: parameters)
-    }
-
-    static func request(_ endpoint: String, method: HTTPMethod, parameters: Parameters? = nil) -> Alamofire.DataRequest {
-        let url = "\(Endpoint.API)\(endpoint)"
-        let headers = getHeaders(url)
-
-        Log.debug("\(method.rawValue.uppercased()): \(url)")
-
-        return Alamofire.request(url, method: method, parameters: parameters, headers: headers)
-    }
-
-
-    // - MARK: Headers
-
-    static func getHeaders(_ url: URLConvertible) -> [String : String] {
-        // let versionCode = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
-        // let versionName = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
-
-        let versionCode = "80"
-        let versionName = "2.8.0"
-
-        var headers = [
-                "User-Agent": "SasaBus Android",
-                "X-Device": DeviceUtils.getModel(),
-                "X-Language": Utils.locale(),
-                "X-Version-Code": versionCode,
-                "X-Version-Name": versionName,
-                "X-Android-Id": DeviceUtils.getIdentifier()
-        ]
-
-        if requiresAuthHeader(try! url.asURL().pathComponents) {
-            let token = AuthHelper.getTokenIfValid()
-
-            if let token = token {
-                headers["Authorization"] = "Bearer \(token)"
-            } else {
-                Log.error("Token is invalid")
-            }
-        }
-
-        return headers
-    }
-
-    static func requiresAuthHeader(_ segments: [String]) -> Bool {
-        if segments.count <= 3 {
-            return false
-        }
-
-        let path = segments[2]
-        let segment = segments[3]
-
-        if path == "eco" || path == "sync" {
-            return true
-        }
-
-        if path == "auth" {
-            if segment == "password" || segment == "logout" || segment == "delete" {
-                return true
-            }
-        }
-
-        return false
-    }
-
 }

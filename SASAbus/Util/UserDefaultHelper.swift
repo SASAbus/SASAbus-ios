@@ -26,26 +26,15 @@ class UserDefaultHelper {
 
     static let instance = UserDefaultHelper()
 
-    static let MAP_DOWNLOADED_DONE_KEY: String = "MAP_DOWNLOADED_DONE_KEY"
-    static let DATA_DOWNLOADED_DONE_KEY: String = "DATA_DOWNLOADED_DONE_KEY"
-    static let LAST_SURVEY_KEY: String = "LAST_SURVEY_KEY"
-    static let SURVEY_CYCLE_KEY: String = "SURVEY_CYCLE_KEY"
-    static let BUS_STATION_FAVORITES_KEY: String = "BUS_STATION_FAVORITES_KEY"
-    static let ASK_FOR_MAPS_DOWNLOAD_KEY: String = "ASK_FOR_MAPS_DOWNLOAD_KEY"
-    static let ASK_FOR_MAPS_DOWNLOAD_NO_COUNT_KEY: String = "ASK_FOR_MAPS_DOWNLOAD_NO_COUNT_KEY"
     static let PRIVACY_HTML_KEY: String = "PRIVACY_HTML_KEY"
     static let BEACON_STATION_DETECTION_KEY: String = "BEACON_STATION_DETECTION_KEY"
     static let BEACON_CURRENT_BUS_STOP_KEY: String = "BEACON_CURRENT_BUS_STATION_KEY"
     static let BEACON_CURRENT_BUS_STOP_TIMESTAMP_KEY: String = "BEACON_CURRENT_BUS_STOP_TIMESTAMP_KEY"
 
     init() {
-        //Init user defaults
         var appDefaults: [String: AnyObject] = [:]
 
-        appDefaults[UserDefaultHelper.ASK_FOR_MAPS_DOWNLOAD_KEY] = true as AnyObject?
         appDefaults[UserDefaultHelper.BEACON_STATION_DETECTION_KEY] = true as AnyObject?
-        appDefaults[UserDefaultHelper.SURVEY_CYCLE_KEY] = 604800 as AnyObject?
-        appDefaults[UserDefaultHelper.ASK_FOR_MAPS_DOWNLOAD_NO_COUNT_KEY] = 0 as AnyObject?
 
         UserDefaults.standard.register(defaults: appDefaults)
         UserDefaults.standard.synchronize()
@@ -112,91 +101,12 @@ class UserDefaultHelper {
         return []
     }
 
-    func setDataDownloadStatus(_ done: Bool) {
-        self.getUserDefaults().set(done, forKey: UserDefaultHelper.DATA_DOWNLOADED_DONE_KEY)
-        self.getUserDefaults().synchronize()
-    }
-
-    func getDataDownloadStatus() -> Bool {
-        var dataDownloadStatus = false
-        if self.getUserDefaults().object(forKey: UserDefaultHelper.DATA_DOWNLOADED_DONE_KEY) != nil {
-            dataDownloadStatus = self.getUserDefaults().bool(forKey: UserDefaultHelper.DATA_DOWNLOADED_DONE_KEY)
-        }
-        return dataDownloadStatus
-    }
-
-    func setMapDownloadStatus(_ done: Bool) {
-        self.getUserDefaults().set(done, forKey: UserDefaultHelper.MAP_DOWNLOADED_DONE_KEY)
-        self.getUserDefaults().synchronize()
-    }
-
-    func getMapDownloadStatus() -> Bool {
-        var mapDownloadStatus = false
-        if self.getUserDefaults().object(forKey: UserDefaultHelper.MAP_DOWNLOADED_DONE_KEY) != nil {
-            mapDownloadStatus = self.getUserDefaults().bool(forKey: UserDefaultHelper.MAP_DOWNLOADED_DONE_KEY)
-        }
-        return mapDownloadStatus
-    }
-
-    func setLastSurveyTimeStamp(_ surveyTimeStamp: Int) {
-        self.getUserDefaults().set(surveyTimeStamp, forKey: UserDefaultHelper.LAST_SURVEY_KEY)
-        self.getUserDefaults().synchronize()
-    }
-
-    func getLastSurveyTimeStamp() -> Int? {
-        var lastSurveyTimeStamp: Int? = nil
-        if self.getUserDefaults().object(forKey: UserDefaultHelper.LAST_SURVEY_KEY) != nil {
-            lastSurveyTimeStamp = self.getUserDefaults().integer(forKey: UserDefaultHelper.LAST_SURVEY_KEY)
-        }
-        return lastSurveyTimeStamp
-    }
-
-    func getSurveyCycle() -> Int? {
-        var surveyCycle: Int? = Config.surveyRecurringTimeDefault
-        if self.getUserDefaults().object(forKey: UserDefaultHelper.SURVEY_CYCLE_KEY) != nil {
-            surveyCycle = self.getUserDefaults().integer(forKey: UserDefaultHelper.SURVEY_CYCLE_KEY)
-        }
-        return surveyCycle
-    }
-
     func isBeaconStationDetectionEnabled() -> Bool {
         var beaconStationDetectionEnabled: Bool = true
         if self.getUserDefaults().object(forKey: UserDefaultHelper.BEACON_STATION_DETECTION_KEY) != nil {
             beaconStationDetectionEnabled = self.getUserDefaults().bool(forKey: UserDefaultHelper.BEACON_STATION_DETECTION_KEY)
         }
         return beaconStationDetectionEnabled
-    }
-
-    func shouldAskForMapDownload() -> Bool {
-        var askForMapDownload: Bool = true
-        if self.getUserDefaults().object(forKey: UserDefaultHelper.ASK_FOR_MAPS_DOWNLOAD_KEY) != nil {
-            askForMapDownload = self.getUserDefaults().bool(forKey: UserDefaultHelper.ASK_FOR_MAPS_DOWNLOAD_KEY)
-        }
-        return askForMapDownload
-    }
-
-    func setAskForMapDownload(_ value: Bool) {
-        self.getUserDefaults().set(value, forKey: UserDefaultHelper.ASK_FOR_MAPS_DOWNLOAD_KEY)
-        self.getUserDefaults().synchronize()
-    }
-
-    func getAskedForDownloadsNoCount() -> Int {
-        var askedForDownloadsNoCount: Int = 0
-        if self.getUserDefaults().object(forKey: UserDefaultHelper.ASK_FOR_MAPS_DOWNLOAD_KEY) != nil {
-            askedForDownloadsNoCount = self.getUserDefaults().integer(forKey: UserDefaultHelper.ASK_FOR_MAPS_DOWNLOAD_NO_COUNT_KEY)
-        }
-        return askedForDownloadsNoCount
-    }
-
-    func incrementAskedForDownloadsNoCount() {
-        let askedForDownloadsNoCount = self.getAskedForDownloadsNoCount() + 1
-        self.getUserDefaults().set(askedForDownloadsNoCount, forKey: UserDefaultHelper.ASK_FOR_MAPS_DOWNLOAD_NO_COUNT_KEY)
-        self.getUserDefaults().synchronize()
-    }
-
-    func setPrivacyHtml(_ value: String) {
-        self.getUserDefaults().setValue(value, forKey: UserDefaultHelper.PRIVACY_HTML_KEY)
-        self.getUserDefaults().synchronize()
     }
 
     func getPrivacyHtml() -> String {

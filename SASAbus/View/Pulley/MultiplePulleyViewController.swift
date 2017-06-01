@@ -640,8 +640,6 @@ extension MultiplePulleyViewController: UIScrollViewDelegate {
             return
         }
 
-        Log.debug("scrollViewDidScroll scroll index: \(index)")
-
         let drawerVCCompliant = drawerContentViewController[index] as! PulleyDrawerViewControllerDelegate
         let collapsedHeight = drawerVCCompliant.collapsedDrawerHeight()
 

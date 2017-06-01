@@ -28,7 +28,7 @@ enum SurveyApiRouter: URLRequestConvertible {
 
     // APIs exposed
     case getSurvey
-    case insertSurvey([String: AnyObject])
+    case insertSurvey([String : AnyObject])
 
     var method: HTTPMethod {
         switch self {

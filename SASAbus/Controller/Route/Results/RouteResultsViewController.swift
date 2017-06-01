@@ -20,8 +20,9 @@ class RouteResultsViewController: UIViewController {
         Log.error("Origin button click")
 
         parentVC.setDrawerPosition(position: .open, animated: true, completion: { _ in
-            self.parentVC.routeController.highlightOriginText()
         }, index: parentVC.routeController.drawerIndex())
+
+        self.parentVC.routeController.highlightOriginText()
     }
 
     @IBAction func hideRoute(_ sender: Any) {
