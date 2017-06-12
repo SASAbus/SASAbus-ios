@@ -222,11 +222,11 @@ class BusTileOverlay: MKTileOverlay {
         let urlFormatted: String
 
         if parent.allMapOverlaysEnabled {
-            let url = Endpoint.API_DATA + Endpoint.MAP_TILES_ALL
+            let url = Endpoint.dataApiUrl + Endpoint.MAP_TILES_ALL
             urlFormatted = String(format: url, path.x, path.y, path.z)
 
         } else {
-            let url = Endpoint.API_DATA + Endpoint.MAP_TILES
+            let url = Endpoint.dataApiUrl + Endpoint.MAP_TILES
             urlFormatted = String(format: url, path.x, path.y, path.z,
                     parent.selectedBus!.lineId, parent.selectedBus!.variant)
         }

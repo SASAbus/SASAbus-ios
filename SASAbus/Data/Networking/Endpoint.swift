@@ -1,11 +1,7 @@
 import Foundation
+import Firebase
 
 public struct Endpoint {
-
-    static let HOST = "https://sasa-bus.appspot.com/"
-    static let API = "https://sasa-bus.appspot.com/v1/"
-
-    static let API_DATA = "https://sasa-bus-data.appspot.com/v1/"
 
     static let REALTIME = "realtime"
     static let REALTIME_VEHICLE = "realtime/vehicle/" // {id}
@@ -43,7 +39,7 @@ public struct Endpoint {
 
     static let ECO_POINTS_PROFILE_PICTURE_USER = "assets/images/profile_pictures/"
 
-    static let REPORT = "report/{type}"
+    static let REPORT = "ios/report"
     static let SURVEY = "survey"
 
     static let DISRUPTIONS = "disruptions"
@@ -62,4 +58,31 @@ public struct Endpoint {
 
     static let MAP_TILES = "map/coordinates/%d/%d/%d/line/%d/variant/%d"
     static let MAP_TILES_ALL = "map/coordinates/%d/%d/%d"
+
+
+    // ========================================== REMOTE CONFIG ENDPOINTS ==============================================
+
+    static var apiUrl: String {
+        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL].stringValue!
+    }
+
+    static var realtimeApiUrl: String {
+        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_REALTIME].stringValue!
+    }
+
+    static var dataApiUrl: String {
+        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_DATA].stringValue!
+    }
+
+    static var reportsApiUrl: String {
+        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_REPORTS].stringValue!
+    }
+
+    static var telemetryApiUrl: String {
+        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_TELEMETRY].stringValue!
+    }
+
+    static var databaseApiUrl: String {
+        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_DATABASE].stringValue!
+    }
 }

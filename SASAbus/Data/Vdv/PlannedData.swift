@@ -56,7 +56,7 @@ class PlannedData {
             }
 
             // Download new data
-            let request = Alamofire.download(Endpoint.API.appending(FILENAME_ONLINE), to: destination)
+            let request = Alamofire.download(Endpoint.dataApiUrl.appending(FILENAME_ONLINE), to: destination)
                     .downloadProgress(queue: DispatchQueue.main, closure: progress)
                     .response(queue: DispatchQueue(label: "com.sasabus.download", qos: .utility, attributes: [.concurrent])) { response in
                         if let error = response.error {

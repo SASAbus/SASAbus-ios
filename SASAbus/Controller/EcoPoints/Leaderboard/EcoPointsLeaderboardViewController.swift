@@ -66,7 +66,7 @@ class EcoPointsLeaderboardViewController: UIViewController, UITableViewDataSourc
             cell.pointsText.text = "\(item.points) points"
             cell.rankText.text = "\(indexPath.row + 1)"
 
-            let url = URL(string: Endpoint.API + Endpoint.ECO_POINTS_PROFILE_PICTURE_USER + String(item.profile))!
+            let url = URL(string: Endpoint.apiUrl + Endpoint.ECO_POINTS_PROFILE_PICTURE_USER + String(item.profile))!
             cell.profileImage.kf.setImage(with: url)
 
             return cell

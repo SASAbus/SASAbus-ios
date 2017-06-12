@@ -96,6 +96,7 @@
 		1F2E359580DE91AC44926557 /* InAppBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F6C7DCB2C618E380AB9 /* InAppBadge.swift */; };
 		1F2E35AD06092CCB73713920 /* Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3CE1C685415B3BEAF608 /* Lines.swift */; };
 		1F2E35DA3AE7F7DCA9F760D6 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3355BD4CDCF30F56CFD7 /* Formatters.swift */; };
+		1F2E35F72064E04BB870EA19 /* ReportApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E36E154AA5433D1007817 /* ReportApi.swift */; };
 		1F2E35FF40C930097D89721E /* NetUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3893C4C2E99DBBB8B9EA /* NetUtils.swift */; };
 		1F2E3604B006B7DA596A4E6B /* LineCourseMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3282D8E06FD68BEEDE22 /* LineCourseMapViewController.swift */; };
 		1F2E360A6582777CFD3B2F24 /* EcoPointsBadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A720D179E78FF71BE59 /* EcoPointsBadgesViewController.swift */; };
@@ -314,6 +315,7 @@
 		FA2691221E93FAFE000B8A84 /* BeaconHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E31C48E5FE3CBBB0679C9 /* BeaconHandler.swift */; };
 		FA2691241E93FB24000B8A84 /* IOUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3517A8CBE2379BA82AD0 /* IOUtils.swift */; };
 		FA2691251E93FB2E000B8A84 /* DeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D74BC0AC7B329114C47 /* DeviceUtils.swift */; };
+		FA2A04B91EEE8EA700164E97 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA2A04B81EEE8EA700164E97 /* RemoteConfigDefaults.plist */; };
 		FA54DE501E9560930071E42C /* TripSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E39698880C3DBEC3E99F2 /* TripSyncHelper.swift */; };
 		FA54DE541E9651710071E42C /* BadgeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E314A1DCC9BAFE8BE5925 /* BadgeHelper.swift */; };
 		FA54DE551E9651740071E42C /* InAppBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F6C7DCB2C618E380AB9 /* InAppBadge.swift */; };
@@ -464,6 +466,7 @@
 		1F2E369B4201825C5B16E43A /* RouteMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RouteMapViewController.xib; sourceTree = "<group>"; };
 		1F2E36A540A89AC599FE365D /* EcoPointsStatsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EcoPointsStatsCell.xib; sourceTree = "<group>"; };
 		1F2E36BD359ABF56B7BA4637 /* DefaultSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = DefaultSettings.plist; sourceTree = "<group>"; };
+		1F2E36E154AA5433D1007817 /* ReportApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportApi.swift; sourceTree = "<group>"; };
 		1F2E3703279A53D7C7A7BA64 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		1F2E373BB9367E72DDCD415E /* RestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
 		1F2E37477228586AB3FA951B /* MainRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRouteViewController.swift; sourceTree = "<group>"; };
@@ -609,6 +612,7 @@
 		FA2690E81E93B927000B8A84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA2690F11E93C7E6000B8A84 /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		FA2690F31E93C9E4000B8A84 /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		FA2A04B81EEE8EA700164E97 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		FA401F2A1E921EA400E7F282 /* SASAbus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SASAbus.entitlements; sourceTree = "<group>"; };
 		FA54DE5D1E969AAA0071E42C /* BusDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusDetailsViewController.xib; sourceTree = "<group>"; };
 		FAB85BE51EEA8BF400D6EB4A /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
@@ -919,6 +923,7 @@
 				1F2E33C79307AC007107C209 /* Sync */,
 				1F2E344A5C9367445391D5E0 /* GoogleService-Info.plist */,
 				1F2E395EA5304297F86C5AAC /* Data */,
+				FA2A04B81EEE8EA700164E97 /* RemoteConfigDefaults.plist */,
 			);
 			path = SASAbus;
 			sourceTree = "<group>";
@@ -1259,6 +1264,7 @@
 				1F2E3A67A910AE6D67ED64A2 /* CloudApi.swift */,
 				1F2E3E09901871FFC36E9B44 /* PathsApi.swift */,
 				1F2E3F85B6024F04F858B7D3 /* NewsApi.swift */,
+				1F2E36E154AA5433D1007817 /* ReportApi.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -1679,6 +1685,7 @@
 				1F2E38AD94FE71814E57815D /* LineDetailsBusesViewController.xib in Resources */,
 				1F2E341095903726C351A947 /* LineDetailsMapViewController.xib in Resources */,
 				1F2E343520FD5AF6D8DBF8F8 /* LineDetailsBuses.xib in Resources */,
+				FA2A04B91EEE8EA700164E97 /* RemoteConfigDefaults.plist in Resources */,
 				FABCEED31EDEB60D00E48116 /* LineCourseViewController.xib in Resources */,
 				1F2E3C20D84BCBE75A3BB448 /* LineDetailsHeader.xib in Resources */,
 				1F2E30B3E0A59AA5D14A1DC9 /* busstops.realm in Resources */,
@@ -1987,6 +1994,7 @@
 				1F2E3DDA56BFBFB52C7088AD /* RouteSearchViewController.swift in Sources */,
 				1F2E3AB430C44BAD108EA80F /* RouteResultsViewController.swift in Sources */,
 				1F2E34D3D7F7448ED49ABBDA /* ReportViewController.swift in Sources */,
+				1F2E35F72064E04BB870EA19 /* ReportApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

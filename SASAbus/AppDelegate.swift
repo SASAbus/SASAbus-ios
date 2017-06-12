@@ -43,9 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool {
         setupLogging()
+        setupFirebase()
         setupRealm()
         setupModels()
-        setupGoogle()
         setupBeacons()
         setupNotifications()
 
@@ -150,8 +150,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 #endif
     }
 
-    func setupGoogle() {
+    func setupFirebase() {
+        FirebaseApp.configure()
 
+        let remoteConfig = RemoteConfig.remoteConfig()
+        let remoteConfigSettings = RemoteConfigSettings(developerModeEnabled: true)!
+
+        remoteConfig.configSettings = remoteConfigSettings
+        remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults")
+
+        remoteConfig.fetch(withExpirationDuration: TimeInterval(86400)) { (status, error) -> Void in
+            if status == .success {
+                Log.error("Remote config fetch succeeded.")
+
+                let oldUrl = Endpoint.apiUrl
+
+                remoteConfig.activateFetched()
+
+                let url = Endpoint.apiUrl
+                Log.warning("Api url: \(url)")
+
+                let realtimeUrl = Endpoint.realtimeApiUrl
+                Log.warning("Realtime api url: \(realtimeUrl)")
+
+                let dataUrl = Endpoint.dataApiUrl
+                Log.warning("Data api url: \(dataUrl)")
+
+                let reportsUrl = Endpoint.reportsApiUrl
+                Log.warning("Reports api url: \(reportsUrl)")
+
+                let telemetryUrl = Endpoint.telemetryApiUrl
+                Log.warning("Telemetry api url: \(telemetryUrl)")
+
+                let databaseUrl = Endpoint.databaseApiUrl
+                Log.warning("Database api url: \(databaseUrl)")
+
+                if oldUrl != url {
+                    Log.error("Api url changed from \(oldUrl) to \(url), reloading Retrofit")
+
+                    // RestClient.init(this)
+                    // RestClient.initRealtime(this)
+                }
+
+            } else {
+                print("Remote config fetch failed: \(error)")
+            }
+        }
     }
 
     func setupRealm() {
@@ -181,8 +225,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UIApplication.shared.registerForRemoteNotifications()
         Notifications.clearAll()
-
-        FirebaseApp.configure()
 
         Messaging.messaging().delegate = self
         Messaging.messaging().shouldEstablishDirectChannel = true

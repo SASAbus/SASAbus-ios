@@ -19,4 +19,14 @@ public class Config {
     static let DELIMITER = ", "
 
     static let DIESEL_PRICE: Float = 1.48
+
+
+    // ====================================== REMOTE CONFIG ========================================
+
+    static let REMOTE_CONFIG_HOST_URL = "host_api"
+    static let REMOTE_CONFIG_HOST_URL_DATA = "host_api_data"
+    static let REMOTE_CONFIG_HOST_URL_REPORTS = "host_api_reports"
+    static let REMOTE_CONFIG_HOST_URL_TELEMETRY = "host_api_telemetry"
+    static let REMOTE_CONFIG_HOST_URL_DATABASE = "host_api_database"
+    static let REMOTE_CONFIG_HOST_URL_REALTIME = "realtime_api_url"
 }

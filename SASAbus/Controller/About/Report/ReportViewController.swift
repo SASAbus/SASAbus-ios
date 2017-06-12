@@ -21,6 +21,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewDelegate,
         UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -56,6 +58,9 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
 
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var emailText: UITextField!
+
+    @IBOutlet weak var nameView: UIView!
+    @IBOutlet weak var nameText: UITextField!
 
     @IBOutlet weak var submitButton: UIButton!
 
@@ -105,6 +110,9 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
         makeButton(view: image5, button: image5Button, image: image5Image)
 
         makePicker()
+
+        nameView.layer.borderColor = Color.borderColor.cgColor
+        nameView.layer.borderWidth = 1
 
         emailView.layer.borderColor = Color.borderColor.cgColor
         emailView.layer.borderWidth = 1
@@ -194,6 +202,24 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
         chooseTypeInput.endEditing(false)
     }
 
+    func pickImageFromImage(sender: UITapGestureRecognizer) {
+        if let image = sender.view as? UIImageView {
+            selectedImage = image
+        } else {
+            return
+        }
+
+        if selectedImage!.image == nil {
+            return
+        }
+
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+
+        present(imagePicker, animated: true)
+    }
+
+
     @IBAction func pickImage(_ sender: UIButton) {
         selectedButton = sender
 
@@ -218,21 +244,15 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
         present(imagePicker, animated: true)
     }
 
-    func pickImageFromImage(sender: UITapGestureRecognizer) {
-        if let image = sender.view as? UIImageView {
-            selectedImage = image
-        } else {
-            return
-        }
-
-        if selectedImage!.image == nil {
-            return
-        }
-
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .photoLibrary
-
-        present(imagePicker, animated: true)
+    @IBAction func submitClick(_ sender: Any) {
+        _ = ReportApi.upload()
+                .subscribeOn(MainScheduler.background)
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { _ in
+                    Log.error("Upload success")
+                }, onError: { error in
+                    Log.error("Upload failed: \(error)")
+                })
     }
 
 

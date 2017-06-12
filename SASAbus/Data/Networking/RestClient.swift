@@ -21,7 +21,7 @@ class RestClient {
     }
 
     static func request(_ endpoint: String, method: HTTPMethod, parameters: Parameters? = nil) -> Alamofire.DataRequest {
-        let url = "\(Endpoint.API)\(endpoint)"
+        let url = "\(Endpoint.apiUrl)\(endpoint)"
         let headers = getHeaders(url)
 
         Log.debug("\(method.rawValue.uppercased()): \(url)")
@@ -238,7 +238,7 @@ extension RestClient {
 
     static func putBody(_ url: String, json body: String) -> Observable<JSON> {
         return Observable<JSON>.create { observer -> Disposable in
-            let fullUrl = "\(Endpoint.API)\(url)"
+            let fullUrl = "\(Endpoint.apiUrl)\(url)"
             var request = URLRequest(url: URL(string: fullUrl)!)
 
             request.httpMethod = HTTPMethod.put.rawValue

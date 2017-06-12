@@ -9,6 +9,7 @@ def default_pods
 
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
+  pod 'Firebase/RemoteConfig'
 
   pod 'zipzap', '~> 8.0.4'
 

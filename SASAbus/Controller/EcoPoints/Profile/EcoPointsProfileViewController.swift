@@ -80,7 +80,7 @@ class EcoPointsProfileViewController: UITableViewController {
                 cell.rankText.text = "\(profile.rank)"
 
                 let profileId: Int = (self.profile?.profile)!
-                let url = URL(string: Endpoint.API + Endpoint.ECO_POINTS_PROFILE_PICTURE_USER + String(profileId))!
+                let url = URL(string: Endpoint.apiUrl + Endpoint.ECO_POINTS_PROFILE_PICTURE_USER + String(profileId))!
                 cell.profilePicture.kf.setImage(with: url)
 
                 cell.loadingView.alpha = 0
