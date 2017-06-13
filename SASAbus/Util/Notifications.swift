@@ -32,7 +32,6 @@ class Notifications {
 
     static func badge(badge: InAppBadge) {
         let center = UNUserNotificationCenter.current()
-
         let content = UNMutableNotificationContent()
 
         content.title = badge.title
