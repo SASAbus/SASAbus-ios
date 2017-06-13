@@ -31,6 +31,7 @@ import UserNotifications
 import RxSwift
 import RxCocoa
 import Firebase
+import AlamofireNetworkActivityIndicator
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -48,6 +49,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupModels()
         setupBeacons()
         setupNotifications()
+
+        NetworkActivityIndicatorManager.shared.isEnabled = true
+        NetworkActivityIndicatorManager.shared.startDelay = 0.5
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
 

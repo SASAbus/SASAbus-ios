@@ -18,6 +18,7 @@ def default_pods
   pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :branch => 'swift-3'
 
   pod 'Alamofire', '~> 4.4'
+  pod 'AlamofireNetworkActivityIndicator', '~> 2.0'
 
   pod 'SwiftyJSON'
 

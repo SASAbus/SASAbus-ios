@@ -66,8 +66,6 @@ class ReportApi {
                         }
                     })
 
-            // TODO: Delete images after upload
-
             return Disposables.create()
         }
     }

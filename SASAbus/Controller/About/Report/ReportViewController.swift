@@ -27,7 +27,8 @@ import RxCocoa
 class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewDelegate,
         UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    var placeHolderText = "Placeholder Text..."
+    var placeHolderText = "Even though we can't reply to all messages, " +
+            "all suggestions are more than welcome and are taken into serious consideration."
 
     var typeOptions = ["Report a bug", "Suggest a feature"]
 
@@ -146,7 +147,7 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
     }
 
     public func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text == "" {
+        if messageText.text.isEmpty {
             messageText.text = placeHolderText
             messageText.textColor = UIColor.lightGray
         }
@@ -233,7 +234,7 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
         // Delete old image in case it exists
         let fileManager = FileManager.default
 
-        for i in 1..<6 {
+        for i in 0..<5 {
             let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             let imagePath = documents.appendingPathComponent("image_\(i).jpg")
 
@@ -247,6 +248,51 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
                 }
             }
         }
+    }
+
+
+    func enableAllViews() {
+        submitMenuButton.isEnabled = true
+
+        chooseTypeInput.isEnabled = true
+        messageText.isUserInteractionEnabled = true
+
+        image1Button.isEnabled = true
+        image2Button.isEnabled = true
+        image3Button.isEnabled = true
+        image4Button.isEnabled = true
+        image5Button.isEnabled = true
+
+        image1Image.isUserInteractionEnabled = true
+        image2Image.isUserInteractionEnabled = true
+        image3Image.isUserInteractionEnabled = true
+        image4Image.isUserInteractionEnabled = true
+        image5Image.isUserInteractionEnabled = true
+
+        emailText.isEnabled = true
+        nameText.isEnabled = true
+    }
+
+    func disableAllViews() {
+        submitMenuButton.isEnabled = false
+
+        chooseTypeInput.isEnabled = false
+        messageText.isUserInteractionEnabled = false
+
+        image1Button.isEnabled = false
+        image2Button.isEnabled = false
+        image3Button.isEnabled = false
+        image4Button.isEnabled = false
+        image5Button.isEnabled = false
+
+        image1Image.isUserInteractionEnabled = false
+        image2Image.isUserInteractionEnabled = false
+        image3Image.isUserInteractionEnabled = false
+        image4Image.isUserInteractionEnabled = false
+        image5Image.isUserInteractionEnabled = false
+
+        emailText.isEnabled = false
+        nameText.isEnabled = false
     }
 
 
@@ -275,7 +321,7 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
     }
 
     @IBAction func submitClick(_ sender: Any?) {
-        submitMenuButton.isEnabled = false
+        disableAllViews()
 
         let body = Body(
                 name: nameText.text!,
@@ -289,8 +335,6 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { _ in
                     Log.error("Upload success")
-
-                    self.submitMenuButton.isEnabled = true
 
                     self.deleteAllPictures()
 
@@ -308,7 +352,7 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
                 }, onError: { error in
                     Log.error("Upload failed: \(error)")
 
-                    self.submitMenuButton.isEnabled = true
+                    self.enableAllViews()
 
                     let alert = UIAlertController(
                             title: "Upload failed",
@@ -381,15 +425,15 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
 
         switch selectedImage! {
         case image1Image:
-            fileName = "image_1.jpg"
+            fileName = "image_0.jpg"
         case image2Image:
-            fileName = "image_2.jpg"
+            fileName = "image_1.jpg"
         case image3Image:
-            fileName = "image_3.jpg"
+            fileName = "image_2.jpg"
         case image4Image:
-            fileName = "image_4.jpg"
+            fileName = "image_3.jpg"
         case image5Image:
-            fileName = "image_5.jpg"
+            fileName = "image_4.jpg"
         default:
             fatalError()
         }
