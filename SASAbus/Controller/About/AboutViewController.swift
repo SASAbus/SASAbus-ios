@@ -3,8 +3,8 @@ import SafariServices
 
 class AboutViewController: MasterTableViewController {
 
-    let URL_TERMS = NetUtils.HOST + "/terms"
-    let URL_PRIVACY = NetUtils.HOST + "/privacy"
+    let URL_TERMS = "\(NetUtils.HOST)/terms"
+    let URL_PRIVACY = "\(NetUtils.HOST)/privacy"
 
     let items = [
             "Changelog",
@@ -71,6 +71,8 @@ extension AboutViewController {
             let controller = ReportViewController()
             self.navigationController!.pushViewController(controller, animated: true)
         case 2:
+            let controller = CreditsViewController()
+            self.navigationController!.pushViewController(controller, animated: true)
             break
         case 3:
             let svc = SFSafariViewController(url: URL(string: URL_TERMS)!)

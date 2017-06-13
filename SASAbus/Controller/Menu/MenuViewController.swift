@@ -61,13 +61,8 @@ struct Menu {
                     viewController: ParkingViewController(title: NSLocalizedString("Parking", comment: ""))),
 
             MenuItem(
-                    title: NSLocalizedString("Info", comment: ""),
-                    image: "ic_info_outline_white",
-                    viewController: InfoViewController(title: NSLocalizedString("Info", comment: ""))),
-
-            MenuItem(
                     title: NSLocalizedString("About", comment: ""),
-                    image: "",
+                    image: "ic_info_outline_white",
                     viewController: AboutViewController())
     ]
 }
