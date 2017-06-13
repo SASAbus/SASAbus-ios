@@ -79,10 +79,10 @@ class Body: Mappable {
 
     var category: Int
 
-    var iosVersionCode = UIDevice.current.systemVersion
+    var iosVersion = UIDevice.current.systemVersion
 
     var deviceName = UIDevice.current.name
-    var deviceModel = UIDevice.current.model
+    var deviceModel = DeviceUtils.getModel()
 
     var deviceIdentifier = DeviceUtils.getIdentifier()
 
@@ -139,7 +139,7 @@ class Body: Mappable {
 
         category <- map["category"]
 
-        iosVersionCode <- map["iosVersionCode"]
+        iosVersion <- map["iosVersion"]
 
         deviceName <- map["deviceName"]
         deviceModel <- map["deviceModel"]

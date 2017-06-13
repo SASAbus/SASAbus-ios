@@ -37,6 +37,17 @@ class AboutViewController: MasterTableViewController {
             self.tableView.deselectRow(at: row, animated: true)
         }
     }
+}
+
+extension AboutViewController {
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "About"
+    }
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
