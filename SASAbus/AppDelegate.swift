@@ -231,6 +231,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Messaging.messaging().subscribe(toTopic: "/topics/general")
         Messaging.messaging().subscribe(toTopic: "general")
+
+        UIApplication.shared.cancelAllLocalNotifications()
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
 

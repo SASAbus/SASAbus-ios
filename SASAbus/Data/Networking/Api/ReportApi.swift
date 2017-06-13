@@ -4,24 +4,36 @@ import RxCocoa
 import Alamofire
 import SwiftyJSON
 import Firebase
+import ObjectMapper
 
 class ReportApi {
 
-    static func upload() -> Observable<Any> {
+    static func upload(_ body: Body, images: [URL]) -> Observable<Any> {
         return Observable<Any>.create { observer -> Disposable in
             let url = "\(Endpoint.reportsApiUrl)\(Endpoint.REPORT)"
 
             let headers = RestClient.getHeaders(url)
 
-            let fileNames: [String] = []
+            let converted = body.toJSONString()
+
+            guard let json = converted else {
+                Log.error("Cannot convert JSON")
+                return Disposables.create()
+            }
 
             Log.debug("POST: \(url)")
 
             Alamofire.upload(
                     multipartFormData: { formData in
-                        for i in 0..<fileNames.count {
-                            let path = URL(fileURLWithPath: fileNames[i])
-                            formData.append(path, withName: "image_\(i)")
+                        formData.append(json.data(using: .utf8)!, withName: "body")
+
+                        for i in 0..<images.count {
+                            formData.append(
+                                    images[i],
+                                    withName: "image_\(i)",
+                                    fileName: images[i].lastPathComponent,
+                                    mimeType: "image/jpg"
+                            )
                         }
                     },
                     to: url,
@@ -34,21 +46,19 @@ class ReportApi {
 
                             request.request
                                     .uploadProgress { progress in
-                                        // main queue by default
                                         print("Upload Progress: \(progress.fractionCompleted)")
                                     }
                                     .downloadProgress { progress in
-                                        // main queue by default
                                         print("Download Progress: \(progress.fractionCompleted)")
                                     }
-                                    .responseJSON { response in
+                                    .response { response in
                                         debugPrint(response)
 
-                                        if response.result.isSuccess {
+                                        if response.error == nil {
                                             observer.on(.next(""))
                                             observer.onCompleted()
                                         } else {
-                                            observer.onError(response.result.error!)
+                                            observer.onError(response.error!)
                                         }
                                     }
                         case .failure(let error):
@@ -56,18 +66,20 @@ class ReportApi {
                         }
                     })
 
+            // TODO: Delete images after upload
+
             return Disposables.create()
         }
     }
 }
 
-class Body {
+class Body: Mappable {
 
-    let name: String
-    let email: String
-    let message: String
+    var name: String
+    var email: String
+    var message: String
 
-    let category: Int
+    var category: Int
 
     var iosVersionCode = UIDevice.current.systemVersion
 
@@ -91,7 +103,9 @@ class Body {
     internal var reportCreatedTimeMillis: Int64
     internal var reportCreatedTimeString: String
 
-    internal var preferences: [String : Any] = UserDefaults.standard.dictionaryRepresentation()
+    internal var preferences: [String : String] = UserDefaults.standard.dictionaryRepresentation().map { (key, value) in
+        (key, String(describing: value))
+    }
 
     internal var firebase: [String : String]!
 
@@ -114,6 +128,44 @@ class Body {
 
         firebase = parseFirebase()
     }
+
+
+    required init?(map: Map) {
+        fatalError("Cannot be initialized from JSON")
+    }
+
+    func mapping(map: Map) {
+        name <- map["name"]
+        email <- map["email"]
+        message <- map["message"]
+
+        category <- map["category"]
+
+        iosVersionCode <- map["iosVersionCode"]
+
+        deviceName <- map["deviceName"]
+        deviceModel <- map["deviceModel"]
+
+        deviceIdentifier <- map["deviceIdentifier"]
+
+        locale <- map["locale"]
+
+        appVersionCode <- map["appVersionCode"]
+        appVersionName <- map["appVersionName"]
+
+        firebaseLastFetchTimeMillis <- map["firebaseLastFetchTimeMillis"]
+        firebaseLastFetchTimeString <- map["firebaseLastFetchTimeString"]
+
+        firebaseLastFetchStatus <- map["firebaseLastFetchStatus"]
+
+        reportCreatedTimeMillis <- map["reportCreatedTimeMillis"]
+        reportCreatedTimeString <- map["reportCreatedTimeString"]
+
+        preferences <- map["preferences"]
+
+        firebase <- map["firebase"]
+    }
+
 
     func parseFirebase() -> [String : String] {
         var map = [String: String]()

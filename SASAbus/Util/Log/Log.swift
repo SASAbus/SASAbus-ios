@@ -24,10 +24,10 @@ open class Log {
     public static var enabled: Bool = true
 
     /// The logger formatter.
-    public static var formatter: Formatter = .default
+    public static var formatter: Formatter = .`default`
 
     /// The logger theme.
-    public static var theme: LogTheme = .ansi
+    public static var theme: LogTheme = .`default`
 
     /// The minimum level of severity.
     public static var minLevel: Level = .trace

@@ -67,9 +67,12 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
     var imagePicker = UIImagePickerController()
     var datePicker: UIPickerView!
 
+    var selectedCategory: Int = 0
+
     var selectedImage: UIImageView?
     var selectedButton: UIButton?
-    var selectedImages: [UIImage] = []
+
+    var selectedImagePaths: [URL] = []
 
 
     init(title: String?) {
@@ -196,7 +199,8 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
     }
 
     func pickerDoneClick() {
-        let option = typeOptions[datePicker.selectedRow(inComponent: 0)]
+        selectedCategory = datePicker.selectedRow(inComponent: 0)
+        let option = typeOptions[selectedCategory]
         chooseTypeInput.text = option
 
         chooseTypeInput.endEditing(false)
@@ -217,6 +221,28 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
         imagePicker.sourceType = .photoLibrary
 
         present(imagePicker, animated: true)
+    }
+
+    func deleteAllPictures() {
+        selectedImagePaths.removeAll()
+
+        // Delete old image in case it exists
+        let fileManager = FileManager.default
+
+        for i in 1..<6 {
+            let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let imagePath = documents.appendingPathComponent("image_\(i).jpg")
+
+            if fileManager.fileExists(atPath: imagePath.path) {
+                Log.info("Deleting old image '\(imagePath)'")
+
+                do {
+                    try fileManager.removeItem(at: imagePath)
+                } catch let error {
+                    print("Could not delete old image '\(imagePath)': \(error)")
+                }
+            }
+        }
     }
 
 
@@ -245,13 +271,24 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
     }
 
     @IBAction func submitClick(_ sender: Any) {
-        _ = ReportApi.upload()
+        let body = Body(
+                name: nameText.text!,
+                email: emailText.text!,
+                message: messageText.text,
+                category: selectedCategory
+        )
+
+        _ = ReportApi.upload(body, images: selectedImagePaths)
                 .subscribeOn(MainScheduler.background)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { _ in
                     Log.error("Upload success")
+
+                    self.deleteAllPictures()
                 }, onError: { error in
                     Log.error("Upload failed: \(error)")
+
+                    self.deleteAllPictures()
                 })
     }
 
@@ -300,15 +337,61 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
 
 
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            selectedImage?.contentMode = .scaleToFill
-            selectedImage?.image = pickedImage
-
-            selectedButton?.isHidden = true
-
-            selectedImages.append(pickedImage)
-        } else {
+        guard let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             Log.error("No image picked")
+            return
+        }
+
+        selectedImage?.contentMode = .scaleToFill
+        selectedImage?.image = pickedImage
+
+        selectedButton?.isHidden = true
+
+        var fileName: String
+
+        switch selectedImage! {
+        case image1Image:
+            fileName = "image_1.jpg"
+        case image2Image:
+            fileName = "image_2.jpg"
+        case image3Image:
+            fileName = "image_3.jpg"
+        case image4Image:
+            fileName = "image_4.jpg"
+        case image5Image:
+            fileName = "image_5.jpg"
+        default:
+            fatalError()
+        }
+
+        let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let imagePath = documents.appendingPathComponent(fileName)
+
+
+        // Delete old image in case it exists
+        let fileManager = FileManager.default
+
+        if fileManager.fileExists(atPath: imagePath.path) {
+            Log.info("Deleting old image '\(imagePath)'")
+
+            do {
+                try fileManager.removeItem(at: imagePath)
+            } catch let error {
+                print("Could not delete old image '\(imagePath)': \(error)")
+            }
+        }
+
+        // Write new image
+        if let data = UIImageJPEGRepresentation(pickedImage, 80) {
+            do {
+                try data.write(to: imagePath, options: .atomic)
+
+                selectedImagePaths.append(imagePath)
+
+                Log.info("Saved image to temporary path '\(imagePath)'")
+            } catch let error {
+                Log.error("Unable to write image: \(error)")
+            }
         }
 
         imagePicker.dismiss(animated: true)

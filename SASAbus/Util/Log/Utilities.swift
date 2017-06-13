@@ -44,7 +44,7 @@ internal extension String {
      - returns: A string colored with the specified color.
      */
     func withColor(_ color: String) -> String {
-        // return "\(color)\(self)\\e[39m"
         return self
+        // return "\u{001b}[fg\(color);\(self)\u{001b}[;"
     }
 }
