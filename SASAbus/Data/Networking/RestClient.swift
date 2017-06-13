@@ -33,14 +33,11 @@ class RestClient {
     // - MARK: Headers
 
     static func getHeaders(_ url: URLConvertible) -> [String : String] {
-        // let versionCode = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
-        // let versionName = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
-
-        let versionCode = "80"
-        let versionName = "2.8.0"
+        let versionCode = Bundle.main.versionCode
+        let versionName = Bundle.main.versionName
 
         var headers = [
-                "User-Agent": "SasaBus Android",
+                "User-Agent": "SasaBus iOS",
                 "X-Device": DeviceUtils.getModel(),
                 "X-Language": Utils.locale(),
                 "X-Version-Code": versionCode,
