@@ -34,7 +34,6 @@
                 <outlet property="nameText" destination="W6Z-rO-Lri" id="Awj-x4-wfu"/>
                 <outlet property="nameView" destination="ENX-KP-GUq" id="S4O-FB-6DB"/>
                 <outlet property="scrollView" destination="5sp-4E-B2m" id="uqO-XA-mf3"/>
-                <outlet property="submitButton" destination="0DO-5j-Rxv" id="aYk-tg-0CP"/>
                 <outlet property="view" destination="iN0-l3-epB" id="vpm-gg-7Ie"/>
             </connections>
         </placeholder>
@@ -47,7 +46,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ugJ-SI-gds" userLabel="Container">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="635.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="571.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please first let us know what you'd like to do:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SiX-Js-nnU" userLabel="Title label">
                                     <rect key="frame" x="16" y="24" width="343" height="17"/>
@@ -97,7 +96,11 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhm-nP-tzr">
-                                                    <rect key="frame" x="16" y="16" width="24" height="24"/>
+                                                    <rect key="frame" x="7" y="7" width="42" height="42"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="42" id="3nR-mW-wRD"/>
+                                                        <constraint firstAttribute="width" constant="42" id="DJ6-JL-f3o"/>
+                                                    </constraints>
                                                     <state key="normal" image="ic_add_white"/>
                                                     <connections>
                                                         <action selector="pickImage:" destination="-1" eventType="touchUpInside" id="cEN-Qk-QTH"/>
@@ -268,23 +271,8 @@
                                         <constraint firstAttribute="height" constant="48" id="hfW-Nh-Jzg"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0DO-5j-Rxv">
-                                    <rect key="frame" x="16" y="489" width="343" height="48"/>
-                                    <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="48" id="loJ-sv-2fL"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <color key="tintColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <state key="normal" title="Submit">
-                                        <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="submitClick:" destination="-1" eventType="touchUpInside" id="vfS-3c-auS"/>
-                                    </connections>
-                                </button>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BL8-Cf-aFq">
-                                    <rect key="frame" x="16" y="553" width="343" height="66.5"/>
+                                    <rect key="frame" x="16" y="489" width="343" height="66.5"/>
                                     <string key="text">This page is only for reporting bugs or requesting app features. If you need to open a complaint, please contact reclami.beschwerden@sasabz.it</string>
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -294,16 +282,12 @@
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="BL8-Cf-aFq" secondAttribute="trailing" constant="16" id="0Bb-Gf-ihx"/>
-                                <constraint firstItem="BL8-Cf-aFq" firstAttribute="top" secondItem="0DO-5j-Rxv" secondAttribute="bottom" constant="16" id="0qC-K9-vPD"/>
                                 <constraint firstItem="CUB-V1-Pdx" firstAttribute="top" secondItem="Anm-lY-e6g" secondAttribute="bottom" constant="16" id="5GD-Cx-6AF"/>
                                 <constraint firstAttribute="trailing" secondItem="dcn-pM-jZP" secondAttribute="trailing" constant="16" id="8MV-fw-yGw"/>
                                 <constraint firstAttribute="trailing" secondItem="nuB-gV-SJP" secondAttribute="trailing" constant="16" id="9Y2-9S-bpO"/>
                                 <constraint firstAttribute="bottom" secondItem="BL8-Cf-aFq" secondAttribute="bottom" constant="16" id="BHA-nh-PsU"/>
                                 <constraint firstAttribute="trailing" secondItem="SiX-Js-nnU" secondAttribute="trailing" constant="16" id="D3e-9X-qSY"/>
-                                <constraint firstItem="0DO-5j-Rxv" firstAttribute="top" secondItem="dcn-pM-jZP" secondAttribute="bottom" constant="16" id="INE-wf-Z89"/>
-                                <constraint firstItem="0DO-5j-Rxv" firstAttribute="leading" secondItem="ugJ-SI-gds" secondAttribute="leading" constant="16" id="NPh-IJ-vjD"/>
                                 <constraint firstItem="Anm-lY-e6g" firstAttribute="leading" secondItem="ugJ-SI-gds" secondAttribute="leading" constant="16" id="PXZ-Hz-SJg"/>
-                                <constraint firstAttribute="trailing" secondItem="0DO-5j-Rxv" secondAttribute="trailing" constant="16" id="RvR-qH-AXA"/>
                                 <constraint firstItem="dcn-pM-jZP" firstAttribute="leading" secondItem="ugJ-SI-gds" secondAttribute="leading" constant="16" id="S5G-XM-SOJ"/>
                                 <constraint firstItem="dcn-pM-jZP" firstAttribute="top" secondItem="ENX-KP-GUq" secondAttribute="bottom" constant="16" id="SCB-GF-Fgm"/>
                                 <constraint firstItem="nuB-gV-SJP" firstAttribute="leading" secondItem="ugJ-SI-gds" secondAttribute="leading" constant="16" id="TPX-kX-aOC"/>
@@ -317,6 +301,7 @@
                                 <constraint firstItem="CUB-V1-Pdx" firstAttribute="leading" secondItem="ugJ-SI-gds" secondAttribute="leading" constant="16" id="reJ-c2-0dr"/>
                                 <constraint firstItem="ENX-KP-GUq" firstAttribute="leading" secondItem="ugJ-SI-gds" secondAttribute="leading" constant="16" id="txw-TK-GI8"/>
                                 <constraint firstAttribute="trailing" secondItem="CUB-V1-Pdx" secondAttribute="trailing" constant="12" id="uQp-lT-qpr"/>
+                                <constraint firstItem="BL8-Cf-aFq" firstAttribute="top" secondItem="dcn-pM-jZP" secondAttribute="bottom" constant="16" id="wSg-eR-6zY"/>
                                 <constraint firstItem="BL8-Cf-aFq" firstAttribute="leading" secondItem="ugJ-SI-gds" secondAttribute="leading" constant="16" id="xek-ow-wRx"/>
                             </constraints>
                         </view>

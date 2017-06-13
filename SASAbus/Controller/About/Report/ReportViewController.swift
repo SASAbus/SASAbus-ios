@@ -62,8 +62,6 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
     @IBOutlet weak var nameView: UIView!
     @IBOutlet weak var nameText: UITextField!
 
-    @IBOutlet weak var submitButton: UIButton!
-
     var imagePicker = UIImagePickerController()
     var datePicker: UIPickerView!
 
@@ -73,6 +71,8 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
     var selectedButton: UIButton?
 
     var selectedImagePaths: [URL] = []
+
+    var submitMenuButton: UIBarButtonItem!
 
 
     init(title: String?) {
@@ -84,6 +84,8 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
     }
 
     deinit {
+        self.deleteAllPictures()
+
         NotificationCenter.default.removeObserver(self)
     }
 
@@ -98,7 +100,6 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
         messageText.layer.cornerRadius = 4
 
         emailView.layer.cornerRadius = 4
-        submitButton.layer.cornerRadius = 4
 
         chooseTypeView.layer.borderColor = Color.borderColor.cgColor
         chooseTypeView.layer.borderWidth = 1
@@ -119,6 +120,9 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
 
         emailView.layer.borderColor = Color.borderColor.cgColor
         emailView.layer.borderWidth = 1
+
+        submitMenuButton = UIBarButtonItem(title: "Submit", style: .done, target: self, action: #selector(submitClick))
+        navigationItem.setRightBarButton(submitMenuButton, animated: true)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -270,7 +274,9 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
         present(imagePicker, animated: true)
     }
 
-    @IBAction func submitClick(_ sender: Any) {
+    @IBAction func submitClick(_ sender: Any?) {
+        submitMenuButton.isEnabled = false
+
         let body = Body(
                 name: nameText.text!,
                 email: emailText.text!,
@@ -284,11 +290,35 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
                 .subscribe(onNext: { _ in
                     Log.error("Upload success")
 
+                    self.submitMenuButton.isEnabled = true
+
                     self.deleteAllPictures()
+
+                    let alert = UIAlertController(
+                            title: "Thanks!",
+                            message: "We will get back to you as soon as possible.",
+                            preferredStyle: .alert
+                    )
+
+                    alert.addAction(UIAlertAction(title: "Close", style: .default, handler: { action in
+                        // TODO dismiss this view controller and go back to about
+                    }))
+
+                    self.present(alert, animated: true, completion: nil)
                 }, onError: { error in
                     Log.error("Upload failed: \(error)")
 
-                    self.deleteAllPictures()
+                    self.submitMenuButton.isEnabled = true
+
+                    let alert = UIAlertController(
+                            title: "Upload failed",
+                            message: "Please retry in a few minutes",
+                            preferredStyle: .alert
+                    )
+
+                    alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
+
+                    self.present(alert, animated: true, completion: nil)
                 })
     }
 
