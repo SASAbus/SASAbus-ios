@@ -66,9 +66,9 @@ struct Menu {
                     viewController: InfoViewController(title: NSLocalizedString("Info", comment: ""))),
 
             MenuItem(
-                    title: NSLocalizedString("Report", comment: ""),
+                    title: NSLocalizedString("About", comment: ""),
                     image: "",
-                    viewController: ReportViewController(title: "App Suggestion"))
+                    viewController: AboutViewController())
     ]
 }
 

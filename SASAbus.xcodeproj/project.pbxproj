@@ -94,6 +94,7 @@
 		1F2E351FE9A743BC17BAE08D /* BusStopTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E38A13E2BB318FA1E1B1A /* BusStopTripTableViewCell.xib */; };
 		1F2E356E5F18A01DF45B74CD /* BBusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33FF331FAD07D2F33D1B /* BBusStop.swift */; };
 		1F2E359580DE91AC44926557 /* InAppBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F6C7DCB2C618E380AB9 /* InAppBadge.swift */; };
+		1F2E35988C1E6CA3012B8DC9 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E38422D05F69140493961 /* AboutViewController.swift */; };
 		1F2E35A4D4FFCFC07C5F7929 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E39B8B0B4D19D4E0095A1 /* Utilities.swift */; };
 		1F2E35AD06092CCB73713920 /* Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3CE1C685415B3BEAF608 /* Lines.swift */; };
 		1F2E35C73BACFB5FA1C72581 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E32BCB04E6EEBF29440CC /* Formatters.swift */; };
@@ -322,6 +323,7 @@
 		FA54DE561E9651740071E42C /* FirstStepBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E365307A85508CEAD91B1 /* FirstStepBadge.swift */; };
 		FA54DE571E9651740071E42C /* VeryBeginningBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E369928CB4A176F12603B /* VeryBeginningBadge.swift */; };
 		FA54DE5E1E969AAA0071E42C /* BusDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA54DE5D1E969AAA0071E42C /* BusDetailsViewController.xib */; };
+		FAB31DFA1EEFE584004B0BAC /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB31DF91EEFE584004B0BAC /* AboutViewController.xib */; };
 		FAB85BE61EEA8BF400D6EB4A /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB85BE51EEA8BF400D6EB4A /* ReportViewController.xib */; };
 		FABCEED11EDEB5DA00E48116 /* LineCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABCEED01EDEB5DA00E48116 /* LineCourseViewController.swift */; };
 		FABCEED31EDEB60D00E48116 /* LineCourseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FABCEED21EDEB60D00E48116 /* LineCourseViewController.xib */; };
@@ -486,6 +488,7 @@
 		1F2E382F555119AD8AE7C89F /* NewsTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTabBarController.swift; sourceTree = "<group>"; };
 		1F2E3838CEC914D5BE2C7FD9 /* PhoneNumberRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberRule.swift; sourceTree = "<group>"; };
 		1F2E383B91C1DFAB32F7703E /* ParkingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingViewController.swift; sourceTree = "<group>"; };
+		1F2E38422D05F69140493961 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		1F2E3861BE08741E47C8CF4F /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		1F2E3867AFAA017BA2A35EAD /* BusStopTripViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusStopTripViewController.xib; sourceTree = "<group>"; };
 		1F2E3868C12C71F55F8B6210 /* MapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
@@ -615,6 +618,7 @@
 		FA2A04B81EEE8EA700164E97 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		FA401F2A1E921EA400E7F282 /* SASAbus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SASAbus.entitlements; sourceTree = "<group>"; };
 		FA54DE5D1E969AAA0071E42C /* BusDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusDetailsViewController.xib; sourceTree = "<group>"; };
+		FAB31DF91EEFE584004B0BAC /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		FAB85BE51EEA8BF400D6EB4A /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
 		FABCEED01EDEB5DA00E48116 /* LineCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineCourseViewController.swift; sourceTree = "<group>"; };
 		FABCEED21EDEB60D00E48116 /* LineCourseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineCourseViewController.xib; sourceTree = "<group>"; };
@@ -1181,6 +1185,8 @@
 			isa = PBXGroup;
 			children = (
 				1F2E30EDFF4D866626C0F350 /* Report */,
+				FAB31DF91EEFE584004B0BAC /* AboutViewController.xib */,
+				1F2E38422D05F69140493961 /* AboutViewController.swift */,
 			);
 			path = About;
 			sourceTree = "<group>";
@@ -1694,6 +1700,7 @@
 				1F2E3A155D3E3B11D3E5C97D /* RouteMapViewController.xib in Resources */,
 				1F2E36A05E0D9BAE29304D46 /* RouteRouteViewController.xib in Resources */,
 				1F2E3F33D427BBACA3CD5A51 /* RouteSearchViewController.xib in Resources */,
+				FAB31DFA1EEFE584004B0BAC /* AboutViewController.xib in Resources */,
 				1F2E3BF504F88A585DA451A5 /* RouteResultsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1995,6 +2002,7 @@
 				1F2E35CCB483C5D45EA2FE30 /* JSONExtension.swift in Sources */,
 				1F2E3E8ABA00BF1FB9655B23 /* DictionaryExtension.swift in Sources */,
 				1F2E33F149413B21CC8020A0 /* MainSchedulerExtension.swift in Sources */,
+				1F2E35988C1E6CA3012B8DC9 /* AboutViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

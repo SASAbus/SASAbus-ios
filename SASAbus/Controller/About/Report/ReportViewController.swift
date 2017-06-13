@@ -1,31 +1,9 @@
-//
-// InfoViewController.swift
-// SASAbus
-//
-// Copyright (C) 2011-2015 Raiffeisen Online GmbH (Norman Marmsoler, Jürgen Sprenger, Aaron Falk) <info@raiffeisen.it>
-//
-// This file is part of SASAbus.
-//
-// SASAbus is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// SASAbus is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with SASAbus.  If not, see <http://www.gnu.org/licenses/>.
-//
-
 import UIKit
 import RxSwift
 import RxCocoa
 
-class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewDelegate,
-        UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate,
+        UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var placeHolderText = "Even though we can't reply to all messages, " +
             "all suggestions are more than welcome and are taken into serious consideration."
@@ -76,8 +54,10 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
     var submitMenuButton: UIBarButtonItem!
 
 
-    init(title: String?) {
-        super.init(nibName: "ReportViewController", title: title)
+    init() {
+        super.init(nibName: "ReportViewController", bundle: nil)
+
+        title = "App Suggestion"
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -344,8 +324,8 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
                             preferredStyle: .alert
                     )
 
-                    alert.addAction(UIAlertAction(title: "Close", style: .default, handler: { action in
-                        // TODO dismiss this view controller and go back to about
+                    alert.addAction(UIAlertAction(title: "Close", style: .default, handler: { _ in
+                        self.navigationController!.popViewController(animated: true)
                     }))
 
                     self.present(alert, animated: true, completion: nil)
@@ -395,7 +375,9 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
         self.scrollView.contentInset = contentInset
         self.scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
+}
 
+extension ReportViewController {
 
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -408,7 +390,9 @@ class ReportViewController: MasterViewController, UIToolbarDelegate, UITextViewD
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return typeOptions[row]
     }
+}
 
+extension ReportViewController {
 
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {

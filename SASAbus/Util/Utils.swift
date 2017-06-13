@@ -42,12 +42,12 @@ extension Decimal {
 
 extension Bundle {
 
-    var versionName: String? {
-        return self.infoDictionary?["CFBundleShortVersionString"] as? String
+    var versionName: String {
+        return self.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unavailable"
     }
 
-    var versionCode: String? {
-        return self.infoDictionary?["CFBundleVersion"] as? String
+    var versionCode: String {
+        return self.infoDictionary?["CFBundleVersion"] as? String ?? "Unavailable"
     }
 }
 

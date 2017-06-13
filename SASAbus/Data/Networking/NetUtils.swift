@@ -5,6 +5,8 @@ import SwiftyJSON
 
 class NetUtils {
 
+    static let HOST = "https://sasa-bus.appspot.com"
+
     static func isOnline() -> Bool {
         var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
