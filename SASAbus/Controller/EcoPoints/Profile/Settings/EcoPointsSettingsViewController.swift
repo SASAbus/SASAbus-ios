@@ -16,13 +16,17 @@ class EcoPointsSettingsViewController: UITableViewController {
 
     var operationRunning: Bool = false
 
+    var profile: Profile
 
-    init() {
+
+    init(profile: Profile) {
+        self.profile = profile
+
         super.init(nibName: "EcoPointsSettingsViewController", bundle: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError()
     }
 
 
@@ -179,7 +183,17 @@ extension EcoPointsSettingsViewController {
 
     override func tableView(_ tV: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            return tableView.dequeueReusableCell(withIdentifier: "eco_points_profile_settings")!
+            let cell = tableView.dequeueReusableCell(
+                    withIdentifier: "eco_points_profile_settings") as! EcoPointsProfileSettingsCell
+
+            let profileId: Int = self.profile.profile
+            let url = URL(string: Endpoint.apiUrl + Endpoint.ECO_POINTS_PROFILE_PICTURE_USER + String(profileId))!
+            cell.profilePicture.kf.setImage(with: url)
+
+            cell.nameText.text = profile.username
+            cell.levelText.text = profile.cls
+
+            return cell
         }
 
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell") ??

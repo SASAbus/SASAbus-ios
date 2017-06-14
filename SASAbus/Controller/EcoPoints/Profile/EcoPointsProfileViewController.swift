@@ -162,16 +162,6 @@ class EcoPointsProfileViewController: UITableViewController {
 
         self.refreshControl = refreshControl
     }
-
-    func goToSettings() {
-        let settingsViewController = EcoPointsSettingsViewController()
-        self.navigationController!.pushViewController(settingsViewController, animated: true)
-    }
-
-
-    func buttonClicked(sender: UIButton!) {
-        print("Button tapped")
-    }
 }
 
 extension EcoPointsProfileViewController {
@@ -202,16 +192,16 @@ extension EcoPointsProfileViewController {
                 cell.badgesText.text = "\(profile.badges)"
                 cell.rankText.text = "\(profile.rank)"
 
-                let profileId: Int = (self.profile?.profile)!
+                let profileId: Int = profile.profile
                 let url = URL(string: Endpoint.apiUrl + Endpoint.ECO_POINTS_PROFILE_PICTURE_USER + String(profileId))!
                 cell.profilePicture.kf.setImage(with: url)
+
+                cell.onButtonTapped = {
+                    let controller = EcoPointsSettingsViewController(profile: profile)
+                    self.navigationController!.pushViewController(controller, animated: true)
+                }
             } else {
                 cell.loadingView.isHidden = false
-            }
-
-            cell.onButtonTapped = {
-                let controller = EcoPointsSettingsViewController()
-                self.navigationController!.pushViewController(controller, animated: true)
             }
 
             return cell
