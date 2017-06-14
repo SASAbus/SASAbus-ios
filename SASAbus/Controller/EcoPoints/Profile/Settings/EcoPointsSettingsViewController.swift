@@ -60,6 +60,8 @@ class EcoPointsSettingsViewController: UITableViewController {
                 }, onError: { error in
                     Log.error("Could not log out: \(error)")
 
+                    AuthHelper.checkIfUnauthorized(error)
+
                     self.showCloseDialog(title: "Couldn't log out", message: "Please retry again later.")
 
                     item.isLoading = false
@@ -88,6 +90,8 @@ class EcoPointsSettingsViewController: UITableViewController {
                     self.operationRunning = false
                 }, onError: { error in
                     Log.error("Could not log out from all devices: \(error)")
+
+                    AuthHelper.checkIfUnauthorized(error)
 
                     self.showCloseDialog(title: "Couldn't log out", message: "Please retry again later.")
 
@@ -127,6 +131,9 @@ class EcoPointsSettingsViewController: UITableViewController {
                         self.operationRunning = false
                     }, onError: { error in
                         Log.error("Could not delete account: \(error)")
+
+                        AuthHelper.checkIfUnauthorized(error)
+
                         self.showCloseDialog(title: "Couldn't delete account", message: "Please retry again later.")
 
                         item.isLoading = false

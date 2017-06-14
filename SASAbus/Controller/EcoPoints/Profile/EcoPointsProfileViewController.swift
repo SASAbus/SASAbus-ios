@@ -73,6 +73,7 @@ class EcoPointsProfileViewController: UITableViewController {
                     self.refreshControl!.endRefreshing()
                 }, onError: { error in
                     Log.error("Couldn't load profile: \(error)")
+                    AuthHelper.checkIfUnauthorized(error)
                 })
     }
 

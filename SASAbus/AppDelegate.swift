@@ -57,8 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if !Settings.isIntroFinished() {
             let storyboard = UIStoryboard(name: "Intro", bundle: nil)
-            let viewController = storyboard.instantiateViewController(withIdentifier: "intro_parent_controller")
-            as! IntroParentViewController
+            let viewController = storyboard.instantiateViewController(
+                    withIdentifier: "intro_parent_controller") as! IntroParentViewController
 
             viewController.dataOnly = false
 

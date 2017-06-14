@@ -7,6 +7,17 @@ class AuthHelper {
     static let PREF_USER_ID = "pref_user_id"
     static let PREF_IS_GOOGLE_ACCOUNT = "pref_is_google_account"
 
+
+    // =============================================== KEYS =====================================================
+
+    static func getPublicKey() throws -> RSAKey {
+        let path = Bundle.main.url(forResource: "public_key", withExtension: "cer")
+
+        let certificateData = try Data(contentsOf: path!, options: .dataReadingMapped)
+        return try RSAKey(certificateData: certificateData)
+    }
+
+
     // =============================================== PREFERENCES =====================================================
 
     static func getAuthToken() -> String? {
@@ -54,12 +65,71 @@ class AuthHelper {
     }
 
     static func isTokenValid(token: String) -> Bool {
-        return true
+        do {
+            let jwt = try JSONWebToken(string: token)
+            let validator = try RSAPKCS1Verifier(key: getPublicKey(), hashFunction: .sha256)
+
+            let validationResult = validator.validateToken(jwt)
+            if !validationResult.isValid {
+                Log.error("Validation failed: \(validationResult)")
+                return false
+            }
+
+            guard let userId = jwt.payload.subject, !userId.isEmpty else {
+                Log.error("Token user id is empty")
+                clearCredentials()
+                return false
+            }
+
+            guard let savedUserId = getUserId(), !savedUserId.isEmpty else {
+                Log.error("Saved user id is empty")
+                clearCredentials()
+                return false
+            }
+
+            if savedUserId != userId {
+                Log.error("Saved user id and token user id don't match: savedUserId='\(savedUserId)', userId='\(userId)'")
+                clearCredentials()
+                return false
+            }
+
+            return true
+        } catch let error {
+            Log.error("Could not verify JWT: \(error)")
+            clearCredentials()
+            return false
+        }
     }
 
     static func setInitialToken(token: String) -> Bool {
-        setAuthToken(token: token)
-        return true
+        do {
+            let jwt = try JSONWebToken(string: token)
+            let validator = try RSAPKCS1Verifier(key: getPublicKey(), hashFunction: .sha256)
+
+            let validationResult = validator.validateToken(jwt)
+            if !validationResult.isValid {
+                Log.error("Validation failed: \(validationResult)")
+                clearCredentials()
+                return false
+            }
+
+            guard let userId = jwt.payload.subject, !userId.isEmpty else {
+                Log.error("User id is empty")
+                clearCredentials()
+                return false
+            }
+
+            Log.debug("Token is valid, got user id: \(userId)")
+
+            setUserId(userId: userId)
+            setAuthToken(token: token)
+
+            return true
+        } catch let error {
+            Log.error("Could not verify JWT: \(error)")
+            clearCredentials()
+            return false
+        }
     }
 
     static func logout() {
@@ -69,7 +139,7 @@ class AuthHelper {
         setIsGoogleAccount(value: false)
     }
 
-    func checkIfUnauthorized(_ error: Error) {
+    static func checkIfUnauthorized(_ error: Error) {
         guard let error = error as? AFError else {
             Log.error("Not a AFError error")
             return
@@ -83,5 +153,13 @@ class AuthHelper {
                  logout(context)
              }
          }*/
+    }
+
+    static func clearCredentials() {
+        setUserId(userId: nil)
+        setAuthToken(token: nil)
+        setIsGoogleAccount(value: false)
+
+        Log.error("Cleared credentials")
     }
 }

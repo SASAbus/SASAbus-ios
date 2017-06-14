@@ -25,4 +25,6 @@
 
 #import <CommonCrypto/CommonCrypto.h>
 
+#import "JSONWebToken.h"
+
 #endif
