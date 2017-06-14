@@ -1,4 +1,3 @@
-
 import UIKit
 import RxSwift
 import RxCocoa
@@ -51,67 +50,6 @@ class EcoPointsProfileViewController: UITableViewController {
 
         parseProfile()
         parseStatistics()
-    }
-
-
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 0 ? nil : "Statistics"
-    }
-
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return showStatistics ? 2 : 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "eco_points_profile_header") as! EcoPointsProfileCell
-
-            if let profile = self.profile {
-                cell.nameText.text = profile.username
-                cell.levelText.text = profile.cls
-
-                cell.pointsText.text = "\(profile.points)"
-                cell.badgesText.text = "\(profile.badges)"
-                cell.rankText.text = "\(profile.rank)"
-
-                let profileId: Int = (self.profile?.profile)!
-                let url = URL(string: Endpoint.apiUrl + Endpoint.ECO_POINTS_PROFILE_PICTURE_USER + String(profileId))!
-                cell.profilePicture.kf.setImage(with: url)
-
-                cell.loadingView.alpha = 0
-            } else {
-                cell.loadingView.alpha = 1
-            }
-
-            cell.onButtonTapped = {
-                print("Click")
-            }
-
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "eco_points_stats") as! EcoPointsStatsCell
-
-            if distance < 1000 {
-                cell.distanceText.text = "\(distance) m"
-            } else {
-                let rounded = Utils.roundToPlaces((distance / 1000), places: 2)
-                cell.distanceText.text = String(describing: rounded).replacingOccurrences(of: ".", with: ",") + " km"
-            }
-
-            let roundedEmissions = emissions
-            let roundedMoney = Utils.roundToPlaces(money, places: 2)
-
-            cell.totalTripsText.text = "\(trips)"
-            cell.co2Text.text = "\(roundedEmissions) g"
-            cell.moneyText.text = "\(roundedMoney) €"
-
-            return cell
-        }
     }
 
 
@@ -233,5 +171,68 @@ class EcoPointsProfileViewController: UITableViewController {
 
     func buttonClicked(sender: UIButton!) {
         print("Button tapped")
+    }
+}
+
+extension EcoPointsProfileViewController {
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return section == 0 ? nil : "Statistics"
+    }
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return showStatistics ? 2 : 1
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "eco_points_profile_header") as! EcoPointsProfileCell
+
+            if let profile = self.profile {
+                cell.loadingView.isHidden = true
+
+                cell.nameText.text = profile.username
+                cell.levelText.text = profile.cls
+
+                cell.pointsText.text = "\(profile.points)"
+                cell.badgesText.text = "\(profile.badges)"
+                cell.rankText.text = "\(profile.rank)"
+
+                let profileId: Int = (self.profile?.profile)!
+                let url = URL(string: Endpoint.apiUrl + Endpoint.ECO_POINTS_PROFILE_PICTURE_USER + String(profileId))!
+                cell.profilePicture.kf.setImage(with: url)
+            } else {
+                cell.loadingView.isHidden = false
+            }
+
+            cell.onButtonTapped = {
+                let controller = EcoPointsSettingsViewController()
+                self.navigationController!.pushViewController(controller, animated: true)
+            }
+
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "eco_points_stats") as! EcoPointsStatsCell
+
+            if distance < 1000 {
+                cell.distanceText.text = "\(distance) m"
+            } else {
+                let rounded = Utils.roundToPlaces((distance / 1000), places: 2)
+                cell.distanceText.text = String(describing: rounded).replacingOccurrences(of: ".", with: ",") + " km"
+            }
+
+            let roundedEmissions = Utils.roundToPlaces((emissions / 1000), places: 2)
+            let roundedMoney = Utils.roundToPlaces(money, places: 2)
+
+            cell.totalTripsText.text = "\(trips)"
+            cell.co2Text.text = "\(roundedEmissions) g"
+            cell.moneyText.text = "\(roundedMoney) €"
+
+            return cell
+        }
     }
 }

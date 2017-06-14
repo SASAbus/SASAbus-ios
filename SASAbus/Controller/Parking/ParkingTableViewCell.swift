@@ -39,7 +39,9 @@ class ParkingTableViewCell: UITableViewCell {
         self.addressLabel.textColor = Theme.darkGrey
         self.phoneLabel.tintColor = nil
         self.progressView.progressTintColor = Theme.orange
-        self.iconImageView.tintColor = Theme.orange
-        self.backgroundColor = Theme.transparent
+
+        self.iconImageView.tint(with: Theme.orange)
+
+        self.backgroundColor = .white
     }
 }

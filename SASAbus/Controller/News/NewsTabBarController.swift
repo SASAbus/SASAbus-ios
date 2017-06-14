@@ -29,20 +29,29 @@ class NewsTabBarController: MasterTabBarController {
 
     var newsItems: [News] = []
 
-
+    init() {
+        super.init(nibName: nil, title: "News")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let newsBozenViewController = NewsTableViewController(zone: "BZ")
-        let newsMeranViewController = NewsTableViewController(zone: "ME")
+        let bolzanoViewController = NewsTableViewController(zone: "BZ")
+        let meranoViewController = NewsTableViewController(zone: "ME")
 
-        newsBozenViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Bozen", comment: ""),
+        bolzanoViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Bozen", comment: ""),
                 image: UIImage(named: "wappen_bz.png"), selectedImage: nil)
 
-        newsMeranViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Meran", comment: ""),
+        meranoViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Meran", comment: ""),
                 image: UIImage(named: "wappen_me.png"), selectedImage: nil)
 
-        self.viewControllers = [newsBozenViewController, newsMeranViewController]
+        self.viewControllers = [bolzanoViewController, meranoViewController]
+
         self.tabBar.tintColor = Theme.orange
         self.tabBar.isTranslucent = false
 

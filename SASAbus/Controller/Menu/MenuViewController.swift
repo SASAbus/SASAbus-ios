@@ -33,12 +33,12 @@ struct Menu {
             MenuItem(
                     title: NSLocalizedString("Departures", comment: ""),
                     image: "ic_navigation_busstop",
-                    viewController: BusStopViewController(busStop: nil, title: NSLocalizedString("Departures", comment: ""))),
+                    viewController: BusStopViewController(busStop: nil)),
 
             MenuItem(
                     title: NSLocalizedString("Lines", comment: ""),
                     image: "ic_navigation_bus",
-                    viewController: LineViewController(title: NSLocalizedString("Lines", comment: ""))),
+                    viewController: LineViewController()),
 
             MenuItem(
                     title: NSLocalizedString("Route", comment: ""),
@@ -48,17 +48,17 @@ struct Menu {
             MenuItem(
                     title: NSLocalizedString("News", comment: ""),
                     image: "ic_navigation_news",
-                    viewController: NewsTabBarController(nibName: nil, title: NSLocalizedString("News", comment: ""))),
+                    viewController: NewsTabBarController()),
 
             MenuItem(
                     title: NSLocalizedString("Eco Points", comment: ""),
                     image: "ic_nature_people_white",
-                    viewController: EcoPointsViewController(title: NSLocalizedString("Eco Points", comment: ""))),
+                    viewController: EcoPointsViewController()),
 
             MenuItem(
                     title: NSLocalizedString("Parking", comment: ""),
                     image: "ic_navigation_parking",
-                    viewController: ParkingViewController(title: NSLocalizedString("Parking", comment: ""))),
+                    viewController: ParkingViewController()),
 
             MenuItem(
                     title: NSLocalizedString("About", comment: ""),

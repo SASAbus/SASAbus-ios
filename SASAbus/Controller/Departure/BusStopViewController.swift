@@ -59,8 +59,8 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
     var realm = Realm.busStops()
 
 
-    init(busStop: BBusStop?, title: String?) {
-        super.init(nibName: "BusStopViewController", title: title)
+    init(busStop: BBusStop?) {
+        super.init(nibName: "BusStopViewController", title: "Departures")
 
         self.selectedBusStop = busStop
     }

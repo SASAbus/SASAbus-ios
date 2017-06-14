@@ -80,9 +80,10 @@ class ParkingDetailViewController: UIViewController, UITableViewDataSource, UITa
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let busStationDistance = self.nearestBusStations[indexPath.row]
-        let busstopViewController = BusStopViewController(busStop: busStationDistance.busStation, title: NSLocalizedString("Busstop", comment: ""))
-        (UIApplication.shared.delegate as! AppDelegate).navigateTo(busstopViewController)
+        let distance = self.nearestBusStations[indexPath.row]
+        let viewController = BusStopViewController(busStop: distance.busStation)
+
+        (UIApplication.shared.delegate as! AppDelegate).navigateTo(viewController)
     }
 
 

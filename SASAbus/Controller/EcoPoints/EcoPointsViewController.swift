@@ -8,8 +8,8 @@ class EcoPointsViewController: MasterViewController {
     var isLoginActive: Bool = false
 
 
-    init(title: String?) {
-        super.init(nibName: "EcoPointsViewController", title: title)
+    init() {
+        super.init(nibName: "EcoPointsViewController", title: "Eco Points")
     }
 
 
@@ -37,16 +37,27 @@ class EcoPointsViewController: MasterViewController {
 
             Log.warning("User is not logged in")
 
-            loginContainer.alpha = 1
-            contentContainer.alpha = 0
+            loginContainer.isHidden = false
+            contentContainer.isHidden = true
         } else {
-            loginContainer.alpha = 0
-            contentContainer.alpha = 1
+            loginContainer.isHidden = true
+            contentContainer.isHidden = false
         }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        if !AuthHelper.isLoggedIn() {
+            isLoginActive = true
+
+            Log.warning("User is not logged in")
+
+            loginContainer.isHidden = false
+            loginContainer.alpha = 1
+
+            contentContainer.isHidden = true
+        }
 
         if isLoginActive, let navController = self.navigationController {
             navController.navigationBar.tintColor = UIColor.white
@@ -64,10 +75,10 @@ class EcoPointsViewController: MasterViewController {
     }
 
 
-    func loginComplete() {
+    func loginComplete(completion: @escaping () -> Void?) {
         isLoginActive = false
 
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.25, animations: {
             self.loginContainer.alpha = 0
             self.contentContainer.alpha = 1
 
@@ -75,7 +86,12 @@ class EcoPointsViewController: MasterViewController {
                 navController.navigationBar.tintColor = UIColor.white
                 navController.navigationBar.barTintColor = Color.materialOrange500
             }
-        }
+        }, completion: { _ in
+            self.loginContainer.isHidden = true
+            self.contentContainer.isHidden = false
+
+            completion()
+        })
     }
 
 

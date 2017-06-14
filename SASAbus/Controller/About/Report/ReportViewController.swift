@@ -318,31 +318,15 @@ class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDa
 
                     self.deleteAllPictures()
 
-                    let alert = UIAlertController(
-                            title: "Thanks!",
-                            message: "We will get back to you as soon as possible.",
-                            preferredStyle: .alert
-                    )
-
-                    alert.addAction(UIAlertAction(title: "Close", style: .default, handler: { _ in
+                    self.showCloseDialog(title: "Thanks!", message: "We will get back to you as soon as possible.", handler: { _ in
                         self.navigationController!.popViewController(animated: true)
-                    }))
-
-                    self.present(alert, animated: true, completion: nil)
+                    })
                 }, onError: { error in
                     Log.error("Upload failed: \(error)")
 
                     self.enableAllViews()
 
-                    let alert = UIAlertController(
-                            title: "Upload failed",
-                            message: "Please retry in a few minutes",
-                            preferredStyle: .alert
-                    )
-
-                    alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
-
-                    self.present(alert, animated: true, completion: nil)
+                    self.showCloseDialog(title: "Upload failed", message: "Please retry in a few minutes")
                 })
     }
 

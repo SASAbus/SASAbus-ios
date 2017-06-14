@@ -33,8 +33,8 @@ class ParkingViewController: MasterViewController, StatefulViewController, UITab
     var items = [Parking]()
 
 
-    init(title: String?) {
-        super.init(nibName: "ParkingViewController", title: title)
+    init() {
+        super.init(nibName: "ParkingViewController", title: "Parking")
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -74,33 +74,28 @@ class ParkingViewController: MasterViewController, StatefulViewController, UITab
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ParkingTableViewCell", for: indexPath) as! ParkingTableViewCell
+        let item = items[indexPath.row]
 
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.progressView.progressTintColor = Theme.orange
-        cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
 
         cell.phoneLabel.isEditable = false
         cell.phoneLabel.dataDetectorTypes = UIDataDetectorTypes.phoneNumber
         cell.phoneLabel.contentInset = UIEdgeInsets(top: -4, left: -8, bottom: 0, right: 0)
 
-        cell.backgroundColor = Theme.transparent
-
-        let item = items[indexPath.row]
-
+        cell.phoneLabel.text = item.phone
         cell.titleLabel.text = item.name
+        cell.addressLabel.text = item.address
 
         cell.messageLabel.text = "\(item.totalSlots - item.freeSlots)/\(item.totalSlots)"
         cell.progressView.setProgress(Float(item.freeSlots) / Float(item.totalSlots), animated: false)
-        cell.addressLabel.text = item.address
-        cell.phoneLabel.text = item.phone
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let parkingLotDetailViewController = ParkingDetailViewController(item: self.items[indexPath.row])
-
-        self.navigationController!.pushViewController(parkingLotDetailViewController, animated: true)
+        let detailViewController = ParkingDetailViewController(item: self.items[indexPath.row])
+        self.navigationController!.pushViewController(detailViewController, animated: true)
     }
 
 
@@ -126,8 +121,13 @@ class ParkingViewController: MasterViewController, StatefulViewController, UITab
         startLoading(animated: false)
 
         if !NetUtils.isOnline() {
+            items.removeAll()
+            tableView.reloadData()
+
             endLoading(animated: false, error: NetUtils.networkError())
+
             Log.info("Device offline")
+
             return
         }
 

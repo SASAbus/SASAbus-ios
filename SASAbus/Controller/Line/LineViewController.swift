@@ -36,8 +36,8 @@ class LineViewController: MasterViewController, StatefulViewController, UITableV
     var lines: [[Line]?] = [[Line]?](repeating: nil, count: 3)
 
 
-    init(title: String?) {
-        super.init(nibName: "LineViewController", title: title)
+    init() {
+        super.init(nibName: "LineViewController", title: "Lines")
     }
 
     required init?(coder aDecoder: NSCoder) {

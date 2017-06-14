@@ -106,20 +106,20 @@ class BusStopMapViewController: UIViewController, MKMapViewDelegate, CLLocationM
         if control == view.rightCalloutAccessoryView {
             Log.warning("Clicked on \(id)")
 
-            var busStopViewController: BusStopViewController!
+            var viewController: BusStopViewController!
 
             let busStop = BBusStop(fromRealm: realm.objects(BusStop.self).filter("id == \(id)").first!)
 
             if (self.navigationController?.viewControllers.count)! > 1 {
-                busStopViewController = self.navigationController?
+                viewController = self.navigationController?
                         .viewControllers[(self.navigationController?
                         .viewControllers.index(of: self))! - 1] as? BusStopViewController
 
-                busStopViewController!.setBusStop(busStop)
+                viewController!.setBusStop(busStop)
                 self.navigationController?.popViewController(animated: true)
             } else {
-                busStopViewController = BusStopViewController(busStop: busStop, title: NSLocalizedString("Busstop", comment: ""))
-                (UIApplication.shared.delegate as! AppDelegate).navigateTo(busStopViewController!)
+                viewController = BusStopViewController(busStop: busStop)
+                (UIApplication.shared.delegate as! AppDelegate).navigateTo(viewController!)
             }
         }
     }

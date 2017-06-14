@@ -120,7 +120,7 @@ class SurveyContactViewController: MasterViewController, ValidationDelegate, UIT
         Alamofire.request(SurveyApiRouter.insertSurvey(self.surveyData)).responseJSON { response in
         }
 
-        let vc = LineViewController(title: nil)
+        let vc = LineViewController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
         appDelegate.navigateTo(vc)

@@ -54,44 +54,45 @@ class LoginViewController: UIViewController {
         animateViews(false)
 
         _ = UserApi.login(email: emailString, password: passwordString)
-            .subscribeOn(MainScheduler.asyncInstance)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { json in
-                Log.info("Login response: \(json)")
+                .subscribeOn(MainScheduler.background)
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { json in
+                    Log.info("Login response: \(json)")
 
-                if json["success"].boolValue {
-                    if let token = json["access_token"].string {
-                        Log.warning("Login success, got token: \(token)")
-                        self.loginSuccess(token: token, isGoogleSignIn: false)
-                    } else {
-                        Log.error("Token is nil")
-                        self.loginFailed(error: "token_not_found")
+                    guard json["success"].boolValue else {
+                        Log.error("Login failure, got error: \(json["error"].stringValue)")
+                        self.loginFailed()
+                        return
                     }
 
-                    return
-                }
+                    guard let token = json["access_token"].string else {
+                        Log.error("Token is nil")
+                        self.loginFailed()
+                        return
+                    }
 
-                Log.error("Login failure, got error: \(json["error"].stringValue)")
-            }, onError: { error in
-                Log.error("Error: \(error)")
+                    Log.warning("Login success, got token: \(token)")
+                    self.loginSuccess(token: token, isGoogleSignIn: false)
+                }, onError: { error in
+                    Log.error("Error: \(error)")
 
-                self.loginFailed(error: error.localizedDescription)
-            })
+                    self.loginFailed()
+                })
 
     }
 
-    func animateViews(_ showButton: Bool) {
+    func animateViews(_ showButton: Bool, duration: TimeInterval = 0.25) {
         if showButton {
             activityIndicator.stopAnimating()
 
-            UIView.animate(withDuration: 0.25) {
+            UIView.animate(withDuration: duration) {
                 self.button.alpha = 1
                 self.activityIndicator.alpha = 0
             }
         } else {
             activityIndicator.startAnimating()
 
-            UIView.animate(withDuration: 0.25) {
+            UIView.animate(withDuration: duration) {
                 self.button.alpha = 0
                 self.activityIndicator.alpha = 1
             }
@@ -103,14 +104,23 @@ class LoginViewController: UIViewController {
         if AuthHelper.setInitialToken(token: token) {
             AuthHelper.setIsGoogleAccount(value: isGoogleSignIn)
 
-            parentVC.loginComplete()
+            parentVC.loginComplete(completion: { _ in
+                self.animateViews(true, duration: 0)
+            })
         } else {
             Log.error("Could not set token")
-            loginFailed(error: "token_invalid")
+            loginFailed()
         }
     }
 
-    func loginFailed(error: String) {
+    func loginFailed() {
         animateViews(true)
+
+        let alert = UIAlertController(title: "Could not log in",
+                message: "Please retry in a few minutes", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
+
+        self.present(alert, animated: true)
     }
 }

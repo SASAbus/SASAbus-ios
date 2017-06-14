@@ -20,6 +20,10 @@ class RestClient {
         return request(endpoint, method: .put, parameters: parameters)
     }
 
+    static func deleteInternal(_ endpoint: String, parameters: Parameters? = nil) -> Alamofire.DataRequest {
+        return request(endpoint, method: .delete, parameters: parameters)
+    }
+
     static func request(_ endpoint: String, method: HTTPMethod, parameters: Parameters? = nil) -> Alamofire.DataRequest {
         let url = "\(Endpoint.apiUrl)\(endpoint)"
         let headers = getHeaders(url)
@@ -172,6 +176,45 @@ extension RestClient {
                             observer.onCompleted()
                         } else {
                             observer.onError(response.result.error!)
+                        }
+                    })
+
+            return Disposables.create {
+                requestReference.cancel()
+            }
+        }
+    }
+
+    static func post(_ url: String, parameters: Parameters? = nil) -> Observable<Void?> {
+        return Observable<Void?>.create { observer -> Disposable in
+            let requestReference = postInternal(url, parameters: parameters)
+                    .response(completionHandler: { response in
+                        if response.error == nil {
+                            observer.onNext(nil)
+                            observer.onCompleted()
+                        } else {
+                            observer.onError(response.error!)
+                        }
+                    })
+
+            return Disposables.create {
+                requestReference.cancel()
+            }
+        }
+    }
+}
+
+extension RestClient {
+
+    static func delete(_ url: String, parameters: Parameters? = nil) -> Observable<Void?> {
+        return Observable<Void?>.create { observer -> Disposable in
+            let requestReference = deleteInternal(url, parameters: parameters)
+                    .response(completionHandler: { response in
+                        if response.error == nil {
+                            observer.onNext(nil)
+                            observer.onCompleted()
+                        } else {
+                            observer.onError(response.error!)
                         }
                     })
 

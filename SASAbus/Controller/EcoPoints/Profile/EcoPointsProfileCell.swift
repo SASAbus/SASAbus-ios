@@ -38,10 +38,8 @@ class EcoPointsProfileCell: UITableViewCell {
     }
 
     @IBAction func settingsButtonClick(_ sender: UIButton) {
-        print(sender.tag)
-
-        if let onButtonTapped = self.onButtonTapped {
-            onButtonTapped()
+        if let click = self.onButtonTapped {
+            click()
         }
     }
 }

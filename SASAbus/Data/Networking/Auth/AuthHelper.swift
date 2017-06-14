@@ -1,4 +1,5 @@
 import Foundation
+import Alamofire
 
 class AuthHelper {
 
@@ -12,7 +13,7 @@ class AuthHelper {
         return UserDefaults.standard.string(forKey: PREF_AUTH_TOKEN)
     }
 
-    static func setAuthToken(token: String) {
+    static func setAuthToken(token: String?) {
         UserDefaults.standard.set(token, forKey: PREF_AUTH_TOKEN)
     }
 
@@ -61,4 +62,26 @@ class AuthHelper {
         return true
     }
 
+    static func logout() {
+        setAuthToken(token: nil)
+        setUserId(userId: nil)
+
+        setIsGoogleAccount(value: false)
+    }
+
+    func checkIfUnauthorized(_ error: Error) {
+        guard let error = error as? AFError else {
+            Log.error("Not a AFError error")
+            return
+        }
+
+        /* if (throwable is HttpException) {
+
+             if (throwable.code() == 401) {
+                 Timber.e("Unauthorized response, clearing credentials")
+
+                 logout(context)
+             }
+         }*/
+    }
 }
