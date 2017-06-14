@@ -36,7 +36,7 @@ class EcoPointsSettingsViewController: UITableViewController {
         tableView.register(UINib(nibName: "EcoPointsProfileSettingsCell", bundle: nil), forCellReuseIdentifier: "eco_points_profile_settings")
 
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 56.0
+        tableView.estimatedRowHeight = 44
     }
 
 
@@ -235,7 +235,9 @@ extension EcoPointsSettingsViewController {
 
     override func tableView(_ tV: UITableView, didSelectRowAt indexPath: IndexPath) {
         defer {
-            tV.reloadRows(at: [indexPath], with: .automatic)
+            tV.beginUpdates()
+            tV.reloadRows(at: [indexPath], with: .none)
+            tV.endUpdates()
         }
 
         if operationRunning {
