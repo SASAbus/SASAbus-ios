@@ -1,9 +1,10 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SwiftValidator
 
 class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate,
-        UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+        UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidationDelegate, UITextFieldDelegate {
 
     var placeHolderText = "Even though we can't reply to all messages, " +
             "all suggestions are more than welcome and are taken into serious consideration."
@@ -53,6 +54,8 @@ class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDa
 
     var submitMenuButton: UIBarButtonItem!
 
+    let validator = Validator()
+
 
     init() {
         super.init(nibName: "ReportViewController", bundle: nil)
@@ -77,16 +80,27 @@ class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDa
         messageText.delegate = self
         imagePicker.delegate = self
 
-        chooseTypeView.layer.cornerRadius = 4
-        messageText.layer.cornerRadius = 4
-
-        emailView.layer.cornerRadius = 4
-
         chooseTypeView.layer.borderColor = Color.borderColor.cgColor
         chooseTypeView.layer.borderWidth = 1
+        chooseTypeView.layer.cornerRadius = 4
 
         messageText.layer.borderColor = Color.borderColor.cgColor
         messageText.layer.borderWidth = 1
+        messageText.layer.cornerRadius = 4
+
+        nameView.layer.borderColor = Color.borderColor.cgColor
+        nameView.layer.borderWidth = 1
+        nameView.layer.cornerRadius = 4
+
+        nameText.delegate = self
+        nameText.outerView = nameView
+
+        emailView.layer.borderColor = Color.borderColor.cgColor
+        emailView.layer.borderWidth = 1
+        emailView.layer.cornerRadius = 4
+
+        emailText.delegate = self
+        emailText.outerView = emailView
 
         makeButton(view: image1, button: image1Button, image: image1Image)
         makeButton(view: image2, button: image2Button, image: image2Image)
@@ -96,14 +110,14 @@ class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDa
 
         makePicker()
 
-        nameView.layer.borderColor = Color.borderColor.cgColor
-        nameView.layer.borderWidth = 1
-
-        emailView.layer.borderColor = Color.borderColor.cgColor
-        emailView.layer.borderWidth = 1
-
         submitMenuButton = UIBarButtonItem(title: "Submit", style: .done, target: self, action: #selector(submitClick))
         navigationItem.setRightBarButton(submitMenuButton, animated: true)
+
+
+        // Rules
+        validator.registerField(emailText, rules: [EmailRule()])
+        validator.registerField(nameText, rules: [FullNameRule()])
+        validator.registerField(messageText, rules: [RequiredRule()])
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -113,24 +127,6 @@ class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDa
         messageText.textColor = UIColor.lightGray
 
         registerKeyboardNotifications()
-    }
-
-
-    public func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        messageText.textColor = UIColor.black
-
-        if messageText.text == placeHolderText {
-            messageText.text = ""
-        }
-
-        return true
-    }
-
-    public func textViewDidEndEditing(_ textView: UITextView) {
-        if messageText.text.isEmpty {
-            messageText.text = placeHolderText
-            messageText.textColor = UIColor.lightGray
-        }
     }
 
 
@@ -301,6 +297,12 @@ class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDa
     }
 
     @IBAction func submitClick(_ sender: Any?) {
+        validator.validate(self)
+
+        if !validator.isValid() {
+            return
+        }
+
         disableAllViews()
 
         let body = Body(
@@ -328,6 +330,54 @@ class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDa
 
                     self.showCloseDialog(title: "Upload failed", message: "Please retry in a few minutes")
                 })
+    }
+}
+
+extension ReportViewController {
+
+
+    public func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        messageText.textColor = UIColor.black
+
+        if messageText.text == placeHolderText {
+            messageText.text = ""
+        }
+
+        return true
+    }
+
+    public func textViewDidEndEditing(_ textView: UITextView) {
+        validator.validateField(textView) { error in
+            if error == nil {
+                textView.layer.borderColor = Color.borderColor.cgColor
+            } else {
+                textView.layer.borderColor = UIColor.red.cgColor
+            }
+        }
+
+        if messageText.text.isEmpty {
+            messageText.text = placeHolderText
+            messageText.textColor = UIColor.lightGray
+        }
+    }
+
+
+    func validationSuccessful() {
+    }
+
+    func validationFailed(_ errors: [(Validatable, ValidationError)]) {
+        for (field, error) in errors {
+            var fieldToMark: UIView?
+
+            if let field = field as? UITextField {
+                fieldToMark = field.outerView
+            }
+
+            fieldToMark?.layer.borderColor = UIColor.red.cgColor
+
+            error.errorLabel?.text = error.errorMessage
+            error.errorLabel?.isHidden = false
+        }
     }
 
 
@@ -358,6 +408,17 @@ class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDa
 
         self.scrollView.contentInset = contentInset
         self.scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
+    }
+
+
+    public func textFieldDidEndEditing(_ textField: UITextField) {
+        validator.validateField(textField) { error in
+            if error == nil {
+                textField.outerView?.layer.borderColor = Color.borderColor.cgColor
+            } else {
+                textField.outerView?.layer.borderColor = UIColor.red.cgColor
+            }
+        }
     }
 }
 

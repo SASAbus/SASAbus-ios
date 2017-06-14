@@ -73,6 +73,7 @@
 		1F2E33B07936045C0BF139CC /* EcoPointsSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3805477F867D378378CB /* EcoPointsSettingsViewController.swift */; };
 		1F2E33B353D9594DA661A0CB /* BusStopGpsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3502C11C79BA94192028 /* BusStopGpsViewController.xib */; };
 		1F2E33BBA5E7AFB4830944AD /* Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3CE1C685415B3BEAF608 /* Lines.swift */; };
+		1F2E33D50EE272BE3A5A18C1 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3B4804A14ABCEC06B2E0 /* Validator.swift */; };
 		1F2E33D7268F9F61216D073B /* BusStopGpsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E35649B08AAD4B2CA6284 /* BusStopGpsTableViewCell.swift */; };
 		1F2E33E21B0277D828C9BF86 /* EcoPointsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3B1BC7BB5D3D76D86D12 /* EcoPointsApi.swift */; };
 		1F2E33E9D188BA9E76F54646 /* BusStopFavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D8C69FDC39DFB6A2386 /* BusStopFavoritesTableViewCell.swift */; };
@@ -274,6 +275,7 @@
 		1F2E3DA46360FE5AACFF77F5 /* IntroParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E302464CAA5DE853CDB7D /* IntroParentViewController.swift */; };
 		1F2E3DA83BAC2AB28B08061E /* NSData+SHA.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E35D4FF5D7380F77EA676 /* NSData+SHA.m */; };
 		1F2E3DBDDBE1E84B547F2517 /* MainMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E37D24F0F8100DC6B143D /* MainMapViewController.swift */; };
+		1F2E3DCDA5AFD8B40A54294C /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3B4804A14ABCEC06B2E0 /* Validator.swift */; };
 		1F2E3DDA56BFBFB52C7088AD /* RouteSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F1F9FE8B425920AE314 /* RouteSearchViewController.swift */; };
 		1F2E3E035E3624FC841650BB /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3EE4CA1203BB6B63EBA2 /* Formatter.swift */; };
 		1F2E3E1D2748EF23E8D3D475 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E38F8B0EFB2FF6FF0CE28 /* MapViewController.swift */; };
@@ -575,6 +577,7 @@
 		1F2E3B37E9858A7587B9B751 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		1F2E3B43A65BB1709EEF728D /* RealtimeBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealtimeBus.swift; sourceTree = "<group>"; };
 		1F2E3B480126F44819540A34 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1F2E3B4804A14ABCEC06B2E0 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		1F2E3B5703B6A6A1524BF439 /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		1F2E3B6EEE4D81C89D9DDAB1 /* Parking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parking.swift; sourceTree = "<group>"; };
 		1F2E3B708250EE0EAFAC8D26 /* VdvDeparture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VdvDeparture.swift; sourceTree = "<group>"; };
@@ -861,6 +864,7 @@
 				1F2E3885A2F9CC25307DA655 /* JSONExtension.swift */,
 				1F2E363BB3BE474BDA721BF4 /* DictionaryExtension.swift */,
 				1F2E39D8227FB91EEDD9CECF /* MainSchedulerExtension.swift */,
+				1F2E3B4804A14ABCEC06B2E0 /* Validator.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2081,6 +2085,7 @@
 				1F2E3DA83BAC2AB28B08061E /* NSData+SHA.m in Sources */,
 				1F2E3E1D77F7EB4D96AF0F94 /* HMAC.swift in Sources */,
 				1F2E3452E99FA7D3149FEFA9 /* SignatureAlgorithm.swift in Sources */,
+				1F2E3DCDA5AFD8B40A54294C /* Validator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2173,6 +2178,7 @@
 				1F2E3E65592B282817BC1979 /* SecKeyUtils.swift in Sources */,
 				1F2E3797C6AD880D6351FCC0 /* HMAC.swift in Sources */,
 				1F2E388A5860789C1517E182 /* NSData+HMAC.m in Sources */,
+				1F2E33D50EE272BE3A5A18C1 /* Validator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
