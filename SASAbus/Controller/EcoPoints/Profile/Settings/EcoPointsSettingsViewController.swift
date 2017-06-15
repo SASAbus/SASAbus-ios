@@ -17,10 +17,12 @@ class EcoPointsSettingsViewController: UITableViewController {
     var operationRunning: Bool = false
 
     var profile: Profile
+    var parentVC: EcoPointsProfileViewController
 
 
-    init(profile: Profile) {
+    init(parent: EcoPointsProfileViewController, profile: Profile) {
         self.profile = profile
+        self.parentVC = parent
 
         super.init(nibName: "EcoPointsSettingsViewController", bundle: nil)
     }
@@ -159,6 +161,13 @@ class EcoPointsSettingsViewController: UITableViewController {
 
         operationRunning = false
     }
+
+    func updateProfilePicture(url: String) {
+        profile.imageUrl = url
+        tableView.reloadData()
+
+        parentVC.updateProfilePicture(url: url)
+    }
 }
 
 extension EcoPointsSettingsViewController {
@@ -193,8 +202,7 @@ extension EcoPointsSettingsViewController {
             let cell = tableView.dequeueReusableCell(
                     withIdentifier: "eco_points_profile_settings") as! EcoPointsProfileSettingsCell
 
-            let profileId: Int = self.profile.profile
-            let url = URL(string: Endpoint.apiUrl + Endpoint.ECO_POINTS_PROFILE_PICTURE_USER + String(profileId))!
+            let url = URL(string: self.profile.imageUrl)!
             cell.profilePicture.kf.setImage(with: url)
 
             cell.nameText.text = profile.username
@@ -223,12 +231,16 @@ extension EcoPointsSettingsViewController {
             cell.textLabel?.textColor = .black
         }
 
-        let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        indicator.hidesWhenStopped = false
-        indicator.isHidden = !item.isLoading
-        indicator.startAnimating()
+        if indexPath.section == 1 {
+            cell.accessoryType = .disclosureIndicator
+        } else if indexPath.section == 2 {
+            let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+            indicator.hidesWhenStopped = false
+            indicator.isHidden = !item.isLoading
+            indicator.startAnimating()
 
-        cell.accessoryView = indicator
+            cell.accessoryView = indicator
+        }
 
         return cell
     }
@@ -244,7 +256,21 @@ extension EcoPointsSettingsViewController {
             return
         }
 
-        if indexPath.section != 2 {
+        if indexPath.section == 2 {
+            return
+        }
+
+        if indexPath.section == 1 {
+            switch indexPath.row {
+            case 0:
+                break
+            case 1:
+                let viewController = EcoPointsProfilePictureDefaultViewController(parent: self)
+                self.navigationController!.pushViewController(viewController, animated: true)
+            default:
+                fatalError()
+            }
+
             return
         }
 

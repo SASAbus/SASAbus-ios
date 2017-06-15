@@ -29,6 +29,8 @@ class ParkingDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var distanceLabel: UILabel!
 
+
+
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if highlighted {
             self.stationLabel.textColor = Theme.white

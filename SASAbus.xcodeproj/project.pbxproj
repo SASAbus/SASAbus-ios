@@ -130,6 +130,7 @@
 		1F2E36A05E0D9BAE29304D46 /* RouteRouteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3592E2F7A609730F0DB1 /* RouteRouteViewController.xib */; };
 		1F2E36BFA207C5A6CED20EA8 /* TokenValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E39209224A5FA3F39E1BB /* TokenValidator.swift */; };
 		1F2E36C354B26FFF01D8305F /* TripNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3C7561E58C25322E2A1C /* TripNotification.swift */; };
+		1F2E36C8798459048F6DA114 /* EcoPointsProfilePictureDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E317E549EE7B9330ABA48 /* EcoPointsProfilePictureDefaultCell.swift */; };
 		1F2E36D1957BB2BC11217A80 /* LineDetailsBusesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E313DEFD19EA5D95145EA /* LineDetailsBusesViewController.swift */; };
 		1F2E36E7158F7C40C1784F4D /* BBusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33FF331FAD07D2F33D1B /* BBusStop.swift */; };
 		1F2E36EACD2737517DAE6083 /* AbsBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3178328F34DF9684FBBB /* AbsBeacon.swift */; };
@@ -194,6 +195,7 @@
 		1F2E397CED44D82B7C5D4186 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3227076AA65D551F407B /* Trip.swift */; };
 		1F2E398B1EF69CE13865FF3B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3FB2FBEEC4D8C581ED7A /* Launch Screen.storyboard */; };
 		1F2E39900C3782160B5B62AB /* RealtimeBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3B43A65BB1709EEF728D /* RealtimeBus.swift */; };
+		1F2E39A96CDE1AA086901581 /* EcoPointsProfilePictureDefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3105E307B3EA5836220D /* EcoPointsProfilePictureDefaultViewController.swift */; };
 		1F2E39B45DA3B5DDB0A0239A /* EcoPointsBadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E901D36F1C4161C7B68 /* EcoPointsBadgeCell.swift */; };
 		1F2E39BB0657A0B0AC4F8C55 /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3815FADF01183B307D5E /* Intro.storyboard */; };
 		1F2E39BE93D1F23DAC67B121 /* BusStopFilterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E37DDA5577DC514471BB8 /* BusStopFilterCollectionViewCell.xib */; };
@@ -327,6 +329,8 @@
 		CD34D06B1BC5594D00912806 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD34D06D1BC5594D00912806 /* Localizable.strings */; };
 		FA091C5F1EDD4CD200BC37A5 /* LineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA091C5E1EDD4CD200BC37A5 /* LineCell.xib */; };
 		FA091C631EDD603800BC37A5 /* LineDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA091C621EDD603800BC37A5 /* LineDetailsViewController.xib */; };
+		FA18D5231EF2768D00038B89 /* EcoPointsProfilePictureDefaultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA18D5221EF2768D00038B89 /* EcoPointsProfilePictureDefaultViewController.xib */; };
+		FA18D5251EF2777600038B89 /* EcoPointsProfilePictureDefaultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA18D5241EF2777600038B89 /* EcoPointsProfilePictureDefaultCell.xib */; };
 		FA2690DF1E93B927000B8A84 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2690DE1E93B927000B8A84 /* UserNotifications.framework */; };
 		FA2690E11E93B927000B8A84 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2690E01E93B927000B8A84 /* UserNotificationsUI.framework */; };
 		FA2690E41E93B927000B8A84 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2690E31E93B927000B8A84 /* NotificationViewController.swift */; };
@@ -402,6 +406,7 @@
 		1F2E30F307B3EF9838924ED2 /* HMAC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMAC.swift; sourceTree = "<group>"; };
 		1F2E30F3FE4F7FFA628ECFB4 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		1F2E30FDECD6B68F94F26690 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		1F2E3105E307B3EA5836220D /* EcoPointsProfilePictureDefaultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EcoPointsProfilePictureDefaultViewController.swift; sourceTree = "<group>"; };
 		1F2E310C7C183E99E5CEA633 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		1F2E3110A6C2281EEF88C992 /* EcoPointsBadgesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EcoPointsBadgesViewController.xib; sourceTree = "<group>"; };
 		1F2E3111378CD352AECBA68C /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -412,6 +417,7 @@
 		1F2E31685F05AF13E4DEB658 /* ParkingApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingApi.swift; sourceTree = "<group>"; };
 		1F2E31744BD3CFFB0E854C2A /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		1F2E3178328F34DF9684FBBB /* AbsBeacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbsBeacon.swift; sourceTree = "<group>"; };
+		1F2E317E549EE7B9330ABA48 /* EcoPointsProfilePictureDefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EcoPointsProfilePictureDefaultCell.swift; sourceTree = "<group>"; };
 		1F2E3199B5336C95BE7CB50D /* VdvTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VdvTrip.swift; sourceTree = "<group>"; };
 		1F2E31B4BCF5A65FDF37D279 /* DepartureAutoCompleteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DepartureAutoCompleteCell.xib; sourceTree = "<group>"; };
 		1F2E31BAC0323AFF9B65A8CF /* DepartureViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DepartureViewCell.xib; sourceTree = "<group>"; };
@@ -651,6 +657,8 @@
 		D691B23DAE0CB65656C8EAF5 /* Pods_SASAbus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SASAbus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA091C5E1EDD4CD200BC37A5 /* LineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineCell.xib; sourceTree = "<group>"; };
 		FA091C621EDD603800BC37A5 /* LineDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LineDetailsViewController.xib; path = ../../../../../SasaBusSwift/sasabus/ui/lines/details/LineDetailsViewController.xib; sourceTree = "<group>"; };
+		FA18D5221EF2768D00038B89 /* EcoPointsProfilePictureDefaultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EcoPointsProfilePictureDefaultViewController.xib; sourceTree = "<group>"; };
+		FA18D5241EF2777600038B89 /* EcoPointsProfilePictureDefaultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EcoPointsProfilePictureDefaultCell.xib; sourceTree = "<group>"; };
 		FA2690DD1E93B927000B8A84 /* TripNotification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TripNotification.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA2690DE1E93B927000B8A84 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		FA2690E01E93B927000B8A84 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
@@ -1428,6 +1436,7 @@
 				1F2E3805477F867D378378CB /* EcoPointsSettingsViewController.swift */,
 				1F2E34AA7A3F3083103E8433 /* EcoPointsProfileSettingsCell.swift */,
 				1F2E3759E11BB957AC942225 /* EcoPointsProfileSettingsCell.xib */,
+				1F2E3FFBC8E869D01E47CE5D /* Picture */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1535,6 +1544,17 @@
 				1F2E34FF5F47D913028C7FAD /* MapBottomSheetViewController.swift */,
 			);
 			path = BottomSheet;
+			sourceTree = "<group>";
+		};
+		1F2E3FFBC8E869D01E47CE5D /* Picture */ = {
+			isa = PBXGroup;
+			children = (
+				FA18D5221EF2768D00038B89 /* EcoPointsProfilePictureDefaultViewController.xib */,
+				1F2E3105E307B3EA5836220D /* EcoPointsProfilePictureDefaultViewController.swift */,
+				FA18D5241EF2777600038B89 /* EcoPointsProfilePictureDefaultCell.xib */,
+				1F2E317E549EE7B9330ABA48 /* EcoPointsProfilePictureDefaultCell.swift */,
+			);
+			path = Picture;
 			sourceTree = "<group>";
 		};
 		31CFDFDC1BB2877200636599 = {
@@ -1764,12 +1784,14 @@
 				1F2E38C096C5336C3DF352A2 /* MapBottomSheetViewController.xib in Resources */,
 				1F2E3A155D3E3B11D3E5C97D /* RouteMapViewController.xib in Resources */,
 				1F2E36A05E0D9BAE29304D46 /* RouteRouteViewController.xib in Resources */,
+				FA18D5231EF2768D00038B89 /* EcoPointsProfilePictureDefaultViewController.xib in Resources */,
 				1F2E3F33D427BBACA3CD5A51 /* RouteSearchViewController.xib in Resources */,
 				FAB31DFA1EEFE584004B0BAC /* AboutViewController.xib in Resources */,
 				1F2E3BF504F88A585DA451A5 /* RouteResultsViewController.xib in Resources */,
 				1F2E3484B5332BA2DFE7C704 /* CreditsViewController.xib in Resources */,
 				1F2E3211BE2B5334C5FC2B8B /* BackgroundView.xib in Resources */,
 				1F2E31D6C90C956EC2A300CF /* EcoPointsSettingsViewController.xib in Resources */,
+				FA18D5251EF2777600038B89 /* EcoPointsProfilePictureDefaultCell.xib in Resources */,
 				1F2E32F62B76FF719415103A /* EcoPointsProfileSettingsCell.xib in Resources */,
 				1F2E38320C2AC9630F2006D0 /* public_key.cer in Resources */,
 			);
@@ -2086,6 +2108,8 @@
 				1F2E3E1D77F7EB4D96AF0F94 /* HMAC.swift in Sources */,
 				1F2E3452E99FA7D3149FEFA9 /* SignatureAlgorithm.swift in Sources */,
 				1F2E3DCDA5AFD8B40A54294C /* Validator.swift in Sources */,
+				1F2E39A96CDE1AA086901581 /* EcoPointsProfilePictureDefaultViewController.swift in Sources */,
+				1F2E36C8798459048F6DA114 /* EcoPointsProfilePictureDefaultCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

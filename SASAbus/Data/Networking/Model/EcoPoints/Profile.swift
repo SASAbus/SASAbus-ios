@@ -13,6 +13,8 @@ final class Profile: JSONable, JSONCollection {
     let rank: Int
     let profile: Int
 
+    var imageUrl: String
+
     required init(parameter: JSON) {
         id = parameter["id"].stringValue
         username = parameter["username"].stringValue
@@ -22,6 +24,8 @@ final class Profile: JSONable, JSONCollection {
         badges = parameter["badges"].intValue
         rank = parameter["rank"].intValue
         profile = parameter["profile"].intValue
+
+        imageUrl = Endpoint.apiUrl + Endpoint.ECO_POINTS_PROFILE_PICTURE_USER + String(profile)
     }
 
     static func collection(parameter: JSON) -> [Profile] {

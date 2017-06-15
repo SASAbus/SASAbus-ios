@@ -29,4 +29,16 @@ class EcoPointsApi {
     static func sendBadge(id: Int) -> Observable<Any?> {
         return RestClient.putNoResponse("\(Endpoint.ECO_POINTS_BADGES_SEND)\(id)")
     }
+
+    static func getProfilePictures() -> Observable<JSON> {
+        return RestClient.getJson("\(Endpoint.ECO_POINTS_PROFILE_PICTURE_DEFAULT)")
+    }
+
+    static func upload(url: String) -> Observable<Void?> {
+        let parameters = [
+                "url": url
+        ]
+
+        return RestClient.post("\(Endpoint.ECO_POINTS_PROFILE_PICTURE_DEFAULT)", parameters: parameters)
+    }
 }

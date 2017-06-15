@@ -95,7 +95,7 @@ class EcoPointsProfileViewController: UITableViewController {
                         let tripList = trip.path!.components(separatedBy: Config.DELIMITER)
 
                         var busStops = tripList.map {
-                            BusStopRealmHelper.getBusStop(id: Int($0) ?? -1 )
+                            BusStopRealmHelper.getBusStop(id: Int($0) ?? -1)
                         }
 
                         var i = 0
@@ -163,6 +163,11 @@ class EcoPointsProfileViewController: UITableViewController {
 
         self.refreshControl = refreshControl
     }
+
+    func updateProfilePicture(url: String) {
+        profile?.imageUrl = url
+        tableView.reloadData()
+    }
 }
 
 extension EcoPointsProfileViewController {
@@ -193,12 +198,11 @@ extension EcoPointsProfileViewController {
                 cell.badgesText.text = "\(profile.badges)"
                 cell.rankText.text = "\(profile.rank)"
 
-                let profileId: Int = profile.profile
-                let url = URL(string: Endpoint.apiUrl + Endpoint.ECO_POINTS_PROFILE_PICTURE_USER + String(profileId))!
+                let url = URL(string: profile.imageUrl)!
                 cell.profilePicture.kf.setImage(with: url)
 
                 cell.onButtonTapped = {
-                    let controller = EcoPointsSettingsViewController(profile: profile)
+                    let controller = EcoPointsSettingsViewController(parent: self, profile: profile)
                     self.navigationController!.pushViewController(controller, animated: true)
                 }
             } else {
