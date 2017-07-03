@@ -106,7 +106,7 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
         (searchBar.value(forKey: "searchField") as! UITextField).clearButtonMode = UITextFieldViewMode.never
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: self.filterImage,
-                style: .plain, target: self, action: Selector("goToFilter"))
+                style: .plain, target: self, action: #selector(goToFilter))
 
         tabBar.items![0].title = NSLocalizedString("GPS", comment: "")
         tabBar.items![1].title = NSLocalizedString("Map", comment: "")
@@ -206,10 +206,12 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        self.navigationItem.rightBarButtonItem = nil
-        self.allDepartures = []
-        self.tableView.reloadData()
-        self.getDepartures()
+        navigationItem.rightBarButtonItem = nil
+        
+        allDepartures.removeAll()
+        tableView.reloadData()
+        
+        getDepartures()
 
         textField.resignFirstResponder()
     }
@@ -223,11 +225,11 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
                 Log.info("Current bus stop: \(currentBusStop)")
 
                 if let busStop = realm.objects(BusStop.self).filter("id == \(currentBusStop)").first {
-                    self.setBusStop(BBusStop(fromRealm: busStop))
+                    setBusStop(BBusStop(fromRealm: busStop))
 
-                    self.setupBusStopSearchDate()
-                    self.autoCompleteTableView.isHidden = true
-                    self.tabBar.selectedItem = nil
+                    setupBusStopSearchDate()
+                    autoCompleteTableView.isHidden = true
+                    tabBar.selectedItem = nil
                 }
             }
         }
@@ -236,28 +238,28 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
     func setupBusStopSearchDate() {
         setupSearchDate()
 
-        self.datePicker.date = self.searchDate as Date
+        datePicker.date = searchDate as Date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
-        self.timeField.text = dateFormatter.string(from: self.searchDate as Date)
+        timeField.text = dateFormatter.string(from: searchDate as Date)
     }
 
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item.tag == 0 {
             let busStopGpsViewController = BusStopGpsViewController()
-            self.navigationController!.pushViewController(busStopGpsViewController, animated: true)
+            navigationController!.pushViewController(busStopGpsViewController, animated: true)
         } else if item.tag == 1 {
             let busStopMapViewController = BusStopMapViewController()
-            self.navigationController!.pushViewController(busStopMapViewController, animated: true)
+            navigationController!.pushViewController(busStopMapViewController, animated: true)
         } else if item.tag == 2 {
             let busStopFavoritesViewController = BusStopFavoritesViewController(busStop: self.selectedBusStop)
-            self.navigationController!.pushViewController(busStopFavoritesViewController, animated: true)
+            navigationController!.pushViewController(busStopFavoritesViewController, animated: true)
         }
     }
 
     func goToFilter() {
         let busStopFilterViewController = BusStopFilterViewController()
-        self.navigationController!.pushViewController(busStopFilterViewController, animated: true)
+        navigationController!.pushViewController(busStopFilterViewController, animated: true)
     }
 
     func setBusStop(_ busStop: BBusStop) {
@@ -267,14 +269,14 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
         }
 
         selectedBusStop = busStop
-        autoCompleteTableView.isHidden = false
+        autoCompleteTableView.isHidden = true
 
         searchBar.text = selectedBusStop?.name()
         searchBar.endEditing(true)
         searchBar.resignFirstResponder()
 
-        allDepartures = []
-
+        allDepartures.removeAll()
+        filteredDepartures.removeAll()
         tableView.reloadData()
 
         parseData()
@@ -293,7 +295,8 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
                 .subscribeOn(MainScheduler.background)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { items in
-                    self.allDepartures = items
+                    self.allDepartures.removeAll()
+                    self.allDepartures.append(contentsOf: items)
 
                     self.updateFilter()
 
@@ -379,15 +382,16 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
     func updateFilter() {
         let filteredLines: [Int] = UserRealmHelper.getFilteredDepartureLines()
 
-        self.filteredDepartures.removeAll()
+        filteredDepartures.removeAll()
 
         if filteredLines.count > 0 {
-            filteredDepartures = self.allDepartures.filter {
+            filteredDepartures.append(contentsOf: allDepartures.filter {
                 filteredLines.contains($0.lineId)
-            }
+            })
+        } else {
+            filteredDepartures.append(contentsOf: allDepartures)
         }
 
-        self.filteredDepartures.append(contentsOf: filteredDepartures)
         self.refreshControl.endRefreshing()
         self.tableView.reloadData()
 
@@ -409,15 +413,11 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
 extension BusStopViewController {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count = 0
-
         if self.autoCompleteTableView != nil && tableView.isEqual(self.autoCompleteTableView) {
-            count = self.foundBusStations.count
+            return self.foundBusStations.count
         } else {
-            count = allDepartures.count
+            return filteredDepartures.count
         }
-
-        return count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -432,7 +432,7 @@ extension BusStopViewController {
             return cell
         }
 
-        let departure = allDepartures[indexPath.row]
+        let departure = filteredDepartures[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "DepartureViewCell", for: indexPath) as! DepartureViewCell
 
         cell.timeLabel.text = departure.time
@@ -460,6 +460,9 @@ extension BusStopViewController {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if autoCompleteTableView != nil && tableView.isEqual(autoCompleteTableView) {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: self.filterImage,
+                    style: .plain, target: self, action: #selector(goToFilter))
+
             setBusStop(foundBusStations[indexPath.row])
         } else {
             let busStopTripViewController = BusStopTripViewController(departure: allDepartures[indexPath.row])
@@ -489,54 +492,58 @@ extension BusStopViewController {
     }
 
     internal func enableSearching() {
-        self.working = false
+        working = false
 
-        (self.searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.darkGrey
+        (searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.darkGrey
 
-        self.timeField.isUserInteractionEnabled = true
-        self.searchBar.alpha = 1.0
-        self.timeField.alpha = 1.0
+        timeField.isUserInteractionEnabled = true
+        searchBar.alpha = 1.0
+        timeField.alpha = 1.0
 
-        let items = self.tabBar.items
+        let items = tabBar.items
 
         for item in items! {
             item.isEnabled = true
         }
 
-        self.tabBar.setItems(items, animated: false)
+        tabBar.setItems(items, animated: false)
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if self.selectedBusStop != nil {
-            self.selectedBusStop = nil
-            self.getDepartures()
+        if selectedBusStop != nil {
+            selectedBusStop = nil
+            getDepartures()
         }
 
-        self.updateFoundBusStations(searchText)
+        updateFoundBusStations(searchText)
     }
 
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        return !self.working
+        return !working
     }
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel,
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel,
                 target: self, action: #selector(BusStopViewController.searchBarCancel))
 
         searchBar.text = ""
-        self.updateFoundBusStations(searchBar.text!)
-        self.autoCompleteTableView.isHidden = false
+
+        updateFoundBusStations(searchBar.text!)
+        autoCompleteTableView.isHidden = false
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        self.foundBusStations = []
-        self.autoCompleteTableView.isHidden = true
+        foundBusStations = []
+        autoCompleteTableView.isHidden = true
     }
 
 
     func searchBarCancel() {
-        self.searchBar.endEditing(true)
-        self.searchBar.resignFirstResponder()
+        searchBar.endEditing(true)
+        searchBar.resignFirstResponder()
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: self.filterImage,
+                style: .plain, target: self, action: #selector(goToFilter))
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -547,15 +554,15 @@ extension BusStopViewController {
     }
 
     func setSearchDate() {
-        self.navigationItem.rightBarButtonItem = nil
+        navigationItem.rightBarButtonItem = nil
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.YYYY HH:mm"
 
-        self.searchDate = self.datePicker.date
-        self.secondsFromMidnight = self.getSecondsFromMidnight(self.searchDate)
-        self.timeField.text = dateFormatter.string(from: self.searchDate as Date)
-        self.timeField.endEditing(true)
+        searchDate = datePicker.date
+        secondsFromMidnight = getSecondsFromMidnight(searchDate)
+        timeField.text = dateFormatter.string(from: searchDate as Date)
+        timeField.endEditing(true)
     }
 
     func setupSearchDate() {

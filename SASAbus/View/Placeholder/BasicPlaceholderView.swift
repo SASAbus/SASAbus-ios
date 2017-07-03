@@ -28,6 +28,7 @@ class BasicPlaceholderView: UIView, StatefulPlaceholderView {
                 options: .alignAllCenterX,
                 metrics: nil,
                 views: views)
+
         let hConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[superview]-(<=1)-[centerView]",
                 options: .alignAllCenterY,
                 metrics: nil,

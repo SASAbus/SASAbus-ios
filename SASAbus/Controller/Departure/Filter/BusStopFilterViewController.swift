@@ -83,16 +83,22 @@ class BusStopFilterViewController: UIViewController, UICollectionViewDelegate, U
     }
 
     func enableAllLines() {
+        for filter in filteredLines {
+            filter.active = true
+        }
+
         for cell in collectionView.visibleCells as! [BusStopFilterCollectionViewCell] {
             cell.filterSwitch.setOn(true, animated: true)
-            filteredLines[cell.filterSwitch.tag].active = true
         }
     }
 
     func disableAllLines() {
+        for filter in filteredLines {
+            filter.active = false
+        }
+
         for cell in collectionView.visibleCells as! [BusStopFilterCollectionViewCell] {
             cell.filterSwitch.setOn(false, animated: true)
-            filteredLines[cell.filterSwitch.tag].active = false
         }
     }
 }
