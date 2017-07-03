@@ -1,11 +1,6 @@
-//
-// Created by Alex Lardschneider on 03/04/2017.
-// Copyright (c) 2017 SASA AG. All rights reserved.
-//
-
 import Foundation
 
-class VdvDate {
+class VdvDate: CustomStringConvertible {
 
     var id: Int
     var date: Date

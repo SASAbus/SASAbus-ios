@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F43c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kAo-dr-UoK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="17A291j" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kAo-dr-UoK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -187,12 +187,26 @@
                                     <constraint firstAttribute="width" constant="40" id="1Nf-oc-aTW"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qae-f8-dOR">
+                                <rect key="frame" x="263" y="617" width="96" height="34"/>
+                                <color key="backgroundColor" red="0.29803921568627451" green="0.85098039215686272" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="96" id="XUG-Ub-soa"/>
+                                    <constraint firstAttribute="height" constant="34" id="eZ2-hA-vk6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Close">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="XXo-ay-HKS" firstAttribute="top" secondItem="ASu-st-QyT" secondAttribute="bottom" constant="36" id="04T-uZ-CnP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XXo-ay-HKS" secondAttribute="trailing" constant="16" id="1NZ-HT-WUc"/>
+                            <constraint firstItem="w5m-Fo-Vik" firstAttribute="top" secondItem="Qae-f8-dOR" secondAttribute="bottom" constant="16" id="1dq-3j-ieD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="daM-uK-siD" secondAttribute="trailing" constant="16" id="5Rz-Nk-pOj"/>
+                            <constraint firstAttribute="trailing" secondItem="Qae-f8-dOR" secondAttribute="trailing" constant="16" id="8iY-j2-RVW"/>
                             <constraint firstItem="ceI-ci-SPq" firstAttribute="leading" secondItem="KBc-zi-S9i" secondAttribute="leadingMargin" constant="16" id="D76-Rw-lcr"/>
                             <constraint firstItem="xg9-Oz-HRe" firstAttribute="leading" secondItem="KBc-zi-S9i" secondAttribute="leadingMargin" constant="16" id="F9l-TL-eqY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ceI-ci-SPq" secondAttribute="trailing" constant="16" id="Gen-4i-hQD"/>
@@ -210,6 +224,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="closeButton" destination="Qae-f8-dOR" id="dBQ-aR-hMM"/>
                         <outlet property="descriptionText" destination="ceI-ci-SPq" id="U3P-zw-EOv"/>
                         <outlet property="doneImage" destination="Sth-Ze-rEd" id="BsP-0Z-F2c"/>
                         <outlet property="image" destination="ASu-st-QyT" id="y4V-4g-DtT"/>

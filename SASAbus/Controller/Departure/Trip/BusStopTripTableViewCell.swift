@@ -45,8 +45,4 @@ class BusStopTripTableViewCell: UITableViewCell {
             self.backgroundColor = Theme.transparent
         }
     }
-
-    func setImageFromType(_ type: String) {
-        self.iconImageView.image = UIImage(named: "busstop_" + type + ".png")
-    }
 }

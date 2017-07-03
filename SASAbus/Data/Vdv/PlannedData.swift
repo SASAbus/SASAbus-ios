@@ -32,11 +32,20 @@ class PlannedData {
 
     static func downloadFile(downloadUrl: URL) -> Observable<Float> {
         return Observable.create { observer in
-            // Delete old data.zip
-
             Log.debug("Downloading planned data to \(downloadUrl)")
 
             let fileManager = FileManager.default
+
+            // Delete old files
+            let dataDirectory = IOUtils.dataDir()
+            if fileManager.fileExists(atPath: dataDirectory.path) {
+                do {
+                    try fileManager.removeItem(at: dataDirectory)
+                    Log.warning("Deleted old data directory")
+                } catch let error {
+                    Log.error("Could not delete old data directory: \(error)")
+                }
+            }
 
             if fileManager.fileExists(atPath: downloadUrl.path) {
                 do {
@@ -47,6 +56,7 @@ class PlannedData {
                 }
             }
 
+            // Download new planned data
             let destination: DownloadRequest.DownloadFileDestination = { _, _ in
                 return (downloadUrl, [.removePreviousFile, .createIntermediateDirectories])
             }
@@ -55,15 +65,16 @@ class PlannedData {
                 observer.on(.next(Float(progress.fractionCompleted)))
             }
 
+            let zipUrl = Endpoint.apiUrl.appending(FILENAME_ONLINE)
+            Log.info("Zip url is '\(zipUrl)'")
+
             // Download new data
-            let request = Alamofire.download(Endpoint.dataApiUrl.appending(FILENAME_ONLINE), to: destination)
+            let request = Alamofire.download(zipUrl, to: destination)
                     .downloadProgress(queue: DispatchQueue.main, closure: progress)
                     .response(queue: DispatchQueue(label: "com.sasabus.download", qos: .utility, attributes: [.concurrent])) { response in
                         if let error = response.error {
                             observer.on(.error(error))
                         } else {
-                            Log.info("Unzipping plan data")
-
                             do {
                                 try unzipData(downloadUrl: downloadUrl)
                             } catch {
@@ -88,6 +99,8 @@ class PlannedData {
     }
 
     static func unzipData(downloadUrl: URL) throws {
+        Log.info("Unzipping zip file '\(downloadUrl)'")
+
         let finalUrl: URL = IOUtils.dataDir()
         try IOUtils.unzipFile(from: downloadUrl, to: finalUrl)
 

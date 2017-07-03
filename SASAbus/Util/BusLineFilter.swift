@@ -24,10 +24,10 @@ import Foundation
 
 class BusLineFilter {
 
-    let busLine: Line!
+    let busLine: Int!
     var active: Bool! = true
 
-    init(busLine: Line) {
-        self.busLine = busLine
+    init(line: Int) {
+        self.busLine = line
     }
 }

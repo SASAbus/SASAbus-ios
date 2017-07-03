@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let gcmMessageIDKey = "gcm.message_id"
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setupLogging()
         setupFirebase()
         setupRealm()
@@ -56,14 +56,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
 
         if !Settings.isIntroFinished() {
-            let storyboard = UIStoryboard(name: "Intro", bundle: nil)
-            let viewController = storyboard.instantiateViewController(
-                    withIdentifier: "intro_parent_controller") as! IntroParentViewController
-
-            viewController.dataOnly = false
-
-            self.window?.rootViewController = viewController
-            self.window?.makeKeyAndVisible()
+            startIntro()
+        } else if PlannedData.isUpdateAvailable() || !PlannedData.planDataExists() {
+            startIntro(dataOnly: true)
         } else {
             self.window!.backgroundColor = UIColor.white
             self.window!.makeKeyAndVisible()
@@ -116,6 +111,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    func startIntro(dataOnly: Bool = false) {
+        let storyboard = UIStoryboard(name: "Intro", bundle: nil)
+        let viewController = storyboard.instantiateViewController(
+                withIdentifier: "intro_parent_controller") as! IntroParentViewController
+
+        viewController.dataOnly = dataOnly
+
+        self.window?.rootViewController = viewController
+        self.window?.makeKeyAndVisible()
+    }
+
     func startApplication() {
         let appearance = UINavigationBar.appearance()
         appearance.isTranslucent = false
@@ -149,7 +155,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setupLogging() {
-#if DEBUG
+#if !DEBUG
         Fabric.with([Crashlytics.self])
 #endif
     }
@@ -191,11 +197,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 if oldUrl != url {
                     Log.error("Api url changed from \(oldUrl) to \(url), reloading Retrofit")
-
-                    // RestClient.init(this)
-                    // RestClient.initRealtime(this)
                 }
-
             } else {
                 print("Remote config fetch failed: \(error)")
             }

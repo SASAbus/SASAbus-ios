@@ -20,13 +20,14 @@ class UserRealmHelper {
      */
     static func setup() {
         var config = Realm.Configuration()
-        config.schemaVersion = 2
+        config.schemaVersion = 3
 
         config.objectTypes = [
                 FavoriteLine.self,
                 FavoriteBusStop.self,
                 Trip.self,
-                EarnedBadge.self
+                EarnedBadge.self,
+                FilteredDepartureLine.self
         ]
 
         config.deleteRealmIfMigrationNeeded = true
@@ -336,7 +337,7 @@ class UserRealmHelper {
         realm.close();*/
     }
 
-// ===================================== DISRUPTIONS ===========================================
+// ===================================== FILTER ===========================================
 
     static func setFilter(lines: [Int]) {
         /*Realm realm = Realm.getDefaultInstance();
@@ -432,5 +433,34 @@ LogUtils.i(TAG, "Added beacon " + major + " to realm");
         try! realm.write {
             realm.add(badge)
         }
+    }
+
+
+    // ======================================= DEPARTURE FILTER ==============================================
+
+    static func setFilteredDepartureLines(lines: [Int]) {
+        let realm = try! Realm()
+
+        try! realm.write {
+            for line in lines {
+                let filter = FilteredDepartureLine()
+                filter.line = line
+
+                realm.add(filter)
+            }
+        }
+    }
+
+    static func getFilteredDepartureLines() -> [Int] {
+        let realm = try! Realm()
+
+        let filtered = realm.objects(FilteredDepartureLine.self)
+        var lines: [Int] = []
+
+        for filter in filtered {
+            lines.append(filter.line)
+        }
+
+        return lines
     }
 }

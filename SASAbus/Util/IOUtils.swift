@@ -14,14 +14,15 @@ class IOUtils {
     }
 
     static func unzipFile(from: URL, to: URL) throws {
-        let success = SSZipArchive.unzipFile(atPath: from.path, toDestination: to.path)
+        let success = try SSZipArchive.unzipFileAtPath(
+                from.path, toDestination: to.path, overwrite: false, password: nil, delegate: nil
+        )
+
         if success {
             Log.warning("Unzipped file \(from) to \(to)")
         } else {
-            Log.error("Could not unzip files")
-            throw NSError(domain: "com.davale.sasabus", code: -1, userInfo: nil)
+            Log.error("Could not unzip files: No error thrown")
         }
-
     }
 
     static func storageDir() -> URL {

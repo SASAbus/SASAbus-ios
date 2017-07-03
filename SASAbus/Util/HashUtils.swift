@@ -69,26 +69,42 @@ class HashUtils {
 
         return md5Hex
     }
-}
 
-extension String {
-    func index(from: Int) -> Index {
-        return self.index(startIndex, offsetBy: from)
-    }
+    static func md5File(url: URL) -> String? {
+        let bufferSize = 4096
 
-    func substring(from: Int) -> String {
-        let fromIndex = index(from: from)
-        return substring(from: fromIndex)
-    }
+        do {
+            // Open file for reading:
+            let file = try FileHandle(forReadingFrom: url)
+            defer {
+                file.closeFile()
+            }
 
-    func substring(to: Int) -> String {
-        let toIndex = index(from: to)
-        return substring(to: toIndex)
-    }
+            // Create and initialize MD5 context:
+            var context = CC_MD5_CTX()
+            CC_MD5_Init(&context)
 
-    func substring(with r: Range<Int>) -> String {
-        let startIndex = index(from: r.lowerBound)
-        let endIndex = index(from: r.upperBound)
-        return substring(with: startIndex..<endIndex)
+            // Read up to `bufferSize` bytes, until EOF is reached, and update MD5 context:
+            while case let data = file.readData(ofLength: bufferSize), data.count > 0 {
+                data.withUnsafeBytes {
+                    _ = CC_MD5_Update(&context, $0, CC_LONG(data.count))
+                }
+            }
+
+            // Compute the MD5 digest:
+            var digest = Data(count: Int(CC_MD5_DIGEST_LENGTH))
+            digest.withUnsafeMutableBytes {
+                _ = CC_MD5_Final($0, &context)
+            }
+
+            let hexDigest = digest.map {
+                String(format: "%02hhx", $0)
+            }.joined()
+
+            return hexDigest
+        } catch {
+            Log.error("Cannot compute md5 of file '\(url)', error: '\(error)'")
+            return nil
+        }
     }
 }

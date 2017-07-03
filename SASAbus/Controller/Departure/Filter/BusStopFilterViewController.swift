@@ -28,13 +28,11 @@ class BusStopFilterViewController: UIViewController, UICollectionViewDelegate, U
     @IBOutlet weak var enableAllButton: UIBarButtonItem!
     @IBOutlet weak var disableAllButton: UIBarButtonItem!
 
-    fileprivate var filteredBusLines: [BusLineFilter]!
+    fileprivate var filteredLines: [BusLineFilter] = []
 
 
-    init(filteredBusLines: [BusLineFilter]) {
+    init() {
         super.init(nibName: "BusStopFilterViewController", bundle: nil)
-
-        self.filteredBusLines = filteredBusLines
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -57,57 +55,70 @@ class BusStopFilterViewController: UIViewController, UICollectionViewDelegate, U
         disableAllButton.action = #selector(disableAllLines)
         disableAllButton.title = NSLocalizedString("Disable all", comment: "")
         disableAllButton.tintColor = Theme.orange
+
+        loadAllLines()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        let busStopViewController = navigationController?.viewControllers[0] as! BusStopViewController
-        busStopViewController.setFilteredBusLines(filteredBusLines)
         super.viewWillDisappear(animated)
+
+        let viewController = navigationController?.viewControllers[0] as! BusStopViewController
+        viewController.updateFilter()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 
+    func loadAllLines() {
+        let lines = Lines.ORDER
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredBusLines.count
-    }
+        for line in lines {
+            filteredLines.append(BusLineFilter(line: line))
+        }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let busLineFilter: BusLineFilter = self.filteredBusLines[indexPath.row]
-
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BusStopFilterCollectionViewCell",
-                for: indexPath) as! BusStopFilterCollectionViewCell
-
-        cell.busLineLabel.textColor = Theme.darkGrey
-        cell.filterSwitch.onTintColor = Theme.orange
-        cell.filterSwitch.tag = indexPath.row
-        cell.filterSwitch.setOn(busLineFilter.active, animated: false)
-        cell.filterSwitch.addTarget(self, action: #selector(setFilterActive(_:)), for: UIControlEvents.valueChanged)
-        cell.filterSwitch.accessibilityLabel = busLineFilter.busLine.name
-
-        cell.busLineLabel.text = busLineFilter.busLine.name
-
-        return cell
+        self.collectionView.reloadData()
     }
 
 
     func setFilterActive(_ sender: UISwitch) {
-        filteredBusLines[sender.tag].active = !filteredBusLines[sender.tag].active
+        filteredLines[sender.tag].active = !filteredLines[sender.tag].active
     }
 
     func enableAllLines() {
         for cell in collectionView.visibleCells as! [BusStopFilterCollectionViewCell] {
             cell.filterSwitch.setOn(true, animated: true)
-            filteredBusLines[cell.filterSwitch.tag].active = true
+            filteredLines[cell.filterSwitch.tag].active = true
         }
     }
 
     func disableAllLines() {
         for cell in collectionView.visibleCells as! [BusStopFilterCollectionViewCell] {
             cell.filterSwitch.setOn(false, animated: true)
-            filteredBusLines[cell.filterSwitch.tag].active = false
+            filteredLines[cell.filterSwitch.tag].active = false
         }
+    }
+}
+
+extension BusStopFilterViewController {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return filteredLines.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let busLineFilter: BusLineFilter = self.filteredLines[indexPath.row]
+
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BusStopFilterCollectionViewCell",
+                for: indexPath) as! BusStopFilterCollectionViewCell
+
+        cell.busLineLabel.textColor = Theme.darkGrey
+
+        cell.filterSwitch.onTintColor = Theme.orange
+        cell.filterSwitch.tag = indexPath.row
+        cell.filterSwitch.setOn(busLineFilter.active, animated: false)
+        cell.filterSwitch.addTarget(self, action: #selector(setFilterActive(_:)), for: UIControlEvents.valueChanged)
+        cell.filterSwitch.accessibilityLabel = Lines.lidToName(id: busLineFilter.busLine)
+
+        cell.busLineLabel.text = Lines.lidToName(id: busLineFilter.busLine)
+
+        return cell
     }
 }

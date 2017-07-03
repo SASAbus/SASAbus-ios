@@ -5,7 +5,8 @@ class IntroParentViewController: UIViewController, IntroPageViewControllerDelega
     @IBOutlet weak var pageControl: UIPageControl!
     
     var dataOnly: Bool = false
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -13,6 +14,10 @@ class IntroParentViewController: UIViewController, IntroPageViewControllerDelega
         pageControl.pageIndicatorTintColor = UIColor.lightGray
         pageControl.numberOfPages = 5
         pageControl.currentPage = 0
+
+        if dataOnly {
+            pageControl.isHidden = true
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

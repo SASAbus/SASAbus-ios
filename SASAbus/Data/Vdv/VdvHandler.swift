@@ -16,11 +16,13 @@ class VdvHandler {
 
     static func load() -> Observable<Any> {
         return Observable.create { observer in
+            defer {
+                isLoading = false
+            }
+
             if Thread.isMainThread {
                 fatalError("Loading planned data on main thread is prohibited!")
             }
-
-            // JodaTimeAndroid.init(context)
 
             if !PlannedData.planDataExists() {
                 BeaconHandler.instance.stop()
@@ -92,7 +94,6 @@ class VdvHandler {
             }
 
             isLoaded = true
-            isLoading = false
 
             observer.on(.next(100))
 

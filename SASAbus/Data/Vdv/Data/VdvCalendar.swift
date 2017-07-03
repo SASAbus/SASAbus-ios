@@ -48,12 +48,9 @@ class VdvCalendar {
             }
         }
 
-        // TODO
-        // Settings.markDataUpdateAvailable(context, true);
+        PlannedData.setUpdateAvailable(true)
 
-        _ = VdvHandler.getPlannedDataFile()
-        // var md5 = HashUtils.getFileMd5(plannedDataFile)
-        let md5 = "md5"
+        let md5 = HashUtils.md5File(url: VdvHandler.getPlannedDataFile())
 
         let message = "Today (\(DATE_FORMAT.string(from: Date())) doesn't exist in the calendar," +
                 " calendar=\(CALENDAR), md5=\(md5)"

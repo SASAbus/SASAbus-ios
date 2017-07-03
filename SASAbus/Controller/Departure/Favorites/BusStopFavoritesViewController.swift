@@ -21,6 +21,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class BusStopFavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -28,7 +29,10 @@ class BusStopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var tableView: UITableView!
 
     fileprivate var busStop: BBusStop!
-    fileprivate var favoriteBusStops: [BBusStop]!
+    fileprivate var favoriteBusStops: [BBusStop] = []
+
+    let realm = try! Realm()
+
 
     init(busStop: BBusStop?) {
         super.init(nibName: "BusStopFavoritesViewController", bundle: nil)
@@ -40,14 +44,15 @@ class BusStopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
         super.init(coder: aDecoder)
     }
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("Bus station favorites", comment: "")
 
-        tableView.register(UINib(nibName: "BusStopFavoritesTableViewCell", bundle: nil), forCellReuseIdentifier: "BusStopFavoritesTableViewCell");
+        tableView.register(UINib(nibName: "BusStopFavoritesTableViewCell", bundle: nil), forCellReuseIdentifier: "BusStopFavoritesTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
-        tableView.allowsMultipleSelectionDuringEditing = false;
+        tableView.allowsMultipleSelectionDuringEditing = false
 
         self.title = NSLocalizedString("Bus stop favorites", comment: "")
         self.view.backgroundColor = Theme.darkGrey
@@ -67,9 +72,33 @@ class BusStopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+
+    func loadFavoriteBusStations() {
+        favoriteBusStops.removeAll()
+
+        let favorites = realm.objects(FavoriteBusStop.self)
+        let busStopRealm = Realm.busStops()
+
+        for favorite in favorites {
+            let busStop = busStopRealm.objects(BusStop.self).filter("family = \(favorite.group)").first
+            if let busStop = busStop {
+                favoriteBusStops.append(BBusStop(fromRealm: busStop))
+            }
+        }
+
+        self.tableView.reloadData()
     }
+
+    func saveFavoriteBusStation(_ sender: UIBarButtonItem) {
+        UserRealmHelper.addFavoriteBusStop(busStopGroup: self.busStop.family)
+
+        self.loadFavoriteBusStations()
+        self.busStationLabel.text = NSLocalizedString("Select a bus station from your favorites", comment: "")
+        self.navigationItem.rightBarButtonItem = nil
+    }
+}
+
+extension BusStopFavoritesViewController {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.favoriteBusStops.count
@@ -79,7 +108,7 @@ class BusStopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
         let busStation = self.favoriteBusStops[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopFavoritesTableViewCell", for: indexPath) as! BusStopFavoritesTableViewCell
 
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        cell.selectionStyle = .none
         cell.busStationLabel.text = busStation.name()
 
         return cell
@@ -100,36 +129,23 @@ class BusStopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.delete {
+        if editingStyle == .delete {
             let busStop = self.favoriteBusStops[indexPath.row]
 
-            if UserDefaultHelper.instance.removeFavoriteBusStation(busStop) {
-                self.favoriteBusStops.remove(at: indexPath.row)
-                self.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            UserRealmHelper.removeFavoriteBusStop(busStopGroup: busStop.family)
 
-                if busStop.name() == self.busStop.name() {
-                    self.busStationLabel.text = self.busStop.name()
+            self.favoriteBusStops.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
 
-                    let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self,
-                            action: #selector(BusStopFavoritesViewController.saveFavoriteBusStation(_:)))
+            if busStop.name() == self.busStop.name() {
+                self.busStationLabel.text = self.busStop.name()
 
-                    addButton.tintColor = Theme.white
-                    self.navigationItem.rightBarButtonItem = addButton
-                }
+                let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self,
+                        action: #selector(BusStopFavoritesViewController.saveFavoriteBusStation(_:)))
+
+                addButton.tintColor = Theme.white
+                self.navigationItem.rightBarButtonItem = addButton
             }
-        }
-    }
-
-    fileprivate func loadFavoriteBusStations() {
-        self.favoriteBusStops = UserDefaultHelper.instance.getFavoriteBusStops()
-        self.tableView.reloadData()
-    }
-
-    func saveFavoriteBusStation(_ sender: UIBarButtonItem) {
-        if UserDefaultHelper.instance.addFavoriteBusStation(self.busStop) {
-            self.loadFavoriteBusStations()
-            self.busStationLabel.text = NSLocalizedString("Select a bus station from your favorites", comment: "")
-            self.navigationItem.rightBarButtonItem = nil
         }
     }
 }

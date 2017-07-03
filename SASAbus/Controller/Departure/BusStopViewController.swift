@@ -44,14 +44,12 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
     var observerAdded: Bool! = false
 
     var filterImage = UIImage(named: "filter_icon.png")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-    var filterImageFilled = UIImage(named: "filter_icon_filled.png")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
 
-    var departures: [Departure] = []
+    var allDepartures: [Departure] = []
+    var filteredDepartures: [Departure] = []
 
     var searchDate: Date!
     var secondsFromMidnight: Int!
-    var filteredBusLines: [BusLineFilter] = []
-    var filter = false
     var refreshControl: UIRefreshControl!
 
     var working: Bool! = false
@@ -87,7 +85,7 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
 
         refreshControl = UIRefreshControl()
         refreshControl.tintColor = Theme.lightOrange
-        refreshControl.addTarget(self, action: #selector(parseData), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(parseData), for: .valueChanged)
 
         refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""),
                 attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
@@ -96,7 +94,6 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
 
         setupSearchDate()
 
-        filter = true
         observerAdded = false
         view.backgroundColor = Theme.darkGrey
 
@@ -108,12 +105,15 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
         (searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.darkGrey
         (searchBar.value(forKey: "searchField") as! UITextField).clearButtonMode = UITextFieldViewMode.never
 
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: self.filterImage,
+                style: .plain, target: self, action: Selector("goToFilter"))
+
         tabBar.items![0].title = NSLocalizedString("GPS", comment: "")
         tabBar.items![1].title = NSLocalizedString("Map", comment: "")
         tabBar.items![2].title = NSLocalizedString("Favorites", comment: "")
 
         datePicker = UIDatePicker(frame: CGRect.zero)
-        datePicker.datePickerMode = UIDatePickerMode.dateAndTime
+        datePicker.datePickerMode = .dateAndTime
         datePicker.backgroundColor = Theme.darkGrey
         datePicker.tintColor = Theme.white
         datePicker.setValue(Theme.white, forKey: "textColor")
@@ -147,6 +147,7 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
 
         if self.observerAdded == false {
             self.observerAdded = true
+
             NotificationCenter.default.addObserver(self, selector: #selector(setBusStationFromCurrentLocation), name:
             NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         }
@@ -206,7 +207,7 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.navigationItem.rightBarButtonItem = nil
-        self.departures = []
+        self.allDepartures = []
         self.tableView.reloadData()
         self.getDepartures()
 
@@ -255,11 +256,16 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
     }
 
     func goToFilter() {
-        let busStopFilterViewController = BusStopFilterViewController(filteredBusLines: self.filteredBusLines)
+        let busStopFilterViewController = BusStopFilterViewController()
         self.navigationController!.pushViewController(busStopFilterViewController, animated: true)
     }
 
     func setBusStop(_ busStop: BBusStop) {
+        if selectedBusStop != nil && selectedBusStop!.family == busStop.family {
+            // Don't reload same bus stop
+            return
+        }
+
         selectedBusStop = busStop
         autoCompleteTableView.isHidden = false
 
@@ -267,8 +273,8 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
         searchBar.endEditing(true)
         searchBar.resignFirstResponder()
 
-        departures = []
-        
+        allDepartures = []
+
         tableView.reloadData()
 
         parseData()
@@ -287,7 +293,9 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
                 .subscribeOn(MainScheduler.background)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { items in
-                    self.departures = items
+                    self.allDepartures = items
+
+                    self.updateFilter()
 
                     self.tableView.reloadData()
                     self.tableView.refreshControl?.endRefreshing()
@@ -298,7 +306,7 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
                 }, onError: { error in
                     Log.error("Could not fetch departures: \(error)")
 
-                    self.departures.removeAll()
+                    self.allDepartures.removeAll()
 
                     self.tableView.reloadData()
                     self.tableView.refreshControl?.endRefreshing()
@@ -332,7 +340,7 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { buses in
                     for bus in buses {
-                        for item in self.departures {
+                        for item in self.allDepartures {
                             if item.trip == bus.trip {
                                 item.delay = bus.delay
                                 item.vehicle = bus.vehicle
@@ -343,59 +351,47 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
                         }
                     }
 
-                    self.departures.filter {
+                    self.allDepartures.filter {
                         $0.delay == Config.BUS_STOP_DETAILS_OPERATION_RUNNING
                     }.forEach {
                         $0.delay = Config.BUS_STOP_DETAILS_NO_DELAY
                     }
 
-                    if !self.departures.isEmpty {
+                    if !self.allDepartures.isEmpty {
                         self.tableView.reloadData()
                     }
                 }, onError: { error in
                     Log.error("Could not load delays: \(error)")
 
-                    self.departures.filter {
+                    self.allDepartures.filter {
                         $0.delay == Config.BUS_STOP_DETAILS_OPERATION_RUNNING
                     }.forEach {
                         $0.delay = Config.BUS_STOP_DETAILS_NO_DELAY
                     }
 
-                    if !self.departures.isEmpty {
+                    if !self.allDepartures.isEmpty {
                         self.tableView.reloadData()
                     }
                 })
     }
 
 
-    func setFilteredBusLines(_ filteredBusLines: [BusLineFilter]) {
-        // TODO filter lines?
+    func updateFilter() {
+        let filteredLines: [Int] = UserRealmHelper.getFilteredDepartureLines()
 
-        /*self.filteredBusLines = filteredBusLines
-        var filteredDepartures = self.departures
+        self.filteredDepartures.removeAll()
 
-        if self.filteredBusLines.count > 0 {
-            let activeLines = self.filteredBusLines.filter({ $0.active })
-            if self.filter {
-                self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: self.filterImage,
-                        style: UIBarButtonItemStyle.plain, target: self, action: Selector("goToFilter"))
-
-                if activeLines.count != self.filteredBusLines.count {
-                    self.navigationItem.rightBarButtonItem?.image = self.filterImageFilled
-                    filteredDepartures = self.departures.filter({ activeLines.map({ $0.busLine.id }).contains($0.lineId) })
-                }
-            }
-        } else {
-            if self.filter {
-                self.navigationItem.rightBarButtonItem = nil
+        if filteredLines.count > 0 {
+            filteredDepartures = self.allDepartures.filter {
+                filteredLines.contains($0.lineId)
             }
         }
 
-        self.filteredDepartures = filteredDepartures
+        self.filteredDepartures.append(contentsOf: filteredDepartures)
         self.refreshControl.endRefreshing()
         self.tableView.reloadData()
 
-        self.enableSearching()*/
+        self.enableSearching()
     }
 
     func getSecondsFromMidnight(_ date: Date) -> Int {
@@ -406,7 +402,7 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
     }
 
     func hasContent() -> Bool {
-        return !departures.isEmpty
+        return !allDepartures.isEmpty
     }
 }
 
@@ -418,7 +414,7 @@ extension BusStopViewController {
         if self.autoCompleteTableView != nil && tableView.isEqual(self.autoCompleteTableView) {
             count = self.foundBusStations.count
         } else {
-            count = departures.count
+            count = allDepartures.count
         }
 
         return count
@@ -436,7 +432,7 @@ extension BusStopViewController {
             return cell
         }
 
-        let departure = departures[indexPath.row]
+        let departure = allDepartures[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "DepartureViewCell", for: indexPath) as! DepartureViewCell
 
         cell.timeLabel.text = departure.time
@@ -466,7 +462,7 @@ extension BusStopViewController {
         if autoCompleteTableView != nil && tableView.isEqual(autoCompleteTableView) {
             setBusStop(foundBusStations[indexPath.row])
         } else {
-            let busStopTripViewController = BusStopTripViewController(departure: departures[indexPath.row])
+            let busStopTripViewController = BusStopTripViewController(departure: allDepartures[indexPath.row])
             self.navigationController!.pushViewController(busStopTripViewController, animated: true)
         }
     }
@@ -533,21 +529,6 @@ extension BusStopViewController {
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        let activeLines = self.filteredBusLines.filter({ $0.active })
-
-        if self.filter {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: self.filterImage,
-                    style: UIBarButtonItemStyle.plain, target: self, action: #selector(BusStopViewController.goToFilter))
-
-            self.navigationItem.rightBarButtonItem!.accessibilityLabel = NSLocalizedString("Linefilter", comment: "")
-
-            if activeLines.count != self.filteredBusLines.count {
-                self.navigationItem.rightBarButtonItem?.image = self.filterImageFilled
-            }
-        } else {
-            self.navigationItem.rightBarButtonItem = nil
-        }
-
         self.foundBusStations = []
         self.autoCompleteTableView.isHidden = true
     }

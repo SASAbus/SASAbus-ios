@@ -74,7 +74,7 @@ class Lines {
         return NSLocalizedString("linee", value: "Lines", comment: "Lines") + " " + name
     }
 
-    static let allLines = [
+    static let allLines: [Int] = [
             -1,
             -2,
             1001,

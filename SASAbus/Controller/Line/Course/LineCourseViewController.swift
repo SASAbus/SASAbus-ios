@@ -39,10 +39,6 @@ class LineCourseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if vehicle == 0 || lineId == 0 {
-            fatalError("vehicle == 0 || lineId == 0")
-        }
-
         segmentedBackground.backgroundColor = Color.materialTeal500
 
         for parent in self.navigationController!.navigationBar.subviews {
@@ -85,46 +81,45 @@ class LineCourseViewController: UIViewController {
         }
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segue_line_course_list" {
-            listController = segue.destination as! LineCourseListViewController
-            listController.parentVC = self
-            listController.vehicle = vehicle
-            listController.lineId = lineId
-        } else if segue.identifier == "segue_line_course_map" {
-            mapController = segue.destination as! LineCourseMapViewController
-            mapController.parentVC = self
-            mapController.lineId = lineId
-        }
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        listController.view.frame = CGRect(
+                origin: CGPoint(x: 0, y: 0),
+                size: CGSize(width: containerList.frame.width, height: containerList.frame.height)
+        )
+
+        mapController.view.frame = CGRect(
+                origin: CGPoint(x: 0, y: 0),
+                size: CGSize(width: containerMap.frame.width, height: containerMap.frame.height)
+        )
     }
 
 
     func prepareListViewController() {
         listController = LineCourseListViewController(lineId: lineId, vehicle: vehicle)
-        let view = listController.view
+        let view = listController.view!
 
-        view!.translatesAutoresizingMaskIntoConstraints = true
+        view.translatesAutoresizingMaskIntoConstraints = true
 
-        containerList.addSubview(view!)
+        containerList.addSubview(view)
         self.addChildViewController(listController)
 
-        if self.isViewLoaded {
-            self.view.setNeedsLayout()
-        }
+        self.view.setNeedsLayout()
+        view.setNeedsLayout()
     }
 
     func prepareMapViewController() {
         mapController = LineCourseMapViewController(lineId: lineId)
-        let view = mapController.view
+        let view = mapController.view!
 
-        view!.translatesAutoresizingMaskIntoConstraints = true
+        view.translatesAutoresizingMaskIntoConstraints = true
 
-        containerMap.addSubview(view!)
+        containerMap.addSubview(view)
         self.addChildViewController(mapController)
 
-        if self.isViewLoaded {
-            self.view.setNeedsLayout()
-        }
+        self.view.setNeedsLayout()
+        view.setNeedsLayout()
     }
 
 
