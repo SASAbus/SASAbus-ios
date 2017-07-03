@@ -41,10 +41,11 @@ class LineCourseViewController: UIViewController {
 
         segmentedBackground.backgroundColor = Color.materialTeal500
 
-        for parent in self.navigationController!.navigationBar.subviews {
+        for parent in navigationController!.navigationBar.subviews {
             for childView in parent.subviews {
                 if childView is UIImageView && childView.bounds.height <= 1 {
                     hairLineImage = childView as! UIImageView
+                    break
                 }
             }
         }
@@ -63,9 +64,9 @@ class LineCourseViewController: UIViewController {
             navController.navigationBar.barTintColor = Color.materialTeal500
             navController.navigationBar.isTranslucent = false
             navController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-
-            hairLineImage.alpha = 0
         }
+
+        hairLineImage.alpha = 0
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -76,12 +77,12 @@ class LineCourseViewController: UIViewController {
             navController.navigationBar.barTintColor = Color.materialOrange500
             navController.navigationBar.isTranslucent = false
             navController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-
-            hairLineImage.alpha = 1
         }
+
+        hairLineImage.alpha = 1
     }
 
-    open override func viewDidLayoutSubviews() {
+    override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
         listController.view.frame = CGRect(

@@ -107,6 +107,8 @@ class IntroViewController: UIPageViewController, UIPageViewControllerDelegate, U
         controller.descriptionString = description
         controller.imageString = image
 
+        controller.showCloseButton = dataOnly
+
         return controller
     }
 
