@@ -23,7 +23,8 @@ class LineCourseListViewController: UITableViewController {
     weak var activityIndicatorView: UIActivityIndicatorView!
 
 
-    init(lineId: Int, vehicle: Int) {
+    init(parent: LineCourseViewController, lineId: Int, vehicle: Int) {
+        self.parentVC = parent
         self.lineId = lineId
         self.vehicle = vehicle
 

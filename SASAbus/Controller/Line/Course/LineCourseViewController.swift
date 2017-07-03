@@ -98,7 +98,7 @@ class LineCourseViewController: UIViewController {
 
 
     func prepareListViewController() {
-        listController = LineCourseListViewController(lineId: lineId, vehicle: vehicle)
+        listController = LineCourseListViewController(parent: self, lineId: lineId, vehicle: vehicle)
         let view = listController.view!
 
         view.translatesAutoresizingMaskIntoConstraints = true

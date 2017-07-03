@@ -465,7 +465,10 @@ extension BusStopViewController {
 
             setBusStop(foundBusStations[indexPath.row])
         } else {
-            let busStopTripViewController = BusStopTripViewController(departure: allDepartures[indexPath.row])
+            let item = filteredDepartures[indexPath.row]
+
+            // TODO show course when no vehicle is available like in android app
+            let busStopTripViewController = LineCourseViewController(lineId: item.lineId, vehicle: item.vehicle)
             self.navigationController!.pushViewController(busStopTripViewController, animated: true)
         }
     }
