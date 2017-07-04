@@ -51,7 +51,7 @@ class AnswersHelper {
         }*/
     }
 
-    static func logLoginSuccess(isGoogleSignIn: Boolean) {
+    static func logLoginSuccess(isGoogleSignIn: Bool) {
         /*if (!BuildConfig.DEBUG) {
             val event = LoginEvent()
                     .putSuccess(true)
