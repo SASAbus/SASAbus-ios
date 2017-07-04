@@ -56,9 +56,9 @@ public enum PulleyPosition: Int {
     case closed = 3
 
     public static let all: [PulleyPosition] = [
-            .collapsed,
-            .open,
-            .closed
+        .collapsed,
+        .open,
+        .closed
     ]
 
     public static func positionFor(string: String?) -> PulleyPosition {
@@ -375,7 +375,8 @@ open class MultiplePulleyViewController: UIViewController {
         contentContainer.backgroundColor = UIColor.clear
         drawerContentContainer.append(contentContainer)
 
-        self.drawerContentContainer.last!.addSubview(controller.view)
+        contentContainer.addSubview(controller.view)
+
         self.addChildViewController(controller)
         controller.didMove(toParentViewController: self)
 
@@ -391,8 +392,8 @@ open class MultiplePulleyViewController: UIViewController {
         scrollView.clipsToBounds = false
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
-        scrollView.delaysContentTouches = true
-        scrollView.canCancelContentTouches = true
+        // scrollView.delaysContentTouches = true
+        // scrollView.canCancelContentTouches = true
         scrollView.backgroundColor = UIColor.clear
         scrollView.decelerationRate = UIScrollViewDecelerationRateFast
         scrollView.scrollsToTop = false
@@ -422,9 +423,7 @@ open class MultiplePulleyViewController: UIViewController {
         lastDragTargetContentOffset.append(CGPoint.zero)
         setDrawerPosition(position: initialPosition, animated: false, index: drawerCount)
 
-        if self.isViewLoaded {
-            self.view.setNeedsLayout()
-        }
+        self.view.setNeedsLayout()
 
         drawerCount += 1
     }
@@ -492,6 +491,7 @@ open class MultiplePulleyViewController: UIViewController {
     // MARK: Actions
 
     func dimmingViewTapRecognizerAction(gestureRecognizer: UITapGestureRecognizer) {
+        Log.error("dimmingViewTapRecognizerAction()")
         // TODO: Add tap recognizer?
 
         /*var index = -1
@@ -529,14 +529,14 @@ extension MultiplePulleyViewController: PulleyPassthroughScrollViewDelegate {
             return false
         }
 
-        Log.debug("shouldTouchPassthroughScrollView scroll index: \(index)")
-
         let contentDrawerLocation = drawerContentContainer[index].frame.origin.y
 
         if point.y < contentDrawerLocation {
+            Log.debug("shouldTouchPassthroughScrollView scroll index: \(index), true")
             return true
         }
 
+        Log.debug("shouldTouchPassthroughScrollView scroll index: \(index), false")
         return false
     }
 
@@ -553,13 +553,15 @@ extension MultiplePulleyViewController: PulleyPassthroughScrollViewDelegate {
             return primaryContentContainer
         }
 
-        Log.debug("viewToReceiveTouch scroll index: \(index)")
-
         if drawerPosition[index] == .open {
+            Log.debug("viewToReceiveTouch scroll index: \(index), backgroundDimmingView)")
             return backgroundDimmingView
         }
 
-        return index > 0 ? drawerContentContainer[index - 1] : primaryContentContainer
+        let view = index > 0 ? drawerContentViewController[index - 1].view! : primaryContentContainer
+        Log.debug("viewToReceiveTouch scroll index: \(index), \(view.debugDescription)")
+
+        return view
     }
 }
 

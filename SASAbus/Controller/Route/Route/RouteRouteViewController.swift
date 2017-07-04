@@ -47,11 +47,11 @@ extension RouteRouteViewController: PulleyDrawerViewControllerDelegate {
     }
 
     func drawerPositionDidChange(drawer: MultiplePulleyViewController) {
-        /*tableView.isScrollEnabled = drawer.drawerPosition == .open
+        tableView.isScrollEnabled = drawer.drawerPosition[drawerIndex()] == .open
 
-        if drawer.drawerPosition != .open {
+        // if drawer.drawerPosition != .open {
             // searchBar.resignFirstResponder()
-        }*/
+        // }
     }
 }
 

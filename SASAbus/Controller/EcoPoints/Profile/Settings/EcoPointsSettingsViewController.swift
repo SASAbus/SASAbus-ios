@@ -7,11 +7,11 @@ import StatefulViewController
 class EcoPointsSettingsViewController: UITableViewController {
 
     let items: [Item] = [
-            Item("Change password"),
-            Item("Change profile picture"),
-            Item("Log out"),
-            Item("Log out from all devices"),
-            Item("Delete my account", isWarning: true)
+        Item("Change password"),
+        Item("Change profile picture"),
+        Item("Log out"),
+        Item("Log out from all devices"),
+        Item("Delete my account", isWarning: true)
     ]
 
     var operationRunning: Bool = false
@@ -48,8 +48,7 @@ class EcoPointsSettingsViewController: UITableViewController {
             return
         }
 
-        // TODO
-        // AnswersHelper.logProfileAction("logout")
+        AnswersHelper.logProfileAction(action: "logout")
 
         _ = UserApi.logout(fcmToken: "")
                 .subscribeOn(MainScheduler.background)
@@ -79,8 +78,7 @@ class EcoPointsSettingsViewController: UITableViewController {
             return
         }
 
-        // TODO
-        // AnswersHelper.logProfileAction("logout_all")
+        AnswersHelper.logProfileAction(action: "logout_all")
 
         _ = UserApi.logoutAll()
                 .subscribeOn(MainScheduler.background)
@@ -110,8 +108,7 @@ class EcoPointsSettingsViewController: UITableViewController {
             return
         }
 
-        // TODO
-        // AnswersHelper.logProfileAction("delete_account")
+        AnswersHelper.logProfileAction(action: "delete_account")
 
         let alert = UIAlertController(
                 title: "Delete account?",

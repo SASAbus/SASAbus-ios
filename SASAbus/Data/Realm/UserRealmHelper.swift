@@ -172,7 +172,7 @@ class UserRealmHelper {
 
     // ======================================= TRIPS ===============================================
 
-    static func insertTrip(beacon: BusBeacon) -> Bool {
+    static func insertTrip(beacon: BusBeacon) -> CloudTrip? {
         // Save the beacon trip list to a temporary list.
         var stops: [Int] = Array(beacon.busStops)
         beacon.busStops.removeAll()
@@ -181,7 +181,7 @@ class UserRealmHelper {
 
         if startIndex == -1 || startIndex + 1 > stops.count {
             Log.error("Trip %s startIndex invalid", beacon.id)
-            return false
+            return nil
         }
 
         // Get the stops from the didEnterRegion index till the end of the list.
@@ -192,7 +192,7 @@ class UserRealmHelper {
         // Check if the end index is bigger than 0, thus it exists in the list.
         if stopIndex == -1 {
             Log.error("Trip \(beacon.id) stopIndex == -1, destination=\(beacon.destination), stops=\(stops)")
-            return false
+            return nil
         }
 
         // Get the stops from the didEnterRegion index till the end index.
@@ -203,7 +203,7 @@ class UserRealmHelper {
             Log.error("Trip \(beacon.id) invalid, stopList.isEmpty: stops=\(stops), origin=\(beacon.origin), " +
                     "destination=\(beacon.destination)")
 
-            return false
+            return nil
         }
 
         stopList.insert(beacon.origin, at: 0)
@@ -247,16 +247,17 @@ class UserRealmHelper {
 
         Log.warning("Inserted trip \(beacon.tripHash)")
 
+        let cloudTrip = CloudTrip(trip: trip)
+
         // Only post the trip if the user is logged in, as trip uploads are restricted to
         // eco point users only.
         if AuthHelper.isLoggedIn() {
-            let cloudTrip = CloudTrip(trip: trip)
             TripSyncHelper.upload(trips: [cloudTrip], scheduler: MainScheduler.background)
         } else {
             Log.info("Skipping trip upload, user not logged in")
         }
 
-        return true
+        return cloudTrip
     }
 
 // ===================================== DISRUPTIONS ===========================================

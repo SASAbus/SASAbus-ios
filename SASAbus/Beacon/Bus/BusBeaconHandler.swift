@@ -20,7 +20,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
 
     private let locationManager = CLLocationManager()
     private var region: CLBeaconRegion!
-    private var regions: [String : CLBeaconRegion] = [:]
+    private var regions: [String: CLBeaconRegion] = [:]
 
     private var mCycleCounter = 0
 
@@ -586,9 +586,9 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
             beacon.destination = beacon.busStops[index]
         }
 
-        if Utils.insertTripIfValid(beacon: beacon)/* && NotificationSettings.isTripEnabled()*/ {
-            // TODO
-            // Notifications.trip(beacon.tripHash!!)
+        if let trip = Utils.insertTripIfValid(beacon: beacon)/* && NotificationSettings.isTripEnabled()*/ {
+            // TODO verify that notification works
+            Notifications.trip(trip: trip)
 
             Log.warning("Saved trip \(beacon.id)")
 
@@ -633,18 +633,18 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
             case 3: // Once a month
                 Log.info("Survey interval: once a month")
 
-                    // TODO
-                    /*if Date().millis() - lastSurvey > 30 * 24 * 60 * 60 * 1000 {
-                        showSurvey = true
-                    }*/
+                if Date().millis() - lastSurvey > 30 * 24 * 60 * 60 * 1000 {
+                    showSurvey = true
+                }
             default: break
             }
 
             if showSurvey {
                 Log.warning("Showing survey")
-                // TODO
-                // Notifications.survey(context, beacon.tripHash!!)
-                // NotificationSettings.setLastSurveyMillis(context, NtpDate.now())
+
+                // TODO check if this works
+                Notifications.survey(hash: beacon.tripHash)
+                NotificationSettings.setLastSurveyMillis(millis: Date().millis())
             }
         } else {
             Log.error("Surveys are disabled")

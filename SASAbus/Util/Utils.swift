@@ -9,10 +9,10 @@ class Utils {
         return String(fullLocale.characters.prefix(2))
     }
 
-    static func insertTripIfValid(beacon: BusBeacon) -> Bool {
+    static func insertTripIfValid(beacon: BusBeacon) -> CloudTrip? {
         if beacon.origin == beacon.destination && beacon.lastSeen - beacon.startDate.millis() < 600000 {
             Log.error("Trip \(beacon.id) invalid -> origin == destination => \(beacon.origin) == \(beacon.destination)")
-            return false
+            return nil
         }
 
         let realm = try! Realm()
@@ -21,7 +21,7 @@ class Utils {
         if trip != nil {
             // Trip is already in db.
             // We do not care about this error so do not show an error notification
-            return false
+            return nil
         }
 
         return UserRealmHelper.insertTrip(beacon: beacon)

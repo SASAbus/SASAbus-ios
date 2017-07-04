@@ -15,6 +15,7 @@
 		1F2E302975E8A5911B6FEB04 /* BusStopBeaconHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33B0AD872571D1FE7E91 /* BusStopBeaconHandler.swift */; };
 		1F2E30318AF31026C485E497 /* VdvCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33DEFF4B44B7E8A5A728 /* VdvCalendar.swift */; };
 		1F2E303403B549D8987EA65A /* ClaimValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E2E6FCA5A377BE32A7E /* ClaimValidator.swift */; };
+		1F2E3039489EA64FC1625C56 /* AnswersHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3C3C3F588B8B0ECE0B6F /* AnswersHelper.swift */; };
 		1F2E305056E9D418DB3663DD /* VdvTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3199B5336C95BE7CB50D /* VdvTrip.swift */; };
 		1F2E307AF1FEDAC27DEFB001 /* LineCourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3DD57357734DC21B6F43 /* LineCourseListViewController.swift */; };
 		1F2E307C89A3D4E49910BC0D /* VdvHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E38DDC7CA8C24CDE54724 /* VdvHandler.swift */; };
@@ -92,6 +93,7 @@
 		1F2E34724E1D7E94D4AA4E8A /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E389B08797CA98F331A7C /* News.swift */; };
 		1F2E347E759561C55CFBDCEA /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F07BE471E3219176024 /* BusStop.swift */; };
 		1F2E3484B5332BA2DFE7C704 /* CreditsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3DE6268EE83C8607FB23 /* CreditsViewController.xib */; };
+		1F2E348ABFD065352BF5FD22 /* AnswersHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3C3C3F588B8B0ECE0B6F /* AnswersHelper.swift */; };
 		1F2E34908D336A0F2B1D4FC4 /* VdvCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33DEFF4B44B7E8A5A728 /* VdvCalendar.swift */; };
 		1F2E349864664D8D3A4A4F9B /* TripSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E39698880C3DBEC3E99F2 /* TripSyncHelper.swift */; };
 		1F2E349DABAD469439FC3978 /* NSData+Base64URLEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3406A46CE1AFF0CABF1B /* NSData+Base64URLEncoding.swift */; };
@@ -594,6 +596,7 @@
 		1F2E3C02D3F33E5A692296A4 /* LineDetailsMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineDetailsMapViewController.swift; sourceTree = "<group>"; };
 		1F2E3C0A8545E7B20E87269E /* BusStopMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusStopMapViewController.xib; sourceTree = "<group>"; };
 		1F2E3C0AA53E20C958783207 /* CloudTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudTrip.swift; sourceTree = "<group>"; };
+		1F2E3C3C3F588B8B0ECE0B6F /* AnswersHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswersHelper.swift; sourceTree = "<group>"; };
 		1F2E3C3CBFDB248DAD1D6F17 /* BusStopFilterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopFilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		1F2E3C7561E58C25322E2A1C /* TripNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripNotification.swift; sourceTree = "<group>"; };
 		1F2E3C81BD73208A4835267F /* BusStationDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStationDistance.swift; sourceTree = "<group>"; };
@@ -1477,6 +1480,7 @@
 				1F2E3B37E9858A7587B9B751 /* Config.swift */,
 				1F2E3995707E587E1028414B /* Log */,
 				1F2E349567979EF844577E1F /* Extensions */,
+				1F2E3C3C3F588B8B0ECE0B6F /* AnswersHelper.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -2101,6 +2105,7 @@
 				1F2E3D254AD95ABD3179D9DB /* FilteredDepartureLine.swift in Sources */,
 				1F2E3988C209FC01D0DBB072 /* StringExtension.swift in Sources */,
 				1F2E3A29E23C36EBFEFFA47E /* SSZipArchive+Swift.swift in Sources */,
+				1F2E3039489EA64FC1625C56 /* AnswersHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2197,6 +2202,7 @@
 				1F2E3917BB7DB5417EB18FCE /* FilteredDepartureLine.swift in Sources */,
 				1F2E320367EEA6B3EE7013A7 /* StringExtension.swift in Sources */,
 				1F2E3B3CC261E8066A7558F1 /* SSZipArchive+Swift.swift in Sources */,
+				1F2E348ABFD065352BF5FD22 /* AnswersHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

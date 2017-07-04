@@ -1,34 +1,7 @@
-//
-// BadgeHelper.swift
-// SASAbus
-//
-// Copyright (C) 2011-2015 Raiffeisen Online GmbH (Norman Marmsoler, Jürgen Sprenger, Aaron Falk) <info@raiffeisen.it>
-//
-// This file is part of SASAbus.
-//
-// SASAbus is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// SASAbus is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with SASAbus.  If not, see <http://www.gnu.org/licenses/>.
-//
-
 import Foundation
 import UserNotifications
 
 class Notifications {
-
-    static func clearAll() {
-        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-    }
 
     static func badge(badge: InAppBadge) {
         let center = UNUserNotificationCenter.current()
@@ -49,6 +22,58 @@ class Notifications {
                 Log.error("Problem adding notification: \(error.localizedDescription)")
             } else {
                 Log.error("Successfully added notification")
+            }
+        }
+    }
+
+    static func trip(trip: CloudTrip) {
+        let content = UNMutableNotificationContent()
+
+        let originName = BusStopRealmHelper.getName(id: trip.origin)
+        let destinationName = BusStopRealmHelper.getName(id: trip.destination)
+
+        content.title = "Trip saved"
+        content.body = "Your trip from \(originName) to \(destinationName) was saved"
+        content.sound = UNNotificationSound.default()
+        content.categoryIdentifier = "trip_notification"
+
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let identifier = "trip"
+
+        add(identifier: identifier, content: content, trigger: trigger)
+    }
+
+    static func survey(hash: String) {
+        let content = UNMutableNotificationContent()
+
+        content.title = "Survey"
+        content.body = "Click to take a survey about your bus ride"
+        content.sound = UNNotificationSound.default()
+        content.categoryIdentifier = "survey_notification"
+
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let identifier = "survey"
+
+        add(identifier: identifier, content: content, trigger: trigger)
+    }
+
+
+    // ==================================================== UTILS ======================================================
+
+    static func clearAll() {
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    }
+
+    private static func add(identifier: String, content: UNMutableNotificationContent, trigger: UNNotificationTrigger) {
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+
+        let center = UNUserNotificationCenter.current()
+        center.add(request) { error in
+            if let error = error {
+                Log.error("Problem adding \(identifier) notification: \(error.localizedDescription)")
+            } else {
+                Log.error("Successfully added \(identifier) notification")
             }
         }
     }

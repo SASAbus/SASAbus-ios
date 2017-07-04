@@ -15,10 +15,13 @@ class CloudTrip: Mappable, Hashable {
     var trips: [Int]!
 
     var vehicle: Int!
+
     var origin: Int!
     var destination: Int!
+
     var departure: Int64!
     var arrival: Int64!
+
     var path: [Int]!
 
     init(trip: Trip) {

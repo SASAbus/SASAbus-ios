@@ -23,5 +23,13 @@
 
 	<key>pref_start_screen</key>
 	<integer>0</integer>
+
+
+	<!-- NotificationSettings -->
+	<key>pref_survey_enabled</key>
+	<true/>
+
+	<key>pref_survey_interval</key>
+	<integer>2</integer>
 </dict>
 </plist>
