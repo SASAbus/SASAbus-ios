@@ -11,8 +11,14 @@ class LineDetailsViewController: UIViewController {
 
     var hairLineImage: UIImageView!
 
+    var listController: LineDetailsBusesViewController!
+    var mapController: LineDetailsMapViewController!
+
     var lineId: Int = 0
     var vehicle: Int = 0
+
+    var isFavorite: Bool = false
+    var favoritesChanges: Bool = false
 
 
     init(lineId: Int, vehicle: Int) {
@@ -48,16 +54,18 @@ class LineDetailsViewController: UIViewController {
 
         prepareBusesViewController()
         prepareMapViewController()
-    }
 
-    @IBAction func showComponent(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            self.containerBuses.alpha = 1
-            self.containerMap.alpha = 0
+        isFavorite = UserRealmHelper.hasFavoriteLine(lineId: lineId)
+
+        let icon: UIImage!
+        if isFavorite {
+            icon = UIImage(named: "ic_star_white")
         } else {
-            self.containerBuses.alpha = 0
-            self.containerMap.alpha = 1
+            icon = UIImage(named: "ic_star_border_white")
         }
+
+        let button = UIBarButtonItem(image: icon, style: .plain, target: self, action: #selector(toggleFavorite))
+        navigationItem.rightBarButtonItem = button
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +84,9 @@ class LineDetailsViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
+        let viewController = navigationController?.viewControllers[0] as? LineViewController
+        viewController?.parseData()
+
         if let navController = self.navigationController {
             navController.navigationBar.tintColor = UIColor.white
             navController.navigationBar.barTintColor = Color.materialOrange500
@@ -86,15 +97,40 @@ class LineDetailsViewController: UIViewController {
         }
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        listController.view.frame = CGRect(
+                origin: CGPoint(x: 0, y: 0),
+                size: CGSize(width: containerBuses.frame.width, height: containerBuses.frame.height)
+        )
+
+        mapController.view.frame = CGRect(
+                origin: CGPoint(x: 0, y: 0),
+                size: CGSize(width: containerMap.frame.width, height: containerMap.frame.height)
+        )
+    }
+
+
+    @IBAction func showComponent(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            self.containerBuses.alpha = 1
+            self.containerMap.alpha = 0
+        } else {
+            self.containerBuses.alpha = 0
+            self.containerMap.alpha = 1
+        }
+    }
+
 
     func prepareBusesViewController() {
-        let controller = LineDetailsBusesViewController(lineId: lineId, vehicle: vehicle)
-        let view = controller.view
+        listController = LineDetailsBusesViewController(lineId: lineId, vehicle: vehicle)
+        let view = listController.view
 
         view!.translatesAutoresizingMaskIntoConstraints = true
 
         containerBuses.addSubview(view!)
-        self.addChildViewController(controller)
+        self.addChildViewController(listController)
 
         if self.isViewLoaded {
             self.view.setNeedsLayout()
@@ -102,16 +138,34 @@ class LineDetailsViewController: UIViewController {
     }
 
     func prepareMapViewController() {
-        let controller = LineDetailsMapViewController(lineId: lineId)
-        let view = controller.view
+        mapController = LineDetailsMapViewController(lineId: lineId)
+        let view = mapController.view
 
         view!.translatesAutoresizingMaskIntoConstraints = true
 
         containerMap.addSubview(view!)
-        self.addChildViewController(controller)
+        self.addChildViewController(mapController)
 
         if self.isViewLoaded {
             self.view.setNeedsLayout()
+        }
+    }
+
+    func toggleFavorite() {
+        favoritesChanges = true
+
+        if isFavorite {
+            isFavorite = false
+
+            UserRealmHelper.removeFavoriteLine(lineId: lineId)
+
+            navigationItem.rightBarButtonItem?.image = UIImage(named: "ic_star_border_white")
+        } else {
+            isFavorite = true
+
+            UserRealmHelper.addFavoriteLine(lineId: lineId)
+
+            navigationItem.rightBarButtonItem?.image = UIImage(named: "ic_star_white")
         }
     }
 }

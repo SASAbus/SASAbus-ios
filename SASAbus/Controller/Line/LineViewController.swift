@@ -24,6 +24,8 @@ import UIKit
 import RxCocoa
 import RxSwift
 import StatefulViewController
+import Realm
+import RealmSwift
 
 class LineViewController: MasterViewController, StatefulViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
 
@@ -33,7 +35,8 @@ class LineViewController: MasterViewController, StatefulViewController, UITableV
     var selectedTab: String = "FAVORITES"
     var tabId: Int = 0
 
-    var lines: [[Line]?] = [[Line]?](repeating: nil, count: 3)
+    var lines: [[Line]?] = [[Line]?](repeating: [], count: 3)
+    var favorites: [Int] = []
 
 
     init() {
@@ -105,6 +108,8 @@ class LineViewController: MasterViewController, StatefulViewController, UITableV
                 .subscribeOn(MainScheduler.background)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { lines in
+                    self.parseFavorites()
+
                     var bz: [Line] = []
                     var me: [Line] = []
 
@@ -129,8 +134,21 @@ class LineViewController: MasterViewController, StatefulViewController, UITableV
                         i += 1
                     }
 
-                    self.lines[1] = bz
-                    self.lines[2] = me
+                    self.lines[0]?.removeAll()
+
+                    for line in lines {
+                        for favorite in self.favorites {
+                            if line.id == favorite {
+                                self.lines[0]?.append(line)
+                            }
+                        }
+                    }
+
+                    self.lines[1]?.removeAll()
+                    self.lines[2]?.removeAll()
+
+                    self.lines[1]?.append(contentsOf: bz)
+                    self.lines[2]?.append(contentsOf: me)
 
                     self.tableView.reloadData()
                     self.tableView.refreshControl?.endRefreshing()
@@ -149,6 +167,17 @@ class LineViewController: MasterViewController, StatefulViewController, UITableV
                 })
     }
 
+    func parseFavorites() {
+        favorites.removeAll()
+
+        let realm = try! Realm()
+        let result = realm.objects(FavoriteLine.self)
+
+        for item in result {
+            favorites.append(item.id)
+        }
+    }
+
 
     func setupRefresh() {
         let refreshControl = UIRefreshControl()
@@ -163,15 +192,15 @@ class LineViewController: MasterViewController, StatefulViewController, UITableV
     }
 
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        self.tabId = item.tag
+        tabId = item.tag
 
         switch self.tabId {
         case 1:
-            self.selectedTab = "BZ"
+            selectedTab = "BZ"
         case 2:
-            self.selectedTab = "ME"
+            selectedTab = "ME"
         default:
-            self.selectedTab = "FAVORITES"
+            selectedTab = "FAVORITES"
         }
 
         tableView.reloadData()

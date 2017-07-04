@@ -41,7 +41,6 @@
 		1F2E31CDC4FEB906D49C7258 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E364352984B3991FE905A /* Themes.swift */; };
 		1F2E31D07E3DD52DEB7B2AE4 /* VdvTrips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3C9432AC97ECD5A6231F /* VdvTrips.swift */; };
 		1F2E31D6C90C956EC2A300CF /* EcoPointsSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E352FB33EBDDA5324F8AC /* EcoPointsSettingsViewController.xib */; };
-		1F2E31E408B3A5499133CF30 /* BusStopTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3ACCDAB7124343FFFB3F /* BusStopTripViewController.swift */; };
 		1F2E31E65F7999C88C17F10A /* LineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3028344E4E802423214B /* LineViewController.xib */; };
 		1F2E31FBE54ACDB601A3DD2D /* BusStopFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3CAA4F34A0821046D843 /* BusStopFilterViewController.xib */; };
 		1F2E320367EEA6B3EE7013A7 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E32DD0A5B734FB1E157AA /* StringExtension.swift */; };
@@ -106,7 +105,6 @@
 		1F2E34E755275B1971B7BA28 /* BusStopFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3C3CBFDB248DAD1D6F17 /* BusStopFilterCollectionViewCell.swift */; };
 		1F2E34F999734FF9B86C4850 /* BusStopMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3C0A8545E7B20E87269E /* BusStopMapViewController.xib */; };
 		1F2E3508FA53760C62211D86 /* BusStopFavoritesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3E6151F48557F5C47762 /* BusStopFavoritesTableViewCell.xib */; };
-		1F2E351FE9A743BC17BAE08D /* BusStopTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E38A13E2BB318FA1E1B1A /* BusStopTripTableViewCell.xib */; };
 		1F2E356E5F18A01DF45B74CD /* BBusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33FF331FAD07D2F33D1B /* BBusStop.swift */; };
 		1F2E358AAE5537C473423817 /* NSData+Base64URLEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3406A46CE1AFF0CABF1B /* NSData+Base64URLEncoding.swift */; };
 		1F2E359580DE91AC44926557 /* InAppBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F6C7DCB2C618E380AB9 /* InAppBadge.swift */; };
@@ -297,7 +295,6 @@
 		1F2E3E7134F362EDC4E17209 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E6B54D5A057CA4FC5D9 /* NewsDetailViewController.swift */; };
 		1F2E3E7BD546722D823D1627 /* VdvTripBreaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3828E0FBCB7424BC59AC /* VdvTripBreaks.swift */; };
 		1F2E3E8ABA00BF1FB9655B23 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E363BB3BE474BDA721BF4 /* DictionaryExtension.swift */; };
-		1F2E3E99F0ED8E4F6FBD112E /* BusStopTripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3254BF76CE64E423E341 /* BusStopTripTableViewCell.swift */; };
 		1F2E3EB13128056A35082BF6 /* IOUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3517A8CBE2379BA82AD0 /* IOUtils.swift */; };
 		1F2E3EBF506AF0C16BC29349 /* DepartureAutoCompleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3343EEF4D1EB2D9B1F3F /* DepartureAutoCompleteCell.swift */; };
 		1F2E3EC209ED4488BEDE5342 /* BusStopFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3795DFB961155C36AB2A /* BusStopFavoritesViewController.swift */; };
@@ -310,7 +307,6 @@
 		1F2E3F012363C571E5360E6C /* VdvIntervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E390B1E1FDF7373DDED7D /* VdvIntervals.swift */; };
 		1F2E3F01E096F3584DA5C58A /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E322997B253B8B50F2BF7 /* MenuViewController.xib */; };
 		1F2E3F0B94E3A01957A1E3C5 /* DepartureViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E31BAC0323AFF9B65A8CF /* DepartureViewCell.xib */; };
-		1F2E3F1CC4C3C83F7BEE1B57 /* BusStopTripViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3867AFAA017BA2A35EAD /* BusStopTripViewController.xib */; };
 		1F2E3F2A46D9002A2F42993D /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A83C1591F0C0AD18663 /* Realm.swift */; };
 		1F2E3F2C85DDBCAE503994F3 /* RealtimeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3DAE81218700D1EC5EBF /* RealtimeApi.swift */; };
 		1F2E3F33D427BBACA3CD5A51 /* RouteSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3672ED8D230FDDF134C6 /* RouteSearchViewController.xib */; };
@@ -437,7 +433,6 @@
 		1F2E3233CC0B0354A207F2A4 /* LogTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogTheme.swift; sourceTree = "<group>"; };
 		1F2E3235F330D16DBFE9A7FC /* EcoPointsStatsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EcoPointsStatsCell.swift; sourceTree = "<group>"; };
 		1F2E3243805C455FB20BD983 /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
-		1F2E3254BF76CE64E423E341 /* BusStopTripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopTripTableViewCell.swift; sourceTree = "<group>"; };
 		1F2E328173928A704889C86A /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		1F2E3282D8E06FD68BEEDE22 /* LineCourseMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineCourseMapViewController.swift; sourceTree = "<group>"; };
 		1F2E32BCB04E6EEBF29440CC /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
@@ -541,14 +536,12 @@
 		1F2E38422D05F69140493961 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		1F2E384D7BF772D03B4D1BA4 /* public_key.cer */ = {isa = PBXFileReference; lastKnownFileType = file.cer; path = public_key.cer; sourceTree = "<group>"; };
 		1F2E3861BE08741E47C8CF4F /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
-		1F2E3867AFAA017BA2A35EAD /* BusStopTripViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusStopTripViewController.xib; sourceTree = "<group>"; };
 		1F2E3868C12C71F55F8B6210 /* MapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		1F2E3874AB69B6CD8D84366C /* FavoriteLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteLine.swift; sourceTree = "<group>"; };
 		1F2E3885A2F9CC25307DA655 /* JSONExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtension.swift; sourceTree = "<group>"; };
 		1F2E3893C4C2E99DBBB8B9EA /* NetUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetUtils.swift; sourceTree = "<group>"; };
 		1F2E389ADF85F206126AF16D /* LeaderboardPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardPlayer.swift; sourceTree = "<group>"; };
 		1F2E389B08797CA98F331A7C /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
-		1F2E38A13E2BB318FA1E1B1A /* BusStopTripTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusStopTripTableViewCell.xib; sourceTree = "<group>"; };
 		1F2E38B18471862EF89C52F0 /* NSData+SHA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SHA.h"; sourceTree = "<group>"; };
 		1F2E38C783F4FA26C4F5694C /* LineDetailsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineDetailsHeaderCell.swift; sourceTree = "<group>"; };
 		1F2E38DDC7CA8C24CDE54724 /* VdvHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VdvHandler.swift; sourceTree = "<group>"; };
@@ -584,7 +577,6 @@
 		1F2E3AA75E66DDAF52692C1D /* BusStopGpsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopGpsViewController.swift; sourceTree = "<group>"; };
 		1F2E3AABBC870A28FD8C0237 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		1F2E3AB1EE7357F9F81E92B3 /* RouteResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RouteResultsViewController.xib; sourceTree = "<group>"; };
-		1F2E3ACCDAB7124343FFFB3F /* BusStopTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopTripViewController.swift; sourceTree = "<group>"; };
 		1F2E3AEC9C96A924FB52B235 /* NSData+HMAC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+HMAC.h"; sourceTree = "<group>"; };
 		1F2E3AF34BCFC8126C837488 /* ParkingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkingViewController.xib; sourceTree = "<group>"; };
 		1F2E3B1BC7BB5D3D76D86D12 /* EcoPointsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EcoPointsApi.swift; sourceTree = "<group>"; };
@@ -768,7 +760,6 @@
 				1F2E399F1FAEDEE86C141D42 /* Filter */,
 				1F2E3CE95786648D1964C7A3 /* Gps */,
 				1F2E365BEC81BD0071C35507 /* Map */,
-				1F2E3569874AE4A119EB5AC0 /* Trip */,
 			);
 			path = Departure;
 			sourceTree = "<group>";
@@ -919,17 +910,6 @@
 				1F2E3AF34BCFC8126C837488 /* ParkingViewController.xib */,
 			);
 			path = Parking;
-			sourceTree = "<group>";
-		};
-		1F2E3569874AE4A119EB5AC0 /* Trip */ = {
-			isa = PBXGroup;
-			children = (
-				1F2E3254BF76CE64E423E341 /* BusStopTripTableViewCell.swift */,
-				1F2E38A13E2BB318FA1E1B1A /* BusStopTripTableViewCell.xib */,
-				1F2E3ACCDAB7124343FFFB3F /* BusStopTripViewController.swift */,
-				1F2E3867AFAA017BA2A35EAD /* BusStopTripViewController.xib */,
-			);
-			path = Trip;
 			sourceTree = "<group>";
 		};
 		1F2E3579896DB9B3A68113E2 /* Bus */ = {
@@ -1773,8 +1753,6 @@
 				1F2E341EB11D8982A05B7DD8 /* EcoPointsStatsCell.xib in Resources */,
 				1F2E392B7BE83F02685E4736 /* GoogleService-Info.plist in Resources */,
 				1F2E39DADB6B029526BABA9B /* DepartureAutoCompleteCell.xib in Resources */,
-				1F2E351FE9A743BC17BAE08D /* BusStopTripTableViewCell.xib in Resources */,
-				1F2E3F1CC4C3C83F7BEE1B57 /* BusStopTripViewController.xib in Resources */,
 				1F2E3752C2F34FDB08B9CC2A /* BusStopViewController.xib in Resources */,
 				1F2E3508FA53760C62211D86 /* BusStopFavoritesTableViewCell.xib in Resources */,
 				FA091C631EDD603800BC37A5 /* LineDetailsViewController.xib in Resources */,
@@ -1999,8 +1977,6 @@
 				1F2E3FE253BC9848941D175B /* EcoPointsStatsCell.swift in Sources */,
 				1F2E39CBCDE7159155496AA5 /* MapUtils.swift in Sources */,
 				1F2E337B8F90493DF52F6364 /* LineCell.swift in Sources */,
-				1F2E3E99F0ED8E4F6FBD112E /* BusStopTripTableViewCell.swift in Sources */,
-				1F2E31E408B3A5499133CF30 /* BusStopTripViewController.swift in Sources */,
 				1F2E3EBF506AF0C16BC29349 /* DepartureAutoCompleteCell.swift in Sources */,
 				1F2E33E9D188BA9E76F54646 /* BusStopFavoritesTableViewCell.swift in Sources */,
 				1F2E3EC209ED4488BEDE5342 /* BusStopFavoritesViewController.swift in Sources */,
