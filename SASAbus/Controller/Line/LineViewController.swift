@@ -69,6 +69,7 @@ class LineViewController: MasterViewController, StatefulViewController, UITableV
 
         loadingView = LoadingView(frame: view.frame)
         errorView = ErrorView(frame: view.frame, target: self, action: #selector(parseData))
+        emptyView = EmptyStateBaseView(frame: view.frame, nib: "EmptyStateFavoritesView")
 
         setupRefresh()
         parseData()
@@ -204,10 +205,11 @@ class LineViewController: MasterViewController, StatefulViewController, UITableV
         }
 
         tableView.reloadData()
+        endLoading(animated: false)
     }
 
     func hasContent() -> Bool {
-        return !(lines[tabId]?.isEmpty ?? true)
+        return !lines[tabId]!.isEmpty
     }
 }
 

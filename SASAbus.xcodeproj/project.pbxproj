@@ -120,6 +120,7 @@
 		1F2E3604B006B7DA596A4E6B /* LineCourseMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3282D8E06FD68BEEDE22 /* LineCourseMapViewController.swift */; };
 		1F2E360A6582777CFD3B2F24 /* EcoPointsBadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A720D179E78FF71BE59 /* EcoPointsBadgesViewController.swift */; };
 		1F2E360B9D9092570FCED479 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E328173928A704889C86A /* Color.swift */; };
+		1F2E360C559EAD8680186343 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F42C089F7F81915651C /* EmptyStateView.swift */; };
 		1F2E361235BE58F8010C713A /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3868C12C71F55F8B6210 /* MapAnnotation.swift */; };
 		1F2E36427A799469292A573E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A48B17EA4A9A805D353 /* Utils.swift */; };
 		1F2E365E2BD1188C9ABCF213 /* ParkingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E37FDB573EA78B717DD2F /* ParkingTableViewCell.swift */; };
@@ -276,6 +277,7 @@
 		1F2E3D254AD95ABD3179D9DB /* FilteredDepartureLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E96826A29CC1CD8D8F6 /* FilteredDepartureLine.swift */; };
 		1F2E3D30D1F8ABE4EA539470 /* BadgeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E314A1DCC9BAFE8BE5925 /* BadgeHelper.swift */; };
 		1F2E3D38D00D81E184AAC49D /* CloudApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A67A910AE6D67ED64A2 /* CloudApi.swift */; };
+		1F2E3D51A524DE3D50EA557C /* EmptyStateBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E355B71AD23B332EFF729 /* EmptyStateBaseView.swift */; };
 		1F2E3D7F7CD3BC54E01DF301 /* SurveyApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E30940A41307533BC707A /* SurveyApiRouter.swift */; };
 		1F2E3D8413C1EE9B885900A9 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E364352984B3991FE905A /* Themes.swift */; };
 		1F2E3D86C7A2711368077B73 /* MultiplePulleyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3551152E7B75E6D54EBC /* MultiplePulleyViewController.swift */; };
@@ -352,6 +354,7 @@
 		FA2691241E93FB24000B8A84 /* IOUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3517A8CBE2379BA82AD0 /* IOUtils.swift */; };
 		FA2691251E93FB2E000B8A84 /* DeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D74BC0AC7B329114C47 /* DeviceUtils.swift */; };
 		FA2A04B91EEE8EA700164E97 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA2A04B81EEE8EA700164E97 /* RemoteConfigDefaults.plist */; };
+		FA34DC871F0D1E0800994A8A /* EmptyStateFavoritesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA34DC861F0D1E0800994A8A /* EmptyStateFavoritesView.xib */; };
 		FA54DE501E9560930071E42C /* TripSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E39698880C3DBEC3E99F2 /* TripSyncHelper.swift */; };
 		FA54DE541E9651710071E42C /* BadgeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E314A1DCC9BAFE8BE5925 /* BadgeHelper.swift */; };
 		FA54DE551E9651740071E42C /* InAppBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F6C7DCB2C618E380AB9 /* InAppBadge.swift */; };
@@ -480,6 +483,7 @@
 		1F2E3541103CD7A91DCF19AB /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
 		1F2E3542D7725C08B2E3F402 /* BusStopFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopFilterViewController.swift; sourceTree = "<group>"; };
 		1F2E3551152E7B75E6D54EBC /* MultiplePulleyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplePulleyViewController.swift; sourceTree = "<group>"; };
+		1F2E355B71AD23B332EFF729 /* EmptyStateBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStateBaseView.swift; sourceTree = "<group>"; };
 		1F2E35649B08AAD4B2CA6284 /* BusStopGpsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopGpsTableViewCell.swift; sourceTree = "<group>"; };
 		1F2E35684B4C11F7672F44BF /* JSONWebToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONWebToken.swift; sourceTree = "<group>"; };
 		1F2E35784BFA80941FB8C9A0 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -639,6 +643,7 @@
 		1F2E3F09E6AB7FB126DB03A5 /* LineDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineDetailsViewController.swift; sourceTree = "<group>"; };
 		1F2E3F1F9FE8B425920AE314 /* RouteSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSearchViewController.swift; sourceTree = "<group>"; };
 		1F2E3F203501842CAB721C98 /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		1F2E3F42C089F7F81915651C /* EmptyStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		1F2E3F469B54DBC78F302DF6 /* BusLineFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusLineFilter.swift; sourceTree = "<group>"; };
 		1F2E3F5B76782C45B1746ACE /* IntroPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageViewController.swift; sourceTree = "<group>"; };
 		1F2E3F6C7DCB2C618E380AB9 /* InAppBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppBadge.swift; sourceTree = "<group>"; };
@@ -672,6 +677,7 @@
 		FA2690F11E93C7E6000B8A84 /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		FA2690F31E93C9E4000B8A84 /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		FA2A04B81EEE8EA700164E97 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
+		FA34DC861F0D1E0800994A8A /* EmptyStateFavoritesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyStateFavoritesView.xib; sourceTree = "<group>"; };
 		FA401F2A1E921EA400E7F282 /* SASAbus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SASAbus.entitlements; sourceTree = "<group>"; };
 		FA54DE5D1E969AAA0071E42C /* BusDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusDetailsViewController.xib; sourceTree = "<group>"; };
 		FAB31DF91EEFE584004B0BAC /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
@@ -1500,6 +1506,9 @@
 				1F2E3510929A055E9591BED8 /* EmptyView.swift */,
 				1F2E3AABBC870A28FD8C0237 /* ErrorView.swift */,
 				1F2E3703279A53D7C7A7BA64 /* LoadingView.swift */,
+				1F2E3F42C089F7F81915651C /* EmptyStateView.swift */,
+				FA34DC861F0D1E0800994A8A /* EmptyStateFavoritesView.xib */,
+				1F2E355B71AD23B332EFF729 /* EmptyStateBaseView.swift */,
 			);
 			path = Placeholder;
 			sourceTree = "<group>";
@@ -1750,6 +1759,7 @@
 				1F2E3226E7CD0F986E1613F9 /* EcoPointsProfileCell.xib in Resources */,
 				1F2E3CDC34577F01682B7FB7 /* EcoPointsLeaderboardUserCell.xib in Resources */,
 				1F2E370F1E1E404E9F4E6F00 /* EcoPointsLeaderboardFooterCell.xib in Resources */,
+				FA34DC871F0D1E0800994A8A /* EmptyStateFavoritesView.xib in Resources */,
 				1F2E345BCD8B2192FCC06E13 /* EcoPointsProfileViewController.xib in Resources */,
 				1F2E384AFE8FB3D0F5C7D90A /* LoginViewController.xib in Resources */,
 				FAB85BE61EEA8BF400D6EB4A /* ReportViewController.xib in Resources */,
@@ -2106,6 +2116,8 @@
 				1F2E3988C209FC01D0DBB072 /* StringExtension.swift in Sources */,
 				1F2E3A29E23C36EBFEFFA47E /* SSZipArchive+Swift.swift in Sources */,
 				1F2E3039489EA64FC1625C56 /* AnswersHelper.swift in Sources */,
+				1F2E360C559EAD8680186343 /* EmptyStateView.swift in Sources */,
+				1F2E3D51A524DE3D50EA557C /* EmptyStateBaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

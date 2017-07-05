@@ -69,7 +69,10 @@ extension Color {
     // MARK: - Material Colors
 
     static let materialIndigo500 = UIColor(red: 0.247, green: 0.318, blue: 0.71, alpha: 1)
+
     static let materialOrange500 = UIColor(red: 1, green: 0.596, blue: 0, alpha: 1)
+    static let materialOrange300 = UIColor(red: 1, green: 0.718, blue: 0.302, alpha: 1)
+
     static let materialGreen500 = UIColor(red: 0.298, green: 0.686, blue: 0.314, alpha: 1)
     static let materialBlue500 = UIColor(red: 0.129, green: 0.588, blue: 0.953, alpha: 1)
     static let materialAmber500 = UIColor(red: 1, green: 0.757, blue: 0.027, alpha: 1)

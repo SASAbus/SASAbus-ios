@@ -633,7 +633,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
             case 3: // Once a month
                 Log.info("Survey interval: once a month")
 
-                if Date().millis() - lastSurvey > 30 * 24 * 60 * 60 * 1000 {
+                if Date().millis() - lastSurvey > Int64(30 * 24 * 60 * 60) * Int64(1000) {
                     showSurvey = true
                 }
             default: break
