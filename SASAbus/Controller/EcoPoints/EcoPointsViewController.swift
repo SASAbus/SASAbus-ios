@@ -93,21 +93,4 @@ class EcoPointsViewController: MasterViewController {
             completion()
         })
     }
-
-
-    func addChildController(_ viewController: UIViewController?, container: UIView) {
-        guard let controller = viewController else {
-            return
-        }
-
-        let view = controller.view
-        view!.translatesAutoresizingMaskIntoConstraints = true
-
-        container.addSubview(view!)
-        self.addChildViewController(controller)
-
-        if self.isViewLoaded {
-            self.view.setNeedsLayout()
-        }
-    }
 }

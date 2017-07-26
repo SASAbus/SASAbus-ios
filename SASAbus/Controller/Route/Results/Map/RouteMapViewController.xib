@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <viewController storyboardIdentifier="PrimaryContentViewController" id="SSb-RB-3j9" customClass="RouteMapViewController" customModule="SASAbus" customModuleProvider="target">
+        <viewController storyboardIdentifier="PrimaryContentViewController" id="SSb-RB-3j9" customClass="RouteMapViewController" customModule="SASAbus">
             <layoutGuides>
                 <viewControllerLayoutGuide type="top" id="u5T-D8-Ggg"/>
                 <viewControllerLayoutGuide type="bottom" id="RYu-m2-wSD"/>

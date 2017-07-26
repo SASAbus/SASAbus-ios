@@ -1,86 +1,65 @@
 import UIKit
 import Pulley
 
-class MainRouteViewController: MultiplePulleyViewController {
+class MainRouteViewController: MasterViewController {
 
-    var searchController: RouteSearchViewController!
-    var resultsController: RouteResultsViewController!
-    var routeController: RouteRouteViewController!
+    @IBOutlet var searchContainer: UIView!
+    @IBOutlet var resultsContainer: UIView!
+
+    private var shadowImageView: UIImageView?
 
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    required init(contentViewController: UIViewController) {
-        super.init(contentViewController: contentViewController)
+    required init() {
+        super.init(nibName: "MainRouteViewController", title: "Route")
     }
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("map", value: "Map", comment: "Map")
+        let searchNib = UINib(nibName: "RouteFeedViewController", bundle: nil)
+        let searchViewController = searchNib.instantiate(withOwner: self)[0] as! RouteFeedViewController
+        searchViewController.parentVC = self
 
-        self.setupLeftMenuButton()
+        let resultsViewController = RouteResultsViewController.getViewController()
+        resultsViewController.parentVC = self
+
+        addChildController(searchViewController, container: searchContainer)
+        addChildController(resultsViewController, container: resultsContainer)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if shadowImageView == nil {
+            shadowImageView = findShadowImage(under: navigationController!.navigationBar)
+        }
+
+        shadowImageView?.isHidden = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        shadowImageView?.isHidden = false
     }
 
 
-    // MARK: - Button Handlers
+    private func findShadowImage(under view: UIView) -> UIImageView? {
+        if view is UIImageView && view.bounds.size.height <= 1 {
+            return (view as! UIImageView)
+        }
 
-    func setupLeftMenuButton() {
-        let leftDrawerButton = UIBarButtonItem(image: UIImage(named: "menu_icon.png")?
-                .withRenderingMode(UIImageRenderingMode.alwaysTemplate), style: UIBarButtonItemStyle.plain,
-                target: self, action: #selector(leftDrawerButtonPress(_:)))
+        for subview in view.subviews {
+            if let imageView = findShadowImage(under: subview) {
+                return imageView
+            }
+        }
 
-        leftDrawerButton.tintColor = Theme.white
-        leftDrawerButton.accessibilityLabel = NSLocalizedString("Menu", comment: "")
-
-        self.navigationItem.setLeftBarButton(leftDrawerButton, animated: true)
-    }
-
-    func leftDrawerButtonPress(_ sender: AnyObject?) {
-        self.evo_drawerController?.toggleDrawerSide(.left, animated: true, completion: nil)
-    }
-
-
-    static func getViewController() -> MainRouteViewController {
-        let contentNib = UINib(nibName: "RouteMapViewController", bundle: nil)
-        let contentViewController = contentNib.instantiate(withOwner: self)[0] as! RouteMapViewController
-
-        let mainViewController = MainRouteViewController(
-                contentViewController: contentViewController
-        )
-
-
-        let searchNib = UINib(nibName: "RouteSearchViewController", bundle: nil)
-        let searchViewController = searchNib.instantiate(withOwner: self)[0] as! RouteSearchViewController
-
-        searchViewController.parentVC = mainViewController
-        mainViewController.searchController = searchViewController
-        mainViewController.addDrawer(searchViewController)
-
-
-        let resultsNib = UINib(nibName: "RouteResultsViewController", bundle: nil)
-        let resultsViewController = resultsNib.instantiate(withOwner: self)[0] as! RouteResultsViewController
-
-        resultsViewController.parentVC = mainViewController
-        mainViewController.resultsController = resultsViewController
-        mainViewController.addDrawer(resultsViewController)
-
-
-        let routeNib = UINib(nibName: "RouteRouteViewController", bundle: nil)
-        let routeViewController = routeNib.instantiate(withOwner: self)[0] as! RouteRouteViewController
-        routeViewController.parentVC = mainViewController
-
-        resultsViewController.parentVC = mainViewController
-        mainViewController.routeController = routeViewController
-        mainViewController.addDrawer(routeViewController)
-
-
-        contentViewController.parentVC = mainViewController
-        resultsViewController.parentVC = mainViewController
-
-        return mainViewController
+        return nil
     }
 }

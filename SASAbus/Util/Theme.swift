@@ -25,8 +25,9 @@ import UIKit
 
 struct Theme {
 
-    static let orange: UIColor = UIColor(red: 229.0 / 255.0, green: 115.0 / 255.0, blue: 0 / 255.0, alpha: 1)
-    static let lightOrange: UIColor = UIColor(red: 229.0 / 255.0, green: 160.0 / 255.0, blue: 0 / 255.0, alpha: 1)
+    static let orange: UIColor = UIColor(red: 229.0 / 255.0, green: 115.0 / 255.0, blue:0, alpha: 1)
+    static let lightOrange: UIColor = UIColor(red: 229.0 / 255.0, green: 160.0 / 255.0, blue:0, alpha: 1)
+
     static let grey: UIColor = UIColor(red: 185.0 / 255.0, green: 185.0 / 255.0, blue: 185.0 / 255.0, alpha: 1)
     static let darkGrey: UIColor = UIColor(red: 115.0 / 255.0, green: 115.0 / 255.0, blue: 115.0 / 255.0, alpha: 1)
     static let lightGrey: UIColor = UIColor(red: 205.0 / 255.0, green: 205.0 / 255.0, blue: 205.0 / 255.0, alpha: 1)

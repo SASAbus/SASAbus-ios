@@ -43,7 +43,7 @@ struct Menu {
             MenuItem(
                     title: NSLocalizedString("Route", comment: ""),
                     image: "ic_navigation_bus",
-                    viewController: MainRouteViewController.getViewController()),
+                    viewController: MainRouteViewController()),
 
             MenuItem(
                     title: NSLocalizedString("News", comment: ""),

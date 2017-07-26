@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13168.3"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainRouteViewController" customModule="SASAbus" customModuleProvider="target">
+            <connections>
+                <outlet property="resultsContainer" destination="esS-6Z-F6o" id="Enb-Ey-EAs"/>
+                <outlet property="searchContainer" destination="7FE-uO-q1s" id="ciN-Ny-atb"/>
+                <outlet property="view" destination="Yog-Qs-2dD" id="Mby-7p-MCd"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Yog-Qs-2dD">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7FE-uO-q1s" userLabel="Search Container">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="esS-6Z-F6o" userLabel="Results Container">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="esS-6Z-F6o" firstAttribute="leading" secondItem="Yog-Qs-2dD" secondAttribute="leading" id="1n6-mT-xA3"/>
+                <constraint firstAttribute="bottom" secondItem="7FE-uO-q1s" secondAttribute="bottom" id="2u8-7o-Oqx"/>
+                <constraint firstItem="esS-6Z-F6o" firstAttribute="top" secondItem="Yog-Qs-2dD" secondAttribute="top" id="5i6-Sc-59k"/>
+                <constraint firstItem="7FE-uO-q1s" firstAttribute="top" secondItem="Yog-Qs-2dD" secondAttribute="top" id="7vW-3W-9rP"/>
+                <constraint firstItem="7FE-uO-q1s" firstAttribute="leading" secondItem="Yog-Qs-2dD" secondAttribute="leading" id="PRT-gI-TWu"/>
+                <constraint firstAttribute="trailing" secondItem="7FE-uO-q1s" secondAttribute="trailing" id="Vg3-Uo-PGf"/>
+                <constraint firstAttribute="bottom" secondItem="esS-6Z-F6o" secondAttribute="bottom" id="Ziz-AW-7wU"/>
+                <constraint firstAttribute="trailing" secondItem="esS-6Z-F6o" secondAttribute="trailing" id="s4V-fg-Fdu"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

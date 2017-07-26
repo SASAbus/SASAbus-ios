@@ -95,4 +95,6 @@ extension Color {
     static let loginBackground = UIColor(red: 0.118, green: 0.137, blue: 0.176, alpha: 1)
 
     static let borderColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1)
+
+    static let routeInputBackground: UIColor = UIColor(red: 0.976, green: 0.49, blue: 0, alpha: 1)
 }
