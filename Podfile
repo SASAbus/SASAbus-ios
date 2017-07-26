@@ -39,6 +39,8 @@ def default_pods
   pod 'Pulley'
 
   pod 'ObjectMapper', '~> 2.2'
+
+  pod 'LocationPicker'
 end
 
 target 'SASAbus' do
