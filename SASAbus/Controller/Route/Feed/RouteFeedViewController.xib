@@ -21,65 +21,65 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DvW-TX-GzP">
-                        <rect key="frame" x="0.0" y="20" width="375" height="156"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="136"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_radio_button_checked_white" translatesAutoresizingMaskIntoConstraints="NO" id="Lzh-VG-d5t" userLabel="Departure Image">
-                                <rect key="frame" x="16" y="19" width="20" height="20"/>
+                                <rect key="frame" x="16" y="16" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Rmk-H0-FmG"/>
                                     <constraint firstAttribute="width" constant="20" id="pQk-7v-bcF"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1u-ac-jJT" userLabel="Departure View">
-                                <rect key="frame" x="52" y="8" width="307" height="42"/>
+                                <rect key="frame" x="52" y="8" width="307" height="36"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Departure" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iQ4-dD-cBg">
-                                        <rect key="frame" x="16" y="10.5" width="82" height="21"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="0.87257922535211263" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Departure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MiH-8f-F53">
+                                        <rect key="frame" x="16" y="7" width="77.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="0.87257922539999999" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="iQ4-dD-cBg" firstAttribute="leading" secondItem="f1u-ac-jJT" secondAttribute="leading" constant="16" id="ZuD-iM-bKU"/>
-                                    <constraint firstAttribute="height" constant="42" id="d01-Ec-02D"/>
-                                    <constraint firstItem="iQ4-dD-cBg" firstAttribute="centerY" secondItem="f1u-ac-jJT" secondAttribute="centerY" id="qQt-gr-qyT"/>
+                                    <constraint firstItem="MiH-8f-F53" firstAttribute="centerY" secondItem="f1u-ac-jJT" secondAttribute="centerY" id="ITq-mO-Lhj"/>
+                                    <constraint firstAttribute="height" constant="36" id="d01-Ec-02D"/>
+                                    <constraint firstItem="MiH-8f-F53" firstAttribute="leading" secondItem="f1u-ac-jJT" secondAttribute="leading" constant="16" id="wqd-eP-kWS"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_twos_dots_white" translatesAutoresizingMaskIntoConstraints="NO" id="bWM-ka-lZk" userLabel="Dots image">
-                                <rect key="frame" x="16" y="44" width="20" height="20"/>
+                                <rect key="frame" x="16" y="41" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="6wY-1Z-VZ8"/>
                                     <constraint firstAttribute="height" constant="20" id="jtN-Yu-EbE"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_location_on_white" translatesAutoresizingMaskIntoConstraints="NO" id="o7I-dm-8Jm" userLabel="Arrival Image">
-                                <rect key="frame" x="16" y="69" width="20" height="20"/>
+                                <rect key="frame" x="16" y="60" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="0sN-NS-keL"/>
                                     <constraint firstAttribute="width" constant="20" id="ah3-ew-BXd"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GJM-jR-TQO" userLabel="Arrival View">
-                                <rect key="frame" x="52" y="58" width="307" height="42"/>
+                                <rect key="frame" x="52" y="52" width="307" height="36"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Arrival" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M8v-uQ-nYG">
-                                        <rect key="frame" x="16" y="10.5" width="53" height="21"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="0.87257922539999999" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arrival" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ck-Z9-bXR">
+                                        <rect key="frame" x="16" y="7" width="49" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="0.87257922539999999" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="M8v-uQ-nYG" firstAttribute="leading" secondItem="GJM-jR-TQO" secondAttribute="leading" constant="16" id="Bwe-mJ-7bj"/>
-                                    <constraint firstItem="M8v-uQ-nYG" firstAttribute="centerY" secondItem="GJM-jR-TQO" secondAttribute="centerY" id="Vbc-wE-F2Z"/>
-                                    <constraint firstAttribute="height" constant="42" id="agL-Cf-Itk"/>
+                                    <constraint firstItem="5ck-Z9-bXR" firstAttribute="centerY" secondItem="GJM-jR-TQO" secondAttribute="centerY" id="8XV-gO-9HX"/>
+                                    <constraint firstItem="5ck-Z9-bXR" firstAttribute="leading" secondItem="GJM-jR-TQO" secondAttribute="leading" constant="16" id="CKR-SV-p1Q"/>
+                                    <constraint firstAttribute="height" constant="36" id="agL-Cf-Itk"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L3C-nZ-Agz" userLabel="Date/Time container">
-                                <rect key="frame" x="56" y="116" width="165" height="20"/>
+                                <rect key="frame" x="56" y="104" width="165" height="20"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_event_white" translatesAutoresizingMaskIntoConstraints="NO" id="aMu-W2-r7R">
                                         <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -130,7 +130,7 @@
                             <constraint firstItem="GJM-jR-TQO" firstAttribute="top" secondItem="f1u-ac-jJT" secondAttribute="bottom" constant="8" id="3yF-8S-RB0"/>
                             <constraint firstItem="GJM-jR-TQO" firstAttribute="leading" secondItem="o7I-dm-8Jm" secondAttribute="trailing" constant="16" id="82R-HM-9vs"/>
                             <constraint firstItem="o7I-dm-8Jm" firstAttribute="leading" secondItem="DvW-TX-GzP" secondAttribute="leading" constant="16" id="8Wt-Rd-MJd"/>
-                            <constraint firstAttribute="height" constant="156" id="EWD-Wc-vGo"/>
+                            <constraint firstAttribute="height" constant="136" id="EWD-Wc-vGo"/>
                             <constraint firstItem="L3C-nZ-Agz" firstAttribute="top" secondItem="GJM-jR-TQO" secondAttribute="bottom" constant="16" id="GND-Bm-lI3"/>
                             <constraint firstItem="f1u-ac-jJT" firstAttribute="top" secondItem="DvW-TX-GzP" secondAttribute="top" constant="8" id="JI3-hc-ihO"/>
                             <constraint firstAttribute="trailing" secondItem="GJM-jR-TQO" secondAttribute="trailing" constant="16" id="Oiq-Kc-gpG"/>
@@ -145,7 +145,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1cD-eM-a9g" userLabel="Divider">
-                        <rect key="frame" x="0.0" y="176" width="375" height="1"/>
+                        <rect key="frame" x="0.0" y="156" width="375" height="1"/>
                         <color key="backgroundColor" red="0.78431372549019607" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="hA7-Of-FvP"/>
@@ -167,10 +167,10 @@
                 <size key="landscapeSize" width="301.5" height="375"/>
             </fixedSimulatedSizeMetrics>
             <connections>
-                <outlet property="arrivalText" destination="M8v-uQ-nYG" id="qsW-2T-Ne0"/>
+                <outlet property="arrivalText" destination="5ck-Z9-bXR" id="Rki-T0-6LT"/>
                 <outlet property="arrivalView" destination="GJM-jR-TQO" id="T1J-He-hk0"/>
                 <outlet property="dateText" destination="Eql-mH-6Cq" id="HI0-ta-sFH"/>
-                <outlet property="departureText" destination="iQ4-dD-cBg" id="l8u-2T-dCM"/>
+                <outlet property="departureText" destination="MiH-8f-F53" id="0xx-YC-cOC"/>
                 <outlet property="departureView" destination="f1u-ac-jJT" id="iwl-tr-e2c"/>
                 <outlet property="headerView" destination="DvW-TX-GzP" id="hvf-Ug-0MI"/>
                 <outlet property="timeText" destination="GDa-lH-EV1" id="huo-c8-o3o"/>

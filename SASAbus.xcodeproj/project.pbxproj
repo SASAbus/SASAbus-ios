@@ -2392,6 +2392,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 90816EFC006FDFA23BF862AB /* Pods-TripNotification.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -2414,6 +2415,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C014ACA1A41F789275306A19 /* Pods-TripNotification.release.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;

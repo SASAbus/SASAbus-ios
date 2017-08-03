@@ -40,7 +40,7 @@ def default_pods
 
   pod 'ObjectMapper', '~> 2.2'
 
-  pod 'LocationPicker'
+  pod 'LocationPickerViewController'
 end
 
 target 'SASAbus' do
