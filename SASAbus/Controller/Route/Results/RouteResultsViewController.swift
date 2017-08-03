@@ -1,8 +1,11 @@
 import UIKit
+import LocationPickerViewController
+import Pulley
 
-class RouteResultsViewController: BottomSheetViewController {
+class RouteResultsViewController: PulleyViewController {
 
     var parentVC: MainRouteViewController!
+
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -34,5 +37,10 @@ class RouteResultsViewController: BottomSheetViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+
+    func showRouteResults(origin: LocationItem, destination: LocationItem) {
+
     }
 }

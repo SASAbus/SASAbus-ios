@@ -1,10 +1,15 @@
 import UIKit
 import Pulley
 
+import LocationPickerViewController
+
 class MainRouteViewController: MasterViewController {
 
     @IBOutlet var searchContainer: UIView!
     @IBOutlet var resultsContainer: UIView!
+
+    let searchViewController: RouteFeedViewController? = nil
+    let resultsViewController: RouteResultsViewController? = nil
 
     private var shadowImageView: UIImageView?
 
@@ -30,6 +35,8 @@ class MainRouteViewController: MasterViewController {
 
         addChildController(searchViewController, container: searchContainer)
         addChildController(resultsViewController, container: resultsContainer)
+
+        resultsContainer.isHidden = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,5 +68,13 @@ class MainRouteViewController: MasterViewController {
         }
 
         return nil
+    }
+
+
+    func showRouteResults(origin: LocationItem, destination: LocationItem) {
+        searchContainer.isHidden = true
+        resultsContainer.isHidden = false
+
+        resultsViewController?.showRouteResults(origin: origin, destination: destination)
     }
 }

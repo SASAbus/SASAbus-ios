@@ -29,8 +29,8 @@ class RouteFeedViewController: UIViewController {
 
     var busStops = [LocationItem]()
 
-    var departureBusStop: Int?
-    var arrivalBusStop: Int?
+    var departureBusStop: LocationItem?
+    var arrivalBusStop: LocationItem?
 
 
     override func viewDidLoad() {
@@ -68,7 +68,7 @@ class RouteFeedViewController: UIViewController {
     }
 
     func calculateRoute() {
-
+        parentVC.showRouteResults(origin: departureBusStop!, destination: arrivalBusStop!)
     }
 }
 
@@ -89,7 +89,7 @@ extension RouteFeedViewController {
         let locationPicker = getLocationPicker()
 
         locationPicker.pickCompletion = { item in
-            self.departureBusStop = item.id
+            self.departureBusStop = item
 
             self.departureText.text = item.mapItem.name
             self.departureText.textColor = .white
@@ -106,7 +106,7 @@ extension RouteFeedViewController {
         let locationPicker = getLocationPicker()
 
         locationPicker.pickCompletion = { item in
-            self.arrivalBusStop = item.id
+            self.arrivalBusStop = item
 
             self.arrivalText.text = item.mapItem.name
             self.arrivalText.textColor = .white

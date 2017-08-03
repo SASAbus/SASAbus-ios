@@ -20,7 +20,6 @@
 		1F2E307AF1FEDAC27DEFB001 /* LineCourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3DD57357734DC21B6F43 /* LineCourseListViewController.swift */; };
 		1F2E307C89A3D4E49910BC0D /* VdvHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E38DDC7CA8C24CDE54724 /* VdvHandler.swift */; };
 		1F2E308D9E1CD5EC39964859 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E390103030F9EA1B4CC2D /* Settings.swift */; };
-		1F2E309322BBDFF37AD138A0 /* PulleyPassthroughScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D71B19A5A911D7C2376 /* PulleyPassthroughScrollViewDelegate.swift */; };
 		1F2E30967E49BD86E6198334 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3111378CD352AECBA68C /* NewsTableViewCell.swift */; };
 		1F2E30B30DA2611DED34E891 /* ClaimValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E2E6FCA5A377BE32A7E /* ClaimValidator.swift */; };
 		1F2E30B3E0A59AA5D14A1DC9 /* busstops.realm in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E393E9C0A342DCF1B01C1 /* busstops.realm */; };
@@ -283,7 +282,6 @@
 		1F2E3D51A524DE3D50EA557C /* EmptyStateBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E355B71AD23B332EFF729 /* EmptyStateBaseView.swift */; };
 		1F2E3D7F7CD3BC54E01DF301 /* SurveyApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E30940A41307533BC707A /* SurveyApiRouter.swift */; };
 		1F2E3D8413C1EE9B885900A9 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E364352984B3991FE905A /* Themes.swift */; };
-		1F2E3D86C7A2711368077B73 /* MultiplePulleyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3551152E7B75E6D54EBC /* MultiplePulleyViewController.swift */; };
 		1F2E3D889D82FDFCF144048A /* NotificationCellDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3327A37FB85A8BF59D97 /* NotificationCellDot.swift */; };
 		1F2E3DA46360FE5AACFF77F5 /* IntroParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E302464CAA5DE853CDB7D /* IntroParentViewController.swift */; };
 		1F2E3DA83BAC2AB28B08061E /* NSData+SHA.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E35D4FF5D7380F77EA676 /* NSData+SHA.m */; };
@@ -486,7 +484,6 @@
 		1F2E353E9276C3481F8A8521 /* Api2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api2.swift; sourceTree = "<group>"; };
 		1F2E3541103CD7A91DCF19AB /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
 		1F2E3542D7725C08B2E3F402 /* BusStopFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopFilterViewController.swift; sourceTree = "<group>"; };
-		1F2E3551152E7B75E6D54EBC /* MultiplePulleyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplePulleyViewController.swift; sourceTree = "<group>"; };
 		1F2E355B71AD23B332EFF729 /* EmptyStateBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStateBaseView.swift; sourceTree = "<group>"; };
 		1F2E35649B08AAD4B2CA6284 /* BusStopGpsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopGpsTableViewCell.swift; sourceTree = "<group>"; };
 		1F2E35684B4C11F7672F44BF /* JSONWebToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONWebToken.swift; sourceTree = "<group>"; };
@@ -612,7 +609,6 @@
 		1F2E3CE1C685415B3BEAF608 /* Lines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lines.swift; sourceTree = "<group>"; };
 		1F2E3D02E5C6FE40A6949C04 /* VdvDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VdvDate.swift; sourceTree = "<group>"; };
 		1F2E3D0D4569EB32255AC6D5 /* SignatureValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureValidator.swift; sourceTree = "<group>"; };
-		1F2E3D71B19A5A911D7C2376 /* PulleyPassthroughScrollViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PulleyPassthroughScrollViewDelegate.swift; sourceTree = "<group>"; };
 		1F2E3D74BC0AC7B329114C47 /* DeviceUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUtils.swift; sourceTree = "<group>"; };
 		1F2E3D7DFFD36A6C0968EEBF /* NewsTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewController.xib; sourceTree = "<group>"; };
 		1F2E3D8C69FDC39DFB6A2386 /* BusStopFavoritesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopFavoritesTableViewCell.swift; sourceTree = "<group>"; };
@@ -834,15 +830,6 @@
 				1F2E331FF82C75BCA12A9D9D /* MapViewController.xib */,
 			);
 			path = Map;
-			sourceTree = "<group>";
-		};
-		1F2E33D16FF3B414877B5083 /* Pulley */ = {
-			isa = PBXGroup;
-			children = (
-				1F2E3551152E7B75E6D54EBC /* MultiplePulleyViewController.swift */,
-				1F2E3D71B19A5A911D7C2376 /* PulleyPassthroughScrollViewDelegate.swift */,
-			);
-			path = Pulley;
 			sourceTree = "<group>";
 		};
 		1F2E33D4C1427B42CE42A472 /* Map */ = {
@@ -1142,7 +1129,6 @@
 			children = (
 				1F2E3F944771591C0C71FBD9 /* Placeholder */,
 				1F2E377360BABB7A8E6E80DC /* BottomSheet */,
-				1F2E33D16FF3B414877B5083 /* Pulley */,
 				1F2E3F0573869713FB10FAFD /* MasterTableView.swift */,
 				1F2E3BCE2867D0CAF3A8456B /* BackgroundView.xib */,
 				1F2E380E230385192B0DF6B1 /* BackgroundView.swift */,
@@ -2073,8 +2059,6 @@
 				1F2E38A9B9792D2D0AB89B2D /* MapBottomSheetViewController.swift in Sources */,
 				1F2E3927E538901277E327A9 /* MainRouteViewController.swift in Sources */,
 				1F2E31C8106882A3A72B1FC0 /* RouteFeedViewController.swift in Sources */,
-				1F2E3D86C7A2711368077B73 /* MultiplePulleyViewController.swift in Sources */,
-				1F2E309322BBDFF37AD138A0 /* PulleyPassthroughScrollViewDelegate.swift in Sources */,
 				1F2E3AB430C44BAD108EA80F /* RouteResultsViewController.swift in Sources */,
 				1F2E34D3D7F7448ED49ABBDA /* ReportViewController.swift in Sources */,
 				1F2E35F72064E04BB870EA19 /* ReportApi.swift in Sources */,
