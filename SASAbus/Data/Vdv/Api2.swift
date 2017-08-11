@@ -47,7 +47,10 @@ class Api2 {
         }
 
         lines = lines.sorted { (lhs: Int, rhs: Int) -> Bool in
-            return Lines.ORDER.index(of: lhs)! < Lines.ORDER.index(of: rhs)!
+            let a = Lines.ORDER.index(of: lhs) ?? Lines.ORDER.count
+            let b = Lines.ORDER.index(of: rhs) ?? Lines.ORDER.count
+
+            return a < b
         }
 
         return lines

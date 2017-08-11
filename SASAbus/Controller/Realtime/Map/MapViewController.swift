@@ -7,7 +7,7 @@ import RxCocoa
 import Realm
 import RealmSwift
 
-public class MapViewController: UIViewController, BottomSheetPrimaryContentControllerDelegate {
+class MapViewController: UIViewController, BottomSheetPrimaryContentControllerDelegate {
 
     @IBOutlet var mapView: MKMapView!
 
