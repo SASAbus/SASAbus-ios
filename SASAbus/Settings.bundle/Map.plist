@@ -60,7 +60,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Marker refresh</string>
+			<string>Auto refresh</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -80,18 +80,20 @@
 			<key>Key</key>
 			<string>pref_map_auto_refresh_interval</string>
 			<key>DefaultValue</key>
-			<string>5000</string>
+			<string>5</string>
 			<key>Titles</key>
 			<array>
+				<string>3 seconds</string>
 				<string>5 seconds</string>
 				<string>10 seconds</string>
 				<string>15 seconds</string>
 			</array>
 			<key>Values</key>
 			<array>
-				<string>5000</string>
-				<string>10000</string>
-				<string>15000</string>
+				<string>3</string>
+				<string>5</string>
+				<string>10</string>
+				<string>15</string>
 			</array>
 		</dict>
 		<dict>

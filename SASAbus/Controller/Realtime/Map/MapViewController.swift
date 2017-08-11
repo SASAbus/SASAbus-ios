@@ -7,7 +7,7 @@ import RxCocoa
 import Realm
 import RealmSwift
 
-class MapViewController: UIViewController, MKMapViewDelegate, BottomSheetPrimaryContentControllerDelegate {
+public class MapViewController: UIViewController, BottomSheetPrimaryContentControllerDelegate {
 
     @IBOutlet var mapView: MKMapView!
 
@@ -23,6 +23,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, BottomSheetPrimary
     var tileOverlay: BusTileOverlay?
 
     var tileOverlayRenderer: MKTileOverlayRenderer?
+
+    var autoRefreshTimer: Timer?
+
+    var isRefreshRunning = false
 
 
     override func viewDidLoad() {
@@ -41,7 +45,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, BottomSheetPrimary
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        if MapUtils.isAutoRefreshEnabled() {
+            let interval = MapUtils.getAutoRefreshInterval()
+            Log.info("Auto refresh is enabled, interval: \(interval)s")
+
+            scheduleAutoRefreshTimer(interval: interval)
+        }
+
         parseData()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        if let timer = autoRefreshTimer {
+            timer.invalidate()
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -57,10 +76,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, BottomSheetPrimary
         parentVC.setDrawerPosition(position: .open, animated: true)
     }
 
+
     func parseData() {
-        if !NetUtils.isOnline() {
+        guard NetUtils.isOnline() else {
+            Log.error("No internet connection")
             return
         }
+
+        guard !isRefreshRunning else {
+            Log.error("Refresh already running")
+            return
+        }
+
+        isRefreshRunning = true
 
         parentVC.activityIndicator?.startAnimating()
 
@@ -82,6 +110,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, BottomSheetPrimary
                 }, onError: { error in
                     Log.error(error)
 
+                    self.isRefreshRunning = false
                     self.parentVC.activityIndicator?.stopAnimating()
                 })
     }
@@ -113,29 +142,41 @@ class MapViewController: UIViewController, MKMapViewDelegate, BottomSheetPrimary
                         data: item
                 )
 
-                self.mapView.addAnnotation(annotation!)
+                mapView.addAnnotation(annotation!)
             }
 
             updatedMarkers[item.trip] = annotation
-            self.markers.removeValue(forKey: item.trip)
+            markers.removeValue(forKey: item.trip)
         }
 
-        for (_, marker) in self.markers {
-            self.mapView.removeAnnotation(marker)
+        for (_, marker) in markers {
+            mapView.removeAnnotation(marker)
         }
 
-        self.markers = updatedMarkers
+        markers = updatedMarkers
 
-        for (_, marker) in self.markers where marker.selected {
-            let bottomSheet = self.parentVC?.childViewControllers[1] as! MapBottomSheetViewController
+        for (_, marker) in markers where marker.selected {
+            let bottomSheet = parentVC?.childViewControllers[1] as! MapBottomSheetViewController
             bottomSheet.updateBottomSheet(bus: marker.busData)
         }
 
-        self.parentVC.activityIndicator?.stopAnimating()
+        isRefreshRunning = false
+        parentVC.activityIndicator?.stopAnimating()
+    }
+
+
+    func scheduleAutoRefreshTimer(interval: TimeInterval) {
+        autoRefreshTimer = Timer.scheduledTimer(
+                timeInterval: interval,
+                target: self,
+                selector: #selector(self.parseData),
+                userInfo: nil,
+                repeats: true
+        )
     }
 }
 
-extension MapViewController {
+extension MapViewController: MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
@@ -205,70 +246,5 @@ extension MapViewController {
 
         tileOverlayRenderer = MKTileOverlayRenderer(tileOverlay: tileOverlay)
         return tileOverlayRenderer!
-    }
-}
-
-class BusTileOverlay: MKTileOverlay {
-
-    let cache = NSCache<NSString, NSData>()
-    let operationQueue = OperationQueue()
-
-    var parent: MapViewController!
-
-    init(parent: MapViewController) {
-        super.init(urlTemplate: "")
-
-        self.parent = parent
-
-        self.tileSize = CGSize(width: 512, height: 512)
-    }
-
-    override func url(forTilePath path: MKTileOverlayPath) -> URL {
-        let urlFormatted: String
-
-        if parent.allMapOverlaysEnabled {
-            let url = Endpoint.dataApiUrl + Endpoint.MAP_TILES_ALL
-            urlFormatted = String(format: url, path.x, path.y, path.z)
-
-        } else {
-            let url = Endpoint.dataApiUrl + Endpoint.MAP_TILES
-            urlFormatted = String(format: url, path.x, path.y, path.z,
-                    parent.selectedBus!.lineId, parent.selectedBus!.variant)
-        }
-
-        return URL(string: urlFormatted)!
-    }
-
-    override func loadTile(at path: MKTileOverlayPath, result: @escaping (Data?, Error?) -> Swift.Void) {
-        let url = self.url(forTilePath: path)
-
-        if let cachedData = cache.object(forKey: url.absoluteString as NSString) as? Data {
-            result(cachedData, nil)
-        } else {
-            let session = URLSession.shared
-
-            let request = NSURLRequest(url: url)
-
-            let task = session.dataTask(with: request as URLRequest, completionHandler: { data, _, error -> Void in
-                if let data = data {
-                    self.cache.setObject(data as NSData, forKey: url.absoluteString as NSString)
-                }
-
-                result(data, error)
-            })
-
-            task.resume()
-        }
-    }
-
-    func checkTileExists(zoom: Int) -> Bool {
-        let minZoom = 10
-        let maxZoom = 16
-
-        if zoom < minZoom || zoom > maxZoom {
-            return false
-        }
-
-        return parent.allMapOverlaysEnabled || parent.selectedBus != nil
     }
 }

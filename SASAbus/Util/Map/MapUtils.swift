@@ -10,6 +10,9 @@ class MapUtils {
     static let PREF_TILE_OVERLAY_ENABLED = "pref_tile_overlay_enabled"
     static let PREF_TILE_OVERLAY_ENABLED_ALL = "pref_tile_overlay_enabled_all"
 
+    static let PREF_AUTO_REFRESH_ENABLED = "pref_map_auto_refresh_enabled"
+    static let PREF_AUTO_REFRESH_INTERVAL = "pref_map_auto_refresh_interval"
+
 
     static func getMapType() -> MKMapType {
         let userDefaults = UserDefaults.standard
@@ -28,6 +31,7 @@ class MapUtils {
         }
     }
 
+
     static func mapOverlaysEnabled() -> Bool {
         return UserDefaults.standard.bool(forKey: PREF_TILE_OVERLAY_ENABLED)
     }
@@ -35,6 +39,16 @@ class MapUtils {
     static func allMapOverlaysEnabled() -> Bool {
         return UserDefaults.standard.bool(forKey: PREF_TILE_OVERLAY_ENABLED_ALL)
     }
+
+
+    static func isAutoRefreshEnabled() -> Bool {
+        return UserDefaults.standard.bool(forKey: PREF_AUTO_REFRESH_ENABLED)
+    }
+
+    static func getAutoRefreshInterval() -> TimeInterval {
+        return TimeInterval(UserDefaults.standard.integer(forKey: PREF_AUTO_REFRESH_INTERVAL))
+    }
+
 
     static func getRegion() -> MKCoordinateRegion {
         let position = UserDefaults.standard.integer(forKey: PREF_DEFAULT_MAP_POSITION)

@@ -10,7 +10,7 @@
 	<false/>
 
 	<key>pref_map_auto_refresh_interval</key>
-	<integer>5000</integer>
+	<integer>5</integer>
 
 	<key>pref_tile_overlay_enabled</key>
 	<true/>
