@@ -35,7 +35,7 @@ class BusTileOverlay: MKTileOverlay {
     override func loadTile(at path: MKTileOverlayPath, result: @escaping (Data?, Error?) -> Swift.Void) {
         let url = self.url(forTilePath: path)
 
-        if let cachedData = cache.object(forKey: url.absoluteString as NSString) as? Data {
+        if let cachedData = cache.object(forKey: url.absoluteString as NSString) as Data? {
             result(cachedData, nil)
         } else {
             let session = URLSession.shared

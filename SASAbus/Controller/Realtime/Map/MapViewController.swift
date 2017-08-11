@@ -205,16 +205,16 @@ extension MapViewController: MKMapViewDelegate {
             mapView.add(tileOverlay!, level: .aboveLabels)
         }
 
-        if tileOverlayRenderer != nil {
-            tileOverlayRenderer?.reloadData()
-        }
-
         selectedBus = annotation.busData
 
         let bottomSheet = parentVC?.childViewControllers[1] as! MapBottomSheetViewController
         bottomSheet.updateBottomSheet(bus: selectedBus!)
 
         parentVC.setDrawerPosition(position: .partiallyRevealed, animated: true)
+
+        if tileOverlayRenderer != nil {
+            tileOverlayRenderer?.reloadData()
+        }
     }
 
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
