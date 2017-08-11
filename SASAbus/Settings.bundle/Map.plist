@@ -45,13 +45,13 @@
 			<string>standart</string>
 			<key>Titles</key>
 			<array>
-				<string>Standart</string>
+				<string>Standard</string>
 				<string>Satellite</string>
 				<string>Hybrid</string>
 			</array>
 			<key>Values</key>
 			<array>
-				<string>standart</string>
+				<string>standard</string>
 				<string>satellite</string>
 				<string>hybrid</string>
 			</array>
@@ -106,7 +106,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Show single path</string>
+			<string>Show paths</string>
 			<key>Key</key>
 			<string>pref_tile_overlay_enabled</string>
 			<key>DefaultValue</key>
@@ -115,16 +115,12 @@
 		<dict>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
-			<key>TrueValue</key>
-			<string></string>
 			<key>Title</key>
-			<string>Show paths</string>
+			<string>Show all paths</string>
 			<key>Key</key>
 			<string>pref_tile_overlay_enabled_all</string>
 			<key>DefaultValue</key>
 			<false/>
-			<key>FalseValue</key>
-			<string></string>
 		</dict>
 	</array>
 </dict>

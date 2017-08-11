@@ -18,10 +18,7 @@ class MapViewController: UIViewController, BottomSheetPrimaryContentControllerDe
 
     var selectedBus: RealtimeBus?
 
-    var allMapOverlaysEnabled: Bool = false
-
     var tileOverlay: BusTileOverlay?
-
     var tileOverlayRenderer: MKTileOverlayRenderer?
 
     var autoRefreshTimer: Timer?
@@ -32,13 +29,14 @@ class MapViewController: UIViewController, BottomSheetPrimaryContentControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        allMapOverlaysEnabled = MapUtils.allMapOverlaysEnabled()
-
         mapView.delegate = self
         mapView.mapType = MapUtils.getMapType()
 
         if MapUtils.mapOverlaysEnabled() {
+            Log.info("Map overlays are enabled")
             tileOverlay = BusTileOverlay(parent: self)
+
+            mapView.add(tileOverlay!, level: .aboveLabels)
         }
     }
 
@@ -201,10 +199,6 @@ extension MapViewController: MKMapViewDelegate {
         let annotation = view.annotation as! MapAnnotation
         annotation.selected = true
 
-        if tileOverlay != nil {
-            mapView.add(tileOverlay!, level: .aboveLabels)
-        }
-
         selectedBus = annotation.busData
 
         let bottomSheet = parentVC?.childViewControllers[1] as! MapBottomSheetViewController
@@ -212,8 +206,12 @@ extension MapViewController: MKMapViewDelegate {
 
         parentVC.setDrawerPosition(position: .partiallyRevealed, animated: true)
 
-        if tileOverlayRenderer != nil {
-            tileOverlayRenderer?.reloadData()
+        if let overlay = tileOverlay {
+            if !overlay.showAllPaths {
+                mapView.add(tileOverlay!, level: .aboveLabels)
+
+                tileOverlayRenderer?.reloadData()
+            }
         }
     }
 
@@ -230,12 +228,12 @@ extension MapViewController: MKMapViewDelegate {
 
         self.parentVC.setDrawerPosition(position: .collapsed, animated: true)
 
-        if tileOverlay != nil {
-            mapView.remove(tileOverlay!)
-        }
+        if let overlay = tileOverlay {
+            if !overlay.showAllPaths {
+                mapView.remove(tileOverlay!)
 
-        if tileOverlayRenderer != nil {
-            tileOverlayRenderer?.reloadData()
+                tileOverlayRenderer?.reloadData()
+            }
         }
     }
 
