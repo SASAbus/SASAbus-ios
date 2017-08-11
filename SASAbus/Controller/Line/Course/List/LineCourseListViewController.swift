@@ -108,7 +108,7 @@ extension LineCourseListViewController {
             cell.indicator.image = dotsImage
         }
 
-        if index >= 1 && !items[index - 1].active && item.active || item.dot {
+        if index >= 1 && !items[index - 1].active && item.active || item.pin {
             cell.indicator.image = dotImage
         }
 
@@ -121,8 +121,8 @@ extension LineCourseListViewController {
         }
 
         let busStop = item.busStop
-        let name: String = (Utils.locale() == "de" ? busStop.nameDe : busStop.nameIt)!
-        let munic: String = (Utils.locale() == "de" ? busStop.municDe : busStop.municIt)!
+        let name: String = (Utils.locale() == "de" ? busStop.nameDe : busStop.nameIt)
+        let munic: String = (Utils.locale() == "de" ? busStop.municDe : busStop.municIt)
 
         cell.title.text = "\(item.time) - \(name) (\(munic))"
         cell.subtitle.attributedText = item.lineText

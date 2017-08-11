@@ -66,7 +66,7 @@ class MapBottomSheetViewController: UIViewController, BottomSheetDrawerViewContr
         peekColorView.alpha = 0
 
         let tapRecognized = UITapGestureRecognizer(target: self,
-                    action: #selector(onPeekClick))
+                action: #selector(onPeekClick))
         tapRecognized.numberOfTapsRequired = 1
 
         peekColorView.isUserInteractionEnabled = true
@@ -188,7 +188,14 @@ class MapBottomSheetViewController: UIViewController, BottomSheetDrawerViewContr
     }
 
     func onCourseClick(gestureRecognizer: UIGestureRecognizer) {
-        let viewController = LineCourseViewController(lineId: selectedBus.lineId, vehicle: selectedBus.vehicle)
+        let viewController = LineCourseViewController(
+                tripId: selectedBus.trip,
+                lineId: selectedBus.lineId,
+                vehicle: selectedBus.vehicle,
+                currentBusStop: selectedBus.busStop,
+                busStopGroup: 0
+        )
+
         self.navigationController!.pushViewController(viewController, animated: true)
     }
 

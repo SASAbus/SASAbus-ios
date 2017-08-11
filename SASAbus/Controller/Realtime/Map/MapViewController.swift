@@ -4,6 +4,9 @@ import SwiftyJSON
 import RxSwift
 import RxCocoa
 
+import Realm
+import RealmSwift
+
 class MapViewController: UIViewController, MKMapViewDelegate, BottomSheetPrimaryContentControllerDelegate {
 
     @IBOutlet var mapView: MKMapView!
@@ -64,9 +67,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, BottomSheetPrimary
         _ = RealtimeApi.get()
                 .subscribeOn(MainScheduler.asyncInstance)
                 .map { buses in
+                    let realm = Realm.busStops()
+
                     for item in buses {
-                        item.busStopString = BusStopRealmHelper.getName(id: item.busStop)
-                        item.destinationString = BusStopRealmHelper.getName(id: item.destination)
+                        item.busStopString = BusStopRealmHelper.getName(id: item.busStop, realm: realm)
+                        item.destinationString = BusStopRealmHelper.getName(id: item.destination, realm: realm)
                     }
 
                     return buses

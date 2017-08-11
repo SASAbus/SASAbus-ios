@@ -1,6 +1,10 @@
 import UIKit
+
 import RxSwift
 import RxCocoa
+
+import Realm
+import RealmSwift
 
 class LineCourseViewController: UIViewController {
 
@@ -15,6 +19,10 @@ class LineCourseViewController: UIViewController {
 
     var vehicle: Int = 0
     var lineId: Int = 0
+    var tripId: Int = 0
+
+    var currentBusStop: Int = 0
+    var busStopGroup: Int = 0
 
     var tempBusStop: Int = 0
 
@@ -22,9 +30,12 @@ class LineCourseViewController: UIViewController {
     var mapController: LineCourseMapViewController!
 
 
-    init(lineId: Int, vehicle: Int) {
+    init(tripId: Int, lineId: Int, vehicle: Int, currentBusStop: Int, busStopGroup: Int) {
+        self.tripId = tripId
         self.lineId = lineId
         self.vehicle = vehicle
+        self.currentBusStop = currentBusStop
+        self.busStopGroup = busStopGroup
 
         super.init(nibName: "LineCourseViewController", bundle: nil)
 
@@ -127,34 +138,8 @@ class LineCourseViewController: UIViewController {
     // MARK: - Data loading
 
     func parseData() {
-        parseDataFromVehicle(vehicle: vehicle)
-    }
-
-    func parseDataFromVehicle(vehicle: Int) {
-        tempBusStop = 0
-
-        if !NetUtils.isOnline() {
-            print("Device offline")
-            return
-        }
-
-        _ = getPath(vehicle: vehicle)
+        parseFromPlanData(vehicle: vehicle, busStopGroup: busStopGroup, currentBusStop: currentBusStop, tripId: tripId)
                 .subscribeOn(MainScheduler.background)
-                .observeOn(MainScheduler.background)
-                .flatMap({ busStops -> Observable<[LineCourse]> in
-                    if !busStops.isEmpty {
-                        for i in 0..<busStops.count {
-                            if busStops[i].id == self.tempBusStop {
-                                let stop = busStops[i]
-
-                                return self.parseFromPlanData(busStopIds: [stop.id], time: stop.time, line: self.lineId,
-                                        busStops: busStops, allBlack: false)
-                            }
-                        }
-                    }
-
-                    return Observable.empty()
-                })
                 .map(passingLinesMap)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { items in
@@ -164,6 +149,77 @@ class LineCourseViewController: UIViewController {
                     self.listController.onError(error: error as NSError)
                     self.mapController.onError(error: error as NSError)
                 })
+    }
+
+    private func parseFromPlanData(vehicle: Int, busStopGroup: Int, currentBusStop: Int, tripId: Int) -> Observable<[LineCourse]> {
+        return Observable.create { subscriber in
+            var currentBusStopNew = currentBusStop
+
+            guard Api2.todayExists() else {
+                PlannedData.setUpdateAvailable(true)
+                subscriber.on(.error(NSError(domain: "com.davale.sasabus", code: 0, userInfo: [:])))
+                return Disposables.create()
+            }
+
+            if (vehicle != 0) {
+                Log.warning("Getting bus position for \(vehicle)")
+
+                RealtimeApi.vehicle(vehicle: vehicle)
+                        .subscribe(onNext: { bus in
+                            guard let bus = bus else {
+                                Log.warning("Bus \(vehicle) is not in service")
+                                return
+                            }
+
+                            currentBusStopNew = bus.busStop
+
+                            Log.warning("Got bus position for \(vehicle): \(currentBusStopNew)")
+                        }, onError: { error in
+                            Log.warning("Could not get bus position: \(error)")
+                        })
+            }
+
+            var items = [LineCourse]()
+            var path: [VdvBusStop] = Api2.getTrip(tripId: tripId).calcTimedPath()
+
+            var realm = Realm.busStops()
+
+            var active = currentBusStopNew == 0
+
+            for stop in path {
+                var busStop = BBusStop(fromRealm: BusStopRealmHelper.getBusStop(id: stop.id, realm: realm))
+
+                var bus = false
+                var pin = false
+
+                // Iterate all times to see at which bus stop the bus currently is, and mark it
+                // to make it stand out in the list (by either a dot or a bus depending if it
+                // currently is in service).
+
+                if (busStop.id == currentBusStopNew) {
+                    active = true
+                    bus = true
+                }
+
+                if (busStop.family == busStopGroup) {
+                    pin = true
+                }
+
+                items.append(LineCourse(
+                        id: stop.id,
+                        busStop: busStop,
+                        time: stop.time,
+                        active: active,
+                        pin: pin,
+                        bus: bus
+                ))
+            }
+
+            subscriber.on(.next(items))
+            subscriber.onCompleted()
+
+            return Disposables.create()
+        }
     }
 
 
@@ -232,78 +288,6 @@ class LineCourseViewController: UIViewController {
         }
 
         return lineCourses
-    }
-
-    func getPath(vehicle: Int) -> Observable<[VdvBusStop]> {
-        return RealtimeApi.vehicle(vehicle: vehicle)
-                .subscribeOn(MainScheduler.background)
-                .observeOn(MainScheduler.background)
-                .map { bus -> [VdvBusStop] in
-                    guard let bus = bus else {
-                        Log.error("Bus \(vehicle) is not driving")
-                        return []
-                    }
-
-                    guard Api2.todayExists() else {
-                        PlannedData.setUpdateAvailable(true)
-                        print("Today does not exist")
-                        return []
-                    }
-
-                    self.tempBusStop = bus.busStop
-
-                    return Api2.getTrip(tripId: bus.trip).calcTimedPath()
-                }
-    }
-
-    func parseFromPlanData(busStopIds: [Int], time: String, line: Int, busStops: [VdvBusStop]?, allBlack: Bool) -> Observable<[LineCourse]> {
-        return Observable<[LineCourse]>.create { (observer) -> Disposable in
-            guard Api2.todayExists() else {
-                PlannedData.setUpdateAvailable(true)
-                observer.onError(NSError(domain: "com.davale.sasabus", code: 0, userInfo: [:]))
-                return Disposables.create()
-            }
-
-            var items = [LineCourse]()
-
-            let userCalendar = NSCalendar.current
-            let dateComponents = NSDateComponents()
-
-            dateComponents.hour = 1
-            dateComponents.minute = 0
-            dateComponents.second = 0
-            dateComponents.timeZone = TimeZone(identifier: "Europe/Rome")
-
-            let calendar = userCalendar.date(from: dateComponents as DateComponents)!
-            let path = busStops!
-
-            var isActive: Bool = allBlack
-
-            for stop in path {
-                var dot = false
-
-                for id in busStopIds where stop.id == id {
-                    dot = true
-                    isActive = true
-                    break
-                }
-
-                let busStop = BusStop(value: BusStopRealmHelper.getBusStop(id: stop.id))
-
-                items.append(LineCourse(
-                        id: stop.id,
-                        busStop: busStop,
-                        time: stop.time,
-                        active: isActive,
-                        dot: dot
-                ))
-            }
-
-            observer.onNext(items)
-            observer.onCompleted()
-
-            return Disposables.create()
-        }
     }
 
     func getColoredString(text: String, color: String) -> String {

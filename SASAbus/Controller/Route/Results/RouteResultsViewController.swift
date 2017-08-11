@@ -4,6 +4,9 @@ import Pulley
 
 class RouteResultsViewController: PulleyViewController {
 
+    var mapViewController: RouteMapViewController!
+    var drawerViewController: RouteBottomSheetViewController!
+
     var parentVC: MainRouteViewController!
 
 
@@ -18,18 +21,21 @@ class RouteResultsViewController: PulleyViewController {
 
     static func getViewController() -> RouteResultsViewController {
         let contentNib = UINib(nibName: "RouteMapViewController", bundle: nil)
-        let contentViewController = contentNib.instantiate(withOwner: self)[0] as! RouteMapViewController
+        let mapViewController = contentNib.instantiate(withOwner: self)[0] as! RouteMapViewController
 
         let drawerNib = UINib(nibName: "RouteBottomSheetViewController", bundle: nil)
         let drawerViewController = drawerNib.instantiate(withOwner: self)[0] as! RouteBottomSheetViewController
 
         let mainViewController = RouteResultsViewController(
-                contentViewController: contentViewController,
+                contentViewController: mapViewController,
                 drawerViewController: drawerViewController
         )
 
-        contentViewController.parentVC = mainViewController
         drawerViewController.parentVC = mainViewController
+        drawerViewController.parentVC = mainViewController
+        
+        mainViewController.mapViewController = mapViewController
+        mainViewController.drawerViewController = drawerViewController
 
         return mainViewController
     }
@@ -41,6 +47,6 @@ class RouteResultsViewController: PulleyViewController {
 
 
     func showRouteResults(origin: LocationItem, destination: LocationItem) {
-
+        drawerViewController.showLoadingIndicator()
     }
 }

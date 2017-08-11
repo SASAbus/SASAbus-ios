@@ -7,12 +7,12 @@ class BusStopAnnotation: NSObject, MKAnnotation {
     let subtitle: String?
 
     let color: UIColor
-    let busStop: BusStop
+    let busStop: BBusStop
 
     let coordinate: CLLocationCoordinate2D
 
     init(title: String, subtitle: String, coordinate: CLLocationCoordinate2D,
-         busStop: BusStop, color: UIColor = UIColor.red) {
+         busStop: BBusStop, color: UIColor = UIColor.red) {
 
         self.title = title
         self.subtitle = subtitle

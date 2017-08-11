@@ -29,8 +29,7 @@ class BusStopRealmHelper {
     }
 
 
-    static func getName(id: Int) -> String {
-        let realm = Realm.busStops()
+    static func getName(id: Int, realm: Realm = Realm.busStops()) -> String {
         let busStop = realm.objects(BusStop.self).filter("id = \(id)").first
 
         if busStop == nil {
@@ -40,8 +39,7 @@ class BusStopRealmHelper {
         return (locale == "de" ? busStop!.nameDe : busStop!.nameIt)!
     }
 
-    static func getMunic(id: Int) -> String {
-        let realm = Realm.busStops()
+    static func getMunic(id: Int, realm: Realm = Realm.busStops()) -> String {
         let busStop = realm.objects(BusStop.self).filter("id = \(id)").first
 
         if busStop == nil {
@@ -51,8 +49,7 @@ class BusStopRealmHelper {
         return (locale == "de" ? busStop!.municDe : busStop!.municIt)!
     }
 
-    static func getBusStop(id: Int) -> BusStop {
-        let realm = Realm.busStops()
+    static func getBusStop(id: Int, realm: Realm = Realm.busStops()) -> BusStop {
         var busStop = realm.objects(BusStop.self).filter("id = \(id)").first
 
         if busStop == nil {
@@ -103,6 +100,7 @@ class BusStopRealmHelper {
 
         return Array(results)
     }
+
 
     static func all() -> [BusStop] {
         let realm = Realm.busStops()

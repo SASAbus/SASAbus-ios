@@ -45,7 +45,7 @@ class LineDetailsMapViewController: UIViewController, MKMapViewDelegate {
                     var points = [CLLocationCoordinate2D]()
 
                     for item in path {
-                        let busStop = BusStopRealmHelper.getBusStop(id: item)
+                        let busStop = BBusStop(fromRealm: BusStopRealmHelper.getBusStop(id: item))
 
                         let title = busStop.name()
                         let munic = busStop.munic()

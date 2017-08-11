@@ -56,22 +56,22 @@ class LineCourseMapViewController: UIViewController, MKMapViewDelegate {
             let munic = locale == "de" ? busStop.municDe : busStop.municIt
 
             var color = item.active ? Color.materialBlue500 : Color.materialGrey500
-            if item.dot {
+            if item.pin {
                 color = Color.materialRed500
             }
 
             let coordinate = CLLocationCoordinate2D(latitude: Double(busStop.lat), longitude: Double(busStop.lng))
 
             self.mapView.addAnnotation(BusStopAnnotation(
-                    title: title!,
-                    subtitle: munic!,
+                    title: title,
+                    subtitle: munic,
                     coordinate: coordinate,
                     busStop: busStop,
                     color: color
             ))
 
             if item.active {
-                if item.dot {
+                if item.pin {
                     inactivePoints.append(coordinate)
                 }
                 activePoints.append(coordinate)

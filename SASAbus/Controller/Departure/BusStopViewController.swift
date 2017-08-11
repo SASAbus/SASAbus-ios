@@ -207,10 +207,10 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         navigationItem.rightBarButtonItem = nil
-        
+
         allDepartures.removeAll()
         tableView.reloadData()
-        
+
         getDepartures()
 
         textField.resignFirstResponder()
@@ -467,8 +467,14 @@ extension BusStopViewController {
         } else {
             let item = filteredDepartures[indexPath.row]
 
-            // TODO show course when no vehicle is available like in android app
-            let busStopTripViewController = LineCourseViewController(lineId: item.lineId, vehicle: item.vehicle)
+            let busStopTripViewController = LineCourseViewController(
+                    tripId: item.trip,
+                    lineId: item.lineId,
+                    vehicle: item.vehicle,
+                    currentBusStop: item.currentBusStop,
+                    busStopGroup: item.busStopGroup
+            )
+
             self.navigationController!.pushViewController(busStopTripViewController, animated: true)
         }
     }
