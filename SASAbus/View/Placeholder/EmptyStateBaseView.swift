@@ -1,13 +1,14 @@
 import Foundation
 import UIKit
 import StatefulViewController
+import ChameleonFramework
 
 class EmptyStateBaseView: UIView, StatefulPlaceholderView {
 
     let nib: String
     let imageTint: UIColor
 
-    init(frame: CGRect, nib: String, imageTint: UIColor = Theme.orange) {
+    init(frame: CGRect, nib: String, imageTint: UIColor = Theme.orange.lighten(byPercentage: 0.75)!) {
         self.nib = nib
         self.imageTint = imageTint
 
