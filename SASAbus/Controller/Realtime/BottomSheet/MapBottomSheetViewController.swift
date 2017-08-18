@@ -52,9 +52,9 @@ class MapBottomSheetViewController: UIViewController, BottomSheetDrawerViewContr
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        lineButtonImage.tint(with: Color.materialIndigo500)
-        vehicleButtonImage.tint(with: Color.materialIndigo500)
-        courseButtonImage.tint(with: Color.materialIndigo500)
+        lineButtonImage.tint(with: Theme.skyBlue)
+        vehicleButtonImage.tint(with: Theme.skyBlue)
+        courseButtonImage.tint(with: Theme.skyBlue)
 
         delayImage.tint(with: UIColor.darkGray)
         headingToImage.tint(with: UIColor.darkGray)
@@ -127,6 +127,10 @@ class MapBottomSheetViewController: UIViewController, BottomSheetDrawerViewContr
     }
 
     func offsetChanged(distance: CGFloat, offset: CGFloat) {
+        if selectedBus == nil {
+            return
+        }
+
         if distance > PEEK_HEIGHT {
             fadeToBlue()
         } else if distance <= PEEK_HEIGHT {

@@ -1,4 +1,5 @@
 import UIKit
+import ChameleonFramework
 
 class LineDetailsViewController: UIViewController {
 
@@ -9,8 +10,6 @@ class LineDetailsViewController: UIViewController {
 
     @IBOutlet weak var segmentedBackground: UIView!
 
-    var hairLineImage: UIImageView!
-
     var listController: LineDetailsBusesViewController!
     var mapController: LineDetailsMapViewController!
 
@@ -20,6 +19,8 @@ class LineDetailsViewController: UIViewController {
     var isFavorite: Bool = false
     var favoritesChanges: Bool = false
 
+    var toolbarColor = Theme.skyBlue
+    var tintColor = ContrastColorOf(Theme.skyBlue, returnFlat: true)
 
     init(lineId: Int, vehicle: Int) {
         self.lineId = lineId
@@ -42,15 +43,8 @@ class LineDetailsViewController: UIViewController {
             fatalError("lineId == 0")
         }
 
-        segmentedBackground.backgroundColor = Color.materialIndigo500
-
-        for parent in self.navigationController!.navigationBar.subviews {
-            for childView in parent.subviews {
-                if childView is UIImageView && childView.bounds.height <= 1 {
-                    hairLineImage = childView as! UIImageView
-                }
-            }
-        }
+        segmentedBackground.backgroundColor = toolbarColor
+        segmentedControl.tintColor = tintColor
 
         prepareBusesViewController()
         prepareMapViewController()
@@ -71,13 +65,12 @@ class LineDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if let navController = self.navigationController {
-            navController.navigationBar.tintColor = UIColor.white
-            navController.navigationBar.barTintColor = Color.materialIndigo500
-            navController.navigationBar.isTranslucent = false
-            navController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 
-            hairLineImage.alpha = 0
+        if let navController = self.navigationController {
+            navController.navigationBar.tintColor = tintColor
+            navController.navigationBar.barTintColor = toolbarColor
+            navController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: tintColor]
+            navController.hidesNavigationBarHairline = true
         }
     }
 
@@ -89,11 +82,9 @@ class LineDetailsViewController: UIViewController {
 
         if let navController = self.navigationController {
             navController.navigationBar.tintColor = UIColor.white
-            navController.navigationBar.barTintColor = Color.materialOrange500
-            navController.navigationBar.isTranslucent = false
+            navController.navigationBar.barTintColor = Theme.orange
             navController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-
-            hairLineImage.alpha = 1
+            navController.hidesNavigationBarHairline = false
         }
     }
 

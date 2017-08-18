@@ -7,7 +7,7 @@ class EmptyStateBaseView: UIView, StatefulPlaceholderView {
     let nib: String
     let imageTint: UIColor
 
-    init(frame: CGRect, nib: String, imageTint: UIColor = Color.materialOrange300) {
+    init(frame: CGRect, nib: String, imageTint: UIColor = Theme.orange) {
         self.nib = nib
         self.imageTint = imageTint
 

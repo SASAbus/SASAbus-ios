@@ -32,19 +32,21 @@ import RxSwift
 import RxCocoa
 import Firebase
 
+import ChameleonFramework
+
 import AlamofireNetworkActivityIndicator
 
 // TODO: Departures: Filter not persistent
 // TODO: News: Check if empty state is working
+
 // TODO: Eco Points: Add Google sign in
+// TODO: Eco Points: Fix still loading bar
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var drawerController: DrawerController!
-
-    let gcmMessageIDKey = "gcm.message_id"
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -65,10 +67,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else if PlannedData.isUpdateAvailable() || !PlannedData.planDataExists() {
             startIntro(dataOnly: true)
         } else {
-            self.window!.backgroundColor = UIColor.white
-            self.window!.makeKeyAndVisible()
+            window!.backgroundColor = UIColor.white
+            window!.makeKeyAndVisible()
 
-            self.startApplication()
+            startApplication()
         }
 
         return true

@@ -15,8 +15,6 @@ class LineCourseViewController: UIViewController {
 
     @IBOutlet weak var segmentedBackground: UIView!
 
-    var hairLineImage: UIImageView!
-
     var vehicle: Int = 0
     var lineId: Int = 0
     var tripId: Int = 0
@@ -50,16 +48,7 @@ class LineCourseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        segmentedBackground.backgroundColor = Color.materialTeal500
-
-        for parent in navigationController!.navigationBar.subviews {
-            for childView in parent.subviews {
-                if childView is UIImageView && childView.bounds.height <= 1 {
-                    hairLineImage = childView as! UIImageView
-                    break
-                }
-            }
-        }
+        segmentedBackground.backgroundColor = Theme.mint
 
         prepareListViewController()
         prepareMapViewController()
@@ -71,26 +60,18 @@ class LineCourseViewController: UIViewController {
         super.viewWillAppear(animated)
 
         if let navController = self.navigationController {
-            navController.navigationBar.tintColor = UIColor.white
-            navController.navigationBar.barTintColor = Color.materialTeal500
-            navController.navigationBar.isTranslucent = false
-            navController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            navController.navigationBar.barTintColor = Theme.mint
+            navController.hidesNavigationBarHairline = true
         }
-
-        hairLineImage.alpha = 0
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         if let navController = self.navigationController {
-            navController.navigationBar.tintColor = UIColor.white
-            navController.navigationBar.barTintColor = Color.materialOrange500
-            navController.navigationBar.isTranslucent = false
-            navController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            navController.navigationBar.barTintColor = Theme.orange
+            navController.hidesNavigationBarHairline = false
         }
-
-        hairLineImage.alpha = 1
     }
 
     override func viewDidLayoutSubviews() {

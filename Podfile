@@ -41,6 +41,8 @@ def default_pods
   pod 'ObjectMapper', '~> 2.2'
 
   pod 'LocationPickerViewController'
+
+  pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
 end
 
 target 'SASAbus' do

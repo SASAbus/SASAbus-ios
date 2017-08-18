@@ -17,9 +17,9 @@ class EcoPointsStatsCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        distanceImage.tint(with: Color.materialIndigo500)
-        totalTripsImage.tint(with: Color.materialIndigo500)
-        moneyImage.tint(with: Color.materialIndigo500)
-        co2Image.tint(with: Color.materialIndigo500)
+        distanceImage.tint(with: Theme.blue)
+        totalTripsImage.tint(with: Theme.blue)
+        moneyImage.tint(with: Theme.blue)
+        co2Image.tint(with: Theme.blue)
     }
 }

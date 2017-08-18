@@ -1,4 +1,5 @@
 import UIKit
+import ChameleonFramework
 
 class BusDetailsViewController: UIViewController {
 
@@ -39,10 +40,7 @@ class BusDetailsViewController: UIViewController {
         super.viewWillDisappear(animated)
 
         if let navController = self.navigationController {
-            navController.navigationBar.tintColor = UIColor.white
-            navController.navigationBar.barTintColor = Color.materialOrange500
-            navController.navigationBar.isTranslucent = false
-            navController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            navController.navigationBar.barTintColor = Theme.orange
         }
     }
 
@@ -60,18 +58,10 @@ class BusDetailsViewController: UIViewController {
         if let bus = Buses.getBus(id: vehicleId) {
             let vehicle = bus.vehicle
 
-            var color: UIColor
-            if vehicle.color == 2 {
-                color = Color.from(rgb: "#FF9800")
-            } else {
-                color = Color.from(rgb: "#\(vehicle.getColorLight())")
-            }
+            var color = vehicle.color == 2 ?  FlatOrange() : vehicle.getColor()
 
             if let navController = self.navigationController {
-                navController.navigationBar.tintColor = UIColor.white
                 navController.navigationBar.barTintColor = color
-                navController.navigationBar.isTranslucent = false
-                // navController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black]
             }
 
             manufacturerImage.tint(with: color)

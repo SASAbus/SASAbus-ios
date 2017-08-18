@@ -70,7 +70,7 @@ class EcoPointsViewController: MasterViewController {
 
         if isLoginActive, let navController = self.navigationController {
             navController.navigationBar.tintColor = UIColor.white
-            navController.navigationBar.barTintColor = Color.materialOrange500
+            navController.navigationBar.barTintColor = Theme.orange
         }
     }
 
@@ -84,7 +84,7 @@ class EcoPointsViewController: MasterViewController {
 
             if let navController = self.navigationController {
                 navController.navigationBar.tintColor = UIColor.white
-                navController.navigationBar.barTintColor = Color.materialOrange500
+                navController.navigationBar.barTintColor = Theme.orange
             }
         }, completion: { _ in
             self.loginContainer.isHidden = true

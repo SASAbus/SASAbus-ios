@@ -55,9 +55,9 @@ class LineCourseMapViewController: UIViewController, MKMapViewDelegate {
             let title = locale == "de" ? busStop.nameDe : busStop.nameIt
             let munic = locale == "de" ? busStop.municDe : busStop.municIt
 
-            var color = item.active ? Color.materialBlue500 : Color.materialGrey500
+            var color = item.active ? Theme.skyBlue : Color.materialGrey500
             if item.pin {
-                color = Color.materialRed500
+                color = Theme.red
             }
 
             let coordinate = CLLocationCoordinate2D(latitude: Double(busStop.lat), longitude: Double(busStop.lng))

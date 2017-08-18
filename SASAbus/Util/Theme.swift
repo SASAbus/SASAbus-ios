@@ -23,9 +23,18 @@
 import Foundation
 import UIKit
 
+import ChameleonFramework
+
 struct Theme {
 
-    static let orange: UIColor = UIColor(red: 229.0 / 255.0, green: 115.0 / 255.0, blue:0, alpha: 1)
+    static let orange = FlatOrange()
+    static let mint = FlatMint()
+    static let skyBlue = FlatSkyBlue()
+
+    static let blue = FlatBlue()
+    static let red = FlatRed()
+    static let green = FlatGreen()
+
     static let lightOrange: UIColor = UIColor(red: 229.0 / 255.0, green: 160.0 / 255.0, blue:0, alpha: 1)
 
     static let grey: UIColor = UIColor(red: 185.0 / 255.0, green: 185.0 / 255.0, blue: 185.0 / 255.0, alpha: 1)
@@ -34,8 +43,4 @@ struct Theme {
 
     static let white: UIColor = UIColor.white
     static let transparent: UIColor = UIColor.clear
-
-    static let green: UIColor = UIColor(red: 15.0 / 255.0, green: 180.0 / 255.0, blue: 90.0 / 255.0, alpha: 1)
-    static let blue: UIColor = UIColor(red: 15.0 / 255.0, green: 135.0 / 255.0, blue: 180.0 / 255.0, alpha: 1)
-    static let red: UIColor = UIColor(red: 180.0 / 255.0, green: 25.0 / 255.0, blue: 15.0 / 255.0, alpha: 1)
 }

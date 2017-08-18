@@ -2,6 +2,9 @@ PODS:
   - Alamofire (4.5.0)
   - AlamofireNetworkActivityIndicator (2.2.0):
     - Alamofire (~> 4.5)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
   - Crashlytics (3.8.5):
     - Fabric (~> 1.6.3)
   - DrawerController (3.2.1):
@@ -73,6 +76,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.4)
   - AlamofireNetworkActivityIndicator (~> 2.0)
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - Crashlytics
   - DrawerController (~> 3.1)
   - Fabric
@@ -94,11 +98,16 @@ DEPENDENCIES:
   - zipzap (~> 8.0.4)
 
 EXTERNAL SOURCES:
+  ChameleonFramework:
+    :git: https://github.com/ViccAlexander/Chameleon.git
   SwiftValidator:
     :branch: swift-3
     :git: https://github.com/jpotts18/SwiftValidator.git
 
 CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: 6dd284bde21ea2e7f9fd89bc36f40df16e16369d
+    :git: https://github.com/ViccAlexander/Chameleon.git
   SwiftValidator:
     :commit: 5721426cbcffef7efc3b27a9077b9e9451ac5574
     :git: https://github.com/jpotts18/SwiftValidator.git
@@ -106,6 +115,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
   DrawerController: d2f25c567a1786476d74bfe8cde9a5bdd39972a9
   Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
@@ -133,6 +143,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   zipzap: 9de722cee38b7c3a8b1134913a8a67ab36cb97c1
 
-PODFILE CHECKSUM: ccc92ccddd58d7f61f95edaac0803c765f2536d4
+PODFILE CHECKSUM: e17798052eb4c8f37744269040e9e4da46085a3b
 
 COCOAPODS: 1.2.1

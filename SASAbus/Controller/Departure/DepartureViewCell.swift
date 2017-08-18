@@ -48,7 +48,7 @@ class DepartureViewCell: UITableViewCell {
             infoLabel.textColor = Theme.darkGrey
             directionLabel.textColor = Theme.darkGrey
 
-            iconImageView.tint(with: Color.materialIndigo500)
+            iconImageView.tint(with: Theme.blue)
 
             backgroundColor = UIColor.white
         }

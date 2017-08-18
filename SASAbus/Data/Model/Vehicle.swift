@@ -1,3 +1,6 @@
+import ChameleonFramework
+import UIKit
+
 class Vehicle {
 
     let FUEL_IT = [
@@ -36,16 +39,10 @@ class Vehicle {
         "Orange"
     ]
 
-    let COLOR_LIGHT = [
-        "1976D2",
-        "FDD835",
-        "FF9800"
-    ]
-
-    let COLOR_DARK = [
-        "0D47A1",
-        "FBC02D",
-        "F57C00"
+    let COLOR = [
+        FlatBlue(),
+        FlatYellow(),
+        FlatOrange()
     ]
 
     let manufacturer: String
@@ -86,11 +83,7 @@ class Vehicle {
         }
     }
 
-    func getColorLight() -> String {
-        return COLOR_LIGHT[color]
-    }
-
-    func getColorDark() -> String {
-        return COLOR_DARK[color]
+    func getColor() -> UIColor {
+        return COLOR[color]
     }
 }
