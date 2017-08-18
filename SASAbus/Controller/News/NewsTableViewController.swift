@@ -21,8 +21,9 @@
 //
 
 import UIKit
+import StatefulViewController
 
-class NewsTableViewController: MasterTableViewController {
+class NewsTableViewController: MasterTableViewController, StatefulViewController {
 
     var newsZone: String!
     var newsItems: [News] = []
@@ -47,6 +48,10 @@ class NewsTableViewController: MasterTableViewController {
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView(frame: CGRect.zero)
 
+        loadingView = LoadingView(frame: view.frame)
+        errorView = ErrorView(frame: view.frame, target: self.tabBarController, action: Selector("getNews"))
+        emptyView = EmptyStateBaseView(frame: view.frame, nib: "EmptyStateNewsView")
+
         self.initRefreshControl()
     }
 
@@ -57,24 +62,8 @@ class NewsTableViewController: MasterTableViewController {
     }
 
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newsItems.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let newsItem = self.newsItems[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as! NewsTableViewCell
-
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
-        cell.linesLabel.text = newsItem.getLinesString()
-        cell.titleLabel.text = newsItem.title
-
-        return cell
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = NewsDetailViewController(nibName: "NewsDetailViewController", bundle: nil, newsItem: self.newsItems[indexPath.row])
-        self.navigationController!.pushViewController(controller, animated: true)
+    func hasContent() -> Bool {
+        return !newsItems.isEmpty
     }
 
 
@@ -105,5 +94,28 @@ class NewsTableViewController: MasterTableViewController {
         refreshControl.addTarget(self.tabBarController, action: Selector("getNews"), for: UIControlEvents.valueChanged)
 
         self.refreshControl = refreshControl
+    }
+}
+
+extension NewsTableViewController {
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return newsItems.count
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let newsItem = self.newsItems[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as! NewsTableViewCell
+
+        cell.selectionStyle = .none
+        cell.linesLabel.text = newsItem.getLinesString()
+        cell.titleLabel.text = newsItem.title
+
+        return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let controller = NewsDetailViewController(nibName: "NewsDetailViewController", bundle: nil, newsItem: self.newsItems[indexPath.row])
+        self.navigationController!.pushViewController(controller, animated: true)
     }
 }

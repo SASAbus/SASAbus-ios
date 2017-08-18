@@ -34,6 +34,10 @@ import Firebase
 
 import AlamofireNetworkActivityIndicator
 
+// TODO: Departures: Filter not persistent
+// TODO: News: Check if empty state is working
+// TODO: Eco Points: Add Google sign in
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

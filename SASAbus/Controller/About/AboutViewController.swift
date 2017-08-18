@@ -66,7 +66,8 @@ extension AboutViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            break
+            let controller = ChangelogViewController()
+            self.navigationController!.pushViewController(controller, animated: true)
         case 1:
             let controller = ReportViewController()
             self.navigationController!.pushViewController(controller, animated: true)

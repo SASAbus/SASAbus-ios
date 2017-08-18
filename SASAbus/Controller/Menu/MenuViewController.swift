@@ -42,12 +42,12 @@ struct Menu {
 
             MenuItem(
                     title: NSLocalizedString("Route", comment: ""),
-                    image: "ic_navigation_bus",
+                    image: "ic_explore_white",
                     viewController: MainRouteViewController()),
 
             MenuItem(
                     title: NSLocalizedString("News", comment: ""),
-                    image: "ic_navigation_news",
+                    image: "ic_event_note_white",
                     viewController: NewsTabBarController()),
 
             MenuItem(
