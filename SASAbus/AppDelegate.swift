@@ -292,7 +292,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 }
 
-extension AppDelegate: MessagingDelegate {
+extension AppDelegate: FIRMessagingDelegate {
 
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
         Log.error("Firebase registration token: \(fcmToken)")

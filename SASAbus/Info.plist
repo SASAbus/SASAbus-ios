@@ -2,6 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+<<<<<<< HEAD
+=======
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>43bd23092db55b7c1f303c7f6e5bd3091649f644</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
+
+>>>>>>> d3c3c116d6fc2afdc01f55e5dc9a0382fd0ae720
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDocumentTypes</key>
@@ -33,6 +51,7 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+<<<<<<< HEAD
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -60,6 +79,10 @@
 			</dict>
 		</array>
 	</dict>
+=======
+	<key>CFBundleVersion</key>
+	<string>2</string>
+>>>>>>> d3c3c116d6fc2afdc01f55e5dc9a0382fd0ae720
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MKDirectionsApplicationSupportedModes</key>
@@ -82,10 +105,13 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+<<<<<<< HEAD
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+=======
+>>>>>>> d3c3c116d6fc2afdc01f55e5dc9a0382fd0ae720
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
@@ -116,5 +142,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+<<<<<<< HEAD
+=======
+
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string></string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string></string>
+>>>>>>> d3c3c116d6fc2afdc01f55e5dc9a0382fd0ae720
 </dict>
 </plist>

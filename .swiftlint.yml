@@ -1,0 +1,32 @@
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Carthage
+  - Pods
+  - Source/ExcludedFolder
+  - Source/ExcludedFile.swift
+
+line_length: 150
+
+disabled_rules:
+  - vertical_whitespace
+  - force_cast
+  - type_name
+  - identifier_name
+
+type_name:
+  min_length: 3 # only warning
+  max_length: # warning and error
+    warning: 40
+    error: 50
+  excluded: iPhone # excluded via string
+
+identifier_name:
+  min_length: # only min_length
+    error: 3 # only error
+  excluded: # excluded via string array
+    - lhs
+    - rhs
+    - lat
+    - lng
+    - id
+    - URL
+    - GlobalAPIKey

@@ -68,7 +68,6 @@ class MainMapViewController: BottomSheetViewController {
         setDrawerPosition(position: drawerPosition, animated: false)
     }
 
-
     func calculateViews() {
         didLayoutImage = true
 
@@ -109,7 +108,7 @@ class MainMapViewController: BottomSheetViewController {
 
         let height = totalHeight - (80 - 24)
         let newOffset = height - (offset * CGFloat(height))
-
+        
         backgroundImage.frame.origin.y = newOffset
     }
 

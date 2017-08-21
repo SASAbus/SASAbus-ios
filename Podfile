@@ -10,7 +10,7 @@ def default_pods
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'Firebase/RemoteConfig'
-  
+
   pod 'Google/SignIn'
 
   pod 'zipzap', '~> 8.0.4'

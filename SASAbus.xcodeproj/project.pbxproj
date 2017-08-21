@@ -1430,13 +1430,13 @@
 		1F2E3E7DA530A38EC76143EA /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				1F2E3EF7FD479A49A0828B99 /* Settings */,
 				1F2E3B7BF2F9425CF682D801 /* EcoPointsProfileCell.swift */,
 				1F2E3657735C2C5F47A633E3 /* EcoPointsProfileCell.xib */,
 				1F2E364A4DE3678073C06BD7 /* EcoPointsProfileViewController.swift */,
 				1F2E3613D51EEEBEFFD4EFED /* EcoPointsProfileViewController.xib */,
 				1F2E3235F330D16DBFE9A7FC /* EcoPointsStatsCell.swift */,
 				1F2E36A540A89AC599FE365D /* EcoPointsStatsCell.xib */,
+				1F2E3EF7FD479A49A0828B99 /* Settings */,
 			);
 			path = Profile;
 			sourceTree = "<group>";

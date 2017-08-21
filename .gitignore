@@ -122,4 +122,8 @@ Pods/
 
 # Additions
 .idea/
+<<<<<<< HEAD
 .DS_Store
+=======
+.DS_Store
+>>>>>>> d3c3c116d6fc2afdc01f55e5dc9a0382fd0ae720

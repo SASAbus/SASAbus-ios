@@ -47,7 +47,7 @@ class EcoPointsProfileViewController: UITableViewController {
         tableView.estimatedRowHeight = 56.0
 
         let image = UIImage(named: "ic_close_white")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(ResetPasswordViewController.barButtonDidTap(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(openSettings))
 
         initRefreshControl()
 
@@ -171,6 +171,12 @@ class EcoPointsProfileViewController: UITableViewController {
         profile?.imageUrl = url
         tableView.reloadData()
     }
+
+
+    func openSettings() {
+        let controller = EcoPointsSettingsViewController(parent: self, profile: profile)
+        self.navigationController!.pushViewController(controller, animated: true)
+    }
 }
 
 extension EcoPointsProfileViewController {
@@ -205,8 +211,7 @@ extension EcoPointsProfileViewController {
                 cell.profilePicture.kf.setImage(with: url)
 
                 cell.onButtonTapped = {
-                    let controller = EcoPointsSettingsViewController(parent: self, profile: profile)
-                    self.navigationController!.pushViewController(controller, animated: true)
+                    openSettings()
                 }
             } else {
                 cell.loadingView.isHidden = false
