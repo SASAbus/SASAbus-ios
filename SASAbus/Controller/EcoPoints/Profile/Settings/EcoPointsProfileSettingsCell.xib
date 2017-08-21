@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EcoPointsProfileSettingsCell" customModule="SASAbus"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="eco_points_profile_settings" rowHeight="365" id="KGk-i7-Jjw" userLabel="eco_points_profile_settings" customClass="EcoPointsProfileSettingsCell" customModule="SASAbus" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="209.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0fC-uC-7T4" userLabel="Profile container">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="solaris_urbino_12" translatesAutoresizingMaskIntoConstraints="NO" id="4Vb-EQ-Kx0">
+                                <rect key="frame" x="104" y="24" width="112" height="112"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="112" id="ixL-6F-spa"/>
+                                    <constraint firstAttribute="height" constant="112" id="mVm-gj-woe"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dejori David" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwF-34-3Cb">
+                                <rect key="frame" x="115" y="148" width="90" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beginner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gaz-y6-uqn">
+                                <rect key="frame" x="131" y="169.5" width="58" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.29803921570000003" green="0.85098039219999999" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="210" id="3lC-OH-ip8"/>
+                            <constraint firstItem="4Vb-EQ-Kx0" firstAttribute="centerX" secondItem="0fC-uC-7T4" secondAttribute="centerX" id="Gxc-xh-R4M"/>
+                            <constraint firstItem="4Vb-EQ-Kx0" firstAttribute="top" secondItem="0fC-uC-7T4" secondAttribute="top" constant="24" id="Hpx-lG-Y3v"/>
+                            <constraint firstItem="wwF-34-3Cb" firstAttribute="top" secondItem="4Vb-EQ-Kx0" secondAttribute="bottom" constant="12" id="X2X-nm-e7Z"/>
+                            <constraint firstItem="Gaz-y6-uqn" firstAttribute="top" secondItem="wwF-34-3Cb" secondAttribute="bottom" constant="2" id="Xif-2N-9bN"/>
+                            <constraint firstItem="wwF-34-3Cb" firstAttribute="centerX" secondItem="0fC-uC-7T4" secondAttribute="centerX" id="gs2-w4-d0Y"/>
+                            <constraint firstItem="Gaz-y6-uqn" firstAttribute="centerX" secondItem="0fC-uC-7T4" secondAttribute="centerX" id="wfm-6c-8sl"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="0fC-uC-7T4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="P57-dl-3pC"/>
+                    <constraint firstAttribute="bottom" secondItem="0fC-uC-7T4" secondAttribute="bottom" id="Vh9-mb-ORF"/>
+                    <constraint firstAttribute="trailing" secondItem="0fC-uC-7T4" secondAttribute="trailing" id="cDQ-11-kRj"/>
+                    <constraint firstItem="0fC-uC-7T4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="vio-eq-uCE"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="levelText" destination="Gaz-y6-uqn" id="lwD-Sx-aqJ"/>
+                <outlet property="nameText" destination="wwF-34-3Cb" id="Bp9-5c-XZw"/>
+                <outlet property="profilePicture" destination="4Vb-EQ-Kx0" id="3WC-mk-k2w"/>
+            </connections>
+            <point key="canvasLocation" x="50" y="226"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="solaris_urbino_12" width="960" height="720"/>
+    </resources>
+</document>

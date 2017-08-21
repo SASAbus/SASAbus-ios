@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G8c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LineViewController" customModule="SASAbus" customModuleProvider="target">
+            <connections>
+                <outlet property="tabBar" destination="4i9-Yz-mNe" id="VpW-va-zC3"/>
+                <outlet property="tableView" destination="tsP-nV-rd0" id="TFB-c4-fO3"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="100" sectionHeaderHeight="5" sectionFooterHeight="5" translatesAutoresizingMaskIntoConstraints="NO" id="tsP-nV-rd0">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="noE-yD-YWT"/>
+                        <outlet property="delegate" destination="-1" id="j8u-wZ-LyL"/>
+                    </connections>
+                </tableView>
+                <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4i9-Yz-mNe">
+                    <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <items>
+                        <tabBarItem selectedImage="alle_icon_filled.png" systemItem="favorites" id="QCZ-Uu-hua"/>
+                        <tabBarItem tag="1" title="Bozen" image="wappen_bz.png" id="pDt-TB-hHQ"/>
+                        <tabBarItem tag="2" title="Meran" image="wappen_me.png" id="ZAF-8d-rcx"/>
+                    </items>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="0ZV-vb-K74"/>
+                    </connections>
+                </tabBar>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="tsP-nV-rd0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7DF-Si-kqG"/>
+                <constraint firstItem="tsP-nV-rd0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="7P0-m0-d1a"/>
+                <constraint firstItem="4i9-Yz-mNe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="A6p-1v-MY1"/>
+                <constraint firstItem="tsP-nV-rd0" firstAttribute="bottom" secondItem="4i9-Yz-mNe" secondAttribute="top" id="NJj-H5-Lft"/>
+                <constraint firstAttribute="trailing" secondItem="4i9-Yz-mNe" secondAttribute="trailing" id="RA2-Sl-bwG"/>
+                <constraint firstAttribute="bottom" secondItem="4i9-Yz-mNe" secondAttribute="bottom" id="ZVb-Nl-ctc"/>
+                <constraint firstAttribute="trailing" secondItem="tsP-nV-rd0" secondAttribute="trailing" id="gRX-QD-7TZ"/>
+            </constraints>
+            <point key="canvasLocation" x="323.5" y="255.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="alle_icon_filled.png" width="32" height="32"/>
+        <image name="wappen_bz.png" width="30" height="30"/>
+        <image name="wappen_me.png" width="30" height="30"/>
+    </resources>
+</document>
