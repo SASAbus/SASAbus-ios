@@ -114,7 +114,7 @@ class Body: Mappable {
         self.message = message
         self.category = category
 
-        let remoteConfig = RemoteConfig.remoteConfig()
+        let remoteConfig = FIRRemoteConfig.remoteConfig()
 
         firebaseLastFetchTimeMillis = remoteConfig.lastFetchTime!.millis()
         firebaseLastFetchTimeString = remoteConfig.lastFetchTime!.iso8601
@@ -168,7 +168,7 @@ class Body: Mappable {
     func parseFirebase() -> [String : String] {
         var map = [String: String]()
 
-        let remoteConfig = RemoteConfig.remoteConfig()
+        let remoteConfig = FIRRemoteConfig.remoteConfig()
 
         for s in remoteConfig.keys(withPrefix: "") {
             let value = remoteConfig[s].stringValue

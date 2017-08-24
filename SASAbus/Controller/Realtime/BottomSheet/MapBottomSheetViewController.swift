@@ -149,7 +149,6 @@ class MapBottomSheetViewController: UIViewController, BottomSheetDrawerViewContr
     }
 
     func drawerPositionDidChange(drawer: BottomSheetViewController) {
-        print(drawer.drawerPosition == .open)
         scrollView.isScrollEnabled = drawer.drawerPosition == .open
     }
 

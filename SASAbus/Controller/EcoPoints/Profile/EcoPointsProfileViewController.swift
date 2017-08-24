@@ -174,7 +174,7 @@ class EcoPointsProfileViewController: UITableViewController {
 
 
     func openSettings() {
-        let controller = EcoPointsSettingsViewController(parent: self, profile: profile)
+        let controller = EcoPointsSettingsViewController(parent: self, profile: profile!)
         self.navigationController!.pushViewController(controller, animated: true)
     }
 }
@@ -211,7 +211,7 @@ extension EcoPointsProfileViewController {
                 cell.profilePicture.kf.setImage(with: url)
 
                 cell.onButtonTapped = {
-                    openSettings()
+                    self.openSettings()
                 }
             } else {
                 cell.loadingView.isHidden = false

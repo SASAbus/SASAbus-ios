@@ -168,13 +168,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setupFirebase() {
-        FirebaseApp.configure()
+        // TODO: Fix Firebase Remote Config
+        // FirebaseApp.configure()
 
-        let remoteConfig = RemoteConfig.remoteConfig()
-        let remoteConfigSettings = RemoteConfigSettings(developerModeEnabled: true)!
+        let remoteConfig = FIRRemoteConfig.remoteConfig()
+        let remoteConfigSettings = FIRRemoteConfigSettings(developerModeEnabled: true)!
 
         remoteConfig.configSettings = remoteConfigSettings
-        remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults")
+        remoteConfig.setDefaultsFromPlistFileName("RemoteConfigDefaults")
 
         remoteConfig.fetch(withExpirationDuration: TimeInterval(86400)) { (status, error) -> Void in
             if status == .success {
@@ -231,7 +232,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setupNotifications() {
-        UNUserNotificationCenter.current().delegate = self
+        // UNUserNotificationCenter.current().delegate = self
 
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { _, _ in })
@@ -239,11 +240,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.registerForRemoteNotifications()
         Notifications.clearAll()
 
-        Messaging.messaging().delegate = self
-        Messaging.messaging().shouldEstablishDirectChannel = true
+        // TODO: Fix Firebbase Cloud Messaging
+        // FIRMessaging.messaging().delegate = self
+        // FIRMessaging.messaging().shouldEstablishDirectChannel = true
 
-        Messaging.messaging().subscribe(toTopic: "/topics/general")
-        Messaging.messaging().subscribe(toTopic: "general")
+        // FIRMessaging.messaging().subscribe(toTopic: "/topics/general")
+        // FIRMessaging.messaging().subscribe(toTopic: "general")
 
         UIApplication.shared.cancelAllLocalNotifications()
         UIApplication.shared.applicationIconBadgeNumber = 0
@@ -272,7 +274,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 
-extension AppDelegate: UNUserNotificationCenterDelegate {
+/*extension AppDelegate: UNUserNotificationCenterDelegate {
 
     // Receive displayed notifications for iOS 10 devices.
     func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -290,17 +292,17 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         Log.warning("didReceive withCompletionHandler: \(response.actionIdentifier)")
         completionHandler()
     }
-}
+}*/
 
-extension AppDelegate: FIRMessagingDelegate {
+/*extension AppDelegate: FIRMessagingDelegate {
 
-    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+    func messaging(_ messaging: FIRMessaging, didRefreshRegistrationToken fcmToken: String) {
         Log.error("Firebase registration token: \(fcmToken)")
     }
 
     // Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
     // To enable direct data messages, you can set Messaging.messaging().shouldEstablishDirectChannel to true.
-    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+    func messaging(_ messaging: FIRMessaging, didReceive remoteMessage: FIRMessagingRemoteMessage) {
         Log.error("Received data message: \(remoteMessage.appData)")
     }
-}
+}*/
