@@ -32,9 +32,9 @@ class EcoPointsProfileCell: UITableViewCell {
         profilePicture.layer.masksToBounds = true
         profilePicture.clipsToBounds = true
 
-        pointsImage.tint(with: Theme.blue)
-        rankImage.tint(with: Theme.blue)
-        badgesImage.tint(with: Theme.blue)
+        pointsImage.tint(with: Theme.skyBlue)
+        rankImage.tint(with: Theme.skyBlue)
+        badgesImage.tint(with: Theme.skyBlue)
     }
 
     @IBAction func settingsButtonClick(_ sender: UIButton) {
