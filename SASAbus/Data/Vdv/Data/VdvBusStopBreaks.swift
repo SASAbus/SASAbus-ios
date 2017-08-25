@@ -1,8 +1,3 @@
-//
-// Created by Alex Lardschneider on 03/04/2017.
-// Copyright (c) 2017 SASA AG. All rights reserved.
-//
-
 import Foundation
 import SwiftyJSON
 
@@ -23,11 +18,11 @@ class VdvBusStopBreaks {
             var jStopTime = jStopTimes[i]
 
             let stopTime = VdvStopTime(
-                    id: jStopTime["time_group"].intValue,
-                    stop: jStopTime["bus_stop_id"].intValue
+                    id: jStopTime["tg"].intValue,
+                    stop: jStopTime["bs"].intValue
             )
 
-            map[stopTime] = jStopTime["stop_time"].intValue
+            map[stopTime] = jStopTime["st"].intValue
         }
 
         STOP_TIMES = map

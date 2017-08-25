@@ -40,9 +40,6 @@ import AlamofireNetworkActivityIndicator
 // TODO: Departures: Filter not persistent
 // TODO: News: Check if empty state is working
 
-// TODO: Eco Points: Add Google sign in
-// TODO: Eco Points: Fix still loading bar
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

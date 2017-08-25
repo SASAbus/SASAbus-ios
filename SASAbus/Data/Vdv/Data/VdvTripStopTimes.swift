@@ -1,8 +1,3 @@
-//
-// Created by Alex Lardschneider on 03/04/2017.
-// Copyright (c) 2017 SASA AG. All rights reserved.
-//
-
 import Foundation
 import SwiftyJSON
 
@@ -12,8 +7,7 @@ import SwiftyJSON
  *
  * @author David Dejori
  */
-
-class VdvTripBreaks {
+class VdvTripStopTimes {
 
     static var STOP_TIMES = [VdvStopTime: Int]()
 
@@ -22,18 +16,18 @@ class VdvTripBreaks {
      *
      * @param jHaltTimes the JSON data with the corresponding information
      */
-    static func loadBreaks(jHaltTimes: [JSON]) {
+    static func loadStopTimes(jHaltTimes: [JSON]) {
         var map = [VdvStopTime: Int]()
 
         for i in 0...jHaltTimes.count - 1 {
             var jStopTime = jHaltTimes[i]
 
             let stopTime = VdvStopTime(
-                    id: jStopTime["trip_id"].intValue,
-                    stop: jStopTime["bus_stop_id"].intValue
+                    id: jStopTime["tr"].intValue,
+                    stop: jStopTime["bs"].intValue
             )
 
-            map[stopTime] = jStopTime["stop_time"].intValue
+            map[stopTime] = jStopTime["st"].intValue
         }
 
         STOP_TIMES = map

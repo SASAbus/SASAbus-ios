@@ -12,7 +12,7 @@ class VdvDate: CustomStringConvertible {
 
     public var description: String {
         let format = DateFormatter()
-        format.dateFormat = "yyyy-MM-dd"
+        format.dateFormat = "yyyyMMdd"
 
         return "{id=\(id), date=\(format.string(from: date))}"
     }

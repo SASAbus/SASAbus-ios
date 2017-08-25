@@ -73,11 +73,15 @@ class DepartureMonitor {
     func collect() -> [VdvDeparture] {
         let date = Date(timeIntervalSince1970: Double(time / 1000))
 
-        do {
-            try VdvTrips.loadTrips(jDepartures: nil, dayId: VdvCalendar.date(date))
-        } catch {
-            Log.error("Unable to load departures: \(error)")
-            return []
+        var isToday = Calendar.current.isDateInToday(date)
+
+        if !isToday {
+            do {
+                try VdvTrips.loadTrips(day: VdvCalendar.date(date))
+            } catch {
+                Log.error("Unable to load departures: \(error)")
+                return []
+            }
         }
 
         var departures = [VdvDeparture]()
@@ -99,7 +103,9 @@ class DepartureMonitor {
         time /= 1000
         time %= 86400
 
-        for trip in VdvTrips.ofSelectedDay() {
+        let list = isToday ? VdvTrips.ofSelectedDay() : VdvTrips.ofOtherDay()
+
+        for trip in list {
             if lines.contains(trip.lineId) {
                 var path = trip.calcPath()
 

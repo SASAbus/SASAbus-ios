@@ -1,12 +1,14 @@
 import Foundation
-import RxSwift
-import RxCocoa
+
 import Alamofire
 import SSZipArchive
 
+import RxSwift
+import RxCocoa
+
 class PlannedData {
 
-    static let FILENAME_ONLINE = "assets/archives/planned-data"
+    static let FILENAME_ONLINE = "assets/archives/data"
     static let FILENAME_OFFLINE: String = "data.zip"
 
     static let PREF_UPDATE_AVAILABLE = "pref_data_update_available"
@@ -16,12 +18,39 @@ class PlannedData {
 
     public static func planDataExists() -> Bool {
         if dataExists == nil {
-            let url = IOUtils.dataDir().appendingPathComponent("planned-data.json")
+            let url = IOUtils.dataDir()
 
-            if FileManager.default.fileExists(atPath: url.path) {
-                dataExists = true
-            } else {
+            do {
+                let files = try FileManager.default.contentsOfDirectory(atPath: url.path)
+
+                if files.isEmpty {
+                    Log.error("Planned data folder does not exist or is empty")
+                    dataExists = false
+                    return false
+                }
+
+                let hasMainFile = files.contains {
+                    $0 == "planned_data.json"
+                }
+
+                if !hasMainFile {
+                    Log.error("Main data file 'planned_data.json' is missing")
+                    dataExists = false
+                    return false
+                }
+
+                for file in files {
+                    Log.info("Found data file '\(file)'")
+
+                    if file.hasPrefix("trips_") {
+                        dataExists = true
+                        return true
+                    }
+                }
+
                 Log.error("Planned data (JSON file) is missing")
+                dataExists = false
+            } catch let error {
                 dataExists = false
             }
         }
@@ -74,38 +103,39 @@ class PlannedData {
                     .response(queue: DispatchQueue(label: "com.sasabus.download", qos: .utility, attributes: [.concurrent])) { response in
                         if let error = response.error {
                             observer.on(.error(error))
-                        } else {
-                            do {
-                                try unzipData(downloadUrl: downloadUrl)
-                            } catch {
-                                observer.on(.error(error))
-                                return
-                            }
-
-                            dataExists = true
-                            setUpdateAvailable(false)
-                            setDataDate()
-
-                            _ = VdvHandler.load().subscribe()
-
-                            observer.on(.completed)
+                            return
                         }
+
+                        do {
+                            Log.info("Unzipping zip file '\(downloadUrl)'")
+
+                            try IOUtils.unzipFile(from: downloadUrl, to: IOUtils.dataDir())
+
+                            let fileManager = FileManager.default
+                            try fileManager.removeItem(atPath: downloadUrl.path)
+                        } catch {
+                            observer.on(.error(error))
+                            return
+                        }
+
+                        dataExists = true
+                        setUpdateAvailable(false)
+                        setDataDate()
+
+                        do {
+                            try VdvHandler.loadBlocking(observer)
+                        } catch {
+                            observer.on(.error(error))
+                            return
+                        }
+
+                        observer.on(.completed)
                     }
 
             return Disposables.create {
                 request.cancel()
             }
         }
-    }
-
-    static func unzipData(downloadUrl: URL) throws {
-        Log.info("Unzipping zip file '\(downloadUrl)'")
-
-        let finalUrl: URL = IOUtils.dataDir()
-        try IOUtils.unzipFile(from: downloadUrl, to: finalUrl)
-
-        let fileManager = FileManager.default
-        try fileManager.removeItem(atPath: downloadUrl.path)
     }
 
     static func downloadPlanData() -> Observable<Float> {
@@ -116,9 +146,9 @@ class PlannedData {
 
         return downloadFile(downloadUrl: downloadUrl)
     }
+}
 
-
-    // - MARK: Settings
+extension PlannedData {
 
     static func setUpdateAvailable(_ newValue: Bool) {
         Log.info("Updating plan data update available flag to '\(newValue)'")
@@ -129,26 +159,13 @@ class PlannedData {
         return UserDefaults.standard.bool(forKey: PREF_UPDATE_AVAILABLE)
     }
 
-    /**
-     * Sets the date when the plan data has been downloaded.
-     *
-     * @param context Context to be used to edit the [SharedPreferences].
-     */
-    private static func setDataDate() {
-        let format = DateFormatter()
-        format.dateFormat = "yyyMMdd"
+    static func setDataDate() {
+        let time = Date().seconds()
 
-        UserDefaults.standard.set(format.string(from: Date()), forKey: PREF_DATA_DATE)
+        UserDefaults.standard.set(time, forKey: PREF_DATA_DATE)
     }
 
-    /**
-     * Returns the date when the plan data has been downloaded. This is done to check if there are
-     * new plan data updates available depending on when the user downloaded it last.
-     *
-     * @param context Context to be used to access the [SharedPreferences].
-     * @return a String with the date in form `YYYYMMDD`. Defaults to 19700101.
-     */
-    static func getDataDate() -> String {
-        return UserDefaults.standard.string(forKey: PREF_DATA_DATE) ?? "19700101"
+    static func getDataDate() -> Int {
+        return UserDefaults.standard.integer(forKey: PREF_DATA_DATE) ?? 0
     }
 }

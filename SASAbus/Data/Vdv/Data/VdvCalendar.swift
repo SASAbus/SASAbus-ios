@@ -10,7 +10,7 @@ class VdvCalendar {
 
     static var DATE_FORMAT: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "yyyyMMdd"
         return formatter
     }
 
@@ -31,8 +31,8 @@ class VdvCalendar {
             var jDay = jCalendar[i]
 
             CALENDAR.append(VdvDate(
-                    id: jDay["day_id"].intValue,
-                    date: DATE_FORMAT.date(from: jDay["date"].stringValue)!
+                    id: jDay["dt"].intValue,
+                    date: DATE_FORMAT.date(from: jDay["da"].stringValue)!
             ))
         }
     }

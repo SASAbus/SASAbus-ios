@@ -329,7 +329,7 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
                 $0.asDeparture(busStopId: self.selectedBusStop?.id ?? 0)
             }
 
-            Log.error("Departures: \(mapped)")
+            Log.info("Departures: \(mapped)")
 
             observer.on(.next(mapped))
 

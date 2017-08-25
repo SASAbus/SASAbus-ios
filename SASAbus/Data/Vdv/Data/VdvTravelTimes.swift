@@ -5,8 +5,7 @@ import SwiftyJSON
  * Retrieves travel times between two bus stops (depending from driving speed severity as described
  * by 'FGR_NR'). Travel times are stored in seconds but are always full minutes, e. g. 0, 60, 120...
  */
-
-class VdvIntervals {
+class VdvTravelTimes {
 
     static var INTERVALS = [VdvInterval: Int]()
 
@@ -16,19 +15,19 @@ class VdvIntervals {
      *
      * @param jIntervals the JSON data with the corresponding information
      */
-    static func loadIntervals(jIntervals: [JSON]) {
+    static func loadTravelTimes(jIntervals: [JSON]) {
         var map = [VdvInterval: Int]()
 
         for i in 0...jIntervals.count - 1 {
             var jInterval = jIntervals[i]
 
             let interval = VdvInterval(
-                    timeGroup: jInterval["time_group"].intValue,
-                    origin: jInterval["origin_id"].intValue,
-                    destination: jInterval["destination_id"].intValue
+                    timeGroup: jInterval["tg"].intValue,
+                    origin: jInterval["oi"].intValue,
+                    destination: jInterval["di"].intValue
             )
 
-            map[interval] = jInterval["travel_time"].intValue
+            map[interval] = jInterval["tt"].intValue
         }
 
         INTERVALS = map

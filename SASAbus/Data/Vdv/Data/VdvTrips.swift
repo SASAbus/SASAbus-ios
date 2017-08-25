@@ -3,48 +3,56 @@ import SwiftyJSON
 
 class VdvTrips {
 
-    static var jDepartures: [JSON]!
-    static var TRIPS = [VdvTrip]()
+    static var TRIPS_TODAY = [VdvTrip]()
+    static var TRIPS_OTHER_DAY = [VdvTrip]()
 
-    public static func loadTrips(jDepartures: [JSON]?, dayId: Int) {
-        Log.warning("Loading trips of day \(dayId)")
 
-        if jDepartures != nil {
-            VdvTrips.jDepartures = jDepartures!
-        }
+    public static func loadTrips(day: Int, isToday: Bool = false) throws {
+        var json = try IOUtils.readFileAsJson(path: VdvHandler.getTripsDataFile(day: day))
+
+        Log.warning("Loading trips of day \(day)")
 
         var trips = [VdvTrip]()
 
-        for i in 0...VdvTrips.jDepartures.count - 1 {
-            var jLine = VdvTrips.jDepartures[i]
+        for i in 0...json.count - 1 {
+            var line = json[i]
 
-            for j in 0...jLine["days"].count - 1 {
-                var jDay = jLine["days"][j]
+            for k in 0...line["variants"].count - 1 {
+                var variant = line["variants"][k]
 
-                if jDay["day_id"].intValue == dayId {
-                    for k in 0...jDay["variants"].count - 1 {
-                        var jVariant = jDay["variants"][k]
+                for l in 0...variant["trips"].count - 1 {
+                    var it = variant["trips"][l]
 
-                        for l in 0...jVariant["trips"].count - 1 {
-                            var jDeparture = jVariant["trips"][l]
-
-                            trips.append(VdvTrip(
-                                    lineId: jLine["line_id"].intValue,
-                                    variant: jVariant["variant_id"].intValue,
-                                    departure: jDeparture["departure"].intValue,
-                                    timeGroup: jDeparture["time_group"].intValue,
-                                    tripId: jDeparture["trip_id"].intValue
-                            ))
-                        }
-                    }
+                    trips.append(VdvTrip(
+                            lineId: line["line"].intValue,
+                            variant: variant["variant"].intValue,
+                            departure: it["d"].intValue,
+                            timeGroup: it["tg"].intValue,
+                            tripId: it["t"].intValue
+                    ))
                 }
             }
         }
 
-        TRIPS = trips
+        if isToday {
+            TRIPS_TODAY.append(contentsOf: trips)
+        } else {
+            TRIPS_OTHER_DAY.removeAll()
+            TRIPS_OTHER_DAY.append(contentsOf: trips)
+        }
     }
 
+    public static func loadTripsOfToday() throws {
+        let today = try VdvCalendar.today()
+        try loadTrips(day: today.id, isToday: true)
+    }
+
+
     static func ofSelectedDay() -> [VdvTrip] {
-        return TRIPS
+        return TRIPS_TODAY
+    }
+
+    static func ofOtherDay() -> [VdvTrip] {
+        return TRIPS_OTHER_DAY
     }
 }

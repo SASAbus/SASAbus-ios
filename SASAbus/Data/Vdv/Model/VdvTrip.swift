@@ -53,9 +53,9 @@ class VdvTrip: Hashable {
                 let current = path[i]
 
                 current.departure = last.departure +
-                        VdvIntervals.getInterval(timeGroup: timeGroup, origin: last.id, destination: current.id) +
+                        VdvTravelTimes.getInterval(timeGroup: timeGroup, origin: last.id, destination: current.id) +
                         VdvBusStopBreaks.getStopTime(timeGroup: timeGroup, busStop: current.id) +
-                        VdvTripBreaks.getStopTime(tripId: tripId, busStop: current.id)
+                        VdvTripStopTimes.getStopTime(tripId: tripId, busStop: current.id)
             }
 
             return path
