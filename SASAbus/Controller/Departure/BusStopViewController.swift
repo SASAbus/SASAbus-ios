@@ -532,7 +532,7 @@ extension BusStopViewController {
     }
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel,
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
                 target: self, action: #selector(BusStopViewController.searchBarCancel))
 
         searchBar.text = ""

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16E192b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -80,14 +81,25 @@ terms of service and privacy policy</string>
                             <action selector="validateForm:" destination="gsB-Wc-svB" eventType="touchUpInside" id="1Hm-0E-wMd"/>
                         </connections>
                     </button>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="0ph-v8-tAS">
+                        <rect key="frame" x="178" y="350" width="20" height="20"/>
+                    </activityIndicatorView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot your password?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SC4-yP-E2c">
                         <rect key="frame" x="64" y="394" width="247" height="15"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                         <color key="textColor" white="1" alpha="0.60199353450000004" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="0ph-v8-tAS">
-                        <rect key="frame" x="178" y="350" width="20" height="20"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p4e-e0-gYG" customClass="GIDSignInButton">
+                        <rect key="frame" x="155.5" y="441" width="64" height="18"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="Ate-6G-dMa"/>
+                            <constraint firstAttribute="width" constant="64" id="aGD-eK-CHa"/>
+                        </constraints>
+                    </view>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="tyl-ev-dZL">
+                        <rect key="frame" x="177" y="440" width="20" height="20"/>
                     </activityIndicatorView>
                 </subviews>
                 <color key="backgroundColor" red="0.1176470588" green="0.13725490200000001" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -97,11 +109,15 @@ terms of service and privacy policy</string>
                     <constraint firstItem="0ph-v8-tAS" firstAttribute="centerY" secondItem="ZS1-eD-3v9" secondAttribute="centerY" id="DCw-q4-EIQ"/>
                     <constraint firstItem="gRz-gi-MAB" firstAttribute="centerX" secondItem="AZS-TO-gSt" secondAttribute="centerX" id="E7K-hP-7hj"/>
                     <constraint firstAttribute="trailing" secondItem="SC4-yP-E2c" secondAttribute="trailing" constant="64" id="EsO-5e-HAW"/>
+                    <constraint firstItem="tyl-ev-dZL" firstAttribute="centerX" secondItem="p4e-e0-gYG" secondAttribute="centerX" id="FHZ-qk-yXB"/>
+                    <constraint firstItem="p4e-e0-gYG" firstAttribute="centerX" secondItem="AZS-TO-gSt" secondAttribute="centerX" id="FOv-sm-65m"/>
                     <constraint firstAttribute="trailing" secondItem="TxS-ky-Jtm" secondAttribute="trailing" constant="16" id="FVA-t7-Prr"/>
+                    <constraint firstItem="p4e-e0-gYG" firstAttribute="top" secondItem="SC4-yP-E2c" secondAttribute="bottom" constant="32" id="GE3-3H-UoJ"/>
                     <constraint firstItem="ION-f7-lL3" firstAttribute="top" secondItem="N3m-7G-99X" secondAttribute="bottom" constant="32" id="GcQ-ll-FpC"/>
                     <constraint firstItem="ION-f7-lL3" firstAttribute="centerX" secondItem="AZS-TO-gSt" secondAttribute="centerX" id="HaI-AA-8mV"/>
                     <constraint firstItem="TxS-ky-Jtm" firstAttribute="leading" secondItem="AZS-TO-gSt" secondAttribute="leading" constant="16" id="Iey-xg-Z83"/>
                     <constraint firstItem="ZS1-eD-3v9" firstAttribute="leading" secondItem="AZS-TO-gSt" secondAttribute="leading" constant="48" id="PAQ-wI-8Hr"/>
+                    <constraint firstItem="tyl-ev-dZL" firstAttribute="centerY" secondItem="p4e-e0-gYG" secondAttribute="centerY" id="Qn7-75-S4o"/>
                     <constraint firstItem="rug-mN-FRT" firstAttribute="top" secondItem="TxS-ky-Jtm" secondAttribute="bottom" constant="8" id="Tcc-pb-Wlg"/>
                     <constraint firstItem="tZF-Dj-KcU" firstAttribute="leading" secondItem="AZS-TO-gSt" secondAttribute="leading" constant="48" id="VyF-oC-Q6f"/>
                     <constraint firstItem="ZS1-eD-3v9" firstAttribute="top" secondItem="tZF-Dj-KcU" secondAttribute="bottom" constant="32" id="WFV-9p-QdG"/>
@@ -129,6 +145,8 @@ terms of service and privacy policy</string>
                 <outlet property="background" destination="AZS-TO-gSt" id="2ed-Vx-Onb"/>
                 <outlet property="button" destination="ZS1-eD-3v9" id="h4b-nY-LMY"/>
                 <outlet property="email" destination="gRz-gi-MAB" id="Ics-A7-w5I"/>
+                <outlet property="googleActivityIndicator" destination="tyl-ev-dZL" id="wIQ-dF-iM8"/>
+                <outlet property="googleButton" destination="p4e-e0-gYG" id="88O-lL-tf7"/>
                 <outlet property="password" destination="2kt-rn-RoI" id="Tfd-Qz-or2"/>
             </connections>
             <point key="canvasLocation" x="1326" y="237"/>

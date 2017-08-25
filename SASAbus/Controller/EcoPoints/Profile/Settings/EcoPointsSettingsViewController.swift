@@ -6,7 +6,7 @@ import StatefulViewController
 
 class EcoPointsSettingsViewController: UITableViewController {
 
-    let items: [Item] = [
+    fileprivate let items: [Item] = [
         Item("Change password"),
         Item("Change profile picture"),
         Item("Log out"),
@@ -42,7 +42,9 @@ class EcoPointsSettingsViewController: UITableViewController {
     }
 
 
-    func logout(item: Item) {
+    fileprivate func logout(item: Item) {
+        Log.info("Logging out user from current device")
+
         if !NetUtils.isOnline() {
             internetError(item: item)
             return
@@ -72,7 +74,9 @@ class EcoPointsSettingsViewController: UITableViewController {
                 })
     }
 
-    func logoutAll(item: Item) {
+    fileprivate func logoutAll(item: Item) {
+        Log.info("Logging out user from all devices")
+
         if !NetUtils.isOnline() {
             internetError(item: item)
             return
@@ -102,7 +106,9 @@ class EcoPointsSettingsViewController: UITableViewController {
                 })
     }
 
-    func deleteAccount(item: Item) {
+    fileprivate func deleteAccount(item: Item) {
+        Log.info("Deleting account")
+
         if !NetUtils.isOnline() {
             internetError(item: item)
             return
@@ -150,7 +156,7 @@ class EcoPointsSettingsViewController: UITableViewController {
     }
 
 
-    func internetError(item: Item) {
+    fileprivate func internetError(item: Item) {
         self.showCloseDialog(title: "No internet connection", message: "Please connect to the internet to continue")
 
         item.isLoading = false
@@ -250,16 +256,19 @@ extension EcoPointsSettingsViewController {
         }
 
         if operationRunning {
+            Log.warning("An operation is already running, skipping click")
             return
         }
 
-        if indexPath.section == 2 {
+        /*if indexPath.section == 2 {
             return
-        }
+        }*/
 
+        // Change profile picture and password
         if indexPath.section == 1 {
             switch indexPath.row {
             case 0:
+                // TODO: Add possibility to change password
                 break
             case 1:
                 let viewController = EcoPointsProfilePictureDefaultViewController(parent: self)
@@ -281,15 +290,15 @@ extension EcoPointsSettingsViewController {
 
         let index = sumSections + indexPath.row
         let item: Item = items[index]
-        item.isLoading = true
 
         switch indexPath.row {
         case 0:
+            item.isLoading = true
             logout(item: item)
         case 1:
+            item.isLoading = true
             logoutAll(item: item)
         case 2:
-            item.isLoading = false
             deleteAccount(item: item)
         default:
             fatalError()
@@ -297,19 +306,15 @@ extension EcoPointsSettingsViewController {
     }
 }
 
-extension EcoPointsSettingsViewController {
+fileprivate class Item {
 
-    class Item {
+    var title: String
+    var isLoading: Bool
+    var isWarning: Bool
 
-        var title: String
-        var isLoading: Bool
-        var isWarning: Bool
-
-        init(_ title: String, isLoading: Bool = false, isWarning: Bool = false) {
-            self.title = title
-            self.isLoading = isLoading
-            self.isWarning = isWarning
-        }
+    init(_ title: String, isLoading: Bool = false, isWarning: Bool = false) {
+        self.title = title
+        self.isLoading = isLoading
+        self.isWarning = isWarning
     }
-
 }

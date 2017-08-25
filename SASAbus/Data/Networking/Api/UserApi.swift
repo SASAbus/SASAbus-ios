@@ -18,6 +18,18 @@ class UserApi {
         return RestClient.post(Endpoint.USER_LOGIN, parameters: parameters)
     }
 
+    static func loginGoogle(userId: String) -> Observable<JSON> {
+        // TODO: FCM token
+
+        let parameters = [
+            "user_id": userId,
+            "fcm_token": ""
+        ]
+
+        return RestClient.post(Endpoint.USER_LOGIN_GOOGLE, parameters: parameters)
+    }
+
+
     static func logout(fcmToken: String?) -> Observable<Void?> {
         // TODO: FCM token
 

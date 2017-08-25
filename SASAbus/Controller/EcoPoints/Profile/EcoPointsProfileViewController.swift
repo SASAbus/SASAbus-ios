@@ -46,9 +46,6 @@ class EcoPointsProfileViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 56.0
 
-        let image = UIImage(named: "ic_close_white")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(openSettings))
-
         initRefreshControl()
 
         parseProfile()
@@ -174,7 +171,12 @@ class EcoPointsProfileViewController: UITableViewController {
 
 
     func openSettings() {
-        let controller = EcoPointsSettingsViewController(parent: self, profile: profile!)
+        guard let profile = profile else {
+            Log.error("Profile is not loaded, cannot open settings")
+            return
+        }
+
+        let controller = EcoPointsSettingsViewController(parent: self, profile: profile)
         self.navigationController!.pushViewController(controller, animated: true)
     }
 }

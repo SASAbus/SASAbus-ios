@@ -26,7 +26,13 @@ class NetUtils {
         let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
         let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
 
-        return (isReachable && !needsConnection)
+        let result = isReachable && !needsConnection
+
+        if !result {
+            Log.error("No internet connection")
+        }
+
+        return result
     }
 
     static func networkError() -> NSError {

@@ -48,6 +48,8 @@ class EcoPointsViewController: MasterViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        navigationItem.rightBarButtonItem = nil
+
         if !AuthHelper.isLoggedIn() {
             isLoginActive = true
 

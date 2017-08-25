@@ -21,18 +21,19 @@
 //
 
 import UIKit
-import CoreData
-import DrawerController
-import Alamofire
 import CoreLocation
+import UserNotifications
+
+import DrawerController
+
 import Fabric
 import Crashlytics
-import UserNotifications
+
 import RxSwift
 import RxCocoa
-import Firebase
 
-import ChameleonFramework
+import Firebase
+import GoogleSignIn
 
 import AlamofireNetworkActivityIndicator
 
@@ -72,6 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             startApplication()
         }
+
+        GIDSignIn.sharedInstance().signOut()
 
         return true
     }
@@ -115,6 +118,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
+    }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(
+                url,
+                sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                annotation: options[UIApplicationOpenURLOptionsKey.annotation]
+        )
     }
 
 
@@ -168,6 +179,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setupFirebase() {
+        var configureError: NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
+        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+
+        GIDSignIn.sharedInstance().delegate = self
+
         // TODO: Fix Firebase Remote Config
         // FirebaseApp.configure()
 
@@ -204,7 +221,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 Log.warning("Database api url: \(databaseUrl)")
 
                 if oldUrl != url {
-                    Log.error("Api url changed from \(oldUrl) to \(url), reloading Retrofit")
+                    Log.error("Api url changed from \(oldUrl) to \(url)")
                 }
             } else {
                 print("Remote config fetch failed: \(error)")
@@ -270,6 +287,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func getNavigationController(_ viewController: UIViewController) -> UINavigationController {
         return UINavigationController(rootViewController: viewController)
+    }
+}
+
+
+extension AppDelegate: GIDSignInDelegate {
+
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if (error == nil) {
+            let userId = user.userID
+            let idToken = user.authentication.idToken
+            let fullName = user.profile.name
+            let givenName = user.profile.givenName
+            let familyName = user.profile.familyName
+            let email = user.profile.email
+
+            print("userId: \(userId)")
+            print("idToken: \(idToken)")
+            print("fullName: \(fullName)")
+            print("givenName: \(givenName)")
+            print("familyName: \(familyName)")
+            print("email: \(email)")
+
+            NotificationCenter.default.post(
+                    name: LoginViewController.googleLoginSuccess,
+                    object: nil,
+                    userInfo: ["user_id": idToken]
+            )
+        } else {
+            print("Sign in error: \(error.localizedDescription)")
+
+            NotificationCenter.default.post(name: LoginViewController.googleLoginError, object: nil)
+        }
+    }
+
+    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: NSError!) {
+        if (error == nil) {
+            print("Logout")
+        } else {
+            print("Logout error: \(error.localizedDescription)")
+        }
     }
 }
 

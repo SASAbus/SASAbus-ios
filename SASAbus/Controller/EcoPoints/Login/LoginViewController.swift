@@ -1,11 +1,17 @@
 import UIKit
+
 import RxSwift
 import RxCocoa
+
+import GoogleSignIn
+
 
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var background: UIView!
+
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var googleButton: GIDSignInButton!
 
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -13,10 +19,14 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var bar: UINavigationBar!
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var googleActivityIndicator: UIActivityIndicatorView!
 
     var hairLineImage: UIImageView!
 
     var parentVC: EcoPointsViewController!
+
+    public static let googleLoginSuccess = Notification.Name("GoogleSignInSuccess")
+    public static let googleLoginError = Notification.Name("GoogleSignInError")
 
 
     override func viewDidLoad() {
@@ -30,6 +40,8 @@ class LoginViewController: UIViewController {
         button.layer.masksToBounds = true
 
         activityIndicator.alpha = 0
+
+        GIDSignIn.sharedInstance().uiDelegate = self
     }
 
 
@@ -78,8 +90,8 @@ class LoginViewController: UIViewController {
 
                     self.loginFailed()
                 })
-
     }
+
 
     func animateViews(_ showButton: Bool, duration: TimeInterval = 0.25) {
         if showButton {
@@ -95,6 +107,24 @@ class LoginViewController: UIViewController {
             UIView.animate(withDuration: duration) {
                 self.button.alpha = 0
                 self.activityIndicator.alpha = 1
+            }
+        }
+    }
+
+    func animateGoogleViews(_ showButton: Bool, duration: TimeInterval = 0.25) {
+        if showButton {
+            googleActivityIndicator.stopAnimating()
+
+            UIView.animate(withDuration: duration) {
+                self.googleButton.alpha = 1
+                self.googleActivityIndicator.alpha = 0
+            }
+        } else {
+            googleActivityIndicator.startAnimating()
+
+            UIView.animate(withDuration: duration) {
+                self.googleButton.alpha = 0
+                self.googleActivityIndicator.alpha = 1
             }
         }
     }
@@ -115,6 +145,7 @@ class LoginViewController: UIViewController {
 
     func loginFailed() {
         animateViews(true)
+        animateGoogleViews(true)
 
         let alert = UIAlertController(title: "Could not log in",
                 message: "Please retry in a few minutes", preferredStyle: .alert)
@@ -122,5 +153,88 @@ class LoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
 
         self.present(alert, animated: true)
+    }
+}
+
+extension LoginViewController: GIDSignInUIDelegate {
+
+    func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
+        print("signInWillDispatch")
+
+        button.isUserInteractionEnabled = false
+
+        NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(googleSignInSuccess(withNotification:)),
+                name: LoginViewController.googleLoginSuccess,
+                object: nil
+        )
+
+        NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(googleSignInError(withNotification:)),
+                name: LoginViewController.googleLoginError,
+                object: nil
+        )
+    }
+
+    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
+        print("signInWillPresent")
+
+        self.present(viewController, animated: true, completion: nil)
+    }
+
+    func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
+        print("signInWillDismiss")
+
+        self.dismiss(animated: true, completion: nil)
+
+        button.isUserInteractionEnabled = false
+
+        animateGoogleViews(false)
+    }
+
+    func googleSignInSuccess(withNotification notification: NSNotification) {
+        Log.warning("Got google sign in success")
+
+        NotificationCenter.default.removeObserver(self, name: LoginViewController.googleLoginSuccess, object: nil);
+        NotificationCenter.default.removeObserver(self, name: LoginViewController.googleLoginError, object: nil);
+
+        Log.warning("Starting google login...")
+
+        guard let userInfo = notification.userInfo, let userId = userInfo["user_id"] as? String else {
+            Log.error("ID token missing in notification")
+            self.loginFailed()
+            return
+        }
+
+        _ = UserApi.loginGoogle(userId: userId)
+                .subscribeOn(MainScheduler.background)
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { json in
+                    Log.info("Google login response: \(json)")
+
+                    guard let token = json["access_token"].string else {
+                        Log.error("Token is nil")
+                        self.loginFailed()
+                        return
+                    }
+
+                    Log.warning("Google login success, got token: \(token)")
+                    self.loginSuccess(token: token, isGoogleSignIn: false)
+                }, onError: { error in
+                    Log.error("Error: \(error)")
+
+                    self.loginFailed()
+                })
+    }
+
+    func googleSignInError(withNotification notification: NSNotification) {
+        Log.warning("Got google sign in error")
+
+        self.loginFailed()
+
+        NotificationCenter.default.removeObserver(self, name: LoginViewController.googleLoginSuccess, object: nil);
+        NotificationCenter.default.removeObserver(self, name: LoginViewController.googleLoginError, object: nil);
     }
 }
