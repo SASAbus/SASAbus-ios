@@ -91,7 +91,7 @@ class DepartureMonitor {
         }
 
         for busStopFamily in busStopFamilies {
-            lines.append(contentsOf: Api2.getPassingLines(group: busStopFamily))
+            lines.append(contentsOf: Api.getPassingLines(group: busStopFamily))
         }
 
         if !lineFilter.isEmpty {

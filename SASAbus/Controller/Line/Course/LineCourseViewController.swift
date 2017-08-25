@@ -136,7 +136,7 @@ class LineCourseViewController: UIViewController {
         return Observable.create { subscriber in
             var currentBusStopNew = currentBusStop
 
-            guard Api2.todayExists() else {
+            guard Api.todayExists() else {
                 PlannedData.setUpdateAvailable(true)
                 subscriber.on(.error(NSError(domain: "com.davale.sasabus", code: 0, userInfo: [:])))
                 return Disposables.create()
@@ -161,7 +161,7 @@ class LineCourseViewController: UIViewController {
             }
 
             var items = [LineCourse]()
-            var path: [VdvBusStop] = Api2.getTrip(tripId: tripId).calcTimedPath()
+            var path: [VdvBusStop] = Api.getTrip(tripId: tripId).calcTimedPath()
 
             var realm = Realm.busStops()
 
@@ -223,7 +223,7 @@ class LineCourseViewController: UIViewController {
         for lineCourse in lineCourses {
             let family = BusStopRealmHelper.getBusStopGroup(id: lineCourse.id)
 
-            let passingLines: [Int] = Api2.getPassingLines(group: family)
+            let passingLines: [Int] = Api.getPassingLines(group: family)
 
             var lines = ""
 

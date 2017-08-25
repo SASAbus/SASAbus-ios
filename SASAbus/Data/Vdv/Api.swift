@@ -13,7 +13,7 @@
 
 import Foundation
 
-class Api2 {
+class Api {
 
     static func getTrip(tripId: Int, verifyUiThread: Bool = true) -> VdvTrip {
         VdvHandler.blockTillLoaded(verifyUiThread: verifyUiThread)

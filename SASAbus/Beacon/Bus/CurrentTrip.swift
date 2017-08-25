@@ -77,7 +77,7 @@ class CurrentTrip: Mappable {
         hasReachedSecondBusStop = false
 
         DispatchQueue(label: "com.app.queue", qos: .background).async {
-            let newTimes = Api2.getTrip(tripId: self.beacon.lastTrip, verifyUiThread: false).calcTimedPath()
+            let newTimes = Api.getTrip(tripId: self.beacon.lastTrip, verifyUiThread: false).calcTimedPath()
             if newTimes.isEmpty {
                 Log.error("Trips for trip %s do not exist", self.beacon.lastTrip)
 

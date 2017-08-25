@@ -341,7 +341,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
 
                     Log.error("getBusInformation: \(bus.busStop)")
 
-                    let busStopsPath = Api2.getTrip(tripId: bus.trip).calcPath()
+                    let busStopsPath = Api.getTrip(tripId: bus.trip).calcPath()
                     var path = busStopsPath.map {
                         $0.id
                     }
@@ -489,7 +489,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
                         beacon.addTrip(trip: newTrip)
                         beacon.addVariant(variant: newVariant)
 
-                        let busStopsPath: [VdvBusStop] = Api2.getTrip(tripId: bus.trip).calcPath()
+                        let busStopsPath: [VdvBusStop] = Api.getTrip(tripId: bus.trip).calcPath()
                         var path = busStopsPath.map {
                             $0.id
                         }

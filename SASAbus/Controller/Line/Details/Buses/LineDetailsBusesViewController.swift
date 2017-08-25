@@ -136,7 +136,7 @@ class LineDetailsBusesViewController: UITableViewController {
                         let lastStationId = bus.destination
                         let lastStationName = BusStopRealmHelper.getName(id: lastStationId)
 
-                        let path: [VdvBusStop] = Api2.getTrip(tripId: bus.trip).calcTimedPath()
+                        let path: [VdvBusStop] = Api.getTrip(tripId: bus.trip).calcTimedPath()
 
                         if !path.isEmpty {
                             let lastTime = path.last?.time
