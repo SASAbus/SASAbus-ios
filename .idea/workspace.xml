@@ -2,21 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3d29402-016d-4755-9201-16bfc752e971" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvIntervals.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvTravelTimes.swift" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvTripBreaks.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvTripStopTimes.swift" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SASAbus/Data/Vdv/VdvHandler.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvHandler.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/SASAbus.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/AppDelegate.swift" afterPath="$PROJECT_DIR$/SASAbus/AppDelegate.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Departure/BusStopViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Departure/BusStopViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvBusStopBreaks.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvBusStopBreaks.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvCalendar.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvCalendar.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvPaths.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvPaths.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvTrips.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvTrips.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Data/Vdv/DepartureMonitor.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Vdv/DepartureMonitor.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Data/Vdv/Model/VdvDate.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Vdv/Model/VdvDate.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Data/Vdv/Model/VdvTrip.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Vdv/Model/VdvTrip.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Data/Vdv/PlannedData.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Vdv/PlannedData.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/EcoPointsViewController.xib" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/EcoPointsViewController.xib" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Intro/Intro.storyboard" afterPath="$PROJECT_DIR$/SASAbus/Controller/Intro/Intro.storyboard" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Intro/IntroViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Intro/IntroViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Util/Extensions/UIViewController+Child.swift" afterPath="$PROJECT_DIR$/SASAbus/Util/Extensions/UIViewController+Child.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/de.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/de.lproj/Localizable.strings" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,7 +16,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_d86a47ad2256e3a6cf409930e9faaf4b47d1633e" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_585c53b727b7bcde66b72dd75ad98dbb6e5a7137" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
@@ -79,6 +70,8 @@
         <option value="$PROJECT_DIR$/SASAbus/Controller/Departure/BusStopViewController.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvTrips.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvPaths.swift" />
+        <option value="$PROJECT_DIR$/SASAbus/Data/Vdv/Api2.swift" />
+        <option value="$PROJECT_DIR$/SASAbus/Util/Extensions/UIViewController+Child.swift" />
       </list>
     </option>
   </component>
@@ -115,11 +108,6 @@
               <item name="" type="efc3779f:XcodeRootNode" />
               <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
             </path>
-            <path>
-              <item name="" type="efc3779f:XcodeRootNode" />
-              <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
-              <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -133,7 +121,7 @@
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="SASAbus" />
     <property name="com.jetbrains.cidr.execution.build.XcodeMessageFilterConfiguration.INFO" value="false" />
     <property name="com.jetbrains.cidr.execution.build.XcodeMessageFilterConfiguration.WARNING" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="VdvPaths&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvPaths.swift&#10;VdvTrips&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvTrips.swift&#10;De&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/DepartureMonitor.swift&#10;Departure&#9;null&#9;null&#10;VdvCal&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvCalendar.swift&#10;VdvDa&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Model/VdvDate.swift&#10;MapBottom&#9;null&#9;null&#10;MenuV&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="EcoPointsV&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Controller/EcoPoints/EcoPointsViewController.swift&#10;VdvPaths&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvPaths.swift&#10;VdvTrips&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvTrips.swift&#10;De&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/DepartureMonitor.swift&#10;Departure&#9;null&#9;null&#10;VdvCal&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvCalendar.swift&#10;VdvDa&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Model/VdvDate.swift&#10;MapBottom&#9;null&#9;null&#10;MenuV&#9;null&#9;null" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -186,7 +174,7 @@
       <workItem from="1503641801404" duration="1357000" />
       <workItem from="1503643948823" duration="64000" />
       <workItem from="1503644030748" duration="5474000" />
-      <workItem from="1503650150942" duration="2096000" />
+      <workItem from="1503650150942" duration="3127000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed some bugs with Firebase">
       <created>1503560356013</created>
@@ -209,11 +197,25 @@
       <option name="project" value="LOCAL" />
       <updated>1503648392902</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Updated planned data format to new version">
+      <created>1503652436009</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1503652436009</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Renamed Api2 to Api">
+      <created>1503652578998</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1503652578998</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14575000" />
+    <option name="totallyTimeSpent" value="15606000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -262,7 +264,9 @@
     <MESSAGE value="Fixed some bugs with Firebase" />
     <MESSAGE value="Added Google SignIn" />
     <MESSAGE value="Fixed some UI issues with Google SignIn" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed some UI issues with Google SignIn" />
+    <MESSAGE value="Updated planned data format to new version" />
+    <MESSAGE value="Renamed Api2 to Api" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renamed Api2 to Api" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -496,22 +500,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SASAbus/Controller/EcoPoints/EcoPointsViewController.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="52" lean-forward="false" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
-          <folding>
-            <element signature="e#14#3190#0" expanded="false" />
-            <element signature="e#256#346#0" expanded="false" />
-            <element signature="e#353#436#0" expanded="false" />
-            <element signature="e#443#1487#0" expanded="false" />
-            <element signature="e#1493#2185#0" expanded="false" />
-            <element signature="e#2191#2509#0" expanded="false" />
-            <element signature="e#2516#3188#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SASAbus/Controller/EcoPoints/EcoPointsTabViewController.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -593,7 +581,7 @@
         <state relative-caret-position="30">
           <caret line="4" column="60" lean-forward="false" selection-start-line="4" selection-start-column="60" selection-end-line="4" selection-end-column="60" />
           <folding>
-            <element signature="e#44#5979#0" expanded="false" />
+            <element signature="e#44#5978#0" expanded="false" />
             <element signature="e#416#591#0" expanded="false" />
             <element signature="e#597#687#0" expanded="false" />
             <element signature="e#694#1890#0" expanded="false" />
@@ -605,14 +593,14 @@
             <element signature="e#3195#3275#0" expanded="false" />
             <element signature="e#3329#3407#0" expanded="false" />
             <element signature="e#3542#4208#0" expanded="false" />
-            <element signature="e#4214#5977#0" expanded="false" />
-            <element signature="e#5751#5871#0" expanded="false" />
-            <element signature="e#5981#8289#0" expanded="false" />
-            <element signature="e#6029#7738#0" expanded="false" />
-            <element signature="e#7744#7843#0" expanded="false" />
-            <element signature="e#7849#7966#0" expanded="false" />
-            <element signature="e#7972#8122#0" expanded="false" />
-            <element signature="e#8128#8287#0" expanded="false" />
+            <element signature="e#4214#5976#0" expanded="false" />
+            <element signature="e#5750#5870#0" expanded="false" />
+            <element signature="e#5980#8288#0" expanded="false" />
+            <element signature="e#6028#7737#0" expanded="false" />
+            <element signature="e#7743#7842#0" expanded="false" />
+            <element signature="e#7848#7965#0" expanded="false" />
+            <element signature="e#7971#8121#0" expanded="false" />
+            <element signature="e#8127#8286#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -697,25 +685,6 @@
         <state relative-caret-position="199">
           <caret line="60" column="23" lean-forward="true" selection-start-line="60" selection-start-column="23" selection-end-line="60" selection-end-column="23" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SASAbus/Data/Vdv/Api2.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="15" column="11" lean-forward="false" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#2#0" expanded="false" />
-            <element signature="e#108#322#0" expanded="false" />
-            <element signature="e#343#1942#0" expanded="false" />
-            <element signature="e#361#762#0" expanded="false" />
-            <element signature="e#768#1481#0" expanded="false" />
-            <element signature="e#1487#1940#0" expanded="false" />
-            <element signature="e#1944#2435#0" expanded="false" />
-            <element signature="e#1965#2132#0" expanded="false" />
-            <element signature="e#2138#2292#0" expanded="false" />
-            <element signature="e#2298#2433#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -851,6 +820,52 @@
             <element signature="e#146#987#0" expanded="false" />
             <element signature="e#993#1310#0" expanded="false" />
             <element signature="e#1316#1430#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SASAbus/Data/Vdv/Api.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="15" column="10" lean-forward="false" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#2#0" expanded="false" />
+            <element signature="e#108#322#0" expanded="false" />
+            <element signature="e#343#1941#0" expanded="false" />
+            <element signature="e#360#761#0" expanded="false" />
+            <element signature="e#767#1480#0" expanded="false" />
+            <element signature="e#1486#1939#0" expanded="false" />
+            <element signature="e#1943#2434#0" expanded="false" />
+            <element signature="e#1964#2131#0" expanded="false" />
+            <element signature="e#2137#2291#0" expanded="false" />
+            <element signature="e#2297#2432#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SASAbus/Util/Extensions/UIViewController+Child.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="e#32#704#0" expanded="false" />
+            <element signature="e#66#702#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SASAbus/Controller/EcoPoints/EcoPointsViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="52" lean-forward="false" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
+          <folding>
+            <element signature="e#14#3190#0" expanded="false" />
+            <element signature="e#256#346#0" expanded="false" />
+            <element signature="e#353#436#0" expanded="false" />
+            <element signature="e#443#1487#0" expanded="false" />
+            <element signature="e#1493#2185#0" expanded="false" />
+            <element signature="e#2191#2509#0" expanded="false" />
+            <element signature="e#2516#3188#0" expanded="false" />
           </folding>
         </state>
       </provider>

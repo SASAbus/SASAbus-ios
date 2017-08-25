@@ -10,7 +10,10 @@ extension UIViewController {
         }
 
         let view = controller.view
+        let containerSize = container.frame.size
+
         view!.translatesAutoresizingMaskIntoConstraints = true
+        view!.frame = CGRect(x: 0, y: 0, width: containerSize.width, height: containerSize.height)
 
         container.addSubview(view!)
         self.addChildViewController(controller)

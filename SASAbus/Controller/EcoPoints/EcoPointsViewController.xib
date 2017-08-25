@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16E192b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -31,12 +32,16 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="tDq-rZ-bbw" secondAttribute="bottom" id="COR-aU-ATo"/>
                 <constraint firstItem="Nn6-PG-g4J" firstAttribute="top" secondItem="Icl-aR-PAZ" secondAttribute="top" id="IWs-BG-oG3"/>
+                <constraint firstItem="Nn6-PG-g4J" firstAttribute="width" secondItem="Icl-aR-PAZ" secondAttribute="width" id="Lce-t4-Icp"/>
                 <constraint firstItem="tDq-rZ-bbw" firstAttribute="top" secondItem="Icl-aR-PAZ" secondAttribute="top" id="MYF-qX-DFE"/>
                 <constraint firstItem="tDq-rZ-bbw" firstAttribute="leading" secondItem="Icl-aR-PAZ" secondAttribute="leading" id="Rut-0d-Lla"/>
+                <constraint firstItem="tDq-rZ-bbw" firstAttribute="height" secondItem="Icl-aR-PAZ" secondAttribute="height" id="VIm-W5-2Up"/>
                 <constraint firstAttribute="trailing" secondItem="Nn6-PG-g4J" secondAttribute="trailing" id="i2C-Zr-iO3"/>
                 <constraint firstAttribute="bottom" secondItem="Nn6-PG-g4J" secondAttribute="bottom" id="iDx-sG-ykx"/>
                 <constraint firstAttribute="trailing" secondItem="tDq-rZ-bbw" secondAttribute="trailing" id="iMj-Oo-JUq"/>
+                <constraint firstItem="tDq-rZ-bbw" firstAttribute="width" secondItem="Icl-aR-PAZ" secondAttribute="width" id="tMW-0r-oGd"/>
                 <constraint firstItem="Nn6-PG-g4J" firstAttribute="leading" secondItem="Icl-aR-PAZ" secondAttribute="leading" id="usq-gc-3Kj"/>
+                <constraint firstItem="Nn6-PG-g4J" firstAttribute="height" secondItem="Icl-aR-PAZ" secondAttribute="height" id="xmj-5K-ovb"/>
             </constraints>
         </view>
     </objects>

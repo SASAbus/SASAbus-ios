@@ -35,7 +35,7 @@ class IntroViewController: UIPageViewController, UIPageViewControllerDelegate, U
             pageViewControllers.append(newViewController(
                 index: 2,
                 color: Color.tealBlue,
-                title: "Beacon",
+                title: "Beacons",
                 subtitle: "Get information about the bus you're in",
                 description: "Enable bluetooth to get information of nearby buses and bus stops.",
                 image: "intro_bluetooth"

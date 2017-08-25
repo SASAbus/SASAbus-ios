@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="17A291j" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kAo-dr-UoK">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kAo-dr-UoK">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,17 +20,17 @@
                         <viewControllerLayoutGuide type="bottom" id="c36-XI-XEL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mrL-dF-EzB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZL1-gL-v5a">
-                                <rect key="frame" x="0.0" y="20" width="375" height="615"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="684"/>
                                 <connections>
                                     <segue destination="ZhB-7g-hO2" kind="embed" id="eX7-Q7-Ne9"/>
                                 </connections>
                             </containerView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="fun-gq-TEa">
-                                <rect key="frame" x="152" y="630" width="71" height="37"/>
+                                <rect key="frame" x="171.66666666666666" y="699" width="71" height="37"/>
                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="currentPageIndicatorTintColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
@@ -70,29 +70,35 @@
                         <viewControllerLayoutGuide type="bottom" id="UaB-TD-dGI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="FLm-kp-PCs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_realtime" translatesAutoresizingMaskIntoConstraints="NO" id="mKL-JF-C0G">
-                                <rect key="frame" x="32" y="16" width="311" height="311"/>
+                                <rect key="frame" x="32" y="16" width="350" height="350"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="mKL-JF-C0G" secondAttribute="height" multiplier="1:1" id="0dY-4W-Vzc"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Realtime" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g6k-ug-Gh1">
-                                <rect key="frame" x="32" y="363" width="311" height="57.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Realtime" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="g6k-ug-Gh1">
+                                <rect key="frame" x="36" y="402" width="342" height="57.666666666666686"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
                                 <color key="textColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bus positions in realtime" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Z0-hu-JTd">
-                                <rect key="frame" x="32" y="436.5" width="311" height="29"/>
+                                <rect key="frame" x="36" y="475.66666666666669" width="342" height="28.666666666666629"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SasaBus informs you about bus departures, delays, paths and bus stops" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svY-OU-7eG">
+                                <rect key="frame" x="36" y="510.33333333333337" width="342" height="38.333333333333371"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNg-20-jME">
-                                <rect key="frame" x="263" y="617" width="96" height="34"/>
+                                <rect key="frame" x="302" y="686" width="96" height="34"/>
                                 <color key="backgroundColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="96" id="Mfv-RX-ExZ"/>
@@ -103,19 +109,14 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SasaBus informs you about bus departures, delays, paths and bus stops" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svY-OU-7eG">
-                                <rect key="frame" x="32" y="471.5" width="311" height="38.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="1Z0-hu-JTd" secondAttribute="trailing" constant="16" id="4Cm-66-RcC"/>
-                            <constraint firstItem="mKL-JF-C0G" firstAttribute="leading" secondItem="FLm-kp-PCs" secondAttribute="leading" constant="32" id="5RB-bf-OLf"/>
+                            <constraint firstItem="mKL-JF-C0G" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FLm-kp-PCs" secondAttribute="leading" constant="32" id="5RB-bf-OLf"/>
                             <constraint firstItem="g6k-ug-Gh1" firstAttribute="leading" secondItem="FLm-kp-PCs" secondAttribute="leadingMargin" constant="16" id="6NM-uI-ziI"/>
-                            <constraint firstAttribute="trailing" secondItem="mKL-JF-C0G" secondAttribute="trailing" constant="32" id="G7s-8D-c3t"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mKL-JF-C0G" secondAttribute="trailing" constant="32" id="G7s-8D-c3t"/>
+                            <constraint firstItem="KNg-20-jME" firstAttribute="top" secondItem="svY-OU-7eG" secondAttribute="bottom" priority="250" id="HsT-5H-HM5"/>
                             <constraint firstItem="svY-OU-7eG" firstAttribute="leading" secondItem="FLm-kp-PCs" secondAttribute="leadingMargin" constant="16" id="OCt-Va-Zhw"/>
                             <constraint firstItem="svY-OU-7eG" firstAttribute="top" secondItem="1Z0-hu-JTd" secondAttribute="bottom" constant="6" id="QXb-xq-rpp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="svY-OU-7eG" secondAttribute="trailing" constant="16" id="T40-p2-PFt"/>
@@ -149,46 +150,46 @@
                         <viewControllerLayoutGuide type="bottom" id="w5m-Fo-Vik"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KBc-zi-S9i">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_data" translatesAutoresizingMaskIntoConstraints="NO" id="ASu-st-QyT">
-                                <rect key="frame" x="32" y="16" width="311" height="311"/>
+                                <rect key="frame" x="32" y="16" width="350" height="350"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ASu-st-QyT" secondAttribute="height" multiplier="1:1" id="TI9-c4-ofq"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offline data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXo-ay-HKS">
-                                <rect key="frame" x="32" y="363" width="311" height="57.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offline data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XXo-ay-HKS">
+                                <rect key="frame" x="36" y="402" width="342" height="57.666666666666686"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
                                 <color key="textColor" red="0.29803921570000003" green="0.85098039219999999" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Departures without internet connection" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daM-uK-siD">
-                                <rect key="frame" x="32" y="436.5" width="311" height="57.5"/>
+                                <rect key="frame" x="36" y="475.66666666666674" width="342" height="57.333333333333258"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The app downloads all bus departures and stores them locally." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceI-ci-SPq">
-                                <rect key="frame" x="32" y="500" width="311" height="38.5"/>
+                                <rect key="frame" x="36" y="539" width="342" height="38.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xg9-Oz-HRe">
-                                <rect key="frame" x="32" y="570.5" width="311" height="2"/>
+                                <rect key="frame" x="36" y="609.33333333333337" width="342" height="2"/>
                                 <color key="progressTintColor" red="0.29803921568627451" green="0.85098039215686272" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_done_white_48pt" translatesAutoresizingMaskIntoConstraints="NO" id="Sth-Ze-rEd">
-                                <rect key="frame" x="167.5" y="551.5" width="40" height="40"/>
+                                <rect key="frame" x="187" y="590.33333333333337" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="007-08-Yag"/>
                                     <constraint firstAttribute="width" constant="40" id="1Nf-oc-aTW"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qae-f8-dOR">
-                                <rect key="frame" x="263" y="617" width="96" height="34"/>
+                                <rect key="frame" x="302" y="686" width="96" height="34"/>
                                 <color key="backgroundColor" red="0.29803921568627451" green="0.85098039215686272" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="96" id="XUG-Ub-soa"/>
