@@ -5,6 +5,8 @@ class EcoPointsViewController: MasterViewController {
     @IBOutlet var loginContainer: UIView!
     @IBOutlet var contentContainer: UIView!
 
+    var ecoPointsController: EcoPointsTabViewController!
+
     var isLoginActive: Bool = false
 
 
@@ -26,7 +28,7 @@ class EcoPointsViewController: MasterViewController {
         loginViewController.parentVC = self
 
         let ecoPointsNib = UINib(nibName: "EcoPointsTabViewController", bundle: nil)
-        let ecoPointsController = ecoPointsNib.instantiate(withOwner: self)[0] as! EcoPointsTabViewController
+        ecoPointsController = ecoPointsNib.instantiate(withOwner: self)[0] as! EcoPointsTabViewController
         ecoPointsController.parentVC = self
 
         addChildController(loginViewController, container: loginContainer)
@@ -42,6 +44,8 @@ class EcoPointsViewController: MasterViewController {
         } else {
             loginContainer.isHidden = true
             contentContainer.isHidden = false
+
+            ecoPointsController.showButton()
         }
     }
 
@@ -59,6 +63,8 @@ class EcoPointsViewController: MasterViewController {
             loginContainer.alpha = 1
 
             contentContainer.isHidden = true
+        } else {
+            ecoPointsController.showButton()
         }
 
         if isLoginActive, let navController = self.navigationController {
@@ -91,6 +97,8 @@ class EcoPointsViewController: MasterViewController {
         }, completion: { _ in
             self.loginContainer.isHidden = true
             self.contentContainer.isHidden = false
+
+            self.ecoPointsController.showButton()
 
             completion()
         })

@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="eco_points_profile_header" rowHeight="365" id="KGk-i7-Jjw" customClass="EcoPointsProfileCell" customModule="SASAbus">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="366"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="365.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="371.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0fC-uC-7T4" userLabel="Profile container">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="365.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="solaris_urbino_12" translatesAutoresizingMaskIntoConstraints="NO" id="4Vb-EQ-Kx0">
                                 <rect key="frame" x="104" y="24" width="112" height="112"/>
@@ -148,8 +148,8 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXd-xg-a5Q">
-                                <rect key="frame" x="107" y="330.5" width="106" height="27"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                <rect key="frame" x="103.5" y="334.5" width="113" height="28"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                 <state key="normal" title="View profile details">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -158,10 +158,10 @@
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ea4-DC-vge" userLabel="Loading">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="365.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4Of-f9-aDG">
-                                        <rect key="frame" x="150" y="173" width="20" height="20"/>
+                                        <rect key="frame" x="150" y="176.5" width="20" height="20"/>
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -173,7 +173,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="365.5" id="3lC-OH-ip8"/>
                             <constraint firstItem="dXd-xg-a5Q" firstAttribute="centerX" secondItem="0fC-uC-7T4" secondAttribute="centerX" id="4Pa-9D-vko"/>
                             <constraint firstItem="38U-Wv-x8E" firstAttribute="top" secondItem="Gaz-y6-uqn" secondAttribute="bottom" constant="32" id="56D-V6-wSd"/>
                             <constraint firstAttribute="bottom" secondItem="Ea4-DC-vge" secondAttribute="bottom" id="9Fp-EF-lzD"/>
@@ -183,7 +182,8 @@
                             <constraint firstItem="Ea4-DC-vge" firstAttribute="top" secondItem="0fC-uC-7T4" secondAttribute="top" id="Qwq-9S-CTl"/>
                             <constraint firstItem="wwF-34-3Cb" firstAttribute="top" secondItem="4Vb-EQ-Kx0" secondAttribute="bottom" constant="12" id="X2X-nm-e7Z"/>
                             <constraint firstItem="Gaz-y6-uqn" firstAttribute="top" secondItem="wwF-34-3Cb" secondAttribute="bottom" constant="2" id="Xif-2N-9bN"/>
-                            <constraint firstItem="dXd-xg-a5Q" firstAttribute="top" secondItem="38U-Wv-x8E" secondAttribute="bottom" constant="12" id="Ybs-y4-AC8"/>
+                            <constraint firstItem="dXd-xg-a5Q" firstAttribute="top" secondItem="38U-Wv-x8E" secondAttribute="bottom" constant="16" id="Ybs-y4-AC8"/>
+                            <constraint firstAttribute="height" constant="372" id="Zfq-kQ-RQC"/>
                             <constraint firstAttribute="trailing" secondItem="38U-Wv-x8E" secondAttribute="trailing" id="ccC-Kj-3gn"/>
                             <constraint firstItem="38U-Wv-x8E" firstAttribute="leading" secondItem="0fC-uC-7T4" secondAttribute="leading" id="ekE-GC-kZZ"/>
                             <constraint firstItem="wwF-34-3Cb" firstAttribute="centerX" secondItem="0fC-uC-7T4" secondAttribute="centerX" id="gs2-w4-d0Y"/>

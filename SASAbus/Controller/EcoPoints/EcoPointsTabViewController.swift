@@ -8,6 +8,9 @@ class EcoPointsTabViewController: UITabBarController {
 
     var parentVC: EcoPointsViewController!
 
+    var currentTab: Int = 0
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,12 +31,10 @@ class EcoPointsTabViewController: UITabBarController {
 
         self.tabBar.tintColor = Theme.orange
         self.tabBar.isTranslucent = false
-
-        showButton()
     }
 
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        print(item.tag)
+        currentTab = item.tag
 
         if item.tag == 0 {
             showButton()
@@ -42,7 +43,12 @@ class EcoPointsTabViewController: UITabBarController {
         }
     }
 
-    func showButton() {
+
+    public func showButton() {
+        if currentTab != 0 {
+            return
+        }
+
         let image = UIImage(named: "ic_settings_white")!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
 
         var button = UIBarButtonItem(

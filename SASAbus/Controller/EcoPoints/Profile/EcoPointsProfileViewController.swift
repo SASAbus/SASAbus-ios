@@ -63,11 +63,14 @@ class EcoPointsProfileViewController: UITableViewController {
                 .subscribeOn(MainScheduler.asyncInstance)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { profile in
-                    if let profile = profile {
-                        self.profile = profile
-                    } else {
-                        Log.warning("No profile loaded")
+                    guard let profile = profile else {
+                        Log.error("No profile loaded")
+                        return
                     }
+
+                    self.profile = profile
+
+                    Log.info("Got profile")
 
                     self.tableView.reloadData()
                     self.refreshControl!.endRefreshing()
@@ -196,27 +199,30 @@ extension EcoPointsProfileViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        Log.info("Reloading \(indexPath)")
+
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "eco_points_profile_header") as! EcoPointsProfileCell
 
-            if let profile = self.profile {
-                cell.loadingView.isHidden = true
-
-                cell.nameText.text = profile.username
-                cell.levelText.text = profile.cls
-
-                cell.pointsText.text = "\(profile.points)"
-                cell.badgesText.text = "\(profile.badges)"
-                cell.rankText.text = "\(profile.rank)"
-
-                let url = URL(string: profile.imageUrl)!
-                cell.profilePicture.kf.setImage(with: url)
-
-                cell.onButtonTapped = {
-                    self.openSettings()
-                }
-            } else {
+            guard let profile = profile else {
                 cell.loadingView.isHidden = false
+                return cell
+            }
+
+            cell.loadingView.isHidden = true
+
+            cell.nameText.text = profile.username
+            cell.levelText.text = profile.cls
+
+            cell.pointsText.text = "\(profile.points)"
+            cell.badgesText.text = "\(profile.badges)"
+            cell.rankText.text = "\(profile.rank)"
+
+            let url = URL(string: profile.imageUrl)!
+            cell.profilePicture.kf.setImage(with: url)
+
+            cell.onButtonTapped = {
+                self.openSettings()
             }
 
             return cell

@@ -137,6 +137,8 @@ class AuthHelper {
         setUserId(userId: nil)
 
         setIsGoogleAccount(value: false)
+
+        GIDSignIn.sharedInstance().signOut()
     }
 
     static func checkIfUnauthorized(_ error: Error) {
