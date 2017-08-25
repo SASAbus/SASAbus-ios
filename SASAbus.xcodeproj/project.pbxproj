@@ -203,7 +203,7 @@
 		1F2E396BF999483C9EFF6926 /* BusStopFavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3FD422AA94A505DB2639 /* BusStopFavoritesViewController.xib */; };
 		1F2E397CED44D82B7C5D4186 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3227076AA65D551F407B /* Trip.swift */; };
 		1F2E3988C209FC01D0DBB072 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E32DD0A5B734FB1E157AA /* StringExtension.swift */; };
-		1F2E398B1EF69CE13865FF3B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3FB2FBEEC4D8C581ED7A /* Launch Screen.storyboard */; };
+		1F2E398B1EF69CE13865FF3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3FB2FBEEC4D8C581ED7A /* LaunchScreen.storyboard */; };
 		1F2E39900C3782160B5B62AB /* RealtimeBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3B43A65BB1709EEF728D /* RealtimeBus.swift */; };
 		1F2E39A96CDE1AA086901581 /* EcoPointsProfilePictureDefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3105E307B3EA5836220D /* EcoPointsProfilePictureDefaultViewController.swift */; };
 		1F2E39B45DA3B5DDB0A0239A /* EcoPointsBadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E901D36F1C4161C7B68 /* EcoPointsBadgeCell.swift */; };
@@ -656,7 +656,7 @@
 		1F2E3F85B6024F04F858B7D3 /* NewsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsApi.swift; sourceTree = "<group>"; };
 		1F2E3F8F0F6999693EE0143C /* EcoPointsBadgeFooterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EcoPointsBadgeFooterCell.xib; sourceTree = "<group>"; };
 		1F2E3FABBA042F7BB5F49EC3 /* BusDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusDetailsViewController.swift; sourceTree = "<group>"; };
-		1F2E3FB2FBEEC4D8C581ED7A /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		1F2E3FB2FBEEC4D8C581ED7A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F2E3FBB5CE98E0FC5522F57 /* BeaconStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconStorage.swift; sourceTree = "<group>"; };
 		1F2E3FD422AA94A505DB2639 /* BusStopFavoritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusStopFavoritesViewController.xib; sourceTree = "<group>"; };
 		1F2E3FDDF8C12399829F2321 /* EcoPointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EcoPointsViewController.swift; sourceTree = "<group>"; };
@@ -1519,7 +1519,7 @@
 		1F2E3F930031EA950635F40C /* Launch */ = {
 			isa = PBXGroup;
 			children = (
-				1F2E3FB2FBEEC4D8C581ED7A /* Launch Screen.storyboard */,
+				1F2E3FB2FBEEC4D8C581ED7A /* LaunchScreen.storyboard */,
 			);
 			path = Launch;
 			sourceTree = "<group>";
@@ -1753,7 +1753,7 @@
 				CD34D06B1BC5594D00912806 /* Localizable.strings in Resources */,
 				FAC517D21E8A79CA00EC26DF /* EcoPointsTabViewController.xib in Resources */,
 				1F2E3F0B94E3A01957A1E3C5 /* DepartureViewCell.xib in Resources */,
-				1F2E398B1EF69CE13865FF3B /* Launch Screen.storyboard in Resources */,
+				1F2E398B1EF69CE13865FF3B /* LaunchScreen.storyboard in Resources */,
 				FABCEED71EDEBA1C00E48116 /* LineCourseMapViewController.xib in Resources */,
 				1F2E31E65F7999C88C17F10A /* LineViewController.xib in Resources */,
 				1F2E3E322FF1D1727DF89470 /* MenuTableViewCell.xib in Resources */,

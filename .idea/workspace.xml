@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3d29402-016d-4755-9201-16bfc752e971" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/SASAbus/Controller/Launch/Launch Screen.storyboard" afterPath="$PROJECT_DIR$/SASAbus/Controller/Launch/LaunchScreen.storyboard" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Profile/EcoPointsProfileCell.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Profile/EcoPointsProfileCell.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/SASAbus.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Profile/EcoPointsProfileCell.xib" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Profile/EcoPointsProfileCell.xib" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Intro/IntroViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Intro/IntroViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Info.plist" afterPath="$PROJECT_DIR$/SASAbus/Info.plist" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,7 +16,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_585c53b727b7bcde66b72dd75ad98dbb6e5a7137" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_d86a47ad2256e3a6cf409930e9faaf4b47d1633e" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
@@ -123,15 +125,7 @@
               <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
               <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
               <item name="Controller" type="fcab9f18:XcodeViewNode" />
-              <item name="EcoPoints" type="fcab9f18:XcodeViewNode" />
-            </path>
-            <path>
-              <item name="" type="efc3779f:XcodeRootNode" />
-              <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
-              <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
-              <item name="Controller" type="fcab9f18:XcodeViewNode" />
-              <item name="EcoPoints" type="fcab9f18:XcodeViewNode" />
-              <item name="Profile" type="fcab9f18:XcodeViewNode" />
+              <item name="Launch" type="fcab9f18:XcodeViewNode" />
             </path>
           </expand>
           <select />
@@ -199,7 +193,7 @@
       <workItem from="1503641801404" duration="1357000" />
       <workItem from="1503643948823" duration="64000" />
       <workItem from="1503644030748" duration="5474000" />
-      <workItem from="1503650150942" duration="3568000" />
+      <workItem from="1503650150942" duration="3734000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed some bugs with Firebase">
       <created>1503560356013</created>
@@ -243,11 +237,18 @@
       <option name="project" value="LOCAL" />
       <updated>1503654187300</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="UI tweaks">
+      <created>1503654635085</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1503654635085</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16047000" />
+    <option name="totallyTimeSpent" value="16213000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -299,7 +300,8 @@
     <MESSAGE value="Updated planned data format to new version" />
     <MESSAGE value="Renamed Api2 to Api" />
     <MESSAGE value="Fixed scaling issue with nested view controllers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed scaling issue with nested view controllers" />
+    <MESSAGE value="UI tweaks" />
+    <option name="LAST_COMMIT_MESSAGE" value="UI tweaks" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
