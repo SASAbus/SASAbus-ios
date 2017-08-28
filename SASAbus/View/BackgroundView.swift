@@ -68,6 +68,6 @@ class BackgroundView: UIView {
 
 
     @IBAction func tap(_ sender: AnyObject) {
-        backgroundImageView.image = UIImage(named: "system_preference_layer")
+        backgroundImageView.image = Asset.systemPreferenceLayer.image
     }
 }

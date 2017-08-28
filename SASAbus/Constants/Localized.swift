@@ -323,6 +323,54 @@ enum L10n {
     static let pullToRefresh = L10n.tr("Localizable", "general.pullToRefresh")
   }
 
+  enum Intro {
+
+    enum Agreement {
+      /// By using SasaBus you agree to the Terms and Conditions and the Privacy Policy.
+      static let description = L10n.tr("Localizable", "intro.agreement.description")
+      /// Terms and conditions
+      static let subtitle = L10n.tr("Localizable", "intro.agreement.subtitle")
+      /// Agreement
+      static let title = L10n.tr("Localizable", "intro.agreement.title")
+    }
+
+    enum Beacons {
+      /// Enable bluetooth to get information of nearby buses and bus stops.
+      static let description = L10n.tr("Localizable", "intro.beacons.description")
+      /// Get information about the bus you're in
+      static let subtitle = L10n.tr("Localizable", "intro.beacons.subtitle")
+      /// Beacons
+      static let title = L10n.tr("Localizable", "intro.beacons.title")
+    }
+
+    enum Data {
+      /// The app downloads all bus departures and stores them locally, so you can access them anytime
+      static let description = L10n.tr("Localizable", "intro.data.description")
+      /// All data saved offline
+      static let subtitle = L10n.tr("Localizable", "intro.data.subtitle")
+      /// Offline data
+      static let title = L10n.tr("Localizable", "intro.data.title")
+    }
+
+    enum Permission {
+      /// Please allow the app to use your location to scan for beacons
+      static let description = L10n.tr("Localizable", "intro.permission.description")
+      /// Beacon tracking needs your location
+      static let subtitle = L10n.tr("Localizable", "intro.permission.subtitle")
+      /// Permission
+      static let title = L10n.tr("Localizable", "intro.permission.title")
+    }
+
+    enum Realtime {
+      /// SASAbus informs you about bus positions, departures and delays in real-time
+      static let description = L10n.tr("Localizable", "intro.realtime.description")
+      /// Bus positions in real-time
+      static let subtitle = L10n.tr("Localizable", "intro.realtime.subtitle")
+      /// Real-time
+      static let title = L10n.tr("Localizable", "intro.realtime.title")
+    }
+  }
+
   enum Line {
     /// Line
     static let title = L10n.tr("Localizable", "line.title")

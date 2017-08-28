@@ -56,9 +56,9 @@ class LineDetailsViewController: UIViewController {
 
         let icon: UIImage!
         if isFavorite {
-            icon = UIImage(named: "ic_star_white")
+            icon = Asset.icStarWhite.image
         } else {
-            icon = UIImage(named: "ic_star_border_white")
+            icon = Asset.icStarBorderWhite.image
         }
 
         let button = UIBarButtonItem(image: icon, style: .plain, target: self, action: #selector(toggleFavorite))

@@ -11,8 +11,8 @@ class LineCourseListViewController: UITableViewController {
 
     var items = [LineCourse]()
 
-    var dotImage = UIImage(named: "line_course_dot")
-    var dotsImage = UIImage(named: "line_course_dots_5")
+    var dotImage = Asset.lineCourseDot.image
+    var dotsImage = Asset.lineCourseDots5.image
 
     var timeFormatter: DateFormatter = {
         var formatter = DateFormatter()
@@ -136,7 +136,7 @@ extension LineCourseListViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO segue to bus stop departures
+        // TODO: segue to bus stop departures
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

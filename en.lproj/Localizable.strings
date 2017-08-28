@@ -140,3 +140,25 @@
 "ecopoints.badges.section.earned" = "Earned badges";
 "ecopoints.badges.view_all" = "View all badges";
 
+
+// ==================================================== INTRO ====================================================
+
+"intro.realtime.title" = "Real-time";
+"intro.realtime.subtitle" = "Bus positions in real-time";
+"intro.realtime.description" = "SASAbus informs you about bus positions, departures and delays in real-time";
+
+"intro.data.title" = "Offline data";
+"intro.data.subtitle" = "All data saved offline";
+"intro.data.description" = "The app downloads all bus departures and stores them locally, so you can access them anytime";
+
+"intro.beacons.title" = "Beacons";
+"intro.beacons.subtitle" = "Get information about the bus you're in";
+"intro.beacons.description" = "Enable bluetooth to get information of nearby buses and bus stops.";
+
+"intro.agreement.title" = "Agreement";
+"intro.agreement.subtitle" = "Terms and conditions";
+"intro.agreement.description" = "By using SasaBus you agree to the Terms and Conditions and the Privacy Policy.";
+
+"intro.permission.title" = "Permission";
+"intro.permission.subtitle" = "Beacon tracking needs your location";
+"intro.permission.description" = "Please allow the app to use your location to scan for beacons";
