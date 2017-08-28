@@ -6,93 +6,27 @@ import RxCocoa
 
 class UserRealmHelper {
 
-    /**
-     * Version should not be in YY MM DD Rev. format as it makes upgrading harder.
-     */
     static let DB_VERSION: Int = 1
     static let DB_NAME: String = "default.realm"
 
-    /**
-     * Initializes the default realm instance, being the user database. This database holds all
-     * user specific data, e.g. favorite lines/bus stops or trips.
-     *
-     * @param context Context needed to build the {@link RealmConfiguration}.
-     */
     static func setup() {
         var config = Realm.Configuration()
+
         config.schemaVersion = 3
+        config.deleteRealmIfMigrationNeeded = true
+        config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent(DB_NAME)
 
         config.objectTypes = [
-                FavoriteLine.self,
-                FavoriteBusStop.self,
-                Trip.self,
-                EarnedBadge.self,
-                FilteredDepartureLine.self
+            FavoriteLine.self,
+            FavoriteBusStop.self,
+            Trip.self,
+            EarnedBadge.self,
+            DisabledDeparture.self
         ]
 
-        config.deleteRealmIfMigrationNeeded = true
-
-        config.fileURL = config.fileURL!.deletingLastPathComponent()
-                .appendingPathComponent(DB_NAME)
-
-        // Set this as the configuration used for the default Realm
         Realm.Configuration.defaultConfiguration = config
-
-        do {
-            _ = try Realm(configuration: config)
-        } catch {
-            Log.error("Could not open user realm: \(error)")
-        }
     }
 
-    // ======================================= RECENTS =============================================
-
-    static func insertRecent(departureId: Int, arrivalId: Int) {
-        /*if (!recentExists(departureId, arrivalId)) {
-        Realm realm = Realm.getDefaultInstance();
-
-        int maxId = 0;
-        Number max = realm.where(RecentRoute.class).max("id");
-        if (max != null) {
-        maxId = max.intValue() + 1;
-        }
-
-        realm.beginTransaction();
-
-        RecentRoute recentRoute = realm.createObject(RecentRoute.class);
-        recentRoute.setId(maxId);
-        recentRoute.setDepartureId(departureId);
-        recentRoute.setArrivalId(arrivalId);
-
-        realm.commitTransaction();
-        realm.close();
-        }*/
-    }
-
-    static func deleteRecent(id: Int) {
-        /*Realm realm = Realm.getDefaultInstance();
-
-        RecentRoute recentRoute = realm.where(RecentRoute.class).equalTo("id", id).findFirst();
-
-        realm.beginTransaction();
-        recentRoute.deleteFromRealm();
-        realm.commitTransaction();
-
-        realm.close();*/
-    }
-
-    static func recentExists(departureId: Int, arrivalId: Int) -> Bool {
-        /*Realm realm = Realm.getDefaultInstance();
-
-        int count = realm.where(RecentRoute.class).equalTo("departureId", departureId).or()
-        .equalTo("arrivalId", arrivalId).findAll().size();
-
-        realm.close();
-
-        return count > 0;*/
-
-        return false
-    }
 
     // ====================================== FAVORITES ============================================
 
@@ -169,6 +103,7 @@ class UserRealmHelper {
         let realm = try! Realm()
         return realm.objects(FavoriteBusStop.self).filter("group = \(busStopGroup)").count > 0
     }
+
 
     // ======================================= TRIPS ===============================================
 
@@ -260,162 +195,8 @@ class UserRealmHelper {
         return cloudTrip
     }
 
-// ===================================== DISRUPTIONS ===========================================
 
-    static func getDisruptionLines() -> [Int] {
-        /*Realm realm = Realm.getDefaultInstance();
-
-        Collection<DisruptionLine> result = realm.copyFromRealm(realm.where(DisruptionLine.class)
-        .findAll());
-
-        List<Integer> lines = new ArrayList<>();
-
-        for (DisruptionLine line : result) {
-        lines.add(line.getLine());
-        }
-
-        realm.close();
-
-        return lines;*/
-
-        return []
-    }
-
-    static func setDisruptionLines(lines: [Int]) {
-        /*Realm realm = Realm.getDefaultInstance();
-
-        realm.beginTransaction();
-        realm.where(DisruptionLine.class).findAll().deleteAllFromRealm();
-        realm.commitTransaction();
-
-        for (Integer line : lines) {
-        realm.beginTransaction();
-
-        DisruptionLine disruptionLine = realm.createObject(DisruptionLine.class);
-        disruptionLine.setLine(line);
-
-        realm.commitTransaction();
-        }
-
-        realm.close();*/
-    }
-
-    static func getDisruptionTimes() -> [Int] {
-        /*Realm realm = Realm.getDefaultInstance();
-
-        Collection<DisruptionTime> result = realm.copyFromRealm(realm.where(DisruptionTime.class)
-        .findAll());
-
-        List<Integer> times = new ArrayList<>();
-
-        for (DisruptionTime line : result) {
-        times.add(line.getTime());
-        }
-
-        realm.close();
-
-        return times;*/
-
-        return []
-    }
-
-    static func setDisruptionTimes(times: [Int]) {
-        /*Realm realm = Realm.getDefaultInstance();
-
-        realm.beginTransaction();
-        realm.where(DisruptionTime.class).findAll().deleteAllFromRealm();
-        realm.commitTransaction();
-
-        for (Integer time : times) {
-        realm.beginTransaction();
-
-        DisruptionTime disruptionTime = realm.createObject(DisruptionTime.class);
-        disruptionTime.setTime(time);
-
-        realm.commitTransaction();
-        }
-
-        realm.close();*/
-    }
-
-// ===================================== FILTER ===========================================
-
-    static func setFilter(lines: [Int]) {
-        /*Realm realm = Realm.getDefaultInstance();
-
-        realm.beginTransaction();
-        realm.where(FilterLine.class).findAll().deleteAllFromRealm();
-        realm.commitTransaction();
-
-        for (Integer line : lines) {
-        realm.beginTransaction();
-
-        FilterLine filterLine = realm.createObject(FilterLine.class);
-        filterLine.setLine(line);
-
-        realm.commitTransaction();
-        }
-
-        realm.close();
-
-        LogUtils.w(TAG, "Updated filter");*/
-    }
-
-    static func getFilter() -> [Int] {
-        /*Realm realm = Realm.getDefaultInstance();
-
-        Collection<FilterLine> result = realm.copyFromRealm(realm.where(FilterLine.class).findAll());
-        Collection<Integer> lines = new ArrayList<>();
-
-        for (FilterLine line : result) {
-        lines.add(line.getLine());
-        }
-
-        realm.close();
-
-        if (lines.isEmpty()) {
-        lines.add(100001);
-        lines.add(100003);
-        lines.add(100004);
-
-        for (int i = 4; i < Lines.checkBoxesId.length; i++) {
-        lines.add(Lines.checkBoxesId[i]);
-        }
-        }
-
-        return lines;*/
-
-        return []
-    }
-
-// ======================================= BEACONS =============================================
-
-/*public static void addBeacon(org.altbeacon.beacon.Beacon beacon, String type) {
-Realm realm = Realm.getDefaultInstance();
-
-int major = beacon.getId2().toInt();
-int minor = beacon.getId3().toInt();
-
-if (major == 1 && minor != 1) {
-major = beacon.getId3().toInt();
-minor = beacon.getId2().toInt();
-}
-
-realm.beginTransaction();
-
-Beacon realmObject = realm.createObject(Beacon.class);
-realmObject.setType(type);
-realmObject.setMajor(major);
-realmObject.setMinor(minor);
-realmObject.setTimeStamp((int) (System.currentTimeMillis() / 1000));
-
-realm.commitTransaction();
-realm.close();
-
-LogUtils.i(TAG, "Added beacon " + major + " to realm");
-}*/
-
-// ======================================= BADGES ==============================================
+    // ======================================= BADGES ==============================================
 
     static func hasEarnedBadge(badgeId: Int) -> Bool {
         let realm = try! Realm()
@@ -439,12 +220,17 @@ LogUtils.i(TAG, "Added beacon " + major + " to realm");
 
     // ======================================= DEPARTURE FILTER ==============================================
 
-    static func setFilteredDepartureLines(lines: [Int]) {
+    static func setDisabledDepartures(lines: [Int]) {
         let realm = try! Realm()
 
         try! realm.write {
+            let objects = realm.objects(DisabledDeparture.self)
+            realm.delete(objects)
+        }
+
+        try! realm.write {
             for line in lines {
-                let filter = FilteredDepartureLine()
+                let filter = DisabledDeparture()
                 filter.line = line
 
                 realm.add(filter)
@@ -452,10 +238,10 @@ LogUtils.i(TAG, "Added beacon " + major + " to realm");
         }
     }
 
-    static func getFilteredDepartureLines() -> [Int] {
+    static func getDisabledDepartures() -> [Int] {
         let realm = try! Realm()
 
-        let filtered = realm.objects(FilteredDepartureLine.self)
+        let filtered = realm.objects(DisabledDeparture.self)
         var lines: [Int] = []
 
         for filter in filtered {

@@ -2,7 +2,7 @@ import Foundation
 import RealmSwift
 import Realm
 
-class FilteredDepartureLine: Object {
+class DisabledDeparture: Object {
 
     dynamic var line: Int = 0
 }

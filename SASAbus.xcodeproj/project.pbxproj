@@ -196,7 +196,7 @@
 		1F2E38F0E5285E2ACE35F6FD /* BusStopRealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3EBF5BFCCAD566C261A7 /* BusStopRealmHelper.swift */; };
 		1F2E38F8747A52759F440458 /* BusStopRealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3EBF5BFCCAD566C261A7 /* BusStopRealmHelper.swift */; };
 		1F2E390631531B005348B96F /* NewsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E382F555119AD8AE7C89F /* NewsTabBarController.swift */; };
-		1F2E3917BB7DB5417EB18FCE /* FilteredDepartureLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E96826A29CC1CD8D8F6 /* FilteredDepartureLine.swift */; };
+		1F2E3917BB7DB5417EB18FCE /* DisabledDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E96826A29CC1CD8D8F6 /* DisabledDeparture.swift */; };
 		1F2E3918B388BA64C9BF3005 /* LineDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F09E6AB7FB126DB03A5 /* LineDetailsViewController.swift */; };
 		1F2E391BA5C0AB8817EACAD8 /* CurrentTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E39BD5B11199DA50218D2 /* CurrentTrip.swift */; };
 		1F2E391E2DE3C5D719BA8919 /* BusDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3FABBA042F7BB5F49EC3 /* BusDetailsViewController.swift */; };
@@ -289,7 +289,7 @@
 		1F2E3D181E0D84E0DC56EDBB /* SignatureAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E35BE0C3F24FB72246CBE /* SignatureAlgorithm.swift */; };
 		1F2E3D1E0AB351B55F73C393 /* PlannedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E307CB905D6FE92FA2B18 /* PlannedData.swift */; };
 		1F2E3D1FF324131E182C0D74 /* EcoPointsBadgeFooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3F8F0F6999693EE0143C /* EcoPointsBadgeFooterCell.xib */; };
-		1F2E3D254AD95ABD3179D9DB /* FilteredDepartureLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E96826A29CC1CD8D8F6 /* FilteredDepartureLine.swift */; };
+		1F2E3D254AD95ABD3179D9DB /* DisabledDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E96826A29CC1CD8D8F6 /* DisabledDeparture.swift */; };
 		1F2E3D30D1F8ABE4EA539470 /* BadgeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E314A1DCC9BAFE8BE5925 /* BadgeHelper.swift */; };
 		1F2E3D38D00D81E184AAC49D /* CloudApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A67A910AE6D67ED64A2 /* CloudApi.swift */; };
 		1F2E3D51A524DE3D50EA557C /* EmptyStateBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E355B71AD23B332EFF729 /* EmptyStateBaseView.swift */; };
@@ -648,7 +648,7 @@
 		1F2E3E8E2FA9AE24AC2BD792 /* LinesApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinesApi.swift; sourceTree = "<group>"; };
 		1F2E3E901D36F1C4161C7B68 /* EcoPointsBadgeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EcoPointsBadgeCell.swift; sourceTree = "<group>"; };
 		1F2E3E91094AAD40074C377C /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
-		1F2E3E96826A29CC1CD8D8F6 /* FilteredDepartureLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilteredDepartureLine.swift; sourceTree = "<group>"; };
+		1F2E3E96826A29CC1CD8D8F6 /* DisabledDeparture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisabledDeparture.swift; sourceTree = "<group>"; };
 		1F2E3EAB5F2C1DE6084A353E /* MapUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapUtils.swift; sourceTree = "<group>"; };
 		1F2E3EB50C29943A020DEA9B /* VdvHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VdvHandler.swift; sourceTree = "<group>"; };
 		1F2E3EBF5BFCCAD566C261A7 /* BusStopRealmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopRealmHelper.swift; sourceTree = "<group>"; };
@@ -863,7 +863,7 @@
 				1F2E3157A8D2125958C39E9E /* EarnedBadge.swift */,
 				1F2E36654DEFE0023DB1BCC8 /* FavoriteBusStop.swift */,
 				1F2E3874AB69B6CD8D84366C /* FavoriteLine.swift */,
-				1F2E3E96826A29CC1CD8D8F6 /* FilteredDepartureLine.swift */,
+				1F2E3E96826A29CC1CD8D8F6 /* DisabledDeparture.swift */,
 				1F2E3227076AA65D551F407B /* Trip.swift */,
 			);
 			path = User;
@@ -2237,7 +2237,7 @@
 				1F2E3DCDA5AFD8B40A54294C /* Validator.swift in Sources */,
 				1F2E39A96CDE1AA086901581 /* EcoPointsProfilePictureDefaultViewController.swift in Sources */,
 				1F2E36C8798459048F6DA114 /* EcoPointsProfilePictureDefaultCell.swift in Sources */,
-				1F2E3D254AD95ABD3179D9DB /* FilteredDepartureLine.swift in Sources */,
+				1F2E3D254AD95ABD3179D9DB /* DisabledDeparture.swift in Sources */,
 				1F2E3988C209FC01D0DBB072 /* StringExtension.swift in Sources */,
 				1F2E3A29E23C36EBFEFFA47E /* SSZipArchive+Swift.swift in Sources */,
 				1F2E3039489EA64FC1625C56 /* AnswersHelper.swift in Sources */,
@@ -2345,7 +2345,7 @@
 				1F2E3797C6AD880D6351FCC0 /* HMAC.swift in Sources */,
 				1F2E388A5860789C1517E182 /* NSData+HMAC.m in Sources */,
 				1F2E33D50EE272BE3A5A18C1 /* Validator.swift in Sources */,
-				1F2E3917BB7DB5417EB18FCE /* FilteredDepartureLine.swift in Sources */,
+				1F2E3917BB7DB5417EB18FCE /* DisabledDeparture.swift in Sources */,
 				1F2E320367EEA6B3EE7013A7 /* StringExtension.swift in Sources */,
 				1F2E3B3CC261E8066A7558F1 /* SSZipArchive+Swift.swift in Sources */,
 				1F2E348ABFD065352BF5FD22 /* AnswersHelper.swift in Sources */,

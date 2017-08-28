@@ -62,6 +62,14 @@ class BusStopFilterViewController: UIViewController, UICollectionViewDelegate, U
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
+        let lines = filteredLines.filter {
+            !$0.active
+        }.map {
+            $0.line
+        }
+        
+        UserRealmHelper.setDisabledDepartures(lines: lines)
+
         let viewController = navigationController?.viewControllers[0] as! BusStopViewController
         viewController.updateFilter()
     }
@@ -69,9 +77,13 @@ class BusStopFilterViewController: UIViewController, UICollectionViewDelegate, U
 
     func loadAllLines() {
         let lines = Lines.ORDER
+        let disabledLines = UserRealmHelper.getDisabledDepartures()
 
         for line in lines {
-            filteredLines.append(BusLineFilter(line: line))
+            let filter = BusLineFilter(line: line)
+            filter.active = !disabledLines.contains(line)
+            
+            filteredLines.append(filter)
         }
 
         self.collectionView.reloadData()
@@ -121,9 +133,9 @@ extension BusStopFilterViewController {
         cell.filterSwitch.tag = indexPath.row
         cell.filterSwitch.setOn(busLineFilter.active, animated: false)
         cell.filterSwitch.addTarget(self, action: #selector(setFilterActive(_:)), for: UIControlEvents.valueChanged)
-        cell.filterSwitch.accessibilityLabel = Lines.lidToName(id: busLineFilter.busLine)
+        cell.filterSwitch.accessibilityLabel = Lines.lidToName(id: busLineFilter.line)
 
-        cell.busLineLabel.text = Lines.lidToName(id: busLineFilter.busLine)
+        cell.busLineLabel.text = Lines.lidToName(id: busLineFilter.line)
 
         return cell
     }
