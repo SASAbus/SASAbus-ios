@@ -292,10 +292,10 @@ extension AppDelegate: GIDSignInDelegate {
 
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if (error == nil) {
-            Log.info("Login success: userId=\(userId)")
-            
             let userId = user.userID
             let idToken = user.authentication.idToken
+            
+            Log.info("Login success: userId=\(userId)")
 
             NotificationCenter.default.post(
                     name: LoginViewController.googleLoginSuccess,
