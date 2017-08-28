@@ -292,19 +292,10 @@ extension AppDelegate: GIDSignInDelegate {
 
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if (error == nil) {
+            Log.info("Login success: userId=\(userId)")
+            
             let userId = user.userID
             let idToken = user.authentication.idToken
-            let fullName = user.profile.name
-            let givenName = user.profile.givenName
-            let familyName = user.profile.familyName
-            let email = user.profile.email
-
-            print("userId: \(userId)")
-            print("idToken: \(idToken)")
-            print("fullName: \(fullName)")
-            print("givenName: \(givenName)")
-            print("familyName: \(familyName)")
-            print("email: \(email)")
 
             NotificationCenter.default.post(
                     name: LoginViewController.googleLoginSuccess,
@@ -312,15 +303,19 @@ extension AppDelegate: GIDSignInDelegate {
                     userInfo: ["user_id": idToken]
             )
         } else {
-            print("Sign in error: \(error.localizedDescription)")
+            print("Login error: \(error.localizedDescription)")
+            
+            AuthHelper.logout()
 
             NotificationCenter.default.post(name: LoginViewController.googleLoginError, object: nil)
         }
     }
 
-    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: NSError!) {
+    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: Error!) {
+        AuthHelper.logout()
+        
         if (error == nil) {
-            print("Logout")
+            print("Logout successful")
         } else {
             print("Logout error: \(error.localizedDescription)")
         }

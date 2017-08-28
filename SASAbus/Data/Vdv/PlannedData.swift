@@ -51,6 +51,7 @@ class PlannedData {
                 Log.error("Planned data (JSON file) is missing")
                 dataExists = false
             } catch let error {
+                Log.error("Cannot list contents of data directory, re-downloading: \(error)")
                 dataExists = false
             }
         }
@@ -166,6 +167,6 @@ extension PlannedData {
     }
 
     static func getDataDate() -> Int {
-        return UserDefaults.standard.integer(forKey: PREF_DATA_DATE) ?? 0
+        return UserDefaults.standard.integer(forKey: PREF_DATA_DATE)
     }
 }

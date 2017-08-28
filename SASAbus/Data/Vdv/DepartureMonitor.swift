@@ -73,7 +73,7 @@ class DepartureMonitor {
     func collect() -> [VdvDeparture] {
         let date = Date(timeIntervalSince1970: Double(time / 1000))
 
-        var isToday = Calendar.current.isDateInToday(date)
+        let isToday = Calendar.current.isDateInToday(date)
 
         if !isToday {
             do {

@@ -146,15 +146,11 @@ class AuthHelper {
             Log.error("Not a AFError error")
             return
         }
-
-        /* if (throwable is HttpException) {
-
-             if (throwable.code() == 401) {
-                 Timber.e("Unauthorized response, clearing credentials")
-
-                 logout(context)
-             }
-         }*/
+        
+        if error.responseCode == 401 {
+            Log.error("Unauthorized response, clearing credentials")
+            logout()
+        }
     }
 
     static func clearCredentials() {

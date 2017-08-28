@@ -2,62 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3d29402-016d-4755-9201-16bfc752e971" name="Default" comment="Made strings translatable">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_place_white.imageset/ic_place_white.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_place_white.imageset/ic_place_white_2x.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_place_white.imageset/ic_place_white_3x.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/ic_place_white.imageset/Contents.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Constants/Images.swift" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Constants/Localized.swift" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Util/Extensions/UIImage+Insets.swift" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TripNotification/en.lproj/MainInterface.strings" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SASAbus/de.lproj/Localizable.strings" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SASAbus/en.lproj/Localizable.strings" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SASAbus/it.lproj/Localizable.strings" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/TripNotification/Base.lproj/MainInterface.storyboard" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/de.lproj/Localizable.strings" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/en.lproj/Localizable.strings" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/it.lproj/Localizable.strings" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile" afterPath="$PROJECT_DIR$/Podfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile.lock" afterPath="$PROJECT_DIR$/Podfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/SASAbus.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/About/AboutViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/About/AboutViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/About/Credits/CreditsViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/About/Credits/CreditsViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/About/Report/ReportViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/About/Report/ReportViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/About/Report/ReportViewController.xib" afterPath="$PROJECT_DIR$/SASAbus/Controller/About/Report/ReportViewController.xib" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/BusDetails/BusDetailsViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusDetails/BusDetailsViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/BusDetails/BusDetailsViewController.xib" afterPath="$PROJECT_DIR$/SASAbus/Controller/BusDetails/BusDetailsViewController.xib" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Departure/BusStopViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Departure/BusStopViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Departure/BusStopViewController.xib" afterPath="$PROJECT_DIR$/SASAbus/Controller/Departure/BusStopViewController.xib" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Departure/Favorites/BusStopFavoritesViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Departure/Favorites/BusStopFavoritesViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Departure/Gps/BusStopGpsViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Departure/Gps/BusStopGpsViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Departure/Map/BusStopMapViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Departure/Map/BusStopMapViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Badges/EcoPointsBadgeFooterCell.xib" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Badges/EcoPointsBadgeFooterCell.xib" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Badges/EcoPointsBadgesViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Badges/EcoPointsBadgesViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/EcoPointsTabViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/EcoPointsTabViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Leaderboard/EcoPointsLeaderboardViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Leaderboard/EcoPointsLeaderboardViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Login/LoginViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Login/LoginViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Login/LoginViewController.xib" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Login/LoginViewController.xib" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Profile/EcoPointsProfileCell.xib" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Profile/EcoPointsProfileCell.xib" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Profile/EcoPointsProfileViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Profile/EcoPointsProfileViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Profile/Settings/EcoPointsSettingsViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Profile/Settings/EcoPointsSettingsViewController.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Intro/IntroViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Intro/IntroViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Line/Course/LineCourseViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Line/Course/LineCourseViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Line/Course/List/LineCourseListViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Line/Course/List/LineCourseListViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Line/Details/Buses/LineDetailsHeader.xib" afterPath="$PROJECT_DIR$/SASAbus/Controller/Line/Details/Buses/LineDetailsHeader.xib" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Line/Details/LineDetailsViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Line/Details/LineDetailsViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Line/LineViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Line/LineViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Menu/MenuViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Menu/MenuViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/News/Detail/NewsDetailViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/News/Detail/NewsDetailViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/News/NewsTabBarController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/News/NewsTabBarController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/News/NewsTableViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/News/NewsTableViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Parking/Detail/ParkingDetailViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Parking/Detail/ParkingDetailViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Parking/ParkingViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Parking/ParkingViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Realtime/BottomSheet/MapBottomSheetViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Realtime/BottomSheet/MapBottomSheetViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Realtime/BottomSheet/MapBottomSheetViewController.xib" afterPath="$PROJECT_DIR$/SASAbus/Controller/Realtime/BottomSheet/MapBottomSheetViewController.xib" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Data/Model/MenuItem.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Model/MenuItem.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Info.plist" afterPath="$PROJECT_DIR$/SASAbus/Info.plist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/View/Placeholder/EmptyState/EmptyStateFavoritesView.xib" afterPath="$PROJECT_DIR$/SASAbus/View/Placeholder/EmptyState/EmptyStateFavoritesView.xib" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -236,7 +182,7 @@
       <workItem from="1503643948823" duration="64000" />
       <workItem from="1503644030748" duration="5474000" />
       <workItem from="1503650150942" duration="5645000" />
-      <workItem from="1503901574344" duration="2439000" />
+      <workItem from="1503901574344" duration="2966000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed some bugs with Firebase">
       <created>1503560356013</created>
@@ -298,7 +244,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20563000" />
+    <option name="totallyTimeSpent" value="21090000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -313,15 +259,15 @@
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <layout>
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24954791" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24954791" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32241556" sideWeight="0.5021097" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32241556" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32241556" sideWeight="0.4978903" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -536,11 +482,10 @@
         <state relative-caret-position="360">
           <caret line="32" column="45" lean-forward="true" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
           <folding>
-            <element signature="e#5371#5505#0" expanded="false" />
-            <element signature="e#5511#5625#0" expanded="false" />
-            <marker date="1503651201025" expanded="false" signature="4765:4997" ph="{...}" />
-            <marker date="1503651201025" expanded="false" signature="5079:5239" ph="{...}" />
-            <marker date="1503651201025" expanded="false" signature="5285:5365" ph="{...}" />
+            <element signature="e#5605#5714#0" expanded="false" />
+            <marker date="1503913568705" expanded="false" signature="4765:4997" ph="{...}" />
+            <marker date="1503913568705" expanded="false" signature="5079:5239" ph="{...}" />
+            <marker date="1503913568705" expanded="false" signature="5285:5365" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -783,10 +728,10 @@
         <state relative-caret-position="280">
           <caret line="32" column="21" lean-forward="true" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
           <folding>
-            <marker date="1503910659142" expanded="true" signature="864:992" ph="{...}" />
-            <marker date="1503910659142" expanded="true" signature="3503:3698" ph="{...}" />
-            <marker date="1503910659142" expanded="true" signature="3503:4028" ph="{...}" />
-            <marker date="1503910659142" expanded="true" signature="3782:4026" ph="{...}" />
+            <marker date="1503912977523" expanded="true" signature="864:992" ph="{...}" />
+            <marker date="1503912977523" expanded="true" signature="3503:3698" ph="{...}" />
+            <marker date="1503912977523" expanded="true" signature="3503:4028" ph="{...}" />
+            <marker date="1503912977523" expanded="true" signature="3782:4026" ph="{...}" />
           </folding>
         </state>
       </provider>
