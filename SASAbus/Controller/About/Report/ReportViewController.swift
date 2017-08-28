@@ -3,8 +3,7 @@ import RxSwift
 import RxCocoa
 import SwiftValidator
 
-class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate,
-        UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidationDelegate, UITextFieldDelegate {
+class ReportViewController: UIViewController, UIPickerViewDataSource, UINavigationControllerDelegate {
 
     var placeHolderText = L10n.Feedback.TextArea.placeholder
 
@@ -335,7 +334,8 @@ class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDa
     }
 }
 
-extension ReportViewController {
+
+extension ReportViewController: UITextFieldDelegate, UITextViewDelegate {
 
 
     public func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
@@ -363,22 +363,13 @@ extension ReportViewController {
         }
     }
 
-
-    func validationSuccessful() {
-    }
-
-    func validationFailed(_ errors: [(Validatable, ValidationError)]) {
-        for (field, error) in errors {
-            var fieldToMark: UIView?
-
-            if let field = field as? UITextField {
-                fieldToMark = field.outerView
+    public func textFieldDidEndEditing(_ textField: UITextField) {
+        validator.validateField(textField) { error in
+            if error == nil {
+                textField.outerView?.layer.borderColor = Color.borderColor.cgColor
+            } else {
+                textField.outerView?.layer.borderColor = UIColor.red.cgColor
             }
-
-            fieldToMark?.layer.borderColor = UIColor.red.cgColor
-
-            error.errorLabel?.text = error.errorMessage
-            error.errorLabel?.isHidden = false
         }
     }
 
@@ -411,20 +402,30 @@ extension ReportViewController {
         self.scrollView.contentInset = contentInset
         self.scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
+}
 
+extension ReportViewController: ValidationDelegate {
 
-    public func textFieldDidEndEditing(_ textField: UITextField) {
-        validator.validateField(textField) { error in
-            if error == nil {
-                textField.outerView?.layer.borderColor = Color.borderColor.cgColor
-            } else {
-                textField.outerView?.layer.borderColor = UIColor.red.cgColor
+    func validationSuccessful() {
+    }
+
+    func validationFailed(_ errors: [(Validatable, ValidationError)]) {
+        for (field, error) in errors {
+            var fieldToMark: UIView?
+
+            if let field = field as? UITextField {
+                fieldToMark = field.outerView
             }
+
+            fieldToMark?.layer.borderColor = UIColor.red.cgColor
+
+            error.errorLabel?.text = error.errorMessage
+            error.errorLabel?.isHidden = false
         }
     }
 }
 
-extension ReportViewController {
+extension ReportViewController: UIPickerViewDelegate {
 
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -439,9 +440,9 @@ extension ReportViewController {
     }
 }
 
-extension ReportViewController {
+extension ReportViewController: UIImagePickerControllerDelegate {
 
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         guard let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             Log.error("No image picked")
             return

@@ -21,6 +21,8 @@ class Settings {
     static let PREF_SURVEY_LAST_MILLIS = "pref_survey_last_millis"
 
     static let PREF_TRIP_NOTIFICATION_ENABLED = "pref_trips_enabled"
+    
+    static let PREF_CRASHLYTICS_DEVICE_ID = "pref_crashlytics_device_id"
 
 
     static func registerDefaults() {
@@ -68,5 +70,16 @@ class Settings {
 
     static func getStartScreen() -> Int {
         return UserDefaults.standard.integer(forKey: PREF_START_SCREEN)
+    }
+    
+    
+    static func getCrashlyticsDeviceId() -> String {
+        let uuid = UserDefaults.standard.string(forKey: PREF_CRASHLYTICS_DEVICE_ID)
+        
+        if uuid == nil {
+            UserDefaults.standard.set(UIDevice.current.identifierForVendor?.uuidString, forKey: PREF_CRASHLYTICS_DEVICE_ID)
+        }
+        
+        return UIDevice.current.identifierForVendor!.uuidString
     }
 }

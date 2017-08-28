@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3d29402-016d-4755-9201-16bfc752e971" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SASAbus/Data/Realm/User/FilteredDepartureLine.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Realm/User/DisabledDeparture.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/SASAbus.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Departure/BusStopViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Departure/BusStopViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Departure/Filter/BusStopFilterViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Departure/Filter/BusStopFilterViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Data/Realm/UserRealmHelper.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Realm/UserRealmHelper.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Util/BusLineFilter.swift" afterPath="$PROJECT_DIR$/SASAbus/Util/BusLineFilter.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/AppDelegate.swift" afterPath="$PROJECT_DIR$/SASAbus/AppDelegate.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/About/Report/ReportViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/About/Report/ReportViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Login/LoginViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Login/LoginViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Util/Settings.swift" afterPath="$PROJECT_DIR$/SASAbus/Util/Settings.swift" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -60,7 +59,6 @@
         <option value="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Profile/Settings/EcoPointsSettingsViewController.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Data/Networking/Auth/AuthHelper.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/EcoPointsTabViewController.swift" />
-        <option value="$PROJECT_DIR$/SASAbus/AppDelegate.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Data/Vdv/PlannedData.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvBusStopBreaks.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvTripStopTimes.swift" />
@@ -101,6 +99,8 @@
         <option value="$PROJECT_DIR$/SASAbus/Data/Realm/User/DisabledDeparture.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Data/Realm/UserRealmHelper.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Controller/Departure/BusStopViewController.swift" />
+        <option value="$PROJECT_DIR$/SASAbus/Controller/About/Report/ReportViewController.swift" />
+        <option value="$PROJECT_DIR$/SASAbus/AppDelegate.swift" />
       </list>
     </option>
   </component>
@@ -142,48 +142,6 @@
               <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
               <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
             </path>
-            <path>
-              <item name="" type="efc3779f:XcodeRootNode" />
-              <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
-              <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
-              <item name="Controller" type="fcab9f18:XcodeViewNode" />
-            </path>
-            <path>
-              <item name="" type="efc3779f:XcodeRootNode" />
-              <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
-              <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
-              <item name="Controller" type="fcab9f18:XcodeViewNode" />
-              <item name="Departure" type="fcab9f18:XcodeViewNode" />
-            </path>
-            <path>
-              <item name="" type="efc3779f:XcodeRootNode" />
-              <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
-              <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
-              <item name="Controller" type="fcab9f18:XcodeViewNode" />
-              <item name="Departure" type="fcab9f18:XcodeViewNode" />
-              <item name="Filter" type="fcab9f18:XcodeViewNode" />
-            </path>
-            <path>
-              <item name="" type="efc3779f:XcodeRootNode" />
-              <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
-              <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
-              <item name="Data" type="fcab9f18:XcodeViewNode" />
-            </path>
-            <path>
-              <item name="" type="efc3779f:XcodeRootNode" />
-              <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
-              <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
-              <item name="Data" type="fcab9f18:XcodeViewNode" />
-              <item name="Realm" type="fcab9f18:XcodeViewNode" />
-            </path>
-            <path>
-              <item name="" type="efc3779f:XcodeRootNode" />
-              <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
-              <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
-              <item name="Data" type="fcab9f18:XcodeViewNode" />
-              <item name="Realm" type="fcab9f18:XcodeViewNode" />
-              <item name="User" type="fcab9f18:XcodeViewNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -197,7 +155,7 @@
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="SASAbus,,,TripNotification" />
     <property name="com.jetbrains.cidr.execution.build.XcodeMessageFilterConfiguration.INFO" value="false" />
     <property name="com.jetbrains.cidr.execution.build.XcodeMessageFilterConfiguration.WARNING" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="LineCourse&#9;null&#9;null&#10;Menu&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Controller/Menu/MenuViewController.swift&#10;EcoPointsV&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Controller/EcoPoints/EcoPointsViewController.swift&#10;VdvPaths&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvPaths.swift&#10;VdvTrips&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvTrips.swift&#10;De&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/DepartureMonitor.swift&#10;Departure&#9;null&#9;null&#10;VdvCal&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvCalendar.swift&#10;VdvDa&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Model/VdvDate.swift&#10;MapBottom&#9;null&#9;null&#10;MenuV&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="report&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Controller/About/Report/ReportViewController.swift&#10;LineCourse&#9;null&#9;null&#10;Menu&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Controller/Menu/MenuViewController.swift&#10;EcoPointsV&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Controller/EcoPoints/EcoPointsViewController.swift&#10;VdvPaths&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvPaths.swift&#10;VdvTrips&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvTrips.swift&#10;De&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/DepartureMonitor.swift&#10;Departure&#9;null&#9;null&#10;VdvCal&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvCalendar.swift&#10;VdvDa&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Model/VdvDate.swift&#10;MapBottom&#9;null&#9;null&#10;MenuV&#9;null&#9;null" />
     <property name="OverrideImplement.combined" value="true" />
   </component>
   <component name="RecentsManager">
@@ -267,7 +225,7 @@
       <workItem from="1503644030748" duration="5474000" />
       <workItem from="1503650150942" duration="5645000" />
       <workItem from="1503901574344" duration="3393000" />
-      <workItem from="1503914429261" duration="6935000" />
+      <workItem from="1503914429261" duration="8128000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed some bugs with Firebase">
       <created>1503560356013</created>
@@ -388,11 +346,18 @@
       <option name="project" value="LOCAL" />
       <updated>1503924289000</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Fixed filter icon disappearing in departures">
+      <created>1503925821497</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1503925821497</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28452000" />
+    <option name="totallyTimeSpent" value="29645000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -465,7 +430,8 @@
     <MESSAGE value="Fixed eco points profile not loading after login" />
     <MESSAGE value="Added new star icon" />
     <MESSAGE value="Fixed line course path not connected between active and inactive points" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed line course path not connected between active and inactive points" />
+    <MESSAGE value="Fixed filter icon disappearing in departures" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed filter icon disappearing in departures" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -474,44 +440,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/SASAbus/Data/Vdv/Api.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="15" column="10" lean-forward="false" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#2#0" expanded="false" />
-            <element signature="e#108#322#0" expanded="false" />
-            <element signature="e#343#1941#0" expanded="false" />
-            <element signature="e#360#761#0" expanded="false" />
-            <element signature="e#767#1480#0" expanded="false" />
-            <element signature="e#1486#1939#0" expanded="false" />
-            <element signature="e#1943#2434#0" expanded="false" />
-            <element signature="e#1964#2131#0" expanded="false" />
-            <element signature="e#2137#2291#0" expanded="false" />
-            <element signature="e#2297#2432#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SASAbus/Util/Extensions/UIViewController+Child.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="e#32#704#0" expanded="false" />
-            <element signature="e#66#702#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SASAbus/Info.plist">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SASAbus/RemoteConfigDefaults.plist">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -630,7 +558,7 @@
         <state relative-caret-position="226">
           <caret line="17" column="37" lean-forward="true" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
           <folding>
-            <element signature="e#0#17#0" expanded="true" />
+            <element signature="e#0#17#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -755,16 +683,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SASAbus/AppDelegate.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="515">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="e#829#841#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Pods/RxSwift/RxSwift/Schedulers/MainScheduler.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="349">
@@ -810,20 +728,12 @@
         <state relative-caret-position="45">
           <caret line="8" column="44" lean-forward="false" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
           <folding>
-            <element signature="e#67#4588#0" expanded="false" />
-            <element signature="e#782#1097#0" expanded="false" />
-            <element signature="e#1104#1176#0" expanded="false" />
-            <element signature="e#1183#2569#0" expanded="false" />
-            <element signature="e#2576#3106#0" expanded="false" />
-            <element signature="e#3112#3684#0" expanded="false" />
-            <element signature="e#3691#4196#0" expanded="false" />
-            <element signature="e#4202#4586#0" expanded="false" />
-            <element signature="e#4590#7561#0" expanded="false" />
-            <element signature="e#7175#7559#0" expanded="false" />
-            <marker date="1503922670206" expanded="false" signature="4708:5292" ph="{...}" />
-            <marker date="1503922670206" expanded="false" signature="5373:5486" ph="{...}" />
-            <marker date="1503922670206" expanded="false" signature="5567:5748" ph="{...}" />
-            <marker date="1503922670206" expanded="false" signature="5827:7169" ph="{...}" />
+            <element signature="e#4827#7835#0" expanded="false" />
+            <element signature="e#7449#7833#0" expanded="false" />
+            <marker date="1503928754764" expanded="false" signature="4708:5292" ph="{...}" />
+            <marker date="1503928754764" expanded="false" signature="5373:5486" ph="{...}" />
+            <marker date="1503928754764" expanded="false" signature="5567:5748" ph="{...}" />
+            <marker date="1503928754764" expanded="false" signature="7254:7443" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -941,7 +851,7 @@
         <state relative-caret-position="120">
           <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
-            <element signature="e#0#17#0" expanded="true" />
+            <element signature="e#0#17#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1021,6 +931,69 @@
             <element signature="e#19019#19252#0" expanded="false" />
             <element signature="e#19259#19559#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TripNotification/Info.plist">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/SwiftValidator/SwiftValidator/Core/ValidationDelegate.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SASAbus/Controller/About/Report/ReportViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="309" column="37" lean-forward="true" selection-start-line="309" selection-start-column="37" selection-end-line="309" selection-end-column="37" />
+          <folding>
+            <element signature="e#1705#1821#0" expanded="false" />
+            <element signature="e#1827#1910#0" expanded="false" />
+            <element signature="e#1916#2020#0" expanded="false" />
+            <element signature="e#2027#3739#0" expanded="false" />
+            <element signature="e#3745#3973#0" expanded="false" />
+            <element signature="e#3980#4902#0" expanded="false" />
+            <element signature="e#4908#5702#0" expanded="false" />
+            <element signature="e#5708#5936#0" expanded="false" />
+            <element signature="e#5942#6345#0" expanded="false" />
+            <element signature="e#6351#7096#0" expanded="false" />
+            <element signature="e#7103#7790#0" expanded="false" />
+            <element signature="e#7796#8499#0" expanded="false" />
+            <element signature="e#8506#9138#0" expanded="false" />
+            <element signature="e#10345#12820#0" expanded="false" />
+            <element signature="e#10425#10664#0" expanded="false" />
+            <element signature="e#10670#11149#0" expanded="false" />
+            <element signature="e#11155#11512#0" expanded="false" />
+            <element signature="e#11519#11926#0" expanded="false" />
+            <element signature="e#11932#12546#0" expanded="false" />
+            <element signature="e#12552#12818#0" expanded="false" />
+            <element signature="e#12822#13364#0" expanded="false" />
+            <element signature="e#12880#12915#0" expanded="false" />
+            <element signature="e#12921#13362#0" expanded="false" />
+            <element signature="e#13366#13805#0" expanded="false" />
+            <element signature="e#13426#13517#0" expanded="false" />
+            <element signature="e#13523#13645#0" expanded="false" />
+            <element signature="e#13651#13803#0" expanded="false" />
+            <element signature="e#13807#15929#0" expanded="false" />
+            <element signature="e#13878#15792#0" expanded="false" />
+            <element signature="e#15798#15927#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SASAbus/AppDelegate.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="39" column="42" lean-forward="true" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>

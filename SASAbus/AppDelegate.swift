@@ -172,6 +172,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupLogging() {
 #if !DEBUG
         Fabric.with([Crashlytics.self])
+        Crashlytics.sharedInstance().setUserIdentifier(Settings.getCrashlyticsDeviceId())
 #endif
     }
 
@@ -294,17 +295,18 @@ extension AppDelegate: GIDSignInDelegate {
         if (error == nil) {
             let userId = user.userID
             let idToken = user.authentication.idToken
-            
+            let email = user.profile.email
+
             Log.info("Login success: userId=\(userId)")
 
             NotificationCenter.default.post(
                     name: LoginViewController.googleLoginSuccess,
                     object: nil,
-                    userInfo: ["user_id": idToken]
+                    userInfo: ["user_id": idToken, "email": email]
             )
         } else {
             print("Login error: \(error.localizedDescription)")
-            
+
             AuthHelper.logout()
 
             NotificationCenter.default.post(name: LoginViewController.googleLoginError, object: nil)
@@ -313,7 +315,7 @@ extension AppDelegate: GIDSignInDelegate {
 
     func signIn(signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: Error!) {
         AuthHelper.logout()
-        
+
         if (error == nil) {
             print("Logout successful")
         } else {

@@ -5,6 +5,8 @@ import RxCocoa
 
 import GoogleSignIn
 
+import Crashlytics
+
 
 class LoginViewController: UIViewController {
 
@@ -84,7 +86,7 @@ class LoginViewController: UIViewController {
                     }
 
                     Log.warning("Login success, got token: \(token)")
-                    self.loginSuccess(token: token, isGoogleSignIn: false)
+                    self.loginSuccess(email: emailString, token: token, isGoogleSignIn: false)
                 }, onError: { error in
                     Log.error("Error: \(error)")
 
@@ -130,7 +132,7 @@ class LoginViewController: UIViewController {
     }
 
 
-    func loginSuccess(token: String, isGoogleSignIn: Bool) {
+    func loginSuccess(email: String?, token: String, isGoogleSignIn: Bool) {
         if AuthHelper.setInitialToken(token: token) {
             AuthHelper.setIsGoogleAccount(value: isGoogleSignIn)
 
@@ -140,6 +142,12 @@ class LoginViewController: UIViewController {
                 
                 return nil
             })
+            
+            #if !DEBUG
+                if let email = email {
+                    Crashlytics.sharedInstance().setUserEmail(email)
+                }
+            #endif
         } else {
             Log.error("Could not set token")
             loginFailed()
@@ -225,7 +233,7 @@ extension LoginViewController: GIDSignInUIDelegate {
                     }
 
                     Log.warning("Google login success, got token: \(token)")
-                    self.loginSuccess(token: token, isGoogleSignIn: false)
+                    self.loginSuccess(email: userInfo["email"] as? String, token: token, isGoogleSignIn: false)
                 }, onError: { error in
                     Log.error("Error: \(error)")
 
