@@ -70,8 +70,6 @@ class EcoPointsProfileViewController: UITableViewController {
 
                     self.profile = profile
 
-                    Log.info("Got profile")
-
                     self.tableView.reloadData()
                     self.refreshControl!.endRefreshing()
                 }, onError: { error in

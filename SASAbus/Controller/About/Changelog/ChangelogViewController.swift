@@ -12,7 +12,6 @@ class ChangelogViewController: UITableViewController, UIToolbarDelegate {
         super.init(coder: aDecoder)
     }
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }

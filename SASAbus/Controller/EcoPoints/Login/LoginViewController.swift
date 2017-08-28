@@ -136,6 +136,9 @@ class LoginViewController: UIViewController {
 
             parentVC.loginComplete(completion: { _ in
                 self.animateViews(true, duration: 0)
+                self.animateGoogleViews(true, duration: 0)
+                
+                return nil
             })
         } else {
             Log.error("Could not set token")
@@ -193,6 +196,7 @@ extension LoginViewController: GIDSignInUIDelegate {
 
         animateGoogleViews(false)
     }
+
 
     func googleSignInSuccess(withNotification notification: NSNotification) {
         Log.warning("Got google sign in success")

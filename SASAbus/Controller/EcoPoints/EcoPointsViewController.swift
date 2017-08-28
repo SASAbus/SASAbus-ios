@@ -94,6 +94,9 @@ class EcoPointsViewController: MasterViewController {
                 navController.navigationBar.tintColor = UIColor.white
                 navController.navigationBar.barTintColor = Theme.orange
             }
+
+            // Cannot load profile earlier because auth token is not set
+            self.ecoPointsController.profileViewController.parseProfile()
         }, completion: { _ in
             self.loginContainer.isHidden = true
             self.contentContainer.isHidden = false
