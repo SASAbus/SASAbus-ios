@@ -23,6 +23,7 @@
 import UIKit
 
 struct MenuItem {
+
     var title: String
     var image: UIImage
     var viewController: UIViewController?

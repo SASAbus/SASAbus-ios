@@ -98,6 +98,8 @@
 "departures.filter.enable_all" = "Enable all";
 "departures.filter.disable_all" = "Disable all";
 
+"settings.title" = "Settings";
+
 
 // ==================================================== ECO POINTS =====================================================
 

@@ -10,7 +10,7 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>Language and appearance</string>
+			<string>submenu_appearance</string>
 			<key>File</key>
 			<string>Appearance</string>
 		</dict>
@@ -18,7 +18,7 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>Map</string>
+			<string>submenu_map</string>
 			<key>File</key>
 			<string>Map</string>
 		</dict>

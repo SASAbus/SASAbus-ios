@@ -486,6 +486,11 @@ enum L10n {
       static let title = L10n.tr("Localizable", "parking.detail.title")
     }
   }
+
+  enum Settings {
+    /// Settings
+    static let title = L10n.tr("Localizable", "settings.title")
+  }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length nesting type_body_length type_name
 

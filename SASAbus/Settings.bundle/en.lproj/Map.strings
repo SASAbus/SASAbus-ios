@@ -1,0 +1,22 @@
+"default_position_title" = "Default map position";
+"default_position_south_tyrol" = "South tyrol";
+"default_position_bolzano" = "Bolzano";
+"default_position_merano" = "Merano";
+
+"map_type_title" = "Map type";
+"map_type_standard" = "Standard";
+"map_type_satellite" = "Satellite";
+"map_type_hybrid" = "Hybrid";
+
+"auto_refresh_title" = "Auto refresh";
+"auto_refresh_footer" = "Automatically refreshes the bus positions on the map using the specified interval. This may increase battery and internet usage.";
+"auto_refresh_interval" = "Update interval";
+"auto_refresh_interval_three" = "3 seconds";
+"auto_refresh_interval_five" = "5 seconds";
+"auto_refresh_interval_ten" = "10 seconds";
+"auto_refresh_interval_fifteen" = "15 seconds";
+
+"overlay_title" = "Path overlay";
+"overlay_footer" = "Shows a colored path overlay to indicate the direction the line is going to.";
+"overlay_enable_single" = "Show paths";
+"overlay_enable_all" = "Show all paths";

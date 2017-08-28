@@ -25,45 +25,50 @@ import UIKit
 struct Menu {
 
     static let items: [MenuItem] = [
-            MenuItem(
+        MenuItem(
                 title: L10n.Map.title,
-                    image: Asset.icNavigationMap.image,
-                    viewController: MainMapViewController.getViewController()),
+                image: Asset.icNavigationMap.image,
+                viewController: MainMapViewController.getViewController()),
 
-            MenuItem(
-                    title: L10n.Departures.title,
-                    image: Asset.icNavigationBusstop.image,
-                    viewController: BusStopViewController()),
+        MenuItem(
+                title: L10n.Departures.title,
+                image: Asset.icNavigationBusstop.image,
+                viewController: BusStopViewController()),
 
-            MenuItem(
-                    title: L10n.Line.title,
-                    image: Asset.icNavigationBus.image,
-                    viewController: LineViewController()),
+        MenuItem(
+                title: L10n.Line.title,
+                image: Asset.icNavigationBus.image,
+                viewController: LineViewController()),
 
-            MenuItem(
-                    title: NSLocalizedString("Route", comment: ""),
-                    image: Asset.icExploreWhite.image,
-                    viewController: MainRouteViewController()),
+        MenuItem(
+                title: NSLocalizedString("Route", comment: ""),
+                image: Asset.icExploreWhite.image,
+                viewController: MainRouteViewController()),
 
-            MenuItem(
-                    title: L10n.News.title,
-                    image: Asset.icEventNoteWhite.image,
-                    viewController: NewsTabBarController()),
+        MenuItem(
+                title: L10n.News.title,
+                image: Asset.icEventNoteWhite.image,
+                viewController: NewsTabBarController()),
 
-            MenuItem(
-                    title: L10n.Ecopoints.title,
-                    image: Asset.icNaturePeopleWhite.image,
-                    viewController: EcoPointsViewController()),
+        MenuItem(
+                title: L10n.Ecopoints.title,
+                image: Asset.icNaturePeopleWhite.image,
+                viewController: EcoPointsViewController()),
 
-            MenuItem(
-                    title: L10n.Parking.title,
-                    image: Asset.icNavigationParking.image,
-                    viewController: ParkingViewController()),
+        MenuItem(
+                title: L10n.Parking.title,
+                image: Asset.icNavigationParking.image,
+                viewController: ParkingViewController()),
 
-            MenuItem(
-                    title: L10n.About.title,
-                    image: Asset.icInfoOutlineWhite.image,
-                    viewController: AboutViewController())
+        MenuItem(
+                title: L10n.About.title,
+                image: Asset.icInfoOutlineWhite.image,
+                viewController: AboutViewController()),
+
+        MenuItem(
+                title: L10n.Settings.title,
+                image: Asset.icSettingsWhite.image,
+                viewController: nil)
     ]
 }
 
@@ -106,6 +111,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         if menuItem.viewController != nil {
             appDelegate.navigateTo(menuItem.viewController!)
+        } else {
+            UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!)
         }
     }
 }

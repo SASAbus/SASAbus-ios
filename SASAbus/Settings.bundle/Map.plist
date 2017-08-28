@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>StringsTable</key>
-	<string>Root</string>
+	<string>Map</string>
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
@@ -16,16 +16,16 @@
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>Default map position</string>
+			<string>default_position_title</string>
 			<key>Key</key>
 			<string>pref_default_map_position</string>
 			<key>DefaultValue</key>
 			<integer>1</integer>
 			<key>Titles</key>
 			<array>
-				<string>South tyrol</string>
-				<string>Bolzano</string>
-				<string>Merano</string>
+				<string>default_position_south_tyrol</string>
+				<string>default_position_bolzano</string>
+				<string>default_position_merano</string>
 			</array>
 			<key>Values</key>
 			<array>
@@ -38,16 +38,16 @@
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>Map type</string>
+			<string>map_type_title</string>
 			<key>Key</key>
 			<string>pref_map_type</string>
 			<key>DefaultValue</key>
-			<string>standart</string>
+			<string>standard</string>
 			<key>Titles</key>
 			<array>
-				<string>Standard</string>
-				<string>Satellite</string>
-				<string>Hybrid</string>
+				<string>map_type_standard</string>
+				<string>map_type_satellite</string>
+				<string>map_type_hybrid</string>
 			</array>
 			<key>Values</key>
 			<array>
@@ -60,13 +60,15 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Auto refresh</string>
+			<string>auto_refresh_title</string>
+			<key>FooterText</key>
+			<string>auto_refresh_footer</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Auto refresh</string>
+			<string>auto_refresh_title</string>
 			<key>Key</key>
 			<string>pref_map_auto_refresh_enabled</string>
 			<key>DefaultValue</key>
@@ -76,17 +78,17 @@
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>Update interval</string>
+			<string>auto_refresh_interval</string>
 			<key>Key</key>
 			<string>pref_map_auto_refresh_interval</string>
 			<key>DefaultValue</key>
 			<string>5</string>
 			<key>Titles</key>
 			<array>
-				<string>3 seconds</string>
-				<string>5 seconds</string>
-				<string>10 seconds</string>
-				<string>15 seconds</string>
+				<string>auto_refresh_interval_three</string>
+				<string>auto_refresh_interval_five</string>
+				<string>auto_refresh_interval_ten</string>
+				<string>auto_refresh_interval_fifteen</string>
 			</array>
 			<key>Values</key>
 			<array>
@@ -100,13 +102,15 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Marker overlay</string>
+			<string>overlay_title</string>
+            <key>FooterText</key>
+            <string>overlay_footer</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Show paths</string>
+			<string>overlay_enable_single</string>
 			<key>Key</key>
 			<string>pref_tile_overlay_enabled</string>
 			<key>DefaultValue</key>
@@ -116,7 +120,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Show all paths</string>
+			<string>overlay_enable_all</string>
 			<key>Key</key>
 			<string>pref_tile_overlay_enabled_all</string>
 			<key>DefaultValue</key>
