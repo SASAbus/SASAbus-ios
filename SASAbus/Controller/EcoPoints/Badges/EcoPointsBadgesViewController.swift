@@ -49,7 +49,7 @@ class EcoPointsBadgesViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 0 ? "Next badges" : "Earned badges"
+        return section == 0 ? L10n.Ecopoints.Badges.Section.next : L10n.Ecopoints.Badges.Section.earned
     }
 
 
@@ -148,7 +148,7 @@ class EcoPointsBadgesViewController: UITableViewController {
         let refreshControl = UIRefreshControl()
 
         refreshControl.tintColor = Theme.lightOrange
-        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""),
+        refreshControl.attributedTitle = NSAttributedString(string: L10n.General.pullToRefresh,
                 attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
         refreshControl.addTarget(self, action: #selector(EcoPointsBadgesViewController.parseData), for: UIControlEvents.valueChanged)
 

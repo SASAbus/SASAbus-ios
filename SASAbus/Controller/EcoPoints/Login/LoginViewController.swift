@@ -147,8 +147,8 @@ class LoginViewController: UIViewController {
         animateViews(true)
         animateGoogleViews(true)
 
-        let alert = UIAlertController(title: "Could not log in",
-                message: "Please retry in a few minutes", preferredStyle: .alert)
+        let alert = UIAlertController(title: L10n.Ecopoints.Login.Error.title,
+                message: L10n.Ecopoints.Login.Error.subtitle, preferredStyle: .alert)
 
         alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
 

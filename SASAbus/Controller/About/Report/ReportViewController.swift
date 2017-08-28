@@ -6,10 +6,12 @@ import SwiftValidator
 class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate,
         UIImagePickerControllerDelegate, UINavigationControllerDelegate, ValidationDelegate, UITextFieldDelegate {
 
-    var placeHolderText = "Even though we can't reply to all messages, " +
-            "all suggestions are more than welcome and are taken into serious consideration."
+    var placeHolderText = L10n.Feedback.TextArea.placeholder
 
-    var typeOptions = ["Report a bug", "Suggest a feature"]
+    var typeOptions = [
+        L10n.Feedback.Category.bug,
+        L10n.Feedback.Category.feature
+    ]
 
     @IBOutlet weak var scrollView: UIScrollView!
 
@@ -60,7 +62,7 @@ class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDa
     init() {
         super.init(nibName: "ReportViewController", bundle: nil)
 
-        title = "App Suggestion"
+        title = L10n.Feedback.title
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -110,7 +112,7 @@ class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDa
 
         makePicker()
 
-        submitMenuButton = UIBarButtonItem(title: "Submit", style: .done, target: self, action: #selector(submitClick))
+        submitMenuButton = UIBarButtonItem(title: L10n.Feedback.submit, style: .done, target: self, action: #selector(submitClick))
         navigationItem.setRightBarButton(submitMenuButton, animated: true)
 
 
@@ -140,7 +142,7 @@ class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDa
 
         view.layer.addSublayer(border)
 
-        let buttonImage = UIImage(named: "ic_add_white")!.withRenderingMode(.alwaysTemplate)
+        let buttonImage = Asset.icAddWhite.image.withRenderingMode(.alwaysTemplate)
 
         button.setImage(buttonImage, for: .normal)
         button.tintColor = UIColor.lightGray
@@ -170,7 +172,7 @@ class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDa
         toolBar.sizeToFit()
 
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(pickerDoneClick))
+        let doneButton = UIBarButtonItem(title: L10n.Feedback.done, style: .done, target: self, action: #selector(pickerDoneClick))
 
         toolBar.setItems([space, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
@@ -320,7 +322,7 @@ class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDa
 
                     self.deleteAllPictures()
 
-                    self.showCloseDialog(title: "Thanks!", message: "We will get back to you as soon as possible.", handler: { _ in
+                    self.showCloseDialog(title: L10n.Feedback.Success.title, message: L10n.Feedback.Success.subtitle, handler: { _ in
                         self.navigationController!.popViewController(animated: true)
                     })
                 }, onError: { error in
@@ -328,7 +330,7 @@ class ReportViewController: UIViewController, UITextViewDelegate, UIPickerViewDa
 
                     self.enableAllViews()
 
-                    self.showCloseDialog(title: "Upload failed", message: "Please retry in a few minutes")
+                    self.showCloseDialog(title: L10n.Feedback.Error.title, message: L10n.Feedback.Error.subtitle)
                 })
     }
 }

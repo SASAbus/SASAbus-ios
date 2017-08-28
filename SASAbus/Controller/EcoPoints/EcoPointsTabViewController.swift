@@ -18,14 +18,23 @@ class EcoPointsTabViewController: UITabBarController {
         leaderboardViewController = EcoPointsLeaderboardViewController()
         badgesViewController = EcoPointsBadgesViewController()
 
-        profileViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Profile", comment: ""),
-                image: UIImage(named: "ic_account_circle_white_36pt"), tag: 0)
+        profileViewController.tabBarItem = UITabBarItem(
+            title: L10n.Ecopoints.TabBar.profile,
+            image: Asset.icAccountCircleWhite36pt.image,
+            tag: 0
+        )
 
-        leaderboardViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Leaderboard", comment: ""),
-                image: UIImage(named: "ic_list_white_36pt"), tag: 1)
+        leaderboardViewController.tabBarItem = UITabBarItem(
+            title: L10n.Ecopoints.TabBar.leaderboard,
+            image: Asset.icListWhite36pt.image,
+            tag: 1
+        )
 
-        badgesViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Badges", comment: ""),
-                image: UIImage(named: "ic_loyalty_white_36pt"), tag: 2)
+        badgesViewController.tabBarItem = UITabBarItem(
+            title: L10n.Ecopoints.TabBar.badges,
+            image: Asset.icLoyaltyWhite36pt.image,
+            tag: 2
+        )
 
         self.viewControllers = [profileViewController, leaderboardViewController, badgesViewController]
 
@@ -49,17 +58,14 @@ class EcoPointsTabViewController: UITabBarController {
             return
         }
 
-        let image = UIImage(named: "ic_settings_white")!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        let image = Asset.icSettingsWhite.image.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
 
-        var button = UIBarButtonItem(
+        let button = UIBarButtonItem(
                 image: image,
                 style: .plain,
                 target: profileViewController,
                 action: #selector(EcoPointsProfileViewController.openSettings)
         )
-
-        //button = UIBarButtonItem(barButtonSystemItem: .cancel,
-        //        target: self, action: #selector(profileViewController.openSettings))
 
         parentVC.navigationItem.rightBarButtonItem = button
     }

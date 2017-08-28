@@ -30,6 +30,8 @@ import StatefulViewController
 
 class BusStopViewController: MasterViewController, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate,
         UISearchBarDelegate, UITextFieldDelegate, StatefulViewController {
+    
+    let dateFormat = "HH:mm"
 
     @IBOutlet weak var timeField: UITextField!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -43,7 +45,7 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
     var datePicker: UIDatePicker!
     var observerAdded: Bool! = false
 
-    var filterImage = UIImage(named: "filter_icon.png")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+    var filterImage = Asset.filterIcon.image.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
 
     var allDepartures: [Departure] = []
     var filteredDepartures: [Departure] = []
@@ -57,8 +59,8 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
     var realm = Realm.busStops()
 
 
-    init(busStop: BBusStop?) {
-        super.init(nibName: "BusStopViewController", title: "Departures")
+    init(busStop: BBusStop? = nil) {
+        super.init(nibName: "BusStopViewController", title: L10n.Departures.title)
 
         self.selectedBusStop = busStop
     }
@@ -87,7 +89,7 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
         refreshControl.tintColor = Theme.lightOrange
         refreshControl.addTarget(self, action: #selector(parseData), for: .valueChanged)
 
-        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""),
+        refreshControl.attributedTitle = NSAttributedString(string: L10n.General.pullToRefresh,
                 attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
 
         tableView.refreshControl = refreshControl
@@ -100,7 +102,7 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
         searchBar.barTintColor = Theme.darkGrey
         searchBar.tintColor = Theme.white
         searchBar.backgroundImage = UIImage()
-        searchBar.setImage(UIImage(named: "ic_navigation_bus.png"), for: UISearchBarIcon.search, state: UIControlState())
+        searchBar.setImage(Asset.icNavigationBus.image, for: UISearchBarIcon.search, state: UIControlState())
 
         (searchBar.value(forKey: "searchField") as! UITextField).textColor = Theme.darkGrey
         (searchBar.value(forKey: "searchField") as! UITextField).clearButtonMode = UITextFieldViewMode.never
@@ -108,9 +110,9 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: self.filterImage,
                 style: .plain, target: self, action: #selector(goToFilter))
 
-        tabBar.items![0].title = NSLocalizedString("GPS", comment: "")
-        tabBar.items![1].title = NSLocalizedString("Map", comment: "")
-        tabBar.items![2].title = NSLocalizedString("Favorites", comment: "")
+        tabBar.items![0].title = L10n.Departures.Header.gps
+        tabBar.items![1].title = L10n.Departures.Header.map
+        tabBar.items![2].title = L10n.Departures.Header.favorites
 
         datePicker = UIDatePicker(frame: CGRect.zero)
         datePicker.datePickerMode = .dateAndTime
@@ -156,7 +158,7 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        Analytics.track("NextBus")
+        Analytics.track("Departures")
     }
 
 
@@ -201,7 +203,7 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
     }
 
 
-    func textField(_ textField: UITextField, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    private func textField(_ textField: UITextField, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         return false
     }
 
@@ -211,7 +213,8 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
         allDepartures.removeAll()
         tableView.reloadData()
 
-        getDepartures()
+        // TODO: Is this needed?
+        // getDepartures()
 
         textField.resignFirstResponder()
     }
@@ -240,7 +243,7 @@ class BusStopViewController: MasterViewController, UITableViewDataSource, UITabl
 
         datePicker.date = searchDate as Date
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
+        dateFormatter.dateFormat = dateFormat
         timeField.text = dateFormatter.string(from: searchDate as Date)
     }
 
@@ -441,14 +444,14 @@ extension BusStopViewController {
             cell.delayColor = Color.delay(departure.delay)
 
             if departure.delay == 0 {
-                cell.delayLabel.text = NSLocalizedString("Punctual", comment: "")
+                cell.delayLabel.text = L10n.General.delayPunctual
             } else if departure.delay < 0 {
-                cell.delayLabel.text = "\(abs(departure.delay))' " + NSLocalizedString("premature", comment: "")
+                cell.delayLabel.text = L10n.General.delayEarly(abs(departure.delay))
             } else {
-                cell.delayLabel.text = "\(departure.delay)' " + NSLocalizedString("delayed", comment: "")
+                cell.delayLabel.text = L10n.General.delayDelayed(departure.delay)
             }
         } else {
-            cell.delayLabel.text = NSLocalizedString("No data", comment: "")
+            cell.delayLabel.text = L10n.Departures.Cell.noData
             cell.delayColor = Theme.darkGrey
         }
 
@@ -521,7 +524,9 @@ extension BusStopViewController {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if selectedBusStop != nil {
             selectedBusStop = nil
-            getDepartures()
+            
+            // TODO: Needed?
+            // getDepartures()
         }
 
         updateFoundBusStations(searchText)
@@ -556,7 +561,7 @@ extension BusStopViewController {
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        let datePickerDoneButton = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""),
+        let datePickerDoneButton = UIBarButtonItem(title: L10n.Departures.Button.done,
                 style: UIBarButtonItemStyle.done, target: self, action: #selector(BusStopViewController.setSearchDate))
 
         self.navigationItem.rightBarButtonItem = datePickerDoneButton
@@ -566,7 +571,7 @@ extension BusStopViewController {
         navigationItem.rightBarButtonItem = nil
 
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = dateFormat
 
         searchDate = datePicker.date
         secondsFromMidnight = getSecondsFromMidnight(searchDate)
@@ -577,7 +582,7 @@ extension BusStopViewController {
     func setupSearchDate() {
         self.searchDate = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = dateFormat
         self.secondsFromMidnight = self.getSecondsFromMidnight(self.searchDate)
     }
 }

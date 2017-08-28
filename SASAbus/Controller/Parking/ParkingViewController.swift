@@ -34,7 +34,7 @@ class ParkingViewController: MasterViewController, StatefulViewController, UITab
 
 
     init() {
-        super.init(nibName: "ParkingViewController", title: "Parking")
+        super.init(nibName: "ParkingViewController", title: L10n.Parking.title)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -107,7 +107,7 @@ class ParkingViewController: MasterViewController, StatefulViewController, UITab
         let refreshControl = UIRefreshControl()
 
         refreshControl.tintColor = Theme.lightOrange
-        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""),
+        refreshControl.attributedTitle = NSAttributedString(string: L10n.General.pullToRefresh,
                 attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
 
         refreshControl.addTarget(self, action: #selector(parseData), for: UIControlEvents.valueChanged)

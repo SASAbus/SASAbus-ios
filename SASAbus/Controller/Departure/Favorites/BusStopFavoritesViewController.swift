@@ -47,14 +47,14 @@ class BusStopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("Bus station favorites", comment: "")
+        
+        self.title = L10n.Departures.Favorites.title
 
         tableView.register(UINib(nibName: "BusStopFavoritesTableViewCell", bundle: nil), forCellReuseIdentifier: "BusStopFavoritesTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.allowsMultipleSelectionDuringEditing = false
 
-        self.title = NSLocalizedString("Bus stop favorites", comment: "")
         self.view.backgroundColor = Theme.darkGrey
         self.busStationLabel.textColor = Theme.white
         self.loadFavoriteBusStations()
@@ -68,7 +68,7 @@ class BusStopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
             addButton.tintColor = Theme.white
             self.navigationItem.rightBarButtonItem = addButton
         } else {
-            self.busStationLabel.text = NSLocalizedString("Select a bus station from your favorites", comment: "")
+            self.busStationLabel.text = L10n.Departures.Favorites.header
         }
     }
 
@@ -93,7 +93,7 @@ class BusStopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
         UserRealmHelper.addFavoriteBusStop(busStopGroup: self.busStop.family)
 
         self.loadFavoriteBusStations()
-        self.busStationLabel.text = NSLocalizedString("Select a bus station from your favorites", comment: "")
+        self.busStationLabel.text = L10n.Departures.Favorites.header
         self.navigationItem.rightBarButtonItem = nil
     }
 }

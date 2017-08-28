@@ -27,13 +27,14 @@
                             <constraint firstAttribute="height" constant="112" id="Xk7-6a-LgK"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TxS-ky-Jtm">
-                        <rect key="frame" x="16" y="630" width="343" height="29"/>
-                        <string key="text">By logging in you agree to our
-terms of service and privacy policy</string>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TxS-ky-Jtm">
+                        <rect key="frame" x="16" y="659" width="343" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="textKey" value="ecopoints.login.footer_warning"/>
+                        </userDefinedRuntimeAttributes>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_app" translatesAutoresizingMaskIntoConstraints="NO" id="ION-f7-lL3">
                         <rect key="frame" x="132" y="52" width="112" height="112"/>
@@ -43,11 +44,17 @@ terms of service and privacy policy</string>
                             <constraint firstAttribute="width" secondItem="ION-f7-lL3" secondAttribute="height" multiplier="1:1" id="a5H-Ta-Ndu"/>
                         </constraints>
                     </imageView>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="lardschneider.alex@gmail.com" placeholder="E-mail" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gRz-gi-MAB">
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gRz-gi-MAB">
                         <rect key="frame" x="48" y="228" width="279" height="20"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <textInputTraits key="textInputTraits"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="placeholderKey" value="ecopoints.login.email.placeholder"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                <color key="value" red="1" green="1" blue="1" alpha="0.35999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </textField>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vvz-7m-dVN">
                         <rect key="frame" x="48" y="252" width="279" height="1"/>
@@ -56,11 +63,17 @@ terms of service and privacy policy</string>
                             <constraint firstAttribute="height" constant="1" id="NMR-Ta-FEP"/>
                         </constraints>
                     </view>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12345679" placeholder="E-mail" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2kt-rn-RoI">
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2kt-rn-RoI">
                         <rect key="frame" x="48" y="285" width="279" height="20"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="placeholderKey" value="ecopoints.login.password.placeholder"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                <color key="value" red="1" green="1" blue="1" alpha="0.35999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </textField>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tZF-Dj-KcU">
                         <rect key="frame" x="48" y="309" width="279" height="1"/>
@@ -77,6 +90,9 @@ terms of service and privacy policy</string>
                         </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                         <state key="normal" title="Log in"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="defaultTitleKey" value="ecopoints.login.button"/>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="validateForm:" destination="gsB-Wc-svB" eventType="touchUpInside" id="1Hm-0E-wMd"/>
                         </connections>
@@ -84,14 +100,17 @@ terms of service and privacy policy</string>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="0ph-v8-tAS">
                         <rect key="frame" x="178" y="350" width="20" height="20"/>
                     </activityIndicatorView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot your password?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SC4-yP-E2c">
-                        <rect key="frame" x="64" y="394" width="247" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SC4-yP-E2c">
+                        <rect key="frame" x="64" y="394" width="247" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                         <color key="textColor" white="1" alpha="0.60199353450000004" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="textKey" value="ecopoints.login.forgot_password"/>
+                        </userDefinedRuntimeAttributes>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p4e-e0-gYG" customClass="GIDSignInButton">
-                        <rect key="frame" x="155.5" y="441" width="64" height="18"/>
+                        <rect key="frame" x="155.5" y="426" width="64" height="18"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="Ate-6G-dMa"/>
@@ -99,7 +118,7 @@ terms of service and privacy policy</string>
                         </constraints>
                     </view>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="tyl-ev-dZL">
-                        <rect key="frame" x="177" y="440" width="20" height="20"/>
+                        <rect key="frame" x="177" y="425" width="20" height="20"/>
                     </activityIndicatorView>
                 </subviews>
                 <color key="backgroundColor" red="0.1176470588" green="0.13725490200000001" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>

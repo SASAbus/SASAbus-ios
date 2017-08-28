@@ -40,6 +40,8 @@ class ParkingDetailViewController: UIViewController, UITableViewDataSource, UITa
     init(item: Parking!) {
         super.init(nibName: "ParkingDetailViewController", bundle: nil)
         self.parking = item
+        
+        self.title = L10n.Parking.Detail.title
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -49,8 +51,7 @@ class ParkingDetailViewController: UIViewController, UITableViewDataSource, UITa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.title = NSLocalizedString("Parking lot detail", comment: "")
+        
         tableView.register(UINib(nibName: "ParkingDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "ParkingDetailTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100

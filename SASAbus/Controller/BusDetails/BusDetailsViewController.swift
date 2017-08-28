@@ -32,6 +32,7 @@ class BusDetailsViewController: UIViewController {
 
     public required init?(coder aDecoder: NSCoder) {
         vehicleId = 0
+        
         super.init(coder: aDecoder)
     }
 
@@ -58,7 +59,7 @@ class BusDetailsViewController: UIViewController {
         if let bus = Buses.getBus(id: vehicleId) {
             let vehicle = bus.vehicle
 
-            var color = vehicle.color == 2 ?  FlatOrange() : vehicle.getColor()
+            let color = vehicle.color == 2 ?  FlatOrange() : vehicle.getColor()
 
             if let navController = self.navigationController {
                 navController.navigationBar.barTintColor = color
@@ -79,7 +80,7 @@ class BusDetailsViewController: UIViewController {
             fuelText.text = vehicle.getFuelString()
             colorText.text = vehicle.getColorString()
 
-            title = "Bus #\(vehicleId)"
+            title = L10n.BusDetails.titleFormatted(vehicleId)
         } else {
             Log.error("Vehicle \(vehicleId) does not exist")
         }

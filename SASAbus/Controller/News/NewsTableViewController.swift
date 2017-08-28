@@ -89,7 +89,7 @@ class NewsTableViewController: MasterTableViewController, StatefulViewController
         let refreshControl = UIRefreshControl()
 
         refreshControl.tintColor = Theme.lightOrange
-        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""),
+        refreshControl.attributedTitle = NSAttributedString(string: L10n.General.pullToRefresh,
                 attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
         refreshControl.addTarget(self.tabBarController, action: Selector("getNews"), for: UIControlEvents.valueChanged)
 

@@ -99,7 +99,7 @@ class MapBottomSheetViewController: UIViewController, BottomSheetDrawerViewContr
         selectedBus = bus
 
         peekTitle.text = Lines.line(id: (bus.lineId))
-        peekSubtitle.text = "Now at \(bus.busStopString)"
+        peekSubtitle.text = L10n.General.nowAt(bus.busStopString)
 
         peekDelay.text = "\(bus.delay)'"
 
@@ -109,15 +109,15 @@ class MapBottomSheetViewController: UIViewController, BottomSheetDrawerViewContr
             peekDelay.textColor = Color.delay(bus.delay)
         }
 
-        delayText.text = "\(bus.delay)' delayed"
+        delayText.text = L10n.Map.Sheet.delayed(bus.delay)
         delayText.textColor = Color.delay(bus.delay)
 
-        headingToText.text = "Heading to \(bus.destinationString)"
-        updatedText.text = "Updated \(bus.updated_min_ago)' ago"
+        headingToText.text = L10n.General.headingTo(bus.destinationString)
+        updatedText.text = L10n.Map.Sheet.updated(bus.updated_min_ago)
 
-        busText.text = "Bus #\(bus.vehicle)"
-        variantText.text = "Variant #\(bus.variant)"
-        tripText.text = "Trip #\(bus.trip)"
+        busText.text = L10n.Map.Sheet.bus(bus.vehicle)
+        variantText.text = L10n.Map.Sheet.variant(bus.variant)
+        tripText.text = L10n.Map.Sheet.trip(bus.trip)
 
         if let vehicle = Buses.getBus(id: bus.vehicle) {
             parentVC!.backgroundImage.image = UIImage(named: vehicle.vehicle.code)

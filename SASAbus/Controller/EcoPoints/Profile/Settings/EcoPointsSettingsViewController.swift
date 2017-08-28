@@ -7,11 +7,11 @@ import StatefulViewController
 class EcoPointsSettingsViewController: UITableViewController {
 
     fileprivate let items: [Item] = [
-        Item("Change password"),
-        Item("Change profile picture"),
-        Item("Log out"),
-        Item("Log out from all devices"),
-        Item("Delete my account", isWarning: true)
+        Item(L10n.Ecopoints.Profile.Settings.changePassword),
+        Item(L10n.Ecopoints.Profile.Settings.changeProfilePicture),
+        Item(L10n.Ecopoints.Profile.Settings.logOut),
+        Item(L10n.Ecopoints.Profile.Settings.logOutAll),
+        Item(L10n.Ecopoints.Profile.Settings.deleteAccount, isWarning: true)
     ]
 
     var operationRunning: Bool = false
@@ -65,7 +65,10 @@ class EcoPointsSettingsViewController: UITableViewController {
 
                     AuthHelper.checkIfUnauthorized(error)
 
-                    self.showCloseDialog(title: "Couldn't log out", message: "Please retry again later.")
+                    self.showCloseDialog(
+                        title: L10n.Ecopoints.Profile.Settings.Error.Logout.title,
+                        message: L10n.Ecopoints.Profile.Settings.Error.Logout.subtitle
+                    )
 
                     item.isLoading = false
                     self.tableView.reloadData()
@@ -97,7 +100,10 @@ class EcoPointsSettingsViewController: UITableViewController {
 
                     AuthHelper.checkIfUnauthorized(error)
 
-                    self.showCloseDialog(title: "Couldn't log out", message: "Please retry again later.")
+                    self.showCloseDialog(
+                        title: L10n.Ecopoints.Profile.Settings.Error.Logout.title,
+                        message: L10n.Ecopoints.Profile.Settings.Error.Logout.subtitle
+                    )
 
                     item.isLoading = false
                     self.tableView.reloadData()
@@ -117,8 +123,8 @@ class EcoPointsSettingsViewController: UITableViewController {
         AnswersHelper.logProfileAction(action: "delete_account")
 
         let alert = UIAlertController(
-                title: "Delete account?",
-                message: "Are you sure? This cannot be undone.",
+                title: L10n.Ecopoints.Profile.Settings.Delete.title,
+                message: L10n.Ecopoints.Profile.Settings.Delete.subtitle,
                 preferredStyle: .alert
         )
 
@@ -139,7 +145,10 @@ class EcoPointsSettingsViewController: UITableViewController {
 
                         AuthHelper.checkIfUnauthorized(error)
 
-                        self.showCloseDialog(title: "Couldn't delete account", message: "Please retry again later.")
+                        self.showCloseDialog(
+                            title: L10n.Ecopoints.Profile.Settings.Error.Delete.title,
+                            message: L10n.Ecopoints.Profile.Settings.Error.Delete.subtitle
+                        )
 
                         item.isLoading = false
                         self.tableView.reloadData()
@@ -157,7 +166,10 @@ class EcoPointsSettingsViewController: UITableViewController {
 
 
     fileprivate func internetError(item: Item) {
-        self.showCloseDialog(title: "No internet connection", message: "Please connect to the internet to continue")
+        self.showCloseDialog(
+            title: L10n.Ecopoints.Profile.Settings.Error.Internet.title,
+            message: L10n.Ecopoints.Profile.Settings.Error.Internet.subtitle
+        )
 
         item.isLoading = false
         self.tableView.reloadData()
@@ -182,11 +194,11 @@ extension EcoPointsSettingsViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return "Profile"
+            return L10n.Ecopoints.Profile.Settings.Section.profile
         } else if section == 1 {
-            return "Settings"
+            return L10n.Ecopoints.Profile.Settings.Section.settings
         } else {
-            return "Account"
+            return L10n.Ecopoints.Profile.Settings.Section.account
         }
     }
 

@@ -160,7 +160,7 @@ class EcoPointsProfileViewController: UITableViewController {
         let refreshControl = UIRefreshControl()
 
         refreshControl.tintColor = Theme.lightOrange
-        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""),
+        refreshControl.attributedTitle = NSAttributedString(string: L10n.General.pullToRefresh,
                 attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
         refreshControl.addTarget(self, action: #selector(EcoPointsProfileViewController.parseProfile), for: UIControlEvents.valueChanged)
 
@@ -187,7 +187,7 @@ class EcoPointsProfileViewController: UITableViewController {
 extension EcoPointsProfileViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 0 ? nil : "Statistics"
+        return section == 0 ? nil : L10n.Ecopoints.Profile.Section.statistics
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

@@ -45,6 +45,8 @@ def default_pods
   pod 'LocationPickerViewController'
 
   pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
+
+  pod 'PolyglotLocalization'
 end
 
 target 'SASAbus' do

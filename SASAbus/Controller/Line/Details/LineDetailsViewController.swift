@@ -42,6 +42,9 @@ class LineDetailsViewController: UIViewController {
         if lineId == 0 {
             fatalError("lineId == 0")
         }
+        
+        segmentedControl.setTitle(L10n.Line.Details.Header.buses, forSegmentAt: 0)
+        segmentedControl.setTitle(L10n.Line.Details.Header.path, forSegmentAt: 1)
 
         segmentedBackground.backgroundColor = toolbarColor
         segmentedControl.tintColor = tintColor
@@ -150,13 +153,13 @@ class LineDetailsViewController: UIViewController {
 
             UserRealmHelper.removeFavoriteLine(lineId: lineId)
 
-            navigationItem.rightBarButtonItem?.image = UIImage(named: "ic_star_border_white")
+            navigationItem.rightBarButtonItem?.image = Asset.icStarBorderWhite.image
         } else {
             isFavorite = true
 
             UserRealmHelper.addFavoriteLine(lineId: lineId)
 
-            navigationItem.rightBarButtonItem?.image = UIImage(named: "ic_star_white")
+            navigationItem.rightBarButtonItem?.image = Asset.icStarWhite.image
         }
     }
 }

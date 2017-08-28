@@ -49,7 +49,7 @@ class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("Bus stops near you", comment: "")
+        title = L10n.Departures.Gps.title
 
         tableView.register(UINib(nibName: "BusStopGpsViewController", bundle: nil), forCellReuseIdentifier: "BusStopGpsViewController")
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -64,7 +64,7 @@ class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
         if busStop != nil {
             busStopLabel.text = busStop.name()
         } else {
-            busStopLabel.text = NSLocalizedString("Select a nearby bus station", comment: "")
+            busStopLabel.text = L10n.Departures.Gps.header
         }
     }
 

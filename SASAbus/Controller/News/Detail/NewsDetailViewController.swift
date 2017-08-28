@@ -33,7 +33,10 @@ class NewsDetailViewController: UIViewController {
 
     init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, newsItem: News) {
         self.newsItem = newsItem
+        
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        title = L10n.News.Detail.title
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -42,8 +45,7 @@ class NewsDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.title = NSLocalizedString("News detail", comment: "")
+        
         self.edgesForExtendedLayout = UIRectEdge()
         self.extendedLayoutIncludesOpaqueBars = false
         self.automaticallyAdjustsScrollViewInsets = false

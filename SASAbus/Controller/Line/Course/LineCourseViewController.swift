@@ -37,7 +37,7 @@ class LineCourseViewController: UIViewController {
 
         super.init(nibName: "LineCourseViewController", bundle: nil)
 
-        title = "Line course"
+        title = L10n.Line.Course.title
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -52,6 +52,9 @@ class LineCourseViewController: UIViewController {
 
         prepareListViewController()
         prepareMapViewController()
+        
+        segmentedControl.setTitle(L10n.Line.Course.Header.list, forSegmentAt: 0)
+        segmentedControl.setTitle(L10n.Line.Course.Header.map, forSegmentAt: 1)
 
         parseData()
     }
@@ -161,14 +164,14 @@ class LineCourseViewController: UIViewController {
             }
 
             var items = [LineCourse]()
-            var path: [VdvBusStop] = Api.getTrip(tripId: tripId).calcTimedPath()
+            let path: [VdvBusStop] = Api.getTrip(tripId: tripId).calcTimedPath()
 
-            var realm = Realm.busStops()
+            let realm = Realm.busStops()
 
             var active = currentBusStopNew == 0
 
             for stop in path {
-                var busStop = BBusStop(fromRealm: BusStopRealmHelper.getBusStop(id: stop.id, realm: realm))
+                let busStop = BBusStop(fromRealm: BusStopRealmHelper.getBusStop(id: stop.id, realm: realm))
 
                 var bus = false
                 var pin = false

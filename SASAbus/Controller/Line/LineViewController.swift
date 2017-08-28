@@ -63,9 +63,9 @@ class LineViewController: MasterViewController, StatefulViewController, UITableV
 
         var tabBarItems = tabBar.items!
 
-        tabBarItems[0].title = NSLocalizedString("Favorites", comment: "")
-        tabBarItems[1].title = NSLocalizedString("Bozen", comment: "")
-        tabBarItems[2].title = NSLocalizedString("Meran", comment: "")
+        tabBarItems[0].title = NSLocalizedString(L10n.Line.TabBar.favorites, comment: "")
+        tabBarItems[1].title = NSLocalizedString(L10n.Line.TabBar.bolzano, comment: "")
+        tabBarItems[2].title = NSLocalizedString(L10n.Line.TabBar.merano, comment: "")
 
         loadingView = LoadingView(frame: view.frame)
         errorView = ErrorView(frame: view.frame, target: self, action: #selector(parseData))
@@ -77,8 +77,6 @@ class LineViewController: MasterViewController, StatefulViewController, UITableV
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        Analytics.track("BusSchedules")
 
         if let row = tableView.indexPathForSelectedRow {
             self.tableView.deselectRow(at: row, animated: true)
@@ -184,7 +182,7 @@ class LineViewController: MasterViewController, StatefulViewController, UITableV
         let refreshControl = UIRefreshControl()
 
         refreshControl.tintColor = Theme.lightOrange
-        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""),
+        refreshControl.attributedTitle = NSAttributedString(string: L10n.General.pullToRefresh,
                 attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
 
         refreshControl.addTarget(self, action: #selector(parseData), for: UIControlEvents.valueChanged)

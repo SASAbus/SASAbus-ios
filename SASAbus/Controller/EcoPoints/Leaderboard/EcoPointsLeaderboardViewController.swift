@@ -63,7 +63,7 @@ class EcoPointsLeaderboardViewController: UIViewController, UITableViewDataSourc
             let item = leaderboard[indexPath.row]
 
             cell.nameText.text = item.username
-            cell.pointsText.text = "\(item.points) points"
+            cell.pointsText.text = L10n.Ecopoints.LeaderBoard.points(item.points)
             cell.rankText.text = "\(indexPath.row + 1)"
 
             let url = URL(string: Endpoint.apiUrl + Endpoint.ECO_POINTS_PROFILE_PICTURE_USER + String(item.profile))!
@@ -109,7 +109,7 @@ class EcoPointsLeaderboardViewController: UIViewController, UITableViewDataSourc
         let refreshControl = UIRefreshControl()
 
         refreshControl.tintColor = Theme.lightOrange
-        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""),
+        refreshControl.attributedTitle = NSAttributedString(string: L10n.General.pullToRefresh,
                 attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
         refreshControl.addTarget(self, action: #selector(EcoPointsLeaderboardViewController.parseLeaderboard), for: UIControlEvents.valueChanged)
 

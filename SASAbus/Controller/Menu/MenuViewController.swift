@@ -26,43 +26,43 @@ struct Menu {
 
     static let items: [MenuItem] = [
             MenuItem(
-                    title: NSLocalizedString("Realtime Map", comment: ""),
-                    image: "ic_navigation_map",
+                title: L10n.Map.title,
+                    image: Asset.icNavigationMap.image,
                     viewController: MainMapViewController.getViewController()),
 
             MenuItem(
-                    title: NSLocalizedString("Departures", comment: ""),
-                    image: "ic_navigation_busstop",
-                    viewController: BusStopViewController(busStop: nil)),
+                    title: L10n.Departures.title,
+                    image: Asset.icNavigationBusstop.image,
+                    viewController: BusStopViewController()),
 
             MenuItem(
-                    title: NSLocalizedString("Lines", comment: ""),
-                    image: "ic_navigation_bus",
+                    title: L10n.Line.title,
+                    image: Asset.icNavigationBus.image,
                     viewController: LineViewController()),
 
             MenuItem(
                     title: NSLocalizedString("Route", comment: ""),
-                    image: "ic_explore_white",
+                    image: Asset.icExploreWhite.image,
                     viewController: MainRouteViewController()),
 
             MenuItem(
-                    title: NSLocalizedString("News", comment: ""),
-                    image: "ic_event_note_white",
+                    title: L10n.News.title,
+                    image: Asset.icEventNoteWhite.image,
                     viewController: NewsTabBarController()),
 
             MenuItem(
-                    title: NSLocalizedString("Eco Points", comment: ""),
-                    image: "ic_nature_people_white",
+                    title: L10n.Ecopoints.title,
+                    image: Asset.icNaturePeopleWhite.image,
                     viewController: EcoPointsViewController()),
 
             MenuItem(
-                    title: NSLocalizedString("Parking", comment: ""),
-                    image: "ic_navigation_parking",
+                    title: L10n.Parking.title,
+                    image: Asset.icNavigationParking.image,
                     viewController: ParkingViewController()),
 
             MenuItem(
-                    title: NSLocalizedString("About", comment: ""),
-                    image: "ic_info_outline_white",
+                    title: L10n.About.title,
+                    image: Asset.icInfoOutlineWhite.image,
                     viewController: AboutViewController())
     ]
 }
@@ -92,9 +92,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.titleLabel.textColor = Theme.white
         cell.titleLabel.text = menuItem.title
 
-        if !menuItem.image.isEmpty {
-            cell.iconImageView.image = UIImage(named: menuItem.image)
-        }
+        cell.iconImageView.image = menuItem.image
 
         cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         cell.iconImageView.tintColor = Theme.white

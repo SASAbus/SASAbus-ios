@@ -7,15 +7,15 @@ class AboutViewController: MasterTableViewController {
     let URL_PRIVACY = "\(NetUtils.HOST)/privacy"
 
     let items = [
-            "Changelog",
-            "Feedback",
-            "Credits",
-            "Terms of service",
-            "Privacy policy"
+            L10n.Changelog.title,
+            L10n.Feedback.title,
+            L10n.Credits.title,
+            L10n.About.termsOfService,
+            L10n.About.privacyPolicy
     ]
 
     init() {
-        super.init(nibName: "AboutViewController", title: "About")
+        super.init(nibName: "AboutViewController", title: L10n.About.title)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -46,7 +46,7 @@ extension AboutViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "About"
+        return L10n.About.title
     }
 
 

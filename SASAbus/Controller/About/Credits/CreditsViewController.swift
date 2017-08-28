@@ -12,7 +12,7 @@ class CreditsViewController: UIViewController, UIToolbarDelegate {
     init() {
         super.init(nibName: "CreditsViewController", bundle: nil)
 
-        title = "Credits"
+        title = L10n.Credits.title
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -24,14 +24,12 @@ class CreditsViewController: UIViewController, UIToolbarDelegate {
         super.viewDidLoad()
         self.view.backgroundColor = Theme.darkGrey
 
-        let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject?
-        let version = nsObject as! String
+        let version = Bundle.main.versionName
 
-        titleLabel.text = NSLocalizedString("SASAbus by Raiffeisen OnLine - \(version)", comment: "")
+        titleLabel.text = L10n.Credits.header(version)
         titleLabel.textColor = Theme.white
 
-        infoTextView.text = NSLocalizedString("© 2015 - 2016 Markus Windegger, Raiffeisen OnLine Gmbh (Norman Marmsoler, " +
-                "Jürgen Sprenger, Aaron Falk)", comment: "")
+        infoTextView.text = L10n.Credits.copyright
 
         infoTextView.textColor = Theme.grey
 
@@ -39,7 +37,7 @@ class CreditsViewController: UIViewController, UIToolbarDelegate {
         infoView.textColor = Theme.darkGrey
         infoView.isEditable = false
 
-        helpView.text = NSLocalizedString("For suggestions or help please mail to ios@sasabz.it", comment: "")
+        helpView.text = L10n.Credits.help
         helpView.textColor = Theme.darkGrey
     }
 
@@ -51,11 +49,8 @@ class CreditsViewController: UIViewController, UIToolbarDelegate {
 
 
     func getAboutText() -> String {
-        let thirdPartyTitle = NSLocalizedString("The following sets forth attribution notices for third party software " +
-                "that may be contained in portions of the product. We thank the open source community for all their contributions.", comment: "")
-
-        let thirdPartyText = NSLocalizedString("• DrawerController (MIT)\r\n• AlamoFire (MIT)\r\n• zipzap (BSD)\r\n" +
-                "• KDCircularProgress (MIT)\r\n• SwiftValidator (MIT)", comment: "")
+        let thirdPartyTitle = L10n.Credits.Licenses.title
+        let thirdPartyText = L10n.Credits.Licenses.subtitle
 
         return thirdPartyTitle + "\r\n\r\n" + thirdPartyText
     }

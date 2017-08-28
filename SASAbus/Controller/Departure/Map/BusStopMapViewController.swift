@@ -44,7 +44,7 @@ class BusStopMapViewController: UIViewController, MKMapViewDelegate, CLLocationM
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = NSLocalizedString("Bus stations map", comment: "")
+        self.title = L10n.Departures.Map.title
         self.locationManager = CLLocationManager()
 
         self.locationManager = CLLocationManager()

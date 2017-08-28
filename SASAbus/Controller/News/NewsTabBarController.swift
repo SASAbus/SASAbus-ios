@@ -44,11 +44,17 @@ class NewsTabBarController: MasterTabBarController {
         let bolzanoViewController = NewsTableViewController(zone: "BZ")
         let meranoViewController = NewsTableViewController(zone: "ME")
 
-        bolzanoViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Bozen", comment: ""),
-                image: UIImage(named: "wappen_bz.png"), selectedImage: nil)
+        bolzanoViewController.tabBarItem = UITabBarItem(
+            title: L10n.News.TabBar.bolzano,
+            image: Asset.wappenBz.image,
+            selectedImage: nil
+        )
 
-        meranoViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Meran", comment: ""),
-                image: UIImage(named: "wappen_me.png"), selectedImage: nil)
+        meranoViewController.tabBarItem = UITabBarItem(
+            title: L10n.News.TabBar.merano,
+            image: Asset.wappenMe.image,
+            selectedImage: nil
+        )
 
         self.viewControllers = [bolzanoViewController, meranoViewController]
 
