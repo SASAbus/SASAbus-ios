@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f3d29402-016d-4755-9201-16bfc752e971" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SASAbus/Controller/Intro/IntroViewController.swift" afterPath="" />
+    <list default="true" id="f3d29402-016d-4755-9201-16bfc752e971" name="Default" comment="Lint fixes">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/intro/IntroViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/intro/IntroViewController.swift" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,7 +14,27 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_d86a47ad2256e3a6cf409930e9faaf4b47d1633e" />
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="IntroViewController.swift" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SASAbus/Controller/Intro/IntroViewController.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+              <folding>
+                <element signature="e#2846#3475#0" expanded="false" />
+                <element signature="e#3481#4213#0" expanded="false" />
+                <element signature="e#4219#4437#0" expanded="false" />
+                <element signature="e#4489#4625#0" expanded="false" />
+                <element signature="e#4631#5092#0" expanded="false" />
+                <element signature="e#5146#5726#0" expanded="false" />
+                <element signature="e#5732#6391#0" expanded="false" />
+                <element signature="e#6395#6590#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -72,6 +92,7 @@
         <option value="$PROJECT_DIR$/SASAbus/Constants/Localized.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Controller/Line/Course/List/LineCourseListViewController.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Util/Extensions/UIImage+Insets.swift" />
+        <option value="$PROJECT_DIR$/SASAbus/Controller/Intro/IntroViewController.swift" />
       </list>
     </option>
   </component>
@@ -101,7 +122,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Cidr.FilesView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -114,10 +134,24 @@
               <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
               <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
             </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
+              <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
+              <item name="Controller" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
+              <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
+              <item name="Controller" type="fcab9f18:XcodeViewNode" />
+              <item name="Intro" type="fcab9f18:XcodeViewNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Cidr.FilesView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -188,6 +222,7 @@
       <workItem from="1503644030748" duration="5474000" />
       <workItem from="1503650150942" duration="5645000" />
       <workItem from="1503901574344" duration="3393000" />
+      <workItem from="1503914429261" duration="55000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed some bugs with Firebase">
       <created>1503560356013</created>
@@ -263,7 +298,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21517000" />
+    <option name="totallyTimeSpent" value="21572000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -497,9 +532,6 @@
           <caret line="32" column="45" lean-forward="true" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
           <folding>
             <element signature="e#5605#5714#0" expanded="false" />
-            <marker date="1503913568705" expanded="false" signature="4765:4997" ph="{...}" />
-            <marker date="1503913568705" expanded="false" signature="5079:5239" ph="{...}" />
-            <marker date="1503913568705" expanded="false" signature="5285:5365" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -741,12 +773,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="32" column="21" lean-forward="true" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
-          <folding>
-            <marker date="1503912977523" expanded="true" signature="864:992" ph="{...}" />
-            <marker date="1503912977523" expanded="true" signature="3503:3698" ph="{...}" />
-            <marker date="1503912977523" expanded="true" signature="3503:4028" ph="{...}" />
-            <marker date="1503912977523" expanded="true" signature="3782:4026" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -795,20 +822,24 @@
             <element signature="e#2178#2231#0" expanded="false" />
             <element signature="e#2237#2489#0" expanded="false" />
             <element signature="e#2495#2731#0" expanded="false" />
-            <marker date="1503912677271" expanded="true" signature="2774:4487" ph="{...}" />
-            <marker date="1503912677271" expanded="true" signature="2885:4112" ph="{...}" />
-            <marker date="1503912677271" expanded="true" signature="4205:4257" ph="{...}" />
-            <marker date="1503912677271" expanded="true" signature="4356:4390" ph="{...}" />
-            <marker date="1503912677271" expanded="true" signature="4461:4485" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SASAbus/Controller/Intro/IntroViewController.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="55" lean-forward="true" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
-          <folding />
+        <state relative-caret-position="195">
+          <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+          <folding>
+            <element signature="e#2846#3475#0" expanded="false" />
+            <element signature="e#3481#4213#0" expanded="false" />
+            <element signature="e#4219#4437#0" expanded="false" />
+            <element signature="e#4489#4625#0" expanded="false" />
+            <element signature="e#4631#5092#0" expanded="false" />
+            <element signature="e#5146#5726#0" expanded="false" />
+            <element signature="e#5732#6391#0" expanded="false" />
+            <element signature="e#6395#6590#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

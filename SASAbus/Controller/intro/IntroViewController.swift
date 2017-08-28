@@ -17,7 +17,7 @@ class IntroViewController: UIPageViewController, UIPageViewControllerDelegate, U
                 color: Color.red,
                 title: "Real-time",
                 subtitle: "Bus positions in real-time",
-                description: "SasaBus informs you about bus positions, departures and delays in real-time",
+                description: "SASAbus informs you about bus positions, departures and delays in real-time",
                 image: "intro_realtime"
             ))
         }
