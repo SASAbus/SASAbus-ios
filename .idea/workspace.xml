@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f3d29402-016d-4755-9201-16bfc752e971" name="Default" comment="Made strings translatable">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    <list default="true" id="f3d29402-016d-4755-9201-16bfc752e971" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Intro/IntroViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Intro/IntroViewController.swift" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -109,6 +108,24 @@
               <item name="" type="efc3779f:XcodeRootNode" />
               <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
             </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
+              <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
+              <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
+              <item name="Controller" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
+              <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
+              <item name="Controller" type="fcab9f18:XcodeViewNode" />
+              <item name="Intro" type="fcab9f18:XcodeViewNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -182,7 +199,7 @@
       <workItem from="1503643948823" duration="64000" />
       <workItem from="1503644030748" duration="5474000" />
       <workItem from="1503650150942" duration="5645000" />
-      <workItem from="1503901574344" duration="2966000" />
+      <workItem from="1503901574344" duration="3058000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed some bugs with Firebase">
       <created>1503560356013</created>
@@ -240,11 +257,25 @@
       <option name="project" value="LOCAL" />
       <updated>1503654807296</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Lint fixes">
+      <created>1503913600248</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1503913600248</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Lint fixes">
+      <created>1503913646956</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1503913646956</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21090000" />
+    <option name="totallyTimeSpent" value="21182000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -309,7 +340,8 @@
     <MESSAGE value="UI tweaks" />
     <MESSAGE value="Shrunk launch screen icon" />
     <MESSAGE value="Made strings translatable" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made strings translatable" />
+    <MESSAGE value="Lint fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lint fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -379,6 +411,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
           <caret line="140" column="44" lean-forward="false" selection-start-line="140" selection-start-column="44" selection-end-line="140" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
