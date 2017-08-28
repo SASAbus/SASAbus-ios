@@ -70,11 +70,15 @@ class LineCourseMapViewController: UIViewController, MKMapViewDelegate {
                     color: color
             ))
 
+            var hasAppended = false
+
             if item.active {
-                if item.pin {
-                    inactivePoints.append(coordinate)
-                }
                 activePoints.append(coordinate)
+
+                if !hasAppended {
+                    inactivePoints.append(coordinate)
+                    hasAppended = true
+                }
             } else {
                 inactivePoints.append(coordinate)
             }

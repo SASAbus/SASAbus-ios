@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f3d29402-016d-4755-9201-16bfc752e971" name="Default" comment="Chag">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/empty_state_star.imageset/star.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Assets.xcassets/empty_state_star.imageset/Contents.json" />
+    <list default="true" id="f3d29402-016d-4755-9201-16bfc752e971" name="Default" comment="Added new star icon">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Data/Realm/busstops.realm" afterPath="$PROJECT_DIR$/SASAbus/Data/Realm/busstops.realm" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Constants/Images.swift" afterPath="$PROJECT_DIR$/SASAbus/Constants/Images.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/View/Placeholder/EmptyState/EmptyStateFavoritesView.xib" afterPath="$PROJECT_DIR$/SASAbus/View/Placeholder/EmptyState/EmptyStateFavoritesView.xib" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/SASAbus.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Line/Course/Map/LineCourseMapViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Line/Course/Map/LineCourseMapViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Line/LineViewController.xib" afterPath="$PROJECT_DIR$/SASAbus/Controller/Line/LineViewController.xib" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/News/NewsTableViewController.xib" afterPath="$PROJECT_DIR$/SASAbus/Controller/News/NewsTableViewController.xib" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,7 +18,37 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_d86a47ad2256e3a6cf409930e9faaf4b47d1633e" />
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="BusStopRealmHelper.swift" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SASAbus/Data/Realm/BusStopRealmHelper.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="660">
+              <caret line="109" column="5" lean-forward="true" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
+              <folding>
+                <element signature="e#693#987#0" expanded="false" />
+                <element signature="e#993#1290#0" expanded="false" />
+                <element signature="e#1296#1622#0" expanded="false" />
+                <element signature="e#1628#1791#0" expanded="false" />
+                <element signature="e#1797#2138#0" expanded="false" />
+                <element signature="e#2144#2605#0" expanded="false" />
+                <element signature="e#2611#2822#0" expanded="false" />
+                <element signature="e#2829#2985#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LineCourseMapViewController.swift" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SASAbus/Controller/Line/Course/Map/LineCourseMapViewController.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="67" column="43" lean-forward="true" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -87,6 +118,8 @@
         <option value="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Profile/EcoPointsProfileViewController.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/EcoPointsViewController.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Login/LoginViewController.swift" />
+        <option value="$PROJECT_DIR$/SASAbus/Data/Realm/BusStopRealmHelper.swift" />
+        <option value="$PROJECT_DIR$/SASAbus/Controller/Line/Course/Map/LineCourseMapViewController.swift" />
       </list>
     </option>
   </component>
@@ -128,6 +161,19 @@
               <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
               <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
             </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
+              <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
+              <item name="Data" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
+              <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
+              <item name="Data" type="fcab9f18:XcodeViewNode" />
+              <item name="Realm" type="fcab9f18:XcodeViewNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -141,11 +187,12 @@
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="SASAbus,,,TripNotification" />
     <property name="com.jetbrains.cidr.execution.build.XcodeMessageFilterConfiguration.INFO" value="false" />
     <property name="com.jetbrains.cidr.execution.build.XcodeMessageFilterConfiguration.WARNING" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="Menu&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Controller/Menu/MenuViewController.swift&#10;EcoPointsV&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Controller/EcoPoints/EcoPointsViewController.swift&#10;VdvPaths&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvPaths.swift&#10;VdvTrips&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvTrips.swift&#10;De&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/DepartureMonitor.swift&#10;Departure&#9;null&#9;null&#10;VdvCal&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvCalendar.swift&#10;VdvDa&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Model/VdvDate.swift&#10;MapBottom&#9;null&#9;null&#10;MenuV&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="LineCourse&#9;null&#9;null&#10;Menu&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Controller/Menu/MenuViewController.swift&#10;EcoPointsV&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Controller/EcoPoints/EcoPointsViewController.swift&#10;VdvPaths&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvPaths.swift&#10;VdvTrips&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvTrips.swift&#10;De&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/DepartureMonitor.swift&#10;Departure&#9;null&#9;null&#10;VdvCal&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvCalendar.swift&#10;VdvDa&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Model/VdvDate.swift&#10;MapBottom&#9;null&#9;null&#10;MenuV&#9;null&#9;null" />
     <property name="OverrideImplement.combined" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/SASAbus/Data/Realm" />
       <recent name="$PROJECT_DIR$/SASAbus" />
       <recent name="$PROJECT_DIR$/SASAbus/Settings.bundle/en.lproj" />
     </key>
@@ -210,7 +257,7 @@
       <workItem from="1503644030748" duration="5474000" />
       <workItem from="1503650150942" duration="5645000" />
       <workItem from="1503901574344" duration="3393000" />
-      <workItem from="1503914429261" duration="4534000" />
+      <workItem from="1503914429261" duration="5493000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed some bugs with Firebase">
       <created>1503560356013</created>
@@ -317,11 +364,18 @@
       <option name="project" value="LOCAL" />
       <updated>1503922727419</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Added new star icon">
+      <created>1503923188892</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1503923188892</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26051000" />
+    <option name="totallyTimeSpent" value="27010000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -334,6 +388,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -343,7 +398,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32241556" sideWeight="0.4978903" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24954791" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24954791" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -392,7 +447,8 @@
     <MESSAGE value="Added more translations" />
     <MESSAGE value="Added Settings localization" />
     <MESSAGE value="Fixed eco points profile not loading after login" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed eco points profile not loading after login" />
+    <MESSAGE value="Added new star icon" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new star icon" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -401,31 +457,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvTravelTimes.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="6" column="3" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-          <folding>
-            <element signature="e#37#245#0" expanded="false" />
-            <element signature="e#323#614#0" expanded="false" />
-            <element signature="e#1119#1343#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvTripStopTimes.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
-          <folding>
-            <element signature="e#37#235#0" expanded="false" />
-            <element signature="e#316#493#0" expanded="false" />
-            <element signature="e#929#1600#0" expanded="false" />
-            <element signature="e#1605#1780#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SASAbus/Data/Vdv/Data/VdvBusStopBreaks.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -873,6 +904,31 @@
             <element signature="e#2191#2509#0" expanded="false" />
             <element signature="e#2516#3336#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SASAbus/Data/Realm/BusStopRealmHelper.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="109" column="5" lean-forward="true" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
+          <folding>
+            <element signature="e#693#987#0" expanded="false" />
+            <element signature="e#993#1290#0" expanded="false" />
+            <element signature="e#1296#1622#0" expanded="false" />
+            <element signature="e#1628#1791#0" expanded="false" />
+            <element signature="e#1797#2138#0" expanded="false" />
+            <element signature="e#2144#2605#0" expanded="false" />
+            <element signature="e#2611#2822#0" expanded="false" />
+            <element signature="e#2829#2985#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SASAbus/Controller/Line/Course/Map/LineCourseMapViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="67" column="43" lean-forward="true" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
