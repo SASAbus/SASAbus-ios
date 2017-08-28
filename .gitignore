@@ -1,7 +1,3 @@
-# Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
-
 ## Build generated
 build/
 DerivedData/
@@ -21,10 +17,6 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
-
-# Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 ## Build generated
 build/
@@ -122,8 +114,4 @@ Pods/
 
 # Additions
 .idea/
-<<<<<<< HEAD
 .DS_Store
-=======
-.DS_Store
->>>>>>> d3c3c116d6fc2afdc01f55e5dc9a0382fd0ae720
