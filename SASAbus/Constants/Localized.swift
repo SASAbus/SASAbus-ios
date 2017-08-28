@@ -16,6 +16,11 @@ enum L10n {
     static let title = L10n.tr("Localizable", "about.title")
   }
 
+  enum Accessibility {
+    /// Menu
+    static let menu = L10n.tr("Localizable", "accessibility.menu")
+  }
+
   enum BusDetails {
     /// Color
     static let color = L10n.tr("Localizable", "bus_details.color")
@@ -81,6 +86,15 @@ enum L10n {
       static let header = L10n.tr("Localizable", "departures.favorites.header")
       /// Bus stop favorites
       static let title = L10n.tr("Localizable", "departures.favorites.title")
+    }
+
+    enum Filter {
+      /// Disable all
+      static let disableAll = L10n.tr("Localizable", "departures.filter.disable_all")
+      /// Enable all
+      static let enableAll = L10n.tr("Localizable", "departures.filter.enable_all")
+      /// Bus line filter
+      static let title = L10n.tr("Localizable", "departures.filter.title")
     }
 
     enum Gps {

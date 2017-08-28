@@ -63,15 +63,15 @@ class Lines {
     }
 
     static func line(id: Int) -> String {
-        return NSLocalizedString("line", value: "Line", comment: "Line") + " " + lidToName(id: id)
+        return L10n.General.line(lidToName(id: id))
     }
 
     static func line(name: String) -> String {
-        return NSLocalizedString("line", value: "Line", comment: "Line") + " " + name
+        return L10n.General.line(name)
     }
 
     static func lines(name: String) -> String {
-        return NSLocalizedString("linee", value: "Lines", comment: "Lines") + " " + name
+        return L10n.General.lines(name)
     }
 
     static let allLines: [Int] = [

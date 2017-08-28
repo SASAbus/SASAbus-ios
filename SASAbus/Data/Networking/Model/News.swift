@@ -56,7 +56,7 @@ final class News: JSONable {
         if self.lines.count > 0 {
             let stringArray: [String] = lines.flatMap { String($0) }
 
-            linesString = NSLocalizedString("Lines: ", comment: "") + stringArray.joined(separator: ", ")
+            linesString = Lines.lines(name: stringArray.joined(separator: ", "))
         }
 
         return linesString

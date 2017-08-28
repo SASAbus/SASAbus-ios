@@ -49,7 +49,7 @@ class MasterTabBarController: UITabBarController {
         )
 
         leftDrawerButton.tintColor = Theme.white
-        leftDrawerButton.accessibilityLabel = NSLocalizedString("Menu", comment: "")
+        leftDrawerButton.accessibilityLabel = L10n.Accessibility.menu
         
         self.navigationItem.setLeftBarButton(leftDrawerButton, animated: true)
     }

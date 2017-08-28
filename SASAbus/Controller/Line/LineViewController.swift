@@ -63,9 +63,9 @@ class LineViewController: MasterViewController, StatefulViewController, UITableV
 
         var tabBarItems = tabBar.items!
 
-        tabBarItems[0].title = NSLocalizedString(L10n.Line.TabBar.favorites, comment: "")
-        tabBarItems[1].title = NSLocalizedString(L10n.Line.TabBar.bolzano, comment: "")
-        tabBarItems[2].title = NSLocalizedString(L10n.Line.TabBar.merano, comment: "")
+        tabBarItems[0].title = L10n.Line.TabBar.favorites
+        tabBarItems[1].title = L10n.Line.TabBar.bolzano
+        tabBarItems[2].title = L10n.Line.TabBar.merano
 
         loadingView = LoadingView(frame: view.frame)
         errorView = ErrorView(frame: view.frame, target: self, action: #selector(parseData))

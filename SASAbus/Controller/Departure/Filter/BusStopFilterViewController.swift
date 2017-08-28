@@ -43,17 +43,17 @@ class BusStopFilterViewController: UIViewController, UICollectionViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("Bus line filter", comment: "")
+        title = L10n.Departures.Filter.title
 
         collectionView.register(UINib(nibName: "BusStopFilterCollectionViewCell", bundle: nil),
                 forCellWithReuseIdentifier: "BusStopFilterCollectionViewCell")
 
         enableAllButton.action = #selector(enableAllLines)
-        enableAllButton.title = NSLocalizedString("Enable all", comment: "")
+        enableAllButton.title = L10n.Departures.Filter.enableAll
         enableAllButton.tintColor = Theme.orange
 
         disableAllButton.action = #selector(disableAllLines)
-        disableAllButton.title = NSLocalizedString("Disable all", comment: "")
+        disableAllButton.title = L10n.Departures.Filter.disableAll
         disableAllButton.tintColor = Theme.orange
 
         loadAllLines()

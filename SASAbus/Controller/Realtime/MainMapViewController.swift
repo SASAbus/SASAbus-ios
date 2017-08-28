@@ -42,7 +42,7 @@ class MainMapViewController: BottomSheetViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("map", value: "Map", comment: "Map")
+        title = L10n.Map.title
 
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
         let activityButton = UIBarButtonItem(customView: activityIndicator!)

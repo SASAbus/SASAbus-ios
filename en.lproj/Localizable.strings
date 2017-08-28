@@ -94,8 +94,12 @@
 "departures.favorites.title" = "Bus stop favorites";
 "departures.favorites.header" = "Select a bus stop from your favorites";
 
+"departures.filter.title" = "Bus line filter";
+"departures.filter.enable_all" = "Enable all";
+"departures.filter.disable_all" = "Disable all";
 
-// ================================================== ECO POINTS ==================================================
+
+// ==================================================== ECO POINTS =====================================================
 
 "ecopoints.title" = "Eco points";
 
@@ -141,7 +145,7 @@
 "ecopoints.badges.view_all" = "View all badges";
 
 
-// ==================================================== INTRO ====================================================
+// ======================================================= INTRO =======================================================
 
 "intro.realtime.title" = "Real-time";
 "intro.realtime.subtitle" = "Bus positions in real-time";
@@ -162,3 +166,8 @@
 "intro.permission.title" = "Permission";
 "intro.permission.subtitle" = "Beacon tracking needs your location";
 "intro.permission.description" = "Please allow the app to use your location to scan for beacons";
+
+
+// =================================================== ACCESSIBILITY ===================================================
+
+"accessibility.menu" = "Menu";

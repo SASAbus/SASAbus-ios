@@ -4,12 +4,16 @@
     <list default="true" id="f3d29402-016d-4755-9201-16bfc752e971" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Constants/Localized.swift" afterPath="$PROJECT_DIR$/SASAbus/Constants/Localized.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Line/Course/List/LineCourseListViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Line/Course/List/LineCourseListViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Line/Details/LineDetailsViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Line/Details/LineDetailsViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Departure/Filter/BusStopFilterViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Departure/Filter/BusStopFilterViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Line/LineViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Line/LineViewController.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/MasterTabBarController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/MasterTabBarController.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/MasterTableViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/MasterTableViewController.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/MasterViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/MasterViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/View/BackgroundView.swift" afterPath="$PROJECT_DIR$/SASAbus/View/BackgroundView.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Realtime/MainMapViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Realtime/MainMapViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Survey/Validator/PhoneNumberRule.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Survey/Validator/PhoneNumberRule.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/intro/IntroViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/intro/IntroViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Data/Model/Lines.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Model/Lines.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Data/Networking/Model/News.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Networking/Model/News.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/en.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/en.lproj/Localizable.strings" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -80,6 +84,7 @@
         <option value="$PROJECT_DIR$/SASAbus/Controller/Line/Course/List/LineCourseListViewController.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Util/Extensions/UIImage+Insets.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Controller/Intro/IntroViewController.swift" />
+        <option value="$PROJECT_DIR$/en.lproj/Localizable.strings" />
       </list>
     </option>
   </component>
@@ -115,6 +120,11 @@
             <path>
               <item name="" type="efc3779f:XcodeRootNode" />
               <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
+              <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
             </path>
           </expand>
           <select />
@@ -191,7 +201,7 @@
       <workItem from="1503644030748" duration="5474000" />
       <workItem from="1503650150942" duration="5645000" />
       <workItem from="1503901574344" duration="3393000" />
-      <workItem from="1503914429261" duration="903000" />
+      <workItem from="1503914429261" duration="1180000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed some bugs with Firebase">
       <created>1503560356013</created>
@@ -270,11 +280,18 @@
       <option name="project" value="LOCAL" />
       <updated>1503914619860</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Added more translations">
+      <created>1503915431111</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1503915431111</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22420000" />
+    <option name="totallyTimeSpent" value="22697000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -342,7 +359,8 @@
     <MESSAGE value="Made strings translatable" />
     <MESSAGE value="Lint fixes" />
     <MESSAGE value="Fixed typo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed typo" />
+    <MESSAGE value="Added more translations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more translations" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -351,13 +369,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/SASAbus/Controller/Realtime/BottomSheet/MapBottomSheetViewController.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="190" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SASAbus/Data/Networking/NetUtils.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -813,6 +824,14 @@
             <element signature="e#5628#6287#0" expanded="false" />
             <element signature="e#6292#6487#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en.lproj/Localizable.strings">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="143" column="44" lean-forward="true" selection-start-line="143" selection-start-column="44" selection-end-line="143" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
