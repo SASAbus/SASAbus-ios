@@ -18,7 +18,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AoF-gK-8aU">
                     <rect key="frame" x="53" y="236" width="268" height="196"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_star_white_48pt" translatesAutoresizingMaskIntoConstraints="NO" id="fug-IV-LKp">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_state_star" translatesAutoresizingMaskIntoConstraints="NO" id="fug-IV-LKp">
                             <rect key="frame" x="48" y="0.0" width="172" height="172"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="172" id="7m2-ey-Bh5"/>
@@ -72,6 +72,6 @@
         </view>
     </objects>
     <resources>
-        <image name="ic_star_white_48pt" width="48" height="48"/>
+        <image name="empty_state_star" width="256" height="256"/>
     </resources>
 </document>

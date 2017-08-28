@@ -82,6 +82,7 @@ enum Asset {
   static let icParkingGreen = ImageAsset(name: "ic_parking_green")
   static let icLanguageWhite = ImageAsset(name: "ic_language_white")
   static let pathEtc = ImageAsset(name: "path_etc")
+  static let emptyStateStar = ImageAsset(name: "empty_state_star")
   static let icBubbleChartWhite48pt = ImageAsset(name: "ic_bubble_chart_white_48pt")
   static let icSettingsWhite = ImageAsset(name: "ic_settings_white")
   static let lineCourseDots5 = ImageAsset(name: "line_course_dots_5")
@@ -188,6 +189,7 @@ enum Asset {
     icParkingGreen,
     icLanguageWhite,
     pathEtc,
+    emptyStateStar,
     icBubbleChartWhite48pt,
     icSettingsWhite,
     lineCourseDots5,
