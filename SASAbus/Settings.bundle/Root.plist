@@ -22,6 +22,14 @@
 			<key>File</key>
 			<string>Map</string>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>submenu_notifications</string>
+			<key>File</key>
+			<string>Notifications</string>
+		</dict>
 	</array>
 </dict>
 </plist>

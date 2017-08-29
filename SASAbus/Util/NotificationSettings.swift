@@ -6,8 +6,8 @@ class NotificationSettings {
     private static let PREF_SURVEY_INTERVAL = "pref_survey_interval"
     private static let PREF_SURVEY_LAST_MILLIS = "pref_survey_last_millis"
     
-    private static let PREF_TRIP_NOTIFICATION_ENABLED = "pref_trip_notification_enabled"
     private static let PREF_BUS_NOTIFICATION_ENABLED = "pref_bus_notification_enabled"
+    private static let PREF_TRIP_NOTIFICATION_ENABLED = "pref_trip_notification_enabled"
     private static let PREF_NEWS_NOTIFICATION_ENABLED = "pref_news_notification_enabled"
     
     
