@@ -139,6 +139,7 @@ enum Asset {
   static let icNaturePeopleWhite = ImageAsset(name: "ic_nature_people_white")
   static let icPinDropWhite = ImageAsset(name: "ic_pin_drop_white")
   static let lineCourseDots = ImageAsset(name: "line_course_dots")
+  static let unknownBus = ImageAsset(name: "unknown_bus")
   static let icListWhite36pt = ImageAsset(name: "ic_list_white_36pt")
   static let introAgreement = ImageAsset(name: "intro_agreement")
   static let icRadioButtonCheckedWhite = ImageAsset(name: "ic_radio_button_checked_white")
@@ -246,6 +247,7 @@ enum Asset {
     icNaturePeopleWhite,
     icPinDropWhite,
     lineCourseDots,
+    unknownBus,
     icListWhite36pt,
     introAgreement,
     icRadioButtonCheckedWhite,

@@ -39,6 +39,8 @@ import AlamofireNetworkActivityIndicator
 
 // TODO: News: Check if empty state is working
 // TODO: Add translations
+// TODO: Trip getting formatted with decimals in bottom sheet (10963 -> 10.963)
+// TODO: Update vehicle list
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

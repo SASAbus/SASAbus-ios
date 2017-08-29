@@ -120,9 +120,10 @@ class MapBottomSheetViewController: UIViewController, BottomSheetDrawerViewContr
         tripText.text = L10n.Map.Sheet.trip(bus.trip)
 
         if let vehicle = Buses.getBus(id: bus.vehicle) {
-            parentVC!.backgroundImage.image = UIImage(named: vehicle.vehicle.code)
+            parentVC?.backgroundImage.image = UIImage(named: vehicle.vehicle.code)
         } else {
             Log.error("Vehicle \(bus.vehicle) does not exist")
+            parentVC?.backgroundImage.image = Asset.unknownBus.image
         }
     }
 

@@ -55,6 +55,7 @@
 "general.delay_punctual" = "Punctual";
 "general.delay_delayed" = "%d' delayed";
 "general.delay_early" = "%d' early";
+"general.unknown" = "Unknown";
 
 "news.title" = "News";
 "news.tab_bar.bolzano" = "Bolzano";

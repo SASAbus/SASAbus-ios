@@ -335,6 +335,8 @@ enum L10n {
     }
     /// pull to refresh
     static let pullToRefresh = L10n.tr("Localizable", "general.pullToRefresh")
+    /// Unknown
+    static let unknown = L10n.tr("Localizable", "general.unknown")
   }
 
   enum Intro {

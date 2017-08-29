@@ -51,26 +51,19 @@ class BusDetailsViewController: UIViewController {
         if vehicleId == 0 {
             fatalError("vehicleId == 0")
         }
+        
+        title = L10n.BusDetails.titleFormatted(vehicleId)
 
         parseData()
     }
 
     func parseData() {
+        let tintColor: UIColor
+        
         if let bus = Buses.getBus(id: vehicleId) {
             let vehicle = bus.vehicle
 
-            let color = vehicle.color == 2 ?  FlatOrange() : vehicle.getColor()
-
-            if let navController = self.navigationController {
-                navController.navigationBar.barTintColor = color
-            }
-
-            manufacturerImage.tint(with: color)
-            licensePlateImage.tint(with: color)
-            fuelImage.tint(with: color)
-            colorImage.tint(with: color)
-
-            specifications.textColor = color
+            tintColor = vehicle.color == 2 ?  FlatOrange() : vehicle.getColor()
 
             busImage.image = UIImage(named: vehicle.code)
 
@@ -79,10 +72,29 @@ class BusDetailsViewController: UIViewController {
             licensePlateText.text = "\(bus.licensePlate!) #\(vehicleId)"
             fuelText.text = vehicle.getFuelString()
             colorText.text = vehicle.getColorString()
-
-            title = L10n.BusDetails.titleFormatted(vehicleId)
         } else {
             Log.error("Vehicle \(vehicleId) does not exist")
+            
+            tintColor = FlatOrange()
+            
+            busImage.image = Asset.unknownBus.image
+            
+            manufacturerText.text = L10n.General.unknown
+            modelText.text = L10n.General.unknown
+            licensePlateText.text = L10n.General.unknown
+            fuelText.text = L10n.General.unknown
+            colorText.text = L10n.General.unknown
         }
+        
+        if let navController = self.navigationController {
+            navController.navigationBar.barTintColor = tintColor
+        }
+        
+        manufacturerImage.tint(with: tintColor)
+        licensePlateImage.tint(with: tintColor)
+        fuelImage.tint(with: tintColor)
+        colorImage.tint(with: tintColor)
+        
+        specifications.textColor = tintColor
     }
 }
