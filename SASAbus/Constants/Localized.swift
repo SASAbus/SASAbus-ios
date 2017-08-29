@@ -477,6 +477,30 @@ enum L10n {
     }
   }
 
+  enum Notification {
+
+    enum News {
+      /// Click for more
+      static let clickForMore = L10n.tr("Localizable", "notification.news.click_for_more")
+    }
+
+    enum Survey {
+      /// Click to take a survey about your bus ride
+      static let body = L10n.tr("Localizable", "notification.survey.body")
+      /// Survey
+      static let title = L10n.tr("Localizable", "notification.survey.title")
+    }
+
+    enum Trip {
+      /// Your trip from %@ to %@ was saved
+      static func body(_ p1: String, _ p2: String) -> String {
+        return L10n.tr("Localizable", "notification.trip.body", p1, p2)
+      }
+      /// Trip saved
+      static let title = L10n.tr("Localizable", "notification.trip.title")
+    }
+  }
+
   enum Parking {
     /// Parking
     static let title = L10n.tr("Localizable", "parking.title")

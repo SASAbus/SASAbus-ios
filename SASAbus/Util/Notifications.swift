@@ -32,8 +32,8 @@ class Notifications {
         let originName = BusStopRealmHelper.getName(id: trip.origin)
         let destinationName = BusStopRealmHelper.getName(id: trip.destination)
 
-        content.title = "Trip saved"
-        content.body = "Your trip from \(originName) to \(destinationName) was saved"
+        content.title =  L10n.Notification.Trip.title
+        content.body =  L10n.Notification.Trip.body(originName, destinationName)
         content.sound = UNNotificationSound.default()
         content.categoryIdentifier = "trip_notification"
 
@@ -46,8 +46,8 @@ class Notifications {
     static func survey(hash: String) {
         let content = UNMutableNotificationContent()
 
-        content.title = "Survey"
-        content.body = "Click to take a survey about your bus ride"
+        content.title = L10n.Notification.Survey.title
+        content.body =  L10n.Notification.Survey.body
         content.sound = UNNotificationSound.default()
         content.categoryIdentifier = "survey_notification"
 
@@ -61,7 +61,7 @@ class Notifications {
         let content = UNMutableNotificationContent()
         
         content.title = title
-        content.body = "Click to view more"
+        content.body = L10n.Notification.News.clickForMore
         content.sound = UNNotificationSound.default()
         content.categoryIdentifier = "news_notification"
         

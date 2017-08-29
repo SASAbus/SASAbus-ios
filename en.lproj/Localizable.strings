@@ -173,3 +173,14 @@
 // =================================================== ACCESSIBILITY ===================================================
 
 "accessibility.menu" = "Menu";
+
+
+// =================================================== NOTIFICATIONS ===================================================
+
+"notification.news.click_for_more" = "Click for more";
+
+"notification.trip.title" = "Trip saved";
+"notification.trip.body" = "Your trip from %@ to %@ was saved";
+
+"notification.survey.title" = "Survey";
+"notification.survey.body" = "Click to take a survey about your bus ride";
