@@ -268,11 +268,28 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         completionHandler([.alert, .badge, .sound])
     }
 
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
 
-        Log.warning("didReceive withCompletionHandler: \(response.actionIdentifier)")
+        let identifier = response.notification.request.identifier
+        Log.warning("didReceive withCompletionHandler: '\(identifier)'")
+        
+        if response.actionIdentifier == UNNotificationDismissActionIdentifier {
+            Log.warning("Dismissed notification '\(identifier)'")
+        } else if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
+            Log.warning("Clicked on notification '\(identifier)'")
+            
+            switch identifier {
+            case "news":
+                // TODO: Highlight the news the user clicked on?
+                if let controller = Menu.items[4].viewController {
+                    navigateTo(controller)
+                }
+            default:
+                Log.error("Unknown identifier '\(identifier)'")
+            }
+        }
+        
         completionHandler()
     }
 }
