@@ -3,7 +3,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-import GoogleSignIn
+import Google
 
 import Crashlytics
 
@@ -170,7 +170,7 @@ class LoginViewController: UIViewController {
 extension LoginViewController: GIDSignInUIDelegate {
 
     func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
-        print("signInWillDispatch")
+        Log.info("signInWillDispatch")
 
         button.isUserInteractionEnabled = false
 
@@ -190,13 +190,13 @@ extension LoginViewController: GIDSignInUIDelegate {
     }
 
     func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
-        print("signInWillPresent")
+        Log.info("signInWillPresent")
 
         self.present(viewController, animated: true, completion: nil)
     }
 
     func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
-        print("signInWillDismiss")
+        Log.info("signInWillDismiss")
 
         self.dismiss(animated: true, completion: nil)
 

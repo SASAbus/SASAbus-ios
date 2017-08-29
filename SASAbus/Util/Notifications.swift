@@ -56,6 +56,20 @@ class Notifications {
 
         add(identifier: identifier, content: content, trigger: trigger)
     }
+    
+    static func news(title: String) {
+        let content = UNMutableNotificationContent()
+        
+        content.title = title
+        content.body = "Click to view more"
+        content.sound = UNNotificationSound.default()
+        content.categoryIdentifier = "news_notification"
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let identifier = "news"
+        
+        add(identifier: identifier, content: content, trigger: trigger)
+    }
 
 
     // ==================================================== UTILS ======================================================

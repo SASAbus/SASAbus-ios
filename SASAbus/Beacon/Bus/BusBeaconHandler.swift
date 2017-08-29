@@ -105,7 +105,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
             return
         }
 
-        Log.trace("didRangeBeacons(): BUS, count: \(beacons.count)")
+        Log.debug("didRangeBeacons(): BUS, count: \(beacons.count)")
 
         for beacon in beacons {
             let major = beacon.major as! Int
@@ -131,7 +131,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
             busBeacon.seen()
             busBeacon.distance = beacon.proximity
 
-            Log.trace("Vehicle \(major), seen: \(busBeacon.seenSeconds), distance: \(busBeacon.distance.rawValue)")
+            Log.debug("Vehicle \(major), seen: \(busBeacon.seenSeconds), distance: \(busBeacon.distance.rawValue)")
 
             /*
              * Checks if a beacon needs to download bus info because it is suitable for
@@ -171,7 +171,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
     }
 
     func deleteInvisibleBeacons() {
-        Log.trace("deleteInvisibleBeacons()")
+        Log.debug("deleteInvisibleBeacons()")
 
         let currentTrip = BeaconStorage.currentTrip
 
@@ -472,7 +472,7 @@ class BusBeaconHandler: NSObject, CLLocationManagerDelegate {
                     beacon.departure = bus.departure
 
                     if beacon.lastTrip != bus.trip {
-                        Log.error("Trip reset for vehicle %s", beacon.id)
+                        Log.error("Trip reset for vehicle \(beacon.id)")
 
                         // Assume that the bus changed variant (probably because it arrived at
                         // its destination), so reset the trip by clearing the old path and times.

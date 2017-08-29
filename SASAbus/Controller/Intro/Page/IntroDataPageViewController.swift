@@ -65,7 +65,6 @@ class IntroDataPageViewController: IntroPageViewController {
                 .subscribe(
                         onNext: { progress in
                             self.progressView.progress = progress
-                            print(progress)
                         },
                         onError: { error in
                             self.downloadComplete = false

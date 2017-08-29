@@ -221,7 +221,7 @@ class ReportViewController: UIViewController, UIPickerViewDataSource, UINavigati
                 do {
                     try fileManager.removeItem(at: imagePath)
                 } catch let error {
-                    print("Could not delete old image '\(imagePath)': \(error)")
+                    Log.error("Could not delete old image '\(imagePath)': \(error)")
                 }
             }
         }
@@ -483,7 +483,7 @@ extension ReportViewController: UIImagePickerControllerDelegate {
             do {
                 try fileManager.removeItem(at: imagePath)
             } catch let error {
-                print("Could not delete old image '\(imagePath)': \(error)")
+                Log.error("Could not delete old image '\(imagePath)': \(error)")
             }
         }
 

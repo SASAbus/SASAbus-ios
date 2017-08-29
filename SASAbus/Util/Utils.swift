@@ -8,6 +8,13 @@ class Utils {
         let fullLocale: String = Locale.preferredLanguages.first! as String
         return String(fullLocale.characters.prefix(2))
     }
+    
+    static func localeDeIt() -> String {
+        let fullLocale: String = Locale.preferredLanguages.first! as String
+        let shortLocale = String(fullLocale.characters.prefix(2))
+        
+        return shortLocale == "de" ? "de" : "it"
+    }
 
     static func insertTripIfValid(beacon: BusBeacon) -> CloudTrip? {
         if beacon.origin == beacon.destination && beacon.lastSeen - beacon.startDate.millis() < 600000 {

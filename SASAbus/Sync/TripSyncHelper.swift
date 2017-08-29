@@ -15,7 +15,7 @@ class TripSyncHelper {
                 .subscribe(onNext: { json in
                     Log.error("Got \(json["earned_badges"].arrayValue.count) new badges to display")
 
-                    print(json)
+                    Log.info(json)
 
                     DispatchQueue(label: "com.app.queue", qos: .background).async {
                         // TODO

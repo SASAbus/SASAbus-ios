@@ -33,12 +33,12 @@ import RxSwift
 import RxCocoa
 
 import Firebase
-import GoogleSignIn
+import Google
 
 import AlamofireNetworkActivityIndicator
 
-// TODO: Departures: Filter not persistent
 // TODO: News: Check if empty state is working
+// TODO: Add translations
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -48,6 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        Settings.registerDefaults()
+        
         setupLogging()
         setupFirebase()
         setupRealm()
@@ -76,47 +78,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-
-    func applicationWillResignActive(_ application: UIApplication) {
-        Log.warning("applicationWillResignActive()")
-
-        // Sent when the application is about to move from active to inactive state.
-        // This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message)
-        // or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates.
-        // Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        Log.warning("applicationDidEnterBackground()")
-
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application
-        // state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution,
-        // this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        Log.warning("applicationWillEnterForeground()")
-
-        // Called as part of the transition from the background to the inactive state;
-        // here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        Log.warning("applicationDidBecomeActive()")
-
-        // Restart any tasks that were paused (or not yet started) while the application was inactive.
-        // If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        Log.warning("applicationWillTerminate()")
-
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        // Saves changes in the application's managed object context before the application terminates.
-    }
-
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
         return GIDSignIn.sharedInstance().handle(
                 url,
@@ -126,23 +87,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
-    func startIntro(dataOnly: Bool = false) {
-        let storyboard = UIStoryboard(name: "Intro", bundle: nil)
-        let viewController = storyboard.instantiateViewController(
-                withIdentifier: "intro_parent_controller") as! IntroParentViewController
-
-        viewController.dataOnly = dataOnly
-
-        self.window?.rootViewController = viewController
-        self.window?.makeKeyAndVisible()
-    }
-
     func startApplication() {
         let appearance = UINavigationBar.appearance()
         appearance.isTranslucent = false
-        appearance.tintColor = Theme.white  // Back buttons and such
-        appearance.barTintColor = Theme.orange  // Bar's background color
-        appearance.titleTextAttributes = [NSForegroundColorAttributeName: Theme.white]  // Title's text color
+        appearance.tintColor = Theme.white
+        appearance.barTintColor = Theme.orange
+        appearance.titleTextAttributes = [NSForegroundColorAttributeName: Theme.white]
 
         CLLocationManager().requestAlwaysAuthorization()
         CLLocationManager().requestWhenInUseAuthorization()
@@ -164,12 +114,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.rootViewController = self.drawerController
     }
 
+    func startIntro(dataOnly: Bool = false) {
+        let storyboard = UIStoryboard(name: "Intro", bundle: nil)
+        let viewController = storyboard.instantiateViewController(
+                withIdentifier: "intro_parent_controller") as! IntroParentViewController
+
+        viewController.dataOnly = dataOnly
+
+        self.window?.rootViewController = viewController
+        self.window?.makeKeyAndVisible()
+    }
+
 
     func setupBeacons() {
         BeaconHandler.instance.start()
     }
 
     func setupLogging() {
+        Log.setup()
+        
 #if !DEBUG
         Fabric.with([Crashlytics.self])
         Crashlytics.sharedInstance().setUserIdentifier(Settings.getCrashlyticsDeviceId())
@@ -179,24 +142,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupFirebase() {
         var configureError: NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
-        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        // assert(configureError == nil, "Error configuring Google services: \(configureError)")
 
         GIDSignIn.sharedInstance().delegate = self
 
-        // TODO: Fix Firebase Remote Config
-        // FirebaseApp.configure()
+        FirebaseApp.configure()
 
-        let remoteConfig = FIRRemoteConfig.remoteConfig()
-        let remoteConfigSettings = FIRRemoteConfigSettings(developerModeEnabled: true)!
+        let remoteConfig = RemoteConfig.remoteConfig()
+        let remoteConfigSettings = RemoteConfigSettings(developerModeEnabled: true)!
 
         remoteConfig.configSettings = remoteConfigSettings
-        remoteConfig.setDefaultsFromPlistFileName("RemoteConfigDefaults")
+        remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults")
 
         remoteConfig.fetch(withExpirationDuration: TimeInterval(86400)) { (status, error) -> Void in
             if status == .success {
                 Log.error("Remote config fetch succeeded.")
-
-                let oldUrl = Endpoint.apiUrl
 
                 remoteConfig.activateFetched()
 
@@ -217,12 +177,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 let databaseUrl = Endpoint.databaseApiUrl
                 Log.warning("Database api url: \(databaseUrl)")
-
-                if oldUrl != url {
-                    Log.error("Api url changed from \(oldUrl) to \(url)")
-                }
             } else {
-                print("Remote config fetch failed: \(error)")
+                Log.error("Remote config fetch failed: \(error!.localizedDescription)")
             }
         }
     }
@@ -236,8 +192,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Buses.setup()
         Lines.setup()
 
-        Settings.registerDefaults()
-
         _ = VdvHandler.load()
                 .subscribeOn(MainScheduler.background)
                 .observeOn(MainScheduler.background)
@@ -247,7 +201,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setupNotifications() {
-        // UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().delegate = self
 
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { _, _ in })
@@ -255,15 +209,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.registerForRemoteNotifications()
         Notifications.clearAll()
 
-        // TODO: Fix Firebbase Cloud Messaging
-        // FIRMessaging.messaging().delegate = self
-        // FIRMessaging.messaging().shouldEstablishDirectChannel = true
-
-        // FIRMessaging.messaging().subscribe(toTopic: "/topics/general")
-        // FIRMessaging.messaging().subscribe(toTopic: "general")
-
-        UIApplication.shared.cancelAllLocalNotifications()
-        UIApplication.shared.applicationIconBadgeNumber = 0
+        Messaging.messaging().delegate = self
+        Messaging.messaging().shouldEstablishDirectChannel = true
+        
+        DispatchQueue.main.async {
+            FcmUtils.checkForNewsSubscription()
+        }
     }
 
 
@@ -289,6 +240,63 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 
+extension AppDelegate {
+
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        FcmUtils.handleFcmMessage(userInfo: userInfo)
+    }
+
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        FcmUtils.handleFcmMessage(userInfo: userInfo)
+
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        Log.error("Unable to register for remote notifications: \(error.localizedDescription)")
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+
+        Log.warning("willPresent withCompletionHandler: \(notification.request.identifier)")
+        completionHandler([.alert, .badge, .sound])
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+
+        Log.warning("didReceive withCompletionHandler: \(response.actionIdentifier)")
+        completionHandler()
+    }
+}
+
+
+extension AppDelegate: MessagingDelegate {
+
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        Log.error("Got firebase registration token: \(fcmToken)")
+        
+        FcmSettings.setFcmToken(token: fcmToken)
+        FcmUtils.checkForNewsSubscription()
+        
+        DispatchQueue.main.async {
+            Log.warning("Subscribing to general topic")
+            Messaging.messaging().subscribe(toTopic: "general")
+        }
+    }
+
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        Log.error("Received data message: \(remoteMessage.appData)")
+    }
+}
+
 extension AppDelegate: GIDSignInDelegate {
 
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -305,7 +313,7 @@ extension AppDelegate: GIDSignInDelegate {
                     userInfo: ["user_id": idToken, "email": email]
             )
         } else {
-            print("Login error: \(error.localizedDescription)")
+            Log.error("Login error: \(error.localizedDescription)")
 
             AuthHelper.logout()
 
@@ -313,47 +321,13 @@ extension AppDelegate: GIDSignInDelegate {
         }
     }
 
-    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: Error!) {
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         AuthHelper.logout()
 
         if (error == nil) {
-            print("Logout successful")
+            Log.warning("Logout successful")
         } else {
-            print("Logout error: \(error.localizedDescription)")
+            Log.error("Logout error: \(error.localizedDescription)")
         }
     }
 }
-
-
-/*extension AppDelegate: UNUserNotificationCenterDelegate {
-
-    // Receive displayed notifications for iOS 10 devices.
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-
-        Log.warning("willPresent withCompletionHandler: \(notification.request.identifier)")
-        completionHandler([.alert, .badge, .sound])
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
-
-        Log.warning("didReceive withCompletionHandler: \(response.actionIdentifier)")
-        completionHandler()
-    }
-}*/
-
-/*extension AppDelegate: FIRMessagingDelegate {
-
-    func messaging(_ messaging: FIRMessaging, didRefreshRegistrationToken fcmToken: String) {
-        Log.error("Firebase registration token: \(fcmToken)")
-    }
-
-    // Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
-    // To enable direct data messages, you can set Messaging.messaging().shouldEstablishDirectChannel to true.
-    func messaging(_ messaging: FIRMessaging, didReceive remoteMessage: FIRMessagingRemoteMessage) {
-        Log.error("Received data message: \(remoteMessage.appData)")
-    }
-}*/

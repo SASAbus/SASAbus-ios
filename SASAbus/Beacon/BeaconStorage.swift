@@ -102,7 +102,7 @@ class BeaconStorage {
             UserDefaults.standard.removeObject(forKey: PREF_BEACON_CURRENT_BUS_STOP)
         } else {
             let json = mCurrentBusStop!.toJSONString(prettyPrint: false)
-            Log.trace("Saving current bus stop: \(json)")
+            Log.debug("Saving current bus stop: \(json)")
             UserDefaults.standard.set(json, forKey: PREF_BEACON_CURRENT_TRIP)
         }
     }
@@ -114,7 +114,7 @@ class BeaconStorage {
             return nil
         }
 
-        Log.trace("Reading current bus stop: \(json)")
+        Log.debug("Reading current bus stop: \(json)")
 
         if let beacon = BusStopBeacon(JSONString: json!) {
             beacon.busStop = BusStopRealmHelper.getBusStop(id: beacon.id)

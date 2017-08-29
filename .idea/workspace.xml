@@ -2,12 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3d29402-016d-4755-9201-16bfc752e971" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Fcm/FcmSettings.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SASAbus/Fcm/FcmUtils.swift" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SASAbus/Util/Log/Formatter.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SASAbus/Util/Log/Formatters.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SASAbus/Util/Log/LogTheme.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SASAbus/Util/Log/Themes.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SASAbus/Util/Log/Utilities.swift" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile" afterPath="$PROJECT_DIR$/Podfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile.lock" afterPath="$PROJECT_DIR$/Podfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/SASAbus.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/AppDelegate.swift" afterPath="$PROJECT_DIR$/SASAbus/AppDelegate.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Beacon/BeaconStorage.swift" afterPath="$PROJECT_DIR$/SASAbus/Beacon/BeaconStorage.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Beacon/Bus/BusBeaconHandler.swift" afterPath="$PROJECT_DIR$/SASAbus/Beacon/Bus/BusBeaconHandler.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Beacon/Bus/CurrentTrip.swift" afterPath="$PROJECT_DIR$/SASAbus/Beacon/Bus/CurrentTrip.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Beacon/Notification/TripNotification.swift" afterPath="$PROJECT_DIR$/SASAbus/Beacon/Notification/TripNotification.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/About/Report/ReportViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/About/Report/ReportViewController.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Login/LoginViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Login/LoginViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Intro/Page/IntroDataPageViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Intro/Page/IntroDataPageViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Line/Course/List/LineCourseListViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Line/Course/List/LineCourseListViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Line/Course/Map/LineCourseMapViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Line/Course/Map/LineCourseMapViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Controller/Line/Details/Buses/LineDetailsBusesViewController.swift" afterPath="$PROJECT_DIR$/SASAbus/Controller/Line/Details/Buses/LineDetailsBusesViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Data/Networking/Api/ReportApi.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Networking/Api/ReportApi.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Data/Networking/Endpoint.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Networking/Endpoint.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Data/Realm/UserRealmHelper.swift" afterPath="$PROJECT_DIR$/SASAbus/Data/Realm/UserRealmHelper.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/GoogleService-Info.plist" afterPath="$PROJECT_DIR$/SASAbus/GoogleService-Info.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Info.plist" afterPath="$PROJECT_DIR$/SASAbus/Info.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Sync/TripSyncHelper.swift" afterPath="$PROJECT_DIR$/SASAbus/Sync/TripSyncHelper.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Util/Log/Log.swift" afterPath="$PROJECT_DIR$/SASAbus/Util/Log/Log.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Util/NotificationSettings.swift" afterPath="$PROJECT_DIR$/SASAbus/Util/NotificationSettings.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Util/Settings.swift" afterPath="$PROJECT_DIR$/SASAbus/Util/Settings.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SASAbus/Util/Utils.swift" afterPath="$PROJECT_DIR$/SASAbus/Util/Utils.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TripNotification/NotificationViewController.swift" afterPath="$PROJECT_DIR$/TripNotification/NotificationViewController.swift" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,7 +45,18 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_d86a47ad2256e3a6cf409930e9faaf4b47d1633e" />
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="FcmUtils.swift" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SASAbus/Fcm/FcmUtils.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="28" column="34" lean-forward="true" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -40,6 +78,7 @@
       <find>filterImage</find>
       <find>done</find>
       <find>rightBarButtonItem</find>
+      <find>should</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -53,7 +92,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Pods/SwiftValidator/SwiftValidator/Core/Validator.swift" />
-        <option value="$PROJECT_DIR$/Podfile" />
         <option value="$PROJECT_DIR$/SASAbus/Data/Networking/NetUtils.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Data/Networking/Api/UserApi.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Profile/Settings/EcoPointsSettingsViewController.swift" />
@@ -100,7 +138,10 @@
         <option value="$PROJECT_DIR$/SASAbus/Data/Realm/UserRealmHelper.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Controller/Departure/BusStopViewController.swift" />
         <option value="$PROJECT_DIR$/SASAbus/Controller/About/Report/ReportViewController.swift" />
+        <option value="$PROJECT_DIR$/SASAbus/GoogleService-Info.plist" />
         <option value="$PROJECT_DIR$/SASAbus/AppDelegate.swift" />
+        <option value="$PROJECT_DIR$/Podfile" />
+        <option value="$PROJECT_DIR$/SASAbus/Fcm/FcmUtils.swift" />
       </list>
     </option>
   </component>
@@ -142,6 +183,12 @@
               <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
               <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
             </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="SASAbus" type="1d218c8b:XcodeProjectNode" />
+              <item name="SASAbus" type="fcab9f18:XcodeViewNode" />
+              <item name="Fcm" type="fcab9f18:XcodeViewNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -155,7 +202,7 @@
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="SASAbus,,,TripNotification" />
     <property name="com.jetbrains.cidr.execution.build.XcodeMessageFilterConfiguration.INFO" value="false" />
     <property name="com.jetbrains.cidr.execution.build.XcodeMessageFilterConfiguration.WARNING" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="report&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Controller/About/Report/ReportViewController.swift&#10;LineCourse&#9;null&#9;null&#10;Menu&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Controller/Menu/MenuViewController.swift&#10;EcoPointsV&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Controller/EcoPoints/EcoPointsViewController.swift&#10;VdvPaths&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvPaths.swift&#10;VdvTrips&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvTrips.swift&#10;De&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/DepartureMonitor.swift&#10;Departure&#9;null&#9;null&#10;VdvCal&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvCalendar.swift&#10;VdvDa&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Model/VdvDate.swift&#10;MapBottom&#9;null&#9;null&#10;MenuV&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="App&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/AppDelegate.swift&#10;report&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Controller/About/Report/ReportViewController.swift&#10;LineCourse&#9;null&#9;null&#10;Menu&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Controller/Menu/MenuViewController.swift&#10;EcoPointsV&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Controller/EcoPoints/EcoPointsViewController.swift&#10;VdvPaths&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvPaths.swift&#10;VdvTrips&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvTrips.swift&#10;De&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/DepartureMonitor.swift&#10;Departure&#9;null&#9;null&#10;VdvCal&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Data/VdvCalendar.swift&#10;VdvDa&#9;FILE&#9;file:///Users/Alex/Developer/iOS/SASAbus-ios/SASAbus/Data/Vdv/Model/VdvDate.swift&#10;MapBottom&#9;null&#9;null&#10;MenuV&#9;null&#9;null" />
     <property name="OverrideImplement.combined" value="true" />
   </component>
   <component name="RecentsManager">
@@ -190,16 +237,30 @@
         <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
       </EXTENSION>
     </configuration>
+    <configuration name="SwiftyBeaver" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Pods" TARGET_NAME="SwiftyBeaver" CONFIG_NAME="Debug" SCHEME_NAME="SwiftyBeaver" MAKE_ACTIVE="TRUE">
+      <envs />
+      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
+        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
+      </EXTENSION>
+    </configuration>
     <configuration name="TripNotification" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SASAbus" TARGET_NAME="TripNotification" CONFIG_NAME="Debug" SCHEME_NAME="TripNotification" RUN_TARGET_PROJECT_NAME="SASAbus" RUN_TARGET_NAME="SASAbus" MAKE_ACTIVE="TRUE">
       <envs />
       <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
         <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
       </EXTENSION>
     </configuration>
-    <list size="3">
+    <configuration name="nanopb" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Pods" TARGET_NAME="nanopb" CONFIG_NAME="Debug" SCHEME_NAME="nanopb" MAKE_ACTIVE="TRUE">
+      <envs />
+      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
+        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
+      </EXTENSION>
+    </configuration>
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.SASAbus" />
       <item index="1" class="java.lang.String" itemvalue="Application.TripNotification" />
       <item index="2" class="java.lang.String" itemvalue="Application.PolyglotLocalization" />
+      <item index="3" class="java.lang.String" itemvalue="Application.nanopb" />
+      <item index="4" class="java.lang.String" itemvalue="Application.SwiftyBeaver" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -225,7 +286,8 @@
       <workItem from="1503644030748" duration="5474000" />
       <workItem from="1503650150942" duration="5645000" />
       <workItem from="1503901574344" duration="3393000" />
-      <workItem from="1503914429261" duration="8128000" />
+      <workItem from="1503914429261" duration="12046000" />
+      <workItem from="1503994679293" duration="1246000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed some bugs with Firebase">
       <created>1503560356013</created>
@@ -353,11 +415,18 @@
       <option name="project" value="LOCAL" />
       <updated>1503925821497</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Added unique Crashlytics identifier">
+      <created>1503928795583</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1503928795583</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29645000" />
+    <option name="totallyTimeSpent" value="34809000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -371,20 +440,20 @@
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <layout>
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24954791" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32241556" sideWeight="0.5021097" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32241556" sideWeight="0.4978903" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24954791" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32241556" sideWeight="0.4978903" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -392,6 +461,28 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32241556" sideWeight="0.5021097" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32241556" sideWeight="0.4978903" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24954791" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -431,7 +522,8 @@
     <MESSAGE value="Added new star icon" />
     <MESSAGE value="Fixed line course path not connected between active and inactive points" />
     <MESSAGE value="Fixed filter icon disappearing in departures" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed filter icon disappearing in departures" />
+    <MESSAGE value="Added unique Crashlytics identifier" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added unique Crashlytics identifier" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -440,37 +532,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/SASAbus/RemoteConfigDefaults.plist">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SASAbus/SASAbus.entitlements">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SASAbus/Util/Theme.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="31" column="22" lean-forward="false" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SASAbus/Controller/EcoPoints/Profile/EcoPointsProfileCell.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/de.lproj/Localizable.strings" />
     <entry file="appcode.project-settings://eb480c62">
       <provider selected="true" editor-type-id="AppCode.ProjectSettings">
@@ -481,7 +542,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="23" lean-forward="false" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -489,7 +549,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="72" lean-forward="true" selection-start-line="11" selection-start-column="72" selection-end-line="11" selection-end-column="72" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -505,7 +564,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -513,19 +571,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="183" column="1" lean-forward="true" selection-start-line="183" selection-start-column="1" selection-end-line="183" selection-end-column="1" />
-          <folding>
-            <element signature="e#240#2688#0" expanded="false" />
-            <element signature="e#2695#3328#0" expanded="false" />
-            <element signature="e#3334#4070#0" expanded="false" />
-            <element signature="e#4077#4295#0" expanded="false" />
-            <element signature="e#4299#4971#0" expanded="false" />
-            <element signature="e#4366#4502#0" expanded="false" />
-            <element signature="e#4508#4969#0" expanded="false" />
-            <element signature="e#4973#6289#0" expanded="false" />
-            <element signature="e#5042#5622#0" expanded="false" />
-            <element signature="e#5628#6287#0" expanded="false" />
-            <element signature="e#6292#6487#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -533,7 +578,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -541,7 +585,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -557,9 +600,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
           <caret line="17" column="37" lean-forward="true" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#17#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -567,7 +607,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="27" column="22" lean-forward="true" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -575,7 +614,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="496">
           <caret line="100" column="28" lean-forward="false" selection-start-line="100" selection-start-column="28" selection-end-line="100" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -591,7 +629,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="15" lean-forward="false" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -599,7 +636,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="739">
           <caret line="110" column="0" lean-forward="true" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -615,7 +651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" column="40" lean-forward="true" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -623,7 +658,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" column="40" lean-forward="true" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -631,7 +665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="22" lean-forward="true" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -639,7 +672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="41" lean-forward="false" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -647,14 +679,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SASAbus/GoogleService-Info.plist">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="26" lean-forward="true" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -671,7 +695,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -679,7 +702,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -687,7 +709,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="349">
           <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -695,7 +716,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -703,7 +723,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="29" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -711,15 +730,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
           <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding>
-            <element signature="e#710#799#0" expanded="false" />
-            <element signature="e#805#888#0" expanded="false" />
-            <element signature="e#2232#5135#0" expanded="false" />
-            <element signature="e#5142#5635#0" expanded="false" />
-            <element signature="e#5641#5750#0" expanded="false" />
-            <element signature="e#5757#6097#0" expanded="false" />
-            <element signature="e#6101#8365#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -727,14 +737,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="8" column="44" lean-forward="false" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
-          <folding>
-            <element signature="e#4827#7835#0" expanded="false" />
-            <element signature="e#7449#7833#0" expanded="false" />
-            <marker date="1503928754764" expanded="false" signature="4708:5292" ph="{...}" />
-            <marker date="1503928754764" expanded="false" signature="5373:5486" ph="{...}" />
-            <marker date="1503928754764" expanded="false" signature="5567:5748" ph="{...}" />
-            <marker date="1503928754764" expanded="false" signature="7254:7443" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -742,15 +745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="52" lean-forward="false" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
-          <folding>
-            <element signature="e#14#3338#0" expanded="false" />
-            <element signature="e#256#346#0" expanded="false" />
-            <element signature="e#353#436#0" expanded="false" />
-            <element signature="e#443#1487#0" expanded="false" />
-            <element signature="e#1493#2185#0" expanded="false" />
-            <element signature="e#2191#2509#0" expanded="false" />
-            <element signature="e#2516#3336#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -758,17 +752,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="3" column="71" lean-forward="false" selection-start-line="3" selection-start-column="71" selection-end-line="3" selection-end-column="71" />
-          <folding>
-            <element signature="e#28#4413#0" expanded="false" />
-            <element signature="e#410#537#0" expanded="false" />
-            <element signature="e#543#633#0" expanded="false" />
-            <element signature="e#640#928#0" expanded="false" />
-            <element signature="e#964#2834#0" expanded="false" />
-            <element signature="e#2840#2911#0" expanded="false" />
-            <element signature="e#2942#3424#0" expanded="false" />
-            <element signature="e#3430#4211#0" expanded="false" />
-            <element signature="e#4217#4411#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -776,19 +759,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-          <folding>
-            <element signature="e#50#160#0" expanded="false" />
-            <element signature="e#162#2987#0" expanded="false" />
-            <element signature="e#279#686#0" expanded="false" />
-            <element signature="e#693#987#0" expanded="false" />
-            <element signature="e#993#1290#0" expanded="false" />
-            <element signature="e#1296#1622#0" expanded="false" />
-            <element signature="e#1628#1791#0" expanded="false" />
-            <element signature="e#1797#2138#0" expanded="false" />
-            <element signature="e#2144#2605#0" expanded="false" />
-            <element signature="e#2611#2822#0" expanded="false" />
-            <element signature="e#2829#2985#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -796,7 +766,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="451">
           <caret line="460" column="29" lean-forward="true" selection-start-line="460" selection-start-column="29" selection-end-line="460" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -804,15 +773,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="26" column="32" lean-forward="true" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SASAbus/Util/BusLineFilter.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="12" lean-forward="false" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -828,21 +788,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="24" column="125" lean-forward="false" selection-start-line="24" selection-start-column="125" selection-end-line="24" selection-end-column="125" />
-          <folding>
-            <element signature="e#0#2#0" expanded="false" />
-            <element signature="e#861#3551#0" expanded="false" />
-            <element signature="e#1224#1310#0" expanded="false" />
-            <element signature="e#1316#1399#0" expanded="false" />
-            <element signature="e#1406#2068#0" expanded="false" />
-            <element signature="e#2074#2490#0" expanded="false" />
-            <element signature="e#2497#2868#0" expanded="false" />
-            <element signature="e#2875#3000#0" expanded="false" />
-            <element signature="e#3006#3273#0" expanded="false" />
-            <element signature="e#3279#3549#0" expanded="false" />
-            <element signature="e#3553#4651#0" expanded="false" />
-            <element signature="e#3598#3740#0" expanded="false" />
-            <element signature="e#3746#4649#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -860,7 +805,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="556">
           <caret line="96" column="0" lean-forward="true" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -876,9 +820,6 @@
             <element signature="e#2236#2620#0" expanded="false" />
             <element signature="e#2626#2798#0" expanded="false" />
             <element signature="e#2804#2997#0" expanded="false" />
-            <element signature="e#3106#5906#0" expanded="false" />
-            <element signature="e#6015#6219#0" expanded="false" />
-            <element signature="e#6225#6435#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -887,50 +828,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#2#0" expanded="false" />
-            <element signature="e#966#12990#0" expanded="false" />
-            <element signature="e#1743#1904#0" expanded="false" />
-            <element signature="e#1910#1993#0" expanded="false" />
-            <element signature="e#1999#2104#0" expanded="false" />
-            <element signature="e#2111#4423#0" expanded="false" />
-            <element signature="e#4429#5041#0" expanded="false" />
-            <element signature="e#5047#5179#0" expanded="false" />
-            <element signature="e#5186#5376#0" expanded="false" />
-            <element signature="e#5383#5759#0" expanded="false" />
-            <element signature="e#5765#6470#0" expanded="false" />
-            <element signature="e#6477#7139#0" expanded="false" />
-            <element signature="e#7145#7416#0" expanded="false" />
-            <element signature="e#7422#8138#0" expanded="false" />
-            <element signature="e#8144#8335#0" expanded="false" />
-            <element signature="e#8341#8870#0" expanded="false" />
-            <element signature="e#8877#9973#0" expanded="false" />
-            <element signature="e#9979#10546#0" expanded="false" />
-            <element signature="e#10552#12087#0" expanded="false" />
-            <element signature="e#12094#12616#0" expanded="false" />
-            <element signature="e#12622#12911#0" expanded="false" />
-            <element signature="e#12917#12988#0" expanded="false" />
-            <element signature="e#12993#15658#0" expanded="false" />
-            <element signature="e#13076#13381#0" expanded="false" />
-            <element signature="e#13387#14853#0" expanded="false" />
-            <element signature="e#14859#15656#0" expanded="false" />
-            <element signature="e#15660#16532#0" expanded="false" />
-            <element signature="e#15720#15867#0" expanded="false" />
-            <element signature="e#15874#16246#0" expanded="false" />
-            <element signature="e#16252#16530#0" expanded="false" />
-            <element signature="e#16534#17511#0" expanded="false" />
-            <element signature="e#16594#16861#0" expanded="false" />
-            <element signature="e#16868#16966#0" expanded="false" />
-            <element signature="e#16972#17362#0" expanded="false" />
-            <element signature="e#17368#17509#0" expanded="false" />
-            <element signature="e#17514#19561#0" expanded="false" />
-            <element signature="e#17553#18010#0" expanded="false" />
-            <element signature="e#18016#18440#0" expanded="false" />
-            <element signature="e#18447#18616#0" expanded="false" />
-            <element signature="e#18622#19013#0" expanded="false" />
-            <element signature="e#19019#19252#0" expanded="false" />
-            <element signature="e#19259#19559#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -938,7 +835,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -946,7 +842,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -964,35 +859,64 @@
             <element signature="e#4908#5702#0" expanded="false" />
             <element signature="e#5708#5936#0" expanded="false" />
             <element signature="e#5942#6345#0" expanded="false" />
-            <element signature="e#6351#7096#0" expanded="false" />
-            <element signature="e#7103#7790#0" expanded="false" />
-            <element signature="e#7796#8499#0" expanded="false" />
-            <element signature="e#8506#9138#0" expanded="false" />
-            <element signature="e#10345#12820#0" expanded="false" />
-            <element signature="e#10425#10664#0" expanded="false" />
-            <element signature="e#10670#11149#0" expanded="false" />
-            <element signature="e#11155#11512#0" expanded="false" />
-            <element signature="e#11519#11926#0" expanded="false" />
-            <element signature="e#11932#12546#0" expanded="false" />
-            <element signature="e#12552#12818#0" expanded="false" />
-            <element signature="e#12822#13364#0" expanded="false" />
-            <element signature="e#12880#12915#0" expanded="false" />
-            <element signature="e#12921#13362#0" expanded="false" />
-            <element signature="e#13366#13805#0" expanded="false" />
-            <element signature="e#13426#13517#0" expanded="false" />
-            <element signature="e#13523#13645#0" expanded="false" />
-            <element signature="e#13651#13803#0" expanded="false" />
-            <element signature="e#13807#15929#0" expanded="false" />
-            <element signature="e#13878#15792#0" expanded="false" />
-            <element signature="e#15798#15927#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SASAbus/GoogleService-Info.plist">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="39" lean-forward="true" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Podfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SASAbus/AppDelegate.swift">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="357" column="0" lean-forward="false" selection-start-line="357" selection-start-column="0" selection-end-line="357" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#2#0" expanded="false" />
+            <element signature="e#1251#2138#0" expanded="false" />
+            <element signature="e#2144#2526#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SASAbus/Util/Analytics.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SASAbus/Util/BusLineFilter.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SASAbus/Util/BusStationDistance.swift">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="39" column="42" lean-forward="true" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
+          <caret line="25" column="23" lean-forward="false" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SASAbus/Fcm/FcmUtils.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="28" column="34" lean-forward="true" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
           <folding />
         </state>
       </provider>

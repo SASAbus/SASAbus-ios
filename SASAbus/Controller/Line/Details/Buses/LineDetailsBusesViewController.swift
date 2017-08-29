@@ -81,7 +81,7 @@ class LineDetailsBusesViewController: UITableViewController {
                     self.activityIndicatorView.stopAnimating()
                     self.refreshControl?.endRefreshing()
                 }, onError: { error in
-                    print("onError: \(error)")
+                    Log.error("onError: \(error)")
                 })
     }
 
@@ -96,7 +96,7 @@ class LineDetailsBusesViewController: UITableViewController {
         case 7:
             return "Monday - Sunday" /*getString(R.string.monday_long) + " - " + getString(R.string.sunday_long);*/
         default:
-            print("Unknown day: \(date)")
+            Log.error("Unknown day: \(date)")
             return "Unknown"
         }
     }
@@ -122,7 +122,7 @@ class LineDetailsBusesViewController: UITableViewController {
 
     func getTravelling(line: Int, vehicle: Int) -> Observable<[LineDetail]> {
         if !NetUtils.isOnline() {
-            print("No internet connection")
+            Log.error("No internet connection")
             return Observable.empty()
         }
 

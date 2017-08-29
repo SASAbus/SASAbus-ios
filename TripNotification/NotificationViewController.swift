@@ -169,8 +169,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
         }
 
         if index == -1 {
-            Log.error("index == -1, current bus stop: %s, type: %s, path: %s", currentBusStop.id,
-                    currentTrip.beacon.busStopType, path)
+            Log.error("index == -1, current bus stop: \(currentBusStop.id), type: \(currentTrip.beacon.busStopType), path: \(path)")
 
             return
         }

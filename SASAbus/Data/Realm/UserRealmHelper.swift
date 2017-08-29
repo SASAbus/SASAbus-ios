@@ -115,7 +115,7 @@ class UserRealmHelper {
         let startIndex = stops.index(of: beacon.origin) ?? -1
 
         if startIndex == -1 || startIndex + 1 > stops.count {
-            Log.error("Trip %s startIndex invalid", beacon.id)
+            Log.error("Trip \(beacon.id) startIndex invalid")
             return nil
         }
 

@@ -7,9 +7,9 @@ use_frameworks!
 def default_pods
   pod 'DrawerController', '~> 3.1'
 
-  pod 'Firebase/Core'
-  pod 'Firebase/Messaging'
-  pod 'Firebase/RemoteConfig'
+  pod 'Firebase/Core', '~> 4.1.0'
+  pod 'Firebase/Messaging', '~> 4.1.0'
+  pod 'Firebase/RemoteConfig', '~> 4.1.0'
 
   pod 'Google/SignIn'
 
@@ -47,6 +47,8 @@ def default_pods
   pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
 
   pod 'PolyglotLocalization'
+
+  pod 'SwiftyBeaver'
 end
 
 target 'SASAbus' do

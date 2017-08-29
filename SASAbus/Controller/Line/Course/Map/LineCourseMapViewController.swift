@@ -100,7 +100,7 @@ class LineCourseMapViewController: UIViewController, MKMapViewDelegate {
     }
 
     func onError(error: NSError) {
-        print("onError: \(error)")
+        Log.error("onError: \(error)")
     }
 
 

@@ -7,30 +7,34 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>123342812566-79muimn6l50g5ig81bhtiug8tul7kfus.apps.googleusercontent.com</string>
+	<string>550544754527-tt9rhgafuml3obm9nbklfjln5ma7tg82.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.123342812566-79muimn6l50g5ig81bhtiug8tul7kfus</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>123342812566-s3296hik505l1lj22ud3kg3v78m7k3qs.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.550544754527-tt9rhgafuml3obm9nbklfjln5ma7tg82</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDaPStW2ufaTIl7V6e4H1lhCT4ynFr9huo</string>
+	<string>AIzaSyDDyfWxuq-Swnaa37y4dvgw35QoWAZFxAc</string>
 	<key>GCM_SENDER_ID</key>
-	<string>123342812566</string>
+	<string>550544754527</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>it.sasabz.ios.SASAbus</string>
 	<key>PROJECT_ID</key>
-	<string>davale-sasa</string>
+	<string>sasa-ios</string>
 	<key>STORAGE_BUCKET</key>
-	<string>davale-sasa.appspot.com</string>
+	<string>sasa-ios.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
 	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:123342812566:ios:16f62ce2bb5e26ec</string>
+	<string>1:550544754527:ios:16f62ce2bb5e26ec</string>
 	<key>DATABASE_URL</key>
-	<string>https://davale-sasa.firebaseio.com</string>
+	<string>https://sasa-ios.firebaseio.com</string>
 </dict>
 </plist>

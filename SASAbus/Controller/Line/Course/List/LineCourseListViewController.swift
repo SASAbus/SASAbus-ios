@@ -84,7 +84,7 @@ class LineCourseListViewController: UITableViewController {
     }
 
     func onError(error: NSError) {
-        print("onError: \(error)")
+        Log.error("onError: \(error)")
 
         self.items.removeAll()
         self.tableView.reloadData()

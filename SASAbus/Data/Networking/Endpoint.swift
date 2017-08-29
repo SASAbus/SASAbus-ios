@@ -63,26 +63,26 @@ public struct Endpoint {
     // ========================================== REMOTE CONFIG ENDPOINTS ==============================================
 
     static var apiUrl: String {
-        return FIRRemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL].stringValue!
+        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL].stringValue!
     }
 
     static var realtimeApiUrl: String {
-        return FIRRemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_REALTIME].stringValue!
+        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_REALTIME].stringValue!
     }
 
     static var dataApiUrl: String {
-        return FIRRemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_DATA].stringValue!
+        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_DATA].stringValue!
     }
 
     static var reportsApiUrl: String {
-        return FIRRemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_REPORTS].stringValue!
+        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_REPORTS].stringValue!
     }
 
     static var telemetryApiUrl: String {
-        return FIRRemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_TELEMETRY].stringValue!
+        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_TELEMETRY].stringValue!
     }
 
     static var databaseApiUrl: String {
-        return FIRRemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_DATABASE].stringValue!
+        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_DATABASE].stringValue!
     }
 }

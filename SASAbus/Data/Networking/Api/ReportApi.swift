@@ -42,14 +42,14 @@ class ReportApi {
                     encodingCompletion: { encodingResult in
                         switch encodingResult {
                         case .success(let request):
-                            print("SUCCESS")
+                            Log.warning("SUCCESS")
 
                             request.request
                                     .uploadProgress { progress in
-                                        print("Upload Progress: \(progress.fractionCompleted)")
+                                        Log.debug("Upload Progress: \(progress.fractionCompleted)")
                                     }
                                     .downloadProgress { progress in
-                                        print("Download Progress: \(progress.fractionCompleted)")
+                                        Log.debug("Download Progress: \(progress.fractionCompleted)")
                                     }
                                     .response { response in
                                         debugPrint(response)
@@ -62,7 +62,7 @@ class ReportApi {
                                         }
                                     }
                         case .failure(let error):
-                            print(error)
+                            Log.error(error)
                         }
                     })
 
@@ -114,7 +114,7 @@ class Body: Mappable {
         self.message = message
         self.category = category
 
-        let remoteConfig = FIRRemoteConfig.remoteConfig()
+        let remoteConfig = RemoteConfig.remoteConfig()
 
         firebaseLastFetchTimeMillis = remoteConfig.lastFetchTime!.millis()
         firebaseLastFetchTimeString = remoteConfig.lastFetchTime!.iso8601
@@ -168,7 +168,7 @@ class Body: Mappable {
     func parseFirebase() -> [String : String] {
         var map = [String: String]()
 
-        let remoteConfig = FIRRemoteConfig.remoteConfig()
+        let remoteConfig = RemoteConfig.remoteConfig()
 
         for s in remoteConfig.keys(withPrefix: "") {
             let value = remoteConfig[s].stringValue

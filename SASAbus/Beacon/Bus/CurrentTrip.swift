@@ -79,7 +79,7 @@ class CurrentTrip: Mappable {
         DispatchQueue(label: "com.app.queue", qos: .background).async {
             let newTimes = Api.getTrip(tripId: self.beacon.lastTrip, verifyUiThread: false).calcTimedPath()
             if newTimes.isEmpty {
-                Log.error("Trips for trip %s do not exist", self.beacon.lastTrip)
+                Log.error("Trips for trip \(self.beacon.lastTrip) do not exist")
 
                 self.beacon.setSuitableForTrip(false)
 

@@ -13,7 +13,7 @@ class TripNotification {
         Log.warning("Showing notification for vehicle \(trip.id)")
 
         if trip.isNotificationVisible {
-            Log.trace("Notification for vehicle \(trip.id) already visible")
+            Log.debug("Notification for vehicle \(trip.id) already visible")
             // return
         }
 
