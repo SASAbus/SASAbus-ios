@@ -41,6 +41,9 @@ import AlamofireNetworkActivityIndicator
 // TODO: Add translations
 // TODO: Trip getting formatted with decimals in bottom sheet (10963 -> 10.963)
 // TODO: Update vehicle list
+// TODO: Add proper sync
+// TODO: Check if beacon stuff works
+// TODO: Add beacon telemetry
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
