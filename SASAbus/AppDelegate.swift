@@ -303,7 +303,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             switch identifier {
             case "news":
                 // TODO: Highlight the news the user clicked on?
-                if let controller = Menu.items[4].viewController {
+                if let controller = Menu.items[3].viewController {
                     navigateTo(controller)
                 }
             default:

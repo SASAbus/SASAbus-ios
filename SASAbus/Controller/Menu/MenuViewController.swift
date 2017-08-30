@@ -40,10 +40,10 @@ struct Menu {
                 image: Asset.icNavigationBus.image,
                 viewController: LineViewController()),
 
-        MenuItem(
+        /*MenuItem(
                 title: NSLocalizedString("Route", comment: ""),
                 image: Asset.icExploreWhite.image,
-                viewController: MainRouteViewController()),
+                viewController: MainRouteViewController()),*/
 
         MenuItem(
                 title: L10n.News.title,
