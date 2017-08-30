@@ -117,15 +117,17 @@ class ReportViewController: UIViewController, UIPickerViewDataSource, UINavigati
 
         // Rules
         validator.registerField(emailText, rules: [EmailRule()])
-        validator.registerField(nameText, rules: [FullNameRule()])
+        validator.registerField(nameText, rules: [RequiredRule()])
         validator.registerField(messageText, rules: [RequiredRule()])
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        messageText.text = placeHolderText
-        messageText.textColor = UIColor.lightGray
+        if messageText.text.isEmpty {
+            messageText.text = placeHolderText
+            messageText.textColor = UIColor.lightGray
+        }
 
         registerKeyboardNotifications()
     }
@@ -384,7 +386,14 @@ extension ReportViewController: UITextFieldDelegate, UITextViewDelegate {
 
     func keyboardDidShow(notification: NSNotification) {
         let userInfo: NSDictionary = notification.userInfo! as NSDictionary
-        let keyboardInfo = userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue
+        let keyboardInfo: NSValue
+        
+        if #available(iOS 11.0, *) {
+            keyboardInfo = userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue
+        } else {
+            keyboardInfo = userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue
+        }
+
         let keyboardSize = keyboardInfo.cgRectValue.size
 
         // Get the existing contentInset for the scrollView and set the bottom property to be the height of the keyboard

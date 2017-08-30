@@ -1,10 +1,13 @@
 import Foundation
-import RxSwift
-import RxCocoa
+
 import Alamofire
 import SwiftyJSON
 import Firebase
 import ObjectMapper
+import Permission
+
+import RxSwift
+import RxCocoa
 
 class ReportApi {
 
@@ -28,6 +31,8 @@ class ReportApi {
                         formData.append(json.data(using: .utf8)!, withName: "body")
 
                         for i in 0..<images.count {
+                            Log.debug("Appending image 'image_\(i)'")
+                            
                             formData.append(
                                     images[i],
                                     withName: "image_\(i)",
@@ -91,7 +96,10 @@ class Body: Mappable {
     var appVersionCode = Bundle.main.versionCode
     var appVersionName = Bundle.main.versionName
 
-    // TODO: location permission
+    var locationPermissionAlways = Permission.locationAlways.status.description
+    var locationPermissionWhenInUse = Permission.locationWhenInUse.status.description
+    
+    var notificationPermission = Permission.notifications.status.description
 
     internal var firebaseLastFetchTimeMillis: Int64
     internal var firebaseLastFetchTimeString: String
@@ -158,6 +166,11 @@ class Body: Mappable {
 
         reportCreatedTimeMillis <- map["reportCreatedTimeMillis"]
         reportCreatedTimeString <- map["reportCreatedTimeString"]
+        
+        locationPermissionAlways <- map["locationPermissionAlways"]
+        locationPermissionWhenInUse <- map["locationPermissionWhenInUse"]
+        
+        notificationPermission <- map["notificationPermission"]
 
         preferences <- map["preferences"]
 
