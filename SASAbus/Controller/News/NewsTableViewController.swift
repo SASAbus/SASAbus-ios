@@ -23,42 +23,43 @@
 import UIKit
 import StatefulViewController
 
-class NewsTableViewController: MasterTableViewController, StatefulViewController {
+class NewsTableViewController: MasterViewController, StatefulViewController {
 
-    var newsZone: String!
+    @IBOutlet weak var tableView: UITableView!
+    
+    var newsZone: String
     var newsItems: [News] = []
 
-
     init(zone: String) {
-        super.init(nibName: "NewsTableViewController", title: nil)
-
         self.newsZone = zone
+        
+        super.init(nibName: "NewsTableViewController", title: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError()
     }
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         tableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "NewsTableViewCell")
+        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-
+        
         loadingView = LoadingView(frame: view.frame)
         errorView = ErrorView(frame: view.frame, target: self.tabBarController, action: Selector("getNews"))
         emptyView = EmptyStateBaseView(frame: view.frame, nib: "EmptyStateNewsView")
+        
+        startLoading()
 
         self.initRefreshControl()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        Analytics.track("CityNews")
     }
 
 
@@ -68,21 +69,20 @@ class NewsTableViewController: MasterTableViewController, StatefulViewController
 
 
     func refreshView(_ newsItems: [News]) {
-        var newsItems = newsItems
-
-        for index in stride(from: (newsItems.count - 1), through: 0, by: -1) {
-            let newsItem = newsItems[index]
-
-            if self.newsZone != newsItem.zone {
-                newsItems.remove(at: index)
+        self.newsItems.removeAll()
+        
+        for item in newsItems {
+            if newsZone == item.zone {
+                self.newsItems.append(item)
             }
         }
 
-        self.newsItems = newsItems
-        self.tableView.reloadData()
-        self.tableView.separatorColor = Theme.grey
+        tableView.reloadData()
+        tableView.separatorColor = Theme.grey
+        
+        endLoading()
 
-        self.refreshControl!.endRefreshing()
+        tableView.refreshControl!.endRefreshing()
     }
 
     func initRefreshControl() {
@@ -91,20 +91,21 @@ class NewsTableViewController: MasterTableViewController, StatefulViewController
         refreshControl.tintColor = Theme.lightOrange
         refreshControl.attributedTitle = NSAttributedString(string: L10n.General.pullToRefresh,
                 attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
+        
         refreshControl.addTarget(self.tabBarController, action: Selector("getNews"), for: UIControlEvents.valueChanged)
 
-        self.refreshControl = refreshControl
+        tableView.refreshControl = refreshControl
     }
 }
 
-extension NewsTableViewController {
+extension NewsTableViewController: UITableViewDataSource, UITableViewDelegate {
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsItems.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let newsItem = self.newsItems[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let newsItem = newsItems[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as! NewsTableViewCell
 
         cell.selectionStyle = .none
@@ -114,8 +115,8 @@ extension NewsTableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = NewsDetailViewController(nibName: "NewsDetailViewController", bundle: nil, newsItem: self.newsItems[indexPath.row])
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let controller = NewsDetailViewController(newsItem: self.newsItems[indexPath.row])
         self.navigationController!.pushViewController(controller, animated: true)
     }
 }

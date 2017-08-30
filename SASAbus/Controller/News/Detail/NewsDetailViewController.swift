@@ -31,10 +31,10 @@ class NewsDetailViewController: UIViewController {
 
     let newsItem: News!
 
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, newsItem: News) {
+    init(newsItem: News) {
         self.newsItem = newsItem
         
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        super.init(nibName: "NewsDetailViewController", bundle: nil)
         
         title = L10n.News.Detail.title
     }

@@ -11,18 +11,28 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewsTableViewController" customModule="SASAbus" customModuleProvider="target">
             <connections>
-                <outlet property="view" destination="RYG-Xs-1Ib" id="gRc-Wd-FOh"/>
+                <outlet property="tableView" destination="aCa-p4-cor" id="3cU-0u-gUe"/>
+                <outlet property="view" destination="ncD-xz-9Sq" id="DhQ-jb-hvv"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="RYG-Xs-1Ib">
+        <view contentMode="scaleToFill" id="ncD-xz-9Sq">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-            <connections>
-                <outlet property="dataSource" destination="-1" id="lJ7-68-YcO"/>
-                <outlet property="delegate" destination="-1" id="F0X-6Z-goy"/>
-            </connections>
-        </tableView>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aCa-p4-cor">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="aCa-p4-cor" secondAttribute="trailing" id="Ajm-hI-KiN"/>
+                <constraint firstAttribute="bottom" secondItem="aCa-p4-cor" secondAttribute="bottom" id="GZw-Qn-His"/>
+                <constraint firstItem="aCa-p4-cor" firstAttribute="leading" secondItem="ncD-xz-9Sq" secondAttribute="leading" id="hnq-Bz-FCY"/>
+                <constraint firstItem="aCa-p4-cor" firstAttribute="top" secondItem="ncD-xz-9Sq" secondAttribute="top" id="odz-xq-QZn"/>
+            </constraints>
+            <point key="canvasLocation" x="-285" y="32"/>
+        </view>
     </objects>
 </document>

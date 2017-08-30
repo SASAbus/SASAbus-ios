@@ -28,50 +28,47 @@ import RxCocoa
 class NewsTabBarController: MasterTabBarController {
 
     var newsItems: [News] = []
+    
+    var bolzanoViewController: NewsTableViewController!
+    var meranoViewController: NewsTableViewController!
 
     init() {
-        super.init(nibName: nil, title: "News")
+        super.init(nibName: nil, title: L10n.News.title)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+       fatalError()
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let bolzanoViewController = NewsTableViewController(zone: "BZ")
-        let meranoViewController = NewsTableViewController(zone: "ME")
-
+        
+        bolzanoViewController = NewsTableViewController(zone: "BZ")
+        meranoViewController = NewsTableViewController(zone: "ME")
+        
         bolzanoViewController.tabBarItem = UITabBarItem(
             title: L10n.News.TabBar.bolzano,
             image: Asset.wappenBz.image,
-            selectedImage: nil
+            tag: 0
         )
-
+        
         meranoViewController.tabBarItem = UITabBarItem(
             title: L10n.News.TabBar.merano,
             image: Asset.wappenMe.image,
-            selectedImage: nil
+            tag: 1
         )
-
+        
         self.viewControllers = [bolzanoViewController, meranoViewController]
-
+        
         self.tabBar.tintColor = Theme.orange
         self.tabBar.isTranslucent = false
-
-        self.getNews()
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        Analytics.track("News")
-    }
-
-
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+    
+    override func viewDidAppear(_ animated: Bool) {
+        for controller in self.viewControllers! {
+            _ = controller.view
+        }
+        
         self.getNews()
     }
 
@@ -83,10 +80,13 @@ class NewsTabBarController: MasterTabBarController {
                 .subscribeOn(MainScheduler.asyncInstance)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { news in
-                    (self.selectedViewController as! NewsTableViewController).refreshView(news)
+                    self.bolzanoViewController.refreshView(news)
+                    self.meranoViewController.refreshView(news)
                 }, onError: { error in
-                    Log.error(error)
-                    (self.selectedViewController as! NewsTableViewController).refreshView([])
+                    Log.error("Failed to load news: \(error)")
+                    
+                    self.bolzanoViewController.refreshView([])
+                    self.meranoViewController.refreshView([])
                 })
     }
 }

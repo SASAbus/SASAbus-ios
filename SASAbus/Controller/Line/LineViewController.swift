@@ -82,6 +82,11 @@ class LineViewController: MasterViewController, StatefulViewController, UITableV
             self.tableView.deselectRow(at: row, animated: true)
         }
     }
+    
+    override func viewDidLayoutSubviews() {
+        loadingView?.setNeedsLayout()
+        loadingView?.layoutIfNeeded()
+    }
 
 
     func parseData() {
