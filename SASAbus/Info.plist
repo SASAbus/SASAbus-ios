@@ -96,6 +96,8 @@
 	<string>NSLocationAlwaysUsageDescription</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>NSLocationWhenInUseUsageDescription</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>NSPhotoLibraryUsageDescription</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
