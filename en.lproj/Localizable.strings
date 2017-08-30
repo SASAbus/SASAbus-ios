@@ -18,7 +18,7 @@
 
 "credits.title" = "Credits";
 "credits.header" = "SASAbus - %@";
-"credits.copyright" = "© 2015 - 2016 Markus Windegger, Raiffeisen OnLine Gmbh (Norman Marmsoler, Jürgen Sprenger, Aaron Falk)";
+"credits.copyright" = "© 2015 - 2016 Markus Windegger, Raiffeisen OnLine GmbH (Norman Marmsoler, Jürgen Sprenger, Aaron Falk)";
 "credits.licenses.title" = "The following sets forth attribution notices for third party software that may be contained in portions of the product. We thank the open source community for all their contributions.";
 "credits.licenses.subtitle" = "• DrawerController (MIT)\r\n• AlamoFire (MIT)\r\n• zipzap (BSD)\r\n• KDCircularProgress (MIT)\r\n• SwiftValidator (MIT)";
 "credits.help" = "For suggestions or help please mail to ios@sasabz.it";
@@ -32,7 +32,7 @@
 "feedback.text_area.placeholder" = "Even though we can't reply to all messages, all suggestions are more than welcome and are taken into serious consideration";
 "feedback.name.placeholder" = "John Appleseed";
 "feedback.email.placeholder" = "john@appleseed.com";
-"feedback.complaint_text" = "This page is only for reporting bugs or requesting app features. If you need to open a complaint, please contact reclami.beschwerden@sasabz.it";
+"feedback.complaint_text" = "This page is only for reporting bugs or requesting app features. If you need to open a complaint, please contact reclami.beschwerden@sasabz.it.";
 "feedback.submit" = "Submit";
 "feedback.done" = "Done";
 "feedback.success.title" = "Thanks!";
@@ -97,8 +97,8 @@
 "departures.favorites.header" = "Select a bus stop from your favorites";
 
 "departures.filter.title" = "Bus line filter";
-"departures.filter.enable_all" = "Enable all";
-"departures.filter.disable_all" = "Disable all";
+"departures.filter.enable_all" = "Show all";
+"departures.filter.disable_all" = "Show all";
 
 "settings.title" = "Settings";
 
@@ -111,8 +111,8 @@
 "ecopoints.login.password.placeholder" = "••••••••";
 "ecopoints.login.button" = "Log in";
 "ecopoints.login.forgot_password" = "Forgot your password?";
-"ecopoints.login.footer_warning" = "By loggin in you agree to our terms of service and privacy policy";
-"ecopoints.login.error.title" = "Could not log in";
+"ecopoints.login.footer_warning" = "By logging in you agree to our terms of service and privacy policy";
+"ecopoints.login.error.title" = "Couldn't log in";
 "ecopoints.login.error.subtitle" = "Please retry in a few minutes";
 
 "ecopoints.tab_bar.profile" = "Profile";
@@ -135,12 +135,12 @@
 "ecopoints.profile.settings.delete_account" = "Delete my account";
 "ecopoints.profile.settings.delete.title" = "Delete account?";
 "ecopoints.profile.settings.delete.subtitle" = "Are you sure? This cannot be undone.";
-"ecopoints.profile.settings.error.internet.title" = "No internet connection";
-"ecopoints.profile.settings.error.internet.subtitle" = "Please connect to the internet to continue";
+"ecopoints.profile.settings.error.internet.title" = "No Internet connection";
+"ecopoints.profile.settings.error.internet.subtitle" = "Please connect to the Internet to continue";
 "ecopoints.profile.settings.error.delete.title" = "Couldn't delete account";
-"ecopoints.profile.settings.error.delete.subtitle" = "Please retry again later.";
+"ecopoints.profile.settings.error.delete.subtitle" = "Please retry again later";
 "ecopoints.profile.settings.error.logout.title" = "Couldn't log out";
-"ecopoints.profile.settings.error.logout.subtitle" = "Please retry again later.";
+"ecopoints.profile.settings.error.logout.subtitle" = "Please retry again later";
 
 "ecopoints.leader_board.points" = "%d points";
 
@@ -153,23 +153,23 @@
 
 "intro.realtime.title" = "Real-time";
 "intro.realtime.subtitle" = "Bus positions in real-time";
-"intro.realtime.description" = "SASAbus informs you about bus positions, departures and delays in real-time";
+"intro.realtime.description" = "SASAbus informs you about bus positions, departures and delays in real-time.";
 
 "intro.data.title" = "Offline data";
 "intro.data.subtitle" = "All data saved offline";
-"intro.data.description" = "The app downloads all bus departures and stores them locally.";
+"intro.data.description" = "The app downloads all bus departures and stores them locally, so you can access them anytime.";
 
 "intro.beacons.title" = "Beacons";
 "intro.beacons.subtitle" = "Get information about the bus you're in";
-"intro.beacons.description" = "Enable bluetooth to get information of nearby buses and bus stops.";
+"intro.beacons.description" = "Enable Bluetooth to get information of nearby buses and bus stops.";
 
 "intro.agreement.title" = "Agreement";
 "intro.agreement.subtitle" = "Terms and conditions";
-"intro.agreement.description" = "By using SasaBus you agree to the Terms and Conditions and the Privacy Policy.";
+"intro.agreement.description" = "By using SASAbus you agree to the terms and conditions and the privacy policy.";
 
 "intro.permission.title" = "Permission";
 "intro.permission.subtitle" = "Beacon tracking needs your location";
-"intro.permission.description" = "Please allow the app to use your location to scan for beacons";
+"intro.permission.description" = "Please allow the app to use your location to scan for beacons.";
 
 
 // =================================================== ACCESSIBILITY ===================================================
@@ -185,4 +185,5 @@
 "notification.trip.body" = "Your trip from %@ to %@ was saved";
 
 "notification.survey.title" = "Survey";
-"notification.survey.body" = "Click to take a survey about your bus ride";
+"notification.survey.body" = "Take a survey about your bus ride";
+
