@@ -156,7 +156,7 @@
 
 "intro.data.title" = "Offline data";
 "intro.data.subtitle" = "All data saved offline";
-"intro.data.description" = "The app downloads all bus departures and stores them locally, so you can access them anytime";
+"intro.data.description" = "The app downloads all bus departures and stores them locally.";
 
 "intro.beacons.title" = "Beacons";
 "intro.beacons.subtitle" = "Get information about the bus you're in";

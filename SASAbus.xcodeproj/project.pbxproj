@@ -355,6 +355,7 @@
 		FA2691241E93FB24000B8A84 /* IOUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3517A8CBE2379BA82AD0 /* IOUtils.swift */; };
 		FA2691251E93FB2E000B8A84 /* DeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D74BC0AC7B329114C47 /* DeviceUtils.swift */; };
 		FA2A04B91EEE8EA700164E97 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA2A04B81EEE8EA700164E97 /* RemoteConfigDefaults.plist */; };
+		FA3A57CF1F56A07E00016771 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E390103030F9EA1B4CC2D /* Settings.swift */; };
 		FA54DE501E9560930071E42C /* TripSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E39698880C3DBEC3E99F2 /* TripSyncHelper.swift */; };
 		FA54DE541E9651710071E42C /* BadgeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E314A1DCC9BAFE8BE5925 /* BadgeHelper.swift */; };
 		FA54DE551E9651740071E42C /* InAppBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F6C7DCB2C618E380AB9 /* InAppBadge.swift */; };
@@ -1872,6 +1873,7 @@
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/LocationPickerViewController/LocationPickerViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Permission/Permission.framework",
 				"${BUILT_PRODUCTS_DIR}/PolyglotLocalization/PolyglotLocalization.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Pulley/Pulley.framework",
@@ -1898,6 +1900,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LocationPickerViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Permission.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PolyglotLocalization.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pulley.framework",
@@ -2277,6 +2280,7 @@
 				1F2E3FABEAA627436ABBC834 /* AbsBeacon.swift in Sources */,
 				1F2E38DDA73FCBED0ECC5515 /* BeaconStorage.swift in Sources */,
 				1F2E3C7927BC7B015F83A359 /* EcoPointsApi.swift in Sources */,
+				FA3A57CF1F56A07E00016771 /* Settings.swift in Sources */,
 				1F2E3F2C85DDBCAE503994F3 /* RealtimeApi.swift in Sources */,
 				1F2E3D38D00D81E184AAC49D /* CloudApi.swift in Sources */,
 				1F2E337B5FE691D0C55F32A3 /* PathsApi.swift in Sources */,

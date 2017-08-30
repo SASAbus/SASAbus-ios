@@ -1,4 +1,6 @@
 import UIKit
+import CoreLocation
+import Permission
 
 class IntroPageViewController: UIViewController {
 
@@ -27,9 +29,6 @@ class IntroPageViewController: UIViewController {
             button.backgroundColor = color
 
             let click = UITapGestureRecognizer(target: self, action: #selector(finishIntro))
-            click.numberOfTapsRequired = 1
-
-            button.isUserInteractionEnabled = true
             button.addGestureRecognizer(click)
         }
 
@@ -51,7 +50,29 @@ class IntroPageViewController: UIViewController {
     }
 
     func finishIntro() {
-        Settings.setIntroFinished()
-        (UIApplication.shared.delegate as! AppDelegate).startApplication()
+        let notification: Permission = .notifications
+        let location: Permission = .locationAlways
+        
+        notification.request { status in
+            if status == .authorized {
+                Log.info("Notification permission authorized")
+            } else {
+                Log.warning("Notification permission denied: \(status.description)")
+                NotificationSettings.disableAllNotifications()
+            }
+            
+            location.request { status in
+                if status == .authorized {
+                    Log.info("Location permission authorized")
+                } else {
+                    Log.warning("Location permission denied: \(status.description)")
+                    Settings.setBeaconsEnabled(false)
+                }
+                
+                Settings.setIntroFinished()
+                (UIApplication.shared.delegate as! AppDelegate).startApplication()
+                (UIApplication.shared.delegate as! AppDelegate).setupBeacons()
+            }
+        }
     }
 }

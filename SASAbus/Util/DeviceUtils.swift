@@ -17,6 +17,6 @@ class DeviceUtils {
     }
 
     static func getIdentifier() -> String {
-        return (UIDevice.current.identifierForVendor?.uuidString)!
+        return UIDevice.current.identifierForVendor!.uuidString
     }
 }

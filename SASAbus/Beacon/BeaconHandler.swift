@@ -1,15 +1,29 @@
-//
-// Created by Alex Lardschneider on 03/04/2017.
-// Copyright (c) 2017 SASA AG. All rights reserved.
-//
-
 import Foundation
+import Permission
+import CoreBluetooth
 
 class BeaconHandler {
 
     static let instance = BeaconHandler()
 
     func start() {
+        // TODO: Somehow check if bluetooth is enabled?
+        
+        guard Settings.areBeaconsEnabled() else {
+            Log.error("Beacons are disabled, skipping")
+            return
+        }
+        
+        guard Settings.isIntroFinished() else {
+            Log.error("Cannot start beacons because intro is not finished")
+            return
+        }
+        
+        guard Permission.locationAlways.status == .authorized else {
+            Log.error("Cannot start beacons because location permission is missing")
+            return
+        }
+        
         BusBeaconHandler.instance.startObserving()
     }
 

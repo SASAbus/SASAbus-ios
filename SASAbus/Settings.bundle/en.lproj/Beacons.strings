@@ -1,0 +1,4 @@
+"section_beacons_header" = "Beacons";
+"section_beacons_footer" = "Beacons allow you to receive updates about nearby buses and bus stops. Updates include information like next departures or delays. Beacons require location permission and bluetooth to be enabled";
+
+"notification_beacons_title" = "Enable beacons";

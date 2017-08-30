@@ -360,7 +360,7 @@ enum L10n {
     }
 
     enum Data {
-      /// The app downloads all bus departures and stores them locally, so you can access them anytime
+      /// The app downloads all bus departures and stores them locally.
       static let description = L10n.tr("Localizable", "intro.data.description")
       /// All data saved offline
       static let subtitle = L10n.tr("Localizable", "intro.data.subtitle")

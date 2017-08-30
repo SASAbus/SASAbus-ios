@@ -8,6 +8,8 @@ class Settings {
     private static let PREF_START_SCREEN = "pref_start_screen"
     
     private static let PREF_CRASHLYTICS_DEVICE_ID = "pref_crashlytics_device_id"
+    
+    private static let PREF_BEACONS_ENABLED = "pref_beacons_enabled"
 
 
     static func registerDefaults() {
@@ -37,9 +39,18 @@ class Settings {
         let uuid = UserDefaults.standard.string(forKey: PREF_CRASHLYTICS_DEVICE_ID)
         
         if uuid == nil {
-            UserDefaults.standard.set(UIDevice.current.identifierForVendor?.uuidString, forKey: PREF_CRASHLYTICS_DEVICE_ID)
+            UserDefaults.standard.set(DeviceUtils.getIdentifier(), forKey: PREF_CRASHLYTICS_DEVICE_ID)
         }
         
-        return UIDevice.current.identifierForVendor!.uuidString
+        return DeviceUtils.getIdentifier()
+    }
+
+
+    static func areBeaconsEnabled() -> Bool {
+        return UserDefaults.standard.bool(forKey: PREF_BEACONS_ENABLED)
+    }
+    
+    static func setBeaconsEnabled(_ enabled: Bool) {
+        UserDefaults.standard.set(enabled, forKey: PREF_BEACONS_ENABLED)
     }
 }

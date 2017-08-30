@@ -49,6 +49,9 @@ def default_pods
   pod 'PolyglotLocalization'
 
   pod 'SwiftyBeaver'
+
+  pod 'Permission/Notifications'
+  pod 'Permission/Location'
 end
 
 target 'SASAbus' do

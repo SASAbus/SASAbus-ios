@@ -83,6 +83,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func applicationWillTerminate(_ application: UIApplication) {
+        BeaconHandler.instance.save()
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        BeaconHandler.instance.start()
+    }
+    
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
         return GIDSignIn.sharedInstance().handle(
                 url,
@@ -117,6 +126,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.drawerController.closeDrawerGestureModeMask = CloseDrawerGestureMode.panningCenterView
 
         self.window!.rootViewController = self.drawerController
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            NotificationSettings.askForPermissionIfNeeded()
+        }
     }
 
     func startIntro(dataOnly: Bool = false) {
@@ -207,9 +220,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func setupNotifications() {
         UNUserNotificationCenter.current().delegate = self
-
-        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-        UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { _, _ in })
 
         UIApplication.shared.registerForRemoteNotifications()
         Notifications.clearAll()

@@ -83,6 +83,11 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - ObjectMapper (2.2.8)
+  - Permission/Core (2.0.4)
+  - Permission/Location (2.0.4):
+    - Permission/Core
+  - Permission/Notifications (2.0.4):
+    - Permission/Core
   - PolyglotLocalization (0.6.0)
   - Protobuf (3.4.0)
   - Pulley (1.5.2)
@@ -94,7 +99,7 @@ PODS:
   - RxCocoa (3.6.1):
     - RxSwift (~> 3.6)
   - RxSwift (3.6.1)
-  - SSZipArchive (2.0.3)
+  - SSZipArchive (2.0.4)
   - StatefulViewController (3.0)
   - SwiftValidator (4.0.0)
   - SwiftyBeaver (1.4.0)
@@ -116,6 +121,8 @@ DEPENDENCIES:
   - Kingfisher (~> 3.0)
   - LocationPickerViewController
   - ObjectMapper (~> 2.2)
+  - Permission/Location
+  - Permission/Notifications
   - PolyglotLocalization
   - Pulley
   - RealmSwift
@@ -170,6 +177,7 @@ SPEC CHECKSUMS:
   LocationPickerViewController: ca4577f669146a8ae1cddf497f9c951aec55d8a9
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   ObjectMapper: 3d571bb5af471c779e1160828cd9ad5c4ef90958
+  Permission: 6853b9694e66a6c9197468c66d1935c3629cbf9c
   PolyglotLocalization: fe08194e034fdfccecc4d1962bbe1f7a534410c5
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
   Pulley: f5213e59f3bc8f0d74e933d98b9b2000a0fd4d18
@@ -177,13 +185,13 @@ SPEC CHECKSUMS:
   RealmSwift: 34073ad3a31232bbaf7c0db898c037940284cba2
   RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
   RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
-  SSZipArchive: b6648b70a36303ca5be9f0351174b347e1886236
+  SSZipArchive: c77fc6ec8194f4e6d57876da1348e46cd63b90ba
   StatefulViewController: 4803bf900d44de26074344998e10e041113b5931
   SwiftValidator: 25ded5ca1f10c05adf57f6ac82a72d28ac8d91af
   SwiftyBeaver: 78d9186ce7595b4400ce01e5fd750d263e72dd7b
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   zipzap: 9de722cee38b7c3a8b1134913a8a67ab36cb97c1
 
-PODFILE CHECKSUM: 676c9368670d4d3df2936d8712a6883b06d64714
+PODFILE CHECKSUM: 259a41d102f2c2f540be4ab8180ba7d3f2640d87
 
 COCOAPODS: 1.3.1
