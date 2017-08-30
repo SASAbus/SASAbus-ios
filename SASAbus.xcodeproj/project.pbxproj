@@ -356,6 +356,7 @@
 		FA2691251E93FB2E000B8A84 /* DeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D74BC0AC7B329114C47 /* DeviceUtils.swift */; };
 		FA2A04B91EEE8EA700164E97 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA2A04B81EEE8EA700164E97 /* RemoteConfigDefaults.plist */; };
 		FA3A57CF1F56A07E00016771 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E390103030F9EA1B4CC2D /* Settings.swift */; };
+		FA3A57D21F56AB0B00016771 /* NotificationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA3A57D01F56AB0000016771 /* NotificationViewController.storyboard */; };
 		FA54DE501E9560930071E42C /* TripSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E39698880C3DBEC3E99F2 /* TripSyncHelper.swift */; };
 		FA54DE541E9651710071E42C /* BadgeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E314A1DCC9BAFE8BE5925 /* BadgeHelper.swift */; };
 		FA54DE551E9651740071E42C /* InAppBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F6C7DCB2C618E380AB9 /* InAppBadge.swift */; };
@@ -677,6 +678,7 @@
 		FA2690F11E93C7E6000B8A84 /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		FA2690F31E93C9E4000B8A84 /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		FA2A04B81EEE8EA700164E97 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
+		FA3A57D11F56AB0000016771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NotificationViewController.storyboard; sourceTree = "<group>"; };
 		FA401F2A1E921EA400E7F282 /* SASAbus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SASAbus.entitlements; sourceTree = "<group>"; };
 		FA54DE5D1E969AAA0071E42C /* BusDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusDetailsViewController.xib; sourceTree = "<group>"; };
 		FA63E0701F55512400B04649 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -1646,6 +1648,7 @@
 				1F2E3327A37FB85A8BF59D97 /* NotificationCellDot.swift */,
 				1F2E330620E1B0BE411BCD8B /* NotificationCellDot.xib */,
 				FA2690E31E93B927000B8A84 /* NotificationViewController.swift */,
+				FA3A57D01F56AB0000016771 /* NotificationViewController.storyboard */,
 			);
 			path = TripNotification;
 			sourceTree = "<group>";
@@ -1748,6 +1751,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 31CFDFDC1BB2877200636599;
 			productRefGroup = 31CFDFE61BB2877200636599 /* Products */;
@@ -1845,6 +1849,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA3A57D21F56AB0B00016771 /* NotificationViewController.storyboard in Resources */,
 				FA2690F01E93C459000B8A84 /* Assets.xcassets in Resources */,
 				FA2690F21E93C7E6000B8A84 /* NotificationCell.xib in Resources */,
 				1F2E3AC72F21F2428533B5A2 /* NotificationCellDot.xib in Resources */,
@@ -2360,6 +2365,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		FA3A57D01F56AB0000016771 /* NotificationViewController.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA3A57D11F56AB0000016771 /* Base */,
+			);
+			name = NotificationViewController.storyboard;
+			sourceTree = "<group>";
+		};
 		FA88EB151F53F14D0052C734 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

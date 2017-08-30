@@ -27,10 +27,10 @@
 			<key>UNNotificationExtensionCategory</key>
 			<string>trip_notification</string>
 			<key>UNNotificationExtensionInitialContentSizeRatio</key>
-			<real>0.7</real>
+			<real>0.69999999999999996</real>
 		</dict>
 		<key>NSExtensionMainStoryboard</key>
-		<string>MainInterface</string>
+		<string>NotificationViewController</string>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.usernotifications.content-extension</string>
 	</dict>

@@ -7,20 +7,22 @@ class BeaconHandler {
     static let instance = BeaconHandler()
 
     func start() {
+        Log.warning("BEACONS: Start")
+        
         // TODO: Somehow check if bluetooth is enabled?
         
         guard Settings.areBeaconsEnabled() else {
-            Log.error("Beacons are disabled, skipping")
+            Log.error("BEACONS: Disabled in settings")
             return
         }
         
         guard Settings.isIntroFinished() else {
-            Log.error("Cannot start beacons because intro is not finished")
+            Log.error("BEACONS: Intro is not finished")
             return
         }
         
         guard Permission.locationAlways.status == .authorized else {
-            Log.error("Cannot start beacons because location permission is missing")
+            Log.error("BEACONS: Location permission is missing")
             return
         }
         

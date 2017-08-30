@@ -104,15 +104,15 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
         var delayString: String
 
         if currentTrip.beacon.departure < 0 {
-            delayString = "Departs in \(currentTrip.beacon.departure)\'"
+            delayString = L10n.General.departsIn(currentTrip.beacon.departure)
             titleText.textColor = UIColor(hexString: "FF008094")
         } else {
             if delay > 0 {
-                delayString = "\(delay)' delayed"
+                delayString = L10n.General.delayDelayed(delay)
             } else if delay < 0 {
-                delayString = "\(delay * -1)' ahead"
+                delayString = L10n.General.delayEarly(delay * -1)
             } else {
-                delayString = "Punctual"
+                delayString = L10n.General.delayPunctual
             }
 
             titleText.text = delayString

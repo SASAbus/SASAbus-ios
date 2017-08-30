@@ -235,7 +235,7 @@ class BusBeaconHandler: NSObject {
                     fetchBusDelayAndInfo(currentTrip: currentTrip)
                 }
             }
-        } else if mCycleCounter % 6 == 0 && beacon.distance.rawValue <= CLProximity.far.rawValue {
+        } else if mCycleCounter % 10 == 0 && beacon.distance.rawValue <= CLProximity.far.rawValue {
             isBeaconCurrentTrip(beacon: beacon)
             mCycleCounter = 0
         }

@@ -59,8 +59,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupFirebase()
         setupRealm()
         setupModels()
-        setupBeacons()
         setupNotifications()
+        
+        setupBeacons()
 
         NetworkActivityIndicatorManager.shared.isEnabled = true
         NetworkActivityIndicatorManager.shared.startDelay = 0.5
@@ -88,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        BeaconHandler.instance.start()
+        BeaconHandler.instance.save()
     }
     
     

@@ -317,6 +317,10 @@ enum L10n {
     }
     /// Punctual
     static let delayPunctual = L10n.tr("Localizable", "general.delay_punctual")
+    /// Departs in %d'
+    static func departsIn(_ p1: Int) -> String {
+      return L10n.tr("Localizable", "general.departs_in", p1)
+    }
     /// Heading to %@
     static func headingTo(_ p1: String) -> String {
       return L10n.tr("Localizable", "general.heading_to", p1)
