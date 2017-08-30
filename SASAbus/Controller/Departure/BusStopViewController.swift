@@ -316,8 +316,6 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
                 $0.asDeparture(busStopId: self.selectedBusStop?.id ?? 0)
             }
 
-            Log.info("Departures: \(mapped)")
-
             observer.on(.next(mapped))
 
             return Disposables.create()
