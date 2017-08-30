@@ -39,7 +39,6 @@ import AlamofireNetworkActivityIndicator
 
 // TODO: News: Check if empty state is working
 // TODO: Add translations
-// TODO: Trip getting formatted with decimals in bottom sheet (10963 -> 10.963)
 // TODO: Update vehicle list
 // TODO: Add proper sync
 // TODO: Check if beacon stuff works
@@ -152,10 +151,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupLogging() {
         Log.setup()
         
-#if !DEBUG
-        Fabric.with([Crashlytics.self])
-        Crashlytics.sharedInstance().setUserIdentifier(Settings.getCrashlyticsDeviceId())
-#endif
+        #if DEBUG
+            Log.info("SASAbus running in debug configuration")
+        #elseif RELEASE
+            Log.info("SASAbus running in release configuration")
+            
+            Fabric.with([Crashlytics.self])
+            Crashlytics.sharedInstance().setUserIdentifier(Settings.getCrashlyticsDeviceId())
+        #else
+            fatalError("Debug or release flag not specified")
+        #endif
     }
 
     func setupFirebase() {

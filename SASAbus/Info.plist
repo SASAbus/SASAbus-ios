@@ -40,7 +40,15 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.123342812566-79muimn6l50g5ig81bhtiug8tul7kfus</string>
+				<string>com.googleusercontent.apps.550544754527-tt9rhgafuml3obm9nbklfjln5ma7tg82</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>it.sasabz.ios.sasabus</string>
 			</array>
 		</dict>
 	</array>
@@ -83,11 +91,11 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>SASAbus uses your location to scan for nearby buses and give you real-time updates about delays and next departures.</string>
+	<string>NSLocationAlwaysAndWhenInUseUsageDescription</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>NSLocationAlwaysUsageDescription</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>SASAbus uses your location to scan for nearby buses and give you real-time updates about delays and next departures.</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>SASAbus uses your location to scan for nearby buses and give you real-time updates about delays and next departures.</string>
+	<string>NSLocationWhenInUseUsageDescription</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

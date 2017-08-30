@@ -363,6 +363,8 @@
 		FA54DE561E9651740071E42C /* FirstStepBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E365307A85508CEAD91B1 /* FirstStepBadge.swift */; };
 		FA54DE571E9651740071E42C /* VeryBeginningBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E369928CB4A176F12603B /* VeryBeginningBadge.swift */; };
 		FA54DE5E1E969AAA0071E42C /* BusDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA54DE5D1E969AAA0071E42C /* BusDetailsViewController.xib */; };
+		FA580DF41F56E35300CFFCD2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA580DF21F56E2AC00CFFCD2 /* InfoPlist.strings */; };
+		FA580DF51F56E35400CFFCD2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA580DF21F56E2AC00CFFCD2 /* InfoPlist.strings */; };
 		FA63E0711F55519C00B04649 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA63E0701F55512400B04649 /* GoogleService-Info.plist */; };
 		FA63E0721F55519C00B04649 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA63E0701F55512400B04649 /* GoogleService-Info.plist */; };
 		FA63E0741F555C5700B04649 /* FcmSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA63E0731F555C5600B04649 /* FcmSettings.swift */; };
@@ -681,6 +683,7 @@
 		FA3A57D11F56AB0000016771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NotificationViewController.storyboard; sourceTree = "<group>"; };
 		FA401F2A1E921EA400E7F282 /* SASAbus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SASAbus.entitlements; sourceTree = "<group>"; };
 		FA54DE5D1E969AAA0071E42C /* BusDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusDetailsViewController.xib; sourceTree = "<group>"; };
+		FA580DF31F56E2AC00CFFCD2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
 		FA63E0701F55512400B04649 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA63E0731F555C5600B04649 /* FcmSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmSettings.swift; sourceTree = "<group>"; };
 		FA726B5C1F2880DE0053EA12 /* MainRouteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainRouteViewController.xib; sourceTree = "<group>"; };
@@ -993,6 +996,7 @@
 				1F2E34673F66A58761B74D1C /* Assets.xcassets */,
 				FABD85CD1E87F8A1007A5EF6 /* BusImages.xcassets */,
 				FA88EB151F53F14D0052C734 /* Localizable.strings */,
+				FA580DF21F56E2AC00CFFCD2 /* InfoPlist.strings */,
 				1F2E36D3C7C3F00F68089659 /* SASAbus.xcdatamodeld */,
 				1F2E38B61288F49268565F0F /* View */,
 			);
@@ -1774,6 +1778,7 @@
 				1F2E398B1EF69CE13865FF3B /* LaunchScreen.storyboard in Resources */,
 				FABCEED71EDEBA1C00E48116 /* LineCourseMapViewController.xib in Resources */,
 				1F2E31E65F7999C88C17F10A /* LineViewController.xib in Resources */,
+				FA580DF41F56E35300CFFCD2 /* InfoPlist.strings in Resources */,
 				1F2E3E322FF1D1727DF89470 /* MenuTableViewCell.xib in Resources */,
 				FABCEED51EDEB93F00E48116 /* LineCourseListViewController.xib in Resources */,
 				FA54DE5E1E969AAA0071E42C /* BusDetailsViewController.xib in Resources */,
@@ -1850,6 +1855,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA3A57D21F56AB0B00016771 /* NotificationViewController.storyboard in Resources */,
+				FA580DF51F56E35400CFFCD2 /* InfoPlist.strings in Resources */,
 				FA2690F01E93C459000B8A84 /* Assets.xcassets in Resources */,
 				FA2690F21E93C7E6000B8A84 /* NotificationCell.xib in Resources */,
 				1F2E3AC72F21F2428533B5A2 /* NotificationCellDot.xib in Resources */,
@@ -2373,6 +2379,14 @@
 			name = NotificationViewController.storyboard;
 			sourceTree = "<group>";
 		};
+		FA580DF21F56E2AC00CFFCD2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA580DF31F56E2AC00CFFCD2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		FA88EB151F53F14D0052C734 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2493,6 +2507,7 @@
 				INFOPLIST_FILE = SASAbus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2519,6 +2534,7 @@
 				INFOPLIST_FILE = SASAbus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DRELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

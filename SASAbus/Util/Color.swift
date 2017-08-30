@@ -66,6 +66,7 @@ extension Color {
     static let purple = UIColor(red: 88 / 255, green: 86 / 255, blue: 214 / 255, alpha: 1)
     static let pink = UIColor(red: 1, green: 45 / 255, blue: 85 / 255, alpha: 1)
 
+    
     // MARK: - Material Colors
 
     static let materialGreen500 = UIColor(red: 0.298, green: 0.686, blue: 0.314, alpha: 1)
@@ -76,6 +77,7 @@ extension Color {
     static let materialGrey500 = UIColor(red: 0.62, green: 0.62, blue: 0.62, alpha: 1)
     static let materialGrey600 = UIColor(red: 0.459, green: 0.459, blue: 0.459, alpha: 1)
 
+    
     // MARK: - Various colors
 
     static let textPrimary = UIColor.black
