@@ -26,8 +26,7 @@ import UIKit
 class NewsDetailViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var messageView: UIWebView!
-    @IBOutlet weak var messageScrollView: UIScrollView!
+    @IBOutlet weak var webView: UIWebView!
 
     let newsItem: News!
 
@@ -46,21 +45,22 @@ class NewsDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.edgesForExtendedLayout = UIRectEdge()
-        self.extendedLayoutIncludesOpaqueBars = false
-        self.automaticallyAdjustsScrollViewInsets = false
+        edgesForExtendedLayout = UIRectEdge()
+        extendedLayoutIncludesOpaqueBars = false
+        automaticallyAdjustsScrollViewInsets = false
 
         let font = UIFont.systemFont(ofSize: 17)
-        self.titleLabel.text = self.newsItem.title
-
-        let messageString = "<span style=\"font-family:Helvetica; font-size: \(font.pointSize); color: " +
+        titleLabel.text = newsItem.title
+        
+        let messageString = "<span style=\"padding: 1em; font-family:Helvetica; font-size: \(font.pointSize); color: " +
                 Color.getHexColor(Theme.darkGrey) + "\">\(newsItem.message)</span>"
 
-        self.messageView.loadHTMLString(messageString, baseURL: nil)
-        self.titleLabel.textColor = Theme.white
-        self.messageView.isOpaque = false
-        self.messageView.backgroundColor = Theme.transparent
-        self.view.backgroundColor = Theme.darkGrey
-        self.messageScrollView.backgroundColor = Theme.white
+        webView.loadHTMLString(messageString, baseURL: nil)
+        webView.isOpaque = false
+        webView.backgroundColor = Theme.white
+        webView.isUserInteractionEnabled = true
+        webView.scrollView.isScrollEnabled = true
+
+        view.backgroundColor = Theme.darkGrey
     }
 }

@@ -1,104 +1,58 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewsDetailViewController" customModule="SASAbus" customModuleProvider="target">
             <connections>
-                <outlet property="messageScrollView" destination="E3o-2b-YbF" id="Z7a-eh-a5M"/>
-                <outlet property="messageView" destination="iEP-rE-7MG" id="7dJ-FE-WTk"/>
                 <outlet property="titleLabel" destination="T3W-eZ-psc" id="WhF-NU-t81"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webView" destination="iEP-rE-7MG" id="EJz-e0-euj"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="584" placeholderIntrinsicHeight="21" text="News title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3W-eZ-psc">
-                    <rect key="frame" x="16" y="16" width="568" height="21"/>
-                    <animations/>
+                    <rect key="frame" x="16" y="16" width="343" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="GkK-DF-byq"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E3o-2b-YbF">
-                    <rect key="frame" x="0.0" y="53" width="600" height="547"/>
-                    <subviews>
-                        <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iEP-rE-7MG">
-                            <rect key="frame" x="8" y="0.0" width="584" height="548"/>
-                            <animations/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="548" id="Dw0-ch-YEk"/>
-                            </constraints>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="Dw0-ch-YEk"/>
-                                </mask>
-                            </variation>
-                        </webView>
-                    </subviews>
-                    <animations/>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iEP-rE-7MG">
+                    <rect key="frame" x="0.0" y="53" width="375" height="614"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="iEP-rE-7MG" firstAttribute="top" secondItem="E3o-2b-YbF" secondAttribute="top" id="0uy-Eh-jRi"/>
-                        <constraint firstItem="iEP-rE-7MG" firstAttribute="centerY" secondItem="E3o-2b-YbF" secondAttribute="centerY" id="1bZ-CO-vVh"/>
-                        <constraint firstAttribute="bottom" secondItem="iEP-rE-7MG" secondAttribute="bottom" id="40V-He-qvU"/>
-                        <constraint firstItem="iEP-rE-7MG" firstAttribute="centerX" secondItem="E3o-2b-YbF" secondAttribute="centerX" id="ACs-yZ-VxD"/>
-                        <constraint firstAttribute="trailing" secondItem="iEP-rE-7MG" secondAttribute="trailing" constant="8" id="Dwd-Dz-DI2"/>
-                        <constraint firstItem="iEP-rE-7MG" firstAttribute="centerX" secondItem="E3o-2b-YbF" secondAttribute="centerX" id="HFS-dP-IOK"/>
-                        <constraint firstAttribute="bottom" secondItem="iEP-rE-7MG" secondAttribute="bottom" id="S2w-Wu-ZBH"/>
-                        <constraint firstAttribute="trailing" secondItem="iEP-rE-7MG" secondAttribute="trailing" constant="8" id="Tfg-jQ-xoK"/>
-                        <constraint firstItem="iEP-rE-7MG" firstAttribute="centerX" secondItem="E3o-2b-YbF" secondAttribute="centerX" id="UlB-2C-IeY"/>
-                        <constraint firstItem="iEP-rE-7MG" firstAttribute="leading" secondItem="E3o-2b-YbF" secondAttribute="leading" constant="8" id="a33-pX-hqs"/>
-                        <constraint firstItem="iEP-rE-7MG" firstAttribute="leading" secondItem="E3o-2b-YbF" secondAttribute="leading" constant="8" id="e5C-Py-pMO"/>
-                        <constraint firstItem="iEP-rE-7MG" firstAttribute="centerY" secondItem="E3o-2b-YbF" secondAttribute="centerY" id="lEH-rE-3TU"/>
-                        <constraint firstItem="iEP-rE-7MG" firstAttribute="top" secondItem="E3o-2b-YbF" secondAttribute="top" constant="8" id="lV0-UU-cMi"/>
+                        <constraint firstAttribute="height" constant="548" id="Dw0-ch-YEk"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="1bZ-CO-vVh"/>
-                            <exclude reference="40V-He-qvU"/>
-                            <exclude reference="HFS-dP-IOK"/>
-                            <exclude reference="Tfg-jQ-xoK"/>
-                            <exclude reference="UlB-2C-IeY"/>
-                            <exclude reference="a33-pX-hqs"/>
-                            <exclude reference="lV0-UU-cMi"/>
+                            <exclude reference="Dw0-ch-YEk"/>
                         </mask>
                     </variation>
-                </scrollView>
+                </webView>
             </subviews>
-            <animations/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="E3o-2b-YbF" firstAttribute="top" secondItem="T3W-eZ-psc" secondAttribute="bottom" constant="16" id="706-BC-Rb7"/>
+                <constraint firstAttribute="bottom" secondItem="iEP-rE-7MG" secondAttribute="bottom" id="1hn-Wc-zeQ"/>
                 <constraint firstAttribute="trailing" secondItem="T3W-eZ-psc" secondAttribute="trailing" constant="16" id="B2T-yl-XER"/>
-                <constraint firstItem="E3o-2b-YbF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="CE3-xU-A0n"/>
-                <constraint firstItem="E3o-2b-YbF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GqZ-VD-gQE"/>
                 <constraint firstItem="T3W-eZ-psc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="NkJ-r9-7Fu"/>
-                <constraint firstItem="E3o-2b-YbF" firstAttribute="top" secondItem="T3W-eZ-psc" secondAttribute="bottom" constant="8" id="Oh7-YH-gqL"/>
-                <constraint firstAttribute="trailing" secondItem="E3o-2b-YbF" secondAttribute="trailing" id="bcs-36-gyQ"/>
-                <constraint firstAttribute="bottom" secondItem="E3o-2b-YbF" secondAttribute="bottom" constant="8" id="gcG-fx-jzj"/>
+                <constraint firstItem="iEP-rE-7MG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="WRd-Hk-VqN"/>
                 <constraint firstItem="T3W-eZ-psc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="ot5-vy-tQg"/>
-                <constraint firstAttribute="trailing" secondItem="E3o-2b-YbF" secondAttribute="trailing" constant="8" id="tKK-Q2-z4Y"/>
-                <constraint firstItem="E3o-2b-YbF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="36" id="yKl-vW-wZ2"/>
-                <constraint firstAttribute="bottom" secondItem="E3o-2b-YbF" secondAttribute="bottom" id="zda-a3-oBe"/>
+                <constraint firstAttribute="trailing" secondItem="iEP-rE-7MG" secondAttribute="trailing" id="qGu-CB-nEo"/>
+                <constraint firstItem="iEP-rE-7MG" firstAttribute="top" secondItem="T3W-eZ-psc" secondAttribute="bottom" constant="16" id="qQC-nO-NuV"/>
             </constraints>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="CE3-xU-A0n"/>
-                    <exclude reference="Oh7-YH-gqL"/>
-                    <exclude reference="gcG-fx-jzj"/>
-                    <exclude reference="tKK-Q2-z4Y"/>
-                    <exclude reference="yKl-vW-wZ2"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="329" y="209"/>
         </view>
     </objects>
