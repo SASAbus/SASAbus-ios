@@ -1,0 +1,188 @@
+"map.title" = "Karte";
+"map.sheet.line" = "LINIE";
+"map.sheet.vehicle" = "FAHRZEUG";
+"map.sheet.course" = "VERLAUF";
+"map.sheet.delayed" = "%d' verspätet";
+"map.sheet.updated" = "Vor %d' aktualisiert";
+"map.sheet.bus" = "Bus #%d";
+"map.sheet.variant" = "Variante #%d";
+"map.sheet.trip" = "Fahrt #%d";
+
+"bus_details.title_formatted" = "Bus #%d";
+"bus_details.specifications" = "Spezifikationen";
+"bus_details.manufacturer" = "Hersteller";
+"bus_details.model" = "Modell";
+"bus_details.license_plate" = "Kennzeichen";
+"bus_details.fuel" = "Treibstoff";
+"bus_details.color" = "Farbe";
+
+"credits.title" = "Credits";
+"credits.header" = "SASAbus - %@";
+"credits.copyright" = "© 2015 - 2016 Markus Windegger, Raiffeisen OnLine GmbH (Norman Marmsoler, Jürgen Sprenger, Aaron Falk)";
+"credits.licenses.title" = "Die folgende Software von Drittanbietern wird in der App verwendet. Wir bedanken uns bei deren Entwickler.";
+"credits.licenses.subtitle" = "• DrawerController (MIT)\r\n• AlamoFire (MIT)\r\n• zipzap (BSD)\r\n• KDCircularProgress (MIT)\r\n• SwiftValidator (MIT)";
+"credits.help" = "Für Vorschlage und Hilfe kontaktieren Sie bitte ios@sasabz.it";
+
+"changelog.title" = "Liste der Änderungen";
+
+"feedback.title" = "Feedback";
+"feedback.category.title" = "Lass uns zuerst wissen, was du tun möchtest:";
+"feedback.category.bug" = "Einen Fehler melden";
+"feedback.category.feature" = "Eine neue Funktion vorschlagen";
+"feedback.text_area.placeholder" = "Obwohl wir nicht alle Meldungen beantworten können, ist jede Nachricht willkommen.";
+"feedback.name.placeholder" = "Max Mustermann";
+"feedback.email.placeholder" = "max@mustermann.com";
+"feedback.complaint_text" = "Diese Seite ist nur für das Melden von Fehler oder Einreichen von Vorschlägen. Für Unfälle oder Beschwerden kontaktieren Sie bitte reclami.beschwerden@sasabz.it.";
+"feedback.submit" = "Senden";
+"feedback.done" = "Feritg";
+"feedback.success.title" = "Danke!";
+"feedback.success.subtitle" = "Wir werden Ihnen sobald wie möglich eine Antwort zukommen lassen.";
+"feedback.error.title" = "Upload fehlgeschlagen";
+"feedback.error.subtitle" = "Bitte versuche es später erneut";
+
+"about.title" = "Über";
+"about.terms_of_service" = "Nutzungsbedingungen";
+"about.privacy_policy" = "Datenschutzbestimmungen";
+
+"parking.title" = "Parkplätze";
+"parking.detail.title" = "Parkplatzinformationen";
+
+"general.pullToRefresh" = "Ziehen zum Aktualisieren";
+"general.line" = "Linie %@";
+"general.lines" = "Linien %@";
+"general.now_at" = "Jetzt bei %@";
+"general.heading_to" = "Fährt nach %@";
+"general.delay_punctual" = "Pünktlich";
+"general.delay_delayed" = "%d' verspätet";
+"general.delay_early" = "%d' verfrüht";
+"general.unknown" = "Unbekannt";
+"general.departs_in" = "Fährt in %d' ab";
+
+"news.title" = "Neuigkeiten";
+"news.tab_bar.bolzano" = "Bozen";
+"news.tab_bar.merano" = "Meran";
+"news.detail.title" = "Details zu dieser Nachricht";
+
+"line.title" = "Linie";
+"line.tab_bar.favorites" = "Favoriten";
+"line.tab_bar.bolzano" = "Bozen";
+"line.tab_bar.merano" = "Meran";
+
+"line.details.header.buses" = "Busse";
+"line.details.header.path" = "Streckenverlauf";
+"line.details.info.additional" = "Weitere Informationen";
+
+"line.course.title" = "Streckenverlauf";
+"line.course.header.list" = "Liste";
+"line.course.header.map" = "Karte";
+
+"empty_state.line_favorites.title" = "Keine Linienfavoriten";
+"empty_state.line_favorites.subtitle" = "Halte eine Linie gedrückt um sie zu den Favoriten hinzuzufügen";
+
+"departures.title" = "Abfahrten";
+"departures.header.gps" = "GPS";
+"departures.header.map" = "Karte";
+"departures.header.favorites" = "Favoriten";
+"departures.button.done" = "Fertig";
+"departures.button.cancel" = "Abbrechen";
+
+"departures.cell.no_data" = "Keine Daten verfügbar";
+
+"departures.gps.title" = "Haltestelle in deiner Nähe";
+"departures.gps.header" = "Wähle eine Haltestelle in deiner Nähe";
+
+"departures.map.title" = "Haltestellenkarte";
+
+"departures.favorites.title" = "Haltestellenfavoriten";
+"departures.favorites.header" = "Wähle eine Haltestelle von deinen Favoriten";
+
+"departures.filter.title" = "Linienfilter";
+"departures.filter.enable_all" = "Zeige alle";
+"departures.filter.disable_all" = "Verstecke alle";
+
+"settings.title" = "Einstellungen";
+
+
+// ==================================================== ECO POINTS =====================================================
+
+"ecopoints.title" = "Ökopunkte";
+
+"ecopoints.login.email.placeholder" = "max@mustermann.com";
+"ecopoints.login.password.placeholder" = "••••••••";
+"ecopoints.login.button" = "Einloggen";
+"ecopoints.login.forgot_password" = "Passwort vergessen?";
+"ecopoints.login.footer_warning" = "Beim Login erklärst du dich mit unseren Nutzungsbestimmungen und Datenschutzbestimmungen einverstanden";
+"ecopoints.login.error.title" = "Login fehlgeschlagen";
+"ecopoints.login.error.subtitle" = "Bitte versuche es später erneut";
+
+"ecopoints.tab_bar.profile" = "Profil";
+"ecopoints.tab_bar.leaderboard" = "Rangliste";
+"ecopoints.tab_bar.badges" = "Abzeichen";
+
+"ecopoints.profile.points" = "PUNKTE";
+"ecopoints.profile.rank" = "RANG";
+"ecopoints.profile.badges" = "ABZEICHEN";
+"ecopoints.profile.view_profile_details" = "Profildetails ansehen";
+"ecopoints.profile.section.statistics" = "Statistiken";
+
+"ecopoints.profile.settings.section.profile" = "Profil";
+"ecopoints.profile.settings.section.settings" = "Einstellungen";
+"ecopoints.profile.settings.section.account" = "Konto";
+"ecopoints.profile.settings.change_password" = "Passwort ändern";
+"ecopoints.profile.settings.change_profile_picture" = "Profilbild ändern";
+"ecopoints.profile.settings.log_out" = "Ausloggen";
+"ecopoints.profile.settings.log_out_all" = "Von allen Geräten ausloggen";
+"ecopoints.profile.settings.delete_account" = "Mein Konto löschen";
+"ecopoints.profile.settings.delete.title" = "Konto löschen?";
+"ecopoints.profile.settings.delete.subtitle" = "Bist du dir wirklich sicher? Dies kann nicht rückgängig gemacht werden.";
+"ecopoints.profile.settings.error.internet.title" = "Keine Internetverbindung";
+"ecopoints.profile.settings.error.internet.subtitle" = "Bitte verbinde dich mit dem Internet um fortzufahren";
+"ecopoints.profile.settings.error.delete.title" = "Konto konnte nicht gelöscht werden";
+"ecopoints.profile.settings.error.delete.subtitle" = "Bitte versuche es später erneut";
+"ecopoints.profile.settings.error.logout.title" = "Log out fehlgeschlagen";
+"ecopoints.profile.settings.error.logout.subtitle" = "Bitte versuche es später erneut";
+
+"ecopoints.leader_board.points" = "%d Punkte";
+
+"ecopoints.badges.section.next" = "Nächste Abzeichen";
+"ecopoints.badges.section.earned" = "Erhaltene Abzeichen";
+"ecopoints.badges.view_all" = "Alle Abzeichen anzeigen";
+
+
+// ======================================================= INTRO =======================================================
+
+"intro.realtime.title" = "Echtzeit";
+"intro.realtime.subtitle" = "Buspositionen in Echtzeit";
+"intro.realtime.description" = "SASAbus informiert dich über Echtzeit- und Fahrplandaten.";
+
+"intro.data.title" = "Offlinedaten";
+"intro.data.subtitle" = "Alle Daten lokal gespeichert";
+"intro.data.description" = "Die App lädt alle Abfahrten herunter und speichert sie lokal. Somit stehen Sie dir immer zur Verfügung.";
+
+"intro.beacons.title" = "Beacons";
+"intro.beacons.subtitle" = "Erhalte Informationen über den Bus in dem du dich befindest";
+"intro.beacons.description" = "Aktiviere Bluetooth um Informationen bzgl. deiner Fahrt im Bus zu erhalten.";
+
+"intro.agreement.title" = "Vereinbarung";
+"intro.agreement.subtitle" = "Nutzungsbestimmungen und Datenschutzbestimmungen";
+"intro.agreement.description" = "Durch das Nutzen von SASAbus erklärst du dich mit unseren Nutzungsbestimmungen und Datenschutzbestimmungen einverstanden.";
+
+"intro.permission.title" = "Berechtigung";
+"intro.permission.subtitle" = "Beaconerkennung benötigt die Standortberechtigung";
+"intro.permission.description" = "Bitte erteile ie Standortberechtigung damit die App nach Beacons scannen kann.";
+
+
+// =================================================== ACCESSIBILITY ===================================================
+
+"accessibility.menu" = "Menü";
+
+
+// =================================================== NOTIFICATIONS ===================================================
+
+"notification.news.click_for_more" = "Klicke für weitere Informationen";
+
+"notification.trip.title" = "Fahrt gespeichert";
+"notification.trip.body" = "Deine Fahrt von %@ nach %@ wurde gespeichert";
+
+"notification.survey.title" = "Umfrage";
+"notification.survey.body" = "Bewerte deine Fahrt;

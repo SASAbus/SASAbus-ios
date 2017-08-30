@@ -684,6 +684,10 @@
 		FA401F2A1E921EA400E7F282 /* SASAbus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SASAbus.entitlements; sourceTree = "<group>"; };
 		FA54DE5D1E969AAA0071E42C /* BusDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusDetailsViewController.xib; sourceTree = "<group>"; };
 		FA580DF31F56E2AC00CFFCD2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		FA580DF61F5702BB00CFFCD2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		FA580DF71F5702BB00CFFCD2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		FA580DF81F5702C600CFFCD2 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		FA580DF91F5702C600CFFCD2 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		FA63E0701F55512400B04649 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA63E0731F555C5600B04649 /* FcmSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmSettings.swift; sourceTree = "<group>"; };
 		FA726B5C1F2880DE0053EA12 /* MainRouteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainRouteViewController.xib; sourceTree = "<group>"; };
@@ -1756,6 +1760,8 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				it,
 			);
 			mainGroup = 31CFDFDC1BB2877200636599;
 			productRefGroup = 31CFDFE61BB2877200636599 /* Products */;
@@ -2383,6 +2389,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				FA580DF31F56E2AC00CFFCD2 /* en */,
+				FA580DF61F5702BB00CFFCD2 /* de */,
+				FA580DF81F5702C600CFFCD2 /* it */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2391,6 +2399,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				FA88EB161F53F14D0052C734 /* en */,
+				FA580DF71F5702BB00CFFCD2 /* de */,
+				FA580DF91F5702C600CFFCD2 /* it */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

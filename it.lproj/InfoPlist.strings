@@ -1,0 +1,4 @@
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "SASAbus uses your location to scan for nearby buses and give you real-time updates about delays and next departures.";
+"NSLocationAlwaysUsageDescription" = "SASAbus uses your location to scan for nearby buses and give you real-time updates about delays and next departures.";
+"NSLocationWhenInUseUsageDescription" = "SASAbus uses your location to scan for nearby buses and give you real-time updates about delays and next departures.";
+"NSPhotoLibraryUsageDescription" = "SASAbus needs access to your photos so you can attach screenshots of a problem or suggestion";

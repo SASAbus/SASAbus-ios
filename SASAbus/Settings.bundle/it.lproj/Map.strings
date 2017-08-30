@@ -1,0 +1,22 @@
+"default_position_title" = "Posizione iniziale sulla mappa";
+"default_position_south_tyrol" = "Alto Adige";
+"default_position_bolzano" = "Bolzano";
+"default_position_merano" = "Merano";
+
+"map_type_title" = "Tipo di mappa";
+"map_type_standard" = "Classico";
+"map_type_satellite" = "Satellitare";
+"map_type_hybrid" = "Ibrido";
+
+"auto_refresh_title" = "Aggiornamento automatico";
+"auto_refresh_footer" = "Aggiorna automaticamente le posizioni degli autobus nel intervallo definito. Questo potrebbe usare più batteria e dati Internet.";
+"auto_refresh_interval" = "Intervallo di aggiornamento";
+"auto_refresh_interval_three" = "3 secondi";
+"auto_refresh_interval_five" = "5 secondi";
+"auto_refresh_interval_ten" = "10 secondi";
+"auto_refresh_interval_fifteen" = "15 secondi";
+
+"overlay_title" = "Copertura con percorsi";
+"overlay_footer" = "Visualizza una copertura del percorso del mezzo";
+"overlay_enable_single" = "Visualizza percorsi";
+"overlay_enable_all" = "Visualizza tutti i percorsi";

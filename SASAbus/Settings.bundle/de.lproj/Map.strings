@@ -1,0 +1,22 @@
+"default_position_title" = "Standard-Kartenposition";
+"default_position_south_tyrol" = "Südtirol";
+"default_position_bolzano" = "Bozen";
+"default_position_merano" = "Meran";
+
+"map_type_title" = "Kartentyp";
+"map_type_standard" = "Standard";
+"map_type_satellite" = "Satellit";
+"map_type_hybrid" = "Hybrid";
+
+"auto_refresh_title" = "Automatische Aktualisierung";
+"auto_refresh_footer" = "Aktualisiert die Buspositionen auf der Karte im festgelegten Intervall. Dies kann zum erhöhten Batterie- und Datenvolumenverbrauch führen.";
+"auto_refresh_interval" = "Aktualisierungsintervall";
+"auto_refresh_interval_three" = "3 Sekunden";
+"auto_refresh_interval_five" = "5 Sekunden";
+"auto_refresh_interval_ten" = "10 Sekunden";
+"auto_refresh_interval_fifteen" = "15 Sekunden";
+
+"overlay_title" = "Überlage mit Streckenverlauf";
+"overlay_footer" = "Zeigt eine Überlage mit dem Streckenverlauf des Fahrzeugs.";
+"overlay_enable_single" = "Streckenverläufe anzeigen";
+"overlay_enable_all" = "Zeigt alle Streckenverläufe";

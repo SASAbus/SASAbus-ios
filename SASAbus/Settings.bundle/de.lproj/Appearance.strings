@@ -1,0 +1,15 @@
+"section_language_title" = "Sprache";
+
+"language_title" = "Sprache";
+"language_system" = "Systemsprache";
+"language_english" = "Englisch";
+"language_german" = "Deutsch";
+"language_italian" = "Italienisch";
+
+"section_appearance_title" = "Darstellung";
+
+"night_mode_title" = "Nachtmodus";
+
+"start_screen_title" = "Startansicht";
+"start_screen_map" = "Karte";
+"start_screen_departures" = "Abfahrten";
