@@ -101,7 +101,7 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
         observerAdded = false
         view.backgroundColor = Theme.darkGrey
 
-        searchBar.barTintColor = Theme.darkGrey
+        searchBar.barTintColor = .darkGray
         searchBar.tintColor = Theme.white
         searchBar.backgroundImage = UIImage()
         searchBar.setImage(Asset.icNavigationBus.image, for: UISearchBarIcon.search, state: UIControlState())

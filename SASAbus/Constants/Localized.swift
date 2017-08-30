@@ -46,7 +46,7 @@ enum L10n {
   }
 
   enum Credits {
-    /// © 2015 - 2016 Markus Windegger, Raiffeisen OnLine Gmbh (Norman Marmsoler, Jürgen Sprenger, Aaron Falk)
+    /// © 2015 - 2016 Markus Windegger, Raiffeisen OnLine GmbH (Norman Marmsoler, Jürgen Sprenger, Aaron Falk)
     static let copyright = L10n.tr("Localizable", "credits.copyright")
     /// SASAbus - %@
     static func header(_ p1: String) -> String {
@@ -89,9 +89,9 @@ enum L10n {
     }
 
     enum Filter {
-      /// Disable all
+      /// Show all
       static let disableAll = L10n.tr("Localizable", "departures.filter.disable_all")
-      /// Enable all
+      /// Show all
       static let enableAll = L10n.tr("Localizable", "departures.filter.enable_all")
       /// Bus line filter
       static let title = L10n.tr("Localizable", "departures.filter.title")
@@ -145,7 +145,7 @@ enum L10n {
     enum Login {
       /// Log in
       static let button = L10n.tr("Localizable", "ecopoints.login.button")
-      /// By loggin in you agree to our terms of service and privacy policy
+      /// By logging in you agree to our terms of service and privacy policy
       static let footerWarning = L10n.tr("Localizable", "ecopoints.login.footer_warning")
       /// Forgot your password?
       static let forgotPassword = L10n.tr("Localizable", "ecopoints.login.forgot_password")
@@ -158,7 +158,7 @@ enum L10n {
       enum Error {
         /// Please retry in a few minutes
         static let subtitle = L10n.tr("Localizable", "ecopoints.login.error.subtitle")
-        /// Could not log in
+        /// Couldn't log in
         static let title = L10n.tr("Localizable", "ecopoints.login.error.title")
       }
 
@@ -205,21 +205,21 @@ enum L10n {
         enum Error {
 
           enum Delete {
-            /// Please retry again later.
+            /// Please retry again later
             static let subtitle = L10n.tr("Localizable", "ecopoints.profile.settings.error.delete.subtitle")
             /// Couldn't delete account
             static let title = L10n.tr("Localizable", "ecopoints.profile.settings.error.delete.title")
           }
 
           enum Internet {
-            /// Please connect to the internet to continue
+            /// Please connect to the Internet to continue
             static let subtitle = L10n.tr("Localizable", "ecopoints.profile.settings.error.internet.subtitle")
-            /// No internet connection
+            /// No Internet connection
             static let title = L10n.tr("Localizable", "ecopoints.profile.settings.error.internet.title")
           }
 
           enum Logout {
-            /// Please retry again later.
+            /// Please retry again later
             static let subtitle = L10n.tr("Localizable", "ecopoints.profile.settings.error.logout.subtitle")
             /// Couldn't log out
             static let title = L10n.tr("Localizable", "ecopoints.profile.settings.error.logout.title")
@@ -258,7 +258,7 @@ enum L10n {
   }
 
   enum Feedback {
-    /// This page is only for reporting bugs or requesting app features. If you need to open a complaint, please contact reclami.beschwerden@sasabz.it
+    /// This page is only for reporting bugs or requesting app features. If you need to open a complaint, please contact reclami.beschwerden@sasabz.it.
     static let complaintText = L10n.tr("Localizable", "feedback.complaint_text")
     /// Done
     static let done = L10n.tr("Localizable", "feedback.done")
@@ -346,7 +346,7 @@ enum L10n {
   enum Intro {
 
     enum Agreement {
-      /// By using SasaBus you agree to the Terms and Conditions and the Privacy Policy.
+      /// By using SASAbus you agree to the terms and conditions and the privacy policy.
       static let description = L10n.tr("Localizable", "intro.agreement.description")
       /// Terms and conditions
       static let subtitle = L10n.tr("Localizable", "intro.agreement.subtitle")
@@ -355,7 +355,7 @@ enum L10n {
     }
 
     enum Beacons {
-      /// Enable bluetooth to get information of nearby buses and bus stops.
+      /// Enable Bluetooth to get information of nearby buses and bus stops.
       static let description = L10n.tr("Localizable", "intro.beacons.description")
       /// Get information about the bus you're in
       static let subtitle = L10n.tr("Localizable", "intro.beacons.subtitle")
@@ -364,7 +364,7 @@ enum L10n {
     }
 
     enum Data {
-      /// The app downloads all bus departures and stores them locally.
+      /// The app downloads all bus departures and stores them locally, so you can access them anytime.
       static let description = L10n.tr("Localizable", "intro.data.description")
       /// All data saved offline
       static let subtitle = L10n.tr("Localizable", "intro.data.subtitle")
@@ -373,7 +373,7 @@ enum L10n {
     }
 
     enum Permission {
-      /// Please allow the app to use your location to scan for beacons
+      /// Please allow the app to use your location to scan for beacons.
       static let description = L10n.tr("Localizable", "intro.permission.description")
       /// Beacon tracking needs your location
       static let subtitle = L10n.tr("Localizable", "intro.permission.subtitle")
@@ -382,7 +382,7 @@ enum L10n {
     }
 
     enum Realtime {
-      /// SASAbus informs you about bus positions, departures and delays in real-time
+      /// SASAbus informs you about bus positions, departures and delays in real-time.
       static let description = L10n.tr("Localizable", "intro.realtime.description")
       /// Bus positions in real-time
       static let subtitle = L10n.tr("Localizable", "intro.realtime.subtitle")
@@ -491,7 +491,7 @@ enum L10n {
     }
 
     enum Survey {
-      /// Click to take a survey about your bus ride
+      /// Take a survey about your bus ride
       static let body = L10n.tr("Localizable", "notification.survey.body")
       /// Survey
       static let title = L10n.tr("Localizable", "notification.survey.title")

@@ -32,7 +32,7 @@
 "feedback.text_area.placeholder" = "Obwohl wir nicht alle Meldungen beantworten können, ist jede Nachricht willkommen.";
 "feedback.name.placeholder" = "Max Mustermann";
 "feedback.email.placeholder" = "max@mustermann.com";
-"feedback.complaint_text" = "Diese Seite ist nur für das Melden von Fehler oder Einreichen von Vorschlägen. Für Unfälle oder Beschwerden kontaktieren Sie bitte reclami.beschwerden@sasabz.it.";
+"feedback.complaint_text" = "Diese Seite ist nur für das Melden von Fehler oder Einreichen von Vorschlägen. Für Beschwerden oder Unfälle kontaktieren Sie bitte reclami.beschwerden@sasabz.it.";
 "feedback.submit" = "Senden";
 "feedback.done" = "Feritg";
 "feedback.success.title" = "Danke!";
@@ -185,4 +185,4 @@
 "notification.trip.body" = "Deine Fahrt von %@ nach %@ wurde gespeichert";
 
 "notification.survey.title" = "Umfrage";
-"notification.survey.body" = "Bewerte deine Fahrt;
+"notification.survey.body" = "Bewerte deine Fahrt";
