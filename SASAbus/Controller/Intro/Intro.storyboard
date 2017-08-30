@@ -80,19 +80,19 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Realtime" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="g6k-ug-Gh1">
-                                <rect key="frame" x="28" y="482.33333333333326" width="358" height="57.666666666666742"/>
+                                <rect key="frame" x="28" y="494.33333333333326" width="358" height="57.666666666666742"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
                                 <color key="textColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bus positions in realtime" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Z0-hu-JTd">
-                                <rect key="frame" x="28" y="556" width="358" height="28.666666666666629"/>
+                                <rect key="frame" x="28" y="568" width="358" height="28.666666666666629"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SasaBus informs you about bus departures, delays, paths and bus stops" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svY-OU-7eG">
-                                <rect key="frame" x="28" y="590.66666666666652" width="358" height="38.333333333333371"/>
+                                <rect key="frame" x="28" y="602.66666666666652" width="358" height="38.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -119,7 +119,7 @@
                             <constraint firstItem="svY-OU-7eG" firstAttribute="leading" secondItem="FLm-kp-PCs" secondAttribute="leadingMargin" constant="8" id="OCt-Va-Zhw"/>
                             <constraint firstItem="svY-OU-7eG" firstAttribute="top" secondItem="1Z0-hu-JTd" secondAttribute="bottom" constant="6" id="QXb-xq-rpp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="svY-OU-7eG" secondAttribute="trailing" constant="8" id="T40-p2-PFt"/>
-                            <constraint firstItem="UaB-TD-dGI" firstAttribute="top" secondItem="g6k-ug-Gh1" secondAttribute="bottom" constant="196" id="Ufk-Zs-NRm"/>
+                            <constraint firstItem="UaB-TD-dGI" firstAttribute="top" secondItem="g6k-ug-Gh1" secondAttribute="bottom" constant="184" id="Ufk-Zs-NRm"/>
                             <constraint firstItem="UaB-TD-dGI" firstAttribute="top" secondItem="KNg-20-jME" secondAttribute="bottom" constant="16" id="Xeh-A5-3Gm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="g6k-ug-Gh1" secondAttribute="trailing" constant="8" id="exB-vh-Ufq"/>
                             <constraint firstItem="1Z0-hu-JTd" firstAttribute="leading" secondItem="FLm-kp-PCs" secondAttribute="leadingMargin" constant="8" id="gGI-Dr-vB6"/>
@@ -159,29 +159,29 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offline data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XXo-ay-HKS">
-                                <rect key="frame" x="28" y="482.33333333333326" width="358" height="57.666666666666742"/>
+                                <rect key="frame" x="28" y="494.33333333333326" width="358" height="57.666666666666742"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
                                 <color key="textColor" red="0.29803921570000003" green="0.85098039219999999" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Departures without internet connection" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daM-uK-siD">
-                                <rect key="frame" x="28" y="556" width="358" height="57.333333333333371"/>
+                                <rect key="frame" x="28" y="568" width="358" height="57.333333333333371"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The app downloads all bus departures and stores them locally." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceI-ci-SPq">
-                                <rect key="frame" x="28" y="619.33333333333337" width="358" height="38.333333333333258"/>
+                                <rect key="frame" x="28" y="631.33333333333337" width="358" height="38.333333333333258"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xg9-Oz-HRe">
-                                <rect key="frame" x="36" y="689.66666666666663" width="342" height="2"/>
+                                <rect key="frame" x="36" y="701.66666666666663" width="342" height="2"/>
                                 <color key="progressTintColor" red="0.29803921568627451" green="0.85098039215686272" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_done_white_48pt" translatesAutoresizingMaskIntoConstraints="NO" id="Sth-Ze-rEd">
-                                <rect key="frame" x="187" y="670.66666666666663" width="40" height="40"/>
+                                <rect key="frame" x="187" y="682.66666666666663" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="007-08-Yag"/>
                                     <constraint firstAttribute="width" constant="40" id="1Nf-oc-aTW"/>
@@ -219,7 +219,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="xg9-Oz-HRe" secondAttribute="trailing" constant="16" id="iS1-lw-5Fa"/>
                             <constraint firstItem="xg9-Oz-HRe" firstAttribute="top" secondItem="ceI-ci-SPq" secondAttribute="bottom" constant="32" id="pJr-cj-gSc"/>
                             <constraint firstItem="ASu-st-QyT" firstAttribute="leading" secondItem="KBc-zi-S9i" secondAttribute="leading" constant="32" id="r0U-cn-E5t"/>
-                            <constraint firstItem="w5m-Fo-Vik" firstAttribute="top" secondItem="XXo-ay-HKS" secondAttribute="bottom" constant="196" id="rdl-kE-dFX"/>
+                            <constraint firstItem="w5m-Fo-Vik" firstAttribute="top" secondItem="XXo-ay-HKS" secondAttribute="bottom" constant="184" id="rdl-kE-dFX"/>
                             <constraint firstAttribute="trailing" secondItem="ASu-st-QyT" secondAttribute="trailing" constant="32" id="wai-Hp-NMj"/>
                         </constraints>
                     </view>
