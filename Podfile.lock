@@ -14,13 +14,13 @@ PODS:
   - DrawerController/DrawerVisualStates (3.2.1):
     - DrawerController/Core
   - Fabric (1.6.12)
-  - Firebase/Core (4.1.0):
+  - Firebase/Core (4.1.1):
     - FirebaseAnalytics (= 4.0.3)
-    - FirebaseCore (= 4.0.5)
-  - Firebase/Messaging (4.1.0):
+    - FirebaseCore (= 4.0.6)
+  - Firebase/Messaging (4.1.1):
     - Firebase/Core
-    - FirebaseMessaging (= 2.0.1)
-  - Firebase/RemoteConfig (4.1.0):
+    - FirebaseMessaging (= 2.0.2)
+  - Firebase/RemoteConfig (4.1.1):
     - Firebase/Core
     - FirebaseRemoteConfig (= 2.0.2)
   - FirebaseAnalytics (4.0.3):
@@ -28,12 +28,12 @@ PODS:
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - nanopb (~> 0.3)
-  - FirebaseCore (4.0.5):
+  - FirebaseCore (4.0.6):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - nanopb (~> 0.3)
-  - FirebaseInstanceID (2.0.1):
+  - FirebaseInstanceID (2.0.2):
     - FirebaseCore (~> 4.0)
-  - FirebaseMessaging (2.0.1):
+  - FirebaseMessaging (2.0.2):
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
@@ -75,7 +75,7 @@ PODS:
   - GoogleUtilities (1.3.2):
     - GoogleSymbolUtilities (~> 1.1)
   - KDCircularProgress (1.5.2)
-  - Kingfisher (3.11.0)
+  - Kingfisher (3.12.1)
   - LocationPickerViewController (3.0.2)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -110,7 +110,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.4)
   - AlamofireNetworkActivityIndicator (~> 2.0)
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
-  - Crashlytics
+  - Crashlytics (~> 3.8)
   - DrawerController (~> 3.1)
   - Fabric
   - Firebase/Core (~> 4.1.0)
@@ -157,11 +157,11 @@ SPEC CHECKSUMS:
   Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
   DrawerController: d2f25c567a1786476d74bfe8cde9a5bdd39972a9
   Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
-  Firebase: ebebf41db7f10e0c7668b6eaaa857fbe599aa478
+  Firebase: 052c0de688fc87b414996eea13e223dd9fee3fa2
   FirebaseAnalytics: 76f754d37ca5b04f36856729b6af3ca0152d1069
-  FirebaseCore: 7d876ea97a830cbe62ba7fbbe7670c833a324ba0
-  FirebaseInstanceID: 0500e3cb54a1a4e01a8cffcc09323b8bb8fc7e1e
-  FirebaseMessaging: b45ff9ef5d932600d3f78ff43168e7c5707aa7dc
+  FirebaseCore: 28def3c643989c97ea5a69ea5000f5fa9902b9fd
+  FirebaseInstanceID: c4c7fca62c7b7330caee5da04f19a37ea37bb1c1
+  FirebaseMessaging: 85af6c27188538b3a6f7dfd0b3b0596358cb0c39
   FirebaseRemoteConfig: 5b3e3301ef2f237b1b588e8ef3211b5a22e9e15d
   Google: d536877ec602555b755cc28ce6fed104825c693c
   GoogleAppUtilities: a8a552aa74f6597f805e45b5a3962766c3134973
@@ -173,7 +173,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GoogleUtilities: 8bbc733218aad26306f9d4a253823986110e3358
   KDCircularProgress: 12f677b2deb02409ab48c6cae1898d146b8ad549
-  Kingfisher: c8911a7672c6217dec8c0520fb6e76ec4b7e0780
+  Kingfisher: 7e87498c3b795c2b8f6430fd5853ae5b5548ff9c
   LocationPickerViewController: ca4577f669146a8ae1cddf497f9c951aec55d8a9
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   ObjectMapper: 3d571bb5af471c779e1160828cd9ad5c4ef90958
@@ -192,6 +192,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   zipzap: 9de722cee38b7c3a8b1134913a8a67ab36cb97c1
 
-PODFILE CHECKSUM: 259a41d102f2c2f540be4ab8180ba7d3f2640d87
+PODFILE CHECKSUM: f2f2c83cf782da78e86d73884b0e5227f156c5df
 
 COCOAPODS: 1.3.1

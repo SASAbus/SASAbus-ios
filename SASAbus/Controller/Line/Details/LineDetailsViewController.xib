@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LineDetailsViewController" customModule="SASAbus" customModuleProvider="target">
+            <connections>
+                <outlet property="containerBuses" destination="TiR-hb-irv" id="IQZ-Cr-KPj"/>
+                <outlet property="containerMap" destination="SaQ-c4-bzD" id="GEG-3Q-D69"/>
+                <outlet property="segmentedBackground" destination="Pqj-e0-nik" id="Kfc-Xn-QyH"/>
+                <outlet property="segmentedControl" destination="mI1-EX-Ztm" id="XU8-SK-Wc1"/>
+                <outlet property="view" destination="tMy-ml-ieR" id="KKB-LX-WBl"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="tMy-ml-ieR">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pqj-e0-nik" userLabel="Segment">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <subviews>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mI1-EX-Ztm">
+                            <rect key="frame" x="16" y="8" width="343" height="29"/>
+                            <segments>
+                                <segment title="Buses"/>
+                                <segment title="Line path"/>
+                            </segments>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="showComponent:" destination="-1" eventType="valueChanged" id="Rrz-zG-shz"/>
+                            </connections>
+                        </segmentedControl>
+                    </subviews>
+                    <color key="backgroundColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="mI1-EX-Ztm" firstAttribute="top" secondItem="Pqj-e0-nik" secondAttribute="top" constant="8" id="BGN-bz-VG2"/>
+                        <constraint firstItem="mI1-EX-Ztm" firstAttribute="leading" secondItem="Pqj-e0-nik" secondAttribute="leading" constant="16" id="LhR-mg-R46"/>
+                        <constraint firstAttribute="trailing" secondItem="mI1-EX-Ztm" secondAttribute="trailing" constant="16" id="b4e-7G-EkU"/>
+                        <constraint firstAttribute="bottom" secondItem="mI1-EX-Ztm" secondAttribute="bottom" constant="8" id="eIb-qV-c2b"/>
+                        <constraint firstAttribute="height" constant="44" id="zEJ-eW-UTF"/>
+                    </constraints>
+                </view>
+                <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SaQ-c4-bzD" userLabel="Map">
+                    <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                </containerView>
+                <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TiR-hb-irv" userLabel="Buses">
+                    <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                </containerView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Pqj-e0-nik" secondAttribute="trailing" id="4rL-12-PdG"/>
+                <constraint firstItem="TiR-hb-irv" firstAttribute="top" secondItem="Pqj-e0-nik" secondAttribute="bottom" id="6vp-Gy-LcW"/>
+                <constraint firstItem="Pqj-e0-nik" firstAttribute="top" secondItem="tMy-ml-ieR" secondAttribute="top" id="GOO-tl-d0W"/>
+                <constraint firstItem="Pqj-e0-nik" firstAttribute="leading" secondItem="tMy-ml-ieR" secondAttribute="leading" id="Orz-7A-3Xq"/>
+                <constraint firstAttribute="bottom" secondItem="TiR-hb-irv" secondAttribute="bottom" id="Pkk-sv-VAp"/>
+                <constraint firstItem="TiR-hb-irv" firstAttribute="leading" secondItem="tMy-ml-ieR" secondAttribute="leading" id="S2g-au-rs9"/>
+                <constraint firstAttribute="bottom" secondItem="SaQ-c4-bzD" secondAttribute="bottom" id="cZg-RC-aaE"/>
+                <constraint firstAttribute="trailing" secondItem="TiR-hb-irv" secondAttribute="trailing" id="oJP-jj-riY"/>
+                <constraint firstItem="SaQ-c4-bzD" firstAttribute="top" secondItem="Pqj-e0-nik" secondAttribute="bottom" id="qYx-4D-6ad"/>
+                <constraint firstItem="SaQ-c4-bzD" firstAttribute="leading" secondItem="tMy-ml-ieR" secondAttribute="leading" id="uut-kK-314"/>
+                <constraint firstAttribute="trailing" secondItem="SaQ-c4-bzD" secondAttribute="trailing" id="wZi-A7-YdW"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

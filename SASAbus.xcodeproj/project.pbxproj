@@ -336,7 +336,6 @@
 		8209412F31A20D6101E5A337 /* Pods_TripNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B2ED616AB2156B38A561B93 /* Pods_TripNotification.framework */; };
 		C0B47346C75AAFE57DA45528 /* Pods_SASAbus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D691B23DAE0CB65656C8EAF5 /* Pods_SASAbus.framework */; };
 		FA091C5F1EDD4CD200BC37A5 /* LineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA091C5E1EDD4CD200BC37A5 /* LineCell.xib */; };
-		FA091C631EDD603800BC37A5 /* LineDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA091C621EDD603800BC37A5 /* LineDetailsViewController.xib */; };
 		FA18D5231EF2768D00038B89 /* EcoPointsProfilePictureDefaultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA18D5221EF2768D00038B89 /* EcoPointsProfilePictureDefaultViewController.xib */; };
 		FA18D5251EF2777600038B89 /* EcoPointsProfilePictureDefaultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA18D5241EF2777600038B89 /* EcoPointsProfilePictureDefaultCell.xib */; };
 		FA2690DF1E93B927000B8A84 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2690DE1E93B927000B8A84 /* UserNotifications.framework */; };
@@ -670,7 +669,6 @@
 		C014ACA1A41F789275306A19 /* Pods-TripNotification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripNotification.release.xcconfig"; path = "Pods/Target Support Files/Pods-TripNotification/Pods-TripNotification.release.xcconfig"; sourceTree = "<group>"; };
 		D691B23DAE0CB65656C8EAF5 /* Pods_SASAbus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SASAbus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA091C5E1EDD4CD200BC37A5 /* LineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineCell.xib; sourceTree = "<group>"; };
-		FA091C621EDD603800BC37A5 /* LineDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LineDetailsViewController.xib; path = ../../../../../SasaBusSwift/sasabus/ui/lines/details/LineDetailsViewController.xib; sourceTree = "<group>"; };
 		FA18D5221EF2768D00038B89 /* EcoPointsProfilePictureDefaultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EcoPointsProfilePictureDefaultViewController.xib; sourceTree = "<group>"; };
 		FA18D5241EF2777600038B89 /* EcoPointsProfilePictureDefaultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EcoPointsProfilePictureDefaultCell.xib; sourceTree = "<group>"; };
 		FA2690DD1E93B927000B8A84 /* TripNotification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TripNotification.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -694,6 +692,7 @@
 		FA726B5C1F2880DE0053EA12 /* MainRouteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainRouteViewController.xib; sourceTree = "<group>"; };
 		FA88EB161F53F14D0052C734 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		FAA92CE81F5824460054A16F /* UIScreen+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Size.swift"; sourceTree = "<group>"; };
+		FAA92CEA1F5836E10054A16F /* LineDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineDetailsViewController.xib; sourceTree = "<group>"; };
 		FAB31DF91EEFE584004B0BAC /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		FAB85BE51EEA8BF400D6EB4A /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
 		FABCEED01EDEB5DA00E48116 /* LineCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineCourseViewController.swift; sourceTree = "<group>"; };
@@ -1339,8 +1338,8 @@
 			children = (
 				1F2E393723812C3598A6CBDE /* Buses */,
 				1F2E38CDEE0C7EF604E6D4A4 /* Map */,
+				FAA92CEA1F5836E10054A16F /* LineDetailsViewController.xib */,
 				1F2E3F09E6AB7FB126DB03A5 /* LineDetailsViewController.swift */,
-				FA091C621EDD603800BC37A5 /* LineDetailsViewController.xib */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -1822,7 +1821,6 @@
 				1F2E3752C2F34FDB08B9CC2A /* BusStopViewController.xib in Resources */,
 				FA63E0711F55519C00B04649 /* GoogleService-Info.plist in Resources */,
 				1F2E3508FA53760C62211D86 /* BusStopFavoritesTableViewCell.xib in Resources */,
-				FA091C631EDD603800BC37A5 /* LineDetailsViewController.xib in Resources */,
 				1F2E396BF999483C9EFF6926 /* BusStopFavoritesViewController.xib in Resources */,
 				1F2E39BE93D1F23DAC67B121 /* BusStopFilterCollectionViewCell.xib in Resources */,
 				1F2E31FBE54ACDB601A3DD2D /* BusStopFilterViewController.xib in Resources */,

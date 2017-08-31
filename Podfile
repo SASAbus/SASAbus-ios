@@ -36,7 +36,7 @@ def default_pods
   pod 'SSZipArchive'
 
   pod 'Fabric'
-  pod 'Crashlytics'
+  pod 'Crashlytics', '~>  3.8'
 
   pod 'Pulley'
 
