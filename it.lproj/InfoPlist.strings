@@ -1,4 +1,4 @@
-"NSLocationAlwaysAndWhenInUseUsageDescription" = "SASAbus uses your location to scan for nearby buses and give you real-time updates about delays and next departures.";
-"NSLocationAlwaysUsageDescription" = "SASAbus uses your location to scan for nearby buses and give you real-time updates about delays and next departures.";
-"NSLocationWhenInUseUsageDescription" = "SASAbus uses your location to scan for nearby buses and give you real-time updates about delays and next departures.";
-"NSPhotoLibraryUsageDescription" = "SASAbus needs access to your photos so you can attach screenshots of a problem or suggestion";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "SASAbus usa la tua posizione per scannerizzare beacons in vicinanza e per informarti su ritardi e partenze in tempo reale.";
+"NSLocationAlwaysUsageDescription" = "SASAbus usa la tua posizione per scannerizzare beacons in vicinanza e per informarti su ritardi e partenze in tempo reale.";
+"NSLocationWhenInUseUsageDescription" = "SASAbus usa la tua posizione per scannerizzare beacons in vicinanza e per informarti su ritardi e partenze in tempo reale.";
+"NSPhotoLibraryUsageDescription" = "SASAbus accede le tue foto per allegarle eventualmente al feedback da te inviato, se questo è necessario per te.";

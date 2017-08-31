@@ -110,13 +110,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         CLLocationManager().requestAlwaysAuthorization()
         CLLocationManager().requestWhenInUseAuthorization()
-
-        let navigationController = getNavigationController(Menu.items[0].viewController!)
-        let menuController: MenuViewController! = MenuViewController(nibName: "MenuViewController", bundle: nil)
-        self.drawerController = DrawerController(centerViewController: navigationController, leftDrawerViewController: menuController)
-
+        
         let startIndex = Settings.getStartScreen()
         let selectedMenuItem: IndexPath = IndexPath(row: startIndex, section: 0)
+
+        let navigationController = getNavigationController(Menu.items[startIndex].viewController!)
+        let menuController: MenuViewController! = MenuViewController(nibName: "MenuViewController", bundle: nil)
+        self.drawerController = DrawerController(centerViewController: navigationController, leftDrawerViewController: menuController)
 
         menuController.tableView.selectRow(at: selectedMenuItem, animated: false, scrollPosition: UITableViewScrollPosition.none)
         menuController.tableView.cellForRow(at: menuController.tableView.indexPathForSelectedRow!)?.setSelected(true, animated: false)

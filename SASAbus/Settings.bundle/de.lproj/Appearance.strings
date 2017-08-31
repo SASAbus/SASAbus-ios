@@ -1,12 +1,14 @@
 "section_language_title" = "Sprache";
+"section_appearance_title" = "Darstellung";
+
+"section_start_screen_title" = "Startansicht";
+"section_start_screen_footer" = "Die Ansicht die beim Starten der Anwendung erscheint.";
 
 "language_title" = "Sprache";
 "language_system" = "Systemsprache";
 "language_english" = "Englisch";
 "language_german" = "Deutsch";
 "language_italian" = "Italienisch";
-
-"section_appearance_title" = "Darstellung";
 
 "night_mode_title" = "Nachtmodus";
 

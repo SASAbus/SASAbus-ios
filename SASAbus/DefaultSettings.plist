@@ -21,7 +21,7 @@
 	<key>pref_default_map_position</key>
 	<integer>1</integer>
 	<key>pref_start_screen</key>
-	<integer>0</integer>
+	<integer>1</integer>
 	<key>pref_survey_enabled</key>
 	<true/>
 	<key>pref_survey_interval</key>

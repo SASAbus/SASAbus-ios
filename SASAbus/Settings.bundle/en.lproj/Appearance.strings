@@ -1,12 +1,14 @@
 "section_language_title" = "App language";
+"section_appearance_title" = "Appearance";
+
+"section_start_screen_title" = "Start screen";
+"section_start_screen_footer" = "The view you want to appear when you start the application.";
 
 "language_title" = "App language";
 "language_system" = "System language";
 "language_english" = "English";
 "language_german" = "German";
 "language_italian" = "Italian";
-
-"section_appearance_title" = "Appearance";
 
 "night_mode_title" = "Night mode";
 

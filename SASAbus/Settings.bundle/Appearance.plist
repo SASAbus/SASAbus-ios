@@ -55,8 +55,10 @@
 		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
+			<key>FooterText</key>
+			<string>section_start_screen_footer</string>
 			<key>Title</key>
-			<string>Start screen</string>
+			<string>section_start_screen_title</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -66,7 +68,7 @@
 			<key>Key</key>
 			<string>pref_start_screen</string>
 			<key>DefaultValue</key>
-			<integer>0</integer>
+			<integer>1</integer>
 			<key>Titles</key>
 			<array>
 				<string>start_screen_map</string>

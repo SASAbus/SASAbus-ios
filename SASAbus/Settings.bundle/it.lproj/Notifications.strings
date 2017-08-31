@@ -1,22 +1,22 @@
-"section_bus_header" = "Buses";
-"section_bus_footer" = "Show a notification displaying the next bus stops when you are in a bus.";
+"section_bus_header" = "Autobus";
+"section_bus_footer" = "Visualizza una notifica con le prossime fermate quando ti trovi in un autobus.";
 
-"section_trip_header" = "Trips";
-"section_trip_footer" = "Show a notification when you complete a bus trip.";
+"section_trip_header" = "Viaggi";
+"section_trip_footer" = "Visualizza una notifica quando hai completato un viaggio.";
 
-"section_news_header" = "News";
-"section_news_footer" = "Show notifications about service updates or disruptions published by SASA SpA-AG.";
+"section_news_header" = "Novità";
+"section_news_footer" = "Visualizza una notifica con novità in riguardo al servizio di SASA SpA-AG.";
 
-"section_survey_header" = "Surveys";
-"section_survey_footer" = "Get notifications to participate in surveys about the service provided by SASA SpA-AG.";
+"section_survey_header" = "Sondaggi";
+"section_survey_footer" = "Visualizza una notifica con un sondaggio da parte di SASA SpA-AG.";
 
-"notification_bus_title" = "Show bus notifications";
-"notification_trip_title" = "Show trip notifications";
-"notification_news_title" = "Show news notifications";
+"notification_bus_title" = "Visualizza notifiche di autobus";
+"notification_trip_title" = "Visualizza notifiche di viaggi";
+"notification_news_title" = "Visualizza notifiche di novità";
 
-"notification_survey_enable_title" = "Show survey notifications";
-"notification_survey_interval_title" = "Survey interval";
-"notification_survey_interval_0" = "Show every time";
-"notification_survey_interval_1" = "Once a day";
-"notification_survey_interval_2" = "Once a week";
-"notification_survey_interval_3" = "Once a month";
+"notification_survey_enable_title" = "Visualizza notifiche di sondaggi";
+"notification_survey_interval_title" = "Intervallo tra i sondaggi";
+"notification_survey_interval_0" = "Dopo ogni viaggio";
+"notification_survey_interval_1" = "Ogni giorno";
+"notification_survey_interval_2" = "Ogni settimana";
+"notification_survey_interval_3" = "Ogni mese";
