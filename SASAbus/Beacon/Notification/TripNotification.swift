@@ -27,7 +27,7 @@ class TripNotification {
 
         content.title = trip.title
         content.body = "Press to view details"
-        content.sound = UNNotificationSound.default()
+        // content.sound = UNNotificationSound.default()
         content.categoryIdentifier = "trip_notification"
         content.userInfo = ["trip": json]
 

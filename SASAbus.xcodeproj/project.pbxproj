@@ -987,6 +987,7 @@
 				1F2E377C0FB253F9F57C8928 /* Fcm */,
 				1F2E33C79307AC007107C209 /* Sync */,
 				1F2E3F4C5A2064154E9A336A /* Util */,
+				1F2E38B61288F49268565F0F /* View */,
 				1F2E30D8F50F0E971CD1A73D /* Settings.bundle */,
 				1F2E384D7BF772D03B4D1BA4 /* public_key.cer */,
 				FA401F2A1E921EA400E7F282 /* SASAbus.entitlements */,
@@ -1002,7 +1003,6 @@
 				FA88EB151F53F14D0052C734 /* Localizable.strings */,
 				FA580DF21F56E2AC00CFFCD2 /* InfoPlist.strings */,
 				1F2E36D3C7C3F00F68089659 /* SASAbus.xcdatamodeld */,
-				1F2E38B61288F49268565F0F /* View */,
 			);
 			path = SASAbus;
 			sourceTree = "<group>";

@@ -506,11 +506,10 @@ extension BusBeaconHandler {
                 Log.warning("Got bus delay for vehicle \(currentTrip.id): \(bus.delay)")
                 
                 let realmStop = BusStopRealmHelper.getBusStopOrNil(id: bus.busStop)
-                
-                if realmStop != nil {
-                    beacon.setBusStop(realm: realmStop!, type: BusBeacon.TYPE_REALTIME)
+                if let stop = realmStop {
+                    beacon.setBusStop(realm: stop, type: BusBeacon.TYPE_REALTIME)
                     
-                    Log.warning("Got bus stop for vehicle \(currentTrip.id): \(realmStop!.id) \(realmStop!.nameDe)")
+                    Log.warning("Got bus stop for vehicle \(currentTrip.id): \(stop.id) \(stop.nameDe!)")
                 }
                 
                 beacon.delay = bus.delay
