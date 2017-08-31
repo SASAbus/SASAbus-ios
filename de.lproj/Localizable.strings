@@ -21,7 +21,6 @@
 "credits.copyright" = "© 2015 - 2016 Markus Windegger, Raiffeisen OnLine GmbH (Norman Marmsoler, Jürgen Sprenger, Aaron Falk)";
 "credits.licenses.title" = "Die folgende Software von Drittanbietern wird in der App verwendet. Wir bedanken uns bei deren Entwickler.";
 "credits.licenses.subtitle" = "• DrawerController (MIT)\r\n• AlamoFire (MIT)\r\n• zipzap (BSD)\r\n• KDCircularProgress (MIT)\r\n• SwiftValidator (MIT)";
-"credits.help" = "Für Vorschlage und Hilfe kontaktieren Sie bitte ios@sasabz.it";
 
 "changelog.title" = "Liste der Änderungen";
 

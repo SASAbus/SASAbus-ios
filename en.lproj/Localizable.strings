@@ -21,7 +21,6 @@
 "credits.copyright" = "© 2015 - 2016 Markus Windegger, Raiffeisen OnLine GmbH (Norman Marmsoler, Jürgen Sprenger, Aaron Falk)";
 "credits.licenses.title" = "The following sets forth attribution notices for third party software that may be contained in portions of the product. We thank the open source community for all their contributions.";
 "credits.licenses.subtitle" = "• DrawerController (MIT)\r\n• AlamoFire (MIT)\r\n• zipzap (BSD)\r\n• KDCircularProgress (MIT)\r\n• SwiftValidator (MIT)";
-"credits.help" = "For suggestions or help please mail to ios@sasabz.it";
 
 "changelog.title" = "Changelog";
 

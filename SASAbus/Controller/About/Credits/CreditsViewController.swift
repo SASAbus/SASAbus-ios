@@ -5,7 +5,6 @@ class CreditsViewController: UIViewController, UIToolbarDelegate {
     @IBOutlet weak var infoView: UITextView!
     @IBOutlet weak var infoTextView: UITextView!
 
-    @IBOutlet weak var helpView: UITextView!
     @IBOutlet weak var titleLabel: UILabel!
 
 
@@ -36,9 +35,6 @@ class CreditsViewController: UIViewController, UIToolbarDelegate {
         infoView.text = getAboutText()
         infoView.textColor = Theme.darkGrey
         infoView.isEditable = false
-
-        helpView.text = L10n.Credits.help
-        helpView.textColor = Theme.darkGrey
     }
 
     override func viewWillAppear(_ animated: Bool) {

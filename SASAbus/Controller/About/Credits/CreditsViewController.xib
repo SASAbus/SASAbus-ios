@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreditsViewController" customModule="SASAbus" customModuleProvider="target">
             <connections>
-                <outlet property="helpView" destination="4qt-4F-4gX" id="Lfz-QG-KCz"/>
                 <outlet property="infoTextView" destination="7RX-v6-BwT" id="w76-ZM-g9J"/>
                 <outlet property="infoView" destination="dkj-Rk-NkC" id="0jE-6F-nIE"/>
                 <outlet property="titleLabel" destination="ksZ-Ri-SbU" id="xUC-O4-rLx"/>
@@ -60,39 +59,14 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4qt-4F-4gX">
-                            <rect key="frame" x="12" y="549" width="351" height="46"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="28" id="GOT-6q-tJb"/>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="Sf2-ey-ttm"/>
-                                <constraint firstAttribute="height" constant="46" id="oSK-8h-uX6"/>
-                                <constraint firstAttribute="height" constant="28" id="xFA-6S-6g3"/>
-                            </constraints>
-                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="GOT-6q-tJb"/>
-                                    <exclude reference="Sf2-ey-ttm"/>
-                                    <exclude reference="xFA-6S-6g3"/>
-                                </mask>
-                            </variation>
-                        </textView>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="4qt-4F-4gX" firstAttribute="top" secondItem="dkj-Rk-NkC" secondAttribute="bottom" constant="8" id="5z2-0V-BZE"/>
                         <constraint firstAttribute="trailing" secondItem="dkj-Rk-NkC" secondAttribute="trailing" constant="12" id="68i-gw-XEc"/>
                         <constraint firstItem="7RX-v6-BwT" firstAttribute="leading" secondItem="hPG-yE-cbn" secondAttribute="leading" constant="16" id="6G2-fx-YeC"/>
                         <constraint firstItem="dkj-Rk-NkC" firstAttribute="top" secondItem="7RX-v6-BwT" secondAttribute="bottom" constant="8" id="EvZ-R9-y6X"/>
-                        <constraint firstAttribute="bottom" secondItem="4qt-4F-4gX" secondAttribute="bottom" constant="8" id="Jyv-L6-GQ2"/>
                         <constraint firstAttribute="trailing" secondItem="7RX-v6-BwT" secondAttribute="trailing" constant="16" id="Zng-z0-AmQ"/>
-                        <constraint firstItem="4qt-4F-4gX" firstAttribute="leading" secondItem="hPG-yE-cbn" secondAttribute="leading" constant="12" id="cGp-9P-PUS"/>
                         <constraint firstItem="7RX-v6-BwT" firstAttribute="top" secondItem="hPG-yE-cbn" secondAttribute="top" constant="16" id="e1M-3U-7UR"/>
-                        <constraint firstAttribute="bottom" secondItem="4qt-4F-4gX" secondAttribute="bottom" constant="16" id="e5R-Yp-qug"/>
-                        <constraint firstAttribute="trailing" secondItem="4qt-4F-4gX" secondAttribute="trailing" constant="12" id="i1F-GE-lgC"/>
                         <constraint firstItem="dkj-Rk-NkC" firstAttribute="leading" secondItem="hPG-yE-cbn" secondAttribute="leading" constant="12" id="ly4-pH-onh"/>
                         <constraint firstItem="7RX-v6-BwT" firstAttribute="top" secondItem="hPG-yE-cbn" secondAttribute="top" constant="16" id="oMg-3f-PDd"/>
                         <constraint firstAttribute="trailing" secondItem="dkj-Rk-NkC" secondAttribute="trailing" constant="12" id="qbw-XA-clo"/>
@@ -105,8 +79,6 @@
                             <exclude reference="68i-gw-XEc"/>
                             <exclude reference="EvZ-R9-y6X"/>
                             <exclude reference="xnb-4S-ptT"/>
-                            <exclude reference="5z2-0V-BZE"/>
-                            <exclude reference="Jyv-L6-GQ2"/>
                         </mask>
                     </variation>
                 </view>

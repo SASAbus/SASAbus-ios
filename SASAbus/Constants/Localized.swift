@@ -52,8 +52,6 @@ enum L10n {
     static func header(_ p1: String) -> String {
       return L10n.tr("Localizable", "credits.header", p1)
     }
-    /// For suggestions or help please mail to ios@sasabz.it
-    static let help = L10n.tr("Localizable", "credits.help")
     /// Credits
     static let title = L10n.tr("Localizable", "credits.title")
 
