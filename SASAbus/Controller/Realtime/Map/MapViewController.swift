@@ -106,7 +106,7 @@ class MapViewController: UIViewController, BottomSheetPrimaryContentControllerDe
                 .subscribe(onNext: { buses in
                     self.onSuccess(buses: buses)
                 }, onError: { error in
-                    Log.error(error)
+                    Utils.logError(error)
 
                     self.isRefreshRunning = false
                     self.parentVC.activityIndicator?.stopAnimating()

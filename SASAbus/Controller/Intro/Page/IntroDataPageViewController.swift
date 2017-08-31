@@ -67,10 +67,9 @@ class IntroDataPageViewController: IntroPageViewController {
                             self.progressView.progress = progress
                         },
                         onError: { error in
+                            Utils.logError(error)
+                            
                             self.downloadComplete = false
-
-                            Log.debug("Error: \(error)")
-
                             self.onError()
                         },
                         onCompleted: {

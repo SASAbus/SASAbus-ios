@@ -51,7 +51,7 @@ class PlannedData {
                 Log.error("Planned data (JSON file) is missing")
                 dataExists = false
             } catch let error {
-                Log.error("Cannot list contents of data directory, re-downloading: \(error)")
+                Utils.logError(error, message: "Cannot list contents of data directory, re-downloading: \(error)")
                 dataExists = false
             }
         }
@@ -73,7 +73,7 @@ class PlannedData {
                     try fileManager.removeItem(at: dataDirectory)
                     Log.warning("Deleted old data directory")
                 } catch let error {
-                    Log.error("Could not delete old data directory: \(error)")
+                    Utils.logError(error, message: "Could not delete old data directory: \(error)")
                 }
             }
 
@@ -82,7 +82,7 @@ class PlannedData {
                     try fileManager.removeItem(at: downloadUrl)
                     Log.warning("Deleted old data.zip")
                 } catch let error {
-                    Log.error("Could not delete data.zip: \(error)")
+                    Utils.logError(error, message: "Could not delete data.zip: \(error)")
                 }
             }
 

@@ -83,7 +83,7 @@ class NewsTabBarController: MasterTabBarController {
                     self.bolzanoViewController.refreshView(news)
                     self.meranoViewController.refreshView(news)
                 }, onError: { error in
-                    Log.error("Failed to load news: \(error)")
+                    Utils.logError(error, message: "Failed to load news")
                     
                     self.bolzanoViewController.refreshView([])
                     self.meranoViewController.refreshView([])

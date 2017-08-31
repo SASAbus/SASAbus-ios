@@ -159,7 +159,7 @@ class LineViewController: MasterViewController, StatefulViewController, UITableV
 
                     self.endLoading(animated: false)
                 }, onError: { error in
-                    Log.error("Could not load all lines: \(error)")
+                    Utils.logError(error, message: "Could not load all lines")
 
                     self.lines[1]?.removeAll()
                     self.lines[2]?.removeAll()

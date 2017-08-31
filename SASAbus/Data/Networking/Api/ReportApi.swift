@@ -63,11 +63,11 @@ class ReportApi {
                                             observer.on(.next(""))
                                             observer.onCompleted()
                                         } else {
-                                            observer.onError(response.error!)
+                                            Utils.logError(response.error!, message: "Cannot send report")
                                         }
                                     }
                         case .failure(let error):
-                            Log.error(error)
+                            Utils.logError(error, message: "Cannot send report")
                         }
                     })
 

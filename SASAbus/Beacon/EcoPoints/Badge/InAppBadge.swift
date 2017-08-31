@@ -48,7 +48,7 @@ class InAppBadge {
 
                     Log.error("Uploaded badge \(self.id)")
                 }, onError: { error in
-                    Log.error("Could not send earned badge: \(error)")
+                    Utils.logError(error, message: "Could not send earned badge: \(error)")
                 })
     }
 

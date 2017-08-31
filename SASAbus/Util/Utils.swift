@@ -1,6 +1,9 @@
 import Foundation
+
 import Realm
 import RealmSwift
+
+import Crashlytics
 
 class Utils {
 
@@ -37,6 +40,22 @@ class Utils {
     static func roundToPlaces(_ value: Double, places: Int) -> Double {
         let factor = pow(10.0, places).doubleValue
         return round(value * factor) / factor
+    }
+    
+    static func logError(_ error: Error, message: String? = nil) {
+        if let message = message {
+            Log.error("ERROR: message='\(message)', error='\(error.localizedDescription)'")
+        } else {
+            Log.error("ERROR: error='\(error.localizedDescription)'")
+        }
+
+        #if RELEASE
+            if let message = message {
+                Crashlytics.sharedInstance().recordError(error, withAdditionalUserInfo: ["message": message])
+            } else {
+                Crashlytics.sharedInstance().recordError(error)
+            }
+        #endif
     }
 }
 

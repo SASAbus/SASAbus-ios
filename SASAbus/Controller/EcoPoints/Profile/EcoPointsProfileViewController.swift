@@ -73,7 +73,7 @@ class EcoPointsProfileViewController: UITableViewController {
                     self.tableView.reloadData()
                     self.refreshControl!.endRefreshing()
                 }, onError: { error in
-                    Log.error("Couldn't load profile: \(error)")
+                    Utils.logError(error, message: "Couldn't load profile")
                     AuthHelper.checkIfUnauthorized(error)
                 })
     }
@@ -149,7 +149,7 @@ class EcoPointsProfileViewController: UITableViewController {
                 .subscribe(onNext: {
                     self.tableView.reloadData()
                 }, onError: { error in
-                    Log.error("Could not compute trip statistics: \(error)")
+                    Utils.logError(error, message: "Could not compute trip statistics")
                 })
     }
 

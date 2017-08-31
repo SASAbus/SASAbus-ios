@@ -8,8 +8,7 @@ extension Realm {
         do {
             return try Realm(configuration: BusStopRealmHelper.CONFIG)
         } catch {
-            Log.error("Failed to open bus stop realm: \(error)")
-            exit(1)
+            fatalError("Failed to open bus stop realm: \(error)")
         }
     }
 }

@@ -71,7 +71,7 @@ class EcoPointsProfilePictureDefaultViewController: UICollectionViewController, 
 
                     self.collectionView?.reloadData()
                 }, onError: { error in
-                    Log.error("Could not load profile pictures: \(error)")
+                    Utils.logError(error, message: "Could not load profile pictures")
                     self.activityIndicator.stopAnimating()
                 })
     }
@@ -120,7 +120,7 @@ extension EcoPointsProfilePictureDefaultViewController {
 
                     self.navigationController?.popViewController(animated: true)
                 }, onError: { error in
-                    Log.error("Could not set profile picture")
+                    Utils.logError(error, message: "Could not set profile picture")
 
                     self.showCloseDialog(title: "Could not change picture", message: "Please retry later again", handler: { _ in
                         self.navigationController?.popViewController(animated: true)

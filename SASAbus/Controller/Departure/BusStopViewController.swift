@@ -294,7 +294,7 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
 
                     self.loadDelays()
                 }, onError: { error in
-                    Log.error("Could not fetch departures: \(error)")
+                    Utils.logError(error, message: "Could not fetch departures")
 
                     self.allDepartures.removeAll()
 
@@ -349,7 +349,7 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
                         self.tableView.reloadData()
                     }
                 }, onError: { error in
-                    Log.error("Could not load delays: \(error)")
+                    Utils.logError(error, message: "Could not load delays")
 
                     self.allDepartures.filter {
                         $0.delay == Config.BUS_STOP_DETAILS_OPERATION_RUNNING

@@ -102,7 +102,7 @@ class VdvHandler {
 
             throw VdvError.jsonError
         } catch let error {
-            Log.error(error)
+            Utils.logError(error)
         }
 
         observer?.on(.next(0.100))

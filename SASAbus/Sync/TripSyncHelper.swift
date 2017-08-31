@@ -14,22 +14,22 @@ class TripSyncHelper {
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { json in
                     Log.error("Got \(json["earned_badges"].arrayValue.count) new badges to display")
-
+                    
                     Log.info(json)
-
+                    
                     DispatchQueue(label: "com.app.queue", qos: .background).async {
                         // TODO
-
+                        
                         /*for (badge in response.badges) {
-                            Notifications.badge(context, badge)
-                        }*/
+                         Notifications.badge(context, badge)
+                         }*/
                     }
-
+                    
                     let realm = try! Realm()
-
+                    
                     for rejected in json["rejected_trips"].arrayValue {
                         let trip = realm.objects(Trip.self).filter("hash == '\(rejected)'").first
-
+                        
                         if trip != nil {
                             try! realm.write {
                                 realm.delete(trip!)
@@ -39,7 +39,7 @@ class TripSyncHelper {
                         }
                     }
                 }, onError: { error in
-                    Log.error("Could not upload trips; \(error)")
+                    Utils.logError(error, message: "Could not upload trips")
                 })
     }
 }

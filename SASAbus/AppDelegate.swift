@@ -220,7 +220,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 .subscribeOn(MainScheduler.background)
                 .observeOn(MainScheduler.background)
                 .subscribe(onError: { error in
-                    Log.error(error)
+                    Utils.logError(error, message: "Cannot load VDV")
                 })
     }
 

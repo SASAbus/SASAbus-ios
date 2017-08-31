@@ -266,8 +266,8 @@ class LineCourseViewController: UIViewController {
                 }
 
                 lineCourse.lineText = mutableAttributeText
-            } catch {
-                Log.error("Could not format string")
+            } catch let error {
+                Utils.logError(error, message: "Could not format string")
             }
         }
 
