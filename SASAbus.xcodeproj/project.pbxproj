@@ -368,6 +368,7 @@
 		FA63E0741F555C5700B04649 /* FcmSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA63E0731F555C5600B04649 /* FcmSettings.swift */; };
 		FA726B5D1F2880DE0053EA12 /* MainRouteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA726B5C1F2880DE0053EA12 /* MainRouteViewController.xib */; };
 		FAA92CE91F5824460054A16F /* UIScreen+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA92CE81F5824460054A16F /* UIScreen+Size.swift */; };
+		FAA92CEB1F5847440054A16F /* LineDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA92CEA1F5836E10054A16F /* LineDetailsViewController.xib */; };
 		FAB31DFA1EEFE584004B0BAC /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB31DF91EEFE584004B0BAC /* AboutViewController.xib */; };
 		FAB85BE61EEA8BF400D6EB4A /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB85BE51EEA8BF400D6EB4A /* ReportViewController.xib */; };
 		FABCEED11EDEB5DA00E48116 /* LineCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABCEED01EDEB5DA00E48116 /* LineCourseViewController.swift */; };
@@ -1809,6 +1810,7 @@
 				1F2E3226E7CD0F986E1613F9 /* EcoPointsProfileCell.xib in Resources */,
 				1F2E3CDC34577F01682B7FB7 /* EcoPointsLeaderboardUserCell.xib in Resources */,
 				1F2E370F1E1E404E9F4E6F00 /* EcoPointsLeaderboardFooterCell.xib in Resources */,
+				FAA92CEB1F5847440054A16F /* LineDetailsViewController.xib in Resources */,
 				1F2E345BCD8B2192FCC06E13 /* EcoPointsProfileViewController.xib in Resources */,
 				1F2E384AFE8FB3D0F5C7D90A /* LoginViewController.xib in Resources */,
 				FAB85BE61EEA8BF400D6EB4A /* ReportViewController.xib in Resources */,
