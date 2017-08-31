@@ -7,34 +7,28 @@ import SwiftyJSON
 class UserApi {
 
     static func login(email: String, password: String) -> Observable<JSON> {
-        // TODO: FCM token
-
         let parameters = [
                 "email": email,
                 "password": password,
-                "fcm_token": ""
+                "fcm_token": FcmSettings.getFcmToken()
         ]
 
         return RestClient.post(Endpoint.USER_LOGIN, parameters: parameters)
     }
 
     static func loginGoogle(userId: String) -> Observable<JSON> {
-        // TODO: FCM token
-
         let parameters = [
             "user_id": userId,
-            "fcm_token": ""
+            "fcm_token": FcmSettings.getFcmToken()
         ]
 
         return RestClient.post(Endpoint.USER_LOGIN_GOOGLE, parameters: parameters)
     }
 
 
-    static func logout(fcmToken: String?) -> Observable<Void?> {
-        // TODO: FCM token
-
+    static func logout() -> Observable<Void?> {
         let parameters = [
-                "fcm_token": fcmToken
+                "fcm_token": FcmSettings.getFcmToken()
         ]
 
         return RestClient.post(Endpoint.USER_LOGOUT, parameters: parameters)

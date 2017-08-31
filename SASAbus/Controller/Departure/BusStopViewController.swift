@@ -451,8 +451,6 @@ extension BusStopViewController: UITextFieldDelegate {
         allDepartures.removeAll()
         tableView.reloadData()
 
-        // TODO: Is this needed?
-        // getDepartures()
 
         textField.resignFirstResponder()
     }
@@ -463,9 +461,6 @@ extension BusStopViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if selectedBusStop != nil {
             selectedBusStop = nil
-
-            // TODO: Needed?
-            // getDepartures()
         }
 
         updateFoundBusStations(searchText)

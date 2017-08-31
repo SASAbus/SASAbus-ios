@@ -52,7 +52,7 @@ class EcoPointsSettingsViewController: UITableViewController {
 
         AnswersHelper.logProfileAction(action: "logout")
 
-        _ = UserApi.logout(fcmToken: "")
+        _ = UserApi.logout()
                 .subscribeOn(MainScheduler.background)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { _ in

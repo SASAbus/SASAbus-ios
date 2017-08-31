@@ -38,10 +38,7 @@ import Google
 import AlamofireNetworkActivityIndicator
 
 // TODO: News: Check if empty state is working
-// TODO: Add translations
-// TODO: Update vehicle list
 // TODO: Add proper sync
-// TODO: Check if beacon stuff works
 // TODO: Add beacon telemetry
 
 @UIApplicationMain
