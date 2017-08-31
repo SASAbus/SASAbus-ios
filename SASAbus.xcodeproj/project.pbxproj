@@ -225,7 +225,6 @@
 		1F2E3A3F6CCA57C791A3C280 /* JSONWebToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E35684B4C11F7672F44BF /* JSONWebToken.swift */; };
 		1F2E3A48325DFD27618626AF /* LineDetailsBusesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E37A59E82BF8D37A7DC88 /* LineDetailsBusesCell.swift */; };
 		1F2E3A4A95AFC11145F8DE81 /* ParkingDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3A38E885B487CCB8E80B /* ParkingDetailViewController.xib */; };
-		1F2E3A4AB8E43A406324344B /* UserDefaultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E344B0DD6DB645A377C9A /* UserDefaultHelper.swift */; };
 		1F2E3A66371639A93AF48D2A /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E31744BD3CFFB0E854C2A /* Profile.swift */; };
 		1F2E3A8B04FF1D5367F11A5C /* TokenSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3C93467D72597820C1B0 /* TokenSigner.swift */; };
 		1F2E3A95479CCE8F035EBC14 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A83C1591F0C0AD18663 /* Realm.swift */; };
@@ -473,7 +472,6 @@
 		1F2E342A6CAECD8C48D56B3D /* AuthHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthHelper.swift; sourceTree = "<group>"; };
 		1F2E3436B7494E0E4A83439A /* VdvInterval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VdvInterval.swift; sourceTree = "<group>"; };
 		1F2E343C864382AE10A75824 /* ChangelogViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangelogViewController.xib; sourceTree = "<group>"; };
-		1F2E344B0DD6DB645A377C9A /* UserDefaultHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultHelper.swift; sourceTree = "<group>"; };
 		1F2E3458C395C88E98962881 /* RouteBottomSheetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RouteBottomSheetViewController.xib; sourceTree = "<group>"; };
 		1F2E34673F66A58761B74D1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F2E346741C2E6BFFFC540C1 /* BusBeacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusBeacon.swift; sourceTree = "<group>"; };
@@ -1530,7 +1528,6 @@
 				1F2E390103030F9EA1B4CC2D /* Settings.swift */,
 				1F2E35784BFA80941FB8C9A0 /* Theme.swift */,
 				1F2E34CC3E1D22E2C4436733 /* UIUtils.swift */,
-				1F2E344B0DD6DB645A377C9A /* UserDefaultHelper.swift */,
 				1F2E3A48B17EA4A9A805D353 /* Utils.swift */,
 			);
 			path = Util;
@@ -2072,7 +2069,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F2E3A4AB8E43A406324344B /* UserDefaultHelper.swift in Sources */,
 				1F2E37FC0F1446F627601B8D /* BusStationDistance.swift in Sources */,
 				1F2E3A159C5E6E12F0B4F420 /* BusLineFilter.swift in Sources */,
 				1F2E346E2AB641AA2456605F /* UIUtils.swift in Sources */,
@@ -2449,7 +2445,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2491,7 +2487,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -2567,7 +2563,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = NXHSFZL2F4;
 				INFOPLIST_FILE = TripNotification/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus.TripNotification;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2590,7 +2586,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = NXHSFZL2F4;
 				INFOPLIST_FILE = TripNotification/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus.TripNotification;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2610,7 +2606,7 @@
 				31CFDFF91BB2877200636599 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		31CFDFFA1BB2877200636599 /* Build configuration list for PBXNativeTarget "SASAbus" */ = {
 			isa = XCConfigurationList;
@@ -2619,7 +2615,7 @@
 				31CFDFFC1BB2877200636599 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		FA2690EE1E93B927000B8A84 /* Build configuration list for PBXNativeTarget "TripNotification" */ = {
 			isa = XCConfigurationList;
@@ -2628,7 +2624,7 @@
 				FA2690ED1E93B927000B8A84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 

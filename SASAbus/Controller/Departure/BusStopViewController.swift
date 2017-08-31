@@ -45,13 +45,11 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
     var selectedBusStop: BBusStop?
     var foundBusStations: [BBusStop] = []
     var datePicker: UIDatePicker!
-    var observerAdded: Bool! = false
 
     var allDepartures: [Departure] = []
     var disabledDepartures: [Departure] = []
 
     var searchDate: Date!
-    var secondsFromMidnight: Int!
     var refreshControl: UIRefreshControl!
 
     var working: Bool! = false
@@ -64,16 +62,11 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
 
         self.selectedBusStop = busStop
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
-
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        self.observerAdded = false
-    }
-
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +91,6 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
 
         setupSearchDate()
 
-        observerAdded = false
         view.backgroundColor = Theme.darkGrey
 
         searchBar.barTintColor = .darkGray
@@ -131,37 +123,12 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
 
         setupAutoCompleteTableView()
 
+        setupBusStopSearchDate()
+        
         if selectedBusStop != nil {
-            setupBusStopSearchDate()
             setBusStop(selectedBusStop!)
         }
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        self.setupBusStopSearchDate()
-        self.autoCompleteTableView.isHidden = true
-        self.tabBar.selectedItem = nil
-
-        if self.selectedBusStop == nil {
-            self.setBusStationFromCurrentLocation()
-        }
-
-        if self.observerAdded == false {
-            self.observerAdded = true
-
-            NotificationCenter.default.addObserver(self, selector: #selector(setBusStationFromCurrentLocation), name:
-            NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
-        }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        Analytics.track("Departures")
-    }
-
 
     override func leftDrawerButtonPress(_ sender: AnyObject?) {
         self.searchBar.endEditing(true)
@@ -205,13 +172,15 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
 
 
     func setBusStationFromCurrentLocation() {
-        if UserDefaultHelper.instance.isBeaconStationDetectionEnabled() {
+        // TODO
+        
+        /*if UserDefaultHelper.instance.isBeaconStationDetectionEnabled() {
             let currentBusStop = UserDefaultHelper.instance.getCurrentBusStop()
 
-            if currentBusStop != nil {
-                Log.info("Current bus stop: \(currentBusStop)")
+            if let stop = currentBusStop != nil {
+                Log.info("Current bus stop: \(stop)")
 
-                if let busStop = realm.objects(BusStop.self).filter("id == \(currentBusStop)").first {
+                if let busStop = realm.objects(BusStop.self).filter("id == \(stop)").first {
                     setBusStop(BBusStop(fromRealm: busStop))
 
                     setupBusStopSearchDate()
@@ -219,7 +188,7 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
                     tabBar.selectedItem = nil
                 }
             }
-        }
+        }*/
     }
 
     func setupBusStopSearchDate() {
@@ -309,7 +278,7 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
         return Observable.create { observer in
             let departures = DepartureMonitor()
                     .atBusStopFamily(family: self.selectedBusStop?.family ?? 0)
-                    .at(date: Date())
+                    .at(date: self.searchDate)
                     .collect()
 
             let mapped = departures.map {
@@ -381,13 +350,6 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
         self.tableView.reloadData()
 
         self.enableSearching()
-    }
-
-    func getSecondsFromMidnight(_ date: Date) -> Int {
-        let components = Calendar.current.dateComponents(
-                [Calendar.Component.hour, Calendar.Component.minute, Calendar.Component.second], from: date)
-
-        return (components.hour! * 60 + components.minute!) * 60
     }
 
     func hasContent() -> Bool {
@@ -585,18 +547,24 @@ extension BusStopViewController {
         dateFormatter.dateFormat = dateFormat
 
         searchDate = datePicker.date
-        secondsFromMidnight = getSecondsFromMidnight(searchDate)
+        
         timeField.text = dateFormatter.string(from: searchDate as Date)
         timeField.endEditing(true)
 
         navigationItem.rightBarButtonItem = getFilterButton()
+        
+        allDepartures.removeAll()
+        disabledDepartures.removeAll()
+        
+        tableView.reloadData()
+        
+        parseData()
     }
 
     func setupSearchDate() {
         self.searchDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = dateFormat
-        self.secondsFromMidnight = self.getSecondsFromMidnight(self.searchDate)
     }
 
 
