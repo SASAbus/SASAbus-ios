@@ -369,6 +369,7 @@
 		FA63E0721F55519C00B04649 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA63E0701F55512400B04649 /* GoogleService-Info.plist */; };
 		FA63E0741F555C5700B04649 /* FcmSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA63E0731F555C5600B04649 /* FcmSettings.swift */; };
 		FA726B5D1F2880DE0053EA12 /* MainRouteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA726B5C1F2880DE0053EA12 /* MainRouteViewController.xib */; };
+		FAA92CE91F5824460054A16F /* UIScreen+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA92CE81F5824460054A16F /* UIScreen+Size.swift */; };
 		FAB31DFA1EEFE584004B0BAC /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB31DF91EEFE584004B0BAC /* AboutViewController.xib */; };
 		FAB85BE61EEA8BF400D6EB4A /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB85BE51EEA8BF400D6EB4A /* ReportViewController.xib */; };
 		FABCEED11EDEB5DA00E48116 /* LineCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABCEED01EDEB5DA00E48116 /* LineCourseViewController.swift */; };
@@ -692,6 +693,7 @@
 		FA63E0731F555C5600B04649 /* FcmSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmSettings.swift; sourceTree = "<group>"; };
 		FA726B5C1F2880DE0053EA12 /* MainRouteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainRouteViewController.xib; sourceTree = "<group>"; };
 		FA88EB161F53F14D0052C734 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		FAA92CE81F5824460054A16F /* UIScreen+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Size.swift"; sourceTree = "<group>"; };
 		FAB31DF91EEFE584004B0BAC /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		FAB85BE51EEA8BF400D6EB4A /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
 		FABCEED01EDEB5DA00E48116 /* LineCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineCourseViewController.swift; sourceTree = "<group>"; };
@@ -899,6 +901,7 @@
 				1F2E3DED0B979B7E62FE99D4 /* UIViewController+Child.swift */,
 				1F2E3B4804A14ABCEC06B2E0 /* Validator.swift */,
 				1F2E3C490293A7D6ABF763C9 /* UIImage+Insets.swift */,
+				FAA92CE81F5824460054A16F /* UIScreen+Size.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2085,6 +2088,7 @@
 				1F2E38B930CD612F3F71B4F0 /* DepartureViewCell.swift in Sources */,
 				1F2E33F0B6328EFE4AD838E9 /* LineViewController.swift in Sources */,
 				1F2E34ABF8658D2B630FF5D8 /* MenuViewController.swift in Sources */,
+				FAA92CE91F5824460054A16F /* UIScreen+Size.swift in Sources */,
 				1F2E3C68BEC54CFA745C6A19 /* MenuTableViewCell.swift in Sources */,
 				1F2E3E7134F362EDC4E17209 /* NewsDetailViewController.swift in Sources */,
 				1F2E3C9EB27A33A3540223AA /* NewsTableViewController.swift in Sources */,

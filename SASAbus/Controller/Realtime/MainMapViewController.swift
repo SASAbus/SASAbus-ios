@@ -4,7 +4,7 @@ class MainMapViewController: BottomSheetViewController {
 
     var activityIndicator: UIActivityIndicatorView?
 
-    let DRAWER_HEIGHT: CGFloat = 380
+    let DRAWER_HEIGHT: CGFloat = UIScreen.main.isPhone5 ? 316 : 380
 
     var totalHeight: CGFloat = 0
 
