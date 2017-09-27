@@ -98,7 +98,7 @@
 
 "departures.filter.title" = "Bus line filter";
 "departures.filter.enable_all" = "Show all";
-"departures.filter.disable_all" = "Show all";
+"departures.filter.disable_all" = "Hide all";
 
 "settings.title" = "Settings";
 

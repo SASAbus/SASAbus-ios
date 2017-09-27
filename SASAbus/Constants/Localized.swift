@@ -89,7 +89,7 @@ enum L10n {
     }
 
     enum Filter {
-      /// Show all
+      /// Hide all
       static let disableAll = L10n.tr("Localizable", "departures.filter.disable_all")
       /// Show all
       static let enableAll = L10n.tr("Localizable", "departures.filter.enable_all")

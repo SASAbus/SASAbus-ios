@@ -25,6 +25,7 @@ import UIKit
 class BusStopFilterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIToolbarDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    
     @IBOutlet weak var enableAllButton: UIBarButtonItem!
     @IBOutlet weak var disableAllButton: UIBarButtonItem!
 
@@ -47,6 +48,8 @@ class BusStopFilterViewController: UIViewController, UICollectionViewDelegate, U
 
         collectionView.register(UINib(nibName: "BusStopFilterCollectionViewCell", bundle: nil),
                 forCellWithReuseIdentifier: "BusStopFilterCollectionViewCell")
+        
+        collectionView.contentInset = UIEdgeInsetsMake(8, 8, 8, 8)
 
         enableAllButton.action = #selector(enableAllLines)
         enableAllButton.title = L10n.Departures.Filter.enableAll
@@ -135,7 +138,7 @@ extension BusStopFilterViewController {
         cell.filterSwitch.addTarget(self, action: #selector(setFilterActive(_:)), for: UIControlEvents.valueChanged)
         cell.filterSwitch.accessibilityLabel = Lines.lidToName(id: busLineFilter.line)
 
-        cell.busLineLabel.text = Lines.lidToName(id: busLineFilter.line)
+        cell.busLineLabel.text = L10n.General.line(Lines.lidToName(id: busLineFilter.line))
 
         return cell
     }
