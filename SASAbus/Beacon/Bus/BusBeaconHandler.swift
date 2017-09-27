@@ -372,7 +372,7 @@ extension BusBeaconHandler {
         beacon.isOriginPending = true
         beacon.retry()
         
-        _ = RealtimeApi.vehicle(vehicle: beacon.id)
+        _ = RealtimeApi.vehicle(beacon.id)
             .subscribeOn(MainScheduler.background)
             .observeOn(MainScheduler.background)
             .subscribe(onNext: { bus in
@@ -457,7 +457,7 @@ extension BusBeaconHandler {
         
         beacon.isCurrentTripPending = true
         
-        _ = RealtimeApi.vehicle(vehicle: beacon.id)
+        _ = RealtimeApi.vehicle(beacon.id)
             .subscribe(onNext: { bus in
                 guard let bus: RealtimeBus = bus else {
                     Log.error("isBeaconCurrentTrip() bus \(beacon.id) not driving")
@@ -494,7 +494,7 @@ extension BusBeaconHandler {
         let beacon: BusBeacon = currentTrip.beacon
         beacon.updateLastDelayFetch()
         
-        _ = RealtimeApi.vehicle(vehicle: beacon.id)
+        _ = RealtimeApi.vehicle(beacon.id)
             .subscribeOn(MainScheduler.background)
             .observeOn(MainScheduler.background)
             .subscribe(onNext: { bus in
@@ -570,7 +570,7 @@ extension BusBeaconHandler {
             return
         }
         
-        _ = RealtimeApi.vehicle(vehicle: beacon.id)
+        _ = RealtimeApi.vehicle(beacon.id)
             .subscribeOn(MainScheduler.asyncInstance)
             .observeOn(MainScheduler.instance)
             .retryWhen { (errors: Observable<Error>) in

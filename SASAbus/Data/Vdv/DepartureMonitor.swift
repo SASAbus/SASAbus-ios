@@ -6,8 +6,9 @@ class DepartureMonitor {
     private var lineFilter = [Int]()
 
     private var time = ApiTime.now()
-    private var past = 600
+    private var past = 300
     private var maxElements = Int.max
+    
 
     func atBusStop(busStop: Int) -> DepartureMonitor {
         busStops.append(VdvBusStop(id: busStop))
@@ -22,6 +23,7 @@ class DepartureMonitor {
         return self
     }
 
+    
     func atBusStopFamily(family: Int) -> DepartureMonitor {
         busStops.append(contentsOf: BusStopRealmHelper.getBusStopsFromFamily(family: family))
 
@@ -36,6 +38,7 @@ class DepartureMonitor {
         return self
     }
 
+    
     func at(date: Date) -> DepartureMonitor {
         return at(millis: date.millis())
     }
@@ -46,6 +49,7 @@ class DepartureMonitor {
         return self
     }
 
+    
     func filterLine(line: Int) -> DepartureMonitor {
         lineFilter.append(line)
 
@@ -58,6 +62,7 @@ class DepartureMonitor {
         return self
     }
 
+    
     func maxElements(maxElements: Int) -> DepartureMonitor {
         self.maxElements = maxElements
 
@@ -70,6 +75,7 @@ class DepartureMonitor {
         return self
     }
 
+    
     func collect() -> [VdvDeparture] {
         let date = Date(timeIntervalSince1970: Double(time / 1000))
 

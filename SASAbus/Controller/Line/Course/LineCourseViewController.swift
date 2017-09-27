@@ -122,45 +122,57 @@ class LineCourseViewController: UIViewController {
     // MARK: - Data loading
 
     func parseData() {
-        parseFromPlanData(vehicle: vehicle, busStopGroup: busStopGroup, currentBusStop: currentBusStop, tripId: tripId)
-                .subscribeOn(MainScheduler.background)
-                .map(passingLinesMap)
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { items in
-                    self.listController.onSuccess(items: items)
-                    self.mapController.onSuccess(items: items)
-                }, onError: { error in
-                    self.listController.onError(error: error as NSError)
-                    self.mapController.onError(error: error as NSError)
-                })
+        let observer: Observable<[LineCourse]>
+        
+        if vehicle != 0 {
+            Log.warning("Getting bus position for \(vehicle)")
+            
+            observer = RealtimeApi.vehicle(vehicle)
+                .flatMap { bus -> Observable<[LineCourse]> in
+                    guard let bus = bus else {
+                        Log.warning("Bus \(self.vehicle) is not in service")
+                        
+                        return self.getObservable(
+                            busStopGroup: self.busStopGroup,
+                            currentBusStop: self.currentBusStop,
+                            tripId: self.tripId
+                        )
+                    }
+                    
+                    Log.warning("Got bus position for \(self.vehicle): \(bus.busStop)")
+                    
+                    return self.getObservable(
+                        busStopGroup: self.busStopGroup,
+                        currentBusStop: bus.busStop,
+                        tripId: self.tripId
+                    )
+            }
+        } else {
+            observer = getObservable(busStopGroup: busStopGroup, currentBusStop: currentBusStop, tripId: tripId)
+        }
+        
+        _ = observer.subscribe(onNext: { items in
+                self.listController.onSuccess(items: items)
+                self.mapController.onSuccess(items: items)
+            }, onError: { error in
+                self.listController.onError(error: error as NSError)
+                self.mapController.onError(error: error as NSError)
+            })
+    }
+    
+    private func getObservable(busStopGroup: Int, currentBusStop: Int, tripId: Int) -> Observable<[LineCourse]> {
+        return parseFromPlanData(busStopGroup: busStopGroup, currentBusStop: currentBusStop, tripId: tripId)
+            .subscribeOn(MainScheduler.background)
+            .map(passingLinesMap)
+            .observeOn(MainScheduler.instance)
     }
 
-    private func parseFromPlanData(vehicle: Int, busStopGroup: Int, currentBusStop: Int, tripId: Int) -> Observable<[LineCourse]> {
+    private func parseFromPlanData(busStopGroup: Int, currentBusStop: Int, tripId: Int) -> Observable<[LineCourse]> {
         return Observable.create { subscriber in
-            var currentBusStopNew = currentBusStop
-
             guard Api.todayExists() else {
                 PlannedData.setUpdateAvailable(true)
-                subscriber.on(.error(NSError(domain: "com.davale.sasabus", code: 0, userInfo: [:])))
+                subscriber.onError(VdvError.vdvError(message: "Today does not exist"))
                 return Disposables.create()
-            }
-
-            if (vehicle != 0) {
-                Log.warning("Getting bus position for \(vehicle)")
-
-                RealtimeApi.vehicle(vehicle: vehicle)
-                        .subscribe(onNext: { bus in
-                            guard let bus = bus else {
-                                Log.warning("Bus \(vehicle) is not in service")
-                                return
-                            }
-
-                            currentBusStopNew = bus.busStop
-
-                            Log.warning("Got bus position for \(vehicle): \(currentBusStopNew)")
-                        }, onError: { error in
-                            Log.warning("Could not get bus position: \(error)")
-                        })
             }
 
             var items = [LineCourse]()
@@ -168,7 +180,7 @@ class LineCourseViewController: UIViewController {
 
             let realm = Realm.busStops()
 
-            var active = currentBusStopNew == 0
+            var active = currentBusStop == 0
 
             for stop in path {
                 let busStop = BBusStop(fromRealm: BusStopRealmHelper.getBusStop(id: stop.id, realm: realm))
@@ -180,7 +192,7 @@ class LineCourseViewController: UIViewController {
                 // to make it stand out in the list (by either a dot or a bus depending if it
                 // currently is in service).
 
-                if (busStop.id == currentBusStopNew) {
+                if (busStop.id == currentBusStop) {
                     active = true
                     bus = true
                 }

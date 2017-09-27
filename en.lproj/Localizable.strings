@@ -86,6 +86,7 @@
 "departures.button.cancel" = "Cancel";
 
 "departures.cell.no_data" = "No data";
+"departures.cell.loading" = "Loading…";
 
 "departures.gps.title" = "Bus stop near your";
 "departures.gps.header" = "Select a nearby bus stop";

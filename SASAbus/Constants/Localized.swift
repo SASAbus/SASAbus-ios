@@ -75,6 +75,8 @@ enum L10n {
     }
 
     enum Cell {
+      /// Loading…
+      static let loading = L10n.tr("Localizable", "departures.cell.loading")
       /// No data
       static let noData = L10n.tr("Localizable", "departures.cell.no_data")
     }

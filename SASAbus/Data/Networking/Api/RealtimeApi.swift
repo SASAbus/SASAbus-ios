@@ -10,16 +10,16 @@ class RealtimeApi {
         return RestClient.get(Endpoint.REALTIME, index: "buses")
     }
 
-    static func line(line: Int) -> Observable<[RealtimeBus]> {
+    static func line(_ line: Int) -> Observable<[RealtimeBus]> {
         return RestClient.get(Endpoint.REALTIME_LINE + String(line), index: "buses")
     }
 
-    static func lines(lines: [String]) -> Observable<[RealtimeBus]> {
+    static func lines(_ lines: [String]) -> Observable<[RealtimeBus]> {
         let param = lines.joined(separator: ",")
         return RestClient.get(Endpoint.REALTIME_LINE + param, index: "buses")
     }
 
-    static func vehicle(vehicle: Int) -> Observable<RealtimeBus?> {
+    static func vehicle(_ vehicle: Int) -> Observable<RealtimeBus?> {
         return RestClient.get(Endpoint.REALTIME_VEHICLE + String(vehicle), index: "buses")
     }
 

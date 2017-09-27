@@ -85,7 +85,8 @@
 "departures.button.done" = "Fertig";
 "departures.button.cancel" = "Abbrechen";
 
-"departures.cell.no_data" = "Keine Daten verfügbar";
+"departures.cell.no_data" = "Keine Daten";
+"departures.cell.loading" = "Laden…";
 
 "departures.gps.title" = "Haltestelle in deiner Nähe";
 "departures.gps.header" = "Wähle eine Haltestelle in deiner Nähe";

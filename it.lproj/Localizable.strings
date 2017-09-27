@@ -85,7 +85,8 @@
 "departures.button.done" = "Fatto";
 "departures.button.cancel" = "Cancella";
 
-"departures.cell.no_data" = "Nessun dati disponibli";
+"departures.cell.no_data" = "Nessun dati";
+"departures.cell.loading" = "Caricando…";
 
 "departures.gps.title" = "Fermata vicino a te";
 "departures.gps.header" = "Scegli una fermata vicino a te";

@@ -1,9 +1,9 @@
 import Foundation
 
-class Departure: CustomStringConvertible {
+class Departure {
 
-    let NO_DELAY = 1 << 12
-    let OPERATION_RUNNING = 1 << 11
+    static let NO_DELAY = 1 << 12
+    static let OPERATION_RUNNING = 1 << 11
 
     let lineId: Int
     let trip: Int
@@ -27,21 +27,6 @@ class Departure: CustomStringConvertible {
         self.busStopGroup = busStopGroup
         self.destination = destination
 
-        delay = OPERATION_RUNNING
-    }
-
-    public var description: String {
-        return "Departure(" +
-                "lineId=\(lineId), " +
-                "trip=\(trip), " +
-                "busStopGroup=\(busStopGroup), " +
-                "line='\(line)', " +
-                "destination='\(destination)', " +
-                "time='\(time)', " +
-                "formattedTime=\(formattedTime), " +
-                "delay=\(delay), " +
-                "vehicle=\(vehicle)," +
-                " currentBusStop=\(currentBusStop)" +
-                ")"
+        delay = Departure.OPERATION_RUNNING
     }
 }

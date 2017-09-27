@@ -17,7 +17,7 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with SASAbus.  If not, see <http://www.gnu.org/licenses/>.
+// along with SASAbus. If not, see <http://www.gnu.org/licenses/>.
 //
 
 import UIKit
@@ -274,23 +274,6 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
                 })
     }
 
-    func getDepartures() -> Observable<[Departure]> {
-        return Observable.create { observer in
-            let departures = DepartureMonitor()
-                    .atBusStopFamily(family: self.selectedBusStop?.family ?? 0)
-                    .at(date: self.searchDate)
-                    .collect()
-
-            let mapped = departures.map {
-                $0.asDeparture(busStopId: self.selectedBusStop?.id ?? 0)
-            }
-
-            observer.on(.next(mapped))
-
-            return Disposables.create()
-        }
-    }
-
     func loadDelays() {
         _ = RealtimeApi.delays()
                 .subscribeOn(MainScheduler.background)
@@ -355,6 +338,24 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
     func hasContent() -> Bool {
         return !allDepartures.isEmpty
     }
+
+    
+    func getDepartures() -> Observable<[Departure]> {
+        return Observable.create { observer in
+            let departures = DepartureMonitor()
+                .atBusStopFamily(family: self.selectedBusStop?.family ?? 0)
+                .at(date: self.searchDate)
+                .collect()
+            
+            let mapped = departures.map {
+                $0.asDeparture(busStopId: self.selectedBusStop?.id ?? 0)
+            }
+            
+            observer.on(.next(mapped))
+            
+            return Disposables.create()
+        }
+    }
 }
 
 
@@ -385,6 +386,14 @@ extension BusStopViewController: UITableViewDataSource, UITableViewDelegate {
 
         cell.timeLabel.text = departure.time
 
+        if departure.delay == Departure.OPERATION_RUNNING {
+            cell.delayLabel.text = L10n.Departures.Cell.loading
+            cell.delayColor = Theme.darkGrey
+        } else if departure.delay == Departure.NO_DELAY {
+            cell.delayLabel.text = L10n.Departures.Cell.noData
+            cell.delayColor = Theme.darkGrey
+        }
+        
         if departure.vehicle != 0 {
             cell.delayColor = Color.delay(departure.delay)
 
@@ -395,9 +404,6 @@ extension BusStopViewController: UITableViewDataSource, UITableViewDelegate {
             } else {
                 cell.delayLabel.text = L10n.General.delayDelayed(departure.delay)
             }
-        } else {
-            cell.delayLabel.text = L10n.Departures.Cell.noData
-            cell.delayColor = Theme.darkGrey
         }
 
         cell.infoLabel.text = Lines.line(id: departure.lineId)

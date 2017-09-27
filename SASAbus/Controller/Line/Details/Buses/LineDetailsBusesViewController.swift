@@ -126,7 +126,7 @@ class LineDetailsBusesViewController: UITableViewController {
             return Observable.empty()
         }
 
-        return RealtimeApi.line(line: line)
+        return RealtimeApi.line(line)
                 .subscribeOn(MainScheduler.background)
                 .observeOn(MainScheduler.background)
                 .map { buses in
