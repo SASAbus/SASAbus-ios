@@ -1,18 +1,22 @@
 import Foundation
+
 import RealmSwift
 import Realm
+
 import RxSwift
 import RxCocoa
 
+import ObjectMapper
+
 class UserRealmHelper {
 
-    static let DB_VERSION: Int = 1
+    static let DB_VERSION: UInt64 = 3
     static let DB_NAME: String = "default.realm"
 
     static func setup() {
         var config = Realm.Configuration()
 
-        config.schemaVersion = 3
+        config.schemaVersion = DB_VERSION
         config.deleteRealmIfMigrationNeeded = true
         config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent(DB_NAME)
 
@@ -21,7 +25,8 @@ class UserRealmHelper {
             FavoriteBusStop.self,
             Trip.self,
             EarnedBadge.self,
-            DisabledDeparture.self
+            DisabledDeparture.self,
+            RecentDeparture.self
         ]
 
         Realm.Configuration.defaultConfiguration = config
@@ -249,5 +254,49 @@ class UserRealmHelper {
         }
 
         return lines
+    }
+
+    
+    // ====================================== RECENT DEPARTURES ==============================================
+    
+    static func getRecentDepartures(replyHandler: @escaping ([String : Any]) -> Void) {
+        let realm = try! Realm()
+        
+        let allResults = realm.objects(RecentDeparture.self)
+        
+        guard !allResults.isEmpty else {
+            var message = [String: Any]()
+            message["type"] = WatchMessage.nearbyBusStopsResponse.rawValue
+            message["data"] = "[]"
+            
+            replyHandler(message)
+            
+            return
+        }
+        
+        let results = allResults.suffix(from: allResults.count >= 3 ? allResults.count - 3 : 0)
+        let mapped = results.map { recent -> BBusStop in
+            let busStop = BusStopRealmHelper.getBusStopsFromGroup(group: recent.group).first
+            return BBusStop(fromRealm: busStop!)
+        }
+        
+        var message = [String: Any]()
+        message["type"] = WatchMessage.nearbyBusStopsResponse.rawValue
+        message["data"] = Mapper().toJSONString(mapped, prettyPrint: false)
+        
+        replyHandler(message)
+    }
+    
+    static func addRecentDeparture(group: Int) {
+        let realm = try! Realm()
+
+        let recent = RecentDeparture()
+        recent.group = group
+        
+        try! realm.write {
+            realm.add(recent)
+        }
+        
+        Log.debug("Added recent bus stop group '\(group)'")
     }
 }

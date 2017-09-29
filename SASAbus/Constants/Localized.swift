@@ -325,6 +325,10 @@ enum L10n {
     static func headingTo(_ p1: String) -> String {
       return L10n.tr("Localizable", "general.heading_to", p1)
     }
+    /// to %@
+    static func headingToShort(_ p1: String) -> String {
+      return L10n.tr("Localizable", "general.heading_to_short", p1)
+    }
     /// Line %@
     static func line(_ p1: String) -> String {
       return L10n.tr("Localizable", "general.line", p1)

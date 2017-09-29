@@ -287,7 +287,7 @@ class BusBeaconHandler: NSObject {
             beacon.destination = beacon.busStops[index]
         }
 
-        if let trip = Utils.insertTripIfValid(beacon: beacon) {
+        if let trip = TripUtils.insertTripIfValid(beacon: beacon) {
             if NotificationSettings.isTripEnabled() {
                 Notifications.trip(trip: trip)
             }

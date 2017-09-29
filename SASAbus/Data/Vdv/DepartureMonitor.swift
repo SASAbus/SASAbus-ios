@@ -1,4 +1,5 @@
 import Foundation
+import ObjectMapper
 
 class DepartureMonitor {
 
@@ -142,5 +143,26 @@ class DepartureMonitor {
         }
 
         return departures
+    }
+
+    static func calculateForWatch(_ group: Int, replyHandler: @escaping ([String : Any]) -> Void) {
+        let monitor = DepartureMonitor()
+            .atBusStopFamily(family: group)
+            .maxElements(maxElements: 25)
+            .at(date: Date())
+        
+        DispatchQueue.global(qos: .background).async {
+            let departures = monitor.collect()
+            
+            let mapped: [Departure] = departures.map {
+                $0.asDeparture(busStopId: 0)
+            }
+            
+            var message = [String: Any]()
+            message["type"] = WatchMessage.calculateDeparturesResponse.rawValue
+            message["data"] = Mapper().toJSONString(mapped, prettyPrint: false)
+            
+            replyHandler(message)
+        }
     }
 }

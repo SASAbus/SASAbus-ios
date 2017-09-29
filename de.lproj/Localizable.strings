@@ -51,6 +51,7 @@
 "general.lines" = "Linien %@";
 "general.now_at" = "Jetzt bei %@";
 "general.heading_to" = "Fährt nach %@";
+"general.heading_to_short" = "nach %@";
 "general.delay_punctual" = "Pünktlich";
 "general.delay_delayed" = "%d' verspätet";
 "general.delay_early" = "%d' verfrüht";

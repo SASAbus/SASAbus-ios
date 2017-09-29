@@ -23,26 +23,30 @@ class BBusStop: Mappable {
         self.init()
 
         self.id = id
+        self.family = family
+        
         nameDe = name
         nameIt = name
         municDe = munic
         municIt = munic
+        
         self.lat = lat
         self.lng = lng
-        self.family = family
     }
 
     convenience init(fromRealm: BusStop) {
         self.init()
 
         self.id = fromRealm.id
+        self.family = fromRealm.family
+        
         self.nameDe = fromRealm.nameDe!
         self.nameIt = fromRealm.nameIt!
         self.municDe = fromRealm.municDe!
         self.municIt = fromRealm.municIt!
+        
         self.lat = fromRealm.lat
         self.lng = fromRealm.lng
-        self.family = fromRealm.family
     }
 
 
@@ -58,9 +62,12 @@ class BBusStop: Mappable {
     func mapping(map: Map) {
         id <- map["id"]
         family <- map["family"]
+        
         nameDe <- map["nameDe"]
         nameIt <- map["nameIt"]
-        municDe <- map["municIt"]
+        municDe <- map["municDe"]
+        municIt <- map["municIt"]
+        
         lat <- map["lat"]
         lng <- map["lng"]
     }

@@ -58,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupNotifications()
         
         setupBeacons()
+        setupWatch()
 
         NetworkActivityIndicatorManager.shared.isEnabled = true
         NetworkActivityIndicatorManager.shared.startDelay = 0.5
@@ -235,7 +236,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-
+    func setupWatch() {
+        WatchConnection.standard.connect(delegate: self)
+    }
+    
+    
     func navigateTo(_ viewController: UIViewController) {
         self.drawerController!.centerViewController = self.getNavigationController(viewController)
         let menuViewController = self.drawerController!.leftDrawerViewController as! MenuViewController

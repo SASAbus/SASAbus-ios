@@ -59,7 +59,7 @@ class IntroDataPageViewController: IntroPageViewController {
             return
         }
 
-        _ = PlannedData.downloadPlanData()
+        _ = DataDownloader.downloadPlanData()
                 .subscribeOn(MainScheduler.background)
                 .observeOn(MainScheduler.instance)
                 .subscribe(

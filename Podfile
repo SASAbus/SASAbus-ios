@@ -1,10 +1,29 @@
 # Uncomment this line to define a global platform for your project
 
-platform :ios, '10.0'
-
 use_frameworks!
 
+
+def shared
+  pod 'RxSwift',    '~> 3.0'
+  pod 'RxCocoa',    '~> 3.0'
+
+  pod 'RealmSwift'
+
+  pod 'ObjectMapper', '~> 2.2'
+
+  pod 'Alamofire', '~> 4.4'
+
+  pod 'SSZipArchive'
+
+  pod 'SwiftyJSON'
+
+  pod 'SwiftyBeaver'
+end
+
+
 def default_pods
+  platform :ios, '10.0'
+
   pod 'DrawerController', '~> 3.1'
 
   pod 'Firebase/Core', '~> 4.1.0'
@@ -19,28 +38,16 @@ def default_pods
 
   pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :branch => 'swift-3'
 
-  pod 'Alamofire', '~> 4.4'
   pod 'AlamofireNetworkActivityIndicator', '~> 2.0'
-
-  pod 'SwiftyJSON'
-
-  pod 'RxSwift',    '~> 3.0'
-  pod 'RxCocoa',    '~> 3.0'
-
-  pod 'RealmSwift'
 
   pod 'Kingfisher', '~> 3.0'
 
   pod 'StatefulViewController', '~> 3.0'
 
-  pod 'SSZipArchive'
-
   pod 'Fabric'
   pod 'Crashlytics', '~>  3.8'
 
   pod 'Pulley'
-
-  pod 'ObjectMapper', '~> 2.2'
 
   pod 'LocationPickerViewController'
 
@@ -48,16 +55,25 @@ def default_pods
 
   pod 'PolyglotLocalization'
 
-  pod 'SwiftyBeaver'
-
   pod 'Permission/Notifications'
   pod 'Permission/Location'
 end
 
+
 target 'SASAbus' do
     default_pods
+    shared
 end
+
 
 target 'TripNotification' do
     default_pods
+    shared
+end
+
+
+target 'SASAbus Watch Extension' do
+  platform :watchos, '4.0'
+
+  shared
 end

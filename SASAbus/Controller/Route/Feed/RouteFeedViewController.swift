@@ -58,7 +58,9 @@ class RouteFeedViewController: UIViewController {
         let mapped = busStops.map { bus -> LocationItem in
             let item = LocationItem(coordinate: (Double(bus.lat), Double(bus.lng)), addressDictionary: [:])
             item.mapItem.name = bus.name()
-            item.id = bus.id
+            
+            // TODO
+            // item.id = bus.id
 
             return item
         }

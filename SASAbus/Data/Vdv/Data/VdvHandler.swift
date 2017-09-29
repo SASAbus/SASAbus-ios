@@ -37,8 +37,11 @@ class VdvHandler {
         }
 
         if !PlannedData.planDataExists() {
-            BeaconHandler.instance.stop()
             Log.error("Planned data does not exist, skipping loading")
+            
+            #if TARGET_OS_WATCH
+                BeaconHandler.instance.stop()
+            #endif
 
             throw VdvError.plannedDataNotFound
         }
@@ -89,7 +92,10 @@ class VdvHandler {
 
             Log.info("Loaded planned data in \(time + Date().millis()) ms")
         } catch VdvError.vdvError(let message) {
-            BeaconHandler.instance.stop()
+            #if TARGET_OS_WATCH
+                BeaconHandler.instance.stop()
+            #endif
+            
             Log.error("Cannot load planned data: \(message)")
 
             throw VdvError.vdvError(message: message)
@@ -97,8 +103,11 @@ class VdvHandler {
             // If this happens, the json plan data most likely is in an invalid format
             // because it got corrupted somehow, or someone modified it on purpose.
             // We should reschedule a new plan data download if this happens.
-            BeaconHandler.instance.stop()
             PlannedData.setUpdateAvailable(true)
+            
+            #if TARGET_OS_WATCH
+                BeaconHandler.instance.stop()
+            #endif
 
             throw VdvError.jsonError
         } catch let error {

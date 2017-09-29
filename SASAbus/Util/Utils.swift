@@ -1,9 +1,8 @@
 import Foundation
 
-import Realm
-import RealmSwift
-
+#if TARGET_OS_WATCH
 import Crashlytics
+#endif
 
 class Utils {
 
@@ -19,24 +18,6 @@ class Utils {
         return shortLocale == "de" ? "de" : "it"
     }
 
-    static func insertTripIfValid(beacon: BusBeacon) -> CloudTrip? {
-        if beacon.origin == beacon.destination && beacon.lastSeen - beacon.startDate.millis() < 600000 {
-            Log.error("Trip \(beacon.id) invalid -> origin == destination => \(beacon.origin) == \(beacon.destination)")
-            return nil
-        }
-
-        let realm = try! Realm()
-        let trip = realm.objects(Trip.self).filter("tripHash == '\(beacon.tripHash)'").first
-
-        if trip != nil {
-            // Trip is already in db.
-            // We do not care about this error so do not show an error notification
-            return nil
-        }
-
-        return UserRealmHelper.insertTrip(beacon: beacon)
-    }
-
     static func roundToPlaces(_ value: Double, places: Int) -> Double {
         let factor = pow(10.0, places).doubleValue
         return round(value * factor) / factor
@@ -49,7 +30,7 @@ class Utils {
             Log.error("ERROR: error='\(error.localizedDescription)'")
         }
 
-        #if RELEASE
+        #if TARGET_OS_WATCH && RELEASE
             if let message = message {
                 Crashlytics.sharedInstance().recordError(error, withAdditionalUserInfo: ["message": message])
             } else {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041ECD5AF3066A7FE31CB959 /* Pods_TripNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5EC4A17553A312F7D2209C /* Pods_TripNotification.framework */; };
 		1F2E300127121E6AAB7DB93C /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E380E230385192B0DF6B1 /* BackgroundView.swift */; };
 		1F2E300EDCDDAF66DF212D79 /* EcoPointsProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E364A4DE3678073C06BD7 /* EcoPointsProfileViewController.swift */; };
 		1F2E301F1C9EE3DD0531AABF /* EarnedBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3157A8D2125958C39E9E /* EarnedBadge.swift */; };
@@ -332,8 +333,7 @@
 		1F2E3FE1322223A8CC088257 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3861BE08741E47C8CF4F /* Notifications.swift */; };
 		1F2E3FE253BC9848941D175B /* EcoPointsStatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3235F330D16DBFE9A7FC /* EcoPointsStatsCell.swift */; };
 		1F2E3FE5FAB7FBCED051F976 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3B37E9858A7587B9B751 /* Config.swift */; };
-		8209412F31A20D6101E5A337 /* Pods_TripNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B2ED616AB2156B38A561B93 /* Pods_TripNotification.framework */; };
-		C0B47346C75AAFE57DA45528 /* Pods_SASAbus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D691B23DAE0CB65656C8EAF5 /* Pods_SASAbus.framework */; };
+		EE9AB1C31851F4BED3AA825E /* Pods_SASAbus_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF73200D52734B9C1FF9801 /* Pods_SASAbus_Watch_Extension.framework */; };
 		FA091C5F1EDD4CD200BC37A5 /* LineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA091C5E1EDD4CD200BC37A5 /* LineCell.xib */; };
 		FA18D5231EF2768D00038B89 /* EcoPointsProfilePictureDefaultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA18D5221EF2768D00038B89 /* EcoPointsProfilePictureDefaultViewController.xib */; };
 		FA18D5251EF2777600038B89 /* EcoPointsProfilePictureDefaultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA18D5241EF2777600038B89 /* EcoPointsProfilePictureDefaultCell.xib */; };
@@ -367,9 +367,34 @@
 		FA63E0721F55519C00B04649 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA63E0701F55512400B04649 /* GoogleService-Info.plist */; };
 		FA63E0741F555C5700B04649 /* FcmSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA63E0731F555C5600B04649 /* FcmSettings.swift */; };
 		FA726B5D1F2880DE0053EA12 /* MainRouteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA726B5C1F2880DE0053EA12 /* MainRouteViewController.xib */; };
+		FA8B9D5D1F7CFC1F0099E4CD /* WatchConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D5C1F7CFC1F0099E4CD /* WatchConnection.swift */; };
+		FA8B9D5F1F7D00E00099E4CD /* WatchMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D5E1F7D00E00099E4CD /* WatchMessage.swift */; };
+		FA8B9D601F7D04030099E4CD /* WatchMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D5E1F7D00E00099E4CD /* WatchMessage.swift */; };
+		FA8B9D631F7D0A1C0099E4CD /* NearbyInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D621F7D0A1C0099E4CD /* NearbyInterfaceController.swift */; };
+		FA8B9D661F7D0A350099E4CD /* RecentInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D651F7D0A350099E4CD /* RecentInterfaceController.swift */; };
+		FA8B9D691F7D0A6F0099E4CD /* PhoneConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D681F7D0A6F0099E4CD /* PhoneConnection.swift */; };
+		FA8B9D6A1F7D0AA30099E4CD /* WatchMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D5E1F7D00E00099E4CD /* WatchMessage.swift */; };
+		FA8B9D6C1F7D40420099E4CD /* RecentRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D6B1F7D40420099E4CD /* RecentRowController.swift */; };
+		FA8B9D6D1F7D41090099E4CD /* BBusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33FF331FAD07D2F33D1B /* BBusStop.swift */; };
+		FA8B9D721F7D532A0099E4CD /* RecentDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D6E1F7D4C370099E4CD /* RecentDeparture.swift */; };
+		FA8B9D731F7D532A0099E4CD /* RecentDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D6E1F7D4C370099E4CD /* RecentDeparture.swift */; };
+		FA8B9D761F7E19C70099E4CD /* SearchInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D751F7E19C70099E4CD /* SearchInterfaceController.swift */; };
+		FA8B9D791F7E19F40099E4CD /* FavoritesInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D781F7E19F40099E4CD /* FavoritesInterfaceController.swift */; };
+		FA8B9D7E1F7E1AE00099E4CD /* BusStopRealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3EBF5BFCCAD566C261A7 /* BusStopRealmHelper.swift */; };
+		FA8B9D811F7E1E4A0099E4CD /* DeparturesInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D801F7E1E4A0099E4CD /* DeparturesInterfaceController.swift */; };
+		FA918DD11F7BBA5B00602F1D /* busstops.realm in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3E19BBA9AB9A61696717 /* busstops.realm */; };
+		FA918DD71F7BBA6200602F1D /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F07BE471E3219176024 /* BusStop.swift */; };
 		FAA92CE91F5824460054A16F /* UIScreen+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA92CE81F5824460054A16F /* UIScreen+Size.swift */; };
 		FAA92CEB1F5847440054A16F /* LineDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA92CEA1F5836E10054A16F /* LineDetailsViewController.xib */; };
+		FAB20B1F1F7BA0CF003EAE5E /* MainInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB20B1E1F7BA0CF003EAE5E /* MainInterfaceController.swift */; };
 		FAB31DFA1EEFE584004B0BAC /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB31DF91EEFE584004B0BAC /* AboutViewController.xib */; };
+		FAB562681F7B8F9600FC862A /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB562661F7B8F9600FC862A /* Interface.storyboard */; };
+		FAB5626A1F7B8F9600FC862A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAB562691F7B8F9600FC862A /* Assets.xcassets */; };
+		FAB562711F7B8F9600FC862A /* SASAbus Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FAB562701F7B8F9600FC862A /* SASAbus Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FAB562781F7B8F9600FC862A /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB562771F7B8F9600FC862A /* ExtensionDelegate.swift */; };
+		FAB5627A1F7B8F9600FC862A /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB562791F7B8F9600FC862A /* NotificationController.swift */; };
+		FAB5627C1F7B8F9600FC862A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAB5627B1F7B8F9600FC862A /* Assets.xcassets */; };
+		FAB562811F7B8F9600FC862A /* SASAbus Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FAB562641F7B8F9500FC862A /* SASAbus Watch.app */; };
 		FAB85BE61EEA8BF400D6EB4A /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB85BE51EEA8BF400D6EB4A /* ReportViewController.xib */; };
 		FABCEED11EDEB5DA00E48116 /* LineCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABCEED01EDEB5DA00E48116 /* LineCourseViewController.swift */; };
 		FABCEED31EDEB60D00E48116 /* LineCourseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FABCEED21EDEB60D00E48116 /* LineCourseViewController.xib */; };
@@ -380,6 +405,39 @@
 		FABD85D01E8801DC007A5EF6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABD85CF1E8801DC007A5EF6 /* MapKit.framework */; };
 		FAC517CE1E8A794100EC26DF /* EcoPointsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC517CD1E8A794100EC26DF /* EcoPointsViewController.xib */; };
 		FAC517D21E8A79CA00EC26DF /* EcoPointsTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC517D11E8A79CA00EC26DF /* EcoPointsTabViewController.xib */; };
+		FAD6022D1F7E2B44009EB4EA /* DeparturesRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6022C1F7E2B44009EB4EA /* DeparturesRowController.swift */; };
+		FADDF7D11F7BD40B00C4CD03 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E353E9276C3481F8A8521 /* Api.swift */; };
+		FADDF7D21F7BD40B00C4CD03 /* DepartureMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3DD3E5501921A7F969FC /* DepartureMonitor.swift */; };
+		FADDF7D31F7BD40B00C4CD03 /* PlannedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E307CB905D6FE92FA2B18 /* PlannedData.swift */; };
+		FADDF7D41F7BD41000C4CD03 /* VdvBusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A14AD6DDC2F0C9981E7 /* VdvBusStop.swift */; };
+		FADDF7D51F7BD41000C4CD03 /* VdvDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D02E5C6FE40A6949C04 /* VdvDate.swift */; };
+		FADDF7D61F7BD41000C4CD03 /* VdvDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3B708250EE0EAFAC8D26 /* VdvDeparture.swift */; };
+		FADDF7D71F7BD41000C4CD03 /* VdvInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3436B7494E0E4A83439A /* VdvInterval.swift */; };
+		FADDF7D81F7BD41000C4CD03 /* VdvStopTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E8C6A31222C3AE057F1 /* VdvStopTime.swift */; };
+		FADDF7D91F7BD41000C4CD03 /* VdvTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3199B5336C95BE7CB50D /* VdvTrip.swift */; };
+		FADDF7DA1F7BD41300C4CD03 /* VdvBusStopBreaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E367A67BEAB22F92F844E /* VdvBusStopBreaks.swift */; };
+		FADDF7DB1F7BD41300C4CD03 /* VdvCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33DEFF4B44B7E8A5A728 /* VdvCalendar.swift */; };
+		FADDF7DC1F7BD41300C4CD03 /* VdvTravelTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E390B1E1FDF7373DDED7D /* VdvTravelTimes.swift */; };
+		FADDF7DD1F7BD41300C4CD03 /* VdvPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E32EB078352EC12347051 /* VdvPaths.swift */; };
+		FADDF7DE1F7BD41300C4CD03 /* VdvTripStopTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3828E0FBCB7424BC59AC /* VdvTripStopTimes.swift */; };
+		FADDF7DF1F7BD41300C4CD03 /* VdvTrips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3C9432AC97ECD5A6231F /* VdvTrips.swift */; };
+		FADDF7E01F7BD41300C4CD03 /* VdvHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3EB50C29943A020DEA9B /* VdvHandler.swift */; };
+		FADDF7E11F7BD41E00C4CD03 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A83C1591F0C0AD18663 /* Realm.swift */; };
+		FADDF7E21F7BD63D00C4CD03 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E310C7C183E99E5CEA633 /* Log.swift */; };
+		FADDF7E31F7BD64F00C4CD03 /* Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3CE1C685415B3BEAF608 /* Lines.swift */; };
+		FADDF7E41F7BD71B00C4CD03 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A48B17EA4A9A805D353 /* Utils.swift */; };
+		FADDF7E61F7BD74300C4CD03 /* TripUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDF7E51F7BD74300C4CD03 /* TripUtils.swift */; };
+		FADDF7E71F7BD74300C4CD03 /* TripUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDF7E51F7BD74300C4CD03 /* TripUtils.swift */; };
+		FADDF7E91F7BD8D200C4CD03 /* DataDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDF7E81F7BD8D200C4CD03 /* DataDownloader.swift */; };
+		FADDF7EA1F7BD8D200C4CD03 /* DataDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDF7E81F7BD8D200C4CD03 /* DataDownloader.swift */; };
+		FADDF7EB1F7BD9E800C4CD03 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33883E7628B304304238 /* DateExtension.swift */; };
+		FADDF7ED1F7BDA0600C4CD03 /* ZipUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDF7EC1F7BDA0600C4CD03 /* ZipUtils.swift */; };
+		FADDF7EE1F7BDA0600C4CD03 /* ZipUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDF7EC1F7BDA0600C4CD03 /* ZipUtils.swift */; };
+		FADDF7EF1F7BDA2900C4CD03 /* IOUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3517A8CBE2379BA82AD0 /* IOUtils.swift */; };
+		FADDF7F01F7BDAFA00C4CD03 /* Departure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3DBDC35A71E0733E720B /* Departure.swift */; };
+		FADDF7F11F7BDC3F00C4CD03 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8A87E1F5038B4002B2B09 /* Images.swift */; };
+		FADDF7F21F7BDC3F00C4CD03 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8A87F1F5038B4002B2B09 /* Localized.swift */; };
+		FCAA82B8F90CBF76BC7586BE /* Pods_SASAbus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9395AB45EBD218F02D3F0E1E /* Pods_SASAbus.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -389,6 +447,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = FA2690DC1E93B927000B8A84;
 			remoteInfo = TripNotification;
+		};
+		FAB562721F7B8F9600FC862A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 31CFDFDD1BB2877200636599 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAB5626F1F7B8F9600FC862A;
+			remoteInfo = "SASAbus Watch Extension";
+		};
+		FAB5627F1F7B8F9600FC862A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 31CFDFDD1BB2877200636599 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAB562631F7B8F9500FC862A;
+			remoteInfo = "SASAbus Watch";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -404,10 +476,31 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FAB562871F7B8F9600FC862A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				FAB562711F7B8F9600FC862A /* SASAbus Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAB562891F7B8F9600FC862A /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				FAB562811F7B8F9600FC862A /* SASAbus Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0B2ED616AB2156B38A561B93 /* Pods_TripNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F2E302464CAA5DE853CDB7D /* IntroParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroParentViewController.swift; sourceTree = "<group>"; };
 		1F2E3028344E4E802423214B /* LineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineViewController.xib; sourceTree = "<group>"; };
 		1F2E304C289F0A84BA31ED03 /* ParkingDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingDetailViewController.swift; sourceTree = "<group>"; };
@@ -660,13 +753,16 @@
 		1F2E3FBB5CE98E0FC5522F57 /* BeaconStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconStorage.swift; sourceTree = "<group>"; };
 		1F2E3FD422AA94A505DB2639 /* BusStopFavoritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusStopFavoritesViewController.xib; sourceTree = "<group>"; };
 		1F2E3FDDF8C12399829F2321 /* EcoPointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EcoPointsViewController.swift; sourceTree = "<group>"; };
-		20594126F6048CC98FF546B4 /* Pods-SASAbus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SASAbus.release.xcconfig"; path = "Pods/Target Support Files/Pods-SASAbus/Pods-SASAbus.release.xcconfig"; sourceTree = "<group>"; };
 		313321FC1BC2622600EB9E92 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		31CFDFE51BB2877200636599 /* SASAbus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SASAbus.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		67E4B1C88596D0CFBA35DABD /* Pods-SASAbus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SASAbus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SASAbus/Pods-SASAbus.debug.xcconfig"; sourceTree = "<group>"; };
-		90816EFC006FDFA23BF862AB /* Pods-TripNotification.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripNotification.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TripNotification/Pods-TripNotification.debug.xcconfig"; sourceTree = "<group>"; };
-		C014ACA1A41F789275306A19 /* Pods-TripNotification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripNotification.release.xcconfig"; path = "Pods/Target Support Files/Pods-TripNotification/Pods-TripNotification.release.xcconfig"; sourceTree = "<group>"; };
-		D691B23DAE0CB65656C8EAF5 /* Pods_SASAbus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SASAbus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		379F16F6B24EE0FC06E75935 /* Pods-TripNotification.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripNotification.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TripNotification/Pods-TripNotification.debug.xcconfig"; sourceTree = "<group>"; };
+		3AA094A3750A09E235D7E091 /* Pods-SASAbus Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SASAbus Watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-SASAbus Watch Extension/Pods-SASAbus Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
+		89C1D7B69B01245EED46845D /* Pods-SASAbus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SASAbus.release.xcconfig"; path = "Pods/Target Support Files/Pods-SASAbus/Pods-SASAbus.release.xcconfig"; sourceTree = "<group>"; };
+		8EF73200D52734B9C1FF9801 /* Pods_SASAbus_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SASAbus_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F2249E98E2C831EA0133131 /* Pods-SASAbus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SASAbus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SASAbus/Pods-SASAbus.debug.xcconfig"; sourceTree = "<group>"; };
+		9395AB45EBD218F02D3F0E1E /* Pods_SASAbus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SASAbus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C25C93583E81F7478573ABB3 /* Pods-SASAbus Watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SASAbus Watch Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SASAbus Watch Extension/Pods-SASAbus Watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		EF3A7D26088D9E6F554435F6 /* Pods-TripNotification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripNotification.release.xcconfig"; path = "Pods/Target Support Files/Pods-TripNotification/Pods-TripNotification.release.xcconfig"; sourceTree = "<group>"; };
 		FA091C5E1EDD4CD200BC37A5 /* LineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineCell.xib; sourceTree = "<group>"; };
 		FA18D5221EF2768D00038B89 /* EcoPointsProfilePictureDefaultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EcoPointsProfilePictureDefaultViewController.xib; sourceTree = "<group>"; };
 		FA18D5241EF2777600038B89 /* EcoPointsProfilePictureDefaultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EcoPointsProfilePictureDefaultCell.xib; sourceTree = "<group>"; };
@@ -686,13 +782,35 @@
 		FA580DF71F5702BB00CFFCD2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		FA580DF81F5702C600CFFCD2 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
 		FA580DF91F5702C600CFFCD2 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		FA5EC4A17553A312F7D2209C /* Pods_TripNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA63E0701F55512400B04649 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA63E0731F555C5600B04649 /* FcmSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmSettings.swift; sourceTree = "<group>"; };
 		FA726B5C1F2880DE0053EA12 /* MainRouteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainRouteViewController.xib; sourceTree = "<group>"; };
 		FA88EB161F53F14D0052C734 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		FA8B9D5C1F7CFC1F0099E4CD /* WatchConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnection.swift; sourceTree = "<group>"; };
+		FA8B9D5E1F7D00E00099E4CD /* WatchMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchMessage.swift; sourceTree = "<group>"; };
+		FA8B9D621F7D0A1C0099E4CD /* NearbyInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyInterfaceController.swift; sourceTree = "<group>"; };
+		FA8B9D651F7D0A350099E4CD /* RecentInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentInterfaceController.swift; sourceTree = "<group>"; };
+		FA8B9D681F7D0A6F0099E4CD /* PhoneConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneConnection.swift; sourceTree = "<group>"; };
+		FA8B9D6B1F7D40420099E4CD /* RecentRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentRowController.swift; sourceTree = "<group>"; };
+		FA8B9D6E1F7D4C370099E4CD /* RecentDeparture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentDeparture.swift; sourceTree = "<group>"; };
+		FA8B9D751F7E19C70099E4CD /* SearchInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInterfaceController.swift; sourceTree = "<group>"; };
+		FA8B9D781F7E19F40099E4CD /* FavoritesInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesInterfaceController.swift; sourceTree = "<group>"; };
+		FA8B9D801F7E1E4A0099E4CD /* DeparturesInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesInterfaceController.swift; sourceTree = "<group>"; };
 		FAA92CE81F5824460054A16F /* UIScreen+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Size.swift"; sourceTree = "<group>"; };
 		FAA92CEA1F5836E10054A16F /* LineDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineDetailsViewController.xib; sourceTree = "<group>"; };
+		FAB20B1E1F7BA0CF003EAE5E /* MainInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInterfaceController.swift; sourceTree = "<group>"; };
 		FAB31DF91EEFE584004B0BAC /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		FAB562641F7B8F9500FC862A /* SASAbus Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SASAbus Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAB562671F7B8F9600FC862A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		FAB562691F7B8F9600FC862A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FAB5626B1F7B8F9600FC862A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAB562701F7B8F9600FC862A /* SASAbus Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SASAbus Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAB562771F7B8F9600FC862A /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		FAB562791F7B8F9600FC862A /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		FAB5627B1F7B8F9600FC862A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FAB5627D1F7B8F9600FC862A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAB5627E1F7B8F9600FC862A /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		FAB85BE51EEA8BF400D6EB4A /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
 		FABCEED01EDEB5DA00E48116 /* LineCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineCourseViewController.swift; sourceTree = "<group>"; };
 		FABCEED21EDEB60D00E48116 /* LineCourseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineCourseViewController.xib; sourceTree = "<group>"; };
@@ -703,17 +821,28 @@
 		FABD85CF1E8801DC007A5EF6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FAC517CD1E8A794100EC26DF /* EcoPointsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EcoPointsViewController.xib; sourceTree = "<group>"; };
 		FAC517D11E8A79CA00EC26DF /* EcoPointsTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EcoPointsTabViewController.xib; sourceTree = "<group>"; };
+		FAD6022C1F7E2B44009EB4EA /* DeparturesRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesRowController.swift; sourceTree = "<group>"; };
 		FAD8A87E1F5038B4002B2B09 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Images.swift; path = SASAbus/Constants/Images.swift; sourceTree = SOURCE_ROOT; };
 		FAD8A87F1F5038B4002B2B09 /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Localized.swift; path = SASAbus/Constants/Localized.swift; sourceTree = SOURCE_ROOT; };
+		FADDF7E51F7BD74300C4CD03 /* TripUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripUtils.swift; sourceTree = "<group>"; };
+		FADDF7E81F7BD8D200C4CD03 /* DataDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDownloader.swift; sourceTree = "<group>"; };
+		FADDF7EC1F7BDA0600C4CD03 /* ZipUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		15C5FA20E8276AC5A6FB5483 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		31CFDFE21BB2877200636599 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				FABD85D01E8801DC007A5EF6 /* MapKit.framework in Frameworks */,
-				C0B47346C75AAFE57DA45528 /* Pods_SASAbus.framework in Frameworks */,
+				FCAA82B8F90CBF76BC7586BE /* Pods_SASAbus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -723,7 +852,15 @@
 			files = (
 				FA2690E11E93B927000B8A84 /* UserNotificationsUI.framework in Frameworks */,
 				FA2690DF1E93B927000B8A84 /* UserNotifications.framework in Frameworks */,
-				8209412F31A20D6101E5A337 /* Pods_TripNotification.framework in Frameworks */,
+				041ECD5AF3066A7FE31CB959 /* Pods_TripNotification.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAB5626D1F7B8F9600FC862A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE9AB1C31851F4BED3AA825E /* Pods_SASAbus_Watch_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,6 +941,7 @@
 				1F2E353E9276C3481F8A8521 /* Api.swift */,
 				1F2E3DD3E5501921A7F969FC /* DepartureMonitor.swift */,
 				1F2E307CB905D6FE92FA2B18 /* PlannedData.swift */,
+				FADDF7E81F7BD8D200C4CD03 /* DataDownloader.swift */,
 			);
 			path = Vdv;
 			sourceTree = "<group>";
@@ -864,6 +1002,7 @@
 				1F2E3874AB69B6CD8D84366C /* FavoriteLine.swift */,
 				1F2E3E96826A29CC1CD8D8F6 /* DisabledDeparture.swift */,
 				1F2E3227076AA65D551F407B /* Trip.swift */,
+				FA8B9D6E1F7D4C370099E4CD /* RecentDeparture.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1512,6 +1651,7 @@
 		1F2E3F4C5A2064154E9A336A /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				FA8B9D5B1F7CFC120099E4CD /* Watch */,
 				1F2E349567979EF844577E1F /* Extensions */,
 				1F2E3995707E587E1028414B /* Log */,
 				1F2E3B73A43AF08A24F0C2F8 /* Map */,
@@ -1530,6 +1670,8 @@
 				1F2E35784BFA80941FB8C9A0 /* Theme.swift */,
 				1F2E34CC3E1D22E2C4436733 /* UIUtils.swift */,
 				1F2E3A48B17EA4A9A805D353 /* Utils.swift */,
+				FADDF7E51F7BD74300C4CD03 /* TripUtils.swift */,
+				FADDF7EC1F7BDA0600C4CD03 /* ZipUtils.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1607,10 +1749,12 @@
 			isa = PBXGroup;
 			children = (
 				77B6336528BBC08B0855B3D2 /* Frameworks */,
-				BF0CD75A18731E04D587F386 /* Pods */,
 				31CFDFE61BB2877200636599 /* Products */,
 				1F2E360A7D2B2C108768FD70 /* SASAbus */,
+				FAB562651F7B8F9600FC862A /* SASAbus Watch */,
+				FAB562741F7B8F9600FC862A /* SASAbus Watch Extension */,
 				FA2690E21E93B927000B8A84 /* TripNotification */,
+				BBDA96C98B0CC79B7DF49A3A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1619,6 +1763,8 @@
 			children = (
 				31CFDFE51BB2877200636599 /* SASAbus.app */,
 				FA2690DD1E93B927000B8A84 /* TripNotification.appex */,
+				FAB562641F7B8F9500FC862A /* SASAbus Watch.app */,
+				FAB562701F7B8F9600FC862A /* SASAbus Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1628,21 +1774,24 @@
 			children = (
 				FABD85CF1E8801DC007A5EF6 /* MapKit.framework */,
 				313321FC1BC2622600EB9E92 /* SpriteKit.framework */,
-				D691B23DAE0CB65656C8EAF5 /* Pods_SASAbus.framework */,
 				FA2690DE1E93B927000B8A84 /* UserNotifications.framework */,
 				FA2690E01E93B927000B8A84 /* UserNotificationsUI.framework */,
-				0B2ED616AB2156B38A561B93 /* Pods_TripNotification.framework */,
+				9395AB45EBD218F02D3F0E1E /* Pods_SASAbus.framework */,
+				8EF73200D52734B9C1FF9801 /* Pods_SASAbus_Watch_Extension.framework */,
+				FA5EC4A17553A312F7D2209C /* Pods_TripNotification.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BF0CD75A18731E04D587F386 /* Pods */ = {
+		BBDA96C98B0CC79B7DF49A3A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				67E4B1C88596D0CFBA35DABD /* Pods-SASAbus.debug.xcconfig */,
-				20594126F6048CC98FF546B4 /* Pods-SASAbus.release.xcconfig */,
-				90816EFC006FDFA23BF862AB /* Pods-TripNotification.debug.xcconfig */,
-				C014ACA1A41F789275306A19 /* Pods-TripNotification.release.xcconfig */,
+				8F2249E98E2C831EA0133131 /* Pods-SASAbus.debug.xcconfig */,
+				89C1D7B69B01245EED46845D /* Pods-SASAbus.release.xcconfig */,
+				C25C93583E81F7478573ABB3 /* Pods-SASAbus Watch Extension.debug.xcconfig */,
+				3AA094A3750A09E235D7E091 /* Pods-SASAbus Watch Extension.release.xcconfig */,
+				379F16F6B24EE0FC06E75935 /* Pods-TripNotification.debug.xcconfig */,
+				EF3A7D26088D9E6F554435F6 /* Pods-TripNotification.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1659,6 +1808,110 @@
 				FA3A57D01F56AB0000016771 /* NotificationViewController.storyboard */,
 			);
 			path = TripNotification;
+			sourceTree = "<group>";
+		};
+		FA8B9D5B1F7CFC120099E4CD /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				FA8B9D5C1F7CFC1F0099E4CD /* WatchConnection.swift */,
+				FA8B9D5E1F7D00E00099E4CD /* WatchMessage.swift */,
+			);
+			path = Watch;
+			sourceTree = "<group>";
+		};
+		FA8B9D611F7D0A0B0099E4CD /* Nearby */ = {
+			isa = PBXGroup;
+			children = (
+				FA8B9D621F7D0A1C0099E4CD /* NearbyInterfaceController.swift */,
+			);
+			path = Nearby;
+			sourceTree = "<group>";
+		};
+		FA8B9D641F7D0A270099E4CD /* Recent */ = {
+			isa = PBXGroup;
+			children = (
+				FA8B9D651F7D0A350099E4CD /* RecentInterfaceController.swift */,
+				FA8B9D6B1F7D40420099E4CD /* RecentRowController.swift */,
+			);
+			path = Recent;
+			sourceTree = "<group>";
+		};
+		FA8B9D671F7D0A470099E4CD /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				FA8B9D681F7D0A6F0099E4CD /* PhoneConnection.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		FA8B9D741F7E19A80099E4CD /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				FA8B9D751F7E19C70099E4CD /* SearchInterfaceController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		FA8B9D771F7E19E50099E4CD /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				FA8B9D781F7E19F40099E4CD /* FavoritesInterfaceController.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		FA8B9D7A1F7E1A890099E4CD /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		FA8B9D7F1F7E1E380099E4CD /* Departures */ = {
+			isa = PBXGroup;
+			children = (
+				FA8B9D801F7E1E4A0099E4CD /* DeparturesInterfaceController.swift */,
+				FAD6022C1F7E2B44009EB4EA /* DeparturesRowController.swift */,
+			);
+			path = Departures;
+			sourceTree = "<group>";
+		};
+		FAB20B201F7BA170003EAE5E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FA8B9D7F1F7E1E380099E4CD /* Departures */,
+				FA8B9D771F7E19E50099E4CD /* Favorites */,
+				FA8B9D741F7E19A80099E4CD /* Search */,
+				FA8B9D641F7D0A270099E4CD /* Recent */,
+				FA8B9D611F7D0A0B0099E4CD /* Nearby */,
+				FAB20B1E1F7BA0CF003EAE5E /* MainInterfaceController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FAB562651F7B8F9600FC862A /* SASAbus Watch */ = {
+			isa = PBXGroup;
+			children = (
+				FAB562661F7B8F9600FC862A /* Interface.storyboard */,
+				FAB562691F7B8F9600FC862A /* Assets.xcassets */,
+				FAB5626B1F7B8F9600FC862A /* Info.plist */,
+			);
+			path = "SASAbus Watch";
+			sourceTree = "<group>";
+		};
+		FAB562741F7B8F9600FC862A /* SASAbus Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				FA8B9D7A1F7E1A890099E4CD /* Data */,
+				FA8B9D671F7D0A470099E4CD /* Util */,
+				FAB562771F7B8F9600FC862A /* ExtensionDelegate.swift */,
+				FAB562791F7B8F9600FC862A /* NotificationController.swift */,
+				FAB5627B1F7B8F9600FC862A /* Assets.xcassets */,
+				FAB5627D1F7B8F9600FC862A /* Info.plist */,
+				FAB5627E1F7B8F9600FC862A /* PushNotificationPayload.apns */,
+				FAB20B201F7BA170003EAE5E /* Controller */,
+			);
+			path = "SASAbus Watch Extension";
 			sourceTree = "<group>";
 		};
 		FAD8A87D1F50389E002B2B09 /* Constants */ = {
@@ -1678,22 +1931,24 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 31CFDFFA1BB2877200636599 /* Build configuration list for PBXNativeTarget "SASAbus" */;
 			buildPhases = (
-				CE1471C9ABB56F36BEC66F24 /* [CP] Check Pods Manifest.lock */,
+				0A3B2394AA58C392892175B8 /* [CP] Check Pods Manifest.lock */,
 				31CFDFE11BB2877200636599 /* Sources */,
 				31CFDFE31BB2877200636599 /* Resources */,
 				31CFDFE21BB2877200636599 /* Frameworks */,
-				C9818BCAB91DE9706BFCCD78 /* [CP] Copy Pods Resources */,
-				053C0F761EDF0BA6681FF7DE /* [CP] Embed Pods Frameworks */,
 				FA2690EF1E93B927000B8A84 /* Embed App Extensions */,
 				FA4A525D1E8908A5003A98D8 /* ShellScript */,
 				FADDC2B71E8D649500349D8D /* ShellScript */,
 				FA3949421F50300700699116 /* ShellScript */,
 				FA3949431F50307C00699116 /* ShellScript */,
+				FAB562891F7B8F9600FC862A /* Embed Watch Content */,
+				F13C18809831F465092C1F54 /* [CP] Embed Pods Frameworks */,
+				F59C05B30074FA5BE6B8DA42 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				FA2690EA1E93B927000B8A84 /* PBXTargetDependency */,
+				FAB562801F7B8F9600FC862A /* PBXTargetDependency */,
 			);
 			name = SASAbus;
 			productName = SASAbus;
@@ -1704,11 +1959,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA2690EE1E93B927000B8A84 /* Build configuration list for PBXNativeTarget "TripNotification" */;
 			buildPhases = (
-				44FD1ECA93136E45D2C72B3B /* [CP] Check Pods Manifest.lock */,
+				CDF73CE758C72DACC4188868 /* [CP] Check Pods Manifest.lock */,
 				FA2690D91E93B927000B8A84 /* Sources */,
 				FA2690DA1E93B927000B8A84 /* Frameworks */,
 				FA2690DB1E93B927000B8A84 /* Resources */,
-				7EF923F38A0A9DD0333CFBF8 /* [CP] Copy Pods Resources */,
+				9076993CF98E207CDE2AF85B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1719,13 +1974,51 @@
 			productReference = FA2690DD1E93B927000B8A84 /* TripNotification.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		FAB562631F7B8F9500FC862A /* SASAbus Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAB562881F7B8F9600FC862A /* Build configuration list for PBXNativeTarget "SASAbus Watch" */;
+			buildPhases = (
+				FAB562621F7B8F9500FC862A /* Resources */,
+				FAB562871F7B8F9600FC862A /* Embed App Extensions */,
+				15C5FA20E8276AC5A6FB5483 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAB562731F7B8F9600FC862A /* PBXTargetDependency */,
+			);
+			name = "SASAbus Watch";
+			productName = "SASAbus Watch";
+			productReference = FAB562641F7B8F9500FC862A /* SASAbus Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		FAB5626F1F7B8F9600FC862A /* SASAbus Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAB562861F7B8F9600FC862A /* Build configuration list for PBXNativeTarget "SASAbus Watch Extension" */;
+			buildPhases = (
+				1D3360580C598B261DDCF9C2 /* [CP] Check Pods Manifest.lock */,
+				FAB5626C1F7B8F9600FC862A /* Sources */,
+				FAB5626D1F7B8F9600FC862A /* Frameworks */,
+				FAB5626E1F7B8F9600FC862A /* Resources */,
+				ECAAA59A760A127A6CE290CB /* [CP] Embed Pods Frameworks */,
+				C806551B6D150BD71E58069F /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SASAbus Watch Extension";
+			productName = "SASAbus Watch Extension";
+			productReference = FAB562701F7B8F9600FC862A /* SASAbus Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		31CFDFDD1BB2877200636599 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "SASA AG";
 				TargetAttributes = {
@@ -1751,6 +2044,16 @@
 						DevelopmentTeam = NXHSFZL2F4;
 						ProvisioningStyle = Automatic;
 					};
+					FAB562631F7B8F9500FC862A = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = NXHSFZL2F4;
+						ProvisioningStyle = Automatic;
+					};
+					FAB5626F1F7B8F9600FC862A = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = NXHSFZL2F4;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 31CFDFE01BB2877200636599 /* Build configuration list for PBXProject "SASAbus" */;
@@ -1770,6 +2073,8 @@
 			targets = (
 				31CFDFE41BB2877200636599 /* SASAbus */,
 				FA2690DC1E93B927000B8A84 /* TripNotification */,
+				FAB562631F7B8F9500FC862A /* SASAbus Watch */,
+				FAB5626F1F7B8F9600FC862A /* SASAbus Watch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -1871,17 +2176,157 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FAB562621F7B8F9500FC862A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAB5626A1F7B8F9600FC862A /* Assets.xcassets in Resources */,
+				FAB562681F7B8F9600FC862A /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAB5626E1F7B8F9600FC862A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA918DD11F7BBA5B00602F1D /* busstops.realm in Resources */,
+				FAB5627C1F7B8F9600FC862A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		053C0F761EDF0BA6681FF7DE /* [CP] Embed Pods Frameworks */ = {
+		0A3B2394AA58C392892175B8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SASAbus-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1D3360580C598B261DDCF9C2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SASAbus Watch Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9076993CF98E207CDE2AF85B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TripNotification/Pods-TripNotification-resources.sh",
+				"${PODS_ROOT}/GoogleAuthUtilities/Frameworks/frameworks/GoogleAuthUtilities.framework/Resources/GTMOAuth2ViewTouch.xib",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TripNotification/Pods-TripNotification-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C806551B6D150BD71E58069F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SASAbus Watch Extension/Pods-SASAbus Watch Extension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDF73CE758C72DACC4188868 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TripNotification-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECAAA59A760A127A6CE290CB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SASAbus Watch Extension/Pods-SASAbus Watch Extension-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-watchOS/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper-watchOS/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm-watchOS/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift-watchOS/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-watchOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SSZipArchive-watchOS/SSZipArchive.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver-watchOS/SwiftyBeaver.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-watchOS/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SASAbus Watch Extension/Pods-SASAbus Watch Extension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F13C18809831F465092C1F54 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SASAbus/Pods-SASAbus-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/DrawerController/DrawerController.framework",
@@ -1889,20 +2334,20 @@
 				"${BUILT_PRODUCTS_DIR}/KDCircularProgress/KDCircularProgress.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/LocationPickerViewController/LocationPickerViewController.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper-iOS/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Permission/Permission.framework",
 				"${BUILT_PRODUCTS_DIR}/PolyglotLocalization/PolyglotLocalization.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Pulley/Pulley.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm-iOS/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift-iOS/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SSZipArchive-iOS/SSZipArchive.framework",
 				"${BUILT_PRODUCTS_DIR}/StatefulViewController/StatefulViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftValidator/SwiftValidator.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver-iOS/SwiftyBeaver.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/zipzap/zipzap.framework",
 			);
@@ -1938,44 +2383,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SASAbus/Pods-SASAbus-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		44FD1ECA93136E45D2C72B3B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TripNotification-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7EF923F38A0A9DD0333CFBF8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TripNotification/Pods-TripNotification-resources.sh",
-				"${PODS_ROOT}/GoogleAuthUtilities/Frameworks/frameworks/GoogleAuthUtilities.framework/Resources/GTMOAuth2ViewTouch.xib",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TripNotification/Pods-TripNotification-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C9818BCAB91DE9706BFCCD78 /* [CP] Copy Pods Resources */ = {
+		F59C05B30074FA5BE6B8DA42 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1992,24 +2400,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SASAbus/Pods-SASAbus-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CE1471C9ABB56F36BEC66F24 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SASAbus-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FA3949421F50300700699116 /* ShellScript */ = {
@@ -2133,6 +2523,7 @@
 				1F2E3D30D1F8ABE4EA539470 /* BadgeHelper.swift in Sources */,
 				1F2E359580DE91AC44926557 /* InAppBadge.swift in Sources */,
 				1F2E368923403BF254809C1D /* FirstStepBadge.swift in Sources */,
+				FADDF7E91F7BD8D200C4CD03 /* DataDownloader.swift in Sources */,
 				1F2E3AB3A29E702C2C527455 /* VeryBeginningBadge.swift in Sources */,
 				1F2E391E2DE3C5D719BA8919 /* BusDetailsViewController.swift in Sources */,
 				1F2E3FE253BC9848941D175B /* EcoPointsStatsCell.swift in Sources */,
@@ -2169,6 +2560,7 @@
 				1F2E39900C3782160B5B62AB /* RealtimeBus.swift in Sources */,
 				1F2E34724E1D7E94D4AA4E8A /* News.swift in Sources */,
 				1F2E3F6B0C0F0C8CA62E35B3 /* Endpoint.swift in Sources */,
+				FA8B9D5D1F7CFC1F0099E4CD /* WatchConnection.swift in Sources */,
 				1F2E35FF40C930097D89721E /* NetUtils.swift in Sources */,
 				1F2E386383724BAFD42C3B66 /* RestClient.swift in Sources */,
 				1F2E3D7F7CD3BC54E01DF301 /* SurveyApiRouter.swift in Sources */,
@@ -2216,7 +2608,9 @@
 				1F2E3E58236DABF3392393FD /* BottomSheetPassthroughScrollDelegate.swift in Sources */,
 				1F2E3EF3017427B1F412E35F /* BottomSheetViewController.swift in Sources */,
 				1F2E3E1D2748EF23E8D3D475 /* MapViewController.swift in Sources */,
+				FA8B9D731F7D532A0099E4CD /* RecentDeparture.swift in Sources */,
 				1F2E38A9B9792D2D0AB89B2D /* MapBottomSheetViewController.swift in Sources */,
+				FADDF7E61F7BD74300C4CD03 /* TripUtils.swift in Sources */,
 				1F2E3927E538901277E327A9 /* MainRouteViewController.swift in Sources */,
 				1F2E31C8106882A3A72B1FC0 /* RouteFeedViewController.swift in Sources */,
 				1F2E3AB430C44BAD108EA80F /* RouteResultsViewController.swift in Sources */,
@@ -2229,6 +2623,7 @@
 				1F2E3E8ABA00BF1FB9655B23 /* DictionaryExtension.swift in Sources */,
 				1F2E33F149413B21CC8020A0 /* MainSchedulerExtension.swift in Sources */,
 				1F2E35988C1E6CA3012B8DC9 /* AboutViewController.swift in Sources */,
+				FA8B9D5F1F7D00E00099E4CD /* WatchMessage.swift in Sources */,
 				1F2E3B9FA9B7FFE666150645 /* CreditsViewController.swift in Sources */,
 				1F2E3CAF0303716E56C4293D /* MasterTableView.swift in Sources */,
 				1F2E300127121E6AAB7DB93C /* BackgroundView.swift in Sources */,
@@ -2238,6 +2633,7 @@
 				1F2E3811684B1977E5DDB2A7 /* SignatureValidator.swift in Sources */,
 				1F2E36BFA207C5A6CED20EA8 /* TokenValidator.swift in Sources */,
 				1F2E33867B542F080AFA7BBD /* SecKeyUtils.swift in Sources */,
+				FADDF7ED1F7BDA0600C4CD03 /* ZipUtils.swift in Sources */,
 				1F2E30B30DA2611DED34E891 /* ClaimValidator.swift in Sources */,
 				1F2E349DABAD469439FC3978 /* NSData+Base64URLEncoding.swift in Sources */,
 				1F2E3FE07F2E17862CF6860E /* RSASSA_PKCS1.swift in Sources */,
@@ -2276,6 +2672,7 @@
 				FA54DE541E9651710071E42C /* BadgeHelper.swift in Sources */,
 				FA54DE501E9560930071E42C /* TripSyncHelper.swift in Sources */,
 				FA2690F51E93CA8F000B8A84 /* UIUtils.swift in Sources */,
+				FA8B9D601F7D04030099E4CD /* WatchMessage.swift in Sources */,
 				FA26911C1E93FA6C000B8A84 /* Utils.swift in Sources */,
 				FA54DE551E9651740071E42C /* InAppBadge.swift in Sources */,
 				FA2691221E93FAFE000B8A84 /* BeaconHandler.swift in Sources */,
@@ -2286,7 +2683,9 @@
 				FA2690F41E93C9E4000B8A84 /* NotificationCell.swift in Sources */,
 				FA54DE561E9651740071E42C /* FirstStepBadge.swift in Sources */,
 				FA2690E41E93B927000B8A84 /* NotificationViewController.swift in Sources */,
+				FADDF7E71F7BD74300C4CD03 /* TripUtils.swift in Sources */,
 				FA26911F1E93FADD000B8A84 /* HashUtils.swift in Sources */,
+				FA8B9D721F7D532A0099E4CD /* RecentDeparture.swift in Sources */,
 				FA26910B1E93FA06000B8A84 /* NotificationSettings.swift in Sources */,
 				1F2E3D889D82FDFCF144048A /* NotificationCellDot.swift in Sources */,
 				1F2E3A2B8E1EC12C25C01AB8 /* BusBeacon.swift in Sources */,
@@ -2321,6 +2720,7 @@
 				1F2E30252C1FA5396BF6ED2D /* UserRealmHelper.swift in Sources */,
 				1F2E3D1E0AB351B55F73C393 /* PlannedData.swift in Sources */,
 				1F2E37E5D0545886E345F8C9 /* VdvPaths.swift in Sources */,
+				FADDF7EE1F7BDA0600C4CD03 /* ZipUtils.swift in Sources */,
 				1F2E39F438DBD07B9D363F46 /* VdvTrips.swift in Sources */,
 				1F2E30318AF31026C485E497 /* VdvCalendar.swift in Sources */,
 				1F2E3F012363C571E5360E6C /* VdvTravelTimes.swift in Sources */,
@@ -2328,6 +2728,7 @@
 				1F2E3A250865D4A6DF12BF6B /* VdvBusStopBreaks.swift in Sources */,
 				1F2E3B93C03D01586AE8E554 /* Api.swift in Sources */,
 				1F2E338AB7FA3204E398F45A /* VdvTrip.swift in Sources */,
+				FADDF7EA1F7BD8D200C4CD03 /* DataDownloader.swift in Sources */,
 				1F2E38C33EE347B1894CDB2D /* VdvBusStop.swift in Sources */,
 				1F2E37B9C2BBFC5EE9CA74A8 /* VdvDate.swift in Sources */,
 				1F2E3247A830AA04B77C46D1 /* VdvInterval.swift in Sources */,
@@ -2366,6 +2767,53 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FAB5626C1F7B8F9600FC862A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA8B9D6C1F7D40420099E4CD /* RecentRowController.swift in Sources */,
+				FADDF7D31F7BD40B00C4CD03 /* PlannedData.swift in Sources */,
+				FADDF7E21F7BD63D00C4CD03 /* Log.swift in Sources */,
+				FA8B9D761F7E19C70099E4CD /* SearchInterfaceController.swift in Sources */,
+				FADDF7DD1F7BD41300C4CD03 /* VdvPaths.swift in Sources */,
+				FA8B9D811F7E1E4A0099E4CD /* DeparturesInterfaceController.swift in Sources */,
+				FADDF7EF1F7BDA2900C4CD03 /* IOUtils.swift in Sources */,
+				FADDF7D71F7BD41000C4CD03 /* VdvInterval.swift in Sources */,
+				FA8B9D691F7D0A6F0099E4CD /* PhoneConnection.swift in Sources */,
+				FADDF7E11F7BD41E00C4CD03 /* Realm.swift in Sources */,
+				FA8B9D7E1F7E1AE00099E4CD /* BusStopRealmHelper.swift in Sources */,
+				FAD6022D1F7E2B44009EB4EA /* DeparturesRowController.swift in Sources */,
+				FADDF7EB1F7BD9E800C4CD03 /* DateExtension.swift in Sources */,
+				FADDF7E41F7BD71B00C4CD03 /* Utils.swift in Sources */,
+				FA8B9D6A1F7D0AA30099E4CD /* WatchMessage.swift in Sources */,
+				FADDF7D11F7BD40B00C4CD03 /* Api.swift in Sources */,
+				FADDF7E01F7BD41300C4CD03 /* VdvHandler.swift in Sources */,
+				FADDF7F11F7BDC3F00C4CD03 /* Images.swift in Sources */,
+				FA8B9D791F7E19F40099E4CD /* FavoritesInterfaceController.swift in Sources */,
+				FADDF7F01F7BDAFA00C4CD03 /* Departure.swift in Sources */,
+				FADDF7DC1F7BD41300C4CD03 /* VdvTravelTimes.swift in Sources */,
+				FADDF7D41F7BD41000C4CD03 /* VdvBusStop.swift in Sources */,
+				FADDF7DF1F7BD41300C4CD03 /* VdvTrips.swift in Sources */,
+				FA8B9D6D1F7D41090099E4CD /* BBusStop.swift in Sources */,
+				FA8B9D661F7D0A350099E4CD /* RecentInterfaceController.swift in Sources */,
+				FADDF7D21F7BD40B00C4CD03 /* DepartureMonitor.swift in Sources */,
+				FADDF7DB1F7BD41300C4CD03 /* VdvCalendar.swift in Sources */,
+				FADDF7DE1F7BD41300C4CD03 /* VdvTripStopTimes.swift in Sources */,
+				FAB20B1F1F7BA0CF003EAE5E /* MainInterfaceController.swift in Sources */,
+				FADDF7D51F7BD41000C4CD03 /* VdvDate.swift in Sources */,
+				FA918DD71F7BBA6200602F1D /* BusStop.swift in Sources */,
+				FADDF7E31F7BD64F00C4CD03 /* Lines.swift in Sources */,
+				FAB5627A1F7B8F9600FC862A /* NotificationController.swift in Sources */,
+				FAB562781F7B8F9600FC862A /* ExtensionDelegate.swift in Sources */,
+				FADDF7F21F7BDC3F00C4CD03 /* Localized.swift in Sources */,
+				FADDF7D91F7BD41000C4CD03 /* VdvTrip.swift in Sources */,
+				FA8B9D631F7D0A1C0099E4CD /* NearbyInterfaceController.swift in Sources */,
+				FADDF7D61F7BD41000C4CD03 /* VdvDeparture.swift in Sources */,
+				FADDF7DA1F7BD41300C4CD03 /* VdvBusStopBreaks.swift in Sources */,
+				FADDF7D81F7BD41000C4CD03 /* VdvStopTime.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -2373,6 +2821,16 @@
 			isa = PBXTargetDependency;
 			target = FA2690DC1E93B927000B8A84 /* TripNotification */;
 			targetProxy = FA2690E91E93B927000B8A84 /* PBXContainerItemProxy */;
+		};
+		FAB562731F7B8F9600FC862A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAB5626F1F7B8F9600FC862A /* SASAbus Watch Extension */;
+			targetProxy = FAB562721F7B8F9600FC862A /* PBXContainerItemProxy */;
+		};
+		FAB562801F7B8F9600FC862A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAB562631F7B8F9500FC862A /* SASAbus Watch */;
+			targetProxy = FAB5627F1F7B8F9600FC862A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2403,6 +2861,14 @@
 				FA580DF91F5702C600CFFCD2 /* it */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		FAB562661F7B8F9600FC862A /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAB562671F7B8F9600FC862A /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2452,6 +2918,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2493,6 +2960,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2500,7 +2968,7 @@
 		};
 		31CFDFFB1BB2877200636599 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67E4B1C88596D0CFBA35DABD /* Pods-SASAbus.debug.xcconfig */;
+			baseConfigurationReference = 8F2249E98E2C831EA0133131 /* Pods-SASAbus.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2528,7 +2996,7 @@
 		};
 		31CFDFFC1BB2877200636599 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20594126F6048CC98FF546B4 /* Pods-SASAbus.release.xcconfig */;
+			baseConfigurationReference = 89C1D7B69B01245EED46845D /* Pods-SASAbus.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2555,7 +3023,7 @@
 		};
 		FA2690EC1E93B927000B8A84 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90816EFC006FDFA23BF862AB /* Pods-TripNotification.debug.xcconfig */;
+			baseConfigurationReference = 379F16F6B24EE0FC06E75935 /* Pods-TripNotification.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2578,7 +3046,7 @@
 		};
 		FA2690ED1E93B927000B8A84 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C014ACA1A41F789275306A19 /* Pods-TripNotification.release.xcconfig */;
+			baseConfigurationReference = EF3A7D26088D9E6F554435F6 /* Pods-TripNotification.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2595,6 +3063,144 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "SASAbus/AppDelegate-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		FAB562821F7B8F9600FC862A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: SASA SpA-AG (NXHSFZL2F4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NXHSFZL2F4;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = SASAbus_Watch_Extension;
+				INFOPLIST_FILE = "SASAbus Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Debug;
+		};
+		FAB562831F7B8F9600FC862A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: SASA SpA-AG (NXHSFZL2F4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NXHSFZL2F4;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = SASAbus_Watch_Extension;
+				INFOPLIST_FILE = "SASAbus Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Release;
+		};
+		FAB562841F7B8F9600FC862A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C25C93583E81F7478573ABB3 /* Pods-SASAbus Watch Extension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NXHSFZL2F4;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "SASAbus Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Debug;
+		};
+		FAB562851F7B8F9600FC862A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AA094A3750A09E235D7E091 /* Pods-SASAbus Watch Extension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NXHSFZL2F4;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "SASAbus Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -2624,6 +3230,24 @@
 			buildConfigurations = (
 				FA2690EC1E93B927000B8A84 /* Debug */,
 				FA2690ED1E93B927000B8A84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FAB562861F7B8F9600FC862A /* Build configuration list for PBXNativeTarget "SASAbus Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAB562841F7B8F9600FC862A /* Debug */,
+				FAB562851F7B8F9600FC862A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FAB562881F7B8F9600FC862A /* Build configuration list for PBXNativeTarget "SASAbus Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAB562821F7B8F9600FC862A /* Debug */,
+				FAB562831F7B8F9600FC862A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

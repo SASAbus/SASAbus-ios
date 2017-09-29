@@ -51,6 +51,7 @@
 "general.lines" = "Lines %@";
 "general.now_at" = "Now at %@";
 "general.heading_to" = "Heading to %@";
+"general.heading_to_short" = "to %@";
 "general.delay_punctual" = "Punctual";
 "general.delay_delayed" = "%d' delayed";
 "general.delay_early" = "%d' early";

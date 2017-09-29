@@ -416,7 +416,12 @@ extension BusStopViewController: UITableViewDataSource, UITableViewDelegate {
         if autoCompleteTableView != nil && tableView.isEqual(autoCompleteTableView) {
             navigationItem.rightBarButtonItem = getFilterButton()
 
-            setBusStop(foundBusStations[indexPath.row])
+            let busStop = foundBusStations[indexPath.row]
+            
+            // Is this the right place to put this?
+            UserRealmHelper.addRecentDeparture(group: busStop.family)
+            
+            setBusStop(busStop)
         } else {
             let item = disabledDepartures[indexPath.row]
 
