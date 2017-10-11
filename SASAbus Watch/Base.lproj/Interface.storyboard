@@ -111,8 +111,46 @@
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                         </label>
-                        <table alignment="left" id="IZf-eJ-SU5"/>
+                        <label alignment="center" verticalAlignment="center" hidden="YES" text="No nearby bus stops" textAlignment="center" numberOfLines="0" id="6CD-Yq-TTA">
+                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                        </label>
+                        <table alignment="left" id="gdS-5B-xvt">
+                            <items>
+                                <tableRow identifier="NearbyRowController" id="pVq-xp-a1L" customClass="NearbyRowController" customModule="SASAbus_Watch_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" spacing="5" id="wn0-5Q-HJQ">
+                                        <items>
+                                            <separator height="42" alignment="left" verticalAlignment="center" id="dgI-Rb-voi">
+                                                <color key="color" red="0.85262101889999997" green="0.42218321559999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </separator>
+                                            <group width="0.90000000000000002" widthAdjustment="9" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="aaf-TR-lOo">
+                                                <items>
+                                                    <label alignment="left" text="Piazza Walther" id="Ace-G9-G5B">
+                                                        <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
+                                                    </label>
+                                                    <label alignment="left" text="Bolzano" id="Khs-XQ-xOo">
+                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                                    </label>
+                                                </items>
+                                                <edgeInsets key="margins" left="0.0" right="0.0" top="2" bottom="2"/>
+                                            </group>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="city" destination="Khs-XQ-xOo" id="WeI-x9-MUL"/>
+                                        <outlet property="name" destination="Ace-G9-G5B" id="XqA-BU-79Y"/>
+                                        <outlet property="separator" destination="dgI-Rb-voi" id="S2b-TA-PgH"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
                     </items>
+                    <connections>
+                        <outlet property="loadingText" destination="ds8-1d-C8t" id="7ii-bM-hyb"/>
+                        <outlet property="noNearbyText" destination="6CD-Yq-TTA" id="Pey-x7-wt8"/>
+                        <outlet property="tableView" destination="gdS-5B-xvt" id="9tf-ov-BW0"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="321" y="-688"/>

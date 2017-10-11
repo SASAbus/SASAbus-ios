@@ -26,10 +26,10 @@ import CoreLocation
 class BusStopDistance {
 
     let distance: CLLocationDistance!
-    let busStation: BBusStop!
+    let busStop: BBusStop!
 
-    init(busStationItem: BBusStop, distance: CLLocationDistance) {
-        self.busStation = busStationItem
+    init(busStop: BBusStop, distance: CLLocationDistance) {
+        self.busStop = busStop
         self.distance = distance
     }
 }

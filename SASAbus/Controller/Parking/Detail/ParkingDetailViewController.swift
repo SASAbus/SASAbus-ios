@@ -69,47 +69,27 @@ class ParkingDetailViewController: UIViewController, UITableViewDataSource, UITa
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let busStationDistance = self.nearestBusStations[indexPath.row]
+        let distance = self.nearestBusStations[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ParkingDetailTableViewCell", for: indexPath) as! ParkingDetailTableViewCell
 
         cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        cell.stationLabel.text = busStationDistance.busStation.name()
-        cell.distanceLabel.text = Int(round(busStationDistance.distance)).description + "m"
+        cell.stationLabel.text = distance.busStop.name()
+        cell.distanceLabel.text = Int(round(distance.distance)).description + "m"
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let distance = self.nearestBusStations[indexPath.row]
-        let viewController = BusStopViewController(busStop: distance.busStation)
+        let viewController = BusStopViewController(busStop: distance.busStop)
 
         (UIApplication.shared.delegate as! AppDelegate).navigateTo(viewController)
     }
 
 
     func getNearestBusStations() -> [BusStopDistance] {
-        let busStops = realm.objects(BusStop.self)
-        var nearestBusStations: [BusStopDistance] = []
-
-        for busStop in busStops {
-            var busStationDistance: BusStopDistance?
-            var distance: CLLocationDistance = 0.0
-
-            let location = CLLocation(latitude: Double(busStop.lat), longitude: Double(busStop.lng))
-            distance = location.distance(from: self.parking.location)
-
-            if busStationDistance == nil || distance < busStationDistance!.distance {
-                busStationDistance = BusStopDistance(busStationItem: BBusStop(fromRealm: busStop), distance: distance)
-            }
-
-            if busStationDistance != nil {
-                nearestBusStations.append(busStationDistance!)
-            }
-        }
-
-        nearestBusStations = nearestBusStations.sorted(by: { $0.distance < $1.distance })
-
-        return Array(nearestBusStations[0..<5])
+        let busStops = BusStopRealmHelper.nearestBusStops(location: self.parking.location)
+        return Array(busStops[0..<5])
     }
 }

@@ -1,4 +1,5 @@
 import Foundation
+import CoreLocation
 
 import RealmSwift
 import Realm
@@ -108,5 +109,31 @@ class BusStopRealmHelper {
         let results = realm.objects(BusStop.self)
 
         return Array(results)
+    }
+
+
+    static func nearestBusStops(location: CLLocation) -> [BusStopDistance] {
+        let realm = Realm.busStops()
+    
+        let busStations = realm.objects(BusStop.self)
+        var nearbyBusStations: [BusStopDistance] = []
+        
+        for busStop in busStations {
+            var busStationDistance: BusStopDistance?
+            var distance: CLLocationDistance = 0.0
+            
+            let location = CLLocation(latitude: Double(busStop.lat), longitude: Double(busStop.lng))
+            distance = location.distance(from: location)
+            
+            if busStationDistance == nil || distance < busStationDistance!.distance {
+                busStationDistance = BusStopDistance(busStop: BBusStop(fromRealm: busStop), distance: distance)
+            }
+            
+            if busStationDistance != nil {
+                nearbyBusStations.append(busStationDistance!)
+            }
+        }
+        
+        return nearbyBusStations.sorted(by: { $0.distance < $1.distance })
     }
 }

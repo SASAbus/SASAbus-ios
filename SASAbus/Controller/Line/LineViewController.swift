@@ -48,6 +48,12 @@ class LineViewController: MasterViewController, StatefulViewController, UITableV
     }
 
 
+    // TODO: Workaround for XIB compilation error
+    override func awakeFromNib() {
+        tabBar.items![0] = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Theme.darkGrey

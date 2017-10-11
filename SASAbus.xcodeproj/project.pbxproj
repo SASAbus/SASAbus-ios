@@ -157,7 +157,6 @@
 		1F2E37E5D0545886E345F8C9 /* VdvPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E32EB078352EC12347051 /* VdvPaths.swift */; };
 		1F2E37EFF7255D289C26B355 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33883E7628B304304238 /* DateExtension.swift */; };
 		1F2E37F080E42D6386DE6C3E /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8A87F1F5038B4002B2B09 /* Localized.swift */; };
-		1F2E37FC0F1446F627601B8D /* BusStationDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3C81BD73208A4835267F /* BusStationDistance.swift */; };
 		1F2E380AFADCD691019A2655 /* LinesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E8E2FA9AE24AC2BD792 /* LinesApi.swift */; };
 		1F2E3811684B1977E5DDB2A7 /* SignatureValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D0D4569EB32255AC6D5 /* SignatureValidator.swift */; };
 		1F2E38320C2AC9630F2006D0 /* public_key.cer in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E384D7BF772D03B4D1BA4 /* public_key.cer */; };
@@ -216,7 +215,6 @@
 		1F2E39F438DBD07B9D363F46 /* VdvTrips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3C9432AC97ECD5A6231F /* VdvTrips.swift */; };
 		1F2E3A0A422870A51BCBEE4D /* PlannedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E307CB905D6FE92FA2B18 /* PlannedData.swift */; };
 		1F2E3A155D3E3B11D3E5C97D /* RouteFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E369B4201825C5B16E43A /* RouteFeedViewController.xib */; };
-		1F2E3A159C5E6E12F0B4F420 /* BusLineFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F469B54DBC78F302DF6 /* BusLineFilter.swift */; };
 		1F2E3A1FCD6B0F1598A9C7AE /* ParkingApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E31685F05AF13E4DEB658 /* ParkingApi.swift */; };
 		1F2E3A250865D4A6DF12BF6B /* VdvBusStopBreaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E367A67BEAB22F92F844E /* VdvBusStopBreaks.swift */; };
 		1F2E3A29E23C36EBFEFFA47E /* SSZipArchive+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A37FFC974D8B45226A3 /* SSZipArchive+Swift.swift */; };
@@ -406,6 +404,13 @@
 		FAC517CE1E8A794100EC26DF /* EcoPointsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC517CD1E8A794100EC26DF /* EcoPointsViewController.xib */; };
 		FAC517D21E8A79CA00EC26DF /* EcoPointsTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC517D11E8A79CA00EC26DF /* EcoPointsTabViewController.xib */; };
 		FAD6022D1F7E2B44009EB4EA /* DeparturesRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6022C1F7E2B44009EB4EA /* DeparturesRowController.swift */; };
+		FAD8B7D81F82B17500148BE0 /* BusStopDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8B7D51F82B10900148BE0 /* BusStopDistance.swift */; };
+		FAD8B7D91F82B17500148BE0 /* BusStopDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8B7D51F82B10900148BE0 /* BusStopDistance.swift */; };
+		FAD8B7DA1F82B17600148BE0 /* BusStopDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8B7D51F82B10900148BE0 /* BusStopDistance.swift */; };
+		FAD8B7DB1F82B1C200148BE0 /* BusLineFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8B7D71F82B11000148BE0 /* BusLineFilter.swift */; };
+		FAD8B7DC1F82B1C300148BE0 /* BusLineFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8B7D71F82B11000148BE0 /* BusLineFilter.swift */; };
+		FAD8B7DD1F82B1C300148BE0 /* BusLineFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8B7D71F82B11000148BE0 /* BusLineFilter.swift */; };
+		FAD8B7DF1F82B7C400148BE0 /* NearbyRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8B7DE1F82B7C400148BE0 /* NearbyRowController.swift */; };
 		FADDF7D11F7BD40B00C4CD03 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E353E9276C3481F8A8521 /* Api.swift */; };
 		FADDF7D21F7BD40B00C4CD03 /* DepartureMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3DD3E5501921A7F969FC /* DepartureMonitor.swift */; };
 		FADDF7D31F7BD40B00C4CD03 /* PlannedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E307CB905D6FE92FA2B18 /* PlannedData.swift */; };
@@ -437,6 +442,7 @@
 		FADDF7F01F7BDAFA00C4CD03 /* Departure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3DBDC35A71E0733E720B /* Departure.swift */; };
 		FADDF7F11F7BDC3F00C4CD03 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8A87E1F5038B4002B2B09 /* Images.swift */; };
 		FADDF7F21F7BDC3F00C4CD03 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8A87F1F5038B4002B2B09 /* Localized.swift */; };
+		FAFF0B921F7E394D006B93A6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA88EB151F53F14D0052C734 /* Localizable.strings */; };
 		FCAA82B8F90CBF76BC7586BE /* Pods_SASAbus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9395AB45EBD218F02D3F0E1E /* Pods_SASAbus.framework */; };
 /* End PBXBuildFile section */
 
@@ -702,7 +708,6 @@
 		1F2E3C490293A7D6ABF763C9 /* UIImage+Insets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Insets.swift"; sourceTree = "<group>"; };
 		1F2E3C4B779925B1B7DABAD2 /* BusTileOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusTileOverlay.swift; sourceTree = "<group>"; };
 		1F2E3C7561E58C25322E2A1C /* TripNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripNotification.swift; sourceTree = "<group>"; };
-		1F2E3C81BD73208A4835267F /* BusStationDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStationDistance.swift; sourceTree = "<group>"; };
 		1F2E3C93467D72597820C1B0 /* TokenSigner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenSigner.swift; sourceTree = "<group>"; };
 		1F2E3C9432AC97ECD5A6231F /* VdvTrips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VdvTrips.swift; sourceTree = "<group>"; };
 		1F2E3CAA4F34A0821046D843 /* BusStopFilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusStopFilterViewController.xib; sourceTree = "<group>"; };
@@ -743,7 +748,6 @@
 		1F2E3F07BE471E3219176024 /* BusStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		1F2E3F09E6AB7FB126DB03A5 /* LineDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineDetailsViewController.swift; sourceTree = "<group>"; };
 		1F2E3F203501842CAB721C98 /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
-		1F2E3F469B54DBC78F302DF6 /* BusLineFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusLineFilter.swift; sourceTree = "<group>"; };
 		1F2E3F5B76782C45B1746ACE /* IntroPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageViewController.swift; sourceTree = "<group>"; };
 		1F2E3F6C7DCB2C618E380AB9 /* InAppBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppBadge.swift; sourceTree = "<group>"; };
 		1F2E3F85B6024F04F858B7D3 /* NewsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsApi.swift; sourceTree = "<group>"; };
@@ -824,6 +828,9 @@
 		FAD6022C1F7E2B44009EB4EA /* DeparturesRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesRowController.swift; sourceTree = "<group>"; };
 		FAD8A87E1F5038B4002B2B09 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Images.swift; path = SASAbus/Constants/Images.swift; sourceTree = SOURCE_ROOT; };
 		FAD8A87F1F5038B4002B2B09 /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Localized.swift; path = SASAbus/Constants/Localized.swift; sourceTree = SOURCE_ROOT; };
+		FAD8B7D51F82B10900148BE0 /* BusStopDistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BusStopDistance.swift; path = SASAbus/Util/BusStopDistance.swift; sourceTree = SOURCE_ROOT; };
+		FAD8B7D71F82B11000148BE0 /* BusLineFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BusLineFilter.swift; path = SASAbus/Util/BusLineFilter.swift; sourceTree = SOURCE_ROOT; };
+		FAD8B7DE1F82B7C400148BE0 /* NearbyRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyRowController.swift; sourceTree = "<group>"; };
 		FADDF7E51F7BD74300C4CD03 /* TripUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripUtils.swift; sourceTree = "<group>"; };
 		FADDF7E81F7BD8D200C4CD03 /* DataDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDownloader.swift; sourceTree = "<group>"; };
 		FADDF7EC1F7BDA0600C4CD03 /* ZipUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipUtils.swift; sourceTree = "<group>"; };
@@ -1571,6 +1578,8 @@
 		1F2E3E36AA47232EAB9DCBC3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FAD8B7D71F82B11000148BE0 /* BusLineFilter.swift */,
+				FAD8B7D51F82B10900148BE0 /* BusStopDistance.swift */,
 				1F2E33D4C1427B42CE42A472 /* Map */,
 				1F2E33FF331FAD07D2F33D1B /* BBusStop.swift */,
 				1F2E35B9C0841A805CD793DF /* Buses.swift */,
@@ -1657,8 +1666,6 @@
 				1F2E3B73A43AF08A24F0C2F8 /* Map */,
 				1F2E364D99DCE7DBA649EC5F /* Analytics.swift */,
 				1F2E3C3C3F588B8B0ECE0B6F /* AnswersHelper.swift */,
-				1F2E3F469B54DBC78F302DF6 /* BusLineFilter.swift */,
-				1F2E3C81BD73208A4835267F /* BusStationDistance.swift */,
 				1F2E328173928A704889C86A /* Color.swift */,
 				1F2E3B37E9858A7587B9B751 /* Config.swift */,
 				1F2E3D74BC0AC7B329114C47 /* DeviceUtils.swift */,
@@ -1823,6 +1830,7 @@
 			isa = PBXGroup;
 			children = (
 				FA8B9D621F7D0A1C0099E4CD /* NearbyInterfaceController.swift */,
+				FAD8B7DE1F82B7C400148BE0 /* NearbyRowController.swift */,
 			);
 			path = Nearby;
 			sourceTree = "<group>";
@@ -2190,6 +2198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA918DD11F7BBA5B00602F1D /* busstops.realm in Resources */,
+				FAFF0B921F7E394D006B93A6 /* Localizable.strings in Resources */,
 				FAB5627C1F7B8F9600FC862A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2461,8 +2470,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F2E37FC0F1446F627601B8D /* BusStationDistance.swift in Sources */,
-				1F2E3A159C5E6E12F0B4F420 /* BusLineFilter.swift in Sources */,
 				1F2E346E2AB641AA2456605F /* UIUtils.swift in Sources */,
 				1F2E360B9D9092570FCED479 /* Color.swift in Sources */,
 				1F2E308D9E1CD5EC39964859 /* Settings.swift in Sources */,
@@ -2506,9 +2513,11 @@
 				1F2E3EB13128056A35082BF6 /* IOUtils.swift in Sources */,
 				1F2E343E5ECB8354134CF25A /* HashUtils.swift in Sources */,
 				1F2E3ADE8F967C4B8149718D /* NotificationSettings.swift in Sources */,
+				FAD8B7D91F82B17500148BE0 /* BusStopDistance.swift in Sources */,
 				1F2E3AF0CF47F5192E92467C /* BeaconHandler.swift in Sources */,
 				1F2E3DA46360FE5AACFF77F5 /* IntroParentViewController.swift in Sources */,
 				1F2E37A4AE3C01C8729DE9D0 /* IntroViewController.swift in Sources */,
+				FAD8B7DB1F82B1C200148BE0 /* BusLineFilter.swift in Sources */,
 				1F2E3255411057D0113E4736 /* IntroPageViewController.swift in Sources */,
 				1F2E37091253134D4F7A28D4 /* IntroDataPageViewController.swift in Sources */,
 				1F2E31925FB40B1C34CF0413 /* BusBeacon.swift in Sources */,
@@ -2729,6 +2738,7 @@
 				1F2E3B93C03D01586AE8E554 /* Api.swift in Sources */,
 				1F2E338AB7FA3204E398F45A /* VdvTrip.swift in Sources */,
 				FADDF7EA1F7BD8D200C4CD03 /* DataDownloader.swift in Sources */,
+				FAD8B7DC1F82B1C300148BE0 /* BusLineFilter.swift in Sources */,
 				1F2E38C33EE347B1894CDB2D /* VdvBusStop.swift in Sources */,
 				1F2E37B9C2BBFC5EE9CA74A8 /* VdvDate.swift in Sources */,
 				1F2E3247A830AA04B77C46D1 /* VdvInterval.swift in Sources */,
@@ -2744,6 +2754,7 @@
 				1F2E32C2D07B527F992A3013 /* JSONExtension.swift in Sources */,
 				1F2E343D7694CA95E26696EE /* RSASSA_PKCS1.swift in Sources */,
 				1F2E303403B549D8987EA65A /* ClaimValidator.swift in Sources */,
+				FAD8B7DA1F82B17600148BE0 /* BusStopDistance.swift in Sources */,
 				1F2E3D181E0D84E0DC56EDBB /* SignatureAlgorithm.swift in Sources */,
 				1F2E358AAE5537C473423817 /* NSData+Base64URLEncoding.swift in Sources */,
 				1F2E31B9CEDFB13B5498B6D3 /* SignatureValidator.swift in Sources */,
@@ -2798,6 +2809,7 @@
 				FA8B9D661F7D0A350099E4CD /* RecentInterfaceController.swift in Sources */,
 				FADDF7D21F7BD40B00C4CD03 /* DepartureMonitor.swift in Sources */,
 				FADDF7DB1F7BD41300C4CD03 /* VdvCalendar.swift in Sources */,
+				FAD8B7DF1F82B7C400148BE0 /* NearbyRowController.swift in Sources */,
 				FADDF7DE1F7BD41300C4CD03 /* VdvTripStopTimes.swift in Sources */,
 				FAB20B1F1F7BA0CF003EAE5E /* MainInterfaceController.swift in Sources */,
 				FADDF7D51F7BD41000C4CD03 /* VdvDate.swift in Sources */,
@@ -2809,6 +2821,8 @@
 				FADDF7D91F7BD41000C4CD03 /* VdvTrip.swift in Sources */,
 				FA8B9D631F7D0A1C0099E4CD /* NearbyInterfaceController.swift in Sources */,
 				FADDF7D61F7BD41000C4CD03 /* VdvDeparture.swift in Sources */,
+				FAD8B7DD1F82B1C300148BE0 /* BusLineFilter.swift in Sources */,
+				FAD8B7D81F82B17500148BE0 /* BusStopDistance.swift in Sources */,
 				FADDF7DA1F7BD41300C4CD03 /* VdvBusStopBreaks.swift in Sources */,
 				FADDF7D81F7BD41000C4CD03 /* VdvStopTime.swift in Sources */,
 			);
@@ -2979,6 +2993,7 @@
 				CODE_SIGN_ENTITLEMENTS = SASAbus/SASAbus.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: SASA SpA-AG (NXHSFZL2F4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = NXHSFZL2F4;
 				ENABLE_BITCODE = NO;
@@ -2989,6 +3004,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SASAbus/AppDelegate-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -3007,6 +3023,7 @@
 				CODE_SIGN_ENTITLEMENTS = SASAbus/SASAbus.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: SASA SpA-AG (NXHSFZL2F4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NXHSFZL2F4;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SASAbus/Info.plist;
@@ -3016,6 +3033,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SASAbus/AppDelegate-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -3031,12 +3049,14 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: SASA SpA-AG (NXHSFZL2F4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NXHSFZL2F4;
 				INFOPLIST_FILE = TripNotification/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus.TripNotification;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "SASAbus/AppDelegate-Bridging-Header.h";
@@ -3054,12 +3074,14 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: SASA SpA-AG (NXHSFZL2F4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NXHSFZL2F4;
 				INFOPLIST_FILE = TripNotification/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus.TripNotification;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "SASAbus/AppDelegate-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

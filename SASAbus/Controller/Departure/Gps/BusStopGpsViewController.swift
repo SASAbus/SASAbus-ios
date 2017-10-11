@@ -93,27 +93,8 @@ class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
             Log.warning("No recent location available")
             return
         }
-
-        let busStations = realm.objects(BusStop.self)
-        var nearbyBusStations: [BusStopDistance] = []
-
-        for busStop in busStations {
-            var busStationDistance: BusStopDistance?
-            var distance: CLLocationDistance = 0.0
-
-            let location = CLLocation(latitude: Double(busStop.lat), longitude: Double(busStop.lng))
-            distance = currentLocation.distance(from: location)
-
-            if busStationDistance == nil || distance < busStationDistance!.distance {
-                busStationDistance = BusStopDistance(busStationItem: BBusStop(fromRealm: busStop), distance: distance)
-            }
-
-            if busStationDistance != nil {
-                nearbyBusStations.append(busStationDistance!)
-            }
-        }
-
-        nearbyBusStations = nearbyBusStations.sorted(by: { $0.distance < $1.distance })
+        
+        nearbyBusStops = BusStopRealmHelper.nearestBusStops(location: currentLocation)
 
         tableView.reloadData()
         locationManager?.stopUpdatingLocation()
@@ -127,24 +108,24 @@ extension BusStopGpsViewController {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let busStationDistance = nearbyBusStops[indexPath.row]
+        let distance = nearbyBusStops[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopGpsTableViewCell", for: indexPath) as! BusStopGpsTableViewCell
 
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-        cell.stationLabel.text = busStationDistance.busStation.name()
-        cell.distanceLabel.text = Int(round(busStationDistance.distance)).description + "m"
+        cell.stationLabel.text = distance.busStop.name()
+        cell.distanceLabel.text = Int(round(distance.distance)).description + "m"
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let busStationDistance = nearbyBusStops[indexPath.row]
+        let distance = nearbyBusStops[indexPath.row]
 
         let busStopViewController = navigationController?.viewControllers[(navigationController?
                 .viewControllers.index(of: self))! - 1] as! BusStopViewController
 
-        busStopViewController.setBusStop(busStationDistance.busStation)
+        busStopViewController.setBusStop(distance.busStop)
         self.navigationController?.popViewController(animated: true)
     }
 }

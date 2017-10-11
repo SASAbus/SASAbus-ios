@@ -29,8 +29,6 @@ class RecentInterfaceController: WKInterfaceController, PhoneMessageListener {
     override func willActivate() {
         super.willActivate()
         
-        // This method is called when watch view controller is about to be visible to user
-        
         PhoneConnection.standard.addListener(self)
         PhoneConnection.standard.sendMessage(message: ["type": WatchMessage.recentBusStops.rawValue])
     }
@@ -39,8 +37,6 @@ class RecentInterfaceController: WKInterfaceController, PhoneMessageListener {
         super.didDeactivate()
         
         PhoneConnection.standard.removeListener(self)
-        
-        // This method is called when watch view controller is no longer visible
     }
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
