@@ -1,19 +1,11 @@
-//
-//  ExtensionDelegate.swift
-//  SASAbus Watch Extension
-//
-//  Created by Alex Lardschneider on 27/09/2017.
-//  Copyright © 2017 SASA AG. All rights reserved.
-//
-
 import WatchKit
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationDidFinishLaunching() {
-        // Perform any final initialization of your application.
-        
         Log.setup()
+        BusStopRealmHelper.setup()
+        
         PhoneConnection.standard.connect()
     }
 

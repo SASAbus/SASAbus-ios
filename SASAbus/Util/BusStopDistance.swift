@@ -33,3 +33,14 @@ class BusStopDistance {
         self.distance = distance
     }
 }
+
+extension BusStopDistance: Hashable {
+    
+    var hashValue: Int {
+        return busStop.family
+    }
+    
+    public static func ==(lhs: BusStopDistance, rhs: BusStopDistance) -> Bool {
+        return lhs.busStop.family == rhs.busStop.family
+    }
+}

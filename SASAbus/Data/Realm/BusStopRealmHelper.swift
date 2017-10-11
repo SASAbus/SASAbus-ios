@@ -112,7 +112,7 @@ class BusStopRealmHelper {
     }
 
 
-    static func nearestBusStops(location: CLLocation) -> [BusStopDistance] {
+    static func nearestBusStops(location: CLLocation, count: Int = Int.max) -> [BusStopDistance] {
         let realm = Realm.busStops()
     
         let busStations = realm.objects(BusStop.self)
@@ -122,8 +122,8 @@ class BusStopRealmHelper {
             var busStationDistance: BusStopDistance?
             var distance: CLLocationDistance = 0.0
             
-            let location = CLLocation(latitude: Double(busStop.lat), longitude: Double(busStop.lng))
-            distance = location.distance(from: location)
+            let stopLocation = CLLocation(latitude: Double(busStop.lat), longitude: Double(busStop.lng))
+            distance = stopLocation.distance(from: location)
             
             if busStationDistance == nil || distance < busStationDistance!.distance {
                 busStationDistance = BusStopDistance(busStop: BBusStop(fromRealm: busStop), distance: distance)
@@ -134,6 +134,13 @@ class BusStopRealmHelper {
             }
         }
         
-        return nearbyBusStations.sorted(by: { $0.distance < $1.distance })
+        nearbyBusStations = Array(Set(nearbyBusStations))
+        nearbyBusStations = nearbyBusStations.sorted(by: { $0.distance < $1.distance })
+        
+        if count != Int.max {
+             nearbyBusStations = Array(nearbyBusStations[0..<count])
+        }
+        
+        return nearbyBusStations
     }
 }

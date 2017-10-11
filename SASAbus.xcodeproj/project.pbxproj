@@ -384,6 +384,10 @@
 		FA918DD71F7BBA6200602F1D /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F07BE471E3219176024 /* BusStop.swift */; };
 		FAA92CE91F5824460054A16F /* UIScreen+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA92CE81F5824460054A16F /* UIScreen+Size.swift */; };
 		FAA92CEB1F5847440054A16F /* LineDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA92CEA1F5836E10054A16F /* LineDetailsViewController.xib */; };
+		FAAE1F691F8E12BA00824E86 /* ApiTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE1F681F8E12BA00824E86 /* ApiTime.swift */; };
+		FAAE1F6A1F8E12C600824E86 /* ApiTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE1F681F8E12BA00824E86 /* ApiTime.swift */; };
+		FAAE1F6B1F8E12C700824E86 /* ApiTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE1F681F8E12BA00824E86 /* ApiTime.swift */; };
+		FAAE1F6D1F8E470200824E86 /* SearchRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE1F6C1F8E470200824E86 /* SearchRowController.swift */; };
 		FAB20B1F1F7BA0CF003EAE5E /* MainInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB20B1E1F7BA0CF003EAE5E /* MainInterfaceController.swift */; };
 		FAB31DFA1EEFE584004B0BAC /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB31DF91EEFE584004B0BAC /* AboutViewController.xib */; };
 		FAB562681F7B8F9600FC862A /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB562661F7B8F9600FC862A /* Interface.storyboard */; };
@@ -411,22 +415,10 @@
 		FAD8B7DC1F82B1C300148BE0 /* BusLineFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8B7D71F82B11000148BE0 /* BusLineFilter.swift */; };
 		FAD8B7DD1F82B1C300148BE0 /* BusLineFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8B7D71F82B11000148BE0 /* BusLineFilter.swift */; };
 		FAD8B7DF1F82B7C400148BE0 /* NearbyRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8B7DE1F82B7C400148BE0 /* NearbyRowController.swift */; };
-		FADDF7D11F7BD40B00C4CD03 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E353E9276C3481F8A8521 /* Api.swift */; };
-		FADDF7D21F7BD40B00C4CD03 /* DepartureMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3DD3E5501921A7F969FC /* DepartureMonitor.swift */; };
-		FADDF7D31F7BD40B00C4CD03 /* PlannedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E307CB905D6FE92FA2B18 /* PlannedData.swift */; };
 		FADDF7D41F7BD41000C4CD03 /* VdvBusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A14AD6DDC2F0C9981E7 /* VdvBusStop.swift */; };
 		FADDF7D51F7BD41000C4CD03 /* VdvDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D02E5C6FE40A6949C04 /* VdvDate.swift */; };
-		FADDF7D61F7BD41000C4CD03 /* VdvDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3B708250EE0EAFAC8D26 /* VdvDeparture.swift */; };
 		FADDF7D71F7BD41000C4CD03 /* VdvInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3436B7494E0E4A83439A /* VdvInterval.swift */; };
 		FADDF7D81F7BD41000C4CD03 /* VdvStopTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E8C6A31222C3AE057F1 /* VdvStopTime.swift */; };
-		FADDF7D91F7BD41000C4CD03 /* VdvTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3199B5336C95BE7CB50D /* VdvTrip.swift */; };
-		FADDF7DA1F7BD41300C4CD03 /* VdvBusStopBreaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E367A67BEAB22F92F844E /* VdvBusStopBreaks.swift */; };
-		FADDF7DB1F7BD41300C4CD03 /* VdvCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33DEFF4B44B7E8A5A728 /* VdvCalendar.swift */; };
-		FADDF7DC1F7BD41300C4CD03 /* VdvTravelTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E390B1E1FDF7373DDED7D /* VdvTravelTimes.swift */; };
-		FADDF7DD1F7BD41300C4CD03 /* VdvPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E32EB078352EC12347051 /* VdvPaths.swift */; };
-		FADDF7DE1F7BD41300C4CD03 /* VdvTripStopTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3828E0FBCB7424BC59AC /* VdvTripStopTimes.swift */; };
-		FADDF7DF1F7BD41300C4CD03 /* VdvTrips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3C9432AC97ECD5A6231F /* VdvTrips.swift */; };
-		FADDF7E01F7BD41300C4CD03 /* VdvHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3EB50C29943A020DEA9B /* VdvHandler.swift */; };
 		FADDF7E11F7BD41E00C4CD03 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A83C1591F0C0AD18663 /* Realm.swift */; };
 		FADDF7E21F7BD63D00C4CD03 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E310C7C183E99E5CEA633 /* Log.swift */; };
 		FADDF7E31F7BD64F00C4CD03 /* Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3CE1C685415B3BEAF608 /* Lines.swift */; };
@@ -438,7 +430,6 @@
 		FADDF7EB1F7BD9E800C4CD03 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33883E7628B304304238 /* DateExtension.swift */; };
 		FADDF7ED1F7BDA0600C4CD03 /* ZipUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDF7EC1F7BDA0600C4CD03 /* ZipUtils.swift */; };
 		FADDF7EE1F7BDA0600C4CD03 /* ZipUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDF7EC1F7BDA0600C4CD03 /* ZipUtils.swift */; };
-		FADDF7EF1F7BDA2900C4CD03 /* IOUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3517A8CBE2379BA82AD0 /* IOUtils.swift */; };
 		FADDF7F01F7BDAFA00C4CD03 /* Departure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3DBDC35A71E0733E720B /* Departure.swift */; };
 		FADDF7F11F7BDC3F00C4CD03 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8A87E1F5038B4002B2B09 /* Images.swift */; };
 		FADDF7F21F7BDC3F00C4CD03 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8A87F1F5038B4002B2B09 /* Localized.swift */; };
@@ -803,6 +794,8 @@
 		FA8B9D801F7E1E4A0099E4CD /* DeparturesInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesInterfaceController.swift; sourceTree = "<group>"; };
 		FAA92CE81F5824460054A16F /* UIScreen+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Size.swift"; sourceTree = "<group>"; };
 		FAA92CEA1F5836E10054A16F /* LineDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineDetailsViewController.xib; sourceTree = "<group>"; };
+		FAAE1F681F8E12BA00824E86 /* ApiTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiTime.swift; sourceTree = "<group>"; };
+		FAAE1F6C1F8E470200824E86 /* SearchRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRowController.swift; sourceTree = "<group>"; };
 		FAB20B1E1F7BA0CF003EAE5E /* MainInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInterfaceController.swift; sourceTree = "<group>"; };
 		FAB31DF91EEFE584004B0BAC /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		FAB562641F7B8F9500FC862A /* SASAbus Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SASAbus Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -946,6 +939,7 @@
 				1F2E3D90F1C7FFBB9F9EB34E /* Data */,
 				1F2E357BE070D60567CF3B38 /* Model */,
 				1F2E353E9276C3481F8A8521 /* Api.swift */,
+				FAAE1F681F8E12BA00824E86 /* ApiTime.swift */,
 				1F2E3DD3E5501921A7F969FC /* DepartureMonitor.swift */,
 				1F2E307CB905D6FE92FA2B18 /* PlannedData.swift */,
 				FADDF7E81F7BD8D200C4CD03 /* DataDownloader.swift */,
@@ -1856,6 +1850,7 @@
 			isa = PBXGroup;
 			children = (
 				FA8B9D751F7E19C70099E4CD /* SearchInterfaceController.swift */,
+				FAAE1F6C1F8E470200824E86 /* SearchRowController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -2301,27 +2296,21 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SASAbus Watch Extension/Pods-SASAbus Watch Extension-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-watchOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper-watchOS/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm-watchOS/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift-watchOS/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa-watchOS/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SSZipArchive-watchOS/SSZipArchive.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver-watchOS/SwiftyBeaver.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-watchOS/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2335,7 +2324,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SASAbus/Pods-SASAbus-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/DrawerController/DrawerController.framework",
@@ -2352,11 +2341,11 @@
 				"${BUILT_PRODUCTS_DIR}/RealmSwift-iOS/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SSZipArchive-iOS/SSZipArchive.framework",
+				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
 				"${BUILT_PRODUCTS_DIR}/StatefulViewController/StatefulViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftValidator/SwiftValidator.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver-iOS/SwiftyBeaver.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/zipzap/zipzap.framework",
 			);
@@ -2521,6 +2510,7 @@
 				1F2E3255411057D0113E4736 /* IntroPageViewController.swift in Sources */,
 				1F2E37091253134D4F7A28D4 /* IntroDataPageViewController.swift in Sources */,
 				1F2E31925FB40B1C34CF0413 /* BusBeacon.swift in Sources */,
+				FAAE1F691F8E12BA00824E86 /* ApiTime.swift in Sources */,
 				1F2E384B2D38B4E715ED7A34 /* BusBeaconHandler.swift in Sources */,
 				1F2E3939E0C2D483A1831C3B /* CurrentTrip.swift in Sources */,
 				1F2E302975E8A5911B6FEB04 /* BusStopBeaconHandler.swift in Sources */,
@@ -2747,6 +2737,7 @@
 				1F2E388072D7606EF22DACD3 /* Theme.swift in Sources */,
 				1F2E38AA12E1E379C0EF5EBF /* Config.swift in Sources */,
 				1F2E37C3DFB52F5A674576B8 /* Log.swift in Sources */,
+				FAAE1F6B1F8E12C700824E86 /* ApiTime.swift in Sources */,
 				1F2E3A95479CCE8F035EBC14 /* Realm.swift in Sources */,
 				1F2E38DEBAA85ED1BD42C515 /* MainSchedulerExtension.swift in Sources */,
 				1F2E30F4D200E417309408A3 /* DictionaryExtension.swift in Sources */,
@@ -2783,34 +2774,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA8B9D6C1F7D40420099E4CD /* RecentRowController.swift in Sources */,
-				FADDF7D31F7BD40B00C4CD03 /* PlannedData.swift in Sources */,
 				FADDF7E21F7BD63D00C4CD03 /* Log.swift in Sources */,
 				FA8B9D761F7E19C70099E4CD /* SearchInterfaceController.swift in Sources */,
-				FADDF7DD1F7BD41300C4CD03 /* VdvPaths.swift in Sources */,
 				FA8B9D811F7E1E4A0099E4CD /* DeparturesInterfaceController.swift in Sources */,
-				FADDF7EF1F7BDA2900C4CD03 /* IOUtils.swift in Sources */,
 				FADDF7D71F7BD41000C4CD03 /* VdvInterval.swift in Sources */,
 				FA8B9D691F7D0A6F0099E4CD /* PhoneConnection.swift in Sources */,
+				FAAE1F6D1F8E470200824E86 /* SearchRowController.swift in Sources */,
 				FADDF7E11F7BD41E00C4CD03 /* Realm.swift in Sources */,
 				FA8B9D7E1F7E1AE00099E4CD /* BusStopRealmHelper.swift in Sources */,
 				FAD6022D1F7E2B44009EB4EA /* DeparturesRowController.swift in Sources */,
 				FADDF7EB1F7BD9E800C4CD03 /* DateExtension.swift in Sources */,
 				FADDF7E41F7BD71B00C4CD03 /* Utils.swift in Sources */,
 				FA8B9D6A1F7D0AA30099E4CD /* WatchMessage.swift in Sources */,
-				FADDF7D11F7BD40B00C4CD03 /* Api.swift in Sources */,
-				FADDF7E01F7BD41300C4CD03 /* VdvHandler.swift in Sources */,
 				FADDF7F11F7BDC3F00C4CD03 /* Images.swift in Sources */,
 				FA8B9D791F7E19F40099E4CD /* FavoritesInterfaceController.swift in Sources */,
 				FADDF7F01F7BDAFA00C4CD03 /* Departure.swift in Sources */,
-				FADDF7DC1F7BD41300C4CD03 /* VdvTravelTimes.swift in Sources */,
 				FADDF7D41F7BD41000C4CD03 /* VdvBusStop.swift in Sources */,
-				FADDF7DF1F7BD41300C4CD03 /* VdvTrips.swift in Sources */,
 				FA8B9D6D1F7D41090099E4CD /* BBusStop.swift in Sources */,
 				FA8B9D661F7D0A350099E4CD /* RecentInterfaceController.swift in Sources */,
-				FADDF7D21F7BD40B00C4CD03 /* DepartureMonitor.swift in Sources */,
-				FADDF7DB1F7BD41300C4CD03 /* VdvCalendar.swift in Sources */,
 				FAD8B7DF1F82B7C400148BE0 /* NearbyRowController.swift in Sources */,
-				FADDF7DE1F7BD41300C4CD03 /* VdvTripStopTimes.swift in Sources */,
 				FAB20B1F1F7BA0CF003EAE5E /* MainInterfaceController.swift in Sources */,
 				FADDF7D51F7BD41000C4CD03 /* VdvDate.swift in Sources */,
 				FA918DD71F7BBA6200602F1D /* BusStop.swift in Sources */,
@@ -2818,12 +2800,10 @@
 				FAB5627A1F7B8F9600FC862A /* NotificationController.swift in Sources */,
 				FAB562781F7B8F9600FC862A /* ExtensionDelegate.swift in Sources */,
 				FADDF7F21F7BDC3F00C4CD03 /* Localized.swift in Sources */,
-				FADDF7D91F7BD41000C4CD03 /* VdvTrip.swift in Sources */,
+				FAAE1F6A1F8E12C600824E86 /* ApiTime.swift in Sources */,
 				FA8B9D631F7D0A1C0099E4CD /* NearbyInterfaceController.swift in Sources */,
-				FADDF7D61F7BD41000C4CD03 /* VdvDeparture.swift in Sources */,
 				FAD8B7DD1F82B1C300148BE0 /* BusLineFilter.swift in Sources */,
 				FAD8B7D81F82B17500148BE0 /* BusStopDistance.swift in Sources */,
-				FADDF7DA1F7BD41300C4CD03 /* VdvBusStopBreaks.swift in Sources */,
 				FADDF7D81F7BD41000C4CD03 /* VdvStopTime.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

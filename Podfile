@@ -11,12 +11,6 @@ def shared
 
   pod 'ObjectMapper', '~> 2.2'
 
-  pod 'Alamofire', '~> 4.4'
-
-  pod 'SSZipArchive'
-
-  pod 'SwiftyJSON'
-
   pod 'SwiftyBeaver'
 end
 
@@ -57,6 +51,12 @@ def default_pods
 
   pod 'Permission/Notifications'
   pod 'Permission/Location'
+
+  pod 'SSZipArchive'
+
+  pod 'Alamofire', '~> 4.4'
+  
+  pod 'SwiftyJSON'
 end
 
 

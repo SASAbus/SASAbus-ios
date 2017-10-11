@@ -278,17 +278,22 @@ class UserRealmHelper {
         let mapped = results.map { recent -> BBusStop in
             let busStop = BusStopRealmHelper.getBusStopsFromGroup(group: recent.group).first
             return BBusStop(fromRealm: busStop!)
-        }
+        }.reversed()
         
         var message = [String: Any]()
         message["type"] = WatchMessage.nearbyBusStopsResponse.rawValue
-        message["data"] = Mapper().toJSONString(mapped, prettyPrint: false)
+        message["data"] = Mapper().toJSONString(Array(mapped), prettyPrint: false)
         
         replyHandler(message)
     }
     
     static func addRecentDeparture(group: Int) {
         let realm = try! Realm()
+        
+        let objects = realm.objects(RecentDeparture.self).filter("group == \(group)")
+        try! realm.write {
+            realm.delete(objects)
+        }
 
         let recent = RecentDeparture()
         recent.group = group

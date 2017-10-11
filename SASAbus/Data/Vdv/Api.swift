@@ -1,16 +1,9 @@
-//
-// Created by Alex Lardschneider on 03/04/2017.
-// Copyright (c) 2017 SASA AG. All rights reserved.
-//
-
-
 /**
  * This is the main offline API where the app gets data from. This API tells us specific information
  * about departures and trips. It uses the SASA SpA-AG offline stored open data.
-
+ *
  * @author David Dejori
  */
-
 import Foundation
 
 class Api {
@@ -76,22 +69,5 @@ class Api {
         }
 
         return exists
-    }
-}
-
-class ApiTime {
-
-    static func addOffset(millis: Int64) -> Int64 {
-        let offset = NSTimeZone(name: "Europe/Rome")!.secondsFromGMT * 1000
-        return millis + Int64(offset)
-    }
-
-    static func now() -> Int64 {
-        let now = Date().millis()
-        return now + Int64(NSTimeZone(name: "Europe/Rome")!.daylightSavingTimeOffset)
-    }
-
-    static func toTime(seconds: Int) -> String {
-        return String(format: "%02d:%02d", seconds / 3600 % 24, seconds % 3600 / 60)
     }
 }

@@ -1,11 +1,3 @@
-//
-//  NearbyInterfaceController.swift
-//  SASAbus Watch Extension
-//
-//  Created by Alex Lardschneider on 28/09/2017.
-//  Copyright © 2017 SASA AG. All rights reserved.
-//
-
 import WatchKit
 import Foundation
 
@@ -24,8 +16,6 @@ class NearbyInterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        print("Test")
-        
         parseData()
     }
 
@@ -40,10 +30,13 @@ class NearbyInterfaceController: WKInterfaceController {
     
     func parseData() {
         let locationManager = CLLocationManager()
+        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        locationManager.requestAlwaysAuthorization()
+        
         let lastLocation = locationManager.location
         
         guard let location = lastLocation else {
-            Log.error("Cannot map JSON to [BBusStop]")
+            Log.error("Cannot get last location")
             
             noNearbyText.setHidden(false)
             loadingText.setHidden(true)
@@ -51,9 +44,10 @@ class NearbyInterfaceController: WKInterfaceController {
             return
         }
         
+        Log.info("Location: \(location)")
+        
         DispatchQueue.main.async {
-            var busStops = BusStopRealmHelper.nearestBusStops(location: location)
-            busStops = Array(busStops[0..<5])
+            let busStops = BusStopRealmHelper.nearestBusStops(location: location, count: 10)
             
             self.loadingText.setHidden(true)
             
@@ -74,6 +68,11 @@ class NearbyInterfaceController: WKInterfaceController {
                 row.city.setText(item.busStop.munic())
             }
         }
+    }
+    
+    
+    override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
+        pushController(withName: "DeparturesInterfaceController", context: nearbyBusStops[rowIndex].busStop)
     }
 }
 
