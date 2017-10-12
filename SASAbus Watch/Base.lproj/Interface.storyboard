@@ -217,8 +217,46 @@
                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                         </label>
-                        <table alignment="left" id="JWK-UR-Ngo"/>
+                        <label alignment="center" verticalAlignment="center" hidden="YES" text="No favorite bus stops" textAlignment="center" numberOfLines="0" id="rSA-7k-KGo">
+                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                        </label>
+                        <table alignment="left" id="JWK-UR-Ngo">
+                            <items>
+                                <tableRow identifier="FavoritesRowController" id="yxS-3P-adk" customClass="FavoritesRowController" customModule="SASAbus_Watch_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" spacing="5" id="wYb-bD-5tY">
+                                        <items>
+                                            <separator height="42" alignment="left" verticalAlignment="center" id="ZU0-Ar-IBL">
+                                                <color key="color" red="0.85262101889999997" green="0.42218321559999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </separator>
+                                            <group width="0.90000000000000002" widthAdjustment="9" alignment="left" verticalAlignment="center" layout="vertical" spacing="0.0" id="9zN-TQ-3lD">
+                                                <items>
+                                                    <label alignment="left" text="Piazza Walther" id="umw-W4-i6l">
+                                                        <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
+                                                    </label>
+                                                    <label alignment="left" text="Bolzano" id="YEp-8W-3FY">
+                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                                    </label>
+                                                </items>
+                                                <edgeInsets key="margins" left="0.0" right="0.0" top="2" bottom="2"/>
+                                            </group>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="city" destination="YEp-8W-3FY" id="RgP-ab-yY8"/>
+                                        <outlet property="name" destination="umw-W4-i6l" id="oQW-w2-rAb"/>
+                                        <outlet property="separator" destination="ZU0-Ar-IBL" id="I4A-bj-ILf"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
                     </items>
+                    <connections>
+                        <outlet property="loadingText" destination="LVX-jK-6wN" id="Yhc-5r-Ztz"/>
+                        <outlet property="noFavoritesText" destination="rSA-7k-KGo" id="vH1-cK-MDU"/>
+                        <outlet property="tableView" destination="JWK-UR-Ngo" id="d12-vy-DUd"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="321" y="490"/>
@@ -330,6 +368,7 @@
                             <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                         </label>
                     </items>
+                    <menu key="menu" id="RZJ-j6-QwH"/>
                     <connections>
                         <outlet property="loadingText" destination="cme-FB-Co7" id="ELs-Dm-PJA"/>
                         <outlet property="noDeparturesText" destination="nWe-zA-tVO" id="ick-YA-UDN"/>

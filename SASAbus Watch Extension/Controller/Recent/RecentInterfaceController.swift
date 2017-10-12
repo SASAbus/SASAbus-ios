@@ -1,11 +1,3 @@
-//
-//  RecentInterfaceController.swift
-//  SASAbus Watch Extension
-//
-//  Created by Alex Lardschneider on 28/09/2017.
-//  Copyright © 2017 SASA AG. All rights reserved.
-//
-
 import WatchKit
 import Foundation
 
@@ -39,6 +31,7 @@ class RecentInterfaceController: WKInterfaceController, PhoneMessageListener {
         PhoneConnection.standard.removeListener(self)
     }
     
+    
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
         pushController(withName: "DeparturesInterfaceController", context: busStops[rowIndex])
     }
@@ -46,7 +39,7 @@ class RecentInterfaceController: WKInterfaceController, PhoneMessageListener {
 
 extension RecentInterfaceController {
     
-    func didReceiveMessage(type: WatchMessage, data: String) {
+    func didReceiveMessage(type: WatchMessage, data: String, message: [String: Any]) {
         print("didReceiveMessage")
         
         guard type == .nearbyBusStopsResponse else {
@@ -58,16 +51,18 @@ extension RecentInterfaceController {
             return
         }
         
+        self.busStops.removeAll()
+        self.busStops.append(contentsOf: items)
+        
         DispatchQueue.main.async {
             self.loadingText.setHidden(true)
             
             if items.isEmpty {
                 self.noRecentsText.setHidden(false)
                 return
+            } else {
+                self.noRecentsText.setHidden(true)
             }
-            
-            self.busStops.removeAll()
-            self.busStops.append(contentsOf: items)
             
             self.tableView.setNumberOfRows(self.busStops.count, withRowType: "RecentRowController")
             

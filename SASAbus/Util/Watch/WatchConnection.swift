@@ -68,9 +68,22 @@ extension WatchConnection {
         switch messageType{
         case .recentBusStops:
             UserRealmHelper.getRecentDepartures(replyHandler: replyHandler)
+        case .favoriteBusStops:
+            UserRealmHelper.getFavoriteBusStopsForWatch(replyHandler: replyHandler)
         case .calculateDepartures:
             let busStopGroup = message["bus_stop_group"] as! Int
             DepartureMonitor.calculateForWatch(busStopGroup, replyHandler: replyHandler)
+        case .setBusStopFavorite:
+            let busStop = message["bus_stop"] as! Int
+            let isFavorite = message["is_favorite"] as! Bool
+            
+            if isFavorite {
+                UserRealmHelper.addFavoriteBusStop(group: busStop)
+            } else {
+                UserRealmHelper.removeFavoriteBusStop(group: busStop)
+            }
+            
+            replyHandler([:])
         default:
             break
         }

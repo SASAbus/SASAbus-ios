@@ -54,25 +54,6 @@ class UserRealmHelper {
         Log.debug("Added favorite line \(lineId)")
     }
 
-    static func addFavoriteBusStop(busStopGroup: Int) {
-        let realm = try! Realm()
-
-        if hasFavoriteBusStop(busStopGroup: busStopGroup) {
-            // Bus stop group already exists in database, skip it.
-            Log.debug("Favorite bus stop group \(busStopGroup) already exists, skipping.")
-            return
-        }
-
-        let favoriteBusStop = FavoriteBusStop()
-        favoriteBusStop.group = busStopGroup
-
-        try! realm.write {
-            realm.add(favoriteBusStop)
-        }
-
-        Log.debug("Added favorite bus stop group \(busStopGroup)")
-    }
-
     static func removeFavoriteLine(lineId: Int) {
         let realm = try! Realm()
 
@@ -86,30 +67,70 @@ class UserRealmHelper {
         Log.debug("Removed favorite line \(lineId)")
     }
 
-    static func removeFavoriteBusStop(busStopGroup: Int) {
-        let realm = try! Realm()
-
-        let busStop = realm.objects(FavoriteBusStop.self).filter("group = \(busStopGroup)").first
-        if busStop != nil {
-            try! realm.write {
-                realm.delete(busStop!)
-            }
-        }
-
-        Log.debug("Removed favorite bus stop group \(busStopGroup)")
-    }
-
     static func hasFavoriteLine(lineId: Int) -> Bool {
         let realm = try! Realm()
         return realm.objects(FavoriteLine.self).filter("id = \(lineId)").count > 0
     }
 
-    static func hasFavoriteBusStop(busStopGroup: Int) -> Bool {
+    
+    static func hasFavoriteBusStop(group: Int) -> Bool {
         let realm = try! Realm()
-        return realm.objects(FavoriteBusStop.self).filter("group = \(busStopGroup)").count > 0
+        return realm.objects(FavoriteBusStop.self).filter("group = \(group)").count > 0
     }
 
+    static func removeFavoriteBusStop(group: Int) {
+        let realm = try! Realm()
+        
+        let busStop = realm.objects(FavoriteBusStop.self).filter("group = \(group)").first
+        if busStop != nil {
+            try! realm.write {
+                realm.delete(busStop!)
+            }
+        }
+        
+        Log.debug("Removed favorite bus stop group \(group)")
+    }
 
+    static func addFavoriteBusStop(group: Int) {
+        let realm = try! Realm()
+        
+        if hasFavoriteBusStop(group: group) {
+            // Bus stop group already exists in database, skip it.
+            Log.debug("Favorite bus stop group \(group) already exists, skipping.")
+            return
+        }
+        
+        let favoriteBusStop = FavoriteBusStop()
+        favoriteBusStop.group = group
+        
+        try! realm.write {
+            realm.add(favoriteBusStop)
+        }
+        
+        Log.debug("Added favorite bus stop group \(group)")
+    }
+
+    static func getFavoriteBusStopsForWatch(replyHandler: @escaping ([String : Any]) -> Void) -> [Int] {
+        let realm = try! Realm()
+        let results = realm.objects(FavoriteBusStop.self).map {
+            $0.group
+        }
+        
+        let mapped = results.map { recent -> BBusStop in
+            let busStop = BusStopRealmHelper.getBusStopsFromGroup(group: recent).first
+            return BBusStop(fromRealm: busStop!)
+        }.reversed()
+        
+        var message = [String: Any]()
+        message["type"] = WatchMessage.favoriteBusStopsResponse.rawValue
+        message["data"] = Mapper().toJSONString(Array(mapped), prettyPrint: false)
+        
+        replyHandler(message)
+        
+        return Array(results)
+    }
+
+    
     // ======================================= TRIPS ===============================================
 
     static func insertTrip(beacon: BusBeacon) -> CloudTrip? {

@@ -90,7 +90,7 @@ class BusStopFavoritesViewController: UIViewController, UITableViewDelegate, UIT
     }
 
     func saveFavoriteBusStation(_ sender: UIBarButtonItem) {
-        UserRealmHelper.addFavoriteBusStop(busStopGroup: self.busStop.family)
+        UserRealmHelper.addFavoriteBusStop(group: self.busStop.family)
 
         self.loadFavoriteBusStations()
         self.busStationLabel.text = L10n.Departures.Favorites.header
@@ -132,7 +132,7 @@ extension BusStopFavoritesViewController {
         if editingStyle == .delete {
             let busStop = self.favoriteBusStops[indexPath.row]
 
-            UserRealmHelper.removeFavoriteBusStop(busStopGroup: busStop.family)
+            UserRealmHelper.removeFavoriteBusStop(group: busStop.family)
 
             self.favoriteBusStops.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)

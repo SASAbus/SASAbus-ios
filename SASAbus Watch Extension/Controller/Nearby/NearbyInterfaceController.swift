@@ -49,15 +49,17 @@ class NearbyInterfaceController: WKInterfaceController {
         DispatchQueue.main.async {
             let busStops = BusStopRealmHelper.nearestBusStops(location: location, count: 10)
             
+            self.nearbyBusStops.removeAll()
+            self.nearbyBusStops.append(contentsOf: busStops)
+            
             self.loadingText.setHidden(true)
             
             if busStops.isEmpty {
                 self.noNearbyText.setHidden(false)
                 return
+            } else {
+                self.noNearbyText.setHidden(true)
             }
-            
-            self.nearbyBusStops.removeAll()
-            self.nearbyBusStops.append(contentsOf: busStops)
             
             self.tableView.setNumberOfRows(self.nearbyBusStops.count, withRowType: "NearbyRowController")
             

@@ -1,11 +1,3 @@
-//
-//  WatchConnection.swift
-//  SASAbus
-//
-//  Created by Alex Lardschneider on 28/09/2017.
-//  Copyright © 2017 SASA AG. All rights reserved.
-//
-
 import Foundation
 import WatchConnectivity
 
@@ -49,36 +41,53 @@ class PhoneConnection: NSObject, WCSessionDelegate {
         session.sendMessage(message, replyHandler: { reply in
             Log.warning("WatchKit Session Got reply: '\(reply)'")
             
+            guard !self.listeners.isEmpty else {
+                Log.error("WatchKit Session No listeners available")
+                return
+            }
+            
             guard let type = reply["type"] as? String else {
-                Log.error("WatchKit Session message type is not of type 'String'")
+                Log.error("WatchKit Session Message type is not of type 'String'")
                 return
             }
             
             guard let messageType = WatchMessage(rawValue: type) else {
-                Log.error("WatchKit Session unknown message type: '\(type)'")
-                return
-            }
-            
-            guard !self.listeners.isEmpty else {
-                Log.error("WatchKit Session no listeners available")
+                Log.error("WatchKit Session Unknown message type: '\(type)'")
                 return
             }
             
             guard let data = reply["data"] as? String else {
-                Log.error("WatchKit Session message data is not of type 'String'")
+                Log.error("WatchKit Session Message data is not of type 'String'")
                 return
             }
             
             for listener in self.listeners {
-                listener.didReceiveMessage(type: messageType, data: data)
+                listener.didReceiveMessage(type: messageType, data: data, message: reply)
             }
         }, errorHandler: { error in
-            Log.warning("Got error: '\(error)'")
+            Log.error("WatchKit Session Got error: '\(error)'")
+        })
+    }
+
+    func sendMessageWithoutReply(message: [String: Any]) {
+        guard isConnected() else {
+            fatalError("WatchKit Session not connected")
+        }
+        
+        Log.info("Sending message without reply: '\(message)'")
+        
+        session.sendMessage(message, replyHandler: { reply in
+            // NOOP
+        }, errorHandler: { error in
+            Log.error("WatchKit Session Got error: '\(error)'")
         })
     }
 
     
+    
     func addListener(_ listener: PhoneMessageListener) {
+        removeListener(listener)
+        
         listeners.append(listener)
     }
     
@@ -109,5 +118,5 @@ extension PhoneConnection {
 
 protocol PhoneMessageListener: class {
     
-    func didReceiveMessage(type: WatchMessage, data: String)
+    func didReceiveMessage(type: WatchMessage, data: String, message: [String: Any])
 }

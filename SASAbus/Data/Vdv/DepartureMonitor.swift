@@ -145,10 +145,14 @@ class DepartureMonitor {
         return departures
     }
 
-    static func calculateForWatch(_ group: Int, replyHandler: @escaping ([String : Any]) -> Void) {
+    static func calculateForWatch(_ group: Int, replyHandler: @escaping ([String : Any]) -> Void, addToFavorites: Bool = true) {
+        if addToFavorites {
+            UserRealmHelper.addRecentDeparture(group: group)
+        }
+        
         let monitor = DepartureMonitor()
             .atBusStopFamily(family: group)
-            .maxElements(maxElements: 25)
+            .maxElements(maxElements: 20)
             .at(date: Date())
         
         DispatchQueue.global(qos: .background).async {
@@ -161,6 +165,7 @@ class DepartureMonitor {
             var message = [String: Any]()
             message["type"] = WatchMessage.calculateDeparturesResponse.rawValue
             message["data"] = Mapper().toJSONString(mapped, prettyPrint: false)
+            message["is_favorite"] = UserRealmHelper.hasFavoriteBusStop(group: group)
             
             replyHandler(message)
         }
