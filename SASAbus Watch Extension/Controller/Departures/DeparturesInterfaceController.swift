@@ -92,20 +92,19 @@ extension DeparturesInterfaceController {
 
         isInFavorites = isFavorite
         
+        self.departures.removeAll()
+        self.departures.append(contentsOf: items)
+        
         DispatchQueue.main.async {
             self.setFavoriteMenuItem()
             
             self.loadingText.setHidden(true)
             
             if items.isEmpty {
-                Log.warning("No departures provided")
                 self.noDeparturesText.setHidden(false)
-                
-                return
+            } else {
+                self.noDeparturesText.setHidden(true)
             }
-            
-            self.departures.removeAll()
-            self.departures.append(contentsOf: items)
             
             self.tableView.setNumberOfRows(self.departures.count, withRowType: "DeparturesRowController")
             

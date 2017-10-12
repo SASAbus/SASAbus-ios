@@ -108,7 +108,7 @@ class LineViewController: MasterViewController, StatefulViewController, UITableV
 
             self.tableView.reloadData()
 
-            endLoading(animated: false, error: NetUtils.networkError())
+            endLoading(animated: false, error: Errors.network())
             tableView.refreshControl?.endRefreshing()
 
             return

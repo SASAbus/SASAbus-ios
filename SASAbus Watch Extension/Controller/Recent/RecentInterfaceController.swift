@@ -42,7 +42,7 @@ extension RecentInterfaceController {
     func didReceiveMessage(type: WatchMessage, data: String, message: [String: Any]) {
         print("didReceiveMessage")
         
-        guard type == .nearbyBusStopsResponse else {
+        guard type == .recentBusStopsResponse else {
             return
         }
         
@@ -59,7 +59,6 @@ extension RecentInterfaceController {
             
             if items.isEmpty {
                 self.noRecentsText.setHidden(false)
-                return
             } else {
                 self.noRecentsText.setHidden(true)
             }

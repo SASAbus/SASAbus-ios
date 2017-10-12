@@ -59,7 +59,6 @@ extension FavoritesInterfaceController {
             
             if items.isEmpty {
                 self.noFavoritesText.setHidden(false)
-                return
             } else {
                 self.noFavoritesText.setHidden(true)
             }

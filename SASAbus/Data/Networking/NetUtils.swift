@@ -34,8 +34,4 @@ class NetUtils {
 
         return result
     }
-
-    static func networkError() -> NSError {
-        return NSError(domain: "it.sasabz.ios.SASAbus", code: 1001, userInfo: [:])
-    }
 }

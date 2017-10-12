@@ -124,7 +124,7 @@ class ParkingViewController: MasterViewController, StatefulViewController, UITab
             items.removeAll()
             tableView.reloadData()
 
-            endLoading(animated: false, error: NetUtils.networkError())
+            endLoading(animated: false, error: Errors.network())
 
             Log.info("Device offline")
 

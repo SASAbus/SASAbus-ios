@@ -1,16 +1,9 @@
-//
-//  WatchMessage.swift
-//  SASAbus
-//
-//  Created by Alex Lardschneider on 28/09/2017.
-//  Copyright © 2017 SASA AG. All rights reserved.
-//
-
 import Foundation
 
 enum WatchMessage: String {
     
     case recentBusStops = "MESSAGE_RECENT_BUS_STOPS"
+    case recentBusStopsResponse = "MESSAGE_RECENT_BUS_STOPS_RESPONSE"
     
     case favoriteBusStops = "MESSAGE_FAVORITE_BUS_STOPS"
     case favoriteBusStopsResponse = "MESSAGE_FAVORITE_BUS_STOPS_RESPONSE"

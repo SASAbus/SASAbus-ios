@@ -366,7 +366,9 @@
 		FA63E0741F555C5700B04649 /* FcmSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA63E0731F555C5600B04649 /* FcmSettings.swift */; };
 		FA6EEBBE1F8F7FE800EF344A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E34673F66A58761B74D1C /* Assets.xcassets */; };
 		FA6EEBC01F8FA87C00EF344A /* FavoritesRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6EEBBF1F8FA87C00EF344A /* FavoritesRowController.swift */; };
+		FA6EEBC21F8FACFB00EF344A /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6EEBC11F8FACFB00EF344A /* Errors.swift */; };
 		FA726B5D1F2880DE0053EA12 /* MainRouteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA726B5C1F2880DE0053EA12 /* MainRouteViewController.xib */; };
+		FA798B571F8FAEEB00AEDEF7 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6EEBC11F8FACFB00EF344A /* Errors.swift */; };
 		FA8B9D5D1F7CFC1F0099E4CD /* WatchConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D5C1F7CFC1F0099E4CD /* WatchConnection.swift */; };
 		FA8B9D5F1F7D00E00099E4CD /* WatchMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D5E1F7D00E00099E4CD /* WatchMessage.swift */; };
 		FA8B9D601F7D04030099E4CD /* WatchMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D5E1F7D00E00099E4CD /* WatchMessage.swift */; };
@@ -783,6 +785,7 @@
 		FA63E0701F55512400B04649 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA63E0731F555C5600B04649 /* FcmSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FcmSettings.swift; sourceTree = "<group>"; };
 		FA6EEBBF1F8FA87C00EF344A /* FavoritesRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRowController.swift; sourceTree = "<group>"; };
+		FA6EEBC11F8FACFB00EF344A /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		FA726B5C1F2880DE0053EA12 /* MainRouteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainRouteViewController.xib; sourceTree = "<group>"; };
 		FA88EB161F53F14D0052C734 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		FA8B9D5C1F7CFC1F0099E4CD /* WatchConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnection.swift; sourceTree = "<group>"; };
@@ -1666,6 +1669,7 @@
 				1F2E328173928A704889C86A /* Color.swift */,
 				1F2E3B37E9858A7587B9B751 /* Config.swift */,
 				1F2E3D74BC0AC7B329114C47 /* DeviceUtils.swift */,
+				FA6EEBC11F8FACFB00EF344A /* Errors.swift */,
 				1F2E337140EC732B1CEE245F /* HashUtils.swift */,
 				1F2E3517A8CBE2379BA82AD0 /* IOUtils.swift */,
 				1F2E36061EA5E42086CFEC94 /* NotificationSettings.swift */,
@@ -2626,6 +2630,7 @@
 				FA8B9D5F1F7D00E00099E4CD /* WatchMessage.swift in Sources */,
 				1F2E3B9FA9B7FFE666150645 /* CreditsViewController.swift in Sources */,
 				1F2E3CAF0303716E56C4293D /* MasterTableView.swift in Sources */,
+				FA6EEBC21F8FACFB00EF344A /* Errors.swift in Sources */,
 				1F2E300127121E6AAB7DB93C /* BackgroundView.swift in Sources */,
 				1F2E33B07936045C0BF139CC /* EcoPointsSettingsViewController.swift in Sources */,
 				1F2E3897C78436A31FE282A7 /* EcoPointsProfileSettingsCell.swift in Sources */,
@@ -2694,6 +2699,7 @@
 				1F2E38AEA615FA0794807F07 /* BusStopBeacon.swift in Sources */,
 				1F2E36C354B26FFF01D8305F /* TripNotification.swift in Sources */,
 				1F2E3FABEAA627436ABBC834 /* AbsBeacon.swift in Sources */,
+				FA798B571F8FAEEB00AEDEF7 /* Errors.swift in Sources */,
 				1F2E38DDA73FCBED0ECC5515 /* BeaconStorage.swift in Sources */,
 				1F2E3C7927BC7B015F83A359 /* EcoPointsApi.swift in Sources */,
 				FA3A57CF1F56A07E00016771 /* Settings.swift in Sources */,

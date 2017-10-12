@@ -96,6 +96,7 @@ extension RestClient {
 
                             if json[index].exists() {
                                 let items = json[index].arrayValue
+                                
                                 if !items.isEmpty {
                                     let casted = items[0].to(type: T.self) as? T
                                     observer.on(.next(casted))
@@ -104,7 +105,7 @@ extension RestClient {
                                     observer.on(.next(casted))
                                 }
                             } else {
-                                observer.on(.next(nil))
+                                observer.onError(Errors.json())
                             }
 
                             observer.onCompleted()

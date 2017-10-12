@@ -46,17 +46,16 @@ class NearbyInterfaceController: WKInterfaceController {
         
         Log.info("Location: \(location)")
         
+        let busStops = BusStopRealmHelper.nearestBusStops(location: location, count: 10)
+        
+        self.nearbyBusStops.removeAll()
+        self.nearbyBusStops.append(contentsOf: busStops)
+        
         DispatchQueue.main.async {
-            let busStops = BusStopRealmHelper.nearestBusStops(location: location, count: 10)
-            
-            self.nearbyBusStops.removeAll()
-            self.nearbyBusStops.append(contentsOf: busStops)
-            
             self.loadingText.setHidden(true)
             
             if busStops.isEmpty {
                 self.noNearbyText.setHidden(false)
-                return
             } else {
                 self.noNearbyText.setHidden(true)
             }

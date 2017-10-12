@@ -302,7 +302,7 @@ class UserRealmHelper {
         }.reversed()
         
         var message = [String: Any]()
-        message["type"] = WatchMessage.nearbyBusStopsResponse.rawValue
+        message["type"] = WatchMessage.recentBusStopsResponse.rawValue
         message["data"] = Mapper().toJSONString(Array(mapped), prettyPrint: false)
         
         replyHandler(message)
