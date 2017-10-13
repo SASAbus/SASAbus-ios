@@ -8,10 +8,21 @@ import Foundation
 
 class Api {
 
-    static func getTrip(tripId: Int, verifyUiThread: Bool = true) -> VdvTrip {
+    static func getTrip(tripId: Int, verifyUiThread: Bool = true, date: Date = Date()) -> VdvTrip {
         VdvHandler.blockTillLoaded(verifyUiThread: verifyUiThread)
+        
+        let isToday = Calendar.current.isDateInToday(date)
+        
+        if !isToday {
+            do {
+                try VdvTrips.loadTrips(day: VdvCalendar.date(date))
+            } catch {
+                Log.error("Unable to load departures: \(error)")
+                return VdvTrip.empty
+            }
+        }
 
-        let trips: [VdvTrip] = VdvTrips.ofSelectedDay()
+        let trips: [VdvTrip] = isToday ? VdvTrips.ofSelectedDay() : VdvTrips.ofOtherDay()
 
         for trip in trips {
             if trip.tripId == tripId {

@@ -3,11 +3,24 @@ import SwiftyJSON
 
 class VdvTrips {
 
-    static var TRIPS_TODAY = [VdvTrip]()
-    static var TRIPS_OTHER_DAY = [VdvTrip]()
+    private static var todayDayId: Int?
+    private static var otherDayId: Int?
+    
+    private static var TRIPS_TODAY = [VdvTrip]()
+    private static var TRIPS_OTHER_DAY = [VdvTrip]()
 
 
     public static func loadTrips(day: Int, isToday: Bool = false) throws {
+        if let todayDayId = todayDayId, todayDayId == day && isToday {
+            Log.warning("Trips for today already loaded, skipping...")
+            return
+        }
+        
+        if let otherDayId = otherDayId, otherDayId == day && !isToday {
+            Log.warning("Trips for day \(day) already loaded, skipping...")
+            return
+        }
+        
         var json = try IOUtils.readFileAsJson(path: VdvHandler.getTripsDataFile(day: day))
 
         Log.warning("Loading trips of day \(day)")
@@ -35,8 +48,10 @@ class VdvTrips {
         }
 
         if isToday {
+            todayDayId = day
             TRIPS_TODAY.append(contentsOf: trips)
         } else {
+            otherDayId = day
             TRIPS_OTHER_DAY.removeAll()
             TRIPS_OTHER_DAY.append(contentsOf: trips)
         }

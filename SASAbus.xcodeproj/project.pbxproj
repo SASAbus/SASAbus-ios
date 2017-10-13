@@ -52,7 +52,6 @@
 		1F2E3247A830AA04B77C46D1 /* VdvInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3436B7494E0E4A83439A /* VdvInterval.swift */; };
 		1F2E3248F95173EB237E276F /* Parking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3B6EEE4D81C89D9DDAB1 /* Parking.swift */; };
 		1F2E3255411057D0113E4736 /* IntroPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F5B76782C45B1746ACE /* IntroPageViewController.swift */; };
-		1F2E3258ED361E412100FBEE /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8A87E1F5038B4002B2B09 /* Images.swift */; };
 		1F2E329914BEDA9EB59B7F8F /* ParkingDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E390D5B23D1597BEF70FB /* ParkingDetailTableViewCell.xib */; };
 		1F2E32B251F30600BC036CE9 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E34DE6B2C24827F6D5818 /* MenuItem.swift */; };
 		1F2E32B55B4144AC63A560E5 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E30F3FE4F7FFA628ECFB4 /* MasterViewController.swift */; };
@@ -144,19 +143,16 @@
 		1F2E372C65E924D736B058F6 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F07BE471E3219176024 /* BusStop.swift */; };
 		1F2E374201DB832C72FC3978 /* VdvDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D02E5C6FE40A6949C04 /* VdvDate.swift */; };
 		1F2E3752C2F34FDB08B9CC2A /* BusStopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E3384BBED2C5A9AECA553 /* BusStopViewController.xib */; };
-		1F2E378C1108B23878B49F64 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8A87F1F5038B4002B2B09 /* Localized.swift */; };
 		1F2E379560C2A8C135C77987 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3243805C455FB20BD983 /* Vehicle.swift */; };
 		1F2E3797C6AD880D6351FCC0 /* HMAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E30F307B3EF9838924ED2 /* HMAC.swift */; };
 		1F2E37A4AE3C01C8729DE9D0 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E32E777C3842E09518E0D /* IntroViewController.swift */; };
 		1F2E37B9C2BBFC5EE9CA74A8 /* VdvDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D02E5C6FE40A6949C04 /* VdvDate.swift */; };
-		1F2E37C291B957007AD9564B /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8A87E1F5038B4002B2B09 /* Images.swift */; };
 		1F2E37C3DFB52F5A674576B8 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E310C7C183E99E5CEA633 /* Log.swift */; };
 		1F2E37CCC36538E44D1E82F9 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E373BB9367E72DDCD415E /* RestClient.swift */; };
 		1F2E37D424154C4C728E00A4 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33883E7628B304304238 /* DateExtension.swift */; };
 		1F2E37DDA6C074572A09FE67 /* VdvHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3EB50C29943A020DEA9B /* VdvHandler.swift */; };
 		1F2E37E5D0545886E345F8C9 /* VdvPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E32EB078352EC12347051 /* VdvPaths.swift */; };
 		1F2E37EFF7255D289C26B355 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E33883E7628B304304238 /* DateExtension.swift */; };
-		1F2E37F080E42D6386DE6C3E /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8A87F1F5038B4002B2B09 /* Localized.swift */; };
 		1F2E380AFADCD691019A2655 /* LinesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3E8E2FA9AE24AC2BD792 /* LinesApi.swift */; };
 		1F2E3811684B1977E5DDB2A7 /* SignatureValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3D0D4569EB32255AC6D5 /* SignatureValidator.swift */; };
 		1F2E38320C2AC9630F2006D0 /* public_key.cer in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E384D7BF772D03B4D1BA4 /* public_key.cer */; };
@@ -333,6 +329,13 @@
 		1F2E3FE5FAB7FBCED051F976 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3B37E9858A7587B9B751 /* Config.swift */; };
 		EE9AB1C31851F4BED3AA825E /* Pods_SASAbus_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF73200D52734B9C1FF9801 /* Pods_SASAbus_Watch_Extension.framework */; };
 		FA091C5F1EDD4CD200BC37A5 /* LineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA091C5E1EDD4CD200BC37A5 /* LineCell.xib */; };
+		FA1440461F8FBF4C0022CB67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E34673F66A58761B74D1C /* Assets.xcassets */; };
+		FA14404A1F8FBF930022CB67 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1440481F8FBF920022CB67 /* Images.swift */; };
+		FA14404B1F8FBF930022CB67 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1440481F8FBF920022CB67 /* Images.swift */; };
+		FA14404C1F8FBF930022CB67 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1440481F8FBF920022CB67 /* Images.swift */; };
+		FA14404D1F8FBF930022CB67 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1440491F8FBF930022CB67 /* Localized.swift */; };
+		FA14404E1F8FBF930022CB67 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1440491F8FBF930022CB67 /* Localized.swift */; };
+		FA14404F1F8FBF930022CB67 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1440491F8FBF930022CB67 /* Localized.swift */; };
 		FA18D5231EF2768D00038B89 /* EcoPointsProfilePictureDefaultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA18D5221EF2768D00038B89 /* EcoPointsProfilePictureDefaultViewController.xib */; };
 		FA18D5251EF2777600038B89 /* EcoPointsProfilePictureDefaultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA18D5241EF2777600038B89 /* EcoPointsProfilePictureDefaultCell.xib */; };
 		FA2690DF1E93B927000B8A84 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2690DE1E93B927000B8A84 /* UserNotifications.framework */; };
@@ -364,11 +367,11 @@
 		FA63E0711F55519C00B04649 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA63E0701F55512400B04649 /* GoogleService-Info.plist */; };
 		FA63E0721F55519C00B04649 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA63E0701F55512400B04649 /* GoogleService-Info.plist */; };
 		FA63E0741F555C5700B04649 /* FcmSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA63E0731F555C5600B04649 /* FcmSettings.swift */; };
-		FA6EEBBE1F8F7FE800EF344A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E34673F66A58761B74D1C /* Assets.xcassets */; };
 		FA6EEBC01F8FA87C00EF344A /* FavoritesRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6EEBBF1F8FA87C00EF344A /* FavoritesRowController.swift */; };
 		FA6EEBC21F8FACFB00EF344A /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6EEBC11F8FACFB00EF344A /* Errors.swift */; };
 		FA726B5D1F2880DE0053EA12 /* MainRouteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA726B5C1F2880DE0053EA12 /* MainRouteViewController.xib */; };
 		FA798B571F8FAEEB00AEDEF7 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6EEBC11F8FACFB00EF344A /* Errors.swift */; };
+		FA798B611F8FBC0000AEDEF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E34673F66A58761B74D1C /* Assets.xcassets */; };
 		FA8B9D5D1F7CFC1F0099E4CD /* WatchConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D5C1F7CFC1F0099E4CD /* WatchConnection.swift */; };
 		FA8B9D5F1F7D00E00099E4CD /* WatchMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D5E1F7D00E00099E4CD /* WatchMessage.swift */; };
 		FA8B9D601F7D04030099E4CD /* WatchMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D5E1F7D00E00099E4CD /* WatchMessage.swift */; };
@@ -435,8 +438,6 @@
 		FADDF7ED1F7BDA0600C4CD03 /* ZipUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDF7EC1F7BDA0600C4CD03 /* ZipUtils.swift */; };
 		FADDF7EE1F7BDA0600C4CD03 /* ZipUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDF7EC1F7BDA0600C4CD03 /* ZipUtils.swift */; };
 		FADDF7F01F7BDAFA00C4CD03 /* Departure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3DBDC35A71E0733E720B /* Departure.swift */; };
-		FADDF7F11F7BDC3F00C4CD03 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8A87E1F5038B4002B2B09 /* Images.swift */; };
-		FADDF7F21F7BDC3F00C4CD03 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8A87F1F5038B4002B2B09 /* Localized.swift */; };
 		FAFF0B921F7E394D006B93A6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA88EB151F53F14D0052C734 /* Localizable.strings */; };
 		FCAA82B8F90CBF76BC7586BE /* Pods_SASAbus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9395AB45EBD218F02D3F0E1E /* Pods_SASAbus.framework */; };
 /* End PBXBuildFile section */
@@ -763,6 +764,8 @@
 		C25C93583E81F7478573ABB3 /* Pods-SASAbus Watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SASAbus Watch Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SASAbus Watch Extension/Pods-SASAbus Watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		EF3A7D26088D9E6F554435F6 /* Pods-TripNotification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripNotification.release.xcconfig"; path = "Pods/Target Support Files/Pods-TripNotification/Pods-TripNotification.release.xcconfig"; sourceTree = "<group>"; };
 		FA091C5E1EDD4CD200BC37A5 /* LineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineCell.xib; sourceTree = "<group>"; };
+		FA1440481F8FBF920022CB67 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		FA1440491F8FBF930022CB67 /* Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
 		FA18D5221EF2768D00038B89 /* EcoPointsProfilePictureDefaultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EcoPointsProfilePictureDefaultViewController.xib; sourceTree = "<group>"; };
 		FA18D5241EF2777600038B89 /* EcoPointsProfilePictureDefaultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EcoPointsProfilePictureDefaultCell.xib; sourceTree = "<group>"; };
 		FA2690DD1E93B927000B8A84 /* TripNotification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TripNotification.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -825,8 +828,6 @@
 		FAC517CD1E8A794100EC26DF /* EcoPointsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EcoPointsViewController.xib; sourceTree = "<group>"; };
 		FAC517D11E8A79CA00EC26DF /* EcoPointsTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EcoPointsTabViewController.xib; sourceTree = "<group>"; };
 		FAD6022C1F7E2B44009EB4EA /* DeparturesRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesRowController.swift; sourceTree = "<group>"; };
-		FAD8A87E1F5038B4002B2B09 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Images.swift; path = SASAbus/Constants/Images.swift; sourceTree = SOURCE_ROOT; };
-		FAD8A87F1F5038B4002B2B09 /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Localized.swift; path = SASAbus/Constants/Localized.swift; sourceTree = SOURCE_ROOT; };
 		FAD8B7D51F82B10900148BE0 /* BusStopDistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BusStopDistance.swift; path = SASAbus/Util/BusStopDistance.swift; sourceTree = SOURCE_ROOT; };
 		FAD8B7D71F82B11000148BE0 /* BusLineFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BusLineFilter.swift; path = SASAbus/Util/BusLineFilter.swift; sourceTree = SOURCE_ROOT; };
 		FAD8B7DE1F82B7C400148BE0 /* NearbyRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyRowController.swift; sourceTree = "<group>"; };
@@ -1128,8 +1129,8 @@
 			isa = PBXGroup;
 			children = (
 				1F2E3CBE208149030DA99BCE /* Beacon */,
-				FAD8A87D1F50389E002B2B09 /* Constants */,
 				1F2E37EB3D15F42FCA92E5CF /* Controller */,
+				FA1440471F8FBF7C0022CB67 /* Constants */,
 				1F2E395EA5304297F86C5AAC /* Data */,
 				1F2E377C0FB253F9F57C8928 /* Fcm */,
 				1F2E33C79307AC007107C209 /* Sync */,
@@ -1804,6 +1805,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FA1440471F8FBF7C0022CB67 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				FA1440481F8FBF920022CB67 /* Images.swift */,
+				FA1440491F8FBF930022CB67 /* Localized.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		FA2690E21E93B927000B8A84 /* TripNotification */ = {
 			isa = PBXGroup;
 			children = (
@@ -1923,16 +1933,6 @@
 				FAB20B201F7BA170003EAE5E /* Controller */,
 			);
 			path = "SASAbus Watch Extension";
-			sourceTree = "<group>";
-		};
-		FAD8A87D1F50389E002B2B09 /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				FAD8A87E1F5038B4002B2B09 /* Images.swift */,
-				FAD8A87F1F5038B4002B2B09 /* Localized.swift */,
-			);
-			name = Constants;
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2192,6 +2192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAB5626A1F7B8F9600FC862A /* Assets.xcassets in Resources */,
+				FA1440461F8FBF4C0022CB67 /* Assets.xcassets in Resources */,
 				FAB562681F7B8F9600FC862A /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2202,7 +2203,7 @@
 			files = (
 				FA918DD11F7BBA5B00602F1D /* busstops.realm in Resources */,
 				FAFF0B921F7E394D006B93A6 /* Localizable.strings in Resources */,
-				FA6EEBBE1F8F7FE800EF344A /* Assets.xcassets in Resources */,
+				FA798B611F8FBC0000AEDEF7 /* Assets.xcassets in Resources */,
 				FAB5627C1F7B8F9600FC862A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2504,6 +2505,7 @@
 				1F2E316EE17E3D210B2E381A /* EmptyView.swift in Sources */,
 				1F2E38E640A9F4F61263F8B9 /* ErrorView.swift in Sources */,
 				1F2E3EECEB28E49F697F7B8C /* LoadingView.swift in Sources */,
+				FA14404D1F8FBF930022CB67 /* Localized.swift in Sources */,
 				1F2E3EB13128056A35082BF6 /* IOUtils.swift in Sources */,
 				1F2E343E5ECB8354134CF25A /* HashUtils.swift in Sources */,
 				1F2E3ADE8F967C4B8149718D /* NotificationSettings.swift in Sources */,
@@ -2653,6 +2655,7 @@
 				1F2E3D254AD95ABD3179D9DB /* DisabledDeparture.swift in Sources */,
 				1F2E3988C209FC01D0DBB072 /* StringExtension.swift in Sources */,
 				1F2E3A29E23C36EBFEFFA47E /* SSZipArchive+Swift.swift in Sources */,
+				FA14404A1F8FBF930022CB67 /* Images.swift in Sources */,
 				1F2E3039489EA64FC1625C56 /* AnswersHelper.swift in Sources */,
 				1F2E3D51A524DE3D50EA557C /* EmptyStateBaseView.swift in Sources */,
 				1F2E31A020311E881D420C03 /* UIViewController+Child.swift in Sources */,
@@ -2663,8 +2666,6 @@
 				1F2E3937C368F3255A2A7914 /* EmptyStateView.swift in Sources */,
 				1F2E3F23C91F4784BAD11D12 /* ChangelogViewController.swift in Sources */,
 				1F2E37DDA6C074572A09FE67 /* VdvHandler.swift in Sources */,
-				1F2E37C291B957007AD9564B /* Images.swift in Sources */,
-				1F2E378C1108B23878B49F64 /* Localized.swift in Sources */,
 				1F2E31611F137EF896AA0D13 /* UIImage+Insets.swift in Sources */,
 				1F2E3352331131BB1EB87D96 /* FcmUtils.swift in Sources */,
 			);
@@ -2678,6 +2679,7 @@
 				FA54DE501E9560930071E42C /* TripSyncHelper.swift in Sources */,
 				FA2690F51E93CA8F000B8A84 /* UIUtils.swift in Sources */,
 				FA8B9D601F7D04030099E4CD /* WatchMessage.swift in Sources */,
+				FA14404E1F8FBF930022CB67 /* Localized.swift in Sources */,
 				FA26911C1E93FA6C000B8A84 /* Utils.swift in Sources */,
 				FA54DE551E9651740071E42C /* InAppBadge.swift in Sources */,
 				FA2691221E93FAFE000B8A84 /* BeaconHandler.swift in Sources */,
@@ -2709,6 +2711,7 @@
 				1F2E317A076EBB10C637D438 /* Badge.swift in Sources */,
 				1F2E30F6857B771F7439A7A8 /* LeaderboardPlayer.swift in Sources */,
 				1F2E3E3B468DB12620FEFE2D /* Profile.swift in Sources */,
+				FA14404B1F8FBF930022CB67 /* Images.swift in Sources */,
 				1F2E3192008F55433126577B /* CloudTrip.swift in Sources */,
 				1F2E320D7D2F38F653B59C20 /* RealtimeBus.swift in Sources */,
 				1F2E39DE84253CAEB1CFDEC7 /* Endpoint.swift in Sources */,
@@ -2770,8 +2773,6 @@
 				1F2E348ABFD065352BF5FD22 /* AnswersHelper.swift in Sources */,
 				1F2E33958262F0A1914E4ECC /* UIViewController+Child.swift in Sources */,
 				1F2E3893E3D776188F85B22D /* VdvHandler.swift in Sources */,
-				1F2E3258ED361E412100FBEE /* Images.swift in Sources */,
-				1F2E37F080E42D6386DE6C3E /* Localized.swift in Sources */,
 				1F2E3B66473DAD92BD1D63A3 /* UIImage+Insets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2784,6 +2785,7 @@
 				FADDF7E21F7BD63D00C4CD03 /* Log.swift in Sources */,
 				FA8B9D761F7E19C70099E4CD /* SearchInterfaceController.swift in Sources */,
 				FA8B9D811F7E1E4A0099E4CD /* DeparturesInterfaceController.swift in Sources */,
+				FA14404F1F8FBF930022CB67 /* Localized.swift in Sources */,
 				FADDF7D71F7BD41000C4CD03 /* VdvInterval.swift in Sources */,
 				FA8B9D691F7D0A6F0099E4CD /* PhoneConnection.swift in Sources */,
 				FAAE1F6D1F8E470200824E86 /* SearchRowController.swift in Sources */,
@@ -2794,7 +2796,6 @@
 				FADDF7E41F7BD71B00C4CD03 /* Utils.swift in Sources */,
 				FA8B9D6A1F7D0AA30099E4CD /* WatchMessage.swift in Sources */,
 				FA6EEBC01F8FA87C00EF344A /* FavoritesRowController.swift in Sources */,
-				FADDF7F11F7BDC3F00C4CD03 /* Images.swift in Sources */,
 				FA8B9D791F7E19F40099E4CD /* FavoritesInterfaceController.swift in Sources */,
 				FADDF7F01F7BDAFA00C4CD03 /* Departure.swift in Sources */,
 				FADDF7D41F7BD41000C4CD03 /* VdvBusStop.swift in Sources */,
@@ -2807,10 +2808,10 @@
 				FADDF7E31F7BD64F00C4CD03 /* Lines.swift in Sources */,
 				FAB5627A1F7B8F9600FC862A /* NotificationController.swift in Sources */,
 				FAB562781F7B8F9600FC862A /* ExtensionDelegate.swift in Sources */,
-				FADDF7F21F7BDC3F00C4CD03 /* Localized.swift in Sources */,
 				FAAE1F6A1F8E12C600824E86 /* ApiTime.swift in Sources */,
 				FA8B9D631F7D0A1C0099E4CD /* NearbyInterfaceController.swift in Sources */,
 				FAD8B7DD1F82B1C300148BE0 /* BusLineFilter.swift in Sources */,
+				FA14404C1F8FBF930022CB67 /* Images.swift in Sources */,
 				FAD8B7D81F82B17500148BE0 /* BusStopDistance.swift in Sources */,
 				FADDF7D81F7BD41000C4CD03 /* VdvStopTime.swift in Sources */,
 			);

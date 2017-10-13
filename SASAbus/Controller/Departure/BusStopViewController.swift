@@ -430,7 +430,8 @@ extension BusStopViewController: UITableViewDataSource, UITableViewDelegate {
                     lineId: item.lineId,
                     vehicle: item.vehicle,
                     currentBusStop: item.currentBusStop,
-                    busStopGroup: item.busStopGroup
+                    busStopGroup: item.busStopGroup,
+                    date: searchDate
             )
 
             self.navigationController!.pushViewController(busStopTripViewController, animated: true)

@@ -45,7 +45,6 @@ struct ColorAsset {
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 enum Asset {
-  static let logoSASA2014NurRund = ImageAsset(name: "logo_SASA_2014_nur_rund")
   static let wappenBz = ImageAsset(name: "wappen_bz")
   static let locationIconFilled = ImageAsset(name: "location_icon_filled")
   static let favoritIcon = ImageAsset(name: "favorit_icon")
@@ -63,8 +62,6 @@ enum Asset {
   static let icDoneWhite48pt = ImageAsset(name: "ic_done_white_48pt")
   static let busstopStart = ImageAsset(name: "busstop_start")
   static let icFontDownloadWhite = ImageAsset(name: "ic_font_download_white")
-  static let icBusOrange = ImageAsset(name: "ic_bus_orange")
-  static let icBusStopRed = ImageAsset(name: "ic_bus_stop_red")
   static let alleIcon = ImageAsset(name: "alle_icon")
   static let favoritIconFilled = ImageAsset(name: "favorit_icon_filled")
   static let icApp = ImageAsset(name: "ic_app")
@@ -79,15 +76,12 @@ enum Asset {
   static let icAccountCircleWhite = ImageAsset(name: "ic_account_circle_white")
   static let icAddWhite = ImageAsset(name: "ic_add_white")
   static let icStarWhite = ImageAsset(name: "ic_star_white")
-  static let icParkingGreen = ImageAsset(name: "ic_parking_green")
   static let icLanguageWhite = ImageAsset(name: "ic_language_white")
   static let pathEtc = ImageAsset(name: "path_etc")
   static let emptyStateStar = ImageAsset(name: "empty_state_star")
   static let icBubbleChartWhite48pt = ImageAsset(name: "ic_bubble_chart_white_48pt")
   static let icSettingsWhite = ImageAsset(name: "ic_settings_white")
   static let lineCourseDots5 = ImageAsset(name: "line_course_dots_5")
-  static let icTripsDeepPurple = ImageAsset(name: "ic_trips_deep_purple")
-  static let icRoutePurple = ImageAsset(name: "ic_route_purple")
   static let icScheduleWhite = ImageAsset(name: "ic_schedule_white")
   static let icTimelineWhite = ImageAsset(name: "ic_timeline_white")
   static let filterIcon = ImageAsset(name: "filter_icon")
@@ -96,17 +90,14 @@ enum Asset {
   static let introRealtime = ImageAsset(name: "intro_realtime")
   static let icNavigationMap = ImageAsset(name: "ic_navigation_map")
   static let icStarWhite48pt = ImageAsset(name: "ic_star_white_48pt")
-  static let filterIconFilled = ImageAsset(name: "filter_icon_filled")
   static let icLocationOnWhite = ImageAsset(name: "ic_location_on_white")
   static let pathBus = ImageAsset(name: "path_bus")
   static let busstopEnd = ImageAsset(name: "busstop_end")
-  static let icNewsBlue = ImageAsset(name: "ic_news_blue")
   static let icEventWhite = ImageAsset(name: "ic_event_white")
   static let mapIcon = ImageAsset(name: "map_icon")
   static let pathEnd = ImageAsset(name: "path_end")
   static let wappenMe = ImageAsset(name: "wappen_me")
   static let icCallMadeWhite = ImageAsset(name: "ic_call_made_white")
-  static let sasaLogo = ImageAsset(name: "SASA-Logo")
   static let introBluetooth = ImageAsset(name: "intro_bluetooth")
   static let introPermission = ImageAsset(name: "intro_permission")
   static let icStoreWhite = ImageAsset(name: "ic_store_white")
@@ -121,7 +112,6 @@ enum Asset {
   static let icFlagWhite = ImageAsset(name: "ic_flag_white")
   static let icAttachMoneyWhite = ImageAsset(name: "ic_attach_money_white")
   static let icQueryBuilderWhite = ImageAsset(name: "ic_query_builder_white")
-  static let icMapYellow = ImageAsset(name: "ic_map_yellow")
   static let icExploreWhite = ImageAsset(name: "ic_explore_white")
   static let icChevronRightWhite = ImageAsset(name: "ic_chevron_right_white")
   static let icBubbleChartWhite = ImageAsset(name: "ic_bubble_chart_white")
@@ -143,7 +133,6 @@ enum Asset {
   static let icListWhite36pt = ImageAsset(name: "ic_list_white_36pt")
   static let introAgreement = ImageAsset(name: "intro_agreement")
   static let icRadioButtonCheckedWhite = ImageAsset(name: "ic_radio_button_checked_white")
-  static let icTimetablesTurquoise = ImageAsset(name: "ic_timetables_turquoise")
   static let moreIcon = ImageAsset(name: "more_icon")
   static let moreIconFilled = ImageAsset(name: "more_icon_filled")
   static let icEventNoteWhite48pt = ImageAsset(name: "ic_event_note_white_48pt")
@@ -153,7 +142,6 @@ enum Asset {
   static let allColors: [ColorAsset] = [
   ]
   static let allImages: [ImageAsset] = [
-    logoSASA2014NurRund,
     wappenBz,
     locationIconFilled,
     favoritIcon,
@@ -171,8 +159,6 @@ enum Asset {
     icDoneWhite48pt,
     busstopStart,
     icFontDownloadWhite,
-    icBusOrange,
-    icBusStopRed,
     alleIcon,
     favoritIconFilled,
     icApp,
@@ -187,15 +173,12 @@ enum Asset {
     icAccountCircleWhite,
     icAddWhite,
     icStarWhite,
-    icParkingGreen,
     icLanguageWhite,
     pathEtc,
     emptyStateStar,
     icBubbleChartWhite48pt,
     icSettingsWhite,
     lineCourseDots5,
-    icTripsDeepPurple,
-    icRoutePurple,
     icScheduleWhite,
     icTimelineWhite,
     filterIcon,
@@ -204,17 +187,14 @@ enum Asset {
     introRealtime,
     icNavigationMap,
     icStarWhite48pt,
-    filterIconFilled,
     icLocationOnWhite,
     pathBus,
     busstopEnd,
-    icNewsBlue,
     icEventWhite,
     mapIcon,
     pathEnd,
     wappenMe,
     icCallMadeWhite,
-    sasaLogo,
     introBluetooth,
     introPermission,
     icStoreWhite,
@@ -229,7 +209,6 @@ enum Asset {
     icFlagWhite,
     icAttachMoneyWhite,
     icQueryBuilderWhite,
-    icMapYellow,
     icExploreWhite,
     icChevronRightWhite,
     icBubbleChartWhite,
@@ -251,7 +230,6 @@ enum Asset {
     icListWhite36pt,
     introAgreement,
     icRadioButtonCheckedWhite,
-    icTimetablesTurquoise,
     moreIcon,
     moreIconFilled,
     icEventNoteWhite48pt,

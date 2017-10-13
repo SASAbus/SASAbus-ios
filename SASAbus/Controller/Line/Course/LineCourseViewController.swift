@@ -21,6 +21,8 @@ class LineCourseViewController: UIViewController {
 
     var currentBusStop: Int = 0
     var busStopGroup: Int = 0
+    
+    var date: Date!
 
     var tempBusStop: Int = 0
 
@@ -28,12 +30,14 @@ class LineCourseViewController: UIViewController {
     var mapController: LineCourseMapViewController!
 
 
-    init(tripId: Int, lineId: Int, vehicle: Int, currentBusStop: Int, busStopGroup: Int) {
+    init(tripId: Int, lineId: Int, vehicle: Int, currentBusStop: Int, busStopGroup: Int, date: Date = Date()) {
         self.tripId = tripId
         self.lineId = lineId
         self.vehicle = vehicle
         self.currentBusStop = currentBusStop
         self.busStopGroup = busStopGroup
+        
+        self.date = date
 
         super.init(nibName: "LineCourseViewController", bundle: nil)
 
@@ -135,7 +139,8 @@ class LineCourseViewController: UIViewController {
                         return self.getObservable(
                             busStopGroup: self.busStopGroup,
                             currentBusStop: self.currentBusStop,
-                            tripId: self.tripId
+                            tripId: self.tripId,
+                            date: self.date
                         )
                     }
                     
@@ -144,11 +149,12 @@ class LineCourseViewController: UIViewController {
                     return self.getObservable(
                         busStopGroup: self.busStopGroup,
                         currentBusStop: bus.busStop,
-                        tripId: self.tripId
+                        tripId: self.tripId,
+                        date: self.date
                     )
             }
         } else {
-            observer = getObservable(busStopGroup: busStopGroup, currentBusStop: currentBusStop, tripId: tripId)
+            observer = getObservable(busStopGroup: busStopGroup, currentBusStop: currentBusStop, tripId: tripId, date: date)
         }
         
         _ = observer.subscribe(onNext: { items in
@@ -160,14 +166,14 @@ class LineCourseViewController: UIViewController {
             })
     }
     
-    private func getObservable(busStopGroup: Int, currentBusStop: Int, tripId: Int) -> Observable<[LineCourse]> {
-        return parseFromPlanData(busStopGroup: busStopGroup, currentBusStop: currentBusStop, tripId: tripId)
+    private func getObservable(busStopGroup: Int, currentBusStop: Int, tripId: Int, date: Date) -> Observable<[LineCourse]> {
+        return parseFromPlanData(busStopGroup: busStopGroup, currentBusStop: currentBusStop, tripId: tripId, date: date)
             .subscribeOn(MainScheduler.background)
             .map(passingLinesMap)
             .observeOn(MainScheduler.instance)
     }
 
-    private func parseFromPlanData(busStopGroup: Int, currentBusStop: Int, tripId: Int) -> Observable<[LineCourse]> {
+    private func parseFromPlanData(busStopGroup: Int, currentBusStop: Int, tripId: Int, date: Date) -> Observable<[LineCourse]> {
         return Observable.create { subscriber in
             guard Api.todayExists() else {
                 PlannedData.setUpdateAvailable(true)
@@ -176,7 +182,7 @@ class LineCourseViewController: UIViewController {
             }
 
             var items = [LineCourse]()
-            let path: [VdvBusStop] = Api.getTrip(tripId: tripId).calcTimedPath()
+            let path: [VdvBusStop] = Api.getTrip(tripId: tripId, date: date).calcTimedPath()
 
             let realm = Realm.busStops()
 
