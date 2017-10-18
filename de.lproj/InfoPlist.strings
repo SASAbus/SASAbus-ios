@@ -1,0 +1,4 @@
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "SASAbus benutzt deinen Standort um nach Beacons zu scannen und dir dadurch Echtzeitinformationen über Verspätungen und Abfahrten zu liefern.";
+"NSLocationAlwaysUsageDescription" = "SASAbus benutzt deinen Standort um nach Beacons zu scannen und dir dadurch Echtzeitinformationen über Verspätungen und Abfahrten zu liefern.";
+"NSLocationWhenInUseUsageDescription" = "SASAbus benutzt deinen Standort um nach Beacons zu scannen und dir dadurch Echtzeitinformationen über Verspätungen und Abfahrten zu liefern.";
+"NSPhotoLibraryUsageDescription" = "SASAbus braucht Zugriff auf deine Fotos, um diese, falls nötig, als Anhang bei Feedback mitsenden zu können.";

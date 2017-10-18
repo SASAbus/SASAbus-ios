@@ -36,20 +36,27 @@ class MasterTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.setupLeftMenuButton()
     }
 
     func setupLeftMenuButton() {
-        let leftDrawerButton = UIBarButtonItem(image: UIImage(named: "menu_icon.png")?
-                .withRenderingMode(UIImageRenderingMode.alwaysTemplate), style: UIBarButtonItemStyle.plain, target: self,
-                action: #selector(MasterTabBarController.leftDrawerButtonPress(_:)))
+        let image = Asset.menuIcon.image.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        let leftDrawerButton = UIBarButtonItem(
+            image: image, style: UIBarButtonItemStyle.plain,
+            target: self,
+            action: #selector(MasterTabBarController.leftDrawerButtonPress(_:))
+        )
 
         leftDrawerButton.tintColor = Theme.white
-        leftDrawerButton.accessibilityLabel = NSLocalizedString("Menu", comment: "")
+        leftDrawerButton.accessibilityLabel = L10n.Accessibility.menu
+        
         self.navigationItem.setLeftBarButton(leftDrawerButton, animated: true)
     }
 
+
     // MARK: - Button Handlers
+
     func leftDrawerButtonPress(_ sender: AnyObject?) {
         self.evo_drawerController?.toggleDrawerSide(.left, animated: true, completion: nil)
     }

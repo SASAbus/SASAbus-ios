@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ParkingLotDetailViewController" customModule="SASAbus" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ParkingDetailViewController" customModule="SASAbus" customModuleProvider="target">
             <connections>
                 <outlet property="tableView" destination="kQ9-jA-YQm" id="rZR-Tk-jF4"/>
                 <outlet property="titleLabel" destination="QIr-rQ-nyB" id="VxY-yg-n58"/>

@@ -27,36 +27,48 @@ import RxCocoa
 
 class NewsTabBarController: MasterTabBarController {
 
-    var newsItems: [NewsItem] = []
+    var newsItems: [News] = []
+    
+    var bolzanoViewController: NewsTableViewController!
+    var meranoViewController: NewsTableViewController!
 
-
+    init() {
+        super.init(nibName: nil, title: L10n.News.title)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+       fatalError()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let newsBozenViewController = NewsTableViewController(zone: "BZ")
-        let newsMeranViewController = NewsTableViewController(zone: "ME")
-
-        newsBozenViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Bozen", comment: ""),
-                image: UIImage(named: "wappen_bz.png"), selectedImage: nil)
-
-        newsMeranViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Meran", comment: ""),
-                image: UIImage(named: "wappen_me.png"), selectedImage: nil)
-
-        self.viewControllers = [newsBozenViewController, newsMeranViewController]
+        
+        bolzanoViewController = NewsTableViewController(zone: "BZ")
+        meranoViewController = NewsTableViewController(zone: "ME")
+        
+        bolzanoViewController.tabBarItem = UITabBarItem(
+            title: L10n.News.TabBar.bolzano,
+            image: Asset.wappenBz.image,
+            tag: 0
+        )
+        
+        meranoViewController.tabBarItem = UITabBarItem(
+            title: L10n.News.TabBar.merano,
+            image: Asset.wappenMe.image,
+            tag: 1
+        )
+        
+        self.viewControllers = [bolzanoViewController, meranoViewController]
+        
         self.tabBar.tintColor = Theme.orange
         self.tabBar.isTranslucent = false
-
-        self.getNews()
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        Analytics.track("News")
-    }
-
-
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+    
+    override func viewDidAppear(_ animated: Bool) {
+        for controller in self.viewControllers! {
+            _ = controller.view
+        }
+        
         self.getNews()
     }
 
@@ -68,10 +80,13 @@ class NewsTabBarController: MasterTabBarController {
                 .subscribeOn(MainScheduler.asyncInstance)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { news in
-                    (self.selectedViewController as! NewsTableViewController).refreshView(news)
+                    self.bolzanoViewController.refreshView(news)
+                    self.meranoViewController.refreshView(news)
                 }, onError: { error in
-                    Log.error(error)
-                    (self.selectedViewController as! NewsTableViewController).refreshView([])
+                    Utils.logError(error, message: "Failed to load news")
+                    
+                    self.bolzanoViewController.refreshView([])
+                    self.meranoViewController.refreshView([])
                 })
     }
 }

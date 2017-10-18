@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EcoPointsViewController" customModule="SASAbus">
+            <connections>
+                <outlet property="contentContainer" destination="Nn6-PG-g4J" id="cXt-ZX-HPi"/>
+                <outlet property="loginContainer" destination="tDq-rZ-bbw" id="0RE-X2-YxH"/>
+                <outlet property="view" destination="Icl-aR-PAZ" id="T8C-oz-1va"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Icl-aR-PAZ">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nn6-PG-g4J" userLabel="EcoPoints">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </containerView>
+                <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDq-rZ-bbw" userLabel="Login">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </containerView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="tDq-rZ-bbw" secondAttribute="bottom" id="COR-aU-ATo"/>
+                <constraint firstItem="Nn6-PG-g4J" firstAttribute="top" secondItem="Icl-aR-PAZ" secondAttribute="top" id="IWs-BG-oG3"/>
+                <constraint firstItem="Nn6-PG-g4J" firstAttribute="width" secondItem="Icl-aR-PAZ" secondAttribute="width" id="Lce-t4-Icp"/>
+                <constraint firstItem="tDq-rZ-bbw" firstAttribute="top" secondItem="Icl-aR-PAZ" secondAttribute="top" id="MYF-qX-DFE"/>
+                <constraint firstItem="tDq-rZ-bbw" firstAttribute="leading" secondItem="Icl-aR-PAZ" secondAttribute="leading" id="Rut-0d-Lla"/>
+                <constraint firstItem="tDq-rZ-bbw" firstAttribute="height" secondItem="Icl-aR-PAZ" secondAttribute="height" id="VIm-W5-2Up"/>
+                <constraint firstAttribute="trailing" secondItem="Nn6-PG-g4J" secondAttribute="trailing" id="i2C-Zr-iO3"/>
+                <constraint firstAttribute="bottom" secondItem="Nn6-PG-g4J" secondAttribute="bottom" id="iDx-sG-ykx"/>
+                <constraint firstAttribute="trailing" secondItem="tDq-rZ-bbw" secondAttribute="trailing" id="iMj-Oo-JUq"/>
+                <constraint firstItem="tDq-rZ-bbw" firstAttribute="width" secondItem="Icl-aR-PAZ" secondAttribute="width" id="tMW-0r-oGd"/>
+                <constraint firstItem="Nn6-PG-g4J" firstAttribute="leading" secondItem="Icl-aR-PAZ" secondAttribute="leading" id="usq-gc-3Kj"/>
+                <constraint firstItem="Nn6-PG-g4J" firstAttribute="height" secondItem="Icl-aR-PAZ" secondAttribute="height" id="xmj-5K-ovb"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

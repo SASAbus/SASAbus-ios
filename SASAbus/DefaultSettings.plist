@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-
 <plist version="1.0">
 <dict>
+	<key>pref_trip_notification_enabled</key>
+	<true/>
+	<key>pref_bus_notification_enabled</key>
+	<true/>
+	<key>pref_news_notification_enabled</key>
+	<true/>
 	<key>pref_map_type</key>
 	<string>standard</string>
 	<key>pref_map_auto_refresh_enabled</key>
 	<false/>
 	<key>pref_map_auto_refresh_interval</key>
-	<integer>5000</integer>
+	<integer>5</integer>
 	<key>pref_tile_overlay_enabled</key>
 	<true/>
 	<key>pref_tile_overlay_enabled_all</key>
 	<false/>
+	<key>pref_default_map_position</key>
+	<integer>1</integer>
+	<key>pref_start_screen</key>
+	<integer>1</integer>
+	<key>pref_survey_enabled</key>
+	<true/>
+	<key>pref_survey_interval</key>
+	<integer>2</integer>
 </dict>
 </plist>

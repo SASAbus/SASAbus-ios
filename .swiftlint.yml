@@ -9,6 +9,8 @@ line_length: 150
 disabled_rules:
   - vertical_whitespace
   - force_cast
+  - type_name
+  - identifier_name
 
 type_name:
   min_length: 3 # only warning

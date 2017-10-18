@@ -1,0 +1,22 @@
+"section_bus_header" = "Busse";
+"section_bus_footer" = "Benachrichtigt dich über die nächsten Haltestellen, wenn du in einem Bus bist.";
+
+"section_trip_header" = "Fahrten";
+"section_trip_footer" = "Benachrichtigt dich, wenn du eine Fahrt abgeschlossen hast.";
+
+"section_news_header" = "Neuigkeiten";
+"section_news_footer" = "Benachrichtigt dich über evtl. Störungen, Änderungen und Abweichungen vom vorgesehenen Streckenverlauf. SASA SpA-AG stellt diese Informationen zur Vefügung.";
+
+"section_survey_header" = "Umfragen";
+"section_survey_footer" = "enachrichtigt dich, wenn eine Umfrage von SASA SpA-AG zur Verfügung steht.";
+
+"notification_bus_title" = "Benachrichtigungen über Busse";
+"notification_trip_title" = "Benachrichtigungen über Fahrten";
+"notification_news_title" = "Benachrichtigungen über Neuigkeiten";
+
+"notification_survey_enable_title" = "Benachrichtigungen über Umfragen";
+"notification_survey_interval_title" = "Umfragenintervall";
+"notification_survey_interval_0" = "Nach jeder Fahrt";
+"notification_survey_interval_1" = "Täglich";
+"notification_survey_interval_2" = "Wöchentlich";
+"notification_survey_interval_3" = "Monatlich";

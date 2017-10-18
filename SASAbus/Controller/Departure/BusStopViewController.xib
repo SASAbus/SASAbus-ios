@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BusStopViewController" customModule="SASAbus" customModuleProvider="target">
+            <connections>
+                <outlet property="autoCompleteTableView" destination="asS-Es-t7z" id="fSc-Ej-07Y"/>
+                <outlet property="searchBar" destination="mJH-Lu-UWq" id="Ayu-dV-ZND"/>
+                <outlet property="tabBar" destination="3NK-kc-gGm" id="Dmk-O7-1dj"/>
+                <outlet property="tableView" destination="ntb-Vu-xeY" id="oqS-Yd-NVT"/>
+                <outlet property="timeField" destination="Yo5-mE-ZQT" id="epu-sk-D6i"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YeM-PG-d7W" userLabel="Container">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="08:00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yo5-mE-ZQT">
+                            <rect key="frame" x="295" y="14.5" width="64" height="23"/>
+                            <color key="backgroundColor" red="0.95264349039999996" green="0.3390527525" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="64" id="W8e-TA-t8Z"/>
+                            </constraints>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="UgW-kg-sDE"/>
+                            </connections>
+                        </textField>
+                        <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="mJH-Lu-UWq">
+                            <rect key="frame" x="0.0" y="-2" width="287" height="56"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="456" id="JIQ-3K-hv0"/>
+                            </constraints>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="JIQ-3K-hv0"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="OOl-FQ-Kzv"/>
+                            </connections>
+                        </searchBar>
+                    </subviews>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Yo5-mE-ZQT" firstAttribute="leading" secondItem="mJH-Lu-UWq" secondAttribute="trailing" constant="8" id="1Xe-yX-hXf"/>
+                        <constraint firstItem="Yo5-mE-ZQT" firstAttribute="centerY" secondItem="YeM-PG-d7W" secondAttribute="centerY" id="4QJ-e0-BIX"/>
+                        <constraint firstItem="mJH-Lu-UWq" firstAttribute="leading" secondItem="YeM-PG-d7W" secondAttribute="leading" id="6T4-w5-jx0"/>
+                        <constraint firstAttribute="trailing" secondItem="Yo5-mE-ZQT" secondAttribute="trailing" constant="16" id="J02-jD-X6c"/>
+                        <constraint firstAttribute="height" constant="52" id="q8Q-eJ-tXU"/>
+                        <constraint firstItem="mJH-Lu-UWq" firstAttribute="centerY" secondItem="YeM-PG-d7W" secondAttribute="centerY" id="yJ6-1Z-R9z"/>
+                    </constraints>
+                </view>
+                <tabBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NK-kc-gGm">
+                    <rect key="frame" x="0.0" y="52" width="375" height="49"/>
+                    <items>
+                        <tabBarItem title="GPS" image="location_icon.png" selectedImage="location_icon_filled.png" id="GdP-f3-Hgb"/>
+                        <tabBarItem tag="1" title="Map" image="map_icon.png" selectedImage="map_icon_filled.png" id="HAw-Oy-Ua4"/>
+                        <tabBarItem tag="2" title="Favorites" image="favorit_icon.png" selectedImage="favorit_icon_filled.png" id="rwW-pV-Bdp"/>
+                    </items>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="fuf-E8-mxw"/>
+                    </connections>
+                </tabBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ntb-Vu-xeY">
+                    <rect key="frame" x="0.0" y="101" width="375" height="566"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="cGW-3M-z1H"/>
+                        <outlet property="delegate" destination="-1" id="Cyc-Ny-SnP"/>
+                    </connections>
+                </tableView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="asS-Es-t7z">
+                    <rect key="frame" x="0.0" y="52" width="375" height="615"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="a22-jU-jrQ"/>
+                        <outlet property="delegate" destination="-1" id="YTb-hy-CtE"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="asS-Es-t7z" secondAttribute="trailing" id="5ZL-p0-nlX"/>
+                <constraint firstItem="YeM-PG-d7W" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="834-6u-c0H"/>
+                <constraint firstItem="3NK-kc-gGm" firstAttribute="top" secondItem="YeM-PG-d7W" secondAttribute="bottom" id="9iy-mI-HW1"/>
+                <constraint firstAttribute="trailing" secondItem="3NK-kc-gGm" secondAttribute="trailing" id="GGd-5P-I9M"/>
+                <constraint firstItem="ntb-Vu-xeY" firstAttribute="top" secondItem="3NK-kc-gGm" secondAttribute="bottom" id="OLU-4r-AEu"/>
+                <constraint firstItem="3NK-kc-gGm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Vl0-Ca-a5g"/>
+                <constraint firstItem="asS-Es-t7z" firstAttribute="top" secondItem="YeM-PG-d7W" secondAttribute="bottom" id="Xmu-1C-i20"/>
+                <constraint firstItem="YeM-PG-d7W" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="YcY-p6-Rso"/>
+                <constraint firstAttribute="bottom" secondItem="asS-Es-t7z" secondAttribute="bottom" id="aGJ-uT-9TI"/>
+                <constraint firstAttribute="trailing" secondItem="ntb-Vu-xeY" secondAttribute="trailing" id="aI0-vg-n65"/>
+                <constraint firstAttribute="trailing" secondItem="YeM-PG-d7W" secondAttribute="trailing" id="eAj-tv-WaD"/>
+                <constraint firstItem="asS-Es-t7z" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kj0-SX-d9p"/>
+                <constraint firstAttribute="bottom" secondItem="ntb-Vu-xeY" secondAttribute="bottom" id="mOs-Gl-Nr6"/>
+                <constraint firstItem="ntb-Vu-xeY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qKc-GX-mqD"/>
+            </constraints>
+            <point key="canvasLocation" x="376" y="213"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="favorit_icon.png" width="32" height="32"/>
+        <image name="favorit_icon_filled.png" width="32" height="32"/>
+        <image name="location_icon.png" width="32" height="32"/>
+        <image name="location_icon_filled.png" width="32" height="32"/>
+        <image name="map_icon.png" width="32" height="32"/>
+        <image name="map_icon_filled.png" width="32" height="32"/>
+    </resources>
+</document>

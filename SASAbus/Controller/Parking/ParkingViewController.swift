@@ -24,14 +24,17 @@ import UIKit
 import Alamofire
 import RxCocoa
 import RxSwift
+import StatefulViewController
 
-class ParkingViewController: MasterTableViewController {
+class ParkingViewController: MasterViewController, StatefulViewController, UITableViewDelegate, UITableViewDataSource {
+
+    @IBOutlet weak var tableView: UITableView!
 
     var items = [Parking]()
 
-    init(title: String?) {
-        super.init(nibName: "ParkingViewController", title: nil)
-        self.title = title
+
+    init() {
+        super.init(nibName: "ParkingViewController", title: L10n.Parking.title)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -42,22 +45,20 @@ class ParkingViewController: MasterTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.delegate = self
+        tableView.dataSource = self
+
         tableView.register(UINib(nibName: "ParkingTableViewCell", bundle: nil), forCellReuseIdentifier: "ParkingTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView(frame: CGRect.zero)
 
-        let refreshControl = UIRefreshControl()
+        loadingView = LoadingView(frame: view.frame)
+        emptyView = EmptyView(frame: view.frame)
+        errorView = ErrorView(frame: view.frame, target: self, action: #selector(parseData))
 
-        refreshControl.tintColor = Theme.lightOrange
-        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("pull to refresh", comment: ""),
-                attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
-
-        refreshControl.addTarget(self, action: #selector(parseData), for: UIControlEvents.valueChanged)
-
-        self.refreshControl = refreshControl
-
-        self.parseData()
+        setupRefresh()
+        parseData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -67,45 +68,68 @@ class ParkingViewController: MasterTableViewController {
     }
 
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.items.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ParkingTableViewCell", for: indexPath) as! ParkingTableViewCell
+        let item = items[indexPath.row]
 
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.progressView.progressTintColor = Theme.orange
-        cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
 
         cell.phoneLabel.isEditable = false
         cell.phoneLabel.dataDetectorTypes = UIDataDetectorTypes.phoneNumber
         cell.phoneLabel.contentInset = UIEdgeInsets(top: -4, left: -8, bottom: 0, right: 0)
 
-        cell.backgroundColor = Theme.transparent
-
-        let item = items[indexPath.row]
-
+        cell.phoneLabel.text = item.phone
         cell.titleLabel.text = item.name
+        cell.addressLabel.text = item.address
 
         cell.messageLabel.text = "\(item.totalSlots - item.freeSlots)/\(item.totalSlots)"
         cell.progressView.setProgress(Float(item.freeSlots) / Float(item.totalSlots), animated: false)
-        cell.addressLabel.text = item.address
-        cell.phoneLabel.text = item.phone
 
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let parkingLotDetailViewController = ParkingLotDetailViewController(nibName: "ParkingLotDetailViewController",
-                bundle: nil, item: self.items[indexPath.row])
-
-        self.navigationController!.pushViewController(parkingLotDetailViewController, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailViewController = ParkingDetailViewController(item: self.items[indexPath.row])
+        self.navigationController!.pushViewController(detailViewController, animated: true)
     }
 
 
+    func hasContent() -> Bool {
+        return !items.isEmpty
+    }
+
+    func setupRefresh() {
+        let refreshControl = UIRefreshControl()
+
+        refreshControl.tintColor = Theme.lightOrange
+        refreshControl.attributedTitle = NSAttributedString(string: L10n.General.pullToRefresh,
+                attributes: [NSForegroundColorAttributeName: Theme.darkGrey])
+
+        refreshControl.addTarget(self, action: #selector(parseData), for: UIControlEvents.valueChanged)
+
+        self.tableView.refreshControl = refreshControl
+    }
+
     func parseData() {
         Log.info("Loading parking data")
+
+        startLoading(animated: false)
+
+        if !NetUtils.isOnline() {
+            items.removeAll()
+            tableView.reloadData()
+
+            endLoading(animated: false, error: Errors.network())
+
+            Log.info("Device offline")
+
+            return
+        }
 
         _ = ParkingApi.get()
                 .subscribeOn(MainScheduler.asyncInstance)
@@ -115,8 +139,17 @@ class ParkingViewController: MasterTableViewController {
                     self.items.append(contentsOf: parkings)
 
                     self.tableView.reloadData()
+                    self.tableView.refreshControl?.endRefreshing()
+
+                    self.endLoading(animated: false)
                 }, onError: { error in
-                    Log.error(error)
+                    Utils.logError(error)
+
+                    self.items.removeAll()
+                    self.tableView.reloadData()
+
+                    self.tableView.refreshControl?.endRefreshing()
+                    self.endLoading(animated: false, error: error)
                 })
     }
 }

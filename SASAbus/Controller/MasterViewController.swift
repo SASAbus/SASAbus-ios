@@ -20,40 +20,40 @@
 // along with SASAbus.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-
 import UIKit
 import DrawerController
 
 class MasterViewController: UIViewController {
 
     init(nibName: String?, title: String?) {
-        super.init(nibName: nibName, bundle: nil);
-        self.title = title;
+        super.init(nibName: nibName, bundle: nil)
+        self.title = title
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder);
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.edgesForExtendedLayout = UIRectEdge()
-        self.extendedLayoutIncludesOpaqueBars = false;
-        self.automaticallyAdjustsScrollViewInsets = false;
         self.setupLeftMenuButton()
     }
 
     func setupLeftMenuButton() {
-        let leftDrawerButton = UIBarButtonItem(image: UIImage(named: "menu_icon.png")?
-                .withRenderingMode(UIImageRenderingMode.alwaysTemplate), style: UIBarButtonItemStyle.plain,
-                target: self, action: #selector(MasterViewController.leftDrawerButtonPress(_:)))
+        let image = Asset.menuIcon.image.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        let leftDrawerButton = UIBarButtonItem(
+            image: image,
+            style: UIBarButtonItemStyle.plain,
+            target: self, action: #selector(MasterViewController.leftDrawerButtonPress(_:))
+        )
 
         leftDrawerButton.tintColor = Theme.white
-        leftDrawerButton.accessibilityLabel = NSLocalizedString("Menu", comment: "")
+        leftDrawerButton.accessibilityLabel = L10n.Accessibility.menu
 
         self.navigationItem.setLeftBarButton(leftDrawerButton, animated: true)
     }
+
 
     // MARK: - Button Handlers
 

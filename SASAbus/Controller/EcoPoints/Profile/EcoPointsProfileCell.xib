@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="eco_points_profile_header" rowHeight="365" id="KGk-i7-Jjw" customClass="EcoPointsProfileCell" customModule="SASAbus">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="371.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0fC-uC-7T4" userLabel="Profile container">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="solaris_urbino_12" translatesAutoresizingMaskIntoConstraints="NO" id="4Vb-EQ-Kx0">
+                                <rect key="frame" x="104" y="24" width="112" height="112"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="112" id="ixL-6F-spa"/>
+                                    <constraint firstAttribute="height" constant="112" id="mVm-gj-woe"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dejori David" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwF-34-3Cb">
+                                <rect key="frame" x="107.5" y="152" width="105.5" height="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beginner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gaz-y6-uqn">
+                                <rect key="frame" x="127.5" y="177" width="65" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.18198148906230927" green="0.69426733255386353" blue="0.53024792671203613" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="38U-Wv-x8E">
+                                <rect key="frame" x="0.0" y="220.5" width="320" height="100"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r1I-qa-CbI">
+                                        <rect key="frame" x="0.0" y="0.0" width="106.5" height="100"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bubble_chart_white_48pt" translatesAutoresizingMaskIntoConstraints="NO" id="cFI-Ad-B9K">
+                                                <rect key="frame" x="37.5" y="8" width="32" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="6ob-6F-yoy"/>
+                                                    <constraint firstAttribute="width" constant="32" id="Ce8-6g-l2R"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUJ-Ia-hDW">
+                                                <rect key="frame" x="53.5" y="42" width="0.0" height="0.0"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <color key="textColor" red="0.19376453757286072" green="0.50850099325180054" blue="0.85232251882553101" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textKey" value="ecopoints.profile.points"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXc-BJ-2Tl">
+                                                <rect key="frame" x="30" y="50" width="46.5" height="29"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="TUJ-Ia-hDW" firstAttribute="centerX" secondItem="r1I-qa-CbI" secondAttribute="centerX" id="7TB-Jw-mXR"/>
+                                            <constraint firstItem="cFI-Ad-B9K" firstAttribute="top" secondItem="r1I-qa-CbI" secondAttribute="top" constant="8" id="96P-Hx-oSl"/>
+                                            <constraint firstItem="TUJ-Ia-hDW" firstAttribute="top" secondItem="cFI-Ad-B9K" secondAttribute="bottom" constant="2" id="Lei-6M-kdA"/>
+                                            <constraint firstItem="iXc-BJ-2Tl" firstAttribute="top" secondItem="TUJ-Ia-hDW" secondAttribute="bottom" constant="8" id="iiV-8V-YZN"/>
+                                            <constraint firstItem="cFI-Ad-B9K" firstAttribute="centerX" secondItem="r1I-qa-CbI" secondAttribute="centerX" id="wGW-eS-LFX"/>
+                                            <constraint firstItem="iXc-BJ-2Tl" firstAttribute="centerX" secondItem="r1I-qa-CbI" secondAttribute="centerX" id="y4S-rt-YYC"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lsR-TX-joL">
+                                        <rect key="frame" x="106.5" y="0.0" width="107" height="100"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_flag_white_48pt" translatesAutoresizingMaskIntoConstraints="NO" id="VHO-PO-hKL">
+                                                <rect key="frame" x="37.5" y="8" width="32" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="32" id="N9S-aG-wOz"/>
+                                                    <constraint firstAttribute="height" constant="32" id="ajI-Ch-baM"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Emt-0J-gjE">
+                                                <rect key="frame" x="54" y="42" width="0.0" height="0.0"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <color key="textColor" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textKey" value="ecopoints.profile.rank"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="86Q-nW-O2z">
+                                                <rect key="frame" x="47.5" y="50" width="12" height="29"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="VHO-PO-hKL" firstAttribute="centerX" secondItem="lsR-TX-joL" secondAttribute="centerX" id="AA2-F1-fRE"/>
+                                            <constraint firstItem="86Q-nW-O2z" firstAttribute="centerX" secondItem="lsR-TX-joL" secondAttribute="centerX" id="Tnl-Y2-NjZ"/>
+                                            <constraint firstItem="Emt-0J-gjE" firstAttribute="top" secondItem="VHO-PO-hKL" secondAttribute="bottom" constant="2" id="UXe-MR-E9K"/>
+                                            <constraint firstItem="VHO-PO-hKL" firstAttribute="top" secondItem="lsR-TX-joL" secondAttribute="top" constant="8" id="W4g-WN-uj0"/>
+                                            <constraint firstItem="Emt-0J-gjE" firstAttribute="centerX" secondItem="lsR-TX-joL" secondAttribute="centerX" id="gwQ-ZE-bOJ"/>
+                                            <constraint firstItem="86Q-nW-O2z" firstAttribute="top" secondItem="Emt-0J-gjE" secondAttribute="bottom" constant="8" id="i9G-H4-EMX"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syg-X7-Z8G">
+                                        <rect key="frame" x="213.5" y="0.0" width="106.5" height="100"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_loyalty_white_48pt" translatesAutoresizingMaskIntoConstraints="NO" id="zvv-rX-Hpp">
+                                                <rect key="frame" x="37" y="8" width="32" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="32" id="eXN-um-vrQ"/>
+                                                    <constraint firstAttribute="height" constant="32" id="jxF-ty-tex"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pc2-un-nga">
+                                                <rect key="frame" x="53" y="42" width="0.0" height="0.0"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <color key="textColor" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textKey" value="ecopoints.profile.badges"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pW0-nU-0DE">
+                                                <rect key="frame" x="45.5" y="50" width="15.5" height="29"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="Pc2-un-nga" firstAttribute="centerX" secondItem="syg-X7-Z8G" secondAttribute="centerX" id="DBD-bF-dsk"/>
+                                            <constraint firstItem="pW0-nU-0DE" firstAttribute="top" secondItem="Pc2-un-nga" secondAttribute="bottom" constant="8" id="H4t-Ls-9MT"/>
+                                            <constraint firstItem="zvv-rX-Hpp" firstAttribute="centerX" secondItem="syg-X7-Z8G" secondAttribute="centerX" id="d9d-Gp-xpH"/>
+                                            <constraint firstItem="Pc2-un-nga" firstAttribute="top" secondItem="zvv-rX-Hpp" secondAttribute="bottom" constant="2" id="dYN-VR-pEF"/>
+                                            <constraint firstItem="pW0-nU-0DE" firstAttribute="centerX" secondItem="syg-X7-Z8G" secondAttribute="centerX" id="duV-y3-Nzk"/>
+                                            <constraint firstItem="zvv-rX-Hpp" firstAttribute="top" secondItem="syg-X7-Z8G" secondAttribute="top" constant="8" id="gjW-lm-0bG"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Ox9-j2-9wB"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXd-xg-a5Q">
+                                <rect key="frame" x="145" y="336.5" width="30" height="28"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="defaultTitleKey" value="ecopoints.profile.view_profile_details"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="settingsButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5tp-5M-Yjy"/>
+                                </connections>
+                            </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ea4-DC-vge" userLabel="Loading">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4Of-f9-aDG">
+                                        <rect key="frame" x="150" y="176.5" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="4Of-f9-aDG" firstAttribute="centerX" secondItem="Ea4-DC-vge" secondAttribute="centerX" id="IrA-dI-qjs"/>
+                                    <constraint firstItem="4Of-f9-aDG" firstAttribute="centerY" secondItem="Ea4-DC-vge" secondAttribute="centerY" id="bOH-96-33a"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dXd-xg-a5Q" firstAttribute="centerX" secondItem="0fC-uC-7T4" secondAttribute="centerX" id="4Pa-9D-vko"/>
+                            <constraint firstItem="38U-Wv-x8E" firstAttribute="top" secondItem="Gaz-y6-uqn" secondAttribute="bottom" constant="24" id="56D-V6-wSd"/>
+                            <constraint firstAttribute="bottom" secondItem="Ea4-DC-vge" secondAttribute="bottom" id="9Fp-EF-lzD"/>
+                            <constraint firstItem="4Vb-EQ-Kx0" firstAttribute="centerX" secondItem="0fC-uC-7T4" secondAttribute="centerX" id="Gxc-xh-R4M"/>
+                            <constraint firstItem="4Vb-EQ-Kx0" firstAttribute="top" secondItem="0fC-uC-7T4" secondAttribute="top" constant="24" id="Hpx-lG-Y3v"/>
+                            <constraint firstItem="Ea4-DC-vge" firstAttribute="leading" secondItem="0fC-uC-7T4" secondAttribute="leading" id="QcX-fK-TKY"/>
+                            <constraint firstItem="Ea4-DC-vge" firstAttribute="top" secondItem="0fC-uC-7T4" secondAttribute="top" id="Qwq-9S-CTl"/>
+                            <constraint firstItem="wwF-34-3Cb" firstAttribute="top" secondItem="4Vb-EQ-Kx0" secondAttribute="bottom" constant="16" id="X2X-nm-e7Z"/>
+                            <constraint firstItem="Gaz-y6-uqn" firstAttribute="top" secondItem="wwF-34-3Cb" secondAttribute="bottom" constant="2" id="Xif-2N-9bN"/>
+                            <constraint firstItem="dXd-xg-a5Q" firstAttribute="top" secondItem="38U-Wv-x8E" secondAttribute="bottom" constant="16" id="Ybs-y4-AC8"/>
+                            <constraint firstAttribute="height" constant="372" id="Zfq-kQ-RQC"/>
+                            <constraint firstAttribute="trailing" secondItem="38U-Wv-x8E" secondAttribute="trailing" id="ccC-Kj-3gn"/>
+                            <constraint firstItem="38U-Wv-x8E" firstAttribute="leading" secondItem="0fC-uC-7T4" secondAttribute="leading" id="ekE-GC-kZZ"/>
+                            <constraint firstItem="wwF-34-3Cb" firstAttribute="centerX" secondItem="0fC-uC-7T4" secondAttribute="centerX" id="gs2-w4-d0Y"/>
+                            <constraint firstAttribute="trailing" secondItem="Ea4-DC-vge" secondAttribute="trailing" id="nbj-va-cpT"/>
+                            <constraint firstItem="Gaz-y6-uqn" firstAttribute="centerX" secondItem="0fC-uC-7T4" secondAttribute="centerX" id="wfm-6c-8sl"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="0fC-uC-7T4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="P57-dl-3pC"/>
+                    <constraint firstAttribute="bottom" secondItem="0fC-uC-7T4" secondAttribute="bottom" id="Vh9-mb-ORF"/>
+                    <constraint firstAttribute="trailing" secondItem="0fC-uC-7T4" secondAttribute="trailing" id="cDQ-11-kRj"/>
+                    <constraint firstItem="0fC-uC-7T4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="vio-eq-uCE"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="activityIndicator" destination="4Of-f9-aDG" id="AgT-hp-rUr"/>
+                <outlet property="badgesImage" destination="zvv-rX-Hpp" id="pnz-pM-uOA"/>
+                <outlet property="badgesText" destination="pW0-nU-0DE" id="IdE-1w-yXH"/>
+                <outlet property="levelText" destination="Gaz-y6-uqn" id="lwD-Sx-aqJ"/>
+                <outlet property="loadingView" destination="Ea4-DC-vge" id="Nse-LZ-2Ib"/>
+                <outlet property="nameText" destination="wwF-34-3Cb" id="Bp9-5c-XZw"/>
+                <outlet property="pointsImage" destination="cFI-Ad-B9K" id="dEH-8P-qoa"/>
+                <outlet property="pointsText" destination="iXc-BJ-2Tl" id="6wu-kU-k4j"/>
+                <outlet property="profilePicture" destination="4Vb-EQ-Kx0" id="3WC-mk-k2w"/>
+                <outlet property="rankImage" destination="VHO-PO-hKL" id="7l4-Yn-Mfz"/>
+                <outlet property="rankText" destination="86Q-nW-O2z" id="g8s-Bx-SPz"/>
+                <outlet property="settingsButton" destination="dXd-xg-a5Q" id="gQt-Pg-Rwn"/>
+            </connections>
+            <point key="canvasLocation" x="50" y="226"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_bubble_chart_white_48pt" width="48" height="48"/>
+        <image name="ic_flag_white_48pt" width="48" height="48"/>
+        <image name="ic_loyalty_white_48pt" width="48" height="48"/>
+        <image name="solaris_urbino_12" width="960" height="720"/>
+    </resources>
+</document>

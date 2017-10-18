@@ -35,7 +35,7 @@ class NewsTableViewCell: UITableViewCell {
         } else {
             self.linesLabel.textColor = Theme.darkGrey
             self.titleLabel.textColor = Theme.darkGrey
-            self.backgroundColor = Theme.transparent
+            self.backgroundColor = .white
         }
     }
 }

@@ -1,24 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-        <key>TRACKING_ID</key>
-        <string>UA-67699326-2</string>
-        <key>PLIST_VERSION</key>
-        <string>1</string>
-        <key>BUNDLE_ID</key>
-        <string>it.sasabz.ios.SASAbus</string>
-        <key>IS_ADS_ENABLED</key>
-        <false/>
-        <key>IS_ANALYTICS_ENABLED</key>
-        <true/>
-        <key>IS_APPINVITE_ENABLED</key>
-        <false/>
-        <key>IS_GCM_ENABLED</key>
-        <false/>
-        <key>IS_SIGNIN_ENABLED</key>
-        <false/>
-        <key>GOOGLE_APP_ID</key>
-        <string>1:380739602390:ios:16f62ce2bb5e26ec</string>
-    </dict>
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>550544754527-tt9rhgafuml3obm9nbklfjln5ma7tg82.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.550544754527-tt9rhgafuml3obm9nbklfjln5ma7tg82</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDDyfWxuq-Swnaa37y4dvgw35QoWAZFxAc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>550544754527</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>it.sasabz.ios.SASAbus</string>
+	<key>PROJECT_ID</key>
+	<string>sasa-ios</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sasa-ios.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:550544754527:ios:16f62ce2bb5e26ec</string>
+	<key>DATABASE_URL</key>
+	<string>https://sasa-ios.firebaseio.com</string>
+</dict>
 </plist>

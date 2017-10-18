@@ -120,14 +120,14 @@ class SurveyContactViewController: MasterViewController, ValidationDelegate, UIT
         Alamofire.request(SurveyApiRouter.insertSurvey(self.surveyData)).responseJSON { response in
         }
 
-        let vc = LineViewController(title: nil)
+        let vc = LineViewController()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
         appDelegate.navigateTo(vc)
     }
 
     func validationFailed(_ errors: [(Validatable, ValidationError)]) {
-        for (field, error) in validator.errors {
+        for (_, error) in validator.errors {
             // TODO
 
             /*field.layer.borderColor = UIColor.redColor().CGColor

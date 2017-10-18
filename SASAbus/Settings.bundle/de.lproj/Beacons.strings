@@ -1,0 +1,4 @@
+"section_beacons_header" = "Beacons";
+"section_beacons_footer" = "Beacons liefern Informationen über naheliegende Haltestellen und Busse. Außerdem zeigt die App Abfahrten und Verspätungen derselben an. Um diese Funktion nutzen zu können, muss Bluetooth aktiv sein und die Standordberechtigung erteilt sein.";
+
+"notification_beacons_title" = "Beacons benutzen";

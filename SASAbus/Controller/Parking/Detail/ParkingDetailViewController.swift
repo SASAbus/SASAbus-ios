@@ -23,21 +23,25 @@
 import UIKit
 import Alamofire
 import CoreLocation
+import RealmSwift
 
-class ParkingLotDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ParkingDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
     var stations: [String] = []
     var parking: Parking!
-    var nearestBusStations: [BusStationDistance] = []
+    var nearestBusStations: [BusStopDistance] = []
+
+    var realm = Realm.busStops()
 
 
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, item: Parking!) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-
+    init(item: Parking!) {
+        super.init(nibName: "ParkingDetailViewController", bundle: nil)
         self.parking = item
+        
+        self.title = L10n.Parking.Detail.title
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -47,9 +51,8 @@ class ParkingLotDetailViewController: UIViewController, UITableViewDataSource, U
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.title = NSLocalizedString("Parking lot detail", comment: "")
-        tableView.register(UINib(nibName: "ParkingLotDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "ParkingLotDetailTableViewCell")
+        
+        tableView.register(UINib(nibName: "ParkingDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "ParkingDetailTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
 
@@ -66,47 +69,27 @@ class ParkingLotDetailViewController: UIViewController, UITableViewDataSource, U
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let busStationDistance = self.nearestBusStations[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ParkingLotDetailTableViewCell", for: indexPath) as! ParkingLotDetailTableViewCell
+        let distance = self.nearestBusStations[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ParkingDetailTableViewCell", for: indexPath) as! ParkingDetailTableViewCell
 
         cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        cell.stationLabel.text = busStationDistance.busStation.getDescription()
-        cell.distanceLabel.text = Int(round(busStationDistance.distance)).description + "m"
+        cell.stationLabel.text = distance.busStop.name()
+        cell.distanceLabel.text = Int(round(distance.distance)).description + "m"
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let busStationDistance = self.nearestBusStations[indexPath.row]
-        let busstopViewController = BusStopViewController(busStation: busStationDistance.busStation, title: NSLocalizedString("Busstop", comment: ""))
-        (UIApplication.shared.delegate as! AppDelegate).navigateTo(busstopViewController)
+        let distance = self.nearestBusStations[indexPath.row]
+        let viewController = BusStopViewController(busStop: distance.busStop)
+
+        (UIApplication.shared.delegate as! AppDelegate).navigateTo(viewController)
     }
 
 
-    func getNearestBusStations() -> [BusStationDistance] {
-        let busStations: [BusStationItem] = SasaDataHelper.getData(SasaDataHelper.REC_ORT) as [BusStationItem]
-        var nearestBusStations: [BusStationDistance] = []
-
-        for busStation in busStations {
-            var busStationDistance: BusStationDistance?
-            var distance: CLLocationDistance = 0.0
-
-            for busStop in busStation.busStops {
-                distance = busStop.location.distance(from: self.parking.location)
-
-                if busStationDistance == nil || distance < busStationDistance!.distance {
-                    busStationDistance = BusStationDistance(busStationItem: busStation, distance: distance)
-                }
-            }
-
-            if busStationDistance != nil {
-                nearestBusStations.append(busStationDistance!)
-            }
-        }
-
-        nearestBusStations = nearestBusStations.sorted(by: { $0.distance < $1.distance })
-
-        return Array(nearestBusStations[0 ..< 5])
+    func getNearestBusStations() -> [BusStopDistance] {
+        let busStops = BusStopRealmHelper.nearestBusStops(location: self.parking.location)
+        return Array(busStops[0..<5])
     }
 }

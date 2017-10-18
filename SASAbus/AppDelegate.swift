@@ -21,263 +21,229 @@
 //
 
 import UIKit
-import CoreData
-import DrawerController
-import Alamofire
 import CoreLocation
+import UserNotifications
+
+import DrawerController
+
+import Fabric
+import Crashlytics
+
+import RxSwift
+import RxCocoa
+
+import Firebase
+import Google
+
+import AlamofireNetworkActivityIndicator
+
+// TODO: Add proper sync
+// TODO: Add beacon telemetry
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var drawerController: DrawerController!
 
-    var beaconObserver: BusBeaconObserver! = BusBeaconObserver(BusBeaconHandler(surveyAction: NotificationAction()))
-    var beaconObserverStation: BusStopBeaconObserver! = BusStopBeaconObserver(BusStopBeaconHandler())
 
-    var notificationHandlers: [String : NotificationProtocol] = [String: NotificationProtocol]()
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        Settings.registerDefaults()
+        
+        setupLogging()
+        setupFirebase()
+        setupRealm()
+        setupModels()
+        setupNotifications()
+        
+        setupBeacons()
+        setupWatch()
 
-
-    // MARK: - UIApplicationDelegate
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool {
-        Notifications.clearAll()
-
-        Buses.setup()
-        BusStopRealmHelper.setup()
-        UserRealmHelper.setup()
+        NetworkActivityIndicatorManager.shared.isEnabled = true
+        NetworkActivityIndicatorManager.shared.startDelay = 0.5
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window!.backgroundColor = UIColor.white
-        self.window!.makeKeyAndVisible()
 
-        let navigationBarAppearance = UINavigationBar.appearance()
-        navigationBarAppearance.isTranslucent = false
-        navigationBarAppearance.tintColor = Theme.white  // Back buttons and such
-        navigationBarAppearance.barTintColor = Theme.orange  // Bar's background color
-        navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: Theme.white]  // Title's text color
-        self.startDownloadSplashScreen()
+        if !Settings.isIntroFinished() {
+            startIntro()
+        } else if PlannedData.isUpdateAvailable() || !PlannedData.planDataExists() {
+            startIntro(dataOnly: true)
+        } else {
+            window!.backgroundColor = UIColor.white
+            window!.makeKeyAndVisible()
 
-        // Configure tracker from GoogleService-Info.plist.
-        var configureError: NSError?
-        GGLContext.sharedInstance().configureWithError(&configureError)
-        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+            startApplication()
+        }
 
-        // Optional: configure GAI options.
-        //let gai = GAI.sharedInstance()
-        //gai.trackUncaughtExceptions = true  // report uncaught exceptions
-        //gai.logger.logLevel = GAILogLevel.Verbose  // remove before app release
+        GIDSignIn.sharedInstance().signOut()
 
         return true
     }
 
-    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-        Notifications.clearAll()
-
-        if notificationHandlers.keys.contains(notification.category!) {
-            let notificationHandler = notificationHandlers[notification.category!]
-
-            notificationHandler!.handleNotificationForeground(self.window!.rootViewController!,
-                    userInfo: notification.userInfo as? [String : Any])
-        }
-    }
-
-    func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?,
-                     for notification: UILocalNotification, completionHandler: @escaping () -> Void) {
-        Notifications.clearAll()
-
-        if notificationHandlers.keys.contains(notification.category!) {
-            let notificationHandler = notificationHandlers[notification.category!]
-            notificationHandler?.handleNotificationBackground(identifier, userInfo: notification.userInfo as? [String : Any])
-        }
-
-        completionHandler()
-    }
-
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state.
-        // This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message)
-        // or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates.
-        // Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application
-        // state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution,
-        // this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state;
-        // here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive.
-        // If the application was previously in the background, optionally refresh the user interface.
-    }
-
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        // Saves changes in the application's managed object context before the application terminates.
-
-        self.saveContext()
+        BeaconHandler.instance.save()
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        BeaconHandler.instance.save()
+    }
+    
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(
+                url,
+                sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                annotation: options[UIApplicationOpenURLOptionsKey.annotation]
+        )
     }
 
-
-    func startDownloadSplashScreen() {
-        let delegate = DownloadDataFinished()
-        delegate.appDelegate = self
-
-        let downloadViewController = DownloadViewController(nibName: "DownloadViewController", bundle: nil,
-                downloader: SasaBusDownloader(), downloadFinishedDelegate: delegate, canBeCanceled: false, showFinishedDialog: false)
-
-        downloadViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-        self.window!.rootViewController = downloadViewController
-    }
 
     func startApplication() {
+        let appearance = UINavigationBar.appearance()
+        appearance.isTranslucent = false
+        appearance.tintColor = Theme.white
+        appearance.barTintColor = Theme.orange
+        appearance.titleTextAttributes = [NSForegroundColorAttributeName: Theme.white]
 
-        //start listening to beacons
-        self.beaconObserver.startObserving()
-        self.beaconObserverStation.startObserving()
-        self.registerForLocalNotifications()
-
-        // Ask for Authorisation from the User.
         CLLocationManager().requestAlwaysAuthorization()
-
-        // For use in foreground
         CLLocationManager().requestWhenInUseAuthorization()
+        
+        let startIndex = Settings.getStartScreen()
+        let selectedMenuItem: IndexPath = IndexPath(row: startIndex, section: 0)
 
-        let navigationController = getNavigationController(Menu.items[0].viewController!)
-        let menuViewController: MenuViewController! = MenuViewController(nibName: "MenuViewController", bundle: nil)
-        self.drawerController = DrawerController(centerViewController: navigationController, leftDrawerViewController: menuViewController)
+        let navigationController = getNavigationController(Menu.items[startIndex].viewController!)
+        let menuController: MenuViewController! = MenuViewController(nibName: "MenuViewController", bundle: nil)
+        self.drawerController = DrawerController(centerViewController: navigationController, leftDrawerViewController: menuController)
 
-        let selectedMenuItemIndexPath: IndexPath = IndexPath(row: 0, section: 0)
-
-        menuViewController.tableView.selectRow(at: selectedMenuItemIndexPath, animated: false, scrollPosition: UITableViewScrollPosition.none)
-        menuViewController.tableView.cellForRow(at: menuViewController.tableView.indexPathForSelectedRow!)?.setSelected(true, animated: false)
+        menuController.tableView.selectRow(at: selectedMenuItem, animated: false, scrollPosition: UITableViewScrollPosition.none)
+        menuController.tableView.cellForRow(at: menuController.tableView.indexPathForSelectedRow!)?.setSelected(true, animated: false)
 
         self.drawerController.showsShadows = false
         self.drawerController.openDrawerGestureModeMask = OpenDrawerGestureMode.bezelPanningCenterView
         self.drawerController.closeDrawerGestureModeMask = CloseDrawerGestureMode.panningCenterView
+
         self.window!.rootViewController = self.drawerController
-    }
-
-
-    // MARK: - Core Data stack
-
-    func getApplicationDocumentsDirectory() -> URL {
-        // The directory the application uses to store the Core Data store file.
-        // This code uses a directory named "it.sasabz.ios.SASAbus" in the application's documents
-        // Application Support directory.
-
-        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return urls[urls.count - 1]
-    }
-
-    func getManagedObjectModel() -> NSManagedObjectModel {
-        // The managed object model for the application. This property is not optional. It is a fatal error for the
-        // application not to be able to find and load its model.
-
-        let modelURL = Bundle.main.url(forResource: "SASAbus", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOf: modelURL)!
-    }
-
-    func getPersistentStoreCoordinator() -> NSPersistentStoreCoordinator {
-        // The persistent store coordinator for the application. This implementation creates and returns a coordinator,
-        // having added the store for the application to it. This property is optional since there are legitimate error
-        // conditions that could cause the creation of the store to fail.
-        // Create the coordinator and store
-
-        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: getManagedObjectModel())
-        let url = getApplicationDocumentsDirectory().appendingPathComponent("SingleViewCoreData.sqlite")
-        var failureReason = "There was an error creating or loading the application's saved data."
-
-        do {
-            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
-        } catch {
-            // Report any error we got.
-            var dict = [String: AnyObject]()
-            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject?
-            dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject?
-
-            dict[NSUnderlyingErrorKey] = error as NSError
-            let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
-            // Replace this with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate.
-            // You should not use this function in a shipping application, although it may be useful during development.
-            Log.error("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
-            abort()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            NotificationSettings.askForPermissionIfNeeded()
         }
-
-        return coordinator
     }
 
-    func getManagedObjectContext() -> NSManagedObjectContext {
-        // Returns the managed object context for the application (which is already bound to the persistent store
-        // coordinator for the application.) This property is optional since there are legitimate error conditions that
-        // could cause the creation of the context to fail.
+    func startIntro(dataOnly: Bool = false) {
+        let storyboard = UIStoryboard(name: "Intro", bundle: nil)
+        let viewController = storyboard.instantiateViewController(
+                withIdentifier: "intro_parent_controller") as! IntroParentViewController
 
-        let coordinator = getPersistentStoreCoordinator()
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        managedObjectContext.persistentStoreCoordinator = coordinator
-        return managedObjectContext
+        viewController.dataOnly = dataOnly
+
+        self.window?.rootViewController = viewController
+        self.window?.makeKeyAndVisible()
     }
 
 
-    // MARK: - Core Data Saving support
+    func setupBeacons() {
+        BeaconHandler.instance.start()
+    }
 
-    func saveContext() {
-        if getManagedObjectContext().hasChanges {
-            do {
-                try getManagedObjectContext().save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate.
-                // You should not use this function in a shipping application, although it may be useful during development.
-                Log.error("Unresolved error \(error)")
-                abort()
+    func setupLogging() {
+        Log.setup()
+        
+        #if DEBUG
+            Log.info("SASAbus running in debug configuration")
+        #elseif RELEASE
+            Log.info("SASAbus running in release configuration")
+            
+            Fabric.with([Crashlytics.self])
+            Crashlytics.sharedInstance().setUserIdentifier(Settings.getCrashlyticsDeviceId())
+        #else
+            fatalError("Debug or release flag not specified")
+        #endif
+    }
+
+    func setupFirebase() {
+        var configureError: NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
+        // assert(configureError == nil, "Error configuring Google services: \(configureError)")
+
+        GIDSignIn.sharedInstance().delegate = self
+
+        FirebaseApp.configure()
+
+        let remoteConfig = RemoteConfig.remoteConfig()
+        let remoteConfigSettings = RemoteConfigSettings(developerModeEnabled: true)!
+
+        remoteConfig.configSettings = remoteConfigSettings
+        remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults")
+
+        remoteConfig.fetch(withExpirationDuration: TimeInterval(86400)) { (status, error) -> Void in
+            if status == .success {
+                Log.error("Remote config fetch succeeded.")
+
+                remoteConfig.activateFetched()
+
+                let url = Endpoint.apiUrl
+                Log.warning("Api url: \(url)")
+
+                let realtimeUrl = Endpoint.realtimeApiUrl
+                Log.warning("Realtime api url: \(realtimeUrl)")
+
+                let dataUrl = Endpoint.dataApiUrl
+                Log.warning("Data api url: \(dataUrl)")
+
+                let reportsUrl = Endpoint.reportsApiUrl
+                Log.warning("Reports api url: \(reportsUrl)")
+
+                let telemetryUrl = Endpoint.telemetryApiUrl
+                Log.warning("Telemetry api url: \(telemetryUrl)")
+
+                let databaseUrl = Endpoint.databaseApiUrl
+                Log.warning("Database api url: \(databaseUrl)")
+            } else {
+                Log.error("Remote config fetch failed: \(error!.localizedDescription)")
             }
         }
     }
 
-    func registerForLocalNotifications() {
-        // Specify the notification actions.
-        let notificationYes = UIMutableUserNotificationAction()
-        notificationYes.identifier = "Yes"
-        notificationYes.title = NSLocalizedString("Yes", comment: "")
-        notificationYes.activationMode = UIUserNotificationActivationMode.background
-        notificationYes.isDestructive = false
-        notificationYes.isAuthenticationRequired = false
-
-        let notificationNo = UIMutableUserNotificationAction()
-        notificationNo.identifier = "No"
-        notificationNo.title = NSLocalizedString("No", comment: "")
-        notificationNo.activationMode = UIUserNotificationActivationMode.foreground
-        notificationNo.isDestructive = true
-        notificationNo.isAuthenticationRequired = false
-
-        // Create a category with the above actions
-        let surveyNotificationHandler = SurveyNotificationHandler(name: "surveyCategory")
-        let surveyCategory = UIMutableUserNotificationCategory()
-        surveyCategory.identifier = surveyNotificationHandler.getName()
-        surveyCategory.setActions([notificationYes, notificationNo], for: UIUserNotificationActionContext.default)
-        surveyCategory.setActions([notificationYes, notificationNo], for: UIUserNotificationActionContext.minimal)
-
-
-        self.notificationHandlers[surveyNotificationHandler.getName()] = surveyNotificationHandler
-
-        // Register for notification: This will prompt for the user's consent to receive notifications from this app.
-        let notificationSettings = UIUserNotificationSettings(types: [.alert, .sound, .badge],
-                categories: [surveyCategory])
-
-        // Registering UIUserNotificationSettings more than once results in previous settings being overwritten.
-        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
+    func setupRealm() {
+        BusStopRealmHelper.setup()
+        UserRealmHelper.setup()
     }
 
+    func setupModels() {
+        Buses.setup()
+        Lines.setup()
+
+        _ = VdvHandler.load()
+                .subscribeOn(MainScheduler.background)
+                .observeOn(MainScheduler.background)
+                .subscribe(onError: { error in
+                    Utils.logError(error, message: "Cannot load VDV")
+                })
+        
+        PlannedData.checkIfDataIsValid {
+            self.startIntro(dataOnly: true)
+        }
+    }
+
+    func setupNotifications() {
+        UNUserNotificationCenter.current().delegate = self
+
+        UIApplication.shared.registerForRemoteNotifications()
+        Notifications.clearAll()
+
+        Messaging.messaging().delegate = self
+        Messaging.messaging().shouldEstablishDirectChannel = true
+        
+        DispatchQueue.main.async {
+            FcmUtils.checkForNewsSubscription()
+        }
+    }
+
+    func setupWatch() {
+        WatchConnection.standard.connect(delegate: self)
+    }
+    
+    
     func navigateTo(_ viewController: UIViewController) {
         self.drawerController!.centerViewController = self.getNavigationController(viewController)
         let menuViewController = self.drawerController!.leftDrawerViewController as! MenuViewController
@@ -296,5 +262,115 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func getNavigationController(_ viewController: UIViewController) -> UINavigationController {
         return UINavigationController(rootViewController: viewController)
+    }
+}
+
+
+extension AppDelegate {
+
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        FcmUtils.handleFcmMessage(userInfo: userInfo)
+    }
+
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        FcmUtils.handleFcmMessage(userInfo: userInfo)
+
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        Log.error("Unable to register for remote notifications: \(error.localizedDescription)")
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+
+        Log.warning("willPresent withCompletionHandler: \(notification.request.identifier)")
+        completionHandler([.alert, .badge, .sound])
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+
+        let identifier = response.notification.request.identifier
+        Log.warning("didReceive withCompletionHandler: '\(identifier)'")
+        
+        if response.actionIdentifier == UNNotificationDismissActionIdentifier {
+            Log.warning("Dismissed notification '\(identifier)'")
+        } else if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
+            Log.warning("Clicked on notification '\(identifier)'")
+            
+            switch identifier {
+            case "news":
+                // TODO: Highlight the news the user clicked on?
+                if let controller = Menu.items[3].viewController {
+                    navigateTo(controller)
+                }
+            default:
+                Log.error("Unknown identifier '\(identifier)'")
+            }
+        }
+        
+        completionHandler()
+    }
+}
+
+
+extension AppDelegate: MessagingDelegate {
+
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        Log.error("Got firebase registration token: \(fcmToken)")
+        
+        FcmSettings.setFcmToken(token: fcmToken)
+        FcmUtils.checkForNewsSubscription()
+        
+        DispatchQueue.main.async {
+            Log.warning("Subscribing to general topic")
+            Messaging.messaging().subscribe(toTopic: "general")
+        }
+    }
+
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        Log.error("Received data message: \(remoteMessage.appData)")
+    }
+}
+
+extension AppDelegate: GIDSignInDelegate {
+
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if (error == nil) {
+            let userId = user.userID
+            let idToken = user.authentication.idToken
+            let email = user.profile.email
+
+            Log.info("Login success: userId=\(userId)")
+
+            NotificationCenter.default.post(
+                    name: LoginViewController.googleLoginSuccess,
+                    object: nil,
+                    userInfo: ["user_id": idToken, "email": email]
+            )
+        } else {
+            Log.error("Login error: \(error.localizedDescription)")
+
+            AuthHelper.logout()
+
+            NotificationCenter.default.post(name: LoginViewController.googleLoginError, object: nil)
+        }
+    }
+
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        AuthHelper.logout()
+
+        if (error == nil) {
+            Log.warning("Logout successful")
+        } else {
+            Log.error("Logout error: \(error.localizedDescription)")
+        }
     }
 }

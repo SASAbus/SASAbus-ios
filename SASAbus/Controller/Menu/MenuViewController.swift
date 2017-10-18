@@ -25,47 +25,56 @@ import UIKit
 struct Menu {
 
     static let items: [MenuItem] = [
-            MenuItem(
-                    title: NSLocalizedString("Busstop", comment: ""),
-                    image: "ic_navigation_busstop",
-                    viewController: BusStopViewController(busStation: nil, title: NSLocalizedString("Busstop", comment: ""))),
+        MenuItem(
+                title: L10n.Map.title,
+                image: Asset.icNavigationMap.image,
+                viewController: MainMapViewController.getViewController()),
 
-            MenuItem(
-                    title: NSLocalizedString("Realtime Map", comment: ""),
-                    image: "ic_navigation_map",
-                    viewController: MainMapViewController.getViewController()),
+        MenuItem(
+                title: L10n.Departures.title,
+                image: Asset.icNavigationBusstop.image,
+                viewController: BusStopViewController()),
 
-            MenuItem(
-                    title: NSLocalizedString("Line", comment: ""),
-                    image: "ic_navigation_bus",
-                    viewController: LineViewController(title: NSLocalizedString("Line", comment: ""))),
+        MenuItem(
+                title: L10n.Line.title,
+                image: Asset.icNavigationBus.image,
+                viewController: LineViewController()),
 
-            MenuItem(
-                    title: NSLocalizedString("News", comment: ""),
-                    image: "ic_navigation_news",
-                    viewController: NewsTabBarController(nibName: nil, title: NSLocalizedString("News", comment: ""))),
+        /*MenuItem(
+                title: NSLocalizedString("Route", comment: ""),
+                image: Asset.icExploreWhite.image,
+                viewController: MainRouteViewController()),*/
 
-            MenuItem(
-                    title: NSLocalizedString("Map", comment: ""),
-                    image: "ic_navigation_map",
-                    viewController: MapViewController(title: NSLocalizedString("Map", comment: ""))),
+        MenuItem(
+                title: L10n.News.title,
+                image: Asset.icEventNoteWhite.image,
+                viewController: NewsTabBarController()),
 
-            MenuItem(
-                    title: NSLocalizedString("Parking lot", comment: ""),
-                    image: "ic_navigation_parking",
-                    viewController: ParkingViewController(title: NSLocalizedString("Parking lot", comment: ""))),
+        MenuItem(
+                title: L10n.Ecopoints.title,
+                image: Asset.icNaturePeopleWhite.image,
+                viewController: EcoPointsViewController()),
 
-            MenuItem(
-                    title: NSLocalizedString("Info", comment: ""),
-                    image: "",
-                    viewController: InfoViewController(title: NSLocalizedString("Info", comment: "")))
+        MenuItem(
+                title: L10n.Parking.title,
+                image: Asset.icNavigationParking.image,
+                viewController: ParkingViewController()),
+
+        MenuItem(
+                title: L10n.About.title,
+                image: Asset.icInfoOutlineWhite.image,
+                viewController: AboutViewController()),
+
+        MenuItem(
+                title: L10n.Settings.title,
+                image: Asset.icSettingsWhite.image,
+                viewController: nil)
     ]
 }
 
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,9 +97,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.titleLabel.textColor = Theme.white
         cell.titleLabel.text = menuItem.title
 
-        if !menuItem.image.isEmpty {
-            cell.iconImageView.image = UIImage(named: menuItem.image)
-        }
+        cell.iconImageView.image = menuItem.image
 
         cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         cell.iconImageView.tintColor = Theme.white
@@ -104,6 +111,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         if menuItem.viewController != nil {
             appDelegate.navigateTo(menuItem.viewController!)
+        } else {
+            UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!)
         }
     }
 }

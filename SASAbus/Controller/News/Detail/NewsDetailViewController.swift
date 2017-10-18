@@ -13,7 +13,7 @@
 //
 // SASAbus is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
@@ -26,14 +26,16 @@ import UIKit
 class NewsDetailViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var messageView: UIWebView!
-    @IBOutlet weak var messageScrollView: UIScrollView!
+    @IBOutlet weak var webView: UIWebView!
 
-    let newsItem: NewsItem!
+    let newsItem: News!
 
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, newsItem: NewsItem) {
+    init(newsItem: News) {
         self.newsItem = newsItem
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        super.init(nibName: "NewsDetailViewController", bundle: nil)
+        
+        title = L10n.News.Detail.title
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -42,23 +44,23 @@ class NewsDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.title = NSLocalizedString("News detail", comment: "")
-        self.edgesForExtendedLayout = UIRectEdge()
-        self.extendedLayoutIncludesOpaqueBars = false
-        self.automaticallyAdjustsScrollViewInsets = false
+        
+        edgesForExtendedLayout = UIRectEdge()
+        extendedLayoutIncludesOpaqueBars = false
+        automaticallyAdjustsScrollViewInsets = false
 
         let font = UIFont.systemFont(ofSize: 17)
-        self.titleLabel.text = self.newsItem.title
+        titleLabel.text = newsItem.title
+        
+        let messageString = "<span style=\"padding: 1em; font-family:Helvetica; font-size: \(font.pointSize); color: " +
+                Color.getHexColor(Theme.darkGrey) + "\">\(newsItem.message)</span>"
 
-        let messageString = "<span style=\"font-family:Helvetica; font-size: \(font.pointSize); color: " +
-                ColorHelper.getHexColor(Theme.darkGrey) + "\">\(newsItem.message)</span>"
+        webView.loadHTMLString(messageString, baseURL: nil)
+        webView.isOpaque = false
+        webView.backgroundColor = Theme.white
+        webView.isUserInteractionEnabled = true
+        webView.scrollView.isScrollEnabled = true
 
-        self.messageView.loadHTMLString(messageString, baseURL: nil)
-        self.titleLabel.textColor = Theme.white
-        self.messageView.isOpaque = false
-        self.messageView.backgroundColor = Theme.transparent
-        self.view.backgroundColor = Theme.darkGrey
-        self.messageScrollView.backgroundColor = Theme.white
+        view.backgroundColor = Theme.darkGrey
     }
 }

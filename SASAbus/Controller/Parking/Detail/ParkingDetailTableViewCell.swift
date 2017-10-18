@@ -23,11 +23,13 @@
 
 import UIKit
 
-class ParkingLotDetailTableViewCell: UITableViewCell {
+class ParkingDetailTableViewCell: UITableViewCell {
 
     @IBOutlet weak var stationLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var distanceLabel: UILabel!
+
+
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if highlighted {
