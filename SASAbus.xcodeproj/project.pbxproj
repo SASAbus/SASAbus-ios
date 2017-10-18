@@ -329,7 +329,6 @@
 		1F2E3FE5FAB7FBCED051F976 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3B37E9858A7587B9B751 /* Config.swift */; };
 		EE9AB1C31851F4BED3AA825E /* Pods_SASAbus_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF73200D52734B9C1FF9801 /* Pods_SASAbus_Watch_Extension.framework */; };
 		FA091C5F1EDD4CD200BC37A5 /* LineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA091C5E1EDD4CD200BC37A5 /* LineCell.xib */; };
-		FA1440461F8FBF4C0022CB67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E34673F66A58761B74D1C /* Assets.xcassets */; };
 		FA14404A1F8FBF930022CB67 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1440481F8FBF920022CB67 /* Images.swift */; };
 		FA14404B1F8FBF930022CB67 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1440481F8FBF920022CB67 /* Images.swift */; };
 		FA14404C1F8FBF930022CB67 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1440481F8FBF920022CB67 /* Images.swift */; };
@@ -343,7 +342,6 @@
 		FA2690E11E93B927000B8A84 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2690E01E93B927000B8A84 /* UserNotificationsUI.framework */; };
 		FA2690E41E93B927000B8A84 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2690E31E93B927000B8A84 /* NotificationViewController.swift */; };
 		FA2690EB1E93B927000B8A84 /* TripNotification.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FA2690DD1E93B927000B8A84 /* TripNotification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		FA2690F01E93C459000B8A84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E34673F66A58761B74D1C /* Assets.xcassets */; };
 		FA2690F21E93C7E6000B8A84 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2690F11E93C7E6000B8A84 /* NotificationCell.xib */; };
 		FA2690F41E93C9E4000B8A84 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2690F31E93C9E4000B8A84 /* NotificationCell.swift */; };
 		FA2690F51E93CA8F000B8A84 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E34CC3E1D22E2C4436733 /* UIUtils.swift */; };
@@ -372,7 +370,6 @@
 		FA6EEBC21F8FACFB00EF344A /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6EEBC11F8FACFB00EF344A /* Errors.swift */; };
 		FA726B5D1F2880DE0053EA12 /* MainRouteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA726B5C1F2880DE0053EA12 /* MainRouteViewController.xib */; };
 		FA798B571F8FAEEB00AEDEF7 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6EEBC11F8FACFB00EF344A /* Errors.swift */; };
-		FA798B611F8FBC0000AEDEF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F2E34673F66A58761B74D1C /* Assets.xcassets */; };
 		FA8B9D5D1F7CFC1F0099E4CD /* WatchConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D5C1F7CFC1F0099E4CD /* WatchConnection.swift */; };
 		FA8B9D5F1F7D00E00099E4CD /* WatchMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D5E1F7D00E00099E4CD /* WatchMessage.swift */; };
 		FA8B9D601F7D04030099E4CD /* WatchMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8B9D5E1F7D00E00099E4CD /* WatchMessage.swift */; };
@@ -2190,7 +2187,6 @@
 			files = (
 				FA3A57D21F56AB0B00016771 /* NotificationViewController.storyboard in Resources */,
 				FA580DF51F56E35400CFFCD2 /* InfoPlist.strings in Resources */,
-				FA2690F01E93C459000B8A84 /* Assets.xcassets in Resources */,
 				FA2690F21E93C7E6000B8A84 /* NotificationCell.xib in Resources */,
 				1F2E3AC72F21F2428533B5A2 /* NotificationCellDot.xib in Resources */,
 				1F2E3B637C6087070C031DD9 /* Localizable.strings in Resources */,
@@ -2204,7 +2200,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAB5626A1F7B8F9600FC862A /* Assets.xcassets in Resources */,
-				FA1440461F8FBF4C0022CB67 /* Assets.xcassets in Resources */,
 				FAB562681F7B8F9600FC862A /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2215,7 +2210,6 @@
 			files = (
 				FA918DD11F7BBA5B00602F1D /* busstops.realm in Resources */,
 				FAFF0B921F7E394D006B93A6 /* Localizable.strings in Resources */,
-				FA798B611F8FBC0000AEDEF7 /* Assets.xcassets in Resources */,
 				FAB5627C1F7B8F9600FC862A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
