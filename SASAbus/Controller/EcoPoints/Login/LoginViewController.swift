@@ -75,7 +75,7 @@ class LoginViewController: UIViewController {
 
                     guard json["success"].boolValue else {
                         Log.error("Login failure, got error: \(json["error"].stringValue)")
-                        self.loginFailed()
+                        self.loginFailed(json["error_message"].string)
                         return
                     }
 
@@ -153,14 +153,16 @@ class LoginViewController: UIViewController {
         }
     }
 
-    func loginFailed() {
+    func loginFailed(_ message: String? = nil) {
         animateViews(true)
         animateGoogleViews(true)
+        
+        let dialogMessage = message != nil ? message : L10n.Ecopoints.Login.Error.subtitle
 
         let alert = UIAlertController(title: L10n.Ecopoints.Login.Error.title,
-                message: L10n.Ecopoints.Login.Error.subtitle, preferredStyle: .alert)
+                message: dialogMessage, preferredStyle: .alert)
 
-        alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: L10n.Dialog.close, style: .default, handler: nil))
 
         self.present(alert, animated: true)
     }

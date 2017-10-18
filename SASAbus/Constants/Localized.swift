@@ -121,6 +121,11 @@ enum L10n {
     }
   }
 
+  enum Dialog {
+    /// Close
+    static let close = L10n.tr("Localizable", "dialog.close")
+  }
+
   enum Ecopoints {
     /// Eco points
     static let title = L10n.tr("Localizable", "ecopoints.title")
