@@ -101,6 +101,8 @@
 "departures.filter.enable_all" = "Zeige alle";
 "departures.filter.disable_all" = "Verstecke alle";
 
+"departures.emptyState" = "Zurzeit gibt es keine Abfahrten.\nVersuche es mit einem anderen Datum, \neiner anderen Uhrzeit oder Haltestelle!";
+
 "settings.title" = "Einstellungen";
 
 

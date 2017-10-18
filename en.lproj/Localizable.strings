@@ -101,6 +101,8 @@
 "departures.filter.enable_all" = "Show all";
 "departures.filter.disable_all" = "Hide all";
 
+"departures.emptyState" = "No departures at this time.\nTry it with another date or time,\nor search for another bus stop!";
+
 "settings.title" = "Settings";
 
 

@@ -48,7 +48,7 @@ public struct Endpoint {
     static let TRIPS = "trips/vehicle/{id}"
     static let TRIPS_VEHICLE = "vehicles/id/{id}/trips"
 
-    static let VALIDITY_DATA = "validity/data/{date}"
+    static let VALIDITY_DATA = "validity/"
     static let VALIDITY_TIMETABLES = "validity/timetables/{date}"
 
     static let CLOUD_TRIPS = "sync/trips"

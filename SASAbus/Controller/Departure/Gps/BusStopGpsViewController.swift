@@ -51,7 +51,7 @@ class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
 
         title = L10n.Departures.Gps.title
 
-        tableView.register(UINib(nibName: "BusStopGpsViewController", bundle: nil), forCellReuseIdentifier: "BusStopGpsViewController")
+        tableView.register(UINib(nibName: "BusStopGpsTableViewCell", bundle: nil), forCellReuseIdentifier: "BusStopGpsTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView(frame: CGRect.zero)

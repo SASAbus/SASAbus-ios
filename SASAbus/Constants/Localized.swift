@@ -64,6 +64,8 @@ enum L10n {
   }
 
   enum Departures {
+    /// No departures at this time.\nTry it with another date or time,\nor search for another bus stop!
+    static let emptyState = L10n.tr("Localizable", "departures.emptyState")
     /// Departures
     static let title = L10n.tr("Localizable", "departures.title")
 

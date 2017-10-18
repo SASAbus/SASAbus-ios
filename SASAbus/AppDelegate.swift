@@ -37,7 +37,6 @@ import Google
 
 import AlamofireNetworkActivityIndicator
 
-// TODO: News: Check if empty state is working
 // TODO: Add proper sync
 // TODO: Add beacon telemetry
 
@@ -220,6 +219,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 .subscribe(onError: { error in
                     Utils.logError(error, message: "Cannot load VDV")
                 })
+        
+        PlannedData.checkIfDataIsValid {
+            self.startIntro(dataOnly: true)
+        }
     }
 
     func setupNotifications() {

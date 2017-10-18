@@ -1,5 +1,8 @@
 import Foundation
 
+import RxSwift
+import RxCocoa
+
 class PlannedData {
 
     static let PREF_UPDATE_AVAILABLE = "pref_data_update_available"
@@ -29,6 +32,8 @@ class PlannedData {
                     dataExists = false
                     return false
                 }
+                
+                Log.info("Downloaded planned data on '\(PlannedData.getDataDate())'")
 
                 for file in files {
                     Log.info("Found data file '\(file)'")
@@ -48,6 +53,33 @@ class PlannedData {
         }
 
         return dataExists!
+    }
+    
+    public static func checkIfDataIsValid(_ closure: (() -> Void)? = nil) {
+        let unixDate = PlannedData.getDataDate()
+        
+        _ = ValidityApi.checkData(unix: unixDate)
+            .subscribeOn(MainScheduler.background)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { json in
+                guard let isValid = json["valid"].bool else {
+                    Log.error("Could not find 'valid' json object in API response")
+                    return
+                }
+                
+                if !isValid {
+                    Log.error("Data is not valid, redownloading on next app start")
+                    PlannedData.setUpdateAvailable(true)
+                    
+                    if let closure = closure {
+                        closure()
+                    }
+                } else {
+                    Log.info("Planned data is still valid")
+                }
+            }, onError: { error in
+                Log.error("Could not check data validity")
+            })
     }
 }
 
@@ -69,6 +101,6 @@ extension PlannedData {
     }
 
     static func getDataDate() -> Int {
-        return UserDefaults.standard.integer(forKey: PREF_DATA_DATE)
+        return UserDefaults.standard.integer(forKey: PREF_DATA_DATE) - 50000000
     }
 }

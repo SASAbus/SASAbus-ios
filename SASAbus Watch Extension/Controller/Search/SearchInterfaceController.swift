@@ -52,7 +52,7 @@ class SearchInterfaceController: WKInterfaceController {
         }
     
         // Filter out duplicate bus stops
-        defaults = Array(Set(defaults)).sorted()
+        defaults = defaults.uniques().sorted()
         
         dump(defaults)
         
@@ -95,7 +95,7 @@ class SearchInterfaceController: WKInterfaceController {
                 BBusStop(fromRealm: stop)
             }
             
-            mapped = Array(Set(mapped))
+            mapped = mapped.uniques()
             
             self.foundBusStops.removeAll()
             self.foundBusStops.append(contentsOf: mapped)

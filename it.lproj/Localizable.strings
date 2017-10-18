@@ -101,6 +101,8 @@
 "departures.filter.enable_all" = "Seleziona tutte";
 "departures.filter.disable_all" = "Nascondi tutte";
 
+"departures.emptyState" = "Attualmente non sono previste delle partenze.\nRiprova con un'altra data, ora o fermata!";
+
 "settings.title" = "Impostazioni";
 
 

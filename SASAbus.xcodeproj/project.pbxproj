@@ -336,6 +336,7 @@
 		FA14404D1F8FBF930022CB67 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1440491F8FBF930022CB67 /* Localized.swift */; };
 		FA14404E1F8FBF930022CB67 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1440491F8FBF930022CB67 /* Localized.swift */; };
 		FA14404F1F8FBF930022CB67 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1440491F8FBF930022CB67 /* Localized.swift */; };
+		FA1440511F909C400022CB67 /* NoDeparturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1440501F909C400022CB67 /* NoDeparturesView.swift */; };
 		FA18D5231EF2768D00038B89 /* EcoPointsProfilePictureDefaultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA18D5221EF2768D00038B89 /* EcoPointsProfilePictureDefaultViewController.xib */; };
 		FA18D5251EF2777600038B89 /* EcoPointsProfilePictureDefaultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA18D5241EF2777600038B89 /* EcoPointsProfilePictureDefaultCell.xib */; };
 		FA2690DF1E93B927000B8A84 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2690DE1E93B927000B8A84 /* UserNotifications.framework */; };
@@ -438,6 +439,11 @@
 		FADDF7ED1F7BDA0600C4CD03 /* ZipUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDF7EC1F7BDA0600C4CD03 /* ZipUtils.swift */; };
 		FADDF7EE1F7BDA0600C4CD03 /* ZipUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDF7EC1F7BDA0600C4CD03 /* ZipUtils.swift */; };
 		FADDF7F01F7BDAFA00C4CD03 /* Departure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3DBDC35A71E0733E720B /* Departure.swift */; };
+		FAEEF16E1F972CF400054D8D /* Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEEF16D1F972CF400054D8D /* Arrays.swift */; };
+		FAEEF16F1F972CFB00054D8D /* Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEEF16D1F972CF400054D8D /* Arrays.swift */; };
+		FAEEF1701F972CFB00054D8D /* Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEEF16D1F972CF400054D8D /* Arrays.swift */; };
+		FAEEF1721F9740DC00054D8D /* ValidityApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEEF1711F9740DC00054D8D /* ValidityApi.swift */; };
+		FAEEF1731F9740DC00054D8D /* ValidityApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEEF1711F9740DC00054D8D /* ValidityApi.swift */; };
 		FAFF0B921F7E394D006B93A6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA88EB151F53F14D0052C734 /* Localizable.strings */; };
 		FCAA82B8F90CBF76BC7586BE /* Pods_SASAbus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9395AB45EBD218F02D3F0E1E /* Pods_SASAbus.framework */; };
 /* End PBXBuildFile section */
@@ -766,6 +772,7 @@
 		FA091C5E1EDD4CD200BC37A5 /* LineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineCell.xib; sourceTree = "<group>"; };
 		FA1440481F8FBF920022CB67 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		FA1440491F8FBF930022CB67 /* Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
+		FA1440501F909C400022CB67 /* NoDeparturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDeparturesView.swift; sourceTree = "<group>"; };
 		FA18D5221EF2768D00038B89 /* EcoPointsProfilePictureDefaultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EcoPointsProfilePictureDefaultViewController.xib; sourceTree = "<group>"; };
 		FA18D5241EF2777600038B89 /* EcoPointsProfilePictureDefaultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EcoPointsProfilePictureDefaultCell.xib; sourceTree = "<group>"; };
 		FA2690DD1E93B927000B8A84 /* TripNotification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TripNotification.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -834,6 +841,8 @@
 		FADDF7E51F7BD74300C4CD03 /* TripUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripUtils.swift; sourceTree = "<group>"; };
 		FADDF7E81F7BD8D200C4CD03 /* DataDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDownloader.swift; sourceTree = "<group>"; };
 		FADDF7EC1F7BDA0600C4CD03 /* ZipUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipUtils.swift; sourceTree = "<group>"; };
+		FAEEF16D1F972CF400054D8D /* Arrays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrays.swift; sourceTree = "<group>"; };
+		FAEEF1711F9740DC00054D8D /* ValidityApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidityApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1047,6 +1056,7 @@
 				1F2E3B4804A14ABCEC06B2E0 /* Validator.swift */,
 				1F2E3C490293A7D6ABF763C9 /* UIImage+Insets.swift */,
 				FAA92CE81F5824460054A16F /* UIScreen+Size.swift */,
+				FAEEF16D1F972CF400054D8D /* Arrays.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1547,6 +1557,7 @@
 				1F2E3DAE81218700D1EC5EBF /* RealtimeApi.swift */,
 				1F2E36E154AA5433D1007817 /* ReportApi.swift */,
 				1F2E3233C5295C75D3A34F64 /* UserApi.swift */,
+				FAEEF1711F9740DC00054D8D /* ValidityApi.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -1702,6 +1713,7 @@
 				1F2E3510929A055E9591BED8 /* EmptyView.swift */,
 				1F2E3AABBC870A28FD8C0237 /* ErrorView.swift */,
 				1F2E3703279A53D7C7A7BA64 /* LoadingView.swift */,
+				FA1440501F909C400022CB67 /* NoDeparturesView.swift */,
 			);
 			path = Placeholder;
 			sourceTree = "<group>";
@@ -2521,6 +2533,7 @@
 				1F2E384B2D38B4E715ED7A34 /* BusBeaconHandler.swift in Sources */,
 				1F2E3939E0C2D483A1831C3B /* CurrentTrip.swift in Sources */,
 				1F2E302975E8A5911B6FEB04 /* BusStopBeaconHandler.swift in Sources */,
+				FAEEF1721F9740DC00054D8D /* ValidityApi.swift in Sources */,
 				1F2E3C2D3A9B10B6E83DC647 /* BusStopBeacon.swift in Sources */,
 				1F2E3B68758B83715C081BF7 /* TripNotification.swift in Sources */,
 				1F2E36EACD2737517DAE6083 /* AbsBeacon.swift in Sources */,
@@ -2574,6 +2587,7 @@
 				1F2E3308D65B04C0432F4FFC /* Buses.swift in Sources */,
 				1F2E33BBA5E7AFB4830944AD /* Lines.swift in Sources */,
 				1F2E3EE239C0D983A367DBF3 /* SurveyItem.swift in Sources */,
+				FAEEF16E1F972CF400054D8D /* Arrays.swift in Sources */,
 				1F2E379560C2A8C135C77987 /* Vehicle.swift in Sources */,
 				1F2E30E87DFCB39F1A4A2352 /* Departure.swift in Sources */,
 				1F2E36E7158F7C40C1784F4D /* BBusStop.swift in Sources */,
@@ -2621,6 +2635,7 @@
 				1F2E31C8106882A3A72B1FC0 /* RouteFeedViewController.swift in Sources */,
 				1F2E3AB430C44BAD108EA80F /* RouteResultsViewController.swift in Sources */,
 				1F2E34D3D7F7448ED49ABBDA /* ReportViewController.swift in Sources */,
+				FA1440511F909C400022CB67 /* NoDeparturesView.swift in Sources */,
 				1F2E35F72064E04BB870EA19 /* ReportApi.swift in Sources */,
 				1F2E3E682F264C5B8DF5CF94 /* Log.swift in Sources */,
 				1F2E3F2A46D9002A2F42993D /* Realm.swift in Sources */,
@@ -2704,6 +2719,7 @@
 				FA798B571F8FAEEB00AEDEF7 /* Errors.swift in Sources */,
 				1F2E38DDA73FCBED0ECC5515 /* BeaconStorage.swift in Sources */,
 				1F2E3C7927BC7B015F83A359 /* EcoPointsApi.swift in Sources */,
+				FAEEF16F1F972CFB00054D8D /* Arrays.swift in Sources */,
 				FA3A57CF1F56A07E00016771 /* Settings.swift in Sources */,
 				1F2E3F2C85DDBCAE503994F3 /* RealtimeApi.swift in Sources */,
 				1F2E3D38D00D81E184AAC49D /* CloudApi.swift in Sources */,
@@ -2760,6 +2776,7 @@
 				1F2E358AAE5537C473423817 /* NSData+Base64URLEncoding.swift in Sources */,
 				1F2E31B9CEDFB13B5498B6D3 /* SignatureValidator.swift in Sources */,
 				1F2E3A3F6CCA57C791A3C280 /* JSONWebToken.swift in Sources */,
+				FAEEF1731F9740DC00054D8D /* ValidityApi.swift in Sources */,
 				1F2E38D6844817870DDF0655 /* TokenValidator.swift in Sources */,
 				1F2E3AFDE914BA8C49D6859D /* TokenSigner.swift in Sources */,
 				1F2E367711FEB89CDC29334A /* NSData+SHA.m in Sources */,
@@ -2794,6 +2811,7 @@
 				FAD6022D1F7E2B44009EB4EA /* DeparturesRowController.swift in Sources */,
 				FADDF7EB1F7BD9E800C4CD03 /* DateExtension.swift in Sources */,
 				FADDF7E41F7BD71B00C4CD03 /* Utils.swift in Sources */,
+				FAEEF1701F972CFB00054D8D /* Arrays.swift in Sources */,
 				FA8B9D6A1F7D0AA30099E4CD /* WatchMessage.swift in Sources */,
 				FA6EEBC01F8FA87C00EF344A /* FavoritesRowController.swift in Sources */,
 				FA8B9D791F7E19F40099E4CD /* FavoritesInterfaceController.swift in Sources */,

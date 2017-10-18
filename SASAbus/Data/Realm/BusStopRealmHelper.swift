@@ -134,7 +134,7 @@ class BusStopRealmHelper {
             }
         }
         
-        nearbyBusStations = Array(Set(nearbyBusStations))
+        nearbyBusStations = nearbyBusStations.uniques()
         nearbyBusStations = nearbyBusStations.sorted(by: { $0.distance < $1.distance })
         
         if count != Int.max {

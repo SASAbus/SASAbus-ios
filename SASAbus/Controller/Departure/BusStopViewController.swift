@@ -118,7 +118,7 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
         timeField.inputView = datePicker
 
         loadingView = LoadingView(frame: view.frame)
-        emptyView = EmptyView(frame: view.frame)
+        emptyView = NoDeparturesView(frame: tableView.frame)
         errorView = ErrorView(frame: view.frame, target: self, action: #selector(parseData))
 
         setupAutoCompleteTableView()
