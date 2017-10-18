@@ -101,6 +101,6 @@ extension PlannedData {
     }
 
     static func getDataDate() -> Int {
-        return UserDefaults.standard.integer(forKey: PREF_DATA_DATE) - 50000000
+        return UserDefaults.standard.integer(forKey: PREF_DATA_DATE)
     }
 }
