@@ -1,0 +1,20 @@
+[
+  {
+    "title": "2.0.0",
+    "changes": [
+      "• Nuovo design",
+      "• Nuova mappa con posizioni in tempo reale",
+      "• Calcolo di partenza migliorato",
+      "• Aggiunto il supporto per Watch",
+      "• Aggiunto il supporto per i Beacons",
+      "• Aggiunta di punti eco",
+      "• Altri miglioramenti e correzioni di bug"
+    ]
+  },
+  {
+    "title": "1.0.0",
+    "changes": [
+      "• Prima versione"
+    ]
+  }
+]

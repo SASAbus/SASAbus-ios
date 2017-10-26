@@ -355,6 +355,9 @@
 		FA2A04B91EEE8EA700164E97 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA2A04B81EEE8EA700164E97 /* RemoteConfigDefaults.plist */; };
 		FA3A57CF1F56A07E00016771 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E390103030F9EA1B4CC2D /* Settings.swift */; };
 		FA3A57D21F56AB0B00016771 /* NotificationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA3A57D01F56AB0000016771 /* NotificationViewController.storyboard */; };
+		FA4748951FA1E70500E67DA8 /* changelog_en.json in Resources */ = {isa = PBXBuildFile; fileRef = FA4748941FA1E70500E67DA8 /* changelog_en.json */; };
+		FA4748971FA1EEB200E67DA8 /* changelog_de.json in Resources */ = {isa = PBXBuildFile; fileRef = FA4748961FA1EEB200E67DA8 /* changelog_de.json */; };
+		FA4748991FA1EEBC00E67DA8 /* changelog_it.json in Resources */ = {isa = PBXBuildFile; fileRef = FA4748981FA1EEBC00E67DA8 /* changelog_it.json */; };
 		FA54DE501E9560930071E42C /* TripSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E39698880C3DBEC3E99F2 /* TripSyncHelper.swift */; };
 		FA54DE541E9651710071E42C /* BadgeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E314A1DCC9BAFE8BE5925 /* BadgeHelper.swift */; };
 		FA54DE551E9651740071E42C /* InAppBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F6C7DCB2C618E380AB9 /* InAppBadge.swift */; };
@@ -782,6 +785,9 @@
 		FA2A04B81EEE8EA700164E97 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		FA3A57D11F56AB0000016771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NotificationViewController.storyboard; sourceTree = "<group>"; };
 		FA401F2A1E921EA400E7F282 /* SASAbus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SASAbus.entitlements; sourceTree = "<group>"; };
+		FA4748941FA1E70500E67DA8 /* changelog_en.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = changelog_en.json; sourceTree = "<group>"; };
+		FA4748961FA1EEB200E67DA8 /* changelog_de.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = changelog_de.json; sourceTree = "<group>"; };
+		FA4748981FA1EEBC00E67DA8 /* changelog_it.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = changelog_it.json; sourceTree = "<group>"; };
 		FA54DE5D1E969AAA0071E42C /* BusDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusDetailsViewController.xib; sourceTree = "<group>"; };
 		FA580DF31F56E2AC00CFFCD2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
 		FA580DF61F5702BB00CFFCD2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
@@ -1365,6 +1371,7 @@
 		1F2E395EA5304297F86C5AAC /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				FA4748931FA1E6E000E67DA8 /* Changelog */,
 				1F2E3E36AA47232EAB9DCBC3 /* Model */,
 				1F2E3E7FBA8596A0D84574D5 /* Networking */,
 				1F2E3A106A4B9D466AD9209A /* Realm */,
@@ -1837,6 +1844,16 @@
 			path = TripNotification;
 			sourceTree = "<group>";
 		};
+		FA4748931FA1E6E000E67DA8 /* Changelog */ = {
+			isa = PBXGroup;
+			children = (
+				FA4748941FA1E70500E67DA8 /* changelog_en.json */,
+				FA4748961FA1EEB200E67DA8 /* changelog_de.json */,
+				FA4748981FA1EEBC00E67DA8 /* changelog_it.json */,
+			);
+			path = Changelog;
+			sourceTree = "<group>";
+		};
 		FA8B9D5B1F7CFC120099E4CD /* Watch */ = {
 			isa = PBXGroup;
 			children = (
@@ -2149,8 +2166,10 @@
 				1F2E39BE93D1F23DAC67B121 /* BusStopFilterCollectionViewCell.xib in Resources */,
 				1F2E31FBE54ACDB601A3DD2D /* BusStopFilterViewController.xib in Resources */,
 				FABCEED91EDEBD3C00E48116 /* LineCourseViewCell.xib in Resources */,
+				FA4748971FA1EEB200E67DA8 /* changelog_de.json in Resources */,
 				1F2E3302D3F8014FAB4767B6 /* BusStopGpsTableViewCell.xib in Resources */,
 				1F2E33B353D9594DA661A0CB /* BusStopGpsViewController.xib in Resources */,
+				FA4748951FA1E70500E67DA8 /* changelog_en.json in Resources */,
 				1F2E34F999734FF9B86C4850 /* BusStopMapViewController.xib in Resources */,
 				1F2E38AD94FE71814E57815D /* LineDetailsBusesViewController.xib in Resources */,
 				1F2E341095903726C351A947 /* LineDetailsMapViewController.xib in Resources */,
@@ -2173,6 +2192,7 @@
 				1F2E30EF4E46445328459E5C /* RouteBottomSheetViewController.xib in Resources */,
 				1F2E36E7589FA4FC85E1589E /* RouteMapViewController.xib in Resources */,
 				1F2E3527C9C7B3CA3A52DE98 /* EmptyStateNewsView.xib in Resources */,
+				FA4748991FA1EEBC00E67DA8 /* changelog_it.json in Resources */,
 				1F2E30CD46B32C7243389D3C /* EmptyStateFavoritesView.xib in Resources */,
 				1F2E352311C8EEEBA79A4682 /* ChangelogViewController.xib in Resources */,
 				1F2E349B95E7DC0F212DB975 /* Localizable.strings in Resources */,

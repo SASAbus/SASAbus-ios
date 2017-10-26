@@ -1,0 +1,20 @@
+[
+  {
+    "title": "2.0.0",
+    "changes": [
+      "• New Design",
+      "• New real-time map",
+      "• Improved departures",
+      "• Added Watch Integration",
+      "• Added beacon integration",
+      "• Added Eco-Points",
+      "• Other bug fixes and improvements"
+    ]
+  },
+  {
+    "title": "1.0.0",
+    "changes": [
+      "• Initial release"
+    ]
+  }
+]
