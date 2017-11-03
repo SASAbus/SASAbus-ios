@@ -52,8 +52,6 @@ class MainInterfaceController: WKInterfaceController {
         // Filter out duplicate bus stops
         defaults = defaults.uniques().sorted()
         
-        dump(defaults)
-        
         presentTextInputController(withSuggestions: defaults, allowedInputMode: .plain, completion: {(results) -> Void in
             guard let results = results, !results.isEmpty else {
                 Log.warning("No results returned")
