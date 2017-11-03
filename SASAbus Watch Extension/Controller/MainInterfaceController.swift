@@ -42,7 +42,7 @@ class MainInterfaceController: WKInterfaceController {
             filterChain += "family == \(id) OR "
         }
         
-        filterChain = filterChain.substring(to: filterChain.index(filterChain.endIndex, offsetBy: -5))
+        filterChain = filterChain.substring(to: filterChain.index(filterChain.endIndex, offsetBy: -4))
         
         let busStops = realm.objects(BusStop.self).filter(filterChain)
         for busStop in busStops {
