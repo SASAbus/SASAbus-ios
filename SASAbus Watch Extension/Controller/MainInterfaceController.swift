@@ -1,13 +1,8 @@
-//
-//  MainInterfaceController.swift
-//  SASAbus Watch Extension
-//
-//  Created by Alex Lardschneider on 27/09/2017.
-//  Copyright © 2017 SASA AG. All rights reserved.
-//
-
 import WatchKit
 import Foundation
+
+import Realm
+import RealmSwift
 
 class MainInterfaceController: WKInterfaceController {
     
@@ -31,18 +26,45 @@ class MainInterfaceController: WKInterfaceController {
         favoritesIcon.setTintColor(color)
         searchIcon.setTintColor(color)
     }
-
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        super.willActivate()
-    }
-
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
-        super.didDeactivate()
-    }
     
     
-    @IBAction func onNearbyClick() {
+    @IBAction func onSearchButtonPress() {
+        displaySearch()
+    }
+    
+    private func displaySearch() {
+        var defaults = [String]()
+        let realm = Realm.busStops()
+        
+        var filterChain = ""
+        
+        for id in SearchInterfaceController.defaultBusStopsIds {
+            filterChain += "family == \(id) OR "
+        }
+        
+        filterChain = filterChain.substring(to: filterChain.index(filterChain.endIndex, offsetBy: -5))
+        
+        let busStops = realm.objects(BusStop.self).filter(filterChain)
+        for busStop in busStops {
+            defaults.append(busStop.name())
+        }
+        
+        // Filter out duplicate bus stops
+        defaults = defaults.uniques().sorted()
+        
+        dump(defaults)
+        
+        presentTextInputController(withSuggestions: defaults, allowedInputMode: .plain, completion: {(results) -> Void in
+            guard let results = results, !results.isEmpty else {
+                Log.warning("No results returned")
+                self.popToRootController()
+                return
+            }
+            
+            let busStop = results[0] as! String
+            Log.info("Searched for '\(busStop)'")
+            
+            self.pushController(withName: "SearchInterfaceController", context: busStop)
+        })
     }
 }

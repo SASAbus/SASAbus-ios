@@ -38,7 +38,7 @@ def default_pods
   pod 'Fabric'
   pod 'Crashlytics', '~>  3.8'
 
-  pod 'Pulley'
+  pod 'Pulley', :git => 'https://github.com/52inc/Pulley.git', :branch => 'swift-3.1'
 
   pod 'LocationPickerViewController'
 

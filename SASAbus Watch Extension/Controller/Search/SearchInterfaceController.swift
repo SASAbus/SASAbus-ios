@@ -14,7 +14,7 @@ class SearchInterfaceController: WKInterfaceController {
     
     var foundBusStops = [BBusStop]()
     
-    let defaultBusStopsIds = [
+    public static let defaultBusStopsIds = [
         61,  // Casanova
         102, // Fiera
         105, // Firmian
@@ -23,51 +23,20 @@ class SearchInterfaceController: WKInterfaceController {
         227, // Piazza Vittoria (Via Cesare Battisti)
         544, // Piazza Vittoria (Corso Libertà)
         229, // Piazza Walther
-        449, // Via Perathoner
-        461  // Via Resia S. Pio X
+        449  // Via Perathoner
     ]
     
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
+        
+        if let query = context as? String {
+            searchBusStops(query: query)
+        }
     }
 
     override func willActivate() {
         super.willActivate()
-        
-        var defaults = [String]()
-        let realm = Realm.busStops()
-        
-        var filterChain = ""
-        
-        for id in defaultBusStopsIds {
-            filterChain += "family == \(id) OR "
-        }
-        
-        filterChain = filterChain.substring(to: filterChain.index(filterChain.endIndex, offsetBy: -5))
-        
-        let busStops = realm.objects(BusStop.self).filter(filterChain)
-        for busStop in busStops {
-            defaults.append(busStop.name())
-        }
-    
-        // Filter out duplicate bus stops
-        defaults = defaults.uniques().sorted()
-        
-        dump(defaults)
-        
-        presentTextInputController(withSuggestions: defaults, allowedInputMode: .plain, completion: {(results) -> Void in
-            guard let results = results, !results.isEmpty else {
-                Log.warning("No results returned")
-                self.popToRootController()
-                return
-            }
-            
-            let busStop = results[0] as! String
-            Log.info("Searched for '\(busStop)'")
-            
-            self.searchBusStops(query: busStop)
-        })
     }
 
     override func didDeactivate() {
@@ -85,6 +54,7 @@ class SearchInterfaceController: WKInterfaceController {
             
             if busStops.isEmpty {
                 DispatchQueue.main.async {
+                    self.loadingText.setHidden(true)
                     self.noResultsText.setHidden(false)
                 }
                 
@@ -102,6 +72,7 @@ class SearchInterfaceController: WKInterfaceController {
             
             DispatchQueue.main.async {
                 self.loadingText.setHidden(true)
+                self.noResultsText.setHidden(true)
                 
                 self.tableView.setNumberOfRows(self.foundBusStops.count, withRowType: "SearchRowController")
                 

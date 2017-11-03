@@ -1907,13 +1907,6 @@
 			path = Favorites;
 			sourceTree = "<group>";
 		};
-		FA8B9D7A1F7E1A890099E4CD /* Data */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
 		FA8B9D7F1F7E1E380099E4CD /* Departures */ = {
 			isa = PBXGroup;
 			children = (
@@ -1949,7 +1942,6 @@
 		FAB562741F7B8F9600FC862A /* SASAbus Watch Extension */ = {
 			isa = PBXGroup;
 			children = (
-				FA8B9D7A1F7E1A890099E4CD /* Data */,
 				FA8B9D671F7D0A470099E4CD /* Util */,
 				FAB562771F7B8F9600FC862A /* ExtensionDelegate.swift */,
 				FAB562791F7B8F9600FC862A /* NotificationController.swift */,
