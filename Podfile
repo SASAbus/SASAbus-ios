@@ -77,3 +77,19 @@ target 'SASAbus Watch Extension' do
 
   shared
 end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        if target.name == 'SASAbus Watch Extension'
+            target.build_configurations.each do |config|
+                  config.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = 'YES'
+            end
+        end
+
+        if target.name == 'SASAbus'
+            target.build_configurations.each do |config|
+                  config.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = 'NO'
+            end
+        end
+    end
+end
