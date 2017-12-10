@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.5.1)
+  - Alamofire (4.6.0)
   - AlamofireNetworkActivityIndicator (2.2.0):
     - Alamofire (~> 4.5)
   - ChameleonFramework/Default (2.1.0)
@@ -31,7 +31,7 @@ PODS:
   - FirebaseCore (4.0.6):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - nanopb (~> 0.3)
-  - FirebaseInstanceID (2.0.6)
+  - FirebaseInstanceID (2.0.7)
   - FirebaseMessaging (2.0.2):
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
@@ -101,7 +101,7 @@ PODS:
   - SSZipArchive (2.1.1)
   - StatefulViewController (3.0)
   - SwiftValidator (4.0.0)
-  - SwiftyBeaver (1.4.3)
+  - SwiftyBeaver (1.4.4)
   - SwiftyJSON (4.0.0)
   - zipzap (8.0.6)
 
@@ -156,7 +156,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/jpotts18/SwiftValidator.git
 
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
@@ -165,7 +165,7 @@ SPEC CHECKSUMS:
   Firebase: 052c0de688fc87b414996eea13e223dd9fee3fa2
   FirebaseAnalytics: 76f754d37ca5b04f36856729b6af3ca0152d1069
   FirebaseCore: 28def3c643989c97ea5a69ea5000f5fa9902b9fd
-  FirebaseInstanceID: 24958382a1011bba5aaff37e334e7a650b9118f5
+  FirebaseInstanceID: 148c25c986c8699e67304b114e365713dce467f2
   FirebaseMessaging: 85af6c27188538b3a6f7dfd0b3b0596358cb0c39
   FirebaseRemoteConfig: 5b3e3301ef2f237b1b588e8ef3211b5a22e9e15d
   Google: d536877ec602555b755cc28ce6fed104825c693c
@@ -193,7 +193,7 @@ SPEC CHECKSUMS:
   SSZipArchive: 14401ade5f8e82aba1ff03e9f88e9de60937ae60
   StatefulViewController: 4803bf900d44de26074344998e10e041113b5931
   SwiftValidator: 25ded5ca1f10c05adf57f6ac82a72d28ac8d91af
-  SwiftyBeaver: e10b1668e0512229c36c34769b97eed3dfae2ca3
+  SwiftyBeaver: 25bd76281f49ca989ec2e3cbde9af89c15bc1432
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   zipzap: 9de722cee38b7c3a8b1134913a8a67ab36cb97c1
 

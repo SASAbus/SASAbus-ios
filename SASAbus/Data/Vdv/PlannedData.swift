@@ -56,6 +56,11 @@ class PlannedData {
     }
     
     public static func checkIfDataIsValid(_ closure: (() -> Void)? = nil) {
+        guard PlannedData.planDataExists() else {
+            Log.info("Data does not exist, cannot check for update")
+            return
+        }
+        
         let unixDate = PlannedData.getDataDate()
         
         _ = ValidityApi.checkData(unix: unixDate)
@@ -63,16 +68,18 @@ class PlannedData {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { json in
                 guard let isValid = json["valid"].bool else {
-                    Log.error("Could not find 'valid' json object in API response")
+                    Log.error("Could not find json object 'valid' in API response")
                     return
                 }
                 
                 if !isValid {
-                    Log.error("Data is not valid, redownloading on next app start")
                     PlannedData.setUpdateAvailable(true)
                     
                     if let closure = closure {
+                        Log.error("Data is not valid, redownloading now")
                         closure()
+                    } else {
+                        Log.error("Data is not valid, redownloading on next app start")
                     }
                 } else {
                     Log.info("Planned data is still valid")
