@@ -3137,7 +3137,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = SASAbus_Watch_Extension;
 				INFOPLIST_FILE = "SASAbus Watch/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus.watch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -3173,7 +3173,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = SASAbus_Watch_Extension;
 				INFOPLIST_FILE = "SASAbus Watch/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus.watch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -3206,7 +3206,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "SASAbus Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus.watch.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -3240,7 +3240,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "SASAbus Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = it.sasabz.ios.SASAbus.watch.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
