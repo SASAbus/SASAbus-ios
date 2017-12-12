@@ -58,6 +58,8 @@ public struct Endpoint {
 
     static let MAP_TILES = "map/coordinates/%d/%d/%d/line/%d/variant/%d"
     static let MAP_TILES_ALL = "map/coordinates/%d/%d/%d"
+    
+    static let FORGOT_PASSWORD = "https://sasa-bus.appspot.com/reset-password"
 
 
     // ========================================== REMOTE CONFIG ENDPOINTS ==============================================

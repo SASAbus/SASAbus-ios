@@ -23,6 +23,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var googleActivityIndicator: UIActivityIndicatorView!
 
+    @IBOutlet weak var forgotPasswordLink: UILabel!
+    
     var hairLineImage: UIImageView!
 
     var parentVC: EcoPointsViewController!
@@ -44,8 +46,17 @@ class LoginViewController: UIViewController {
         activityIndicator.alpha = 0
 
         GIDSignIn.sharedInstance().uiDelegate = self
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didClickOnForgotPassword(sender:)))
+        forgotPasswordLink.addGestureRecognizer(tap)
+        forgotPasswordLink.isUserInteractionEnabled = true
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.email.endEditing(true)
+        self.password.endEditing(true)
+    }
+    
 
     @IBAction func validateForm(_ sender: AnyObject) {
         login()
@@ -165,6 +176,11 @@ class LoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: L10n.Dialog.close, style: .default, handler: nil))
 
         self.present(alert, animated: true)
+    }
+
+
+    func didClickOnForgotPassword(sender: Any?) {
+        UIApplication.shared.open(URL(string: Endpoint.FORGOT_PASSWORD)!)
     }
 }
 
