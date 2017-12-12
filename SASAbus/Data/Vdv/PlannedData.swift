@@ -57,7 +57,12 @@ class PlannedData {
     
     public static func checkIfDataIsValid(_ closure: (() -> Void)? = nil) {
         guard PlannedData.planDataExists() else {
-            Log.info("Data does not exist, cannot check for update")
+            Log.info("Data does not exist, skipping update check")
+            return
+        }
+        
+        guard Settings.isIntroFinished() else {
+            Log.info("Into not yet finished, skipping update check")
             return
         }
         
@@ -108,6 +113,6 @@ extension PlannedData {
     }
 
     static func getDataDate() -> Int {
-        return UserDefaults.standard.integer(forKey: PREF_DATA_DATE)
+        return UserDefaults.standard.integer(forKey: PREF_DATA_DATE) / 10
     }
 }
