@@ -18,6 +18,19 @@ class Settings {
 
         UserDefaults.standard.register(defaults: defaultPrefs)
         UserDefaults.standard.synchronize()
+        
+        deleteObsoleteKeys()
+    }
+    
+    static func deleteObsoleteKeys() {
+        let keys = [
+            "PRIVACY_HTML_KEY",
+            "SURVEY_CYCLE_KEY",
+        ]
+        
+        for key in keys {
+            UserDefaults.standard.removeObject(forKey: key)
+        }
     }
 
 
