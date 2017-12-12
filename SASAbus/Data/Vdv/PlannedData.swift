@@ -113,6 +113,6 @@ extension PlannedData {
     }
 
     static func getDataDate() -> Int {
-        return UserDefaults.standard.integer(forKey: PREF_DATA_DATE) / 10
+        return UserDefaults.standard.integer(forKey: PREF_DATA_DATE)
     }
 }

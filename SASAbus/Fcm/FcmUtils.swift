@@ -4,7 +4,7 @@ import Firebase
 class FcmUtils {
 
     static func checkForNewsSubscription() {
-        guard FcmSettings.getFcmToken() != nil else {
+        guard FcmSettings.getFcmTokenOrNil() != nil else {
             return
         }
 

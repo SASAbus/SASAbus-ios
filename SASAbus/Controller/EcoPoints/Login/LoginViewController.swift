@@ -218,6 +218,7 @@ extension LoginViewController: GIDSignInUIDelegate {
         guard let userInfo = notification.userInfo, let userId = userInfo["user_id"] as? String else {
             Log.error("ID token missing in notification")
             self.loginFailed()
+            
             return
         }
 
