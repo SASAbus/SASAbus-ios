@@ -6,6 +6,8 @@
 	<string>https://sasa-bus.appspot.com/v1/</string>
 	<key>host_api_tiles</key>
 	<string>https://sasa-bus-data.appspot.com/v1/</string>
+	<key>host_api_data_new</key>
+	<string>http://realtimetest.opensasa.info/vdv/zip</string>
 	<key>host_api_reports</key>
 	<string>https://davale-sasa.appspot.com/v1/</string>
 	<key>host_api_telemetry</key>
