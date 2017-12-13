@@ -130,8 +130,8 @@ class BusStopMapViewController: UIViewController, MKMapViewDelegate, CLLocationM
 
         for busStop in busStops {
             let annotation = BusStopAnnotation(
-                    title: busStop.name(locale: Utils.locale()),
-                    subtitle: busStop.munic(locale: Utils.locale()),
+                    title: busStop.name(locale: Locales.get()),
+                    subtitle: busStop.munic(locale: Locales.get()),
                     coordinate: CLLocationCoordinate2D(latitude: Double(busStop.lat), longitude: Double(busStop.lng)),
                     busStop: BBusStop(fromRealm: busStop)
             )

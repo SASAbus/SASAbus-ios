@@ -12,7 +12,7 @@ class BusStopRealmHelper {
 
     static var CONFIG: Realm.Configuration!
 
-    static let locale = Utils.locale()
+    static let locale = Locales.get()
 
     static func setup() {
         let url = bundleURL(name: "busstops")

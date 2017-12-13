@@ -58,7 +58,7 @@ class ChangelogViewController: UITableViewController, UIToolbarDelegate {
     
     
     func parseData() {
-        var language = Utils.locale()
+        var language = Locales.get()
         
         if language != "de" || language != "it" || language != "en" {
             language = "en"

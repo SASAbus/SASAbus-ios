@@ -103,7 +103,7 @@ class HashUtils {
 
             return hexDigest
         } catch {
-            Utils.logError(error, message: "Cannot compute md5 of file '\(url)', error: '\(error)'")
+            ErrorHelper.log(error, message: "Cannot compute md5 of file '\(url)', error: '\(error)'")
             return nil
         }
     }

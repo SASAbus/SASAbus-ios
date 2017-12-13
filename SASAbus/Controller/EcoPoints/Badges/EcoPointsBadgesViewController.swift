@@ -117,7 +117,7 @@ class EcoPointsBadgesViewController: UITableViewController {
                     self.tableView.reloadData()
                     self.refreshControl!.endRefreshing()
                 }, onError: { error in
-                    Utils.logError(error, message: "Couldn't load next badges")
+                    ErrorHelper.log(error, message: "Couldn't load next badges")
                     AuthHelper.checkIfUnauthorized(error)
                 })
     }
@@ -138,7 +138,7 @@ class EcoPointsBadgesViewController: UITableViewController {
                     self.tableView.reloadData()
                     self.refreshControl!.endRefreshing()
                 }, onError: { error in
-                    Utils.logError(error, message: "Couldn't load earned badges")
+                    ErrorHelper.log(error, message: "Couldn't load earned badges")
                     AuthHelper.checkIfUnauthorized(error)
                 })
     }

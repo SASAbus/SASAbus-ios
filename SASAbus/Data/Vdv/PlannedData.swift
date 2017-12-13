@@ -47,7 +47,7 @@ class PlannedData {
                 Log.error("Planned data (JSON file) is missing")
                 dataExists = false
             } catch let error {
-                Utils.logError(error, message: "Cannot list contents of data directory, re-downloading: \(error)")
+                ErrorHelper.log(error, message: "Cannot list contents of data directory, re-downloading: \(error)")
                 dataExists = false
             }
         }

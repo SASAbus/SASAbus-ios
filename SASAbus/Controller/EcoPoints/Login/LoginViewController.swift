@@ -99,7 +99,7 @@ class LoginViewController: UIViewController {
                     Log.warning("Login success, got token: \(token)")
                     self.loginSuccess(email: emailString, token: token, isGoogleSignIn: false)
                 }, onError: { error in
-                    Utils.logError(error)
+                    ErrorHelper.log(error)
                     self.loginFailed()
                 })
     }
@@ -253,7 +253,7 @@ extension LoginViewController: GIDSignInUIDelegate {
                     Log.warning("Google login success, got token: \(token)")
                     self.loginSuccess(email: userInfo["email"] as? String, token: token, isGoogleSignIn: false)
                 }, onError: { error in
-                    Utils.logError(error)
+                    ErrorHelper.log(error)
                     self.loginFailed()
                 })
     }

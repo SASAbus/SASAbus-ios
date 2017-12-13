@@ -73,7 +73,7 @@ class EcoPointsProfileViewController: UITableViewController {
                     self.tableView.reloadData()
                     self.refreshControl!.endRefreshing()
                 }, onError: { error in
-                    Utils.logError(error, message: "Couldn't load profile")
+                    ErrorHelper.log(error, message: "Couldn't load profile")
                     AuthHelper.checkIfUnauthorized(error)
                 })
     }
@@ -149,7 +149,7 @@ class EcoPointsProfileViewController: UITableViewController {
                 .subscribe(onNext: {
                     self.tableView.reloadData()
                 }, onError: { error in
-                    Utils.logError(error, message: "Could not compute trip statistics")
+                    ErrorHelper.log(error, message: "Could not compute trip statistics")
                 })
     }
 
@@ -230,12 +230,12 @@ extension EcoPointsProfileViewController {
             if distance < 1000 {
                 cell.distanceText.text = "\(distance) m"
             } else {
-                let rounded = Utils.roundToPlaces((distance / 1000), places: 2)
+                let rounded = (distance / 1000).roundTo(places: 2)
                 cell.distanceText.text = String(describing: rounded).replacingOccurrences(of: ".", with: ",") + " km"
             }
 
-            let roundedEmissions = Utils.roundToPlaces((emissions / 1000), places: 2)
-            let roundedMoney = Utils.roundToPlaces(money, places: 2)
+            let roundedEmissions = Double((emissions / 1000)).roundTo(places: 2)
+            let roundedMoney = money.roundTo(places: 2)
 
             cell.totalTripsText.text = "\(trips)"
             cell.co2Text.text = "\(roundedEmissions) g"

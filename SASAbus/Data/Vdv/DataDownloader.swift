@@ -33,7 +33,7 @@ class DataDownloader {
                     try fileManager.removeItem(at: dataDirectory)
                     Log.warning("Deleted old data directory")
                 } catch let error {
-                    Utils.logError(error, message: "Could not delete old data directory: \(error)")
+                    ErrorHelper.log(error, message: "Could not delete old data directory: \(error)")
                 }
             }
             
@@ -42,7 +42,7 @@ class DataDownloader {
                     try fileManager.removeItem(at: downloadUrl)
                     Log.warning("Deleted old data.zip")
                 } catch let error {
-                    Utils.logError(error, message: "Could not delete data.zip: \(error)")
+                    ErrorHelper.log(error, message: "Could not delete data.zip: \(error)")
                 }
             }
             

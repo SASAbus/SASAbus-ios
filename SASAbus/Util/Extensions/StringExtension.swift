@@ -21,4 +21,8 @@ extension String {
         let endIndex = index(from: r.upperBound)
         return substring(with: startIndex..<endIndex)
     }
+    
+    var dateFromISO8601: Date? {
+        return Formatter.iso8601.date(from: self)   // "Mar 22, 2017, 10:22 AM"
+    }
 }

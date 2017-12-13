@@ -62,7 +62,7 @@ class Vehicle {
     }
 
     func getFuelString() -> String {
-        switch Utils.locale() {
+        switch Locales.get() {
             case "it":
                 return FUEL_IT[fuel]
             case "de":
@@ -73,7 +73,7 @@ class Vehicle {
     }
 
     func getColorString() -> String {
-        switch Utils.locale() {
+        switch Locales.get() {
             case "it":
                 return COLOR_IT[color]
             case "de":

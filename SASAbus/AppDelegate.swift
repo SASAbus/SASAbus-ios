@@ -217,7 +217,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 .subscribeOn(MainScheduler.background)
                 .observeOn(MainScheduler.background)
                 .subscribe(onError: { error in
-                    Utils.logError(error, message: "Cannot load VDV")
+                    ErrorHelper.log(error, message: "Cannot load VDV")
                 })
         
         PlannedData.checkIfDataIsValid {

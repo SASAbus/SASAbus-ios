@@ -47,7 +47,7 @@ class LineCourseMapViewController: UIViewController, MKMapViewDelegate {
         var activePoints = [CLLocationCoordinate2D]()
         var inactivePoints = [CLLocationCoordinate2D]()
 
-        let locale = Utils.locale()
+        let locale = Locales.get()
 
         for item in items {
             let busStop = item.busStop

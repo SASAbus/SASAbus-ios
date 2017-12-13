@@ -21,7 +21,7 @@ class FcmUtils {
             return
         }
 
-        let topic = "news_" + Utils.localeDeIt()
+        let topic = "news_" + Locales.getDeIt()
         FcmSettings.setCurrentNewsTopic(topic: topic)
 
         Log.warning("Subscribing to news topic '\(topic)'")

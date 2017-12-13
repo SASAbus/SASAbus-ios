@@ -43,7 +43,7 @@ class RestClient {
         var headers = [
                 "User-Agent": "SasaBus iOS",
                 "X-Device": DeviceUtils.getModel(),
-                "X-Language": Utils.locale(),
+                "X-Language": Locales.get(),
                 "X-Version-Code": versionCode,
                 "X-Version-Name": versionName,
                 "X-Android-Id": DeviceUtils.getIdentifier()

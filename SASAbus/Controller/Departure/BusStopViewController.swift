@@ -164,7 +164,7 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
         foundBusStations = Array(Set(mapped))
 
         self.foundBusStations = foundBusStations.sorted(by: {
-            $0.name(locale: Utils.locale()) < $1.name(locale: Utils.locale())
+            $0.name(locale: Locales.get()) < $1.name(locale: Locales.get())
         })
 
         self.autoCompleteTableView.reloadData()
@@ -263,7 +263,7 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
 
                     self.loadDelays()
                 }, onError: { error in
-                    Utils.logError(error, message: "Could not fetch departures")
+                    ErrorHelper.log(error, message: "Could not fetch departures")
 
                     self.allDepartures.removeAll()
 
@@ -301,7 +301,7 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
                         self.tableView.reloadData()
                     }
                 }, onError: { error in
-                    Utils.logError(error, message: "Could not load delays")
+                    ErrorHelper.log(error, message: "Could not load delays")
 
                     self.allDepartures.filter {
                         $0.delay == Config.BUS_STOP_DETAILS_OPERATION_RUNNING
