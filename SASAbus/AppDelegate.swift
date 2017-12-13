@@ -189,8 +189,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let realtimeUrl = Endpoint.realtimeApiUrl
                 Log.warning("Realtime api url: \(realtimeUrl)")
 
-                let dataUrl = Endpoint.dataApiUrl
-                Log.warning("Data api url: \(dataUrl)")
+                let tileUrl = Endpoint.tileApiUrl
+                Log.warning("Tile api url: \(tileUrl)")
+                
+                let newDataUrl = Endpoint.newDataApiUrl
+                Log.warning("Data api url: \(newDataUrl)")
 
                 let reportsUrl = Endpoint.reportsApiUrl
                 Log.warning("Reports api url: \(reportsUrl)")

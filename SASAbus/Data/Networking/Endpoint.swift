@@ -72,8 +72,12 @@ public struct Endpoint {
         return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_REALTIME].stringValue!
     }
 
-    static var dataApiUrl: String {
-        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_DATA].stringValue!
+    static var tileApiUrl: String {
+        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_TILES].stringValue!
+    }
+    
+    static var newDataApiUrl: String {
+        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_DATA_NEW].stringValue!
     }
 
     static var reportsApiUrl: String {

@@ -25,7 +25,13 @@ class RestClient {
     }
 
     static func request(_ endpoint: String, method: HTTPMethod, parameters: Parameters? = nil) -> Alamofire.DataRequest {
-        let url = "\(Endpoint.apiUrl)\(endpoint)"
+        var host = Endpoint.apiUrl
+        
+        if endpoint.starts(with: "realtime") {
+            host = Endpoint.realtimeApiUrl
+        }
+        
+        let url = host + endpoint
         let headers = getHeaders(url)
 
         Log.debug("\(method.rawValue.uppercased()): \(url)")

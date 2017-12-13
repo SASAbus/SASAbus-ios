@@ -26,11 +26,11 @@ class BusTileOverlay: MKTileOverlay {
         let urlFormatted: String
 
         if showAllPaths {
-            let url = Endpoint.dataApiUrl + Endpoint.MAP_TILES_ALL
+            let url = Endpoint.tileApiUrl + Endpoint.MAP_TILES_ALL
             urlFormatted = String(format: url, path.x, path.y, path.z)
 
         } else {
-            let url = Endpoint.dataApiUrl + Endpoint.MAP_TILES
+            let url = Endpoint.tileApiUrl + Endpoint.MAP_TILES
             urlFormatted = String(format: url,
                     path.x, path.y, path.z,
                     parent.selectedBus?.lineId ?? 0, parent.selectedBus?.variant ?? 0
