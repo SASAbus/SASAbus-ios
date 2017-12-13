@@ -155,6 +155,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             Fabric.with([Crashlytics.self])
             Crashlytics.sharedInstance().setUserIdentifier(Settings.getCrashlyticsDeviceId())
+            
+            Log.addLogTree(tree: CrashlyticsLogTree())
         #else
             fatalError("Debug or release flag not specified")
         #endif

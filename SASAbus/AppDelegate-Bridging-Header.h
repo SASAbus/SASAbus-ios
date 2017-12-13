@@ -29,4 +29,6 @@
 
 #import <Google/SignIn.h>
 
+#import <Crashlytics/Crashlytics.h>
+
 #endif

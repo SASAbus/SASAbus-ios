@@ -449,6 +449,10 @@
 		FAF37A741FE10A76006636BA /* Locales.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF37A711FE109C8006636BA /* Locales.swift */; };
 		FAF37A751FE10AE7006636BA /* ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3A48B17EA4A9A805D353 /* ErrorHelper.swift */; };
 		FAF37A761FE10B19006636BA /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF37A6D1FE10907006636BA /* BundleExtension.swift */; };
+		FAF37A781FE11182006636BA /* LogTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF37A771FE11182006636BA /* LogTree.swift */; };
+		FAF37A791FE11182006636BA /* LogTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF37A771FE11182006636BA /* LogTree.swift */; };
+		FAF37A7A1FE11182006636BA /* LogTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF37A771FE11182006636BA /* LogTree.swift */; };
+		FAF37A7C1FE11288006636BA /* CrashlyticsLogTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF37A7B1FE11288006636BA /* CrashlyticsLogTree.swift */; };
 		FAFF0B921F7E394D006B93A6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA88EB151F53F14D0052C734 /* Localizable.strings */; };
 		FCAA82B8F90CBF76BC7586BE /* Pods_SASAbus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9395AB45EBD218F02D3F0E1E /* Pods_SASAbus.framework */; };
 /* End PBXBuildFile section */
@@ -854,6 +858,8 @@
 		FAF37A6D1FE10907006636BA /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		FAF37A6F1FE10922006636BA /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		FAF37A711FE109C8006636BA /* Locales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locales.swift; sourceTree = "<group>"; };
+		FAF37A771FE11182006636BA /* LogTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTree.swift; sourceTree = "<group>"; };
+		FAF37A7B1FE11288006636BA /* CrashlyticsLogTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsLogTree.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1402,6 +1408,8 @@
 			isa = PBXGroup;
 			children = (
 				1F2E310C7C183E99E5CEA633 /* Log.swift */,
+				FAF37A771FE11182006636BA /* LogTree.swift */,
+				FAF37A7B1FE11288006636BA /* CrashlyticsLogTree.swift */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -2506,6 +2514,7 @@
 				FAF37A701FE10922006636BA /* DoubleExtension.swift in Sources */,
 				1F2E38B930CD612F3F71B4F0 /* DepartureViewCell.swift in Sources */,
 				1F2E33F0B6328EFE4AD838E9 /* LineViewController.swift in Sources */,
+				FAF37A7C1FE11288006636BA /* CrashlyticsLogTree.swift in Sources */,
 				1F2E34ABF8658D2B630FF5D8 /* MenuViewController.swift in Sources */,
 				FAA92CE91F5824460054A16F /* UIScreenExtension.swift in Sources */,
 				1F2E3C68BEC54CFA745C6A19 /* MenuTableViewCell.swift in Sources */,
@@ -2640,6 +2649,7 @@
 				1F2E3FE1322223A8CC088257 /* Notifications.swift in Sources */,
 				1F2E388D226A88F119FA5E35 /* Theme.swift in Sources */,
 				1F2E3FE5FAB7FBCED051F976 /* Config.swift in Sources */,
+				FAF37A781FE11182006636BA /* LogTree.swift in Sources */,
 				1F2E307AF1FEDAC27DEFB001 /* LineCourseListViewController.swift in Sources */,
 				FA63E0741F555C5700B04649 /* FcmSettings.swift in Sources */,
 				1F2E3604B006B7DA596A4E6B /* LineCourseMapViewController.swift in Sources */,
@@ -2784,6 +2794,7 @@
 				1F2E37C3DFB52F5A674576B8 /* Log.swift in Sources */,
 				FAAE1F6B1F8E12C700824E86 /* ApiTime.swift in Sources */,
 				1F2E3A95479CCE8F035EBC14 /* RealmExtension.swift in Sources */,
+				FAF37A791FE11182006636BA /* LogTree.swift in Sources */,
 				1F2E38DEBAA85ED1BD42C515 /* MainSchedulerExtension.swift in Sources */,
 				1F2E30F4D200E417309408A3 /* DictionaryExtension.swift in Sources */,
 				FAF37A751FE10AE7006636BA /* ErrorHelper.swift in Sources */,
@@ -2826,6 +2837,7 @@
 				FA8B9D811F7E1E4A0099E4CD /* DeparturesInterfaceController.swift in Sources */,
 				FA14404F1F8FBF930022CB67 /* Localized.swift in Sources */,
 				FADDF7D71F7BD41000C4CD03 /* VdvInterval.swift in Sources */,
+				FAF37A7A1FE11182006636BA /* LogTree.swift in Sources */,
 				FA8B9D691F7D0A6F0099E4CD /* PhoneConnection.swift in Sources */,
 				FAF37A741FE10A76006636BA /* Locales.swift in Sources */,
 				FAAE1F6D1F8E470200824E86 /* SearchRowController.swift in Sources */,
