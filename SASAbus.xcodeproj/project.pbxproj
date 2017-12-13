@@ -357,6 +357,7 @@
 		FA4748951FA1E70500E67DA8 /* changelog_en.json in Resources */ = {isa = PBXBuildFile; fileRef = FA4748941FA1E70500E67DA8 /* changelog_en.json */; };
 		FA4748971FA1EEB200E67DA8 /* changelog_de.json in Resources */ = {isa = PBXBuildFile; fileRef = FA4748961FA1EEB200E67DA8 /* changelog_de.json */; };
 		FA4748991FA1EEBC00E67DA8 /* changelog_it.json in Resources */ = {isa = PBXBuildFile; fileRef = FA4748981FA1EEBC00E67DA8 /* changelog_it.json */; };
+		FA52A4171FE1A60400F445BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA580DF21F56E2AC00CFFCD2 /* InfoPlist.strings */; };
 		FA54DE501E9560930071E42C /* TripSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E39698880C3DBEC3E99F2 /* TripSyncHelper.swift */; };
 		FA54DE541E9651710071E42C /* BadgeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E314A1DCC9BAFE8BE5925 /* BadgeHelper.swift */; };
 		FA54DE551E9651740071E42C /* InAppBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3F6C7DCB2C618E380AB9 /* InAppBadge.swift */; };
@@ -2240,6 +2241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA918DD11F7BBA5B00602F1D /* busstops.realm in Resources */,
+				FA52A4171FE1A60400F445BF /* InfoPlist.strings in Resources */,
 				FAFF0B921F7E394D006B93A6 /* Localizable.strings in Resources */,
 				FAB5627C1F7B8F9600FC862A /* Assets.xcassets in Resources */,
 			);
