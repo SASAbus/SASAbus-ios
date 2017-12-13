@@ -137,6 +137,23 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
         super.leftDrawerButtonPress(sender)
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if let view = emptyView {
+            view.frame = CGRect(
+                x: view.frame.origin.x, y: view.frame.origin.y + tabBar.frame.size.height,
+                width: view.frame.size.width, height: view.frame.size.height - 2 * tabBar.frame.size.height
+            )
+            
+            (view as? NoDeparturesView)?.setupView()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        tabBar.deselect
+    }
+    
 
     fileprivate func setupAutoCompleteTableView() {
         self.autoCompleteTableView!.isHidden = true
@@ -494,11 +511,24 @@ extension BusStopViewController: UISearchBarDelegate {
 
         updateFoundBusStations(searchBar.text!)
         autoCompleteTableView.isHidden = false
+        
+        errorView?.isHidden = true
+        loadingView?.isHidden = true
+        emptyView?.isHidden = true
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         foundBusStations = []
         autoCompleteTableView.isHidden = true
+        
+        autoCompleteTableView.reloadData()
+        
+        startLoading(animated: false)
+        endLoading(animated: false)
+        
+        errorView?.isHidden = false
+        loadingView?.isHidden = false
+        emptyView?.isHidden = false
     }
 }
 
