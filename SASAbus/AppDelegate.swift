@@ -165,16 +165,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupFirebase() {
         var configureError: NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
-        // assert(configureError == nil, "Error configuring Google services: \(configureError)")
 
         GIDSignIn.sharedInstance().delegate = self
 
         FirebaseApp.configure()
 
         let remoteConfig = RemoteConfig.remoteConfig()
-        let remoteConfigSettings = RemoteConfigSettings(developerModeEnabled: true)!
-
-        remoteConfig.configSettings = remoteConfigSettings
         remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults")
 
         remoteConfig.fetch(withExpirationDuration: TimeInterval(86400)) { (status, error) -> Void in
@@ -197,12 +193,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 let reportsUrl = Endpoint.reportsApiUrl
                 Log.warning("Reports api url: \(reportsUrl)")
-
-                let telemetryUrl = Endpoint.telemetryApiUrl
-                Log.warning("Telemetry api url: \(telemetryUrl)")
-
-                let databaseUrl = Endpoint.databaseApiUrl
-                Log.warning("Database api url: \(databaseUrl)")
             } else {
                 Log.error("Remote config fetch failed: \(error!.localizedDescription)")
             }

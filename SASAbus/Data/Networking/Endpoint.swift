@@ -83,12 +83,4 @@ public struct Endpoint {
     static var reportsApiUrl: String {
         return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_REPORTS].stringValue!
     }
-
-    static var telemetryApiUrl: String {
-        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_TELEMETRY].stringValue!
-    }
-
-    static var databaseApiUrl: String {
-        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_DATABASE].stringValue!
-    }
 }

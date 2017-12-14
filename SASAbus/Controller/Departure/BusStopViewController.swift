@@ -103,8 +103,11 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
 
         setupBusStopSearchDate()
         
-        if selectedBusStop != nil {
-            setBusStop(selectedBusStop!)
+        if let stop = selectedBusStop {
+            let tempStop = stop
+            selectedBusStop = nil
+            
+            setBusStop(tempStop)
         }
     }
 
@@ -219,6 +222,8 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
             return
         }
 
+        Log.info("Setting bus stop '\(busStop.id)'")
+        
         selectedBusStop = busStop
         autoCompleteTableView.isHidden = true
 

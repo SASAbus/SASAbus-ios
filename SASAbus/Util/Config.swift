@@ -27,7 +27,5 @@ public class Config {
     static let REMOTE_CONFIG_HOST_URL_TILES = "host_api_tiles"
     static let REMOTE_CONFIG_HOST_URL_DATA_NEW = "host_api_data_new"
     static let REMOTE_CONFIG_HOST_URL_REPORTS = "host_api_reports"
-    static let REMOTE_CONFIG_HOST_URL_TELEMETRY = "host_api_telemetry"
-    static let REMOTE_CONFIG_HOST_URL_DATABASE = "host_api_database"
     static let REMOTE_CONFIG_HOST_URL_REALTIME = "realtime_api_url"
 }
