@@ -10,10 +10,6 @@
 	<string>http://realtimetest.opensasa.info/vdv/zip</string>
 	<key>host_api_reports</key>
 	<string>https://davale-sasa.appspot.com/v1/</string>
-	<key>host_api_telemetry</key>
-	<string>https://davale-sasa.appspot.com/v1/</string>
-	<key>host_api_database</key>
-	<string>https://davale-sasa.appspot.com/v1/</string>
 	<key>realtime_max_cache_age</key>
 	<integer>30</integer>
 	<key>realtime_api_url</key>

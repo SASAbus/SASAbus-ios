@@ -173,7 +173,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let remoteConfig = RemoteConfig.remoteConfig()
         remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults")
 
-        remoteConfig.fetch(withExpirationDuration: TimeInterval(86400)) { (status, error) -> Void in
+        remoteConfig.fetch(withExpirationDuration: TimeInterval(0)) { (status, error) -> Void in
             if status == .success {
                 Log.error("Remote config fetch succeeded.")
 
