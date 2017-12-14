@@ -4,31 +4,22 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
-    
 	<key>CFBundleDisplayName</key>
 	<string>SASAbus Watch Extension</string>
-    
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
-    
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-    
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-    
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
-    
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
-    
 	<key>CFBundleShortVersionString</key>
-	<string>2.0.0</string>
-    
+	<string>2.0.1</string>
 	<key>CFBundleVersion</key>
 	<string>7</string>
-    
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
@@ -39,14 +30,11 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>
 	</dict>
-    
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>NSLocationAlwaysAndWhenInUseUsageDescription</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>NSLocationWhenInUseUsageDescription</string>
 	<key>WKExtensionDelegateClassName</key>
 	<string>$(PRODUCT_MODULE_NAME).ExtensionDelegate</string>
-    
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>NSLocationAlwaysAndWhenInUseUsageDescription</string>
-    
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>NSLocationWhenInUseUsageDescription</string>
 </dict>
 </plist>

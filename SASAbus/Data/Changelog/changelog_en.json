@@ -1,20 +1,30 @@
-[
-  {
-    "title": "2.0.0",
-    "changes": [
-      "• New Design",
-      "• New real-time map",
-      "• Improved departures",
-      "• Added Watch Integration",
-      "• Added beacon integration",
-      "• Added Eco-Points",
-      "• Other bug fixes and improvements"
-    ]
-  },
-  {
-    "title": "1.0.0",
-    "changes": [
-      "• Initial release"
-    ]
-  }
+[  
+    {  
+        "title":"2.0.1",
+        "changes":[  
+            "• Fixed crash in Watch app",
+            "• Fixed eco-points login",
+            "• Fixed error in departure loading",
+            "• Fixed line course color on map",
+            "• Other bug fixes and improvements"
+        ]
+    },
+    {  
+        "title":"2.0.0",
+        "changes":[  
+            "• New Design",
+            "• New real-time map",
+            "• Improved departures",
+            "• Added Watch Integration",
+            "• Added beacon integration",
+            "• Added Eco-Points",
+            "• Other bug fixes and improvements"
+        ]
+    },
+    {  
+        "title":"1.0.0",
+        "changes":[  
+            "• Initial release"
+        ]
+    }
 ]
