@@ -84,6 +84,8 @@ class IntroViewController: UIPageViewController {
         controller.subtitleString = subtitle
         controller.descriptionString = description
         controller.imageString = image
+        
+        controller.dataOnly = dataOnly
 
         return controller
     }
@@ -101,6 +103,8 @@ class IntroViewController: UIPageViewController {
         controller.subtitleString = subtitle
         controller.descriptionString = description
         controller.imageString = image
+        
+        controller.dataOnly = dataOnly
 
         controller.showCloseButton = dataOnly
 
