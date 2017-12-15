@@ -1,4 +1,11 @@
-[  
+[
+  {
+     "title":"2.0.2",
+     "changes":[
+        "• Added option to force data download",
+        "• Other bug fixes and improvements"
+        ]
+    },
     {  
         "title":"2.0.1",
         "changes":[  

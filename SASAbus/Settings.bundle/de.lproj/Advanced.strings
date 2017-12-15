@@ -1,0 +1,4 @@
+"section_advanced_data_header" = "Daten";
+"section_advanced_data_footer" = "Wenn Sie diese Option aktivieren, wird beim nächsten Start der App ein Datendownload erzwungen. Verwenden Sie dies, wenn Sie Probleme mit der Abfahrtsberechnung oder den Zeitangaben haben.";
+
+"advanced_force_data_download" = "Force data download";

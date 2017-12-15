@@ -10,6 +10,8 @@ class Settings {
     private static let PREF_CRASHLYTICS_DEVICE_ID = "pref_crashlytics_device_id"
     
     private static let PREF_BEACONS_ENABLED = "pref_beacons_enabled"
+    
+    private static let PREF_FORCE_DATA_DOWNLOAD = "pref_force_data_download"
 
 
     static func registerDefaults() {
@@ -65,5 +67,18 @@ class Settings {
     
     static func setBeaconsEnabled(_ enabled: Bool) {
         UserDefaults.standard.set(enabled, forKey: PREF_BEACONS_ENABLED)
+    }
+
+
+    static func shouldForceDataDownload() -> Bool {
+        let value = UserDefaults.standard.bool(forKey: PREF_FORCE_DATA_DOWNLOAD)
+        
+        if value {
+            Log.warning("Forcing data redownload")
+        }
+        
+        UserDefaults.standard.set(false, forKey: PREF_FORCE_DATA_DOWNLOAD)
+        
+        return value
     }
 }

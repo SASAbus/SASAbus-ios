@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if !Settings.isIntroFinished() {
             startIntro()
-        } else if PlannedData.isUpdateAvailable() || !PlannedData.planDataExists() {
+        } else if PlannedData.isUpdateAvailable() || !PlannedData.planDataExists() || Settings.shouldForceDataDownload() {
             startIntro(dataOnly: true)
         } else {
             window!.backgroundColor = UIColor.white
