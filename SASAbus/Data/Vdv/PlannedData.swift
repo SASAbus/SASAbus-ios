@@ -13,12 +13,19 @@ class PlannedData {
     public static func planDataExists() -> Bool {
         if dataExists == nil {
             let url = IOUtils.dataDir()
+            
+            if !FileManager.default.fileExists(atPath: url.path) {
+                Log.error("Planned data folder does not exist")
+                
+                dataExists = false
+                return false
+            }
 
             do {
                 let files = try FileManager.default.contentsOfDirectory(atPath: url.path)
 
                 if files.isEmpty {
-                    Log.error("Planned data folder does not exist or is empty")
+                    Log.error("Planned data folder is empty")
                     dataExists = false
                     return false
                 }
