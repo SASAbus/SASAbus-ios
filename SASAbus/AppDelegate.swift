@@ -54,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupFirebase()
         setupRealm()
         setupModels()
+        setupVdv()
         setupNotifications()
         
         setupBeacons()
@@ -66,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if !Settings.isIntroFinished() {
             startIntro()
-        } else if PlannedData.isUpdateAvailable() || !PlannedData.planDataExists() || Settings.shouldForceDataDownload() {
+        } else if PlannedData.isUpdateAvailable() || !PlannedData.isAvailable() || Settings.shouldForceDataDownload() {
             startIntro(dataOnly: true)
         } else {
             window!.backgroundColor = UIColor.white
@@ -207,15 +208,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupModels() {
         Buses.setup()
         Lines.setup()
-
-        _ = VdvHandler.load()
-                .subscribeOn(MainScheduler.background)
-                .observeOn(MainScheduler.background)
-                .subscribe(onError: { error in
-                    ErrorHelper.log(error, message: "Cannot load VDV")
-                })
+    }
+    
+    func setupVdv() {
+        // Don't try to load planned data if it does not exist. It will be downloaded if needed and then automatically loaded.
+        guard PlannedData.isAvailable() else {
+            Log.warning("Planned data does not exist, skipping loading")
+            return
+        }
         
-        PlannedData.checkIfDataIsValid {
+        _ = VdvHandler.load()
+            .subscribeOn(MainScheduler.background)
+            .observeOn(MainScheduler.background)
+            .subscribe(onError: { error in
+                ErrorHelper.log(error, message: "Cannot load VDV")
+            })
+        
+        PlannedData.checkIfValid() {
             self.startIntro(dataOnly: true)
         }
     }

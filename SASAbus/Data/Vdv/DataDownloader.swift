@@ -71,9 +71,9 @@ class DataDownloader {
                         return
                     }
                     
-                    PlannedData.dataExists = true
+                    PlannedData.dataAvailable = true
                     PlannedData.setUpdateAvailable(false)
-                    PlannedData.setDataDate()
+                    PlannedData.setUpdateDate()
                     
                     do {
                         try VdvHandler.loadBlocking(observer)

@@ -8,16 +8,17 @@ class PlannedData {
     static let PREF_UPDATE_AVAILABLE = "pref_data_update_available"
     static let PREF_DATA_DATE = "pref_data_date"
 
-    public static var dataExists: Bool?
+    public static var dataAvailable: Bool?
 
-    public static func planDataExists() -> Bool {
-        if dataExists == nil {
+    
+    public static func isAvailable() -> Bool {
+        if dataAvailable == nil {
             let url = IOUtils.dataDir()
             
             if !FileManager.default.fileExists(atPath: url.path) {
                 Log.error("Planned data folder does not exist")
                 
-                dataExists = false
+                dataAvailable = false
                 return false
             }
 
@@ -26,7 +27,7 @@ class PlannedData {
 
                 if files.isEmpty {
                     Log.error("Planned data folder is empty")
-                    dataExists = false
+                    dataAvailable = false
                     return false
                 }
 
@@ -36,34 +37,34 @@ class PlannedData {
 
                 if !hasMainFile {
                     Log.error("Main data file 'planned_data.json' is missing")
-                    dataExists = false
+                    dataAvailable = false
                     return false
                 }
                 
-                Log.info("Downloaded planned data on '\(PlannedData.getDataDate())'")
+                Log.info("Downloaded planned data on '\(PlannedData.getUpdateDate())'")
 
                 for file in files {
                     Log.info("Found data file '\(file)'")
 
                     if file.hasPrefix("trips_") {
-                        dataExists = true
+                        dataAvailable = true
                         return true
                     }
                 }
 
                 Log.error("Planned data (JSON file) is missing")
-                dataExists = false
+                dataAvailable = false
             } catch let error {
-                ErrorHelper.log(error, message: "Cannot list contents of data directory, re-downloading: \(error)")
-                dataExists = false
+                ErrorHelper.log(error, message: "Cannot check if planned data exists: \(error)")
+                dataAvailable = false
             }
         }
 
-        return dataExists!
+        return dataAvailable!
     }
-    
-    public static func checkIfDataIsValid(_ closure: (() -> Void)? = nil) {
-        guard PlannedData.planDataExists() else {
+
+    public static func checkIfValid(_ closure: (() -> Void)? = nil) {
+        guard isAvailable() else {
             Log.info("Data does not exist, skipping update check")
             return
         }
@@ -73,7 +74,7 @@ class PlannedData {
             return
         }
         
-        let unixDate = PlannedData.getDataDate()
+        let unixDate = PlannedData.getUpdateDate()
         
         _ = ValidityApi.checkData(unix: unixDate)
             .subscribeOn(MainScheduler.background)
@@ -113,13 +114,13 @@ extension PlannedData {
         return UserDefaults.standard.bool(forKey: PREF_UPDATE_AVAILABLE)
     }
 
-    static func setDataDate() {
+    
+    static func setUpdateDate() {
         let time = Date().seconds()
-
         UserDefaults.standard.set(time, forKey: PREF_DATA_DATE)
     }
 
-    static func getDataDate() -> Int {
+    static func getUpdateDate() -> Int {
         return UserDefaults.standard.integer(forKey: PREF_DATA_DATE)
     }
 }
