@@ -111,7 +111,7 @@ extension RestClient {
                                     observer.on(.next(casted))
                                 }
                             } else {
-                                observer.onError(Errors.json())
+                                observer.onError(Errors.json(message: "Index '\(index)' does not exist in JSON for url '\(url)'"))
                             }
 
                             observer.onCompleted()
