@@ -152,7 +152,8 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
             busStops = realm.objects(BusStop.self)
         } else {
             busStops = realm.objects(BusStop.self)
-                    .filter("nameDe CONTAINS[c] '\(searchText)' OR nameIt CONTAINS[c] '\(searchText)'")
+                    .filter("nameDe CONTAINS[c] %@ OR nameIt CONTAINS[c] %@ OR municDe CONTAINS[c] %@ OR municIt CONTAINS[c] %@",
+                            searchText, searchText, searchText, searchText)
         }
 
         let mapped = busStops.map {
