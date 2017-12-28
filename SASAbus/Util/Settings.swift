@@ -28,6 +28,10 @@ class Settings {
         let keys = [
             "PRIVACY_HTML_KEY",
             "SURVEY_CYCLE_KEY",
+            "BUS_STATION_FAVORITES_KEY",
+            "DATA_DOWNLOADED_DONE_KEY",
+            "MAP_DOWNLOADED_DONE_KEY",
+            "ASK_FOR_MAPS_DOWNLOAD_NO_COUNT_KEY"
         ]
         
         for key in keys {
