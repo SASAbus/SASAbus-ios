@@ -24,21 +24,23 @@ import UIKit
 
 class BusStopGpsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var stationLabel: UILabel!
-    @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var distance: UILabel!
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if highlighted {
-            self.stationLabel.textColor = Theme.white
-            self.distanceLabel.textColor = Theme.white
-            self.iconImageView.tintColor = Theme.white
+            self.name.textColor = Theme.white
+            self.distance.textColor = Theme.white
+            self.icon.tintColor = Theme.white
+            
             self.backgroundColor = Theme.orange
         } else {
-            self.stationLabel.textColor = Theme.darkGrey
-            self.distanceLabel.textColor = Theme.darkGrey
-            self.iconImageView.tintColor = Theme.darkGrey
-            self.backgroundColor = Theme.transparent
+            self.name.textColor = Theme.darkGrey
+            self.distance.textColor = Theme.darkGrey
+            self.icon.tintColor = Theme.darkGrey
+            
+            self.backgroundColor = Theme.white
         }
     }
 }
