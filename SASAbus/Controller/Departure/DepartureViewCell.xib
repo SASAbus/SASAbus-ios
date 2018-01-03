@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,8 +19,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="360" height="71.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_navigation_bus.png" translatesAutoresizingMaskIntoConstraints="NO" id="w2l-hi-Uex">
+                        <rect key="frame" x="16" y="18" width="36" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="90N-dc-Qao"/>
+                            <constraint firstAttribute="width" constant="36" id="bMd-ca-CoH"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:47" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jB8-YK-Y0z">
-                        <rect key="frame" x="64" y="12" width="72" height="24"/>
+                        <rect key="frame" x="64" y="15" width="72" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="4pJ-5E-oPW"/>
                             <constraint firstAttribute="width" constant="72" id="JZI-Sv-SpY"/>
@@ -29,17 +36,17 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bus line" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Caf-Cc-rCJ">
-                        <rect key="frame" x="64" y="39" width="72" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Linea 10A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Caf-Cc-rCJ">
+                        <rect key="frame" x="58" y="36.5" width="84" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="72" id="nhc-pH-Mx0"/>
+                            <constraint firstAttribute="width" constant="84" id="nhc-pH-Mx0"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no Data" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPN-4N-cWu">
-                        <rect key="frame" x="148" y="12" width="196" height="24"/>
+                        <rect key="frame" x="148" y="15" width="188" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="xXW-Gf-3W6"/>
                         </constraints>
@@ -48,32 +55,25 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Direction" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2mu-7I-Nhe">
-                        <rect key="frame" x="148" y="39" width="196" height="20.5"/>
+                        <rect key="frame" x="148" y="36.5" width="188" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_navigation_bus.png" translatesAutoresizingMaskIntoConstraints="NO" id="w2l-hi-Uex">
-                        <rect key="frame" x="14" y="18" width="36" height="36"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="36" id="90N-dc-Qao"/>
-                            <constraint firstAttribute="width" constant="36" id="bMd-ca-CoH"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="w2l-hi-Uex" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="6" id="4FD-IN-rEN"/>
+                    <constraint firstItem="w2l-hi-Uex" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="4FD-IN-rEN"/>
                     <constraint firstAttribute="trailingMargin" secondItem="2mu-7I-Nhe" secondAttribute="trailing" constant="8" id="5nT-LR-QrI"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Caf-Cc-rCJ" secondAttribute="bottom" constant="4" id="7EX-F7-KAQ"/>
-                    <constraint firstItem="Caf-Cc-rCJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="56" id="93L-tX-VRD"/>
+                    <constraint firstItem="Caf-Cc-rCJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="58" id="93L-tX-VRD"/>
                     <constraint firstAttribute="trailingMargin" secondItem="uPN-4N-cWu" secondAttribute="trailing" constant="8" id="DmH-mW-ftX"/>
                     <constraint firstAttribute="bottomMargin" secondItem="2mu-7I-Nhe" secondAttribute="bottom" constant="4" id="FKF-bq-KbK"/>
                     <constraint firstItem="uPN-4N-cWu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="Nnn-Se-iT6"/>
                     <constraint firstItem="uPN-4N-cWu" firstAttribute="leading" secondItem="jB8-YK-Y0z" secondAttribute="trailing" constant="12" id="Rux-aT-bY9"/>
                     <constraint firstItem="w2l-hi-Uex" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="SzH-iY-4xl"/>
-                    <constraint firstItem="2mu-7I-Nhe" firstAttribute="leading" secondItem="Caf-Cc-rCJ" secondAttribute="trailing" constant="12" id="Zkf-jE-UDm"/>
+                    <constraint firstItem="2mu-7I-Nhe" firstAttribute="leading" secondItem="Caf-Cc-rCJ" secondAttribute="trailing" constant="6" id="Zkf-jE-UDm"/>
                     <constraint firstItem="jB8-YK-Y0z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="be2-nA-w6m"/>
-                    <constraint firstItem="jB8-YK-Y0z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="56" id="s49-Hk-icY"/>
+                    <constraint firstItem="jB8-YK-Y0z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="64" id="s49-Hk-icY"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

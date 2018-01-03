@@ -103,7 +103,7 @@ class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
             return
         }
         
-        nearbyBusStops = BusStopRealmHelper.nearestBusStops(location: currentLocation)
+        nearbyBusStops = BusStopRealmHelper.nearestBusStops(location: currentLocation, maxDistance: 20000)
 
         tableView.reloadData()
         locationManager?.stopUpdatingLocation()

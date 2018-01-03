@@ -112,35 +112,31 @@ class BusStopRealmHelper {
     }
 
 
-    static func nearestBusStops(location: CLLocation, count: Int = Int.max) -> [BusStopDistance] {
+    static func nearestBusStops(location: CLLocation, count: Int = Int.max, maxDistance: Int = Int.max) -> [BusStopDistance] {
         let realm = Realm.busStops()
     
-        let busStations = realm.objects(BusStop.self)
-        var nearbyBusStations: [BusStopDistance] = []
+        let realmStops = realm.objects(BusStop.self)
+        var result: [BusStopDistance] = []
         
-        for busStop in busStations {
-            var busStationDistance: BusStopDistance?
-            var distance: CLLocationDistance = 0.0
+        for busStop in realmStops {
+            let busStopLocation = CLLocation(latitude: Double(busStop.lat), longitude: Double(busStop.lng))
+            let distance = busStopLocation.distance(from: location)
             
-            let stopLocation = CLLocation(latitude: Double(busStop.lat), longitude: Double(busStop.lng))
-            distance = stopLocation.distance(from: location)
+            let object = BusStopDistance(busStop: BBusStop(fromRealm: busStop), distance: distance)
             
-            if busStationDistance == nil || distance < busStationDistance!.distance {
-                busStationDistance = BusStopDistance(busStop: BBusStop(fromRealm: busStop), distance: distance)
-            }
-            
-            if busStationDistance != nil {
-                nearbyBusStations.append(busStationDistance!)
+            if object.distance <= Double(maxDistance) {
+                result.append(object)
             }
         }
         
-        nearbyBusStations = nearbyBusStations.uniques()
-        nearbyBusStations = nearbyBusStations.sorted(by: { $0.distance < $1.distance })
+        result = result
+            .uniques()
+            .sorted(by: { $0.distance < $1.distance })
         
         if count != Int.max {
-             nearbyBusStations = Array(nearbyBusStations[0..<count])
+             result = Array(result[0..<count])
         }
         
-        return nearbyBusStations
+        return result
     }
 }
