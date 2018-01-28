@@ -25,11 +25,10 @@ import CoreLocation
 import MapKit
 import RealmSwift
 
-class BusStopMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class BusStopMapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
 
-    var locationManager: CLLocationManager?
     var realm = Realm.busStops()
 
     init() {
@@ -45,33 +44,15 @@ class BusStopMapViewController: UIViewController, MKMapViewDelegate, CLLocationM
         super.viewDidLoad()
 
         self.title = L10n.Departures.Map.title
-        self.locationManager = CLLocationManager()
-
-        self.locationManager = CLLocationManager()
-
+    
         mapView.delegate = self
         mapView.mapType = MapUtils.getMapType()
 
         mapView.setRegion(MapUtils.getRegion(), animated: false)
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-
-        self.locationManager!.stopUpdatingLocation()
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        self.locationManager!.requestAlwaysAuthorization()
-        self.locationManager!.requestWhenInUseAuthorization()
-
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager!.delegate = self
-            locationManager!.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager!.startUpdatingLocation()
-        }
 
         parseData()
     }
