@@ -328,6 +328,7 @@
 		1F2E3FE5FAB7FBCED051F976 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2E3B37E9858A7587B9B751 /* Config.swift */; };
 		EE9AB1C31851F4BED3AA825E /* Pods_SASAbus_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF73200D52734B9C1FF9801 /* Pods_SASAbus_Watch_Extension.framework */; };
 		FA091C5F1EDD4CD200BC37A5 /* LineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA091C5E1EDD4CD200BC37A5 /* LineCell.xib */; };
+		FA10B098201F64B600B2893E /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10B097201F64B600B2893E /* HapticFeedback.swift */; };
 		FA14404A1F8FBF930022CB67 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1440481F8FBF920022CB67 /* Images.swift */; };
 		FA14404B1F8FBF930022CB67 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1440481F8FBF920022CB67 /* Images.swift */; };
 		FA14404C1F8FBF930022CB67 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1440481F8FBF920022CB67 /* Images.swift */; };
@@ -778,6 +779,7 @@
 		C25C93583E81F7478573ABB3 /* Pods-SASAbus Watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SASAbus Watch Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SASAbus Watch Extension/Pods-SASAbus Watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		EF3A7D26088D9E6F554435F6 /* Pods-TripNotification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripNotification.release.xcconfig"; path = "Pods/Target Support Files/Pods-TripNotification/Pods-TripNotification.release.xcconfig"; sourceTree = "<group>"; };
 		FA091C5E1EDD4CD200BC37A5 /* LineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineCell.xib; sourceTree = "<group>"; };
+		FA10B097201F64B600B2893E /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
 		FA1440481F8FBF920022CB67 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		FA1440491F8FBF930022CB67 /* Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
 		FA1440501F909C400022CB67 /* NoDeparturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDeparturesView.swift; sourceTree = "<group>"; };
@@ -1713,6 +1715,7 @@
 				FADDF7E51F7BD74300C4CD03 /* TripUtils.swift */,
 				FADDF7EC1F7BDA0600C4CD03 /* ZipUtils.swift */,
 				FAF37A711FE109C8006636BA /* Locales.swift */,
+				FA10B097201F64B600B2893E /* HapticFeedback.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -2625,6 +2628,7 @@
 				FAF37A6E1FE10907006636BA /* BundleExtension.swift in Sources */,
 				1F2E341DB213CB45EA7C0397 /* FavoriteBusStop.swift in Sources */,
 				1F2E3FCF2E52B9E2AC1191D2 /* FavoriteLine.swift in Sources */,
+				FA10B098201F64B600B2893E /* HapticFeedback.swift in Sources */,
 				1F2E3FA8AD642558BFE8A07E /* Trip.swift in Sources */,
 				1F2E301F1C9EE3DD0531AABF /* EarnedBadge.swift in Sources */,
 				1F2E38F8747A52759F440458 /* BusStopRealmHelper.swift in Sources */,

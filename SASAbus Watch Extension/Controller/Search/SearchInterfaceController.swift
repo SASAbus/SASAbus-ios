@@ -61,7 +61,7 @@ class SearchInterfaceController: WKInterfaceController {
                 return
             }
            
-            var mapped = busStops.map { stop -> BBusStop in
+            var mapped: [BBusStop] = busStops.map { stop -> BBusStop in
                 BBusStop(fromRealm: stop)
             }
             

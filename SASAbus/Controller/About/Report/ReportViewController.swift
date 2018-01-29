@@ -419,6 +419,8 @@ extension ReportViewController: ValidationDelegate {
     }
 
     func validationFailed(_ errors: [(Validatable, ValidationError)]) {
+        HapticFeedback.nope()
+        
         for (field, error) in errors {
             var fieldToMark: UIView?
 
