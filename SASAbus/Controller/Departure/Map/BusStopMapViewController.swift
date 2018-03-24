@@ -88,18 +88,16 @@ class BusStopMapViewController: UIViewController, MKMapViewDelegate {
             Log.warning("Clicked on \(id)")
 
             var viewController: BusStopViewController!
-
-            let busStop = BBusStop(fromRealm: realm.objects(BusStop.self).filter("id == \(id)").first!)
-
+            
             if (self.navigationController?.viewControllers.count)! > 1 {
                 viewController = self.navigationController?
                         .viewControllers[(self.navigationController?
                         .viewControllers.index(of: self))! - 1] as? BusStopViewController
 
-                viewController!.setBusStop(busStop)
+                viewController!.setBusStop(annotation.busStop)
                 self.navigationController?.popViewController(animated: true)
             } else {
-                viewController = BusStopViewController(busStop: busStop)
+                viewController = BusStopViewController(busStop: annotation.busStop)
                 (UIApplication.shared.delegate as! AppDelegate).navigateTo(viewController!)
             }
         }
