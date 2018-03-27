@@ -69,7 +69,7 @@ class LineDetailsMapViewController: UIViewController, MKMapViewDelegate {
                         self.mapView.add(polyLine)
                     }
                 }, onError: { error in
-                    Utils.logError(error, message: "Could not load path for line \(self.lineId)")
+                    ErrorHelper.log(error, message: "Could not load path for line \(self.lineId)")
                 })
 
     }

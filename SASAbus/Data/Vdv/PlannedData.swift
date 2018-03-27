@@ -8,18 +8,26 @@ class PlannedData {
     static let PREF_UPDATE_AVAILABLE = "pref_data_update_available"
     static let PREF_DATA_DATE = "pref_data_date"
 
-    public static var dataExists: Bool?
+    public static var dataAvailable: Bool?
 
-    public static func planDataExists() -> Bool {
-        if dataExists == nil {
+    
+    public static func isAvailable() -> Bool {
+        if dataAvailable == nil {
             let url = IOUtils.dataDir()
+            
+            if !FileManager.default.fileExists(atPath: url.path) {
+                Log.error("Planned data folder does not exist")
+                
+                dataAvailable = false
+                return false
+            }
 
             do {
                 let files = try FileManager.default.contentsOfDirectory(atPath: url.path)
 
                 if files.isEmpty {
-                    Log.error("Planned data folder does not exist or is empty")
-                    dataExists = false
+                    Log.error("Planned data folder is empty")
+                    dataAvailable = false
                     return false
                 }
 
@@ -29,50 +37,62 @@ class PlannedData {
 
                 if !hasMainFile {
                     Log.error("Main data file 'planned_data.json' is missing")
-                    dataExists = false
+                    dataAvailable = false
                     return false
                 }
                 
-                Log.info("Downloaded planned data on '\(PlannedData.getDataDate())'")
+                Log.info("Downloaded planned data on '\(PlannedData.getUpdateDate())'")
 
                 for file in files {
                     Log.info("Found data file '\(file)'")
 
                     if file.hasPrefix("trips_") {
-                        dataExists = true
+                        dataAvailable = true
                         return true
                     }
                 }
 
                 Log.error("Planned data (JSON file) is missing")
-                dataExists = false
+                dataAvailable = false
             } catch let error {
-                Utils.logError(error, message: "Cannot list contents of data directory, re-downloading: \(error)")
-                dataExists = false
+                ErrorHelper.log(error, message: "Cannot check if planned data exists: \(error)")
+                dataAvailable = false
             }
         }
 
-        return dataExists!
+        return dataAvailable!
     }
-    
-    public static func checkIfDataIsValid(_ closure: (() -> Void)? = nil) {
-        let unixDate = PlannedData.getDataDate()
+
+    public static func checkIfValid(_ closure: (() -> Void)? = nil) {
+        guard isAvailable() else {
+            Log.info("Data does not exist, skipping update check")
+            return
+        }
+        
+        guard Settings.isIntroFinished() else {
+            Log.info("Into not yet finished, skipping update check")
+            return
+        }
+        
+        let unixDate = PlannedData.getUpdateDate()
         
         _ = ValidityApi.checkData(unix: unixDate)
             .subscribeOn(MainScheduler.background)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { json in
                 guard let isValid = json["valid"].bool else {
-                    Log.error("Could not find 'valid' json object in API response")
+                    Log.error("Could not find json object 'valid' in API response")
                     return
                 }
                 
                 if !isValid {
-                    Log.error("Data is not valid, redownloading on next app start")
                     PlannedData.setUpdateAvailable(true)
                     
                     if let closure = closure {
+                        Log.error("Data is not valid, redownloading now")
                         closure()
+                    } else {
+                        Log.error("Data is not valid, redownloading on next app start")
                     }
                 } else {
                     Log.info("Planned data is still valid")
@@ -94,13 +114,13 @@ extension PlannedData {
         return UserDefaults.standard.bool(forKey: PREF_UPDATE_AVAILABLE)
     }
 
-    static func setDataDate() {
+    
+    static func setUpdateDate() {
         let time = Date().seconds()
-
         UserDefaults.standard.set(time, forKey: PREF_DATA_DATE)
     }
 
-    static func getDataDate() -> Int {
-        return UserDefaults.standard.integer(forKey: PREF_DATA_DATE) - 50000000
+    static func getUpdateDate() -> Int {
+        return UserDefaults.standard.integer(forKey: PREF_DATA_DATE)
     }
 }

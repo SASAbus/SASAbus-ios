@@ -1,10 +1,3 @@
-//
-//  DataDownloader.swift
-//  SASAbus
-//
-//  Created by Alex Lardschneider on 27/09/2017.
-//  Copyright © 2017 SASA AG. All rights reserved.
-//
 
 import Foundation
 
@@ -15,14 +8,13 @@ import Alamofire
 
 
 class DataDownloader {
-    
-    static let FILENAME_ONLINE = "assets/archives/data"
+
     static let FILENAME_OFFLINE = "data.zip"
     
     
-    static func downloadFile(downloadUrl: URL) -> Observable<Float> {
+    static func downloadFile(destinationUrl: URL) -> Observable<Float> {
         return Observable.create { observer in
-            Log.debug("Downloading planned data to \(downloadUrl)")
+            Log.debug("Downloading planned data to \(destinationUrl)")
             
             let fileManager = FileManager.default
             
@@ -33,30 +25,30 @@ class DataDownloader {
                     try fileManager.removeItem(at: dataDirectory)
                     Log.warning("Deleted old data directory")
                 } catch let error {
-                    Utils.logError(error, message: "Could not delete old data directory: \(error)")
+                    ErrorHelper.log(error, message: "Could not delete old data directory: \(error)")
                 }
             }
             
-            if fileManager.fileExists(atPath: downloadUrl.path) {
+            if fileManager.fileExists(atPath: destinationUrl.path) {
                 do {
-                    try fileManager.removeItem(at: downloadUrl)
+                    try fileManager.removeItem(at: destinationUrl)
                     Log.warning("Deleted old data.zip")
                 } catch let error {
-                    Utils.logError(error, message: "Could not delete data.zip: \(error)")
+                    ErrorHelper.log(error, message: "Could not delete data.zip: \(error)")
                 }
             }
             
             // Download new planned data
             let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-                return (downloadUrl, [.removePreviousFile, .createIntermediateDirectories])
+                return (destinationUrl, [.removePreviousFile, .createIntermediateDirectories])
             }
             
             let progress: Alamofire.Request.ProgressHandler = { progress in
                 observer.on(.next(Float(progress.fractionCompleted)))
             }
             
-            let zipUrl = Endpoint.apiUrl.appending(FILENAME_ONLINE)
-            Log.info("Zip url is '\(zipUrl)'")
+            let zipUrl = Endpoint.newDataApiUrl
+            Log.info("Data url is '\(zipUrl)'")
             
             // Download new data
             let request = Alamofire.download(zipUrl, to: destination)
@@ -68,20 +60,20 @@ class DataDownloader {
                     }
                     
                     do {
-                        Log.info("Unzipping zip file '\(downloadUrl)'")
+                        Log.info("Unzipping zip file '\(destination)'")
                         
-                        try ZipUtils.unzipFile(from: downloadUrl, to: IOUtils.dataDir())
+                        try ZipUtils.unzipFile(from: destinationUrl, to: IOUtils.dataDir())
                         
                         let fileManager = FileManager.default
-                        try fileManager.removeItem(atPath: downloadUrl.path)
+                        try fileManager.removeItem(atPath: destinationUrl.path)
                     } catch {
                         observer.on(.error(error))
                         return
                     }
                     
-                    PlannedData.dataExists = true
+                    PlannedData.dataAvailable = true
                     PlannedData.setUpdateAvailable(false)
-                    PlannedData.setDataDate()
+                    PlannedData.setUpdateDate()
                     
                     do {
                         try VdvHandler.loadBlocking(observer)
@@ -103,8 +95,8 @@ class DataDownloader {
         Log.warning("Starting plan data download")
         
         let baseUrl = IOUtils.storageDir()
-        let downloadUrl = baseUrl.appendingPathComponent(FILENAME_OFFLINE)
+        let destinationUrl = baseUrl.appendingPathComponent(FILENAME_OFFLINE)
         
-        return downloadFile(downloadUrl: downloadUrl)
+        return downloadFile(destinationUrl: destinationUrl)
     }
 }

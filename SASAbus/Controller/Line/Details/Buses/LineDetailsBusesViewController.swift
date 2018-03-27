@@ -81,7 +81,7 @@ class LineDetailsBusesViewController: UITableViewController {
                     self.activityIndicatorView.stopAnimating()
                     self.refreshControl?.endRefreshing()
                 }, onError: { error in
-                    Utils.logError(error)
+                    ErrorHelper.log(error)
                 })
     }
 

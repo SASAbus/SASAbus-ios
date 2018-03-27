@@ -99,8 +99,9 @@ class EcoPointsLeaderboardViewController: UIViewController, UITableViewDataSourc
 
                     self.endLoading(animated: false)
                 }, onError: { error in
-                    Utils.logError(error, message: "Couldn't load leaderboard")
+                    ErrorHelper.log(error, message: "Couldn't load leaderboard")
                     AuthHelper.checkIfUnauthorized(error)
+                    
                     self.endLoading(animated: false, error: error)
                 })
     }

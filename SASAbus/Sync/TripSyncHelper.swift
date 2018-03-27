@@ -39,7 +39,7 @@ class TripSyncHelper {
                         }
                     }
                 }, onError: { error in
-                    Utils.logError(error, message: "Could not upload trips")
+                    ErrorHelper.log(error, message: "Could not upload trips")
                 })
     }
 }

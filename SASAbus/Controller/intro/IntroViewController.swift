@@ -5,6 +5,7 @@ class IntroViewController: UIPageViewController {
     weak var introDelegate: IntroPageViewControllerDelegate?
 
     var dataOnly: Bool = false
+    var dataUpdateFinished: Bool = false
 
     private(set) lazy var pageViewControllers = [IntroPageViewController]()
 
@@ -65,14 +66,7 @@ class IntroViewController: UIPageViewController {
 
         introDelegate?.introPageViewController(didUpdatePageCount: pageViewControllers.count)
 
-        if let firstViewController = pageViewControllers.first {
-            DispatchQueue.main.async {
-                self.setViewControllers([firstViewController],
-                        direction: .forward,
-                        animated: true,
-                        completion: nil)
-            }
-        }
+        self.setViewControllers([self.pageViewControllers.first!], direction: .forward, animated: false)
 
         view.backgroundColor = UIColor.white
     }
@@ -90,6 +84,8 @@ class IntroViewController: UIPageViewController {
         controller.subtitleString = subtitle
         controller.descriptionString = description
         controller.imageString = image
+        
+        controller.dataOnly = dataOnly
 
         return controller
     }
@@ -107,6 +103,8 @@ class IntroViewController: UIPageViewController {
         controller.subtitleString = subtitle
         controller.descriptionString = description
         controller.imageString = image
+        
+        controller.dataOnly = dataOnly
 
         controller.showCloseButton = dataOnly
 
@@ -114,11 +112,19 @@ class IntroViewController: UIPageViewController {
     }
 
 
-    func setSwipeable(swipeable: Bool) {
-        for view in self.view.subviews {
-            if let scrollView = view as? UIScrollView {
-                scrollView.isScrollEnabled = swipeable
-            }
+    func didFinishDataDownload() {
+        dataUpdateFinished = true
+        
+        guard !dataOnly else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            let index = 2
+            let newController = self.pageViewControllers[index]
+            
+            self.setViewControllers([newController], direction: .forward, animated: true)
+            self.introDelegate?.introPageViewController(didUpdatePageIndex: index, color: newController.color)
         }
     }
 }
@@ -163,13 +169,17 @@ extension IntroViewController: UIPageViewControllerDataSource {
         }
 
         let nextIndex = viewControllerIndex + 1
-        let orderedViewControllersCount = pageViewControllers.count
-
-        guard orderedViewControllersCount != nextIndex else {
+        let count = pageViewControllers.count
+        
+        if viewControllerIndex == 1 && !dataUpdateFinished {
             return nil
         }
 
-        guard orderedViewControllersCount > nextIndex else {
+        guard count != nextIndex else {
+            return nil
+        }
+
+        guard count > nextIndex else {
             return nil
         }
 
@@ -179,6 +189,7 @@ extension IntroViewController: UIPageViewControllerDataSource {
 
 
 protocol IntroPageViewControllerDelegate: class {
+    
     func introPageViewController(didUpdatePageCount count: Int)
     func introPageViewController(didUpdatePageIndex index: Int, color: UIColor)
 }

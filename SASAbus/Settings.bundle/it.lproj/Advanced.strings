@@ -1,0 +1,4 @@
+"section_advanced_data_header" = "Data";
+"section_advanced_data_footer" = "Attivando questa opzione forzerai il download dei dati all'avvio successivo dell'app. Utilizzare questo se ha problemi con il calcolo della partenza o le indicazioni del tempo.";
+
+"advanced_force_data_download" = "Forza il download dei dati";

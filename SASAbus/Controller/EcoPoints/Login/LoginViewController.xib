@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina5_5" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,17 +18,17 @@
                 <viewControllerLayoutGuide type="bottom" id="rug-mN-FRT"/>
             </layoutGuides>
             <view key="view" contentMode="scaleToFill" id="AZS-TO-gSt">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wave" translatesAutoresizingMaskIntoConstraints="NO" id="ukR-WT-5b6">
-                        <rect key="frame" x="0.0" y="624" width="414" height="112"/>
+                        <rect key="frame" x="0.0" y="555" width="375" height="112"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="112" id="Xk7-6a-LgK"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TxS-ky-Jtm">
-                        <rect key="frame" x="16" y="728" width="382" height="0.0"/>
+                        <rect key="frame" x="16" y="659" width="343" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -37,7 +37,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_app" translatesAutoresizingMaskIntoConstraints="NO" id="ION-f7-lL3">
-                        <rect key="frame" x="151" y="52" width="112" height="112"/>
+                        <rect key="frame" x="131.5" y="52" width="112" height="112"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="112" id="6fh-ch-A7C"/>
                             <constraint firstAttribute="height" constant="112" id="7k9-dG-UC7"/>
@@ -45,10 +45,10 @@
                         </constraints>
                     </imageView>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gRz-gi-MAB">
-                        <rect key="frame" x="48" y="220" width="318" height="20"/>
+                        <rect key="frame" x="48" y="220" width="279" height="20"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <textInputTraits key="textInputTraits"/>
+                        <textInputTraits key="textInputTraits" textContentType="email"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="placeholderKey" value="ecopoints.login.email.placeholder"/>
                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
@@ -57,17 +57,17 @@
                         </userDefinedRuntimeAttributes>
                     </textField>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vvz-7m-dVN">
-                        <rect key="frame" x="48" y="244" width="318" height="1"/>
+                        <rect key="frame" x="48" y="244" width="279" height="1"/>
                         <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="NMR-Ta-FEP"/>
                         </constraints>
                     </view>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2kt-rn-RoI">
-                        <rect key="frame" x="48" y="277" width="318" height="20"/>
+                        <rect key="frame" x="48" y="277" width="279" height="20"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="placeholderKey" value="ecopoints.login.password.placeholder"/>
                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
@@ -76,14 +76,14 @@
                         </userDefinedRuntimeAttributes>
                     </textField>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tZF-Dj-KcU">
-                        <rect key="frame" x="48" y="301" width="318" height="1"/>
+                        <rect key="frame" x="48" y="301" width="279" height="1"/>
                         <color key="backgroundColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="Is8-lh-Pgl"/>
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZS1-eD-3v9" userLabel="Login button">
-                        <rect key="frame" x="48" y="334" width="318" height="36"/>
+                        <rect key="frame" x="48" y="334" width="279" height="36"/>
                         <color key="backgroundColor" red="0.96470588239999999" green="0.78823529410000004" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="36" id="jHa-jR-p0x"/>
@@ -98,10 +98,13 @@
                         </connections>
                     </button>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="0ph-v8-tAS">
-                        <rect key="frame" x="197.66666666666666" y="342" width="20" height="20"/>
+                        <rect key="frame" x="177.5" y="342" width="20" height="20"/>
                     </activityIndicatorView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SC4-yP-E2c">
-                        <rect key="frame" x="64" y="386" width="286" height="0.0"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ecopoints.login.forgot_password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SC4-yP-E2c" userLabel="Forgot password link">
+                        <rect key="frame" x="64" y="378" width="247" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="SlM-nI-6e6"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                         <color key="textColor" white="1" alpha="0.60199353450000004" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -110,7 +113,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p4e-e0-gYG" customClass="GIDSignInButton">
-                        <rect key="frame" x="175" y="418" width="64" height="18"/>
+                        <rect key="frame" x="155.5" y="434" width="64" height="18"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="Ate-6G-dMa"/>
@@ -118,7 +121,7 @@
                         </constraints>
                     </view>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="tyl-ev-dZL">
-                        <rect key="frame" x="196.66666666666666" y="417" width="20" height="20"/>
+                        <rect key="frame" x="177.5" y="433" width="20" height="20"/>
                     </activityIndicatorView>
                 </subviews>
                 <color key="backgroundColor" red="0.1176470588" green="0.13725490200000001" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -131,7 +134,7 @@
                     <constraint firstItem="tyl-ev-dZL" firstAttribute="centerX" secondItem="p4e-e0-gYG" secondAttribute="centerX" id="FHZ-qk-yXB"/>
                     <constraint firstItem="p4e-e0-gYG" firstAttribute="centerX" secondItem="AZS-TO-gSt" secondAttribute="centerX" id="FOv-sm-65m"/>
                     <constraint firstAttribute="trailing" secondItem="TxS-ky-Jtm" secondAttribute="trailing" constant="16" id="FVA-t7-Prr"/>
-                    <constraint firstItem="p4e-e0-gYG" firstAttribute="top" secondItem="SC4-yP-E2c" secondAttribute="bottom" constant="32" id="GE3-3H-UoJ"/>
+                    <constraint firstItem="p4e-e0-gYG" firstAttribute="top" secondItem="SC4-yP-E2c" secondAttribute="bottom" constant="24" id="GE3-3H-UoJ"/>
                     <constraint firstItem="ION-f7-lL3" firstAttribute="top" secondItem="N3m-7G-99X" secondAttribute="bottom" constant="32" id="GcQ-ll-FpC"/>
                     <constraint firstItem="ION-f7-lL3" firstAttribute="centerX" secondItem="AZS-TO-gSt" secondAttribute="centerX" id="HaI-AA-8mV"/>
                     <constraint firstItem="TxS-ky-Jtm" firstAttribute="leading" secondItem="AZS-TO-gSt" secondAttribute="leading" constant="16" id="Iey-xg-Z83"/>
@@ -140,7 +143,7 @@
                     <constraint firstItem="rug-mN-FRT" firstAttribute="top" secondItem="TxS-ky-Jtm" secondAttribute="bottom" constant="8" id="Tcc-pb-Wlg"/>
                     <constraint firstItem="tZF-Dj-KcU" firstAttribute="leading" secondItem="AZS-TO-gSt" secondAttribute="leading" constant="48" id="VyF-oC-Q6f"/>
                     <constraint firstItem="ZS1-eD-3v9" firstAttribute="top" secondItem="tZF-Dj-KcU" secondAttribute="bottom" constant="32" id="WFV-9p-QdG"/>
-                    <constraint firstItem="SC4-yP-E2c" firstAttribute="top" secondItem="ZS1-eD-3v9" secondAttribute="bottom" constant="16" id="WZ0-Kb-aiF"/>
+                    <constraint firstItem="SC4-yP-E2c" firstAttribute="top" secondItem="ZS1-eD-3v9" secondAttribute="bottom" constant="8" id="WZ0-Kb-aiF"/>
                     <constraint firstAttribute="trailing" secondItem="2kt-rn-RoI" secondAttribute="trailing" constant="48" id="XDx-Pn-Nnf"/>
                     <constraint firstItem="tZF-Dj-KcU" firstAttribute="top" secondItem="2kt-rn-RoI" secondAttribute="bottom" constant="4" id="ZAQ-BJ-Acv"/>
                     <constraint firstItem="2kt-rn-RoI" firstAttribute="leading" secondItem="AZS-TO-gSt" secondAttribute="leading" constant="48" id="ZAW-lc-mnC"/>
@@ -164,6 +167,7 @@
                 <outlet property="background" destination="AZS-TO-gSt" id="2ed-Vx-Onb"/>
                 <outlet property="button" destination="ZS1-eD-3v9" id="h4b-nY-LMY"/>
                 <outlet property="email" destination="gRz-gi-MAB" id="Ics-A7-w5I"/>
+                <outlet property="forgotPasswordLink" destination="SC4-yP-E2c" id="xMH-jm-TDh"/>
                 <outlet property="googleActivityIndicator" destination="tyl-ev-dZL" id="wIQ-dF-iM8"/>
                 <outlet property="googleButton" destination="p4e-e0-gYG" id="88O-lL-tf7"/>
                 <outlet property="password" destination="2kt-rn-RoI" id="Tfd-Qz-or2"/>
@@ -172,7 +176,7 @@
         </viewController>
     </objects>
     <resources>
-        <image name="ic_app" width="64" height="64"/>
+        <image name="ic_app" width="72" height="72"/>
         <image name="wave" width="375" height="121"/>
     </resources>
 </document>

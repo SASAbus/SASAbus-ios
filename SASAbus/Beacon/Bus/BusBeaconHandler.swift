@@ -428,7 +428,7 @@ extension BusBeaconHandler {
                 beacon.setSuitableForTrip(true)
                 beacon.isOriginPending = false
             }, onError: { error in
-                Utils.logError(error, message: "getBusInformation() error: \(error)")
+                ErrorHelper.log(error, message: "getBusInformation() error: \(error)")
                 
                 beacon.isOriginPending = false
                 beacon.setSuitableForTrip(false)
@@ -477,7 +477,7 @@ extension BusBeaconHandler {
                     BeaconStorage.currentTrip = CurrentTrip(beacon: beacon)
                 }
             }, onError: { error in
-                Utils.logError(error, message: "isBeaconCurrentTrip() error: \(error)")
+                ErrorHelper.log(error, message: "isBeaconCurrentTrip() error: \(error)")
                 
                 beacon.isCurrentTripPending = false
             })
@@ -558,7 +558,7 @@ extension BusBeaconHandler {
                 
                 currentTrip.update()
             }, onError: { error in
-                Utils.logError(error, message: "fetchBusDelayAndInfo() error: \(error)")
+                ErrorHelper.log(error, message: "fetchBusDelayAndInfo() error: \(error)")
             })
     }
     
@@ -591,7 +591,7 @@ extension BusBeaconHandler {
                 
                 Log.error("Stop station for \(beacon.id): \(bus.busStop)")
             }, onError: { error in
-                Utils.logError(error)
+                ErrorHelper.log(error)
             })
     }
 }

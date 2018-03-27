@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13528" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="y2L-sV-LJ2">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13770" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="y2L-sV-LJ2">
     <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13526"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13756"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="ArialHB.ttc">
@@ -80,7 +80,7 @@
                                         <edgeInsets key="margins" left="2" right="2" top="2" bottom="2"/>
                                     </group>
                                     <connections>
-                                        <segue destination="xAb-XO-Vbj" kind="push" id="a5e-3f-FBB"/>
+                                        <action selector="onSearchButtonPress" destination="y2L-sV-LJ2" id="M6M-Z9-BmO"/>
                                     </connections>
                                 </button>
                             </items>
@@ -261,10 +261,10 @@
             </objects>
             <point key="canvasLocation" x="321" y="490"/>
         </scene>
-        <!--Search Interface Controller-->
+        <!--SearchInterfaceController-->
         <scene sceneID="iDI-jT-fgl">
             <objects>
-                <controller id="xAb-XO-Vbj" customClass="SearchInterfaceController" customModule="SASAbus_Watch_Extension">
+                <controller identifier="SearchInterfaceController" id="xAb-XO-Vbj" customClass="SearchInterfaceController" customModule="SASAbus_Watch_Extension">
                     <items>
                         <label alignment="center" verticalAlignment="center" text="Loading..." id="wmn-y3-Zjf">
                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

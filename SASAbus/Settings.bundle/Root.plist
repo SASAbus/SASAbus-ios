@@ -38,6 +38,14 @@
 			<key>File</key>
 			<string>Beacons</string>
 		</dict>
+        <dict>
+            <key>Type</key>
+            <string>PSChildPaneSpecifier</string>
+            <key>Title</key>
+            <string>submenu_advanced</string>
+            <key>File</key>
+            <string>Advanced</string>
+        </dict>
 	</array>
 </dict>
 </plist>

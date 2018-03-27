@@ -1,11 +1,10 @@
-//
-// Created by Alex Lardschneider on 05/04/2017.
-// Copyright (c) 2017 SASA AG. All rights reserved.
-//
-
 import Foundation
 
 extension Date {
+    
+    var iso8601: String {
+        return Formatter.iso8601.string(from: self)
+    }
 
     func millis() -> Int64 {
         return Int64(timeIntervalSince1970 * 1000)
@@ -14,4 +13,16 @@ extension Date {
     func seconds() -> Int {
         return Int(timeIntervalSince1970)
     }
+}
+
+extension Formatter {
+    
+    static let iso8601: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.locale = Foundation.Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+        return formatter
+    }()
 }

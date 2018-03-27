@@ -1,0 +1,4 @@
+"section_advanced_data_header" = "Data";
+"section_advanced_data_footer" = "Enabling this option will force a data download on the next app start. Use this if you have issues with departure calculation or time mismatches.";
+
+"advanced_force_data_download" = "Force data download";

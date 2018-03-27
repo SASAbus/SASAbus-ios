@@ -36,7 +36,7 @@ class VdvHandler {
             fatalError("Loading planned data on main thread is prohibited!")
         }
 
-        if !PlannedData.planDataExists() {
+        if !PlannedData.isAvailable() {
             Log.error("Planned data does not exist, skipping loading")
             BeaconHandler.instance.stop()
 
@@ -102,7 +102,7 @@ class VdvHandler {
 
             throw VdvError.jsonError
         } catch let error {
-            Utils.logError(error)
+            ErrorHelper.log(error)
         }
 
         observer?.on(.next(0.100))

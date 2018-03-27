@@ -10,8 +10,12 @@ class FcmSettings {
         UserDefaults.standard.set(token, forKey: PREF_FCM_TOKEN)
     }
     
-    static func getFcmToken() -> String? {
+    static func getFcmTokenOrNil() -> String? {
         return UserDefaults.standard.string(forKey: PREF_FCM_TOKEN)
+    }
+    
+    static func getFcmToken() -> String {
+        return UserDefaults.standard.string(forKey: PREF_FCM_TOKEN) ?? ""
     }
     
     

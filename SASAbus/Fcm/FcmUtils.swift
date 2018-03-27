@@ -4,7 +4,7 @@ import Firebase
 class FcmUtils {
 
     static func checkForNewsSubscription() {
-        guard FcmSettings.getFcmToken() != nil else {
+        guard FcmSettings.getFcmTokenOrNil() != nil else {
             return
         }
 
@@ -21,7 +21,7 @@ class FcmUtils {
             return
         }
 
-        let topic = "news_" + Utils.localeDeIt()
+        let topic = "news_" + Locales.getDeIt()
         FcmSettings.setCurrentNewsTopic(topic: topic)
 
         Log.warning("Subscribing to news topic '\(topic)'")

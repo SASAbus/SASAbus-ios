@@ -35,6 +35,8 @@ class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
     var locationManager: CLLocationManager?
 
     var realm = Realm.busStops()
+    
+    let formatter = MeasurementFormatter()
 
 
     init() {
@@ -66,6 +68,13 @@ class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
         } else {
             busStopLabel.text = L10n.Departures.Gps.header
         }
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.maximumFractionDigits = 1
+        
+        formatter.numberFormatter = numberFormatter
+        formatter.unitOptions = .naturalScale
+        formatter.unitStyle = .short
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -94,7 +103,7 @@ class BusStopGpsViewController: UIViewController, UITableViewDelegate, UITableVi
             return
         }
         
-        nearbyBusStops = BusStopRealmHelper.nearestBusStops(location: currentLocation)
+        nearbyBusStops = BusStopRealmHelper.nearestBusStops(location: currentLocation, maxDistance: 20000)
 
         tableView.reloadData()
         locationManager?.stopUpdatingLocation()
@@ -108,13 +117,15 @@ extension BusStopGpsViewController {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let distance = nearbyBusStops[indexPath.row]
+        let busStop = nearbyBusStops[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopGpsTableViewCell", for: indexPath) as! BusStopGpsTableViewCell
 
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        cell.iconImageView.image = cell.iconImageView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-        cell.stationLabel.text = distance.busStop.name()
-        cell.distanceLabel.text = Int(round(distance.distance)).description + "m"
+        cell.icon.image = cell.icon.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        cell.name.text = busStop.busStop.name()
+        
+        let distance = Measurement(value: busStop.distance, unit: UnitLength.meters)
+        cell.distance.text = formatter.string(from: distance)
 
         return cell
     }

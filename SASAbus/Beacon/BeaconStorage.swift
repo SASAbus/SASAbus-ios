@@ -50,7 +50,7 @@ class BeaconStorage {
         }
     }
 
-    static private func readCurrentTrip() -> CurrentTrip? {
+    private static func readCurrentTrip() -> CurrentTrip? {
         let json = UserDefaults.standard.string(forKey: PREF_BEACON_CURRENT_TRIP)
 
         if json == nil {

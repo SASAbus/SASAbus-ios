@@ -38,7 +38,7 @@ def default_pods
   pod 'Fabric'
   pod 'Crashlytics', '~>  3.8'
 
-  pod 'Pulley'
+  pod 'Pulley', :git => 'https://github.com/52inc/Pulley.git', :branch => 'swift-3.1'
 
   pod 'LocationPickerViewController'
 
@@ -76,4 +76,20 @@ target 'SASAbus Watch Extension' do
   platform :watchos, '4.0'
 
   shared
+end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        if target.name == 'SASAbus Watch Extension'
+            target.build_configurations.each do |config|
+                  config.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = 'YES'
+            end
+        end
+
+        if target.name == 'SASAbus'
+            target.build_configurations.each do |config|
+                  config.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = 'NO'
+            end
+        end
+    end
 end

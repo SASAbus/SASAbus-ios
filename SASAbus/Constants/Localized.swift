@@ -2,6 +2,7 @@
 
 import Foundation
 
+// swiftlint:disable superfluous_disable_command
 // swiftlint:disable file_length
 
 // swiftlint:disable explicit_type_interface identifier_name line_length nesting type_body_length type_name
@@ -119,6 +120,11 @@ enum L10n {
       /// Bus stop map
       static let title = L10n.tr("Localizable", "departures.map.title")
     }
+  }
+
+  enum Dialog {
+    /// Close
+    static let close = L10n.tr("Localizable", "dialog.close")
   }
 
   enum Ecopoints {

@@ -47,7 +47,9 @@ class LineCourseMapViewController: UIViewController, MKMapViewDelegate {
         var activePoints = [CLLocationCoordinate2D]()
         var inactivePoints = [CLLocationCoordinate2D]()
 
-        let locale = Utils.locale()
+        let locale = Locales.get()
+        
+        var wasBus = false
 
         for item in items {
             let busStop = item.busStop
@@ -69,15 +71,13 @@ class LineCourseMapViewController: UIViewController, MKMapViewDelegate {
                     busStop: busStop,
                     color: color
             ))
-
-            var hasAppended = false
-
+            
             if item.active {
                 activePoints.append(coordinate)
-
-                if !hasAppended {
+                
+                if !wasBus {
                     inactivePoints.append(coordinate)
-                    hasAppended = true
+                    wasBus = true
                 }
             } else {
                 inactivePoints.append(coordinate)
@@ -122,28 +122,35 @@ class LineCourseMapViewController: UIViewController, MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if overlay is MKPolyline {
-            if overlay as! MKPolyline == activePolyLine {
-                let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-                polylineRenderer.strokeColor = Color.materialBlue500
-                polylineRenderer.lineWidth = 2
-
-                return polylineRenderer
-            } else if overlay as! MKPolyline == inactivePolyLine {
-                let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-                polylineRenderer.strokeColor = Color.materialGrey500
-                polylineRenderer.lineWidth = 2
-
-                return polylineRenderer
-            }
+        guard let overlay = overlay as? MKPolyline else {
+            return MKOverlayRenderer()
         }
-
+        
+        if overlay == activePolyLine {
+            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            polylineRenderer.strokeColor = Color.materialBlue500
+            polylineRenderer.lineWidth = 2
+            
+            return polylineRenderer
+        } else if overlay == inactivePolyLine {
+            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            polylineRenderer.strokeColor = Color.materialGrey500
+            polylineRenderer.lineWidth = 2
+            
+            return polylineRenderer
+        }
+        
         return MKOverlayRenderer()
     }
 
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
                  calloutAccessoryControlTapped control: UIControl) {
+        
+        guard let annotation = view.annotation as? BusStopAnnotation else {
+            return
+        }
 
-        // TODO segue to bus stop departures
+        let viewController = BusStopViewController(busStop: annotation.busStop)
+        (UIApplication.shared.delegate as! AppDelegate).navigateTo(viewController)
     }
 }

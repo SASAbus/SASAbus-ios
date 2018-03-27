@@ -143,7 +143,7 @@ class ParkingViewController: MasterViewController, StatefulViewController, UITab
 
                     self.endLoading(animated: false)
                 }, onError: { error in
-                    Utils.logError(error)
+                    ErrorHelper.log(error)
 
                     self.items.removeAll()
                     self.tableView.reloadData()

@@ -25,11 +25,10 @@ import CoreLocation
 import MapKit
 import RealmSwift
 
-class BusStopMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class BusStopMapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
 
-    var locationManager: CLLocationManager?
     var realm = Realm.busStops()
 
     init() {
@@ -45,33 +44,15 @@ class BusStopMapViewController: UIViewController, MKMapViewDelegate, CLLocationM
         super.viewDidLoad()
 
         self.title = L10n.Departures.Map.title
-        self.locationManager = CLLocationManager()
-
-        self.locationManager = CLLocationManager()
-
+    
         mapView.delegate = self
         mapView.mapType = MapUtils.getMapType()
 
         mapView.setRegion(MapUtils.getRegion(), animated: false)
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-
-        self.locationManager!.stopUpdatingLocation()
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        self.locationManager!.requestAlwaysAuthorization()
-        self.locationManager!.requestWhenInUseAuthorization()
-
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager!.delegate = self
-            locationManager!.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager!.startUpdatingLocation()
-        }
 
         parseData()
     }
@@ -107,18 +88,16 @@ class BusStopMapViewController: UIViewController, MKMapViewDelegate, CLLocationM
             Log.warning("Clicked on \(id)")
 
             var viewController: BusStopViewController!
-
-            let busStop = BBusStop(fromRealm: realm.objects(BusStop.self).filter("id == \(id)").first!)
-
+            
             if (self.navigationController?.viewControllers.count)! > 1 {
                 viewController = self.navigationController?
                         .viewControllers[(self.navigationController?
                         .viewControllers.index(of: self))! - 1] as? BusStopViewController
 
-                viewController!.setBusStop(busStop)
+                viewController!.setBusStop(annotation.busStop)
                 self.navigationController?.popViewController(animated: true)
             } else {
-                viewController = BusStopViewController(busStop: busStop)
+                viewController = BusStopViewController(busStop: annotation.busStop)
                 (UIApplication.shared.delegate as! AppDelegate).navigateTo(viewController!)
             }
         }
@@ -130,8 +109,8 @@ class BusStopMapViewController: UIViewController, MKMapViewDelegate, CLLocationM
 
         for busStop in busStops {
             let annotation = BusStopAnnotation(
-                    title: busStop.name(locale: Utils.locale()),
-                    subtitle: busStop.munic(locale: Utils.locale()),
+                    title: busStop.name(locale: Locales.get()),
+                    subtitle: busStop.munic(locale: Locales.get()),
                     coordinate: CLLocationCoordinate2D(latitude: Double(busStop.lat), longitude: Double(busStop.lng)),
                     busStop: BBusStop(fromRealm: busStop)
             )

@@ -18,8 +18,6 @@ class DeparturesInterfaceController: WKInterfaceController, PhoneMessageListener
     
     
     override func awake(withContext context: Any?) {
-        Log.error("AWAKE")
-        
         super.awake(withContext: context)
         
         busStop = context as! BBusStop
@@ -29,7 +27,7 @@ class DeparturesInterfaceController: WKInterfaceController, PhoneMessageListener
         PhoneConnection.standard.sendMessage(message: [
             "type": WatchMessage.calculateDepartures.rawValue,
             "bus_stop_group": busStop.family
-            ])
+        ])
     }
 
     override func willActivate() {

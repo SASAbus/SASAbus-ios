@@ -1,0 +1,30 @@
+[  
+    {  
+        "title":"2.0.1",
+        "changes":[  
+            "• Crash in Watch behoben",
+            "• Öko-Punkte Anmeldeproblem behoben",
+            "• Fehler in Abfahrtenanzeige behoben",
+            "• Kursfarbe auf Karte behoben",
+            "• Andere Verbesserungen und Fehlerbehebungen"
+        ]
+    },
+    {  
+        "title":"2.0.0",
+        "changes":[  
+            "• Neues Design",
+            "• Neue Echtzeit-Karte",
+            "• Verbesserte Abfahrtenberechnung",
+            "• Unterstützung für Watch hinzugefüft",
+            "• Unterstützung für Beacons hinzugefüft",
+            "• Öko-Punkte hinzugefügt",
+            "• Andere Verbesserungen und Fehlerbehebungen"
+        ]
+    },
+    {  
+        "title":"1.0.0",
+        "changes":[  
+            "• Erstveröffentlichung"
+        ]
+    }
+]

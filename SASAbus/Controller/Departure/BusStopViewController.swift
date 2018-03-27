@@ -1,25 +1,3 @@
-//
-// BusStopViewController.swift
-// SASAbus
-//
-// Copyright (C) 2011-2015 Raiffeisen Online GmbH (Norman Marmsoler, Jürgen Sprenger, Aaron Falk) <info@raiffeisen.it>
-//
-// This file is part of SASAbus.
-//
-// SASAbus is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// SASAbus is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with SASAbus. If not, see <http://www.gnu.org/licenses/>.
-//
-
 import UIKit
 
 import RxSwift
@@ -125,8 +103,11 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
 
         setupBusStopSearchDate()
         
-        if selectedBusStop != nil {
-            setBusStop(selectedBusStop!)
+        if let stop = selectedBusStop {
+            let tempStop = stop
+            selectedBusStop = nil
+            
+            setBusStop(tempStop)
         }
     }
 
@@ -137,6 +118,23 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
         super.leftDrawerButtonPress(sender)
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if let view = emptyView {
+            view.frame = CGRect(
+                x: view.frame.origin.x, y: view.frame.origin.y + tabBar.frame.size.height,
+                width: view.frame.size.width, height: view.frame.size.height - 2 * tabBar.frame.size.height
+            )
+            
+            (view as? NoDeparturesView)?.setupView()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        tabBar.selectedItem = nil
+    }
+    
 
     fileprivate func setupAutoCompleteTableView() {
         self.autoCompleteTableView!.isHidden = true
@@ -154,7 +152,8 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
             busStops = realm.objects(BusStop.self)
         } else {
             busStops = realm.objects(BusStop.self)
-                    .filter("nameDe CONTAINS[c] '\(searchText)' OR nameIt CONTAINS[c] '\(searchText)'")
+                    .filter("nameDe CONTAINS[c] %@ OR nameIt CONTAINS[c] %@ OR municDe CONTAINS[c] %@ OR municIt CONTAINS[c] %@",
+                            searchText, searchText, searchText, searchText)
         }
 
         let mapped = busStops.map {
@@ -164,7 +163,7 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
         foundBusStations = Array(Set(mapped))
 
         self.foundBusStations = foundBusStations.sorted(by: {
-            $0.name(locale: Utils.locale()) < $1.name(locale: Utils.locale())
+            $0.name(locale: Locales.get()) < $1.name(locale: Locales.get())
         })
 
         self.autoCompleteTableView.reloadData()
@@ -224,6 +223,8 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
             return
         }
 
+        Log.info("Setting bus stop '\(busStop.id)'")
+        
         selectedBusStop = busStop
         autoCompleteTableView.isHidden = true
 
@@ -263,7 +264,7 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
 
                     self.loadDelays()
                 }, onError: { error in
-                    Utils.logError(error, message: "Could not fetch departures")
+                    ErrorHelper.log(error, message: "Could not fetch departures")
 
                     self.allDepartures.removeAll()
 
@@ -301,7 +302,7 @@ class BusStopViewController: MasterViewController, UITabBarDelegate, StatefulVie
                         self.tableView.reloadData()
                     }
                 }, onError: { error in
-                    Utils.logError(error, message: "Could not load delays")
+                    ErrorHelper.log(error, message: "Could not load delays")
 
                     self.allDepartures.filter {
                         $0.delay == Config.BUS_STOP_DETAILS_OPERATION_RUNNING
@@ -494,11 +495,24 @@ extension BusStopViewController: UISearchBarDelegate {
 
         updateFoundBusStations(searchBar.text!)
         autoCompleteTableView.isHidden = false
+        
+        errorView?.isHidden = true
+        loadingView?.isHidden = true
+        emptyView?.isHidden = true
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         foundBusStations = []
         autoCompleteTableView.isHidden = true
+        
+        autoCompleteTableView.reloadData()
+        
+        startLoading(animated: false)
+        endLoading(animated: false)
+        
+        errorView?.isHidden = false
+        loadingView?.isHidden = false
+        emptyView?.isHidden = false
     }
 }
 

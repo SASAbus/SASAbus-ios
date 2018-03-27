@@ -10,6 +10,8 @@ class Settings {
     private static let PREF_CRASHLYTICS_DEVICE_ID = "pref_crashlytics_device_id"
     
     private static let PREF_BEACONS_ENABLED = "pref_beacons_enabled"
+    
+    private static let PREF_FORCE_DATA_DOWNLOAD = "pref_force_data_download"
 
 
     static func registerDefaults() {
@@ -18,6 +20,23 @@ class Settings {
 
         UserDefaults.standard.register(defaults: defaultPrefs)
         UserDefaults.standard.synchronize()
+        
+        deleteObsoleteKeys()
+    }
+    
+    static func deleteObsoleteKeys() {
+        let keys = [
+            "PRIVACY_HTML_KEY",
+            "SURVEY_CYCLE_KEY",
+            "BUS_STATION_FAVORITES_KEY",
+            "DATA_DOWNLOADED_DONE_KEY",
+            "MAP_DOWNLOADED_DONE_KEY",
+            "ASK_FOR_MAPS_DOWNLOAD_NO_COUNT_KEY"
+        ]
+        
+        for key in keys {
+            UserDefaults.standard.removeObject(forKey: key)
+        }
     }
 
 
@@ -52,5 +71,18 @@ class Settings {
     
     static func setBeaconsEnabled(_ enabled: Bool) {
         UserDefaults.standard.set(enabled, forKey: PREF_BEACONS_ENABLED)
+    }
+
+
+    static func shouldForceDataDownload() -> Bool {
+        let value = UserDefaults.standard.bool(forKey: PREF_FORCE_DATA_DOWNLOAD)
+        
+        if value {
+            Log.warning("Forcing data redownload")
+        }
+        
+        UserDefaults.standard.set(false, forKey: PREF_FORCE_DATA_DOWNLOAD)
+        
+        return value
     }
 }

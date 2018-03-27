@@ -41,11 +41,11 @@ class BusStop: Object, Mappable {
     }
 
 
-    func name(locale: String = Utils.locale()) -> String {
+    func name(locale: String = Locales.get()) -> String {
         return (locale == "de" ? nameDe : nameIt)!
     }
 
-    func munic(locale: String = Utils.locale()) -> String {
+    func munic(locale: String = Locales.get()) -> String {
         return (locale == "de" ? municDe : municIt)!
     }
 

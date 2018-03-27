@@ -58,6 +58,8 @@
 "general.unknown" = "Unbekannt";
 "general.departs_in" = "Fährt in %d' ab";
 
+"dialog.close" = "Schließen";
+
 "news.title" = "Neuigkeiten";
 "news.tab_bar.bolzano" = "Bozen";
 "news.tab_bar.merano" = "Meran";

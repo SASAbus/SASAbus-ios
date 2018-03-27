@@ -23,6 +23,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var googleActivityIndicator: UIActivityIndicatorView!
 
+    @IBOutlet weak var forgotPasswordLink: UILabel!
+    
     var hairLineImage: UIImageView!
 
     var parentVC: EcoPointsViewController!
@@ -44,8 +46,17 @@ class LoginViewController: UIViewController {
         activityIndicator.alpha = 0
 
         GIDSignIn.sharedInstance().uiDelegate = self
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didClickOnForgotPassword(sender:)))
+        forgotPasswordLink.addGestureRecognizer(tap)
+        forgotPasswordLink.isUserInteractionEnabled = true
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.email.endEditing(true)
+        self.password.endEditing(true)
+    }
+    
 
     @IBAction func validateForm(_ sender: AnyObject) {
         login()
@@ -75,7 +86,7 @@ class LoginViewController: UIViewController {
 
                     guard json["success"].boolValue else {
                         Log.error("Login failure, got error: \(json["error"].stringValue)")
-                        self.loginFailed()
+                        self.loginFailed(json["error_message"].string)
                         return
                     }
 
@@ -88,7 +99,7 @@ class LoginViewController: UIViewController {
                     Log.warning("Login success, got token: \(token)")
                     self.loginSuccess(email: emailString, token: token, isGoogleSignIn: false)
                 }, onError: { error in
-                    Utils.logError(error)
+                    ErrorHelper.log(error)
                     self.loginFailed()
                 })
     }
@@ -153,16 +164,23 @@ class LoginViewController: UIViewController {
         }
     }
 
-    func loginFailed() {
+    func loginFailed(_ message: String? = nil) {
         animateViews(true)
         animateGoogleViews(true)
+        
+        let dialogMessage = message != nil ? message : L10n.Ecopoints.Login.Error.subtitle
 
         let alert = UIAlertController(title: L10n.Ecopoints.Login.Error.title,
-                message: L10n.Ecopoints.Login.Error.subtitle, preferredStyle: .alert)
+                message: dialogMessage, preferredStyle: .alert)
 
-        alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: L10n.Dialog.close, style: .default, handler: nil))
 
         self.present(alert, animated: true)
+    }
+
+
+    func didClickOnForgotPassword(sender: Any?) {
+        UIApplication.shared.open(URL(string: Endpoint.FORGOT_PASSWORD)!)
     }
 }
 
@@ -216,6 +234,7 @@ extension LoginViewController: GIDSignInUIDelegate {
         guard let userInfo = notification.userInfo, let userId = userInfo["user_id"] as? String else {
             Log.error("ID token missing in notification")
             self.loginFailed()
+            
             return
         }
 
@@ -234,7 +253,7 @@ extension LoginViewController: GIDSignInUIDelegate {
                     Log.warning("Google login success, got token: \(token)")
                     self.loginSuccess(email: userInfo["email"] as? String, token: token, isGoogleSignIn: false)
                 }, onError: { error in
-                    Utils.logError(error)
+                    ErrorHelper.log(error)
                     self.loginFailed()
                 })
     }

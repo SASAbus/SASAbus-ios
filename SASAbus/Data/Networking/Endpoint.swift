@@ -58,6 +58,8 @@ public struct Endpoint {
 
     static let MAP_TILES = "map/coordinates/%d/%d/%d/line/%d/variant/%d"
     static let MAP_TILES_ALL = "map/coordinates/%d/%d/%d"
+    
+    static let FORGOT_PASSWORD = "https://sasa-bus.appspot.com/reset-password"
 
 
     // ========================================== REMOTE CONFIG ENDPOINTS ==============================================
@@ -70,19 +72,15 @@ public struct Endpoint {
         return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_REALTIME].stringValue!
     }
 
-    static var dataApiUrl: String {
-        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_DATA].stringValue!
+    static var tileApiUrl: String {
+        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_TILES].stringValue!
+    }
+    
+    static var newDataApiUrl: String {
+        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_DATA_NEW].stringValue!
     }
 
     static var reportsApiUrl: String {
         return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_REPORTS].stringValue!
-    }
-
-    static var telemetryApiUrl: String {
-        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_TELEMETRY].stringValue!
-    }
-
-    static var databaseApiUrl: String {
-        return RemoteConfig.remoteConfig()[Config.REMOTE_CONFIG_HOST_URL_DATABASE].stringValue!
     }
 }

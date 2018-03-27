@@ -25,7 +25,13 @@ class RestClient {
     }
 
     static func request(_ endpoint: String, method: HTTPMethod, parameters: Parameters? = nil) -> Alamofire.DataRequest {
-        let url = "\(Endpoint.apiUrl)\(endpoint)"
+        var host = Endpoint.apiUrl
+        
+        if endpoint.starts(with: "realtime") {
+            host = Endpoint.realtimeApiUrl
+        }
+        
+        let url = host + endpoint
         let headers = getHeaders(url)
 
         Log.debug("\(method.rawValue.uppercased()): \(url)")
@@ -43,7 +49,7 @@ class RestClient {
         var headers = [
                 "User-Agent": "SasaBus iOS",
                 "X-Device": DeviceUtils.getModel(),
-                "X-Language": Utils.locale(),
+                "X-Language": Locales.get(),
                 "X-Version-Code": versionCode,
                 "X-Version-Name": versionName,
                 "X-Android-Id": DeviceUtils.getIdentifier()
@@ -105,7 +111,7 @@ extension RestClient {
                                     observer.on(.next(casted))
                                 }
                             } else {
-                                observer.onError(Errors.json())
+                                observer.onError(Errors.json(message: "Index '\(index)' does not exist in JSON for url '\(url)'"))
                             }
 
                             observer.onCompleted()

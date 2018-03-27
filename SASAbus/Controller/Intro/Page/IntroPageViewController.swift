@@ -17,7 +17,10 @@ class IntroPageViewController: UIViewController {
     var subtitleString: String!
     var descriptionString: String!
     var imageString: String!
+    
+    var dataOnly: Bool = false
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,7 +52,15 @@ class IntroPageViewController: UIViewController {
         }
     }
 
+    
     func finishIntro() {
+        let delegate = (UIApplication.shared.delegate as! AppDelegate)
+        
+        if dataOnly {
+            delegate.startApplication()
+            return
+        }
+        
         let notification: Permission = .notifications
         let location: Permission = .locationAlways
         
@@ -70,8 +81,9 @@ class IntroPageViewController: UIViewController {
                 }
                 
                 Settings.setIntroFinished()
-                (UIApplication.shared.delegate as! AppDelegate).startApplication()
-                (UIApplication.shared.delegate as! AppDelegate).setupBeacons()
+                
+                delegate.startApplication()
+                delegate.setupBeacons()
             }
         }
     }

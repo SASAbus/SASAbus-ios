@@ -63,11 +63,11 @@ class ReportApi {
                                             observer.on(.next(""))
                                             observer.onCompleted()
                                         } else {
-                                            Utils.logError(response.error!, message: "Cannot send report")
+                                            ErrorHelper.log(response.error!, message: "Cannot send report")
                                         }
                                     }
                         case .failure(let error):
-                            Utils.logError(error, message: "Cannot send report")
+                            ErrorHelper.log(error, message: "Cannot send report")
                         }
                     })
 
@@ -91,7 +91,7 @@ class Body: Mappable {
 
     var deviceIdentifier = DeviceUtils.getIdentifier()
 
-    var locale = Utils.locale()
+    var locale = Locales.get()
 
     var appVersionCode = Bundle.main.versionCode
     var appVersionName = Bundle.main.versionName

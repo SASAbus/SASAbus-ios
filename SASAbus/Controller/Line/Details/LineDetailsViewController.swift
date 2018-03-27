@@ -147,6 +147,8 @@ class LineDetailsViewController: UIViewController {
 
     func toggleFavorite() {
         favoritesChanges = true
+        
+        HapticFeedback.peek()
 
         if isFavorite {
             isFavorite = false

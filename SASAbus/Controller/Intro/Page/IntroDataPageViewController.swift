@@ -35,8 +35,6 @@ class IntroDataPageViewController: IntroPageViewController {
         super.viewDidAppear(animated)
 
         if !downloadComplete {
-            parentVC.setSwipeable(swipeable: false)
-
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.downloadData()
             }
@@ -67,7 +65,7 @@ class IntroDataPageViewController: IntroPageViewController {
                             self.progressView.progress = progress
                         },
                         onError: { error in
-                            Utils.logError(error)
+                            ErrorHelper.log(error)
                             
                             self.downloadComplete = false
                             self.onError()
@@ -88,7 +86,7 @@ class IntroDataPageViewController: IntroPageViewController {
                             })
 
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                                self.parentVC.setSwipeable(swipeable: true)
+                                self.parentVC.didFinishDataDownload()
                             }
 
                             Log.debug("Completed data download")

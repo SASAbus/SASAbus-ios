@@ -223,7 +223,7 @@ class ReportViewController: UIViewController, UIPickerViewDataSource, UINavigati
                 do {
                     try fileManager.removeItem(at: imagePath)
                 } catch let error {
-                    Utils.logError(error, message: "Could not delete old image '\(imagePath)")
+                    ErrorHelper.log(error, message: "Could not delete old image '\(imagePath)")
                 }
             }
         }
@@ -327,7 +327,7 @@ class ReportViewController: UIViewController, UIPickerViewDataSource, UINavigati
                         self.navigationController!.popViewController(animated: true)
                     })
                 }, onError: { error in
-                    Utils.logError(error, message: "Upload failed: \(error)")
+                    ErrorHelper.log(error, message: "Upload failed: \(error)")
 
                     self.enableAllViews()
 
@@ -419,6 +419,8 @@ extension ReportViewController: ValidationDelegate {
     }
 
     func validationFailed(_ errors: [(Validatable, ValidationError)]) {
+        HapticFeedback.nope()
+        
         for (field, error) in errors {
             var fieldToMark: UIView?
 
@@ -492,7 +494,7 @@ extension ReportViewController: UIImagePickerControllerDelegate {
             do {
                 try fileManager.removeItem(at: imagePath)
             } catch let error {
-                Utils.logError(error, message: "Could not delete old image '\(imagePath)'")
+                ErrorHelper.log(error, message: "Could not delete old image '\(imagePath)'")
             }
         }
 
@@ -505,7 +507,7 @@ extension ReportViewController: UIImagePickerControllerDelegate {
 
                 Log.info("Saved image to temporary path '\(imagePath)'")
             } catch let error {
-                Utils.logError(error, message: "Unable to write image: \(error)")
+                ErrorHelper.log(error, message: "Unable to write image: \(error)")
             }
         }
 

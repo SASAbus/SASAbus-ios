@@ -8,6 +8,8 @@ class NoDeparturesView: BasicPlaceholderView {
     override func setupView() {
         super.setupView()
         
+        label.removeFromSuperview()
+        
         label.text = L10n.Departures.emptyState
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Theme.darkGrey
