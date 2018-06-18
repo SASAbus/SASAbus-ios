@@ -134,8 +134,8 @@ extension RestClient {
                             let json = JSON(response.result.value)
 
                             var items: [T] = []
-                            if let item = json[index].to(type: T.self) {
-                                items = item as! [T]
+                            if let cast = json[index].to(type: T.self) as? [T] {
+                                items = cast
                             }
 
                             observer.onNext(items)
